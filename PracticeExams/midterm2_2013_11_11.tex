@@ -1,0 +1,365 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+%\printanswers
+% \noprintanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm Examination II, Page \thepage\ of \numpages}
+              {November 11th, 2013}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Midterm Examination II\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} November 11th, 2013}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{1em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{1em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+\vspace{1em}
+
+\begin{center}
+\fbox{\parbox{5.5in}{\textbf{When asked to identify a random variable on this exan be sure to give any and all parameters of its distribution for full credit.}}}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+\question Suppose that $X$ is a random variable with support $\{1,2\}$ and $Y$ is a random variable with support $\{0,1\}$ where $X$ and $Y$ have the following joint pmf:
+
+			\begin{table}[h]	
+			\centering
+			\begin{tabular}{ll}
+						$p_{XY}(1,0)  = 0.4$ & $p_{XY}(1,1) =0.3$\\
+						$p_{XY}(2,0) =0.3$ & $p_{XY}(2,1) =0$
+						\end{tabular}
+			\end{table}	
+	\begin{parts}
+		\part[2] Express the joint probability mass function (pmf) in a $2\times 2$ table.
+			\begin{solution}[4cm]
+			\begin{center}
+\begin{tabular}{|cc|cc|}
+\hline
+&&\multicolumn{2}{c|}{$Y$}\\
+&&0 & 1\\
+\hline
+\multirow{2}{*}{$X$}
+&1& \multicolumn{1}{|c}{0.4} & 0.3\\
+&2& \multicolumn{1}{|c}{0.3} & 0\\
+\hline
+\end{tabular}
+\end{center}
+			\end{solution}
+		\part[3] Using the table, calculate the marginal pmfs of $X$ and $Y$.
+			\begin{solution}[4cm]
+				\begin{eqnarray*}
+					p_X(1) &=&p_{XY}(1,0) + p_{XY}(1,1)= 0.7\\
+					p_X(2) &=&p_{XY}(2,0) + p_{XY}(2,1)= 0.3\\
+					p_Y(0) &=&p_{XY}(1,0) + p_{XY}(2,0) = 0.7\\
+					p_Y(1) &=& p_{XY}(1,1) + p_{XY}(2,1) = 0.3
+				\end{eqnarray*}
+			\end{solution}
+		\part[5] Calculate the conditional pmfs of $Y|X=1$ and $Y|X=2$.
+			\begin{solution}[5cm]
+			The distribution of $Y|X = 1$ is
+				\begin{eqnarray*}
+					P(Y = 0|X = 1) &=&\frac{p_{XY}(1,0)}{p_X(1)} = 4/7\\\\
+					P(Y = 1|X= 1) &=&\frac{p_{XY}(1,1)}{p_X(1)} = 3/7
+				\end{eqnarray*}
+				while the distribution of $Y|X = 2$ is
+				\begin{eqnarray*}
+					P(Y = 0|X = 2) &=&\frac{p_{XY}(2,0)}{p_X(2)} = 1 \\\\
+					P(Y = 1|X= 2) &=&\frac{p_{XY}(2,1)}{p_X(2)} = 0
+				\end{eqnarray*}
+			\end{solution}
+		\part[3] Calculate $E[Y|X=1]$ and $E[Y|X=2]$.
+			\begin{solution}[3cm]
+			\begin{eqnarray*}
+				E[Y | X =1 ] &=& 0 \times 4/7 + 1 \times 3/7 = 3/7  \\
+				E[Y | X =2 ] &=& 0 
+			\end{eqnarray*}
+			\end{solution}
+		\part[4] Calculate the covariance between $X$ and $Y$.
+		\begin{solution}[5cm]
+		First, from the marginal distributions we calculate $E[Y]= 3/10$ and $E[X] =1 \times 7/10 + 2 \times 3/10 =13/10$. Hence $E[X]E[Y] = 0.39$. Second,
+			\begin{eqnarray*}
+				E[XY] &=& (0\times 1)\times 0.4 + (0\times 2)\times 0.3+ (1\times 1) \times 0.3 + (1\times 2) \times 0\\
+						&=& 0.3
+			\end{eqnarray*}
+			Finally $Cov(X,Y) = E[XY] - E[X]E[Y] = 0.3 - 0.39 = -0.09$
+		\end{solution}
+		\part[3] Are $X$ and $Y$ independent? Explain briefly.
+			\begin{solution}[3cm]
+				No: non-zero covariance implies dependence. Another way to see this is simply to notice that $X$ clearly gives us information about $Y$ because $X = 2$ \emph{rules out} $Y=1$.
+			\end{solution}
+	\end{parts}
+
+
+
+\question The random variables $X_1$ and $X_2$ correspond to the annual returns of Stock 1 and Stock 2. Suppose that $E[X_1]=0.1$, $E[X_2]=0.3$, $Var(X_1) = Var(X_2) = 1$, and $\rho=Corr(X_1, X_2)$.  A portfolio $\Pi(\omega)$ is defined by the proportion $\omega$ of Stock 1 that it contains. That is, $\Pi(\omega) = \omega X_1 + (1-\omega) X_2$ where $0\leq \omega \leq 1$.
+	\begin{parts}
+		\part[3] What value of $\omega$ gives a portfolio with expected return $0.2$? 
+			\begin{solution}[4cm]
+				\begin{eqnarray*}
+					E[\Pi(\omega)] = \omega E[X_1] + (1-\omega) E[X_2]  &=& 0.2\\
+					0.1 \omega +  0.3(1-\omega) &=& 0.2\\
+					\omega &=& 0.5
+				\end{eqnarray*}
+			\end{solution}
+		\part[6] Suppose that $\omega = 1/4$. In terms of $\rho$, what is the portfolio variance?
+			\begin{solution}[5cm]
+			First we have
+			\begin{eqnarray*}
+				Var\left[ \Pi(\omega) \right] &=& \omega^2 Var(X_1) + (1-\omega)^2 Var(X_2) + 2\omega (1-\omega) Cov(X_1,X_2)\\
+					&=&	 \omega^2 + (1-\omega)^2  + 2\omega (1-\omega) \rho
+			\end{eqnarray*}
+			since $Var(X_1)=Var(X_2)=1$ and $\rho = Corr(X_1, X_2)$. Substituting $\omega = 1/4$,
+				\begin{eqnarray*}
+					Var\left[ \Pi(1/4) \right] &=& 1/16 + 9/16  + 2(1/4) (3/4) \rho = 10/16 + 6\rho/16\\
+					 &=& (3\rho + 5)/8
+				\end{eqnarray*}
+			\end{solution}
+		\part[3] Again, suppose that $\omega = 1/4$. What are the maximum and minimum values of the portfolio variance? What are the corresponding values of $\rho$? 
+		\begin{solution}[4cm]
+			From the previous part, $Var[\Pi(\omega)]= (3\rho + 5)/8$. By inspection this variance takes on a maximum value of $1$ when $\rho=1$. It takes on a minimum value of $0.25$ when $\rho = -1$. 
+		\end{solution}
+		\part[3] If we assume that variance is a reasonable measure of risk, what does your answer to part (c) suggest about the benefits of constructing a portfolio rather than holding only one stock? Explain briefly.
+			\begin{solution}[4cm]
+			We see that the variance of this portfolio cannot exceed the variance of the individual assets that make it up. Unless $\rho = 1$, the portfolio is less risky than either of the individual stocks.
+			\end{solution}
+	\end{parts}
+
+
+
+\question Let $Y$ be a continuous random variable with support $[0,1]$ and pdf $f(y) = C y^{3}(1-y)$. 
+	\begin{parts}
+	 	\part[5] Calculate the value of the constant $C$ in the pdf of $Y$.
+	 		\begin{solution}[4.5cm]
+	 		 Since pdfs must integrate to one over their support,
+	 			\begin{eqnarray*}
+	 				1 &=& \int_{-\infty}^{\infty} f(y) \; dy = C \int_0^1 (y^3 - y^4)\; dy =C\left. \left(\frac{y^4}{4}-\frac{y^5}{5}\right) \right|_0^1 \\
+	 					&=& C\left( \frac{1}{4}-\frac{1}{5}\right)=C \left(\frac{5 - 4}{20}\right) = \frac{C}{20}
+	 			\end{eqnarray*}
+	 			Hence, $C = 20$.
+	 		\end{solution}
+	 	\part[5] Calculate the CDF $F(y_0)$ of $Y$.
+	 			\begin{solution}[4.5cm]
+	 				Using our calculations from the previous part, we need only change the upper limit of integration and substitute 20 for $C$ to show that
+	 					\begin{eqnarray*}
+	 						F(y_0) = \int_{-\infty}^{y_0} f(y)\; dy = 20 \left. \left(\frac{y^4}{4}-\frac{y^5}{5}\right) \right|_{0}^{y_0} = 5y_0^4-4y_0^5
+	 					\end{eqnarray*}
+	 					for $y_0 \in \left[0,1\right]$. Thus, the full expression for the CDF of $Y$ is
+	 						$$F(y_0) = \left\{
+	 							\begin{array}{lr}
+	 								0, & y_0 < 0\\
+	 								5y_0^4-4y_0^5, & 0\leq y_0 < 1\\
+	 								1, & y_0 \geq 1
+	 							\end{array}\right.$$
+	 			\end{solution}
+	 	\part[5] Calculate the expected value of $Y$.
+	 		\begin{solution}[4.5cm]
+	 			\begin{eqnarray*}
+	 				E[Y] &=& 20\int_0^1 y(y^3 - y^4)\;dx = 20\int_0^1 (y^4 - y^5)\;dx =20 \left. \left(\frac{y^5}{5}-\frac{y^6}{6} \right)\right|_0^1\\
+	 				&=& 20 \left( \frac{1}{5}-\frac{1}{6}\right) = 20 \left( \frac{6-5}{30}\right) = \frac{2}{3}
+	 			\end{eqnarray*}
+	 		\end{solution}
+	 	\part[5] Calculate the variance of $Y$ using the shortcut formula.
+	 		\begin{solution}[4.5cm]
+	 			By the shortcut formula, we only need to calculate $E[Y^2]$ since we know $E[Y]^2 = 4/9$ from the preceding part. We have,
+	 				\begin{eqnarray*}
+	 					E[X^2] &=& 20\int_0^1 (y^5 - y^6)\; dy = 20 \left. \left(\frac{y^6}{6}-\frac{y^7}{7} \right)\right|_0^1 = 20  \left(\frac{1}{6}-\frac{1}{7} \right) = 10/21
+	 				\end{eqnarray*}
+	 				Hence $Var(Y) = 10/21 - 4/9 = (30 - 28)/63 = 2/63$.
+	 		\end{solution}
+	 \end{parts} 
+
+
+
+
+\question Let $X_1, X_2, \hdots, X_{k} \sim \mbox{iid } N(\mu_X, \sigma^2)$ independent of $Y_1, Y_2, \hdots, Y_{m} \sim \mbox{iid } N(\mu_Y, \sigma^2)$ and define $\bar{X}_k = (\sum_{i=1}^k X_i)/k$, $\bar{Y}_m = (\sum_{i=1}^{m}Y_i)/m$, $\widehat{\mu} = (\bar{X}_k + \bar{Y}_m)/2$.
+ 	\begin{parts} 
+ 		\part[2] What is the sampling distribution of $\bar{X}_k$?
+ 			\begin{solution}[2cm]	
+				$N(\mu_X, \sigma^2/k)$
+			\end{solution}
+ 		\part[2] What is the sampling distribution of $\bar{Y}_m$?
+ 			\begin{solution}[2cm]
+				$N(\mu_Y, \sigma^2/m)$	
+			\end{solution}
+ 		\part[5] Suppose you wanted to estimate $\mu = (\mu_X + \mu_Y)/2$. This is the \emph{midpoint} of the two means $\mu_X$ and $\mu_Y$. Show that $\widehat{\mu}$ is an unbiased estimator of $\mu$.
+ 			\begin{solution}[4cm]
+				$E[\widehat{\mu}] = E[(\bar{X}_k + \bar{Y}_m)/2] = E[\bar{X}_k]/2  + E[\bar{Y}_m]/2 = \mu_X/2 + \mu_Y/2 = \mu$
+			\end{solution}
+ 		\part[6] What is the sampling distribution of $\widehat{\mu}$?
+ 		 	\begin{solution}[5cm]
+				Since $\widehat{\mu}$ is a linear combination of independent normals, its sampling distribution is normal. We already showed in the previous part that its mean is $\mu$. We calculate its variance as follows:
+					\begin{eqnarray*}
+						Var(\widehat{\mu}) &=& Var\left[ (\bar{X}_k + \bar{Y}_m)/2\right]\\
+						&=&\frac{1}{4} \left[Var(\bar{X}_k) + Var(\bar{Y_m}) \right]\\
+						&=& \frac{1}{4}\left(\sigma^2/k + \sigma^2/m  \right)=  \sigma^2\left(\frac{m + k}{4mk}\right)
+					\end{eqnarray*}
+			\end{solution}
+ 	\end{parts}
+
+
+\question Sara is carrying out a poll to estimate the proportion of Penn Undergraduates who favor legalizing marijuana. Let $p \in [0,1]$ denote the true, unknown proportion. Sara polls a random sample of $n$ Penn students and counts the total number $T$ who favor legalizing marijuana. To estimate $p$, she uses $\widehat{p} = (T+2)/(n+4)$.
+	\begin{parts}
+		\part[3] Under random sampling $T$ is a random variable. What kind? 
+			\begin{solution}[2cm]
+				Binomial$(n, p)$
+			\end{solution}
+		\part[3] Write down $E[T]$.
+		\begin{solution}[2cm]
+			The mean of a Binomial RV is $np$.
+		\end{solution}
+		\part[3] Write down $Var(T)$.
+		\begin{solution}[2cm]
+			The variance of a Binomial RV is $np(1-p)$.
+		\end{solution}
+		\part[6] Calculate the bias of $\widehat{p}$ and briefly explain the intuition for your result. 
+			\begin{solution}[5cm]
+			By the Linearity of Expectation and the definition of bias,
+				\begin{eqnarray*}
+					E[\widehat{p}] &=& \frac{E[T] + 2}{n+4} = \frac{np + 2}{n+4}\\
+					\mbox{Bias}(\widehat{p}) &=& E[\widehat{p}] - p = \frac{np + 2}{n+4} - p\\
+					&=&\frac{np + 2 - p(n+4)}{n+4} = \frac{2 - 4p}{n+4}
+				\end{eqnarray*}
+				 When $p=1/2$, the estimator is unbiased. When $p>1/2$ the bias is negative. When $p < 1/2$ the bias is positive. Intuitively, the estimator pulls the sample proportion towards 1/2.
+			\end{solution}
+		\part[5] Calculate $Var(\widehat{p})$.
+		\begin{solution}[4cm]
+			\begin{eqnarray*}
+				Var(\widehat{p}) &=& Var\left(\frac{T+2}{n+4}\right) = \frac{Var(T)}{(n+4)^2} = \frac{np(1-p)}{(n+4)^2}
+			\end{eqnarray*}
+		\end{solution}
+		\part[5] Is $\widehat{p}$ a consistent estimator of $p$? Explain your answer.
+			\begin{solution}[3cm]
+				Yes: taking limits as $n\rightarrow \infty$ both the bias and the variance of $\widehat{p}$ go to zero. Hence the mean-squared error converges to zero.
+			\end{solution}
+		\part[5] Kevin thinks that $\widehat{p}$ is a bad estimator. He tells Sara that she should use $\tilde{p} = T/n$ instead. Briefly argue in favor of Kevin's proposal using what you know about the sampling distributions of $\tilde{p}$ and $\widehat{p}$. 
+			\begin{solution}[4cm]
+				The estimator $\tilde{p} = T/n$ is just the sample mean. Regardless of the true value of $p$, this is \emph{always} an unbiased estimator of $p$. In contrast, Sara's estimator is biased unless $p =1/2$. Kevin could argue that Sara should prefer his estimator because it is ``correct on average'' in repeated sampling. 
+			\end{solution}
+	\end{parts}
+
+\question This question asks you write R code to make random draws from two distributions related to the normal. You may use any commands you like \emph{except} \texttt{rchisq} and \texttt{rt}.
+	\begin{parts}
+		\part[10] Write a function called \texttt{my.rchisq} that uses \texttt{rnorm} to make a single random draw from a $\chi^2(\nu)$ distribution, where $\nu$ is the degrees of freedom. Your function should take a single argument, the degrees of freedom \texttt{df}, and return the random draw.
+			\begin{solution}[4cm]
+				\begin{verbatim}
+					my.rchisq <- function(df){
+					    normal.sims <- rnorm(df)
+					    chisq.sim <- sum(normal.sims^2)
+					    return(chisq.sim)
+					}
+				\end{verbatim}
+			\end{solution}
+		\part[10] Write a function called \texttt{my.rt} that uses \texttt{rnorm} and \texttt{my.rchisq} to make a single random draw from a $t(\nu)$ distribution, where $\nu$ is the degrees of freedom. Your function should take a single argument, the degrees of freedom \texttt{df}, and return the random draw.
+			\begin{solution}[4cm]
+				\begin{verbatim}
+					my.rt <- function(df){
+					    chisq.sim <- my.rchisq(df)
+					    normal.sim <- rnorm(1)
+					    t.sim <- normal.sim / sqrt(chisq.sim / df)
+					    return(t.sim)
+					}					
+				\end{verbatim}			
+			\end{solution}		
+	\end{parts}
+
+
+\question Let $X_1, X_2, \hdots, X_{n} \sim \mbox{iid } N(\mu_X, \sigma_X^2)$ independent of $Y_1, Y_2, \hdots, Y_{m} \sim \mbox{iid } N(\mu_Y, \sigma_Y^2)$ and define $S^2_X$ to be the sample variance of the $X$-observations and $S^2_Y$ to be the sample variance of the $Y$-observations. 
+	\begin{parts}
+		\part[3] What is the sampling distribution of $(n-1)S_X^2/\sigma_X^2$? You do not need to explain your answer.
+			\begin{solution}[4cm]
+				$\chi^2(n-1)$
+			\end{solution}
+		\part[5] Using your answer to the previous part, derive a $100\times (1-\alpha)\%$ confidence interval for $\sigma_X^2$. Express the interval in terms of the appropriate R commands.
+			\begin{solution}[7.5cm]
+				Define:
+					\begin{eqnarray*}
+					a &=& \texttt{qchisq}(\alpha/2, \texttt{ df} = \texttt{n - 1})\\
+					 b &=& \texttt{qchisq}(1-\alpha/2, \texttt{ df} = \texttt{n - 1})
+					 \end{eqnarray*}
+			Then, by (c)
+				\begin{eqnarray*}
+				P\left( a \leq \frac{(n-1)S^2}{\sigma^2}\leq b\right) &=& 1-\alpha \\
+				P\left( \frac{a}{(n-1)S^2} \leq \frac{1}{\sigma^2}\leq \frac{b}{(n-1)S^2} \right) &=& 1-\alpha \\				
+				P\left( \frac{(n-1)S^2}{b} \leq \sigma^2\leq \frac{(n-1)S^2}{a} \right) &=& 1-\alpha \\	
+				\end{eqnarray*}
+			\end{solution}
+		\part[6] What is the sampling distribution of $(S_X^2/\sigma_X^2)/(S_Y^2/\sigma_Y^2)$? Explain.
+			\begin{solution}[6cm]
+				From above, $(n-1)S_X^2/\sigma_X^2 \sim \chi^2(n-1)$. By the same reasoning, we have $(m-1)S_Y^2/\sigma_Y^2 \sim \chi^2(m-1)$. These two $\chi^2$ random variables are independent since they arose from two independent samples. The quantity $(S_X^2/\sigma_X^2)/(S_Y^2/\sigma_Y^2)$ is simply the \emph{ratio} of these two $\chi^2$ random variables after dividing each by its degrees of freedom, hence it follows an $F(n-1, m-1)$ distribution. 
+			\end{solution}
+		\part[6] Use your answer to the previous part to propose a procedure for constructing a $(1-\alpha)\times 100\%$ confidence interval for the \emph{ratio of population variances} $\sigma_Y^2/\sigma_X^2$. Express the interval in terms of the appropriate R commands and briefly suggest how we might use it in practice.
+		\begin{solution}[7.5cm]
+			Define:
+			\begin{eqnarray*}
+				a &=& \texttt{qf}(\alpha/2, \texttt{ n-1}, \texttt{ m-1})\\
+				b &=& \texttt{qf}(1-\alpha/2, \texttt{ n-1}, \texttt{ m-1})
+			\end{eqnarray*}
+			Then by the previous part,
+						\begin{eqnarray*}
+				P\left[ a \leq \frac{(S_X^2/\sigma_X^2)}{(S_Y^2/\sigma_Y^2)}\leq b\right] &=& 1-\alpha 	\\
+				P\left[ a \leq \left(\frac{S_X^2}{S_Y^2}\right)\left(\frac{\sigma_Y^2}{\sigma_X^2} \right)\leq b\right] &=& 1-\alpha 	\\
+				P\left[ \frac{aS_Y^2}{S_X^2} \leq \frac{\sigma_Y^2}{\sigma_X^2} \leq \frac{b S_Y^2}{S_X^2}\right] &=& 1-\alpha 	\\
+				\end{eqnarray*}
+				We could use such a confidence interval learn whether one population has a higher variance than another. For example, we might want to know whether one portfolio of stocks has a higher variance than another based on sample data. 
+		\end{solution}
+	\end{parts}
+
+
+
+
+\end{questions}
+
+\end{document}

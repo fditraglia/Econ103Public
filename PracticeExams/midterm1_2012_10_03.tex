@@ -1,0 +1,343 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+%\boxedpoints
+%\pointsinmargin
+
+
+%\printanswers
+%\noprintanswers
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm I, Page \thepage\ of \numpages}
+              {October 3, 2012}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{First Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} October 3, 2012}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{3em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{3em}
+
+\paragraph{Instructions:} Answer all questions in the space provided. Should you run out of space, continue on the back of the page. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+
+\question A survey collected the following information on new college graduates. Classify each variable as nominal, ordinal, or numerical. You do not need to explain your answers.
+	\begin{parts}
+		\part[2] Sex
+		\begin{solution}[0.15in] Nominal
+		\end{solution}
+		\part[2] Age at graduation
+				\begin{solution}[0.15in] Numerical
+		\end{solution}
+		\part[2] Future plans (graduate school, employment, indefinite)
+				\begin{solution}[0.15in] Nominal
+		\end{solution}
+		\part[2] Class rank
+				\begin{solution}[0.15in] Ordinal
+		\end{solution}
+		\part[2] Grade point average
+				\begin{solution}[0.15in] Numerical
+		\end{solution}
+	\end{parts}
+
+	
+\question A long time ago, the graduate school at a famous university admitted 4000 of their 8000 male applicants versus 1500 of their 4500 female applicants. 
+	\begin{parts}
+		\part[3] Calculate the difference in admission rates between men and women. What does your calculation suggest?
+		\begin{solution}[1.5in]
+		The rate for men is $4000/8000 =50\%$ while that for women is $1500/4500 \approx 33\%$ so the difference is 17\%. It appears that women are less likely to be accepted to the graduate school.
+		\end{solution}
+		\part[7] To get a better sense of the situation, some researchers broke these data down by area of study. Here is what they found:
+			\begin{center}
+			\begin{tabular}{lcc|cc}
+				&\multicolumn{2}{c|}{Men}&\multicolumn{2}{c}{Women}\\
+				&\# Applicants & \# Admitted & \# Applicants& \# Admitted\\
+				\hline
+				Arts &2000 & 400 & 3600 & 900\\
+				Sciences& 6000 & 3600 & 900 & 600\\
+				\hline
+				Totals&8000 & 4000 & 4500 & 1500\\
+				\end{tabular}
+			\end{center}
+			
+			Calculate the difference in admissions rates for men and women studying Arts. Do the same for Sciences.
+			\begin{solution}[1.75in]
+			For Arts, the admission rate is $400/2000=20\%$ for men versus $900/3600 = 25\%$ for women. For Sciences $3600/6000 = 60\%$ for men versus $600/900  \approx 67\%$ for women. In summary:
+				\begin{center}
+				\begin{tabular}{l|ccc}
+				&Men&Women&Difference\\
+				\hline
+				Arts&20\% & 25\%& -5\% \\
+				Sciences& 60\% & 67\% &  -7\% \\
+				\hline
+				Overall&50\% & 33\% & 17\%
+				\end{tabular}
+				\end{center}
+			\end{solution}
+		\part[5] Compare your results from part (a) to part (b). Explain the discrepancy using what you know about observational studies.
+			\begin{solution}[1.75in]
+				When we compare overall rates, women are less likely to be admitted than men. In each field of study, however, women are \emph{more} likely to be admitted. In this example, field of study is a \emph{confounder}: women are disproportionately applying to study Arts and Arts have much lower admissions rates than Sciences.
+			\end{solution}
+	\end{parts}
+
+
+\question The 10-90 percentile range is a measure of dispersion that we did not cover in class. It is given by the difference $P_{90}-P_{10}$ where $P_{10}$ is the 10th and $P_{90}$ the 90th percentile of the sample.
+	\begin{parts}
+		\part[5] Would you expect the 10-90 percentile range to be more or less sensitive to outliers than the range? Explain.
+			\begin{solution}[1in]
+			 It will be less sensitive since it ``trims off'' the top and bottom 10\% of the dataset, i.e.\ the most extreme observations.  In contrast, the range is calculated directly from the maximum and the minimum and so is extremely sensitive to outliers. 
+			\end{solution}
+		\part[5] Consider these three measures of dispersion: the 10-90 percentile range, the interquartile range, and the range. Which is the largest, and which is the smallest?
+		\begin{solution}[1in]
+			$\mbox{IQR} \leq (P_{90} - P_{10})\leq\mbox{Range}$
+		\end{solution}
+	\end{parts}
+
+
+\question Let $a$ be the intercept and $b$ be the slope in the linear regression $y_i = a + b x_i + e_i$ where $y$ is earnings in dollars and $x$ is years of education.
+	\begin{parts}
+		\part[2] Write down the formula for calculating $b$ from the data.
+			\begin{solution}[0.75in]
+				$$b = \frac{s_{xy}}{s_x^2}= \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$$
+			\end{solution}
+		\part[2] Write down the formula for calculating $a$ from the data and $b$.
+		\begin{solution}[0.75in]
+			$$a = \bar{y} - b\bar{x}$$
+		\end{solution}
+		\part[3] What are the units of $b$? Explain briefly.
+			\begin{solution}[1in]
+				The units of $s_{xy}$ are (dollars $\times$ years) while the units of $s_x^2$ are years$^2$ so that the units of $b$ are dollars/year. Since $y$ is measured in dollars, $b$ has to be measured in dollars/year for the units to work out: multiplying $x$ by $b$ converts years into dollars.
+			\end{solution}
+		\part[3] What are the units of $a$? Explain briefly.
+		\begin{solution}[1in]
+		By the formula above, $a$ must be in the same units as $\bar{y}$, dollars.
+		\end{solution}
+	\end{parts}
+
+\question Suppose we want to estimate a linear, least squares regression with $a$ set equal to zero, that is $y_i =  b x_i + e_i$.
+	\begin{parts}
+		\part[5] Write down the optimization problem we need to solve and explain it.
+			\begin{solution}[2in]
+				We choose $b$ to minimize the sum of squared vertical deviations:
+					$$\min_b \sum_{i=1}^n (y_i - bx_i)^2$$
+			\end{solution}
+		\part[10] Solve the optimization problem you wrote down for part (a) to find the formula for $b$.
+			\begin{solution}[3in]
+			Differentiating with respect to $b$ gives the first order condition:
+				$$-2\sum_{i=1}^n (y_i - bx_i)x_i = 0$$
+			Rearranging:
+				\begin{eqnarray*}
+					\sum_{i=1}^n y_ix_i &=& \sum_{i=1}^n  b x_i^2\\\\
+					b&=&\frac{\sum_{i=1}^n y_i x_i}{\sum_{i=1}^n x_i^2}
+				\end{eqnarray*}
+			\end{solution}
+		\part[5] Suppose that we wanted to predict $y$ from $x$ using a \emph{quadratic} relationship, namely $y_i = bx_i^2 + e_i$. How would your answers to parts (a) and (b) change?
+			\begin{solution}[2in]
+			Just replace $x_i$ with $x_i^2$ in both the optimization problem statement and the first order condition:
+				$$b=\frac{\sum_{i=1}^n y_i x_i^2}{\sum_{i=1}^n x_i^4}$$
+				We can do this because $x$ and $y$ are \emph{constants} in the optimization problem rather than variables.
+			\end{solution}
+	\end{parts}
+
+
+
+\question[10] Major League Baseball honors its most outstanding first-year player with the title ``Rookie of the Year.'' The overall major league batting average is around .260, compared to .290 for Rookies of the Year. In their second year, however, Rookies of the Year have an overall batting average of only .275 -- a comparatively disappointing performance. This is sometimes called the ``sophomore slump.'' It has been argued that the publicity, endorsement deals, and tv appearances that come from being named Rookie of the Year distract players from the game, and that this explains the ``sophomore slump.'' Do you agree? Answer yes or no and explain briefly.
+\begin{solution}[2in]
+No. This is an example of regression to the mean. Someone who wins Rookie of the Year is both talented and lucky: the correlation between first and second-year performance is less than one. You will remain talented after your first year, but it is unlikely that you will be lucky twice in a row. Our best guess of their performance in the second year is closer to the mean than their performance in the first year.
+\end{solution}
+
+
+
+\question Suppose $A$ and $B$ are events, i.e.\ $A,B \subseteq S$ where $S$ is the sample space.
+	\begin{parts}
+		\part[2] Write down the three axioms (aka postulates) of probability from class.
+			\begin{solution}[1.8in]
+				\begin{enumerate}
+					\item $0\leq P(A)\leq 1$
+					\item $P(S) = 1$
+					\item If $A$ and $B$ are mutually exclusive events, then $P(A\cup B) = P(A) + P(B)$
+				\end{enumerate}
+			\end{solution}
+		\part[2] Are $A$ and $A^c$ collectively exhaustive?
+			\begin{solution}[0.5in]
+			Yes
+			\end{solution}
+		\part[2] Are $A$ and $A^c$ mutually exclusive?
+			\begin{solution}[0.5in]
+				Yes
+			\end{solution}
+		\part[4] Using parts (a)--(c), derive the Complement Rule.
+			\begin{solution}[2in]
+				By (a), the union of $A$ and $A^c$ is $S$, so $P(A \cup A^c) = P(S) = 1$. By (b), $A$ and $A^c$ are mutually exclusive, hence $P(A \cup A^c) = P(A) + P(A^c)$. Combining these, we have $P(A) + P(A^c) = 1$. Finally, rearranging, $P(A^c) = 1 - P(A)$.
+			\end{solution}
+	\end{parts}
+
+
+
+\question Three percent of \emph{Tropicana} brand oranges are already rotten when they arrive at the supermarket. In contrast, six percent of \emph{Sunkist} brand oranges arrive rotten. A local supermarket buys  forty percent of its oranges from \emph{Tropicana} and the rest from \emph{Sunkist}. Let $R$ be the event that an orange is rotten and $T$ be the event than it is a \emph{Tropicana}.
+	\begin{parts} 
+		\part[3] What is the probability that a randomly chosen orange in the supermarket is a \emph{Tropicana} and is rotten? 
+			\begin{solution}[1.5in]
+			By the multiplication rule:
+			$$P(R\cap T) = P(R|T)P(T) = 0.03 \times 0.4 = 0.012$$
+			\end{solution}
+		\part[3] What is the probability that a randomly chosen orange is rotten?
+			\begin{solution}[1.5in]
+			By the law of total probability:
+				\begin{eqnarray*}
+				P(R) &=& P(R|T)P(T) + P(R|T^c)P(T^c)\\
+					&=& 0.03 \times 0.4 + 0.06 \times 0.6\\
+					&=& 0.012 + 0.036 \\
+					&=& 0.048
+				\end{eqnarray*}
+			\end{solution}
+		\part[4] Suppose we randomly choose an orange from the supermarket and see that it is rotten. What is the probability that it is a \emph{Tropicana}?
+		\begin{solution}[2in]
+		By Bayes' Rule:
+			\begin{eqnarray*}
+			P(T|R) &=& \frac{P(R|T)P(T)}{P(R)}\\
+					&=& \frac{0.012}{0.048} = 1/4 = 0.25
+			\end{eqnarray*}
+		\end{solution}
+	\end{parts}
+	
+
+
+
+\question Suppose a couple decides to have three children. Assume that the sex of each child is independent, and the probability of a girl is $0.48$. (Both of these assumptions are approximately correct for US data.) Note that order matters in this example.
+	\begin{parts}
+		\part[3] How many basic outcomes are there for this experiment?
+		\begin{solution}[1.5in]
+			There are two possible outcomes for each birth, so by the multiplication rule for counting, the total number of possibilities is $2\times 2\times 2 = 8$.
+		\end{solution}
+		\part[3] Are the basic outcomes equally likely? Why or why not?
+			\begin{solution}[1.5in]
+			No, because each child is more likely to be a boy than a girl. The outcome BBB is most likely, followed by outcomes with two boys, and then outcomes with one boy. The outcome GGG is least likely.
+			\end{solution}
+		\part[4] What is the probability that the couple has \emph{at least one} girl?
+			\begin{solution}[1.5in]
+				Use the Complement Rule and independence to calculate the probability of no girls, i.e.\ all boys:
+					$$0.52 \times 0.52 \times 0.52 \approx 0.14$$
+				Hence, the probability of at least one girl is approximately $1 - 0.14 = 0.86$
+			\end{solution}
+	\end{parts}
+
+
+
+\question You have been entered into a very strange tennis tournament. To get the \$10,000 Grand Prize you must win at least two sets \emph{in a row} in a three-set series to be played against your Econ 103 professor and Venus Williams alternately: professor-Venus-professor or Venus-professor-Venus according to your choice. Let $p$ be the probability that you win a set against your professor and $v$ be the probability that you win a set against Venus. Naturally $p>v$ since Venus is much better than your professor! Assume that each set is independent.
+	\begin{parts}
+		\part[5] Let W indicate win and L indicate lose, so that the sequence WWW means you win all three sets, WLW means you win the first and third set but lose the middle one, and so on. Which sequences of wins and losses land you the Grand Prize? 
+			\begin{solution}[1.5in]
+			To get the prize, you have to win the middle set. Thus, the only possibilities are WWW, WWL, and LWW.
+			\end{solution}
+		\part[5] If you elect to play the middle set against Venus, what is the probability that you win the Grand Prize?
+		\begin{solution}[4.3in]
+		The probabilities of mutually exclusive events sum. Thus,
+				\begin{eqnarray*}
+		P(WWW) + P(LWW) + P(WWL) &=& pvp + (1-p)vp +pv(1-p)\\	
+		&=& p^2v + pv - p^2v + pv - p^2v\\
+		&=& 2pv - p^2v \\
+		&=& pv(2-p)
+		\end{eqnarray*}
+		\end{solution}
+		\part[5] If you elect to play the middle set against your professor, what is the probability that you win the Grand prize? 
+				\begin{solution}[4.3in]
+		Again, the probabilities of mutually exclusive events sum. Thus,
+				\begin{eqnarray*}
+		P(WWW) + P(LWW) + P(WWL) &=& vpv + (1-v)pv +vp(1-v)\\	
+		&=&v^2 p + vp - v^2 p + vp - v^2 p\\
+		&=& 2pv -v^2p\\
+		&=& pv(2-v)
+		\end{eqnarray*}
+		\end{solution}
+	\part[5] To maximize your chance of winning the prize, should you choose to play the middle set against Venus or your professor?
+	\begin{solution}[3.3in]
+	Manipulating the inequality,
+		\begin{eqnarray*}
+			p &>& v\\
+			-p &<& -v\\
+			2-p &<& 2-v\\
+			pv(2-p) &<& pv(2-v)\\
+		\end{eqnarray*}
+		You can't get the prize without winning the middle set, so it turns out that it's better to face Venus twice rather than face her in the middle set. You should elect to play the middle set against your professor.
+	\end{solution}
+  	\end{parts}
+
+
+	
+\question This question refers to commands from the R statistical package that you used in the homework. Suppose I have a dataframe called \texttt{gradebook} containing the following columns in order from left to right: \texttt{student.name}, \texttt{major},  and \texttt{GPA}. (That is, for each student, the dataframe contains the student's name, major and grade point average.) 
+	\begin{parts}
+		\part[3]  Suppose I want to display the information from all columns for the student in row ten of the dataframe. What command should I use?
+			\begin{solution}[0.75in]
+				\texttt{gradebook[10,]}
+			  \end{solution}  
+		\part[3] Suppose I want to calculate the mean of the GPA column, which contains numeric data. What command should I use? (You may assume that there are no missing values in the dataframe.)
+			\begin{solution}[0.75in]
+				\texttt{mean(gradebook\$GPA)}
+			\end{solution}
+		\part[3] When I enter the command \texttt{class(gradebook\$major)}, I get \texttt{"factor"} as my result. What does this mean? 
+		\begin{solution}[0.75in]
+		\texttt{major} is a categorical variable
+		\end{solution}
+		\part[3] Suppose I want to display names and grade point averages \emph{only} for the students in rows two, seven, and thirteen of the dataframe. What command should I use?
+			\begin{solution}[0.75in]
+				\texttt{gradebook[c(2, 7, 13), c("student.name", "GPA")]} works, as does \texttt{gradebook[c(2, 7, 13), -2]}
+			\end{solution}
+		\part[3] What is the name of the command for calculating percentiles in R?
+			\begin{solution}[0.75in]
+				\texttt{quantile}
+			\end{solution}
+	\end{parts}
+	
+	
+	
+\end{questions}
+
+
+\end{document}

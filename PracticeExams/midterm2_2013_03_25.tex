@@ -1,0 +1,433 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+
+
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\cov}{Cov}
+\newcommand{\cprob}{\rightarrow_{p}}
+\newcommand{\cas}{\rightarrow_{as}}
+\newcommand{\clp}{\rightarrow_{L^p}}
+\newcommand{\clone}{\rightarrow_{L^1}}
+\newcommand{\cltwo}{\rightarrow_{L^2}}
+\newcommand{\cd}{\rightarrow_{d}}
+\newcommand{\cv}{\Rightarrow_{v}}
+\newcommand{\dec}{\downarrow}
+\newcommand{\inc}{\uparrow}
+\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
+\newcommand{\limn}{\lim_{n \rightarrow \infty}}
+\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
+\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
+\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
+\newcommand{\slfrac}[2]{\left.#1\right/#2}
+
+
+%\printanswers
+%\noprintanswers
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm II, Page \thepage\ of \numpages}
+              {March 25, 2013}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Midterm Examination II\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} March 25, 2013}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{1em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, fifteen points will be deducted from your final score. In addition, one point will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+\question Suppose that $X$ is a random variable with support $\{1,2\}$ and $Y$ is a random variable with support $\{0,1\}$ where $X$ and $Y$ have the following joint distribution:
+			\begin{eqnarray*}
+				p_{XY}(1,0) &=& 0.25\\
+				p_{XY}(1,1) &=&0.25\\
+				p_{XY}(2,0) &=&0.25\\
+				p_{XY}(2,1) &=&0.25
+			\end{eqnarray*}
+	\begin{parts}
+		\part[4] Express the joint pmf of $X$ and $Y$ in a $2\times 2$ table.
+			\begin{solution}[1.25in]
+			\begin{center}
+\begin{tabular}{|cc|cc|}
+\hline
+&&\multicolumn{2}{c|}{$X$}\\
+&&1 & 2\\
+\hline
+\multirow{2}{*}{$Y$}
+&0& \multicolumn{1}{|c}{0.25} & 0.25\\
+&1& \multicolumn{1}{|c}{0.25} & 0.25\\
+\hline
+\end{tabular}
+\end{center}
+			\end{solution}
+		\part[4] Using the table, calculate the marginal pmfs of $X$ and $Y$.
+			\begin{solution}[1.25in]
+				\begin{eqnarray*}
+					p_X(1) &=&p_{XY}(1,0) + p_{XY}(1,1)= 0.25 + 0.25 = 0.5\\
+					p_X(2) &=&p_{XY}(2,0) + p_{XY}(2,1)= 0.25 + 0.25 = 0.5\\
+					p_Y(0) &=&p_{XY}(1,0) + p_{XY}(2,0) = 0.25 + 0.25 = 0.5\\
+					p_Y(1) &=& p_{XY}(1,1) + p_{XY}(2,1) = 0.25 + 0.25 = 0.5
+				\end{eqnarray*}
+			\end{solution}
+		\part[6] Calculate the conditional pmf of $Y|X=1$.
+			\begin{solution}[1.25in]
+			The distribution of $Y|X = 1$ is
+				\begin{eqnarray*}
+					P(Y = 0|X = 1) &=&\frac{p_{XY}(1,0)}{p_X(1)} =0.25/0.5 = 0.5 \\\\
+					P(Y = 1|X= 1) &=&\frac{p_{XY}(1,1)}{p_X(1)} = 0.25/0.5 = 0.5
+				\end{eqnarray*}
+				Alternatively, you could simply notice from the table that $X$ and $Y$ are independent so the conditional pmfs are the same as the marginal pmfs.
+			\end{solution}
+		\part[6] What is the covariance between $X$ and $Y$?
+		\begin{solution}[2in]
+		First, from the marginal distributions, $E[X] = 1.5$ and $E[Y]=0.5$. Hence $E[X]E[Y] = 0.75$. Second,
+			\begin{eqnarray*}
+				E[XY] &=& (0\cdot 1) \cdot 0.25 + (0\cdot 2)\cdot 0.25+ (1\cdot 1) \cdot 0.25 + (1\cdot 2) 0.25\\
+						&=& 0.25 + 0.5 = 0.75
+			\end{eqnarray*}
+			Finally $Cov(X,Y) = E[XY] - E[X]E[Y] = 0.75 - 0.75 = 0$. Alternatively, use the fact that independence implies zero covariance to solve this without doing any calculations.
+		\end{solution}
+	\end{parts}
+
+
+\question Suppose that $X_1 \sim \mbox{Bernoulli}(p_1)$, $X_2 \sim \mbox{Bernoulli}(p_2)$ and $X_3 \sim \mbox{Bernoulli}(p_3)$ where $X_1, X_2$ and $X_3$ are mutually independent. Let $Y$ be a random variable that takes on the value one if and only if a \emph{majority} of the random variables $X_1, X_2, X_3$ take on the value one. In any other situation $Y$ takes on the value zero.
+	\begin{parts}
+		\part[2] Are $X_1, X_2, X_3$ iid? Why or why not?
+		\begin{solution}[1in]
+			Not necessarily: while the three random variables are independent, they are only identically distributed if $p_1 = p_2 = p_3$.
+		\end{solution}
+		\part[2] What kind of random variable is $Y$? You don't need to give the values of any associated parameters: just name the random variable and explain briefly.
+			\begin{solution}[1in]
+				Since it can only take on only the values zero and one, $Y$ is a Bernoulli RV.
+			\end{solution}
+		\part[2] Suppose that $p_1 = p_2 = p_3 =p$. In this case what kind of random variable is $X_1 + X_2 + X_3$?
+		\begin{solution}[1.in]
+			In this case $X_1, X_2, X_3 \sim \mbox{iid Bernoulli}(p)$ so their sum is, by definition, a Binomial$(3,p)$ random variable.
+		\end{solution}
+		\part[4] Using your answer to (c), calculate $P(Y=1)$ for the case in which $p_1 = p_2=p_3 =p$.
+			\begin{solution}[3in]
+			From (c), $X_1 + X_2 + X_3$ is a Binomial$(3,p)$ random variable. Hence its pmf is
+			$$p(x)={3 \choose x} p^x (1-p)^{3-x}$$
+			By definition, $Y=1$ when a majority of $X_1, X_2, X_3$ equal one. Thus we need to calculate the probability that the sum $X_1+X_2+X_3$ equals either two or three. Since these are mutually exclusive outcomes, we calculate
+				\begin{eqnarray*}
+					P(Y=1) &=& P(X_1 + X_2 + X_3 \geq 2) = p(2) + p(3)\\
+					&=&{3 \choose 2} p^2 (1-p) + {3\choose 3} p^3\\
+					&=& 3p^2 (1-p) + p^3\\
+					&=& 3p^2 - 3p^3 + p^3\\
+					&=&3p^2 - 2p^3
+				\end{eqnarray*}
+			\end{solution}
+	
+	\end{parts}
+
+
+
+
+\question This question concerns the Beta$(a,b)$ random variable, a continuous random variable that we did not study in class. The Beta random variable has support $[0,1]$ and is defined by two parameters $a$ and $b$, both of which are greater than zero. Its pdf is given by the following expression:
+	$$f(x) = \frac{x^{a-1} (1-x)^{b-1}}{B(a,b)}$$
+where $B(a,b)$ is the so-called ``Beta Function'' evaluated at $(a,b)$. 
+	\begin{parts}
+			\part[6] The Beta$(2,2)$ random variable has pdf $f(x) = 6x(1-x)$. Calculate its variance using the shortcut rule.
+		\begin{solution}[2.75in]
+		Using the shortcut rule:
+			\begin{eqnarray*}
+				E[X]  &=&  6\int_0^1 (x^2 - x^3) \; dx = 6\left. \left(\frac{x^3}{3} - \frac{x^4}{4} \right)\right|_0^1 = 6(1/3 - 1/4) = 1/2\\ \\
+				E[X^2] &=&6\int_0^1 (x^3 - x^4) \; dx = 6\left. \left(\frac{x^4}{4} - \frac{x^5}{5} \right)\right|_0^1 = 6(1/4 - 1/5) = 3/10\\ \\
+				Var(X) &=& E[X^2] - (E[X])^2 = 3/10 - 1/4 = 1/20
+			\end{eqnarray*}
+		\end{solution}
+		\part[2] In order for $f(x)$ to be a valid pdf, what must the formula for the Beta Function, $B(a,b)$, be? You do not need to evaluate or simplify any integrals in your answer: simply give an expression for $B(a,b)$.
+		\begin{solution}[1.5in]
+		The integral of pdf must equal one over the support. Thus:
+			$$\int_0^1 \frac{x^{a-1} (1-x)^{b-1}}{B(a,b)} \; dx =1$$
+			Multiplying through by $B(a,b)$, which does not involve $x$,
+			$$B(a,b) =\int_0^1  x^{a-1} (1-x)^{b-1}\;dx$$
+		\end{solution}
+		\part[2]  What is the pdf of the Beta$(1,1)$ random variable?
+			\begin{solution}[1.5in]
+				Substituting $a=b=1$,
+				$$f(x) = \frac{x^0 (1-x)^0}{B(1,1)} = \frac{1}{B(1,1)}$$
+				This expression is simply a constant: it does not depend on $x$. Thus, the only way for it to integrate to one over $[0,1]$ is for $B(1,1)$ to equal one. Alternatively, we could evaluate the integral from part (a):
+				$$B(1,1) =\int_0^1  1 \;dx =1$$
+				We see that the Beta$(1,1)$ random variable is the same thing as the Uniform$(0,1)$ random variable!
+			\end{solution}
+	\end{parts}
+
+\question Let $X\sim N(\mu_X, \sigma^2_X)$ independent of $\epsilon \sim N(0, \sigma^2_\epsilon)$ and define $Y = a + bX + \epsilon$ where $a,b$ are constants. 
+\begin{parts}
+	\part[3] Calculate the mean of $Y$.
+		\begin{solution}[0.6in]
+		By the Linearity of Expectation
+			$$E[Y] = a + bE[X] = a + b\mu_X$$
+		\end{solution}
+	\part[3] Calculate the variance of $Y$.
+		\begin{solution}[0.6in]
+		Since $X$ and $\epsilon$ are independent,
+			$$Var(Y) = b^2 Var(X) + Var(\epsilon)= b^2 \sigma_X^2 + \sigma_\epsilon^2$$
+		\end{solution}
+	\part[3] What kind of random variable is $Y$? Be sure to give the values of any parameters needed to define its distribution.
+		\begin{solution}[0.6in]
+		Linear combinations of independent normal random variables are themselves normally distributed. Thus, using parts (a) and (b),
+		$$Y \sim N\left(a + b\mu_X, b^2\sigma_x^2 + \sigma_\epsilon^2\right)$$
+		\end{solution}
+	\part[6] Calculate $Cov(X,Y)$.
+		\begin{solution}[2.5in]
+			\begin{eqnarray*}
+				E[XY] &=& E[X(a+bX+\epsilon)] = E[aX] + bE[X^2] + E[X\epsilon]\\
+				&=&a\mu_X + b \left\{Var(X) + (E[X])^2\right\} + \left\{Cov(X,\epsilon) + E[X]E[\epsilon]\right\}\\
+				&=& a\mu_X + b(\sigma_X^2 + \mu_X^2) \\  \\
+				E[X]E[Y] &=& \mu_X (a + b\mu_X) =  a\mu_X + b \mu_X^2\\ \\ 
+			Cov(X,Y) &=& E[XY] - E[X]E[Y]\\
+				&=& a\mu_X + b(\sigma_X^2 +\mu_X^2) - (a\mu_X + b \mu_X^2) =  b\sigma_X^2
+			\end{eqnarray*}
+		\end{solution}
+\end{parts}
+
+
+\question Let $X_1, X_2 \sim \mbox{iid}$ with cumulative distribution function $F$ and define $X^* = \max\{X_1, X_2\}$. Let $c$ be a constant.
+	\begin{parts}
+		\part[2] In terms of $F$, what is $P(X_1 \leq c)$? What is $P(X_2 \leq c)$?
+			\begin{solution}[0.75in]
+			By the definition of a CDF and the fact that $X_1$ and $X_2$ are identically distributed, $F(c) = P(X_1 \leq c) = P(X_2 \leq c)$.
+			\end{solution}
+	\part[3] In terms of $F$ what is $P(X_1\leq c \cap X_2 \leq c)$?
+		\begin{solution}[0.75in]
+			By independence, 
+			$$P(X_1\leq c\cap X_2 \leq c) = P(X_1 \leq c)P(X_2\leq c) =F(c)F(c) = F^2(c)$$
+		\end{solution}
+		\part[3] Explain why $P(X^*\leq c) = P(X_1\leq c \cap X_2\leq c)$.
+			\begin{solution}[1.25in]
+				Since $X^*$ is the maximum of $X_1$ and $X_2$, the events $X^* \leq c$ and $(X_1 \leq c) \cap (X_2 \leq c)$ are \emph{logically equivalent}. If both $X_1$ and $X_2$ are no greater than $c$ then their maximum is no greater than $c$. Further, if the maximum of $X_1$ and $X_2$ is no greater $c$ then it must be the case that both $X_1$ and $X_2$ are no greater than $c$. Since the events are equivalent, their probabilities must be equal: this is the logical equivalence rule from class.
+			\end{solution}
+		\part[2] Using your answer to (c), what is the CDF of $X^*$?
+			\begin{solution}[1in]
+			 $F^*(x) = F^2(x)$
+			\end{solution}
+		\part[5] Now suppose that $X_1, X_2 \sim \mbox{iid Uniform}(0,1)$. Using your answer to part (d), calculate the \emph{probability density function} of $X^*$.
+		\begin{solution}[1.25in]
+		 For a Uniform(0,1) random variable $F(x) = x$ for $x\in[0,1]$ while $F(x) = 1$ for $x>1$ and $F(x) = 0$ for $x<1$. Hence,
+		 	\begin{eqnarray*}
+		 		F^*(x) = F^2(x) = \left\{ \begin{array}{cr} 0 & x < 0 \\ x^2 & 0\leq x \leq 1 \\ 1 & x>1\end{array} \right.
+		 	\end{eqnarray*}
+		 	Differentiating, $f^*(x) = 2x$ for $x\in [0,1]$, zero otherwise.
+		\end{solution}
+	\end{parts}
+
+
+\question Suppose that $X_1, \hdots, X_n\sim \mbox{iid}$ with mean $\mu$ and variance $\sigma^2$. This question considers two estimators of $\mu$: the sample mean $\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$ and $\widehat{\mu} = 0$. To be clear: the estimator $\widehat{\mu}$ is a rule that \emph{ignores} the sample data and simply assumes the population mean is zero. You can think of $\widehat{\mu}$ as a \emph{degenerate random variable}: its support is $\{0\}$ and $P(\widehat{\mu} = 1) = 1$. 
+\begin{parts}
+	\part[4] Calculate the MSE of $\bar{X}_n$.
+		\begin{solution}[1.25in]
+			\begin{eqnarray*}
+				MSE(\bar{X}_n) &=& \mbox{Bias}(\bar{X}_n)^2 + Var(\bar{X}_n)\\
+				&=& \left(E[\bar{X}_n ] - \mu\right)^2 + Var\left(\frac{1}{n}\sum_{i=1}^n X_i\right)\\
+				&=& \sigma^2/n
+			\end{eqnarray*}
+		\end{solution}
+	\part[5] Calculate the MSE of $\widehat{\mu}$.
+		\begin{solution}[1.25in]
+			Estimators are random variables under random sampling because the \emph{data} are random. Since this estimator completely ignores the data, it is a constant, hence its variance is zero. Its bias is:
+			$$E[\widehat{\mu}] - \mu = 0 - \mu = -\mu$$
+			Thus, since MSE is squared bias plus variance:
+			$$MSE(\widehat{\mu}) = \mu^2$$
+		\end{solution}
+	\part[5] Now define the estimator $\tilde{\mu} = \omega \widehat{\mu} + (1-\omega) \bar{X}_n$ where $\omega$ is a constant between zero and one. If $\omega = 1$, then $\tilde{\mu}=\widehat{\mu}$; if $\omega = 0$, then $\tilde{\mu} = \bar{X}_n$. When $0<\omega<1$, $\tilde{\mu}$ can be thought of as a ``compromise'' between $\bar{X}_n$ and $\widehat{\mu}$. Calculate the MSE of $\tilde{\mu}$.
+		\begin{solution}[2in]
+		\begin{eqnarray*}
+			\mbox{Bias}(\tilde{\mu}) &=& E[\tilde{\mu}] - \mu = E[\omega \widehat{\mu} + (1-\omega) \bar{X}_n] - \mu\\
+					&=&(1-\omega)\mu - \mu = -\omega \mu\\\\
+						Var(\tilde{\mu}) &=& Var\left[\omega \tilde{\mu} + (1-\omega) \bar{X}_n\right] =  Var\left[\omega \times 0 + (1-\omega) \bar{X}_n\right]\\
+						&=& (1-\omega)^2 Var(\bar{X}_n) = (1-\omega)^2 \sigma^2/n
+		\end{eqnarray*}
+		Therefore,
+			$$MSE(\tilde{\mu}) = \omega^2 \mu^2 + (1-\omega)^2 \sigma^2/n$$
+			\end{solution}
+	\part[5] Using your answer to part (c) calculate $\omega^*$, the value of $\omega$ that minimizes $MSE(\tilde{\mu})$. Your answer should be given in terms of $\sigma^2$, $n$ and $\mu^2$. For full credit, check the second order condition to make sure you have found a minimum.
+		\begin{solution}[2in]
+			The first order condition is
+			\begin{eqnarray*}
+				2\omega \mu^2 - 2(1-\omega)\sigma^2/n &=&0\\
+				\omega \mu^2 -\sigma^2/n +\omega\sigma^2/n &=&0\\
+				\omega (\mu^2 + \sigma^2/n) &=& \sigma^2/n
+			\end{eqnarray*}
+			Hence,
+				$$\omega^* =\frac{\sigma^2/n}{\mu^2 + \sigma^2/n}$$
+				The second order condition is $2\mu^2 + 2\sigma^2/n>0$
+				which holds because $\sigma^2 > 0$. 
+		\end{solution}
+		\part[6] Explain how $\omega^*$ changes with $n$, $|\mu|$ and $\sigma^2$. Note that you can answer this without taking any derivatives by rearranging your answer to part (d).
+		\begin{solution}[2.5in]
+			First, rewrite $\omega^*$ as follows:
+							$$\omega^* =\frac{\sigma^2/n}{\mu^2 + \sigma^2/n} =\frac{\sigma^2}{n\mu^2 + \sigma^2} = \frac{1}{\displaystyle\frac{n\mu^2}{\sigma^2} + 1}$$
+			As $n$ increases, $\omega^*$ falls: because the variance of $\bar{X}_n$ decreases with $n$ we should give $\bar{X}_n$ more weight when $n$ is larger. As $\sigma^2$ increases, $\omega^*$ increases: because the variance of $\bar{X}_n$ increases with $\sigma^2$ we should give $\bar{X}_n$ less weight when $\sigma^2$ is larger. As $|\mu|$ increases, $\omega^*$ falls: because the bias of $\widehat{\mu}$ increases with $|\mu|$, we should give $\bar{X}_n$ more weight when $|\mu|$ is larger.
+		\end{solution}
+\end{parts}
+
+
+
+
+\question Suppose that $X_1, \hdots, X_n \sim \mbox{ iid } N(\mu,\sigma^2)$. You do not have to explain your answers.
+	\begin{parts}
+		\part[5] What is the distribution of $\sum_{i=1}^n X_i$?
+			\begin{solution}[0.6in]
+				$N(n\mu, n\sigma^2)$
+			\end{solution}
+		\part[5] What is the distribution of $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$?
+			\begin{solution}[0.6in]
+				$N(\mu, \sigma^2/n)$
+			\end{solution}
+		\part[5] Let $Y =\sum_{i=1}^n \left(X_i - \mu\right)^2$. What is the distribution of $Y/\sigma^2$?
+			\begin{solution}[0.6in]
+				$\chi^2(n)$
+			\end{solution}
+		\part[5]  Let $S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2$. What is the distribution of $(n-1)S^2/\sigma^2$?
+			\begin{solution}[0.6in]
+				$\chi^2(n-1)$
+			\end{solution}
+		\part[5] Let 
+			$$Z = \frac{\bar{X}_n - \mu}{S/\sqrt{n}}$$
+			where $S = \sqrt{S^2}$ and $S^2$ is as defined in (d). What is the distribution of $Z$?
+				\begin{solution}[0.6in]
+					$t(n-1)$
+				\end{solution}
+	\end{parts}
+
+
+\question Using R, I generated a random sample of size 16 from a normal population with mean $\mu$ and variance $\sigma^2$. The sample mean was approximately $-0.5$ and the sample variance was approximately $6$.
+	\begin{parts}
+		\part[5] Construct a 95\% confidence interval for $\mu$. Your answer may include relevant R commands. 
+			\begin{solution}[2in]
+			The interval should take the form:
+				$$\bar{X}_n \pm \texttt{qt}(1 - \alpha/2, \texttt{df} = n -1) \times \frac{S}{\sqrt{n}}$$
+				which, in this case, gives $-0.5 \pm \texttt{qt}(0.975, \texttt{df} = 15) \times \sqrt{6}/4$ 
+			\end{solution}
+		\part[5] If I told you that I used a population variance of $4$ to generate my random sample, how would your answer to (a) change? Your final answer should \emph{not} include any R commands.
+			\begin{solution}[2in]
+				The interval takes the form $\bar{X}_n \pm \texttt{qnorm}(1 - \alpha/2) \times \sigma/\sqrt{n}$. We know, however, that \texttt{qnorm}(0.975)$\approx 2$. Thus, the interval is $-0.5 \pm 1$, i.e.\ $(-1.5, 0.5)$.
+			\end{solution}
+		\part[5] Based on your answer to (b), would you be surprised to learn that the population mean was $-1$? Why or why not?
+			\begin{solution}[1in]
+				This would not be surprising: -1 is well within the 95\% CI for $\mu$.
+			\end{solution}
+		\part[5] Construct a 90\% confidence interval for the population variance. Your answer may include relevant R commands.
+			\begin{solution}
+			The interval should take the form
+			$$\left[ \frac{(n-1)S^2}{b}, \frac{(n-1)S^2}{a} \right]$$
+				\begin{eqnarray*}
+		a &=& \texttt{qchisq($\alpha/2$, df = n - 1)} \\
+		b &=& \texttt{qchisq($1-\alpha/2$, df = n - 1)} 
+	\end{eqnarray*}
+	In this case $(n-1)S^2 = 15 * 6 = 90$.
+			\end{solution}
+	\end{parts}
+
+
+\end{questions}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
