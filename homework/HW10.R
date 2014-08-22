@@ -1,16 +1,8 @@
 
 
-knit_hooks$set(document=function(x){ 
-  sub('\\usepackage{framed}', '', x, fixed=TRUE) 
-}) 
 
 
 
-opts_chunk$set(fig.width=3, fig.height=3, fig.align='center',dev='pdf')
-
-
-
-options(width = 60)
 
 
 

@@ -4,38 +4,14 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 \usepackage{multirow}
-%\boxedpoints
-%\pointsinmargin
 
-
-\newcommand{\p}{\mathbb{P}}
-\newcommand{\expect}{\mathbb{E}}
-\newcommand{\var}{\mathbb{V}}
-\newcommand{\cov}{Cov}
-\newcommand{\cprob}{\rightarrow_{p}}
-\newcommand{\cas}{\rightarrow_{as}}
-\newcommand{\clp}{\rightarrow_{L^p}}
-\newcommand{\clone}{\rightarrow_{L^1}}
-\newcommand{\cltwo}{\rightarrow_{L^2}}
-\newcommand{\cd}{\rightarrow_{d}}
-\newcommand{\cv}{\Rightarrow_{v}}
-\newcommand{\dec}{\downarrow}
-\newcommand{\inc}{\uparrow}
-\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
-\newcommand{\limn}{\lim_{n \rightarrow \infty}}
-\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
-\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
-\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
-\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
-\newcommand{\slfrac}[2]{\left.#1\right/#2}
-
-
-
-%\printanswers
-%\noprintanswers
+%To include the answers use:
+%	pdflatex "\def\showanswers{1} \input{thisfile.tex}"
+\ifdefined\showanswers
+  \printanswers
+\else
+  \noprintanswers
+\fi
 
 \title{Problem Set \#5}
 \author{Econ 103}
@@ -66,9 +42,9 @@ Chapter 4: 1, 3, 5, 7, 9, 11, 13, 15, 25, 27, 29
 			\begin{solution}
 			$$F(x_0)=\left\{\begin{array}{l} 0, \;x_0 < -1\\ q, \;-1\leq x_0 < 0 \\ 1-p, \; 0\leq x_0 < 1 \\ 1, \; x_0\geq 1\end{array} \right.$$
 			\end{solution}
-		\part Calculate $\expect[X]$.
-		\begin{solution}$\expect[X] = -1 \cdot q + 0 \cdot (1-p-q) + p\cdot 1 = p-q$ \end{solution}
-		\part What relationship must hold between $p$ and $q$ to ensure $\expect[X]=0$?
+		\part Calculate $E[X]$.
+		\begin{solution}$E[X] = -1 \cdot q + 0 \cdot (1-p-q) + p\cdot 1 = p-q$ \end{solution}
+		\part What relationship must hold between $p$ and $q$ to ensure $E[X]=0$?
 		\begin{solution}$p=q$\end{solution}
 	\end{parts}
 
@@ -141,28 +117,28 @@ Chapter 4: 1, 3, 5, 7, 9, 11, 13, 15, 25, 27, 29
 					P(Y = 1|X= 2) &=&\frac{p_{XY}(2,1)}{p_X(2)} = \frac{0.25}{0.5} = 0.5
 				\end{eqnarray*}
 			\end{solution}
-		\item Calculate $\expect[Y|X]$.
+		\item Calculate $E[Y|X]$.
 			\begin{solution}
 			\begin{eqnarray*}
-				\expect[Y | X =1 ] &=& 0 \times 0.4 + 1 \times 0.6 = 0.6\\
-				\expect[Y | X =2 ] &=& 0 \times 0.5 + 1 \times 0.5 = 0.5
+				E[Y | X =1 ] &=& 0 \times 0.4 + 1 \times 0.6 = 0.6\\
+				E[Y | X =2 ] &=& 0 \times 0.5 + 1 \times 0.5 = 0.5
 			\end{eqnarray*}
 			Hence, 
-				$$\expect[Y|X] = \left\{ \begin{array}{ll} 0.6  & \mbox{with probability } 0.5\\ 0.5& \mbox{with probability } 0.5\end{array} \right.$$
+				$$E[Y|X] = \left\{ \begin{array}{ll} 0.6  & \mbox{with probability } 0.5\\ 0.5& \mbox{with probability } 0.5\end{array} \right.$$
 				since $p_X(1) = 0.5$ and $p_X(2) = 0.5$.
 			\end{solution}
-		\item What is $\expect[\expect[Y|X]]$?
+		\item What is $E[E[Y|X]]$?
 			\begin{solution}
-			$\expect[\expect[Y|X]] = 0.5 \times 0.6 + 0.5 \times 0.5 = 0.3 + 0.25 = 0.55$. Note that this equals the expectation of $Y$ calculated from its marginal distribution, since $\expect[Y] = 0 \times 0.45 + 1 \times 0.55$. This illustrates the so-called ``Law of Iterated Expectations.''
+			$E[E[Y|X]] = 0.5 \times 0.6 + 0.5 \times 0.5 = 0.3 + 0.25 = 0.55$. Note that this equals the expectation of $Y$ calculated from its marginal distribution, since $E[Y] = 0 \times 0.45 + 1 \times 0.55$. This illustrates the so-called ``Law of Iterated Expectations.''
 			\end{solution}
 		\item Calculate the covariance between $X$ and $Y$ using the shortcut formula.
 		\begin{solution}
-		First, from the marginal distributions, $E[X] = 1\cdot 0.5 + 2 \cdot 0.5 = 1.5$ and $\expect[Y]=0 \cdot 0.45 + 1 \cdot 0.55 = 0.55$. Hence $\expect[X]\expect[Y] = 1.5 \cdot 0.55 = 0.825$. Second,
+		First, from the marginal distributions, $E[X] = 1\cdot 0.5 + 2 \cdot 0.5 = 1.5$ and $E[Y]=0 \cdot 0.45 + 1 \cdot 0.55 = 0.55$. Hence $E[X]E[Y] = 1.5 \cdot 0.55 = 0.825$. Second,
 			\begin{eqnarray*}
-				\expect[XY] &=& (0\cdot 1) \cdot 0.2 + (0\cdot 2)\cdot 0.25 + (1\cdot 1) \cdot 0.3 + (1\cdot 2) 0.25\\
+				E[XY] &=& (0\cdot 1) \cdot 0.2 + (0\cdot 2)\cdot 0.25 + (1\cdot 1) \cdot 0.3 + (1\cdot 2) 0.25\\
 						&=& 0.3 + 0.5 = 0.8
 			\end{eqnarray*}
-			Finally $Cov(X,Y) = \expect[XY] - \expect[X]\expect[Y] = 0.8 - 0.825 = -0.025$
+			Finally $Cov(X,Y) = E[XY] - E[X]E[Y] = 0.8 - 0.825 = -0.025$
 		\end{solution}
 	\end{parts}
 

@@ -3,37 +3,15 @@
 \linespread{1.1}
 \usepackage{hyperref}
 \usepackage{enumerate}
-%\boxedpoints
-%\pointsinmargin
 
 
-\newcommand{\p}{\mathbb{P}}
-\newcommand{\expect}{\mathbb{E}}
-\newcommand{\var}{\mathbb{V}}
-\newcommand{\cov}{Cov}
-\newcommand{\cprob}{\rightarrow_{p}}
-\newcommand{\cas}{\rightarrow_{as}}
-\newcommand{\clp}{\rightarrow_{L^p}}
-\newcommand{\clone}{\rightarrow_{L^1}}
-\newcommand{\cltwo}{\rightarrow_{L^2}}
-\newcommand{\cd}{\rightarrow_{d}}
-\newcommand{\cv}{\Rightarrow_{v}}
-\newcommand{\dec}{\downarrow}
-\newcommand{\inc}{\uparrow}
-\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
-\newcommand{\limn}{\lim_{n \rightarrow \infty}}
-\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
-\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
-\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
-\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
-\newcommand{\slfrac}[2]{\left.#1\right/#2}
-
-
-%\printanswers
-%\noprintanswers
+%To include the answers use:
+%	pdflatex "\def\showanswers{1} \input{thisfile.tex}"
+\ifdefined\showanswers
+  \printanswers
+\else
+  \noprintanswers
+\fi
 
 \title{Problem Set \#4}
 \author{Econ 103}
@@ -207,11 +185,11 @@ We are asked to calculate $P(S|YNYNY)$ where $YNYNY$ denotes the sequence of out
 		\end{solution}
 \end{parts}
 
-\end{questions}
+
  
 \section*{Part III -- ``Challenge'' Problems}
 These are optional. If you're up for a challenge you'll learn quite a bit from these.
-\begin{questions}
+
 
 \question (Adapted from Mosteller, 1965) ``What is the least number of persons required if the probability exceeds 1/2 that two or more of then have the same birthday? (Year of birth need not match).''
 	[Hint: Use the Complement Rule.]
