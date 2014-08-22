@@ -1,19 +1,19 @@
 
-## ----include=FALSE-------------------------------------------------------
+
 knit_hooks$set(document=function(x){ 
   sub('\\usepackage{framed}', '', x, fixed=TRUE) 
 }) 
 
 
-## ----include=FALSE-------------------------------------------------------
+
 opts_chunk$set(fig.width=4, fig.height=4, fig.align='center',dev='pdf')
 
 
-## ----include=FALSE-------------------------------------------------------
+
 options(width = 60)
 
 
-## ------------------------------------------------------------------------
+
 SE <- 5/sqrt(25)
 ME <- qnorm(1 - 0.5/2) * SE
 Lower <- 5 - ME
@@ -21,7 +21,7 @@ Upper <- 5 + ME
 c(Lower, Upper)
 
 
-## ------------------------------------------------------------------------
+
 SE <- 5/sqrt(25)
 ME <- qnorm(1 - 0.01/2) * SE
 Lower <- 5 - ME
@@ -29,7 +29,7 @@ Upper <- 5 + ME
 c(Lower, Upper)
 
 
-## ------------------------------------------------------------------------
+
 my.CI <- function(data, pop.sd, alpha){
 
   x.bar <- mean(data)
@@ -47,12 +47,12 @@ my.CI <- function(data, pop.sd, alpha){
 }
 
 
-## ------------------------------------------------------------------------
+
 fake.data <- rep(0, 25)
 my.CI(fake.data, pop.sd = 1, alpha = 0.05)
 
 
-## ------------------------------------------------------------------------
+
 CI.sim <- function(sample.size){
     sims <- rnorm(sample.size)
     CI <- my.CI(sims, pop.sd = 1, alpha = 0.05)
@@ -61,7 +61,7 @@ CI.sim <- function(sample.size){
 CI.sim(10)
 
 
-## ----cache=TRUE----------------------------------------------------------
+
 simCIs <- replicate(10000, CI.sim(10))
 simCIs[,1:5]
 lower <- simCIs[1,]
@@ -70,7 +70,7 @@ covers.truth <- (lower < 0) & (upper > 0)
 sum(covers.truth)/length(covers.truth)
 
 
-## ----cache=TRUE----------------------------------------------------------
+
 CI.sim2 <- function(sample.size){
     sims <- rnorm(sample.size)
     CI <- my.CI(sims, pop.sd = 1/2, alpha = 0.05)
