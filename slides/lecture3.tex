@@ -1,0 +1,769 @@
+\documentclass[handout]{beamer}  
+\usepackage{setspace}
+\linespread{1.3}
+\usepackage{amssymb, amsmath, amsthm} 
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{synttree}
+\usepackage{verbatim}
+\usepackage{fancybox}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usetikzlibrary{trees}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+
+
+%\setbeamertemplate{blocks}[rounded][shadow=true] 
+%gets rid of bottom navigation bars
+\setbeamertemplate{footline}[page number]{}
+
+%gets rid of navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+%Include or exclude the notes?
+%\setbeameroption{show notes}
+\setbeameroption{hide notes}
+
+
+\title[Econ 103]{Economics 103 -- Statistics for Economists} 
+\author[F. DiTraglia]{Francis J.\ DiTraglia}
+\institute{University of Pennsylvania}
+\date{Lecture 3}
+\begin{document} 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+	\titlepage 
+	
+
+\end{frame} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Recall From Last Lecture: }
+
+\begin{block}{Range}
+Maximum Observation - Minimum Observation
+\end{block}
+\pause
+\begin{block}{Interquartile Range (IQR)}
+IQR= $\mbox{Q}_3 - \mbox{Q}_1$
+\end{block}
+\pause
+\begin{block}{Variance}
+$\displaystyle s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$
+\end{block}
+\pause
+ \begin{block}{Standard Deviation}
+	$s = \sqrt{s^2}$
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Recall From Last Lecture:}
+\begin{block}{Variance}
+Essentially the average squared distance from the mean. Sensitive to both skewness and outliers.
+\end{block}
+\pause
+\begin{block}{Standard Deviation}
+$\sqrt{\mbox{Variance}}$, but more convenient since \alert{same units as data}
+\end{block}
+\pause
+\begin{block}{Range}
+Difference between larges and smallest observations. \emph{Very} sensitive to outliers. Displayed in boxplot.
+\end{block}
+\pause
+\begin{block}{Interquartile Range}
+Range of middle 50\% of the data. Insensitive to outliers, skewness. Displayed in boxplot.
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Measures of Spread for Anchoring Experiment}
+\framesubtitle{Past Semester's Data}
+
+\begin{table}
+	\begin{tabular}{l|cc}
+	Treatment: & X = 10 & X = 65\\
+	\hline
+		Range&35&58\\
+		IQR&14.5&21\\
+		S.D.&9.3&15.9\\
+		Var.&86.1&253.5
+	\end{tabular}
+\end{table}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Why Squares?}
+\begin{center}\fbox{$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$}\end{center}
+\begin{alertblock}{What's Wrong With This?}
+	\begin{eqnarray*}
+		\displaystyle\frac{1}{n-1}\sum_{i=1}^N (x_i - \bar{x}) &=& \pause\frac{1}{n-1}\left[\sum_{i=1}^n x_i - \sum_{i=1}^n \bar{x} \right] = \pause\frac{1}{n-1}\left[ \sum_{i=1}^n x_i  - n\bar{x}\right]\\
+			&=& \pause \frac{1}{n-1}\left[ \sum_{i=1}^n x_i  - n\cdot\frac{1}{n} \sum_{i=1}^n x_i\right]\\ &=& \pause \frac{1}{n-1}\left[ \sum_{i=1}^n x_i  -  \sum_{i=1}^n x_i\right] =\pause 0
+	\end{eqnarray*}
+\end{alertblock}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Variance is Sensitive to Skewness and Outliers}
+\framesubtitle{And so is Standard Deviation!}
+\begin{center}\fbox{$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$}\end{center}
+
+
+\begin{block}{Outliers}
+Differentiate with respect to $(x_i-\bar{x})\Rightarrow$ the farther an observation is from the mean, the \emph{larger} its effect on the variance.
+\end{block}
+
+
+\begin{block}{Skewness}
+Variance measures average squared distance from center, taking \alert{mean} as the center, but the mean is sensitive to skewness!
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Skewness -- A Measure of Symmetry}
+
+\begin{center}
+\fbox{$\displaystyle\mbox{Skewness} = \frac{1}{n}\frac{\sum_{i=1}^n (x_i - \bar{x})^3}{s^3}$}
+\end{center}
+\pause
+\begin{block}{What do the values indicate?}Zero $\Rightarrow$ symmetry, positive right-skewed, negative left-skewed.\end{block} \pause
+\begin{block}{Why cubed?}To get the desired sign.\end{block} \pause
+\begin{block}{Why divide by $s^3$?}So that skewness is unitless\end{block}\pause
+\begin{block}{Rule of Thumb}Typically (but not always), right-skewed $\Rightarrow$ mean $>$ median\\ left-skewed $\Rightarrow$ mean $<$ median\end{block}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Skewness -- A Measure of Symmetry}
+
+\begin{center}
+\fbox{$\displaystyle\mbox{Skewness} = \frac{1}{n}\frac{\sum_{i=1}^n (x_i - \bar{x})^3}{s^3}$}
+\end{center}
+\pause
+\begin{block}{What do the values indicate?}Zero $\Rightarrow$ symmetry, positive right-skewed, negative left-skewed.\end{block} \pause
+\begin{block}{Why cubed?}To get the desired sign.\end{block} \pause
+\begin{block}{Why divide by $s^3$?}So that skewness is unitless\end{block}\pause
+\begin{block}{Rule of Thumb}Typically (but not always), right-skewed $\Rightarrow$ mean $>$ median\\ left-skewed $\Rightarrow$ mean $<$ median\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\centering \includegraphics[scale = 0.75]{./images/handspan_skew}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\centering \includegraphics[scale = 0.75]{./images/handedness_skew}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Essential Distinction: Sample vs.\ Population}
+For now, you can think of the population as a list of $N$ objects:\\
+	\alert{$\mbox{Population: }x_1, x_2, \hdots, x_N$}\\
+from which we draw a sample of size $n<N$ objects:\\
+	\alert{$\mbox{Sample: } x_1, x_2, \hdots, x_n$}
+\pause
+\vspace{3em}
+\begin{alertblock}{Important Point:}
+Later in the course we'll be more formal by considering \alert{probability models} that represent the \alert{\emph{act of sampling}} from a population rather than thinking of a population as a list of objects. Once we do this we will no longer use the notation $N$ as the population will be \alert{\emph{conceptually infinite}}.
+\end{alertblock}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Essential Distinction: Parameter vs.\ Statistic}
+$N$ individuals in the Population, $n$ individuals in the Sample:
+
+\vspace{1em}
+\small
+\begin{tabular}{l|l|l}
+	&\textbf{Parameter} (Population)&\textbf{Statistic} (Sample)\\
+	\hline
+	Mean&$\displaystyle\mu = \frac{1}{N} \sum_{i=1}^N x_i$& $\displaystyle\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ \\
+	Var.\ &$\displaystyle \sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$ &$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$\\
+	S.D.\ &$\sigma = \sqrt{\sigma^2}$ &$s = \sqrt{s^2}$ \\
+	&&
+\end{tabular}
+
+\vspace{2em}
+\begin{alertblock}{Key Point}
+We  use a \alert{sample} $x_1, \hdots, x_n$ to calculate \alert{statistics} (e.g.\ $\bar{x}$, $s^2$, $s$) that serve as \alert{estimates} of the corresponding population \alert{parameters} (e.g.\ $\mu$, $\sigma^2$, $\sigma$).
+\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Why Do Sample Variance and Std.\ Dev.\ Divide by $n-1$? }
+\footnotesize
+\fbox{\begin{tabular}{ll|ll}
+Pop.\ Var.\ &$\displaystyle \sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$&Sample Var.\ &$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$\\
+\hline
+Pop.\ S.D.\ &$\sigma = \sqrt{\sigma^2}$ &Sample S.D.\ &$s = \sqrt{s^2}$ \\
+\end{tabular}}
+\normalsize
+
+\vspace{3em}
+\alert{There is an important reason for this, but explaining it requires some concepts we haven't learned yet. }
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Why Mean and Variance (and Std.\ Dev.\ )?}
+\begin{alertblock}{Empirical Rule}
+For large populations that are approximately bell-shaped, std.\ dev.\ tells where most observations will be relative to the mean:
+	\begin{itemize}
+		\item $\approx$ 68\% of observations are in the interval $\mu \pm \sigma$
+		\item $\approx$ 95\% of observations are in the interval $\mu \pm 2\sigma$
+		\item Almost all of observations are in the interval $\mu \pm 3\sigma$
+	\end{itemize}
+\end{alertblock}
+\pause
+
+\begin{block}{Therefore}
+We will be interested in $\bar{x}$ as an estimate of $\mu$ and $s$ as an estimate of $\sigma$ since these population parameters are so informative.
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Which is more ``extreme?''}
+	\begin{enumerate}[(a)]
+		\item Handspan of 27cm
+		\item Height of 78in
+	\end{enumerate}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+
+
+\centering \huge Centering: Subtract the Mean
+\normalsize
+
+\vspace{3em}
+\fbox{\begin{tabular}{c|c}
+	Handspan&Height\\
+	\hline
+	$27\mbox{cm} - 20.6\mbox{cm} =\alert{ 6.4\mbox{cm} }$&$78\mbox{in} - 67.6\mbox{in} = \alert{10.4\mbox{in}}$
+\end{tabular}}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\centering \huge Standardizing: Divide by S.D.\
+\normalsize
+
+\vspace{3em}
+\fbox{\begin{tabular}{c|c}
+	Handspan&Height\\
+	\hline
+	$27\mbox{cm} - 20.6\mbox{cm} =6.4\mbox{cm} $&$78\mbox{in} - 67.6\mbox{in} = 10.4\mbox{in}$\\
+	&\\
+	$6.4\mbox{cm}/2.2\mbox{cm}\approx \alert{2.9}$&$10.4\mbox{in}/4.5\mbox{in}\approx \alert{2.3} $
+\end{tabular}}
+
+\pause
+\vspace{2em}
+\alert{The units have disappeared!}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Z-scores: How many standard deviations from the mean?}
+\framesubtitle{Best for Symmetric Distribution, No Outliers (Why?)}
+
+$$z _i= \frac{x_i - \bar{x}}{s}$$
+\pause
+\begin{block}{Unitless}
+Allows comparison of variables with different units.
+\end{block}
+\pause
+\begin{block}{Detecting Outliers}
+Measures how ``extreme'' one observation is relative to the others.
+\end{block}
+\pause
+\begin{block}{Linear Transformation}
+\end{block}
+
+%Z-scores, etc. Stress the importance of UNITS! How extreme is this measurement? Comparability. Empirical rule, etc?
+%Good for detecting outliers. Can calculate it for the sample as well! In fact, this is something very important later in the course...
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{What is the sample mean of the z-scores?}
+\begin{eqnarray*}
+ \bar{z} &=& \frac{1}{n}\sum_{i=1}^n z_i \pause= \frac{1}{n} \sum_{i=1}^n \frac{x_i - \bar{x}}{s}= \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i  - \sum_{i=1}^n \bar{x}  \right]\\ \\
+ &=& \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i  - n\bar{x}  \right] = \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i - n\cdot \frac{1}{n} \sum_{i=1}^n x_i  \right] \\ \\
+ 	&=&\pause \frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i -  \sum_{i=1}^n x_i  \right]  = \pause 0
+\end{eqnarray*}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{What is the variance of the z-scores?}
+\begin{eqnarray*}
+	s^2_z &=& \frac{1}{n-1}\sum_{i=1}^n (z_i - \bar{z})^2 =\pause \frac{1}{n-1}\sum_{i=1}^n z_i^2 = \pause \frac{1}{n-1} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s_x}\right)^2\\\\
+	&=& \pause \frac{1}{s_x^2} \left[ \frac{1}{n-1} \sum_{i=1}^n \left(x_i - \bar{x}\right)^2 \right] = \pause \frac{s_x^2}{s_x^2} = \pause 1
+	\end{eqnarray*}
+	
+	\pause
+	\vspace{5em}
+	\alert{So what is the \emph{standard deviation} of the z-scores? \hfill \includegraphics[scale = 0.03]{./images/clicker} }
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Population Z-scores and the Empirical Rule: $\mu \pm 2\sigma$}
+If we knew the population mean $\mu$ and standard deviation $\sigma$ we could create a \alert{\emph{population version}} of a z-score. This leads to an important way of rewriting the Empirical Rule:
+
+\pause
+\vspace{2em}
+\alert{Bell-shaped population $\Rightarrow$ approx.\ 95\% of observations $x_i$ satisfy}
+\begin{eqnarray*}
+\mu - 2\sigma \leq x_i \leq \mu + 2\sigma\\\pause
+-2 \sigma \leq x_i -\mu \leq 2\sigma\\\pause
+-2 \leq \frac{x_i - \mu}{\sigma} \leq 2
+\end{eqnarray*}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{center}
+	\Huge Relationships Between Variables
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Crosstabs -- Show Relationship between Categorical Vars.}
+\framesubtitle{(aka Contingency Tables)}
+\begin{table}
+\centering
+\begin{tabular}{l|rr|r}
+	\emph{Eye Color} & \multicolumn{2}{|c|}{\emph{Sex}}\\
+	& Male & Female & Total\\
+	\hline
+	Black&5&2&7\\
+	Blue&6&4&10\\
+	Brown&26&31&57\\
+	Copper&1&0&1\\
+	Dark Brown&0&1&1\\
+	Green&4&1&5\\
+	Hazel&2&2&4\\
+	Maroon&1&0&1\\
+	\hline
+	Total&45&41&86
+\end{tabular}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\vspace{3em}
+\huge \centering Example with Crosstab in \emph{Percents}
+
+
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Who Supported the Vietnam War?}
+\begin{center}
+\includegraphics[scale = 0.27]{./images/vietnam_question}
+\end{center}
+
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Who Were the Doves?}
+Which group do you think was most strongly \alert{in favor of} the withdrawal of US troops from Vietnam?
+\begin{enumerate}[(a)]
+	\item Adults with only a Grade School Education
+	\item Adults with a High School Education
+	\item Adults with a College Education
+\end{enumerate}
+\vspace{2em}
+Please respond with your remote.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Who Were the Hawks?}
+Which group do you think was most strongly \alert{opposed to} the withdrawal of US troops from Vietnam?
+\begin{enumerate}[(a)]
+	\item Adults with only a Grade School Education
+	\item Adults with a High School Education
+	\item Adults with a College Education
+\end{enumerate}
+\vspace{2em}
+Please respond with your remote.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{From The Economist --``Lexington,'' October 4th, 2001}
+\begin{quote}
+ ``Back in the Vietnam days, the anti-war movement spread from the intelligentsia into the rest of the population, eventually paralyzing the country's will to fight.''
+\end{quote}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Who \emph{Really} Supported the Vietnam War}
+\framesubtitle{Gallup Poll, January 1971}
+\begin{center}
+\fbox{\includegraphics[scale = 0.32]{./images/vietnam_actual}}
+\end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{center}
+ \Huge What about numeric data?
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Covariance and Correlation: Linear Dependence Measures}
+
+\begin{block}{Two Samples of Numeric Data}
+$x_1, \hdots, x_n$ and $y_1, \hdots, y_n$
+\end{block}
+\pause
+\begin{block}{Dependence}
+Do $x$ and $y$ both tend to be large (or small) at the same time?
+\end{block}
+\pause
+
+\begin{block}{Key Point}
+Use the idea of centering and standardizing to decide what ``big'' or ``small'' means in this context.
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Notation}
+
+	\begin{eqnarray*}
+		\bar{x} &=& \frac{1}{n} \sum_{i=1}^n x_i\\
+		\bar{y} &=& \frac{1}{n} \sum_{i=1}^n y_i\\
+		s_x &=& \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x})^2}\\
+		s_y &=& \sqrt{\frac{1}{n-1} \sum_{i=1}^n (y_i-\bar{y})^2}
+	\end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Covariance}
+	$$s_{xy} = \frac{1}{n-1} \sum_{i=1}^n (x_i -\bar{x})(y_i - \bar{y})$$
+
+\begin{itemize}
+	\item Centers each observation around its mean and multiplies.\pause
+	\item Zero $\Rightarrow$ no linear dependence\pause
+	\item Positive $\Rightarrow$ positive linear dependence\pause
+	\item Negative $\Rightarrow$ negative linear dependence\pause
+	\item Population parameter: $\sigma_{xy}$\pause
+	\item Units?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Correlation}
+	$$r_{xy} = \frac{1}{n-1} \sum_{i=1}^n \left(\frac{x_i -\bar{x}}{s_x}\right)\left(\frac{y_i - \bar{y}}{s_y}\right) = \frac{s_{xy}}{s_x s_y}$$
+
+\begin{itemize}
+	\item Centers \emph{and} standardizes each observation \pause
+	\item Bounded between -1 and 1 \pause
+	\item Zero $\Rightarrow$ no linear dependence\pause
+	\item Positive $\Rightarrow$ positive linear dependence\pause
+	\item Negative $\Rightarrow$ negative linear dependence\pause
+	\item Population parameter: $\rho_{xy}$\pause
+	\item Unitless
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\Large \alert{We'll have more to say about correlation and covariance next week when we discuss linear regression.}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\frametitle{Essential Distinction: Parameter vs.\ Statistic}
+\framesubtitle{And Population vs.\ Sample}
+$N$ individuals in the Population, $n$ individuals in the Sample:
+
+\vspace{1em}
+\small
+\begin{tabular}{l|l|l}
+	&\textbf{Parameter} (Population)&\textbf{Statistic} (Sample)\\
+	\hline
+	Mean&$\displaystyle\mu_x = \frac{1}{N} \sum_{i=1}^N x_i$& $\displaystyle\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ \\
+	Var.\ &$\displaystyle \sigma_x^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$ &$\displaystyle s_x^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$\\
+	S.D.\ &$\sigma_x = \sqrt{\sigma_x^2}$ &$s_x = \sqrt{s^2}$ \\
+	&&\\
+	\hline
+	&&\\
+	\alert{Cov.\ }&\alert{$\displaystyle \sigma_{xy} = \frac{\sum_{i=1}^N(x_i - \mu_x)(y_i - \mu_y)}{N}$} &\alert{$\displaystyle s_{xy} = \frac{\sum_{i=1}^n(x_i - \bar{x})(y_i - \bar{y})}{n-1}$}\\
+	\alert{Corr.\ } & \alert{$\displaystyle \rho = \frac{\sigma_{xy}}{\sigma_x \sigma_y}$}& \alert{$\displaystyle r = \frac{s_{xy}}{s_x s_y}$}
+\end{tabular}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\Huge \centering Some Thoughts on Statistical Graphics
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What's Wrong with This Graph?}
+\framesubtitle{Source: \href{http://www.climatecentral.org/news/noaa-2012-was-warmest-and-second-most-extreme-year-on-record-15436}{\fbox{Climate Central}}}
+	\begin{figure}
+	\fbox{\includegraphics[scale=0.32]{./images/climate_bad}}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Why is this one better?}
+\framesubtitle{Source: \href{http://www.climatecentral.org/news/noaa-2012-was-warmest-and-second-most-extreme-year-on-record-15436}{\fbox{Climate Central}}}
+	\begin{figure}
+	\fbox{\includegraphics[scale=0.45]{./images/climate_good}}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{columns}
+    \column{0.5\textwidth}
+		\begin{figure}
+	\fbox{\includegraphics[scale=0.15]{./images/climate_bad}}
+\end{figure}
+	\footnotesize
+	Bad Graph:
+	\begin{itemize}
+		\item Unnatural ordering of years
+		\item 3-D effect (perspective) and y-axis exaggerate 2012
+		\item Why \emph{six} warmest years?
+		\item Lack of context: what about other 111 years?
+		\item Gives no information on overall climate variability
+	\end{itemize}
+	
+	\column{0.5\textwidth}
+			\begin{figure}
+	\fbox{\includegraphics[scale=0.2]{./images/climate_good}}
+		\small
+\end{figure}
+\footnotesize
+Good Graph:
+	\begin{itemize}
+		\item Shows all years in order (context)
+		\item Shows variability and trend
+		\item y-axis chosen to comfortably fit all observations
+		\item 2-D rather than 3-D
+	\end{itemize}
+	
+	\vspace{5em}
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+	\begin{block}{Why Graphics?}
+	Humans naturally skilled at interpreting spatial information
+	\end{block}
+
+
+\begin{block}{Some Guidelines}
+	\begin{itemize}
+		\item Use \alert{distance} rather than area or perspective
+		\item Avoid clutter (chartjunk)
+		\item Use meaningful order where possible
+		\item Make a \alert{visual argument}, not a work of art
+	\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\singlespacing
+\frametitle{Best Statistical Graphic \emph{Ever}}
+\framesubtitle{Charles Joseph Minard, 1861 }
+\begin{figure}
+\framebox{\includegraphics[scale = 0.20]{./images/Minard}}
+\caption{Napoleon's disasterous Russian Campaign of 1812. Depicts six variables: temperature, location (two dimensions), direction, number of troops, and date.}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%
+%\begin{frame}
+%\frametitle{Sideways is Often Better}
+%\includegraphics[scale = 0.38]{./images/medalcount_barchart}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Less Can be More -- The Dotchart}
+%\includegraphics[scale = 0.35]{./images/medalcount_dotchart}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Friends Don't Let Friends Make Pie Charts}
+%\centering
+%\includegraphics[scale = 0.4]{./images/London_pie}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%\frametitle{Dotcharts (or Barcharts) Are Just Fine for Proportions!}
+%\includegraphics[scale = 0.35]{./images/medalshare_dotplot}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Stacked Barchart}
+%\centering
+%\includegraphics[scale = 0.35]{./images/medalcount_stacked_bar}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Multiple Dotcharts}
+%\centering
+%\includegraphics[scale = 0.35]{./images/medalcount_dotplot_stacked}
+%
+%\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}
+%\frametitle{\footnotesize Source: \href{http://www.aeaweb.org/articles.php?doi=10.1257/jep.26.1.165}{\fbox{Avery \& Turner (2012)}}}
+%\begin{center}
+%\includegraphics[scale = 0.28]{./images/tuition_line}
+%\end{center}
+%\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\begin{frame}
+%\begin{center}
+%\includegraphics[scale = 0.3]{./images/scatter_teen_pregnancy}
+%\end{center}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Pairs Plot -- Handedness, Handspan and Height}
+\begin{center}
+\includegraphics[scale = 0.38]{./images/pairs}
+\end{center}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+\frametitle{Bubblechart -- 2005 Crime Rates by State}
+\framesubtitle{Source: \href{http://flowingdata.com}{\fbox{Flowing Data}}}
+\centering
+\includegraphics[scale = 0.30]{./images/crime_bubble2}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}
+%\begin{figure}
+%\includegraphics[scale = 0.35]{./images/infographics_hitler}
+%\end{figure}
+
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

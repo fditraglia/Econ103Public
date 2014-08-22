@@ -1,0 +1,166 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{hyperref}
+%\boxedpoints
+%\pointsinmargin
+
+
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\cov}{Cov}
+\newcommand{\cprob}{\rightarrow_{p}}
+\newcommand{\cas}{\rightarrow_{as}}
+\newcommand{\clp}{\rightarrow_{L^p}}
+\newcommand{\clone}{\rightarrow_{L^1}}
+\newcommand{\cltwo}{\rightarrow_{L^2}}
+\newcommand{\cd}{\rightarrow_{d}}
+\newcommand{\cv}{\Rightarrow_{v}}
+\newcommand{\dec}{\downarrow}
+\newcommand{\inc}{\uparrow}
+\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
+\newcommand{\limn}{\lim_{n \rightarrow \infty}}
+\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
+\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
+\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
+\newcommand{\slfrac}[2]{\left.#1\right/#2}
+
+
+%\printanswers
+%\noprintanswers
+
+\title{Problem Set \#3}
+\author{Econ 103}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Part I -- Problems from the Textbook}
+Chapter 11: 1, 3\\
+Chapter 15: 1(a), 5(a)
+
+% \section*{Part II -- R Tutorial}
+% Complete ``R Tutorial \#3'' available at: \\
+% \url{http://www.ditraglia.com/econ103/Rtutorial3.html}
+
+\section*{Part II -- Additional Problems}
+\begin{questions}
+
+    \question What value of $a$ minimizes $\sum_{i=1}^n (y_i - a)^2$? Prove your answer. 
+		\begin{solution}
+			This is just like the regression problem from class, only with no slope. Differentiate with respect to $a$ and simplify as follows:
+				\begin{eqnarray*}
+					-2 \sum_{i=1}^n (y_i - a) &=& 0\\
+					\sum_{i=1}^n (y_i - a) &=& 0\\
+					\sum_{i=1}^n y_i - \sum_{i=1}^n a &=& 0\\
+					\sum_{i=1}^n y_i  &=& na\\
+					a &=& \frac{1}{n} \sum_{i=1}^n y_i\\
+					a&=& \bar{y}
+				\end{eqnarray*}
+		\end{solution}
+  \question Let
+    $$z_{x_i} = \frac{x_i - \bar{x}}{s_x}, \;\;\mbox{and }\;\; z_{y_i} = \frac{y_i - \bar{y}}{s_y}.$$
+    Show that if we carry out a regression with $z_{y_i}$ in place of $y$ and $z_{x_i}$ in place of $x$, the intercept $a$ will equal zero while the slope $b$ will equal $r$, the sample correlation.
+    \begin{solution}
+     All we need to do is replace $x_i$ with $z_{x_i}$ and $y_i$ with $z_{y_i}$ in the formulas we already derived for the regression slope and intercept:
+     		$$\begin{array}{lr}a = \bar{y} - b\bar{x}, & b = \displaystyle \frac{s_{xy}}{s_x^2}\end{array}$$
+     		And use the properties of z-scores from class. Let $a*$ be the intercept for the regression with z-scores, and $b*$ be the corresponding slope. We have:
+     	 	$$a* = \bar{z_y} - b^* \bar{z_x} = 0$$
+     	 	since the mean of the z-scores is zero, as we showed in class. To find the slope, we need to know the covariance between the z-scores, and the variance of the z-scores for $x$:
+     	 		$$b^* = \frac{s_{z_x z_y}}{s_{z_x}^2}$$
+     	 		But since sample variance of z-scores is always one, $b^* = s_{z_x z_y}$. Now, by the definition of the sample covariance, the fact that the mean of z-scores is zero, and the definition of a z-score:
+     	 		\begin{eqnarray*}
+     	 		s_{z_x z_y} &=& \frac{1}{n-1} \sum_{i=1}^n (z_{x_i} - \bar{z_x})(z_{y_i} - \bar{z_y})\\
+     	 		&=& \frac{1}{n-1} \sum_{i=1}^n z_{x_i}z_{y_i}\\
+     	 		&=& \frac{1}{n-1} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s_x}\right)\left(\frac{y_i - \bar{y}}{s_y}\right)\\
+     	 		&=& r_{xy}
+     	 		\end{eqnarray*}
+    \end{solution}
+
+\question Let $\hat{y}$ denote our prediction of $y$ from a linear regression model: $\hat{y} = a + b x$ and let $r$ be the correlation coefficient between $x$ and $y$.
+	\begin{parts}
+		\part Express $b$ in terms of $s_{xy}$ and $s_x$.
+			\begin{solution}
+								$$b = \frac{s_{xy}}{s_x^2}= \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$$
+			\end{solution}
+		\part Express $a$ in terms of $b$ and the sample means of $x$ and $y$.
+			\begin{solution}
+				$$a = \bar{y} - b\bar{x}$$
+			\end{solution}
+		\part Express $r$ in terms of the $s_{xy}$, $s_x$ and $s_y$.
+			\begin{solution}
+				$$r = \frac{s_{xy}}{s_x s_y}$$
+			\end{solution}
+		\part Show that $$\frac{\hat{y} - \bar{y}}{s_y} = r \left( \frac{x - \bar{x}}{s_x}\right)$$
+			\begin{solution}
+				\begin{eqnarray*}
+					\hat{y} &=& a + bx \\
+					\hat{y}&=& (\bar{y} - b \bar{x}) + bx\\
+					\hat{y} - \bar{y} &=& b(x - \bar{x})\\
+					\hat{y} - \bar{y} &=& \frac{s_{xy}}{s_x^2}(x - \bar{x})\\
+					\hat{y} - \bar{y} &=& \frac{s_{xy}}{s_x}\left(\frac{x - \bar{x}}{s_x}\right)\\
+					\frac{\hat{y} - \bar{y}}{s_y} &=& \frac{s_{xy}}{s_x s_y}\left(\frac{x - \bar{x}}{s_x}\right)\\
+										\frac{\hat{y} - \bar{y}}{s_y} &=& r\left(\frac{x - \bar{x}}{s_x}\right)
+				\end{eqnarray*}
+			\end{solution}
+		\part[3] Using the equation derived in (d), briefly explain``regression to the mean.''
+			\begin{solution}
+			The formula shows that unless $r$ is one or negative one, perfect positive or negative correlation, our best linear prediction of $y$ based on knowledge given $x$ is closer to the mean of the $y$-observations (relative to the standard deviation of the $y$-observations) than $x$ is to mean of the $x$-observations (relative to the standard deviation of the $x$-observations). If $x$ is very large, for example, we would predict that $y$ will be large too, but not as large.
+			\end{solution}
+	\end{parts}
+
+
+\question Lothario, an unscrupulous economics major, runs the following scam. After the first midterm of Econ 103 he seeks out the students who did extremely poorly and offers to sell them ``statistics pills.'' He promises that if they take the pills before the second midterm, their scores will improve. The pills are, in fact, M\&Ms and don't actually improve one's performance on statistics exams. The overwhelming majority of Lothario's former customers, however, swear that the pills really work: their scores improved on the second midterm. What's your explanation?
+\begin{solution}
+This is an example of regression to the mean. The students Lothario seeks out were both unprepared for the midterm \emph{and} got unlucky: the correlation between exam scores is less than one. It is very unlikely that they will be unlucky twice in a row, so their performance on the second exam will almost certainly be higher. Our best guess of their second score is closer to the mean than their first score.
+\end{solution}
+	
+\end{questions}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

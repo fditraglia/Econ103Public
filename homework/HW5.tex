@@ -1,0 +1,176 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\cov}{Cov}
+\newcommand{\cprob}{\rightarrow_{p}}
+\newcommand{\cas}{\rightarrow_{as}}
+\newcommand{\clp}{\rightarrow_{L^p}}
+\newcommand{\clone}{\rightarrow_{L^1}}
+\newcommand{\cltwo}{\rightarrow_{L^2}}
+\newcommand{\cd}{\rightarrow_{d}}
+\newcommand{\cv}{\Rightarrow_{v}}
+\newcommand{\dec}{\downarrow}
+\newcommand{\inc}{\uparrow}
+\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
+\newcommand{\limn}{\lim_{n \rightarrow \infty}}
+\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
+\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
+\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
+\newcommand{\slfrac}[2]{\left.#1\right/#2}
+
+
+
+%\printanswers
+%\noprintanswers
+
+\title{Problem Set \#5}
+\author{Econ 103}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Part I -- Problems from the Textbook}
+Chapter 4: 1, 3, 5, 7, 9, 11, 13, 15, 25, 27, 29
+
+
+% \section*{Part II -- R Tutorial}
+% If you haven't already done so, complete ``R Tutorial \#4'' available at:\\
+% \url{http://www.ditraglia.com/econ103/Rtutorial4.html}.
+% R Tutorial \# 5 will be posted next week.
+
+\section*{Part II -- Additional Problems}
+\begin{questions}
+
+
+\question Suppose $X$ is a random variable with support $\{-1, 0, 1\}$ where $p(-1)=q$ and $p(1) = p$.
+	\begin{parts}
+		\part What is $p(0)$?
+			\begin{solution}
+				By the complement rule $p(0) = 1 - p - q$.
+			\end{solution}
+		\part Calculate the CDF, $F(x_0)$, of X.
+			\begin{solution}
+			$$F(x_0)=\left\{\begin{array}{l} 0, \;x_0 < -1\\ q, \;-1\leq x_0 < 0 \\ 1-p, \; 0\leq x_0 < 1 \\ 1, \; x_0\geq 1\end{array} \right.$$
+			\end{solution}
+		\part Calculate $\expect[X]$.
+		\begin{solution}$\expect[X] = -1 \cdot q + 0 \cdot (1-p-q) + p\cdot 1 = p-q$ \end{solution}
+		\part What relationship must hold between $p$ and $q$ to ensure $\expect[X]=0$?
+		\begin{solution}$p=q$\end{solution}
+	\end{parts}
+
+\question Fill in the missing details from class to calculate the variance of a Bernoulli Random Variable \emph{directly}, that is \emph{without} using the shortcut formula.
+	\begin{solution} 
+	\begin{eqnarray*}
+	\sigma^2 &=& Var(X) = \sum_{x \in \{0,1\}} (x - \mu)^2 p(x)\\ 
+	&=& \sum_{x \in \{0,1\}} (x - p)^2 p(x)\\
+	 &=& (0 - p)^2 (1-p) + (1-p)^2 p \\
+	 &=& p^2(1-p) + (1-p)^2 p\\ 
+	 &=& p^2 - p^3 + p - 2p^2 +p^3 \\
+	 &=& p - p^2\\ 
+	 &=&p(1-p)
+\end{eqnarray*}
+	\end{solution}
+
+\question Prove that the Bernoulli Random Variable is a special case of the Binomial Random variable for which $n = 1$.	 (Hint: compare pmfs.)
+	\begin{solution}
+		The pmf for a Binomial$(n,p)$ random variable is
+		$$p(x) = {n \choose x} p^x (1-p)^{n-x}$$
+		with support $\{0, 1, 2\hdots, n\}$. Setting $n=1$ gives,
+		$$p(x) = p(x) = {1 \choose x} p^x (1-p)^{1-x}$$
+		with support $\{0,1\}$. Plugging in each realization in the support, and recalling that $0! = 1$, we have
+			$$p(0) = \frac{1!}{0!(1-0)!} p^0 (1-p)^{1-0} = 1 - p$$
+		and
+		$$p(1) = \frac{1!}{1!(1-1)!} p^1 (1-p)^0 = p$$
+		which is exactly how we defined the Bernoulli Random Variable.
+	\end{solution}
+	
+\question Suppose that $X$ is a random variable with support $\{1,2\}$ and $Y$ is a random variable with support $\{0,1\}$ where $X$ and $Y$ have the following joint distribution:
+			\begin{eqnarray*}
+				p_{XY}(1,0) = 0.20, && p_{XY}(1,1) = 0.30 \\
+				p_{XY}(2,0) = 0.25, && p_{XY}(2,1) = 0.25
+			\end{eqnarray*}
+	\begin{parts}
+		\item Express the joint distribution in a $2\times 2$ table.
+			\begin{solution}
+			\begin{center}
+\begin{tabular}{|cc|cc|}
+\hline
+&&\multicolumn{2}{c|}{$X$}\\
+&&1 & 2\\
+\hline
+\multirow{2}{*}{$Y$}
+&0& \multicolumn{1}{|c}{0.20} & 0.25\\
+&1& \multicolumn{1}{|c}{0.30} & 0.25\\
+\hline
+\end{tabular}
+\end{center}
+			\end{solution}
+		\item Using the table, calculate the marginal probability distributions of $X$ and $Y$.
+			\begin{solution}
+				\begin{eqnarray*}
+					p_X(1) &=&p_{XY}(1,0) + p_{XY}(1,1)=0.20+0.30 = 0.50 \\
+					p_X(2) &=&p_{XY}(2,0) + p_{XY}(2,1)=0.25 + 0.25 = 0.50 \\
+					p_Y(0) &=&p_{XY}(1,0) + p_{XY}(2,0) = 0.20 + 0.25 = 0.45 \\
+					p_Y(1) &=& p_{XY}(1,1) + p_{XY}(2,1) = 0.30 + 0.25 = 0.55
+				\end{eqnarray*}
+			\end{solution}
+		\item Calculate the conditional probability distribution of $Y|X=1$ and $Y|X=2$.
+			\begin{solution}
+			The distribution of $Y|X = 1$ is
+				\begin{eqnarray*}
+					P(Y = 0|X = 1) &=&\frac{p_{XY}(1,0)}{p_X(1)} = \frac{0.2}{0.5}=0.4\\\\
+					P(Y = 1|X= 1) &=&\frac{p_{XY}(1,1)}{p_X(1)} = \frac{0.3}{0.5} = 0.6
+				\end{eqnarray*}
+				while the distribution of $Y|X = 2$ is
+				\begin{eqnarray*}
+					P(Y = 0|X = 2) &=&\frac{p_{XY}(2,0)}{p_X(2)} = \frac{0.25}{0.5} = 0.5\\\\
+					P(Y = 1|X= 2) &=&\frac{p_{XY}(2,1)}{p_X(2)} = \frac{0.25}{0.5} = 0.5
+				\end{eqnarray*}
+			\end{solution}
+		\item Calculate $\expect[Y|X]$.
+			\begin{solution}
+			\begin{eqnarray*}
+				\expect[Y | X =1 ] &=& 0 \times 0.4 + 1 \times 0.6 = 0.6\\
+				\expect[Y | X =2 ] &=& 0 \times 0.5 + 1 \times 0.5 = 0.5
+			\end{eqnarray*}
+			Hence, 
+				$$\expect[Y|X] = \left\{ \begin{array}{ll} 0.6  & \mbox{with probability } 0.5\\ 0.5& \mbox{with probability } 0.5\end{array} \right.$$
+				since $p_X(1) = 0.5$ and $p_X(2) = 0.5$.
+			\end{solution}
+		\item What is $\expect[\expect[Y|X]]$?
+			\begin{solution}
+			$\expect[\expect[Y|X]] = 0.5 \times 0.6 + 0.5 \times 0.5 = 0.3 + 0.25 = 0.55$. Note that this equals the expectation of $Y$ calculated from its marginal distribution, since $\expect[Y] = 0 \times 0.45 + 1 \times 0.55$. This illustrates the so-called ``Law of Iterated Expectations.''
+			\end{solution}
+		\item Calculate the covariance between $X$ and $Y$ using the shortcut formula.
+		\begin{solution}
+		First, from the marginal distributions, $E[X] = 1\cdot 0.5 + 2 \cdot 0.5 = 1.5$ and $\expect[Y]=0 \cdot 0.45 + 1 \cdot 0.55 = 0.55$. Hence $\expect[X]\expect[Y] = 1.5 \cdot 0.55 = 0.825$. Second,
+			\begin{eqnarray*}
+				\expect[XY] &=& (0\cdot 1) \cdot 0.2 + (0\cdot 2)\cdot 0.25 + (1\cdot 1) \cdot 0.3 + (1\cdot 2) 0.25\\
+						&=& 0.3 + 0.5 = 0.8
+			\end{eqnarray*}
+			Finally $Cov(X,Y) = \expect[XY] - \expect[X]\expect[Y] = 0.8 - 0.825 = -0.025$
+		\end{solution}
+	\end{parts}
+
+
+
+\end{questions}
+
+
+
+
+\end{document}

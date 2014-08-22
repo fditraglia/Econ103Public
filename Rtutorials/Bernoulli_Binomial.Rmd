@@ -1,0 +1,77 @@
+Getting the Binomial RV from the Bernoulli
+========================================================
+In class we defined the Binomial$(n,p)$ random variable as the sum of $n$ independent Bernoulli$(p)$ random variables. In other words, the Binomial$(n,p)$ equals the total number of successes (ones) in $n$ independent Bernoulli trials, each with probability of success (one) equal to $p$. The point of this document is to convince you that this definition actually makes sense and really does lead to the formulas from class.
+***
+A complete transcript of the R source code for this document is available on my [Github Page](https://gist.github.com/fditraglia/7011503)
+***
+## A Function to Simulate Bernoulli Random Variables
+R doesn't have a built-in function to simulate Bernoulli Random Variables since it treats them as a Binomial$(n=1,p)$ random variable. Let's make our own:
+```{r}
+#This function simulates n independent, identically distributed Bernoulli Random Variables
+rbern <- function(n, p){
+  
+  sims <- sample(0:1, size = n, replace = TRUE, prob = c(1-p, p))
+  return(sims)
+  
+}
+```
+The argument ``prob = c(1-p, p)`` is new. It tells ``sample`` to draw ``0`` with probability ``1-p`` and ``1`` with probability ``p``. This is exactly what we want. Let's test it out:
+```{r}
+rbern(30, 0.1)
+rbern(30, 0.5)
+rbern(30, 0.9)
+```
+## A Function to Simulate the Sum of Bernoullis
+The function ``rbern`` returns all the *individual* Bernoulli draws. What we need to make a connection with the Binomial RV is a function that returns the *sum* of these draws instead. This is easy: we just call ``rbern`` and take its sum:
+```{r}
+#This function simulates n independent, identically distributed Bernoulli Random Variables and returns their sum
+rbern.sum <- function(n, p){
+  
+  sims <- rbern(n, p)
+  return(sum(sims))
+  
+}
+```
+Let's test it out:
+```{r}
+rbern.sum(50, 0.1)
+rbern.sum(50, 0.5)
+rbern.sum(50, 0.9)
+```
+## Finally the Binomial RV
+It turns out that our function ``rbern.sum`` makes a *single* random draw from a Binomial$(n,p)$ random variable. How do I know this? We constructed it exactly following the definition of the Binomial from class: draw the some Bernoullis and sum them up. But don't take my word for it. Let's verify this with a simulation.
+
+### Simulating 100,000 Binomial$(n = 10, p = 0.5)$ Draws
+To do this, we'll use ``rbern.sum`` and ``replicate``
+```{r}
+binom.sims <- replicate(10^5, rbern.sum(10, 0.5))
+head(binom.sims)
+```
+Let's make a plot of the relative frequencies from this simulation experiment:
+```{r}
+p.sim <- table(binom.sims)/10^5
+p.sim
+plot(p.sim, type = 'h')
+```
+What we've done here is approximate a pmf using Monte Carlo simulation. Now let's compare it to the *actual* pmf of a Binomial RV.
+
+### The Exact pmf for a Bernoulli$(n =10, p=0.5)$ 
+We know how to calculate this using what we covered in R Tutorial #5
+```{r}
+support <- 0:10
+p.true <- dbinom(support, size = 10, prob = 0.5)
+rbind(support, p.true)
+plot(support, p.true, type = 'h')
+```
+The plot of the *actual* pmf and the associated probabilities match those from the simulation *almost perfectly*:
+```{r}
+p.sim - p.true
+```
+As you can see, the differences are *tiny*. They'd be even smaller if we used more replications.
+***
+**I hope this example has given you a bit more intuition about the Binomial RV. I'm not going to assign any exercises here, but it would be a good idea to try some simulation experiments of your own with different values for $n$ and $p$.**
+***
+
+
+
+

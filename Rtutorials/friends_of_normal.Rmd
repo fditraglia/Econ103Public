@@ -1,0 +1,97 @@
+Simulating Friends of the Normal
+========================================================
+***
+In Lecture 13 I introducted three distributions that are derived from the normal: Student-t, $\chi^2$ and $F$. This document uses simulations to, I hope, make these relationships a little clearer. This is the key point **all of these random variables arise from independent standard normals.**
+***
+Full source code for this document is available on my [GitHub page](https://gist.github.com/fditraglia/7121684).
+***
+### The $\chi^2(\nu)$ Random Variable
+This is what you get if you take $\nu$ independent standard normals, square them, and sum the result. The paramter $\nu$ is called the "degrees of freedom." 
+
+Let's try creating some $\chi^2(1)$ random draws *the hard way* rather than using ``rchisq``
+```{r,cache=TRUE}
+#Function to draw a single Chi-squared random variable with degrees of freedom equal to df
+my.rchisq <- function(df){
+  
+  #Draw df independent standard normals
+  normal.sims <- rnorm(df)
+  
+  #Square them and sum the result
+  chi.sims <- sum(normal.sims^2)
+  
+}  
+
+sims <- replicate(10000, my.rchisq(1))
+hist(sims, probability = TRUE)
+x <- seq(from = 0, to = max(sims), by = 0.01)
+points(x, dchisq(x, df = 1), type = 'l', col = 'red')
+```
+It works! The histogram of simulations aligns almost perfectly with a plot of the *actual* density of a $\chi^2(1)$ random variable, which we got from ``dchisq``.
+
+Notice that I had to set ``probability = TRUE`` so that we got a histogram of relative frequencies rather than counts. Otherwise the scale of the histogram relative to the $\chi^2$ density would have been wrong.
+
+We can try this again for a $\chi^2(5)$
+```{r,cache=TRUE}
+sims <- replicate(10000, my.rchisq(5))
+hist(sims, probability = TRUE)
+x <- seq(from = 0, to = max(sims), by = 0.01)
+points(x, dchisq(x, df = 5), type = 'l', col = 'red')
+```
+
+### The Student-t Random Variable
+The Student-t distribution is built from the Normal and the $\chi^2$ so we can reuse ``my.rchisq`` from above:
+```{r,cache=TRUE}
+my.rt <- function(df){
+ 
+  numerator <- rnorm(1)
+  denominator <- sqrt( my.rchisq(df) / df )
+  
+  t.sim <- numerator/denominator
+  return(t.sim)
+  
+}
+```
+Now we'll try this out for a Student-t with one degree of freedom:
+```{r,cache=TRUE}
+sims <- replicate(10000, my.rt(1))
+hist(sims, probability = TRUE)
+x <- seq(from = min(sims), to = max(sims), by = 0.01)
+points(x, dt(x, df = 1), type = 'l', col = 'red')
+```
+Wow! That looks weird! I told you in class that the Student-t distribution is really *wild*. What I meant was that it generates lots of "outliers" which is why the histogram looks so strange. We can "zoom in" on the region near zero by trimming out these outliers:
+```{r,cache=TRUE}
+sims <- subset(sims, -6 <= sims & sims <= 6)
+hist(sims, probability = TRUE)
+x <- seq(from = min(sims), to = max(sims), by = 0.01)
+points(x, dt(x, df = 1), type = 'l', col = 'red')
+```
+Again we see that it works well. The Student-t gets much less *wild* when its degrees of freedom increase, so we don't need to do any trimming to make the plot readable:
+```{r,cache=TRUE}
+sims <- replicate(10000, my.rt(30))
+hist(sims, probability = TRUE)
+x <- seq(from = min(sims), to = max(sims), by = 0.01)
+points(x, dt(x, df = 30), type = 'l', col = 'red')
+```
+
+### The $F(\nu, \omega)$ Random Variable
+Last but not least we have the $F$ random variable, which is defined as a ratio of independent $\chi^2$ random variables, each divided by their degrees of freedom. We'll just use ``my.rchisq`` twice:
+```{r}
+my.rf <- function(numerator.df, denominator.df){
+
+  numerator <- my.rchisq(numerator.df) / numerator.df
+  denominator <- my.rchisq(denominator.df) / denominator.df
+  
+  f.sim <- numerator / denominator
+  return(f.sim)
+  
+}
+```
+Finally, we'll test this out for an $F(5,40)$ random variable
+```{r, cache=TRUE}
+sims <- replicate(10000, my.rf(5,40))
+hist(sims, probability = TRUE)
+x <- seq(from = 0, to = max(sims), by = 0.01)
+points(x, df(x, df1 = 5, df2 = 40), type = 'l', col = 'red')
+```
+***
+I hope this was helpful!

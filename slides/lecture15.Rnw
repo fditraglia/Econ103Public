@@ -1,0 +1,726 @@
+\documentclass[handout]{beamer}  
+
+%Smaller gap at between top and bottom of block when there are displayed equations
+\addtobeamertemplate{block begin}{\setlength\abovedisplayskip{0pt}}
+{\setlength{\belowdisplayskip}{0pt}}
+
+
+\usepackage{setspace}
+\linespread{1.3}
+\usepackage{amssymb, amsmath, amsthm} 
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{synttree}
+\usepackage{verbatim}
+\usepackage{fancybox}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{shapes,backgrounds}
+\usepackage{hyperref}
+\usetikzlibrary{trees}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\cov}{Cov}
+\newcommand{\cprob}{\rightarrow_{p}}
+\newcommand{\cas}{\rightarrow_{as}}
+\newcommand{\clp}{\rightarrow_{L^p}}
+\newcommand{\clone}{\rightarrow_{L^1}}
+\newcommand{\cltwo}{\rightarrow_{L^2}}
+\newcommand{\cd}{\rightarrow_{d}}
+\newcommand{\cv}{\Rightarrow_{v}}
+\newcommand{\dec}{\downarrow}
+\newcommand{\inc}{\uparrow}
+\newcommand{\plim}{\hbox{plim}_{N\rightarrow \infty}}
+\newcommand{\limn}{\lim_{n \rightarrow \infty}}
+\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
+
+
+
+
+
+%\setbeamertemplate{blocks}[rounded][shadow=true] 
+%gets rid of bottom navigation bars
+\setbeamertemplate{footline}{
+   \begin{beamercolorbox}[ht=4ex,leftskip=0.3cm,rightskip=0.3cm]{author in head/foot}
+%    \usebeamercolor{UniBlue}
+    \vspace{0.1cm}
+    %\insertshorttitle \ - \insertdate 
+    \hfill \insertframenumber / \inserttotalframenumber
+   \end{beamercolorbox}
+   \vspace*{0.1cm}
+} 
+
+%gets rid of navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+%Include or exclude the notes?
+%\setbeameroption{show notes}
+\setbeameroption{hide notes}
+
+
+\title[Econ 103]{Economics 103 -- Statistics for Economists} 
+\author[F. DiTraglia]{Francis J.\ DiTraglia}
+\institute{University of Pennsylvania}
+\date{Lecture 15}
+
+
+\begin{document} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+	\titlepage 
+	
+
+\end{frame} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\begin{center}
+\Huge Sampling Distributions and Estimation -- Part II
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Unbiased means ``Right on Average''}
+
+\begin{block}{Bias of an Estimator}
+Let $\widehat{\theta}_n$ be a sample estimator of a population parameter $\theta_0$. The \emph{bias} of $\widehat{\theta}_n$ is $E[\widehat{\theta}_n] - \theta_0$.
+\end{block}
+
+\begin{block}{Unbiased Estimator}
+A sample estimator $\widehat{\theta}_n$ of a population parameter $\theta_0$ is called \emph{unbiased} if $E[\widehat{\theta}_n]= \theta_0$
+\end{block}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{A Different Estimator of the Population Variance}
+
+$$\widehat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n \left(X_i - \bar{X}\right)^2$$
+\pause
+\begin{eqnarray*}
+E[\widehat{\sigma}^2 ] =\pause E\left[\frac{1}{n}\sum_{i=1}^n \left(X_i - \bar{X}\right)^2  \right]= \pause \frac{1}{n} E\left[\sum_{i=1}^n \left(X_i - \bar{X}\right)^2\right] = \pause \frac{(n-1)\sigma^2}{n} 
+\end{eqnarray*}
+
+\begin{block}{Bias of $\widehat{\sigma}^2$}
+\vspace{0.75em}
+$\displaystyle E[\widehat{\sigma}^2 ] - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n}  - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n}  - \frac{n\sigma^2}{n} = \pause -\sigma^2/n$
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Procedure versus Result of the Procedure}
+\pause
+\begin{block}{Procedure = Random Variable}
+\begin{itemize}\pause
+\item $X_1, \hdots, X_n$ represents \alert{procedure of taking a random sample}. \pause 
+\item $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$ represents \alert{procedure of taking sample mean}  
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Sampling Dist.\ = Probabilistic Behavior of Procedure}\pause
+If I repeat the procedure of taking the mean of a random sample over and over for many samples, what relative frequencies do I get \alert{for the sample means?}
+\end{block}
+
+\pause
+\begin{block}{Result of Procedure = Constant}
+ \begin{itemize}
+ \pause
+\item $x_1, \hdots, x_n$ is the  \alert{result of sampling}, the observed data. \pause
+\item $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ is the \alert{result of taking sample mean}  
+\end{itemize}
+\end{block}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Procedure? Long-Run Relative Freqencies?}
+
+Why would I advise you not to play the lottery?
+\pause
+	\begin{itemize}
+		\item You may sometimes win, but if you play the lottery many times, on average you will lose money. \pause
+		\item Let $X$ be a random variable representing lottery winnings. I am arguing that $E[X]$ - Cost of Ticket $< 0$
+	\end{itemize}
+\pause
+\begin{block}{Procedure = Random Variable}
+Making a habit of playing the lottery. Expectation is negative.
+\end{block}
+\pause
+\begin{block}{Result of that Procedure = Constant}
+How much you win in a \emph{particular} lottery. Could be greater than or less than cost of ticket in any \emph{individual} instance.
+\end{block}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sampling Distribution of $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$}
+
+\begin{center}
+\setlength{\unitlength}{1cm}
+\begin{picture}(5,7)
+\put(-2,6){\framebox(9,1){Choose $n$ Students from Class List with Replacement}}
+
+\pause
+
+\put(0.5,6){\vector(-1,-1){1.5}}
+\put(-2.3,3.7){\framebox(2.5,0.65){Sample 1}}
+
+\pause
+
+\put(-1,3.5){\vector(0,-1){1}}
+\put(-1.1,1.9){\makebox{\small $\bar{x}_1$}}
+
+\pause
+
+\put(2,6){\vector(0,-1){1.5}}
+\put(0.7,3.7){\framebox(2.5,0.65){Sample 2}}
+
+\pause
+
+\put(2,3.5){\vector(0,-1){1}}
+\put(1.9,1.9){\makebox{\small $\bar{x}_2$}}
+
+\pause
+
+\put(3.8,4){\makebox{...}}
+\put(3.8,2){\makebox{...}}
+
+\pause
+
+\put(4.5,6){\vector(1,-1){1.5}}
+\put(4.8,3.7){\framebox(2.5,0.65){Sample M}}
+
+\pause
+
+\put(6,3.5){\vector(0,-1){1}}
+\put(5.9,1.9){\makebox{\small $\bar{x}_M$}}
+
+\pause
+
+\put(-1,1){\makebox{\small Repeat $M$ times $\rightarrow$  get $M$ different sample means}}
+
+\pause
+
+\put(-1.1,0.4){\makebox{\small \alert{Sampling Dist: long run relative frequencies of the $\bar{x}_i$}}}
+
+\end{picture}
+\end{center}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Height of Econ 103 Students}
+\begin{figure}
+\includegraphics[scale = 0.4]{./images/height_hist}
+\includegraphics[scale = 0.4]{./images/height_mean_n_5}
+\caption{Left: Population, Right: Sampling distribution of $\bar{X}_5$}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{How Large is the Average Family? \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+
+\Large How many brothers and sisters are in your family, including yourself?
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\Large
+\alert{The average number of children per family was about 2.0 twenty years ago.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What's Going On Here?}
+\pause
+Biased Sample!
+\begin{itemize}
+\pause
+ 	\item  Zero children $\Rightarrow$ didn't send any to college
+ 	\pause
+ 	\item Sampling by \emph{children} so large families \alert{oversampled}
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+
+<<echo=FALSE,results='hide'>>=
+setwd("~/Dropbox/Econ103") 
+candy <- read.csv("candy.csv", header = FALSE)
+candy <- candy[,1]
+truth <- 940 #UPDATE EACH SEMESTER
+@
+
+\frametitle{Candy Weighing: \Sexpr{length(candy)} Estimates, Each With $n=5$}
+
+\begin{columns} 
+\begin{column}[c]{5cm} 
+\small
+
+$$\widehat{\theta} = 20 \times (X_1 + \hdots + X_5)$$
+
+\small
+ %FIRST COLUMN HERE
+   \begin{tabular}{lr}
+   \hline \hline
+   \multicolumn{2}{l}{Summary of Sampling Dist.} \\
+   \hline
+   Overestimates& \Sexpr{sum(candy > truth)}\\
+   Exactly Correct& \Sexpr{sum(candy == truth)}\\
+   Underestimates& \Sexpr{sum(candy < truth)}\\
+   \hline
+   $E[\hat{\theta}]$& \Sexpr{round(mean(candy))} grams\\
+   SD$(\widehat{\theta})$& \Sexpr{round(sd(candy))} grams\\
+   \hline
+   \end{tabular}
+   
+  \vspace{1em}
+  Actual Mass:  $\theta_0 =$\Sexpr{truth} grams
+\end{column} 
+\begin{column}[c]{5cm} 
+
+ %SECOND COLUMN HERE 
+\begin{figure}
+\centering
+<<fig.align='center', fig.width=3.5, fig.height=4.5, echo = FALSE>>=
+hist(candy, xlab = 'Est. Weight of All Candies (grams)', main = "Histogram")
+abline(v = truth, col = 'red', lty = 2, lwd = 2)
+@
+
+
+\end{figure}
+
+\end{column} 
+\end{columns} 
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What was in the bag?}
+
+100 Candies Total:
+\begin{itemize}
+\pause
+	\item 20 Fun Size Snickers Bars (large) \pause
+	\item 30 Reese's Miniatures (medium) \pause
+	\item 50 Tootsie Roll ``Midgees'' (small)
+\end{itemize}
+\pause
+\begin{block}{So What Happened?}
+	\pause Not a random sample! The Snickers bars were \emph{oversampled}.
+\end{block}
+\begin{block}{Could we have avoided this? How?}
+
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$ and define $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$. True or False:
+
+\vspace{1em}
+\begin{quotation}
+$\bar{X}_n$ is an unbiased estimator of $\mu$
+\end{quotation}
+
+\begin{enumerate}[(a)]
+\item True
+\item False
+\end{enumerate}
+\pause
+
+\alert{TRUE!}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$. True or False:
+
+\vspace{1em}
+\begin{quotation}
+$X_1$ is an unbiased estimator of $\mu$
+\end{quotation}
+
+\begin{enumerate}[(a)]
+\item True
+\item False
+\end{enumerate}
+
+\pause \alert{TRUE!}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{How to choose between two unbiased estimators?}
+
+Suppose $X_1, X_2, \hdots X_n \sim iid$ with mean $\mu$ and variance $\sigma^2$
+\begin{eqnarray*}
+E[\bar{X}_n] &=& E\left[\frac{1}{n}\sum_{i=1}^n X_i\right] = \frac{1}{n}\sum_{i=1}^n E[X_i] = \mu\\
+\pause
+E[X_1] &=& \mu\\
+\pause
+Var(\bar{X}_n) &=& Var\left(\frac{1}{n}\sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n Var(X_i) = \alert{\sigma^2/n}\\
+\pause
+Var(X_1) &=& \alert{\sigma^2}
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Efficiency - Compare Unbiased Estimators by Variance}
+Let $\widehat{\theta}_1$ and $\widehat{\theta}_2$ be unbiased estimators of $\theta_0$. We say that $\widehat{\theta}_1$ is \alert{\emph{more efficient}} than $\widehat{\theta}_2$ if $Var(\widehat{\theta}_1)<Var(\widehat{\theta}_2)$.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Mean-squared Error}
+Except in very simple situations, unbiased estimators are hard to come by. In fact, in many interesting applications there is a \alert{\emph{tradeoff}} between \alert{bias} and \alert{variance}:
+\pause
+\begin{itemize}
+\item Low bias estimators often have a high variance \pause
+\item Low variance estimators often have high bias
+\end{itemize}
+\pause
+\vspace{1em}
+\alert{Mean Squared Error (MSE):}  \pause Squared Bias plus Variance
+\begin{eqnarray*}
+	MSE(\widehat{\theta}) &=& \mbox{Bias}(\widehat{\theta})^2 + Var(\widehat{\theta})\\
+	\pause
+	&=&\left(E[\widehat{\theta}] - \theta_0\right)^2 + Var(\widehat{\theta})
+\end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Calculate MSE for Candy Experiment}
+
+
+\begin{columns} 
+
+\begin{column}[c]{4cm} 
+ %SECOND COLUMN HERE 
+\begin{figure}
+<<fig.align='center', fig.width=4.5, fig.height=4.5, echo = FALSE>>=
+hist(candy, xlab = 'Est. Weight of All Candies (grams)', main = "Histogram")
+abline(v = truth, col = 'red', lty = 2, lwd = 2)
+@
+\end{figure}
+
+\end{column} 
+
+\begin{column}[c]{6cm} 
+\small
+ %FIRST COLUMN HERE
+   \begin{tabular}{lr}
+   \hline
+   \hline
+   $E[\hat{\theta}]$& \Sexpr{round(mean(candy))} grams\\
+   $\theta_0$& \Sexpr{truth} grams\\
+   $SD(\widehat{\theta})$& \Sexpr{round(sd(candy))} grams\\
+   \hline
+   \end{tabular}
+\vspace{2em}
+
+\begin{eqnarray*}
+	\mbox{Bias} &=& \pause \Sexpr{round(mean(candy))} \mbox{ grams} - \Sexpr{truth} \mbox{ grams}\\
+		&=& \pause \alert{\Sexpr{round(mean(candy)) - truth} \mbox{ grams}}\\
+		\mbox{MSE} &=&\pause  \mbox{Bias}^2 + \mbox{Variance}\\
+			&=&\pause (\Sexpr{round(mean(candy)) - truth}^2 + \Sexpr{round(sd(candy))}^2)\mbox{ grams}^2\\
+				&=&\pause \alert{\Sexpr{(round(mean(candy)) - truth)^2 + round(sd(candy))^2} \mbox{ grams}^2}\\ \pause
+				\mbox{RMSE} &=& \sqrt{\mbox{MSE}} =  \Sexpr{round(sqrt((round(mean(candy)) - truth)^2 + round(sd(candy))^2))} \mbox{ grams}
+\end{eqnarray*}
+\end{column} 
+
+\end{columns} 
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Finite Sample versus Asymptotic Properties of Estimators}
+
+\begin{block}{Finite Sample Properties}
+For \alert{\emph{fixed sample size $n$}} what are the properties of the sampling distribution of $\widehat{\theta}_n$? (E.g.\ bias and variance.)
+\end{block}
+\pause
+\begin{block}{Asymptotic Properties}
+What happens to the sampling distribution of $\widehat{\theta}_n$ \alert{\emph{as the sample size $n$ gets larger and larger?}} (That is, $n\rightarrow \infty$).
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Why Asymptotics?}
+
+\begin{block}{Law of Large Numbers}
+Make precise what we mean by ``bigger samples are better.'' 
+\end{block}
+\pause
+\begin{block}{Central Limit Theorem}
+As $n\rightarrow \infty$  \emph{\alert{nearly all}} sampling distributions behave behave like a normal random variable!
+\end{block}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Consistency}
+
+\begin{block}{Consistency}
+If an estimator $\widehat{\theta}_n$ (which is a RV) \emph{converges} to $\theta_0$ (a constant) as $n\rightarrow \infty$, we say that \emph{\alert{$\widehat{\theta}_n$ is consistent for $\theta_0$}}.
+\end{block}
+\vspace{2em}
+
+\begin{alertblock}{What does it mean for a \emph{RV} to converge to a \emph{constant?}}
+For this course we'll use \emph{MSE Consistency}:
+	$$\limn \mbox{MSE}(\widehat{\theta}_n) = 0$$
+This makes sense since MSE$(\widehat{\theta}_n)$ is a \emph{constant}, so this is just an ordinary limit from calculus.
+\end{alertblock}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Law of Large Numbers (aka Law of Averages)}
+Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$. Then the sample mean 
+	$$\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$$
+is consistent for the population mean $\mu$.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+\frametitle{Law of Large Numbers (aka Law of Averages)}
+Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$. 
+	\begin{eqnarray*}
+			E[\bar{X}_n] &=& \pause E \left[\frac{1}{n}\sum_{i=1}^n X_i\right] = \mu\\\\ \pause
+			Var(\bar{X}_n) &=& \pause Var\left(\frac{1}{n}\sum_{i=1}^n X_i  \right) = \sigma^2/n\\\\ \pause
+			\mbox{MSE}(\bar{X}_n) &=& \mbox{Bias}(\bar{X}_n)^2 + Var(\bar{X}_n)\\\pause
+				&=& \left(E[\bar{X_n}] - \mu\right)^2 + Var(\bar{X}_n)\\ \pause
+				&=& 0 + \sigma^2/n\\ \pause
+				&\rightarrow& 0
+	\end{eqnarray*}
+	\alert{Hence $\bar{X}_n$ is consistent for $\mu$}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Important! }
+
+An estimator \emph{can} be biased but still consistent, as long as the bias disappears as $n \rightarrow \infty$
+\pause
+$$\widehat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n \left(X_i - \bar{X}\right)^2$$
+\pause
+
+
+\begin{block}{Bias of $\widehat{\sigma}^2$}
+\vspace{0.75em}
+$\displaystyle E[\widehat{\sigma}^2 ] - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n}  - \sigma^2 =  \pause -\sigma^2/n \pause \rightarrow 0$
+\end{block}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the sampling distribution of $\bar{X}_n$?
+
+\begin{enumerate}[(a)]
+\item $\chi^2(n)$
+\item $t(n)$
+\item $F(n,n)$
+\item $N(\mu, \sigma^2/n)$
+\item Not enough information to determine.
+\end{enumerate}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\huge\begin{center} But still, how can something random converge to something constant? \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sampling Distribution of $\bar{X}_n$ Collapses to $\mu$}
+Look at an example where we can directly calculate not only the mean and variance of the sampling distribution of $\bar{X}_n$, but the \emph{sampling distribution itself}:
+
+\vspace{1em}
+$$\alert{X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2) \Rightarrow \bar{X}_n \sim N(\mu, \sigma^2/n)}$$
+
+
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Sampling Distribution of $\bar{X}_n$ Collapses to $\mu$}
+\alert{$X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2 \Rightarrow \bar{X}_n \sim N(\mu, \sigma^2/n)$.} \\
+\begin{figure}
+\centering
+\includegraphics[scale = 0.5]{./images/normal_LLN_dist}
+\caption{Sampling Distributions for $\bar{X}_n$ where $X_i \sim \mbox{iid } N(0,1)$}
+\end{figure}
+
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Another Visualization: Keep Adding Observations}
+\begin{columns} 
+\begin{column}[c]{8cm} 
+ %FIRST COLUMN HERE 
+\begin{figure}
+\centering
+\includegraphics[scale = 0.5]{./images/WLLN}
+\caption{Running sample means: $X_i \sim \mbox{iid } N(0, 100)$}
+\end{figure}
+\end{column} 
+\begin{column}[c]{3cm} 
+
+ %SECOND COLUMN HERE 
+\small
+\begin{table}
+\begin{tabular}{|rr|}
+\hline
+$n$&$\bar{X}_n$\\
+\hline
+1 &-2.69\\
+2 &-3.18\\
+3 &-5.94\\
+4 &-4.27\\
+5 &-2.62\\
+10& -2.89\\
+20& -5.33\\
+50 &-2.94\\
+100& -1.58\\
+500 &-0.45\\
+1000& -0.13\\
+5000& -0.05\\
+10000&  0.00\\
+\hline
+\end{tabular}
+\end{table}
+
+\end{column} 
+\end{columns} 
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Important!}
+
+Although I showed two examples involving normal RVs, the LLN holds IN GENERAL!
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+% \frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+% Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the sampling distribution of $\sqrt{n}(\bar{X}_n - \mu)/\sigma$?
+% 
+% 
+% \begin{enumerate}[(a)]
+% \item $N(\mu, \sigma^2)$
+% \item $N(0,1)$
+% \item $N(0,\sigma)$
+% \item $N(\mu, 1)$
+% \item Not enough information to determine.
+% \end{enumerate}
+% 
+% \end{frame}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+% \frametitle{Z-score!}
+% Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. From above,
+% 	\begin{eqnarray*}
+% 			E[\bar{X}_n] &=& \mu\\
+% 			Var(\bar{X}_n) &=&  \sigma^2/n\\ \pause
+% 			&\Rightarrow& SD(\bar{X}_n) =\sigma/\sqrt{n}
+% 	\end{eqnarray*} \pause
+% Thus,
+% 	$$\sqrt{n}(\bar{X}_n - \mu)/\sigma = \pause \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} = \pause \frac{\bar{X}_n - E[\bar{X}_n]}{SD(\bar{X}_n)}  \pause\sim N(0,1)$$ \pause
+% Remember that we call the standard deviation of a sampling distribution the \alert{standard error}, written $SE$, so $$\frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \sim N(0,1)$$
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% \begin{frame}
+% \frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+% Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the approximate value of the following?
+% 	$$\p\left(-2 \leq \frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \leq 2 \right)\pause \alert{\approx 0.95}$$
+% 
+% \end{frame}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+% \frametitle{What happens if I rearrange?}
+% 	\begin{eqnarray*}
+% 		\p\left(-2 \leq \frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \leq 2 \right) &=& 0.95\\ \\ \pause
+% 			\p\left(-2\cdot SE\leq \bar{X}_n - \mu \leq 2 \cdot SE\right) &=& 0.95\\ \\ \pause
+% 			\p\left(-2\cdot SE - \bar{X}_n \leq - \mu \leq 2 \cdot SE - \bar{X}_n \right) &=& 0.95\\ \\ \pause
+% 			\alert{\p\left( \bar{X}_n - 2\cdot SE \leq \mu \leq \bar{X}_n + 2\cdot SE \right)}&\alert{=}& \alert{0.95}
+% 	\end{eqnarray*}
+% 
+% \end{frame}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Midterm II Next Time}
+\begin{itemize}
+  \item Covers everything up to and including today's lecture but I won't directly ask you about material from before the previous midterm.
+	\item Practice midterm and solutions on Piazza
+	\item Exam Details
+		\begin{itemize}
+			\item 70 minutes (please arrive on time)
+			\item Closed-notes, closed-book
+			\item You may write in pen or pencil
+			\item Bring a scientific or ordinary calculator (no graphing calculators permitted)
+			\item Bring your id card
+		\end{itemize}
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

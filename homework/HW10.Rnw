@@ -1,0 +1,402 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+
+
+%-------------------DON'T CHANGE---------------------%
+%The following is needed to prevent a conflict between knitr and the exam class involving the package ``framed.''
+<<include=FALSE>>= 
+knit_hooks$set(document=function(x){ 
+  sub('\\usepackage{framed}', '', x, fixed=TRUE) 
+}) 
+@ 
+
+%This keeps images from being too big, centers them, and makes sure we use pdf images
+<<include=FALSE>>=
+opts_chunk$set(fig.width=3, fig.height=3, fig.align='center',dev='pdf')
+@
+
+%Change the default width of the output to fit within the solution boxes
+<<include=FALSE>>=
+options(width = 60)
+@
+%-------------------DON'T CHANGE---------------------%
+
+
+\printanswers
+%\noprintanswers
+
+\title{Problem Set \# 10}
+\author{Econ 103}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+\section*{Part I -- Problems from the Textbook}
+ Chapter 6: 15, 17, 19(b), 21\\
+ Chapter 8: 17(c), 17(d), 19, 21\\
+
+\noindent \emph{I'll provide full  solutions to 6-17 and 8-21.}
+
+\begin{questions}
+  \item[]
+  \begin{solution} (\textbf{6-17})
+  There are a number of different ways to solve this question. The ``exact'' solution, which is not the one in the book, directly uses the fact that this is a Binomial sampling model: given that 20\% of the cars in the population are defective, what is the probability that no more than 5 of the cars in a sample of size 50 are defective? We can calculate the answer in R as follows:
+<<>>=
+pbinom(5, size = 50, prob = 0.2)
+@
+The ``point'' of this question, however, is to get an \emph{approximate} answer using what we know about the Central Limit Theorem. Since this is a result about the sampling distribution of sample means, we need to re-express the desired probability in these terms. The mechanic wants to know the probability that no more than 5 out of 50 cars are defective. This is the same thing as saying that the \emph{sample mean}, which is just the sample proportion, is no greater than $5/50 = 0.1$. Now, by the CLT, if we center the sample mean at the population mean and scale it by its standard error, the result is approximately standard normal:
+$$P(\bar{X}_n \leq 0.1) = P\left(\frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \leq \frac{0.1 - \mu}{SE(\bar{X}_n)} \right) \approx \texttt{pnorm}((0.1 - \mu)/SE(\bar{X}_n) )$$
+In this example the standard error is: $\sqrt{p(1-p)/n}$ where $n$ is the sample size, 50, and $p$ is the population proportion: 0.2. The population mean for this problem is simply the population proportion: 0.2. Thus, we have
+<<>>=
+p <- 0.2
+n <- 50
+SE <- sqrt(p * (1 - p) / n)
+pnorm((0.1 - 0.2)/SE)
+@
+which agrees with the answer in the back of the book. Notice that this is \emph{slightly different} from the ``exact'' answer given above. This is because the CLT is an \emph{approximation}. 
+  \end{solution}
+	\item[]
+		\begin{solution} (\textbf{8-21}) Although the answer is in the back of the book, there has been some confusion about part (b) in past semesters. Here are my calculations using R. 
+  \begin{enumerate}[(a)]
+    \item I enter the data and calculate the rates as follows:
+<<>>=
+group <- c('treatment', 'control', 'refused')
+n.children <- 1000 * c(200, 200, 340)
+n.polio <- c(57, 142, 157)
+rate <- n.polio/n.children
+polio.data <- data.frame(group, n.children, n.polio, rate)
+polio.data
+@
+  \item Now I construct the confidence interval for the \emph{rates}:
+<<>>=
+treatment <- subset(polio.data, group == 'treatment')
+control <- subset(polio.data, group == 'control')
+
+estimate <- control$rate - treatment$rate
+
+SE <- sqrt( 
+  control$rate * (1 - control$rate)/control$n.children
+  + treatment$rate * (1 - treatment$rate)/control$n.children
+  )
+
+ME <- qnorm(1 - 0.05/2) * SE
+CI <- c(estimate - ME, estimate + ME)
+@
+  before converting them to cases per 100,000 children:
+<<>>=
+estimate * 10^5
+ME * 10^5
+CI * 10^5
+@
+  After rounding, this agrees with the answer in the book.
+  \end{enumerate}
+
+		\end{solution}
+\end{questions}
+
+
+
+ \section*{Part II -- Additional Problems}
+
+\begin{questions}
+
+\question Write R code to carry out the simulation experiments presented on slides 17--19 of Lecture 18 illustrating the central limit theorem. The R command for drawing from a Uniform$(0,1)$ distribution is \texttt{runif} and the corresponding density is \texttt{dunif}. In each case, plot the density or mass function of the population and compare it to the histograms of the sample mean computed for random samples drawn from that population. In each simulation, use 10000 replications.
+	\begin{solution}
+		First the Uniform$(0,1)$
+<<uniform_clt>>=
+x <- seq(0, 1, 0.01)
+y <- dunif(x)
+plot(x, y, main = "Uniform(0,1) Density", type = 'l', ylab = 'f(x)')
+uniform.means <- replicate(10000, mean(runif(20)))
+hist(uniform.means, main = "Uniform(0,1), n = 20")
+@
+Next, the $\chi^2(5)$	
+<<chisq_clt>>=
+x <- seq(0.01, 15, 0.01)
+y <- dchisq(x, df = 5)
+plot(x,y, type = 'l', main = "Chi-squared Density, df = 5", ylab = 'f(x)')
+chisq.means <- replicate(10000, mean(rchisq(20, df = 5)))
+hist(chisq.means, main = "Chi-squared(5), n = 20")
+@
+Finally, the Bernoulli$(0.3)$
+<<bernoulli_clt>>=
+x <- c(0,1)
+y <- dbinom(x, size = 1, p = 0.3)
+plot(x, y, type = 'h', main = "Bernoulli(0.3) pmf", ylim = c(0,1), xlim = c(-1, 2), ylab = 'p(x)')
+bernoulli.means <- replicate(10000, mean(rbinom(20, 1, 0.3)))
+hist(bernoulli.means, main = "Bernoulli(0.3), n = 20")
+@
+	\end{solution}
+
+\question In April of 2013, Public Policy Polling carried out a survey of 1247 registered voters to determine whether Republicans and Democrats differ in their beliefs about various conspiracy theories. To answer this question, you'll need to download the full results of their survey which I've posted on my website for convenience:
+\url{http://www.ditraglia.com/econ103/conspiracy.pdf}. Note that this is a \emph{pdf file} so you can't import it into R. You'll need to go read through the document to find the data from the poll.
+	\begin{parts}
+		\part Construct a 99\% confidence interval for the proportion of registered voters who belive that a UFO crashed at Roswell, New Mexico in 1947 and the US Government covered it up. 
+			\begin{solution}
+				Overall percentages appear on page 2 of the report, and this question refers to Q3. The sample size is 1247 and $\widehat{p} = 0.21$. We can carry out the calculations in R as follows:
+<<roswell_onesample>>=
+p.hat <- 0.21
+n <- 1247
+SE <- sqrt(p.hat * (1 - p.hat)/n)
+ME <- qnorm(1 - 0.01/2) * SE
+LCL <- p.hat - ME
+UCL <- p.hat + ME
+c(LCL, UCL)
+@ 
+			\end{solution}
+		\part Is there evidence that male and female voters differ in their beliefs about Roswell and UFOs? 
+			\begin{solution}
+				Percentages broken down by sex appear on page 15, while overall percentages of men and women appear on page 3. Of the 1247 registered voters in the poll, about 50\% were women and 50\% were men. We'll call that $n = 623$ for each. The sample proportions are $\widehat{p}_{W} = 0.19$ for women versus $\widehat{p}_{M} = 0.24$ for men.  Using R, we find:
+<<men_women>>=
+n <- 623
+p.M <- 0.24
+p.W <- 0.19
+SE.M <- sqrt(p.M * (1 - p.M)/n)
+SE.W <- sqrt(p.W * (1 - p.W)/n)
+SE <- sqrt(SE.M^2 + SE.W^2)
+ME <- qnorm(1 - 0.01/2) * SE
+diff <- p.M - p.W
+LCL <- diff - ME
+UCL <- diff + ME
+c(LCL, UCL)
+@
+			This 99\% CI just barely includes zero. A 95\% wouldn't (try this out for yourself). We have found evidence suggesting that a higher proportion of men believe in the Roswell conspiracy compared to women.
+			\end{solution}
+		\part Is there evidence that Romney voters differ from Obama voters in their beliefs about Roswell and UFOs? 
+			\begin{solution}
+				Percentages broken down by 2012 vote appear in page 5. Overall percentages of Romney and Obama voters in the sample appear on page 3. Of the 1247 registered voters in the sample, 50\% voted for Obama and 44\% voted for Romney. We'll call this $n_{O} = 623$ and $n_{R} = 547$. The sample proportions are $\widehat{p}_{O} = 0.16$ for Obama voters versus $\widehat{p}_{R} = 0.27$ for Romney voters. Using R, we find:
+<<romney_obama>>=
+n.R <- 547
+p.R <- 0.27
+SE.R <- sqrt(p.R * (1 - p.R)/n.R)
+n.O <- 623
+p.O <- 0.16
+SE.O <- sqrt(p.O * (1 - p.O)/n.O)
+SE <- sqrt(SE.R^2 + SE.O^2)
+ME <- qnorm(1 - 0.01/2) * SE
+diff <- p.R - p.O
+UCL <- diff + ME
+LCL <- diff - ME
+c(LCL, UCL)
+@
+			We have found strong evidence that a substantially greater proportion of Romney voters believe in the Roswell conspiracy.
+			\end{solution}
+		\part How should we interpret the results of the preceding two parts?
+			\begin{solution}
+				Since we know the men are more likely to vote for Republican candidates than women, it's difficult to tell whether the effect has to do with sex or political affiliation. To learn more, we'd need to compare \emph{female} Romney voters to \emph{female} Obama voters and then \emph{separately} compare male Obama voters to male Romney voters.
+			\end{solution}
+	\end{parts}
+
+\question Construct an approximate 95\% confidence interval for the Anchoring Experiment based on the CLT using \emph{this semester's} data, following the details in Lecture 19. Be sure to properly account for missing values. How does it compare to the interval based on the data from lecture?
+	\begin{solution} 
+<<anchoring_experiment>>=
+data.url <- "http://www.ditraglia.com/econ103/survey_clean.csv"
+survey <- read.csv(data.url)
+anchoring <- survey[,c("rand.num", "africa.percent")]
+lo <- subset(anchoring, rand.num == "10")$africa.percent
+hi <- subset(anchoring, rand.num == "65")$africa.percent
+lo <- lo[!is.na(lo)]
+hi <- hi[!is.na(hi)]
+SE.lo <- sd(lo)/sqrt(length(lo))
+SE.hi <- sd(hi)/sqrt(length(hi))
+SE <- sqrt(SE.hi^2 + SE.lo^2)
+ME <- qnorm(0.975) * SE 
+diff <- mean(hi) - mean(lo)
+LCL <- diff - ME
+UCL <- diff + ME
+c(LCL, UCL)
+@
+	\end{solution}
+
+
+\question This problem concerns a dataset comparing the scores of men and women on the Armed Forces Qualifying Test (AFQT). The data are available from my website:
+<<>>=
+data.url <- "http://www.ditraglia.com/econ103/ex0222.csv"
+test.scores <- read.csv(data.url)
+head(test.scores)
+@
+Each row is an individual who took the test. The first column gives that individual's sex, while the second through fifth columns give the individual's score on four parts of the test. The final column is an overall percentile score for the test. 
+  \begin{parts}
+    \part Suppose we want to compare the scores of men and women. Is this a problem based on two independent samples or matched pairs data?
+      \begin{solution}
+      Independent samples: each person's score on the exam is independent of every other person's score. There is no sensible way to match up pairs of observations here. Indeed, there are different numbers of men and women!
+      \end{solution}
+      \part For each of the four parts of the test, as well as for the overall percentile score, construct an approximate 95\% CI for the difference of population means (men - women) based on the CLT. To make the calculations easier, notice that we can use the function \texttt{apply} to calculate the mean and variance of \emph{each column at once}. For example, extracting the data for men:
+<<>>=
+test.men <- subset(test.scores, Gender == 'male')[,-1]
+means.men <- apply(test.men, 2, mean)
+var.men <- apply(test.men, 2, var)
+@
+  Setting the second argument equal to 2 tells R to apply the function in the third argument to the \emph{columns} of \texttt{test.men}.
+  \begin{solution}
+<<>>=
+test.men <- subset(test.scores, Gender == 'male')[,-1]
+test.women <-subset(test.scores, Gender == 'female')[,-1]
+means.men <- apply(test.men, 2, mean)
+var.men <- apply(test.men, 2, var)
+n.men <- nrow(test.men)
+means.women <- apply(test.women, 2, mean)
+var.women <- apply(test.women, 2, var)
+n.women <- nrow(test.women)
+diff.means <- means.men - means.women
+SE <- sqrt(var.women/n.women + var.men/n.men)
+ME <- qnorm(1 - 0.05/2) * SE
+LCL <- diff.means - ME
+UCL <- diff.means + ME
+CI <- rbind(LCL, UCL)
+round(diff.means, 2)
+round(CI, 2)
+@
+  \end{solution}
+      \part Interpret your results.
+      \begin{solution}
+      Men score, on average, higher on the Arithmetic Reasoning and Mathematical Knowledge portions of the test. Women score higher, on average, on the Paragraph Comprehension portion of the test, while men and women appear to score about the same on the Word Knowledge portion. In terms of overall results, men seem to score higher than women, although the 95\% CI does include zero. 
+      \end{solution}
+  \end{parts}
+
+\question This problem uses a dataset that investigates the relationship between schizophrenia and the volume (in cm$^3$) of a particular region of the brain (the left hippocampus) measured using an MRI machine. The dataset contains 15 sets of monozygotic (i.e.\ identical) twins, one of whom has schizophrenia (``Affected'') and the other who does not (``Unaffected''). The idea of using identical twins is to hold constant unobserved genetic and socioeconomic confounding variables that might influence whether someone develops schizophrenia. You can download the data from my website as follows:
+<<>>=
+data.url <- "http://www.ditraglia.com/econ103/case0202.csv"
+twins <- read.csv(data.url)
+head(twins)
+@
+	\begin{parts}
+		\part Should these data be analyzed as independent samples or matched pairs?
+      \begin{solution}
+      This is matched pairs data. We would expect the size of the left hippocampus to be very similar for identical twins!
+      \end{solution}
+		\part Construct an approximate 95\% confidence interval for the difference of means using the CLT and treating the data as two independent samples.
+    \begin{solution}
+<<>>=
+mean.affected <- mean(twins$Affected)
+var.affected <- var(twins$Affected)
+n.affected <- length(twins$Affected)
+mean.unaffected <- mean(twins$Unaffected)
+var.unaffected <- var(twins$Unaffected)
+n.unaffected <- length(twins$Unaffected)
+diff.means <- mean.unaffected - mean.affected
+SE.indep <- sqrt(
+    var.affected/n.affected 
+    + var.unaffected/n.unaffected)
+ME.indep <- qnorm(1 - 0.05/2) * SE.indep
+CI.indep <- c(diff.means - ME.indep, diff.means + ME.indep)
+round(CI.indep, 3)
+@
+  \end{solution}
+		\part Construct an approximate 95\% confidence interval for the difference of means using the CLT and treating the data as matched pairs.
+    \begin{solution}
+<<>>=
+twin.diff <- twins$Unaffected - twins$Affected
+n.twins <- length(twin.diff)
+SE.paired <- sqrt(var(twin.diff)/n.twins)
+ME.paired <- qnorm(1 - 0.05/2) * SE.paired
+CI.paired <- c(diff.means - ME.paired, diff.means + ME.paired)
+round(CI.paired, 3)
+@
+    \end{solution}
+		\part The dataset only contains 15 pairs, a fairly small sample. Since the CLT is a large sample approximation, it may not work well in this situation. Suppose we were willing to assume that the within-twin differences came from a normal population. Construct an \emph{exact} 95\% confidence interval for the difference of means (again treating the data as matched pairs) under this assumption.
+      \begin{solution}
+<<>>=
+ME.t <- qt(1 - 0.05/2, df = n.twins - 1) * SE.paired
+CI.paired.t <- c(diff.means - ME.t, diff.means + ME.t)
+round(CI.paired.t, 3)
+@
+      \end{solution}
+      \part Compare each of the intervals you have constructed. Why and how do they differ? What should we conclude?
+        \begin{solution}
+          The shortest interval is the one based on matched pairs using the CLT (\texttt{qnorm}). The widest is the one that assumes the samples are independent, which they are not. This interval is wider because the measurements are correlated across twins so that the sample variance of the differences is less than the sum of the sample variances of the affected and unaffected twins. 
+          
+          The interval based on the assumption that the differences come from a normal distribution is narrower than that based on assuming independent samples for the same reason, but wider than the equivalent interval based on the CLT. This is because each of them uses the same standard error estimate but \texttt{qt(0.975, df = 14)} is larger than \texttt{qnorm(0.975)}. 
+          
+          Although we may doubt that 15 is large enough for the approximation based on the CLT to work well, we may equally well doubt that the differences come from a normal population. Fortunately, both of the intervals based on differences give the same basic result: the twin with schizophrenia has, on average, a smaller left hippocampus. If we wanted to be conservative, we could report the wider of the two intervals.
+        \end{solution}
+	\end{parts}
+
+\question This question examines a situation in which the textbook confidence interval for a population proportion, based on the CLT, performs poorly but the refined interval works well. Recall that the refined CI is based on the quantity
+    $$\widetilde{p} = \frac{1}{n+4} \left(2+ \sum_{i=1}^n X_i\right)$$
+while the textbook CI is based on $\widehat{p}=(\sum_{i=1}^n X_i)/n$.
+  \begin{parts}
+    \part Show that $\widetilde{p} = (n\widehat{p} +2)/(n+4)$
+  		\begin{solution}
+				\begin{eqnarray*}
+						\widetilde{p} &=& \frac{1}{n+4} \left(2+ \sum_{i=1}^n X_i\right)\\
+							&=& \frac{2}{n+4} + \frac{n}{n+4} \left(\frac{1}{n}\sum_{i=1}^n X_i\right)\\
+							&=& \frac{2}{n+4} + \left(\frac{n}{n+4}\right) \widehat{p}\\
+							&=& \frac{n\widehat{p}+2}{n+4}
+				\end{eqnarray*}								
+				
+			\end{solution}
+      \part Suppose the true population proportion is $p = 0.5$ and we draw an iid sample of size 50, that is $X_1, \hdots, X_{50} \sim \mbox{iid Bernoulli}(0.5)$. We want to examine how often the textbook CI contains the true population proportion (0.5) in a large number of repeated samples. Since $\widehat{p}$ does not use the \emph{individual} $X_i$, but only their sum, we can simulate $\widehat{p}$ based on an iid sample of size 50 by drawing a \emph{single} Binomial(50, 0.5) random variable and dividing it by 50. In R,
+<<>>=
+rbinom(1, size = 50, prob = 0.5)/50
+@
+Note that you may get a different answer from me since this is \emph{random}. Indeed, if you run it repeatedly, you will typically get a different answer. The idea is to run this \emph{many times}, and construct a confidence interval based on each result and see how many of them contain $0.5$. Here is some code that does exactly that. Explain, step-by-step, how it works and what the result means. Then try running it yourself.
+<<>>=
+n <- 50
+p <- 0.5
+N.reps <- 100
+p.hat <- rbinom(N.reps, size = n, prob = p)/n
+ME.hat <- qnorm(0.975) * sqrt(p.hat * (1 - p.hat) / n)
+LCL.hat <- p.hat - ME.hat
+UCL.hat <- p.hat + ME.hat
+CI.hat <- cbind(LCL.hat, UCL.hat)
+Coverage <- (LCL.hat <= p) & (p <= UCL.hat)
+Coverage <- sum(Coverage)/N.reps
+Coverage
+@
+  \begin{solution}
+  The first four lines calculate 100 values of $\widehat{p}$ from 100 repeated samples of size 50 from a Bernoulli population with probability of success 0.5. These values are stored in the vector \texttt{p.hat}. The next four lines construct the approximate textbook 95\% confidence interval for a population proportion corresponding to \emph{each} of the 100 values for $\widehat{p}$ from the repeated samples. The third to last command checks each of these intervals to make sure that it contains the true value: 0.5. If so, it stores the value \texttt{TRUE} otherwise it stores the value \texttt{FALSE}. The second to last command uses a clever trick: if you sum a vector of \texttt{TRUE} and \texttt{FALSE} in R, it will treat the \texttt{TRUE} values as 1 and the \texttt{FALSE} values as 0. Thus, the sum \emph{counts} how many of the intervals contain the true population parameter before dividing it by 100 to get the \emph{fraction} of intervals that contain the truth. The result is close to what it should be: 0.95. 
+  \end{solution}
+  \part How would the results change if you re-ran the above code with \texttt{N.reps <- 10000}? Try making the change and re-running the code.
+    \begin{solution}
+    This just changes \emph{how many times we repeat the sampling}. It does \emph{not change the sample size}. If we increase this number, we get closer to what we actually mean by repeated sampling, namely an \emph{infinite number} of replications. In practical terms, the answer is much more precise and once again is close to 0.95 which is what we would expect.
+    \end{solution}
+        \part From here on, use \texttt{N.reps <- 10000}. What happens if you re-run the above code with \texttt{p <- 0.1} and \texttt{n <- 10}?
+    \begin{solution}
+    This changes the population from which we are sampling as well as the sample size. Formerly the population proportion was 0.5 and the sample size 50 whereas now the population proportion is 0.1 and the sample size is 0.1. The result is as follows:
+<<>>=
+n <- 10
+p <- 0.1
+N.reps <- 10000
+p.hat <- rbinom(N.reps, size = n, prob = p)/n
+ME.hat <- qnorm(0.975) * sqrt(p.hat * (1 - p.hat) / n)
+LCL.hat <- p.hat - ME.hat
+UCL.hat <- p.hat + ME.hat
+CI.hat <- cbind(LCL.hat, UCL.hat)
+Coverage <- (LCL.hat <= p) & (p <= UCL.hat)
+Coverage <- sum(Coverage)/N.reps
+Coverage
+@
+    As we talked about in class, the textbook CI for a population proportion can work poorly if $p$ is close to zero or one and $n$ is small.
+    \end{solution}
+    \part Adapt the above code to examine the performance of the refined CI when $p = 0.1$ and $n = 10$. Use \texttt{N.reps <- 10000} as above. Hint: you can reuse the \texttt{p.hat} vector from part (c) by using the formula from part (a).
+      \begin{solution}
+<<>>=
+p.tilde <- (n * p.hat + 2) / (n + 4)
+ME.tilde <- qnorm(0.975) * sqrt(p.tilde * (1 - p.tilde) / (n + 4))
+LCL.tilde <- p.tilde - ME.tilde
+UCL.tilde <- p.tilde + ME.tilde
+CI.tilde <- cbind(LCL.tilde, UCL.tilde)
+Cover.tilde <- (LCL.tilde <= p) & (p <= UCL.tilde)
+Cover.tilde <- sum(Cover.tilde)/N.reps
+Cover.tilde
+@
+      \end{solution}
+  \end{parts}
+
+
+
+\end{questions}
+
+
+\end{document}

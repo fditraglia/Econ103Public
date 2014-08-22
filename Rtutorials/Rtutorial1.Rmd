@@ -1,0 +1,531 @@
+R Tutorial #1 -- Econ 103 
+========================================================
+
+### Introduction
+This is a long tutorial, but the material is fairly straightforward. If you run into any trouble feel free to post on Piazza. 
+
+
+
+Part 1: Installing R
+--------------------------------------------------------
+
+Carry out the following steps *in order* to install R and RStudio.
+
+1. Go to http://cran.r-project.org/ and install the version of R for your operating system.
+
+2. Go to http://rstudio.org/download/desktop and click the link listed under "Recommended for Your System". Follow the instructions to install RStudio.
+
+To make sure this worked, open the program RStudio and go to File > New > R Script. This will open a blank text document. In the document, type the text given in the box below and then click and drag to highlight both lines of code and click the button marked "Run." If everything is working correctly, the console should display ``TRUE``.
+```{r results='hide'}
+x <- 5
+x == 5
+```
+
+Congratulations: you've just written your first R script! To save it, go to File > Save As, and choose a name. NOTE: Always save your scripts as .R files so they'll open in RStudio by default. 
+
+Note that you can run one line of your script at a time by moving your cursor to that line and pressing CONTROL-ENTER or COMMAND-RETURN depending on whether you're running Mac OSX, Linux or Windows. Another helpful shortcut is CONTROL-A  (COMMAND-A on Mac) which highlights all of the lines of code in the text editor.
+
+
+
+Part 2: TryR Online Tutorial
+--------------------------------------------------------
+
+In this section, you'll be completing levels 1-6 on Try R, an online tutorial for learning R.
+
+1. Go to http://www.codeschool.com/courses/try-r
+
+2. Hit "START COURSE FOR FREE." NOTE: You will have to make an account to do this, but your penn email and whatever password you want will be fine. 
+
+3. Complete levels 1-6. After you complete each level, go back to RStudio and solve the corresponding exercises given in Part 4 below to test your understanding. Save your work in an R script. 
+
+For your reference, I have posted a complete transcript of the commands introduced in TryR on Piazza under Course Page > Resources > R Tutorials. 
+
+
+
+Part 3: Some Additional R Material
+--------------------------------------------------------
+TryR gives a good foundation for starting out with R, but there are some important commands it doesn't mention. Once you've finished TryR, work through this material. Corresponding exercises are given in Part 4 below. You may also want to read this part before attempting the exercises for TryR Section 6.
+
+### A Note About Variable Names in R
+You can use nearly anything as a variable name in R. The only rules are:
+  1. Your variable name must not start with a number
+  2. and must not include any characters that have a "special meaning" such as ``*`` ``+`` and so on
+
+In practical terms, this means you should only use letters, numbers, the underscore ``_`` and periods ``.`` in your variable names. It's also good practice not to give variables the same names as existing R commands. For example ``mean`` would not be a good choice for a variable name but ``my.mean`` is fine.
+
+[A note for those of you who have programming experience: while R supports object-oriented programming, periods ``.`` do *not* have a special meaning in the language. For historical reasons, R programmers often use periods in place of underscores in variable names, but either works. Just be consistent to keep your code readable.]
+
+Here are some examples:
+```{r}
+foo <- 3
+bar <- 5
+foo.bar <- foo + bar
+foo.bar2 <- 2 * foo.bar
+foo_bar <- foo - bar
+```
+
+
+
+### ``prod``
+Just like you can use the command sum to add up the elements of a numeric vector, you can use prod to take their product:
+```{r}
+foo <- 1:5
+sum(foo)
+prod(foo)
+```
+
+### ``length``
+This command tells us how many elements a vector contains. This will frequently come in handy:
+```{r}
+length(foo)
+length(1:100)
+```
+
+### ``exp`` and ``log``
+In R, the the function ``exp`` gives $e^x$ while ``log`` takes the natural logarithm:
+```{r}
+exp(1)
+log(1)
+exp(log(1))
+```
+
+
+### ``abs``
+The R function ``abs`` calculates the absolute value of a number or vector:
+```{r}
+abs(-1)
+abs(1)
+abs(-3:3)
+```
+
+
+### Trigonometry
+R also knows $\pi$ and performs basic trig functions. These work pretty much how you'd expect:
+```{r}
+pi
+sin(0)
+cos(pi)
+```
+Note that these functions are specified in *radians* rather than degrees.
+
+### ``cbind`` and ``rbind``
+These commands allow us to build up a matrix from several vectors (or other matrices) by pasting them together as columns or rows. The function ``cbind`` is short for "column bind"
+```{r}
+x <- 1:5
+y <- 2*x
+z <- cbind(x,y)
+z
+```
+and ``rbind`` is short for "row bind"
+```{r}
+z <- rbind(x,y)
+x
+```
+We can use these commands in more complicated ways as well:
+```{r}
+rbind(z,x)
+cbind(1:5, 2 * 1:5, 3 * 1:5)
+```
+
+### ``data.frame``
+This command lets you build up a dataframe from several vectors of the same length:
+```{r}
+foo <- 1:5
+bar <- 2 * foo
+foo.bar <- data.frame(foo, bar)
+foo.bar
+```
+In the preceding example I built a dataframe with only two columns, but you can add as many as you like. Just separate them by commas:
+```{r}
+y <- -4:0
+data.frame(foo, bar, y)
+```
+
+### ``subset``
+When you're working with a dataframe, you'll often want to look at subsets that satisfy a particular condition. First we'll set up a simple dataframe:
+```{r}
+location <- c("New York", "Chicago", "Boston", "Boston", "New York")
+salary <- c(70000, 80000, 60000, 50000, 45000)
+title <- c("Office Manager", "Research Assistant", "Analyst", "Office Manager", "Analyst")
+hours <- c(50, 56, 65, 40, 50)
+jobsearch <- data.frame(location, salary, title, hours)
+jobsearch
+```
+Now, suppose you wanted to see only the jobs in New York. You could select them as follows:
+```{r}
+subset(jobsearch, location == 'New York')
+```
+Notice the use of the *double equal sign*. This command is *testing a logical condition*. If you use a single equals sign, this won't work since ``=`` is a synonym for ``<-`` in R. The preceding command looks at the dataframe jobsearch and then the column location and checks which entries satisfy the condition that the location is New York. Finally, the function returns *only these rows* of the dataframe.
+
+Now suppose you wanted to extract only those jobs that pay more than $50,000. The command for this is as follows:
+```{r}
+subset(jobsearch, salary > 50000)
+```
+Finally, suppose the most you're willing to work per week is 50 hours. Here are the jobs you should consider:
+```{r}
+subset(jobsearch, hours <= 50)
+```
+
+### ``head`` and ``tail``
+Some dataframes are too large to display all at once on the screen. One such example is the built-in dataset EuStockMarkets which gives daily closing prices for various European Stock markets. To view the first few rows of a dataframe, we use the command ``head``
+```{r}
+head(EuStockMarkets)
+```
+To view the last few rows, we use the command ``tail``
+```{r}
+tail(EuStockMarkets)
+```
+
+### More on Matrix and Dataframe Access
+One of the most fundamental R skills you'll need to learn is how to access parts of a dataframe, matrix, or vector. This can be a little confusing at first since there are usually *several different ways to accomplish the same thing*. This section is intended to clarify some of the material on dataframes and matrices from the TryR tutorial. The best way to learn this is to play around with different commands and see what happens. If you don't get the result you were expecting, try to think about why.
+
+First I'll build a simple matrix and dataframe from the following vectors:
+```{r}
+person <- c("Linus", "Snoopy", "Lucy", "Woodstock")
+age <- c(5, 8, 6, 2)
+weight <- c(40, 25, 50, 1)
+my.dataframe <- data.frame(person, age, weight)
+my.matrix <- cbind(age, weight)
+```
+and display them
+```{r}
+my.dataframe
+my.matrix
+```
+
+#### Fact #1: You can use the same principles to select subsets of vectors, matrices and dataframes *by position*
+
+The only real difference here is that vectors are one-dimensional:
+```{r}
+age[1:2]
+age[c(1,3)]
+```
+whereas matrices and dataframes are two-dimensional so we use a comma to denote ``[ROWS,COLUMNS]``
+```{r}
+my.matrix[1,2]
+my.dataframe[1,3]
+my.matrix[1:3,2]
+my.dataframe[1:3,3]
+```
+If you leave the part *before* the comma blank, you get all the rows:
+```{r}
+my.matrix[,1:2]
+my.dataframe[,2:3]
+```
+If you leave the part *after* the comma blank, you get all the columns:
+```{r}
+my.matrix[c(1,3),]
+my.dataframe[c(1,3),]
+```
+
+
+#### Fact #2: All the columns of a matrix *must* contain the same kind of data.
+
+Watch what happens if I try to add ``person`` to ``my.matrix``
+```{r}
+cbind(my.matrix, person)
+```
+R has added quotation marks! Since ``person`` contains character data rather than numeric data, R changed all the *numbers* in ``my.matrix`` to be character data as well. This is called *coercion* and it's what R does when you give it incompatible data types. We can check this by attempting to subtract 1 from the ``weight`` column of this new matrix
+```{r}
+cbind(my.matrix, person)[,2] - 1
+```
+It doesn't work.
+
+#### Fact #3: The columns of a dataframe can store *different* kinds of data.
+In contrast, we *can* do math with the ``weight`` column of ``my.dataframe`` even though the column ``person`` contains character data
+```{r}
+my.dataframe[,3] - 1
+```
+This is basically what dataframes were designed for: to allow for columns that might contain different kinds of data.
+
+#### Fact #4: There are *three ways* to access the columns of a dataframe *by name*. 
+The first way is to use ``[["COLUMN NAME GOES HERE"]]``
+```{r}
+my.dataframe[["weight"]]
+```
+The second is to use ``$`` which is, in fact, just shorthand for ``[["COLUMN NAME GOES HERE"]]``
+```{r}
+my.dataframe$weight
+```
+Both of the preceding methods are limited in that they only allow us to reference a single column. We can reference multiple columns as follows:
+```{r}
+my.dataframe[,c("person", "weight")]
+```
+Since we left the part before the comma blank, this gave us all the rows. We could get the same thing by accessing these columns *by position*
+```{r}
+my.dataframe[,2]
+my.dataframe[,c(1,2)]
+my.dataframe[,1:2]
+```
+In some cases it's easier to access columns of a dataframe *by name* and in others it's easier to access them *by position*. 
+
+
+Part 4: Exercises
+--------------------------------------------------------
+### TryR Level 1
+
+1. Calculate how many minutes there are in a week. 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 1-1
+60 * 24 * 7
+```
+2. Add up the numbers 1 8 4 2 9 4 8 5 *without using any plus signs* 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 1-2
+sum(1, 8, 4, 2, 9, 4, 8, 5)
+```
+3. You've forgotten what the function ``rep`` does. Load the corresponding help file.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 1-3
+help(rep)
+```
+4. Suppose I ran the following R commands in order. What result would I get? *Do not* use R to answer this: think it through and then check your answer.
+  - ``x <- 5``
+  - ``y <- 7``
+  - ``z = x + y``
+  - ``z + 3 == 15``
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 1-4
+x <- 5
+y <- 7
+z = x + y 
+z + 3 == 15
+```
+5. What command should I use to list all the files in the present directory? 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 1-5
+list.files()  
+```
+6. Suppose I saw a file named ``binomial_example.R`` when I typed in the command for question 5 above. What command would I use to load this script into R?
+```{r echo=FALSE,results='hide',fig.show='hide',error=FALSE, message=FALSE, eval=FALSE}
+#Ex. 1-6
+source("binomial_example.R")
+```
+7. How can I get R to print out "Go Penn!" thirty times without repeatedly typing this by hand?  
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 1-7
+rep("Go Penn", times = 30)
+```
+
+### TryR Level 2
+
+1. Create a vector called ``x`` containing the sequence -1, -0.9, ... 0, 0.1, ..., 0.9, 1 and then display the result
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-1
+x <- seq(-1, 1, 0.1)
+x
+```
+2. Create two vectors: ``wizards`` and ``ranking``. The vector ``wizards`` should contain the following names: Harry, Ron, Fred, George, Sirius. The vector ``ranking`` should contain the following numbers: 4, 2, 5, 1, 3 in it. Make sure to put these in order. 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-2
+wizards <- c("Harry", "Ron", "Fred", "George", "Sirius")
+ranking <- c(4, 2, 5, 1, 3)
+#Remember that the elements of character vectors need to be enclosed in quotation marks. Either single or double quotes will work.
+```
+3. Extract the second element of the vector ``wizards``.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-3
+wizards[2]
+```
+4. Replace the names Fred, George and Sirius in the vector wizards with Hermione, Ginny and Malfoy, respectively. 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-4
+#There are several different ways to do this. Here are two possibilities.
+wizards[c(3, 4, 5)] <- c("Hermione", "Ginny", "Malfoy")
+wizards[3:5] <- c("Hermione", "Ginny", "Malfoy")
+```
+5. Someone who hasn't read Harry Potter needs labels to determine who these characters are. Assign names to the elements of the vector ``wizards``: Lead, Friend, Friend, Wife, Rival. Display the result.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-5
+names(wizards) <- c("Lead", "Friend", "Friend", "Wife", "Rival")
+wizards
+```
+6. An avid reader of Harry Potter argues that Malfoy is not Harry's rival by the end of the series. Change Rival to Ex-Rival. 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-6
+names(wizards)[5] <- "Ex-Rival"
+names(wizards)
+```
+7. Make a barplot of the ranking ``vector``. Why can't you make a barplot of the vector ``wizards``?
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-7
+barplot(ranking) 
+#The wizards vector contains character data rather than numerical data so we can't plot it.
+```
+8. Assign the elements of the vector ``wizards`` to be the names of the vector ``ranking``. Then re-do the barplot so we can see who's who.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-8
+names(ranking) <- wizards
+barplot(ranking)
+```
+9. In 2009 Steve's income was $50,000 and his total expenses were $35,000. In 2010 his income was $52,000 and his expenses were $34,000. In 2011, his income was $52,500 and his expenses were $38,000. Finally, in 2012
+Steve's earnings were $48,000 and his expenses were $40,000. Create three vectors to store this information in parallel: ``years``, ``income`` and ``expenses``.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-9
+years <- c(2009, 2010, 2011, 2012)
+income <- c(50000, 52000, 52500, 48000)
+expenses <- c(35000, 34000, 38000, 40000)
+```
+10. Following on from the previous question, calculate Steve's annual savings and store this in a vector called ``savings``. Make a scatterplot of ``years`` against ``savings``.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-10
+savings <- income - expenses
+plot(years, savings)
+```
+11. Assuming zero interest on bank deposits (roughly accurate at the moment), calculate the total amount that Steve has saved over all the years for which we have data.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-11
+sum(savings)
+```
+12. Redefine the vector ``years`` so that it runs from 2009-2013. Redefine ``income`` to match but record ``income`` for 2013 as ``NA`` (this is R's code for missing data). How can we compute the sum of the elements of this new ``income`` vector?
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 2-12
+years <- c(2009, 2010, 2011, 2012)
+income <- c(50000, 52000, 52500, 48000, NA)
+#If we just use sum, we'll get NA
+sum(income)
+#To avoid this, we use the following option to ignore the NA
+sum(income, na.rm = TRUE)
+```
+
+### TryR Level 3 
+
+1. Create a vector called ``z`` that lists the numbers from 12 to 23 in *descending order*. Then create a 3x4 matrix from the elements of z and call it ``z.mat``. Finally, display the matrix.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 3-1
+z <- 23:12
+z.mat <- matrix(z, 3, 4)
+```
+2. What command should I use to access the element of ``z.mat`` that contains the number 13?
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 3-2
+z.mat[2,4]
+```
+3. Replace the number 13 with the number 7 in ``z.mat``.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 3-3
+z.mat[2,4] <- 7
+z.mat
+```
+
+
+### TryR Level 4
+
+1. Twenty-six students took the midterm. Here are their scores:
+18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87. Assign these values to a vector called ``scores``.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 4-1
+scores <- c(18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87)
+```
+2. Calculate the mean, median and standard deviation of the scores.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 4-2
+mean(scores)
+median(scores)
+sd(scores)
+```
+
+### TryR Level 5
+
+No additional problems for this section. 
+
+### TryR Level 6
+#### Before attempting these seven exercises it's probably best to read Part 3 above. 
+
+1. Create three vectors. First store the numeric values 21, 26, 51, 22, 160, 160, 160 in a vector called ``age``. Next, store the names Achilles, Hector, Priam, Paris, Apollo, Athena, Aphrodite in a character vector called ``person``. Finally store the words Aggressive, Loyal, Regal, Cowardly, Proud, Wise, Conniving in a vector called ``description``
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 6-1
+age <- c(21, 26, 51, 22, 160, 160, 160)
+person <- c("Achilles", "Hector", "Priam", "Paris", "Apollo", "Athena", "Aphrodite")
+description <- c("Aggressive", "Loyal", "Regal", "Cowardly", "Proud", "Wise", "Conniving")
+```
+2. Create a dataframe called ``trojan.war`` whose columns contain the vectors from the previous question.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 6-2
+trojan.war <- data.frame(person, age, description)
+```
+3. Suppose you wanted to display only the column of ``trojan.war`` that contains each person's ``description``. What command would you use? 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 6-3
+#There are many different ways to do this:
+trojan.war[,3] 
+trojan.war$description 
+trojan.war["description"] 
+```
+4. What command would you use to show information for Achilles and Hector only?
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 6-4
+#There are several ways to do this. Here are a few:
+trojan.war[c(1,2),]
+trojan.war[1:2,]
+```
+5. What command would you use to display the ``person`` and ``description`` columns for Apollo, Athena and Aphrodite only? 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 6-5
+#There are many ways to do this. Here are a few:
+trojan.war[c(5, 6, 7), c(1, 3)]
+trojan.war[5:7, c("person", "description")]
+```
+6. It turns out there was a mistake in the data: Priam's age should be 72 rather than 51. Make the appropriate change to ``trojan.war``
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 6-6
+#There are many different ways to do this. Here are a few:
+trojan.war[3, 2] <- 72
+trojan.war$age[3] <- 72
+trojan.war
+```
+7. By now you're probably tired of this data set. A passenger manifest for the Titanic is stored at http://www.ditraglia.com/econ103/titanic3.csv. Read this file and store it in a dataframe called ``titanic``.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. 6-7
+titanic <- read.csv("http://www.ditraglia.com/econ103/titanic3.csv")
+```
+
+
+### Exercises for the Additional R Commands
+
+1. Calculate the product of all the even numbers between 2 and 18, inclusive.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. Additional-1
+x <- seq(2, 18, 2)
+x
+prod(x)
+```
+2. Repeat the preceding exercise *without* prod. [Hint: use ``sum``, ``log`` and ``exp``.]
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. Additional-2
+exp(sum(log(x)))
+```
+3. Create a matrix in which the first column contains the numbers from 1 to 10 inclusive, and the second column contains the square roots of these numbers.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. Additional-3
+numbers <- 1:10
+square.roots <- sqrt(foo)
+cbind(numbers, square.roots)
+```
+4. Repeat the preceding exercise, but arrange the numbers in rows rather than columns.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. Additional-4
+rbind(numbers, square.roots)
+```
+5. Make sure that you've loaded and stored the ``titanic`` data from Exercise 6-7. Display its first and last few rows.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. Additional-5
+head(titanic)
+tail(titanic)
+```
+6. The column ``survived`` in the dataframe ``titanic`` has a value of "1" to indicate that the passenger in that row survived the disaster. Create a dataframe called ``survivors`` containing only those passengers who survived and display its first few rows. 
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. Additional-6
+survivors <- subset(titanic, survived == 1)
+head(survivors)
+```
+7. The column ``sex`` in the dataframe titanic indicates each passenger's sex. Create a dataframe called ``men`` which contains only the male passengers and display its last few rows.
+```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex. Additional-7
+men <- subset(titanic, sex == 'male')
+tail(men)
+```
+
+
+
+

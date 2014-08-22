@@ -1,0 +1,321 @@
+\documentclass{beamer}  
+%use [handout] option to print without all the pauses!
+\usepackage{setspace}
+\linespread{1.3}
+\usepackage{amssymb, amsmath, amsthm} 
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{synttree}
+\usepackage{fancybox}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+
+
+
+%\setbeamertemplate{blocks}[rounded][shadow=true] 
+%gets rid of bottom navigation bars
+\setbeamertemplate{footline}{
+   \begin{beamercolorbox}[ht=4ex,leftskip=0.3cm,rightskip=0.3cm]{author in head/foot}
+%    \usebeamercolor{UniBlue}
+    \vspace{0.1cm}
+    %\insertshorttitle \ - \insertdate 
+    \hfill \insertframenumber / \inserttotalframenumber
+   \end{beamercolorbox}
+   \vspace*{0.1cm}
+} 
+
+%gets rid of navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+%Include or exclude the notes?
+%\setbeameroption{show notes}
+\setbeameroption{hide notes}
+
+
+
+\title[Econ 103]{Economics 103, Statistics for Economists} 
+\author[F. DiTraglia]{Francis J.\ DiTraglia}
+\institute{University of Pennsylvania}
+\date{Lecture 24}
+
+
+\begin{document} 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+	\titlepage 
+	
+
+\end{frame} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Announcements}
+
+
+\begin{block}{Final Exam}
+\begin{itemize}
+	\item Wednesday, May 7\textsuperscript{th}, noon -- 2:00 P.M.
+	\item Location: COLL 200
+ 	\item Comprehensive but emphasizes material since Midterm II.
+ 	\item \alert{Bring a Calculator} (Scientific ok, Graphing isn't.)
+\end{itemize}
+\end{block}
+
+\begin{block}{Review Session TBA}
+	
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{center}
+	\huge Final Lecture: \\ Regression -- Part III
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Click if You're Here \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+	Are you here today?
+	\begin{enumerate}[(a)]
+		\item Yes 
+		\item No
+		\item Not Sure
+	\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Simple vs.\ Multiple Regression}
+\begin{block}{Terminology}
+$Y$ is the ``outcome'' and $X$ is the ``predictor.''
+\end{block}
+
+\begin{block}{Simple Regression}
+One predictor variable: $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$
+\end{block}
+\begin{block}{Multiple Regression}
+More than one predictor variable: $Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} +  \hdots + \beta_k X_{ik} + \epsilon_i$
+\end{block}
+
+
+\begin{itemize}
+	\item In both cases $\epsilon_1, \epsilon_2, \hdots, \epsilon_n \sim \mbox{iid} (0,\sigma^2)$
+	\item Multiple regression coefficient estimates $\widehat{\beta}_1, \widehat{\beta}_1, \hdots, \widehat{\beta}_k$ calculated by minimizing  sum of squared vertical deviations, but formula requires linear algebra so we won't cover it.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Interpreting Multiple Regression}
+
+\begin{block}{Predictive Interpretation}
+$$Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} +  \hdots + \beta_k X_{ik} + \epsilon_i$$
+
+$\beta_j$ is the difference in $Y$ that we would predict between two individuals who differed by one unit in predictor $X_j$ \emph{\alert{but who had the same values for the other $X$ variables.}} 
+
+\end{block}
+
+\begin{block}{What About an Example?}
+	In a few minutes, we'll work through an extended example of multiple regression using real data.
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Inference for Multiple Regression}
+
+In addition to estimating the coefficients $\widehat{\beta}_1, \widehat{\beta}_1, \hdots, \widehat{\beta}_k$ for us, R will calculate the corresponding standard errors. It turns out that
+	$$\frac{\widehat{\beta}_j - \beta_j}{\widehat{SE}(\widehat{\beta})} \approx N(0,1)$$
+for \emph{each} of the $\widehat{\beta}_j$ by the CLT provided that the sample size is large.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Height = $\beta_0 + \beta_1$ Handspan $+ \epsilon$}
+\alert{What are \texttt{residual sd} and \texttt{R-squared}?}
+\footnotesize
+\begin{verbatim}
+lm(formula = height ~ handspan, data = student.data)
+            coef.est coef.se
+(Intercept) 39.60     3.96  
+handspan     1.36     0.19  
+---
+n = 80, k = 2
+residual sd = 3.56, R-Squared = 0.40
+\end{verbatim}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Fitted Values and Residuals}
+
+\begin{block}{Fitted Value $\widehat{y}_i$}
+The value of the $Y$-variable that we would \emph{predict} for person $i$ using our estimated regression coefficients, given her values for all of the $X$-variables: \alert{$\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_{i1} + \hdots + \widehat{\beta}_k x_{ik}$}
+\end{block}
+
+
+\begin{block}{Residual $\widehat{\epsilon}_i$}
+The difference between the actual value of the $Y$-variable that we observed for person $i$ ($y_i$) and the value predicted from our regression model: \alert{$\widehat{\epsilon}_i = y_i - \widehat{y}_i$}. The residuals are \emph{stand-ins} for the errors $\epsilon_i$, which we don't observe.
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Residual Standard Deviation: $\widehat{\sigma}$}
+	$$\widehat{\sigma}  = \sqrt{\frac{\sum_{i=1}^n \widehat{\epsilon}_i^2}{n -k}}$$ 
+	\begin{itemize}
+		\item 	Average distance observations fall from regression line.
+		\item Summarizes scale of the residuals $\widehat{\epsilon}_i$ 
+				\begin{itemize}
+					\item Suppose model predicting children's test scores has $\widehat{\sigma}=16$. This model predicts to an accuracy of about 16 points. 
+				\end{itemize}
+	\item A  measure of ``unexplained variation'' in $Y$
+		\begin{itemize}
+			\item Higher values means there is more unexplained variation in $Y$ 
+		\end{itemize}
+	\item Same units as $Y$ (Exam practice: verify this) 
+	\item Denominator  ($n-k$) = ``degrees of freedom'' of regression
+		\begin{itemize}
+			\item (\# Datapoints - \# of $X$ variables) 
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Proportion of Variance Explained: $R^2$}
+\framesubtitle{aka Coefficient of Determination}
+	\begin{eqnarray*}
+		R^2 =  1 - \left[\frac{\sum_{i=1}^n \widehat{\epsilon}_i^2}{\sum_{i=1}^n (y_i - \bar{y})^2} \right]  \approx 1 - \frac{\widehat{\sigma^2}}{s_y^2}
+	\end{eqnarray*}
+		\begin{itemize}
+			\item Measures proportion of variance in $Y$ explained by the model. 
+			\begin{itemize}
+			\item Higher value means greater proportion explained 
+			\end{itemize}
+			\item Unitless, between 0 and 1 
+			\item People often claim ``you want $R^2$ to be as high as possible'' but this is not quite accurate... 
+			\item \alert{For simple linear regression $R^2 = (r_{xy})^2$ and this where its name comes from!}
+		\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Height = $\beta_0 + \beta_1$ Handspan $+ \epsilon$}
+\footnotesize
+\begin{verbatim}
+lm(formula = height ~ handspan, data = student.data)
+            coef.est coef.se
+(Intercept) 39.60     3.96  
+handspan     1.36     0.19  
+---
+n = 80, k = 2
+residual sd = 3.56, R-Squared = 0.40
+> cor(student.data$height, student.data$handspan)^2
+[1] 0.3954669
+\end{verbatim}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Which Gives Better Predictions: Sex (a) or Handspan (b)?}
+\footnotesize
+\begin{verbatim}
+lm(formula = height ~ sex, data = student.data)
+            coef.est coef.se
+(Intercept) 64.46     0.56  
+sexMale      6.10     0.76  
+---
+n = 80, k = 2
+residual sd = 3.38, R-Squared = 0.45
+
+lm(formula = height ~ handspan, data = student.data)
+            coef.est coef.se
+(Intercept) 39.60     3.96  
+handspan     1.36     0.19  
+---
+n = 80, k = 2
+residual sd = 3.56, R-Squared = 0.40
+\end{verbatim}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{An Empirical Example -- Child Test Scores}
+
+If you want to follow along, open RStudio on your laptop now. A full transcript of the code I'll be using is available on GitHub \href{https://gist.github.com/fditraglia/7772528}{\textcolor{blue}{\fbox{https://gist.github.com/fditraglia/7772528}}} and I've posted a pdf with explanations on Piazza.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{center}
+
+\Huge Thanks for a great semester!
+
+\end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

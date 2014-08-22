@@ -1,0 +1,461 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+%-------------------DON'T CHANGE---------------------%
+%The following is needed to prevent a conflict between knitr and the exam class involving the package ``framed.''
+<<include=FALSE>>= 
+knit_hooks$set(document=function(x){ 
+  sub('\\usepackage{framed}', '', x, fixed=TRUE) 
+}) 
+@ 
+%-------------------DON'T CHANGE---------------------%
+
+%This keeps images from being too big, centers them, and makes sure we use pdf images
+<<include=FALSE>>=
+opts_chunk$set(fig.width=4, fig.height=4, fig.align='center',dev='pdf')
+@
+
+
+%Change the default width of the output to fit within the solution boxes
+<<include=FALSE>>=
+options(width = 60)
+@
+
+
+\printanswers
+%\noprintanswers
+
+\title{Problem Set \#11}
+\author{Econ 103}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Part I -- Problems from the Textbook}Chapter 9: 23 (use the ``textbook'' procedure), 27, 29
+
+
+\section*{Part II -- Additional Problems}
+
+\begin{questions}
+
+
+\question This question revisits the data from this semester's anchoring experiment. In a previous assignment you used these data to construct confidence intervals. In this question you will carry out hypothesis tests. You may assume throughout that the sample size is large enough to use the Central Limit Theorem. Details of how to load the data from my website appear in Lecture 19. Be sure to properly account for missing values. 
+\begin{parts}
+	\part Suppose we want to test the null hypothesis of equality of population means across the two groups. What is the value of our test statistic?
+	\begin{solution}
+<<anchoring_experiment_load_data>>=
+data.url <- "http://www.ditraglia.com/econ103/survey_clean.csv"
+survey <- read.csv(data.url)
+anchoring <- survey[,c("rand.num", "africa.percent")]
+lo <- subset(anchoring, rand.num == "10")$africa.percent
+hi <- subset(anchoring, rand.num == "65")$africa.percent
+lo <- lo[!is.na(lo)]
+hi <- hi[!is.na(hi)]
+SE.lo <- sd(lo)/sqrt(length(lo))
+SE.hi <- sd(hi)/sqrt(length(hi))
+SE <- sqrt(SE.hi^2 + SE.lo^2)
+diff <- mean(hi) - mean(lo)
+test.stat <- diff/SE
+test.stat
+@	
+\end{solution}
+	\part Suppose we want to test the equality of population means against the one-sided alternative that the the ``Hi'' group has a higher mean at the 10\% level. What is our critical value, and what is our decision rule? Do we reject the null hypothesis?
+	\begin{solution}
+The critical value is
+<<>>=
+qnorm(1 - 0.1)
+@
+Our decision rule is to reject if the test statistic exceeds the critical value:
+<<>>=
+test.stat > qnorm(1 - 0.1)
+@
+	\end{solution}
+	\part Calculate the p-value for a test of the equality of population means against the one-sided alternative that the ``Hi'' group has a higher mean.
+	\begin{solution} 
+<<anchoring_experiment_oneside>>=
+1 - pnorm(test.stat)
+@
+	\end{solution}
+	\part Suppose we wanted to test the equality of population means against the two-sided alternative at the 10\% level. What is our critical value, and what is our decision rule? Do we reject the null hypothesis?
+	\begin{solution}
+The critical value is
+<<>>=
+qnorm(1 - 0.1/2)		
+@		
+Our decision rule is to reject if the \emph{absolute value} of the test statistic exceeds the critical value:
+<<>>=
+abs(test.stat) > qnorm(1 - 0.1/2)
+@
+	\end{solution}
+	\part Calculate the p-value for a test of the equality of population means against the two-sided alternative.
+	\begin{solution} 
+<<anchoring_experiment_twoside>>=
+2 * (1 - pnorm(test.stat))
+@
+	\end{solution}
+\end{parts}
+
+
+\question This problem uses a dataset that investigates the relationship between schizophrenia and the volume (in cm$^3$) of a particular region of the brain (the left hippocampus) measured using an MRI machine. In a past assignment you used this dataset to construct confidence intervals. In this question you will carry out hypothesis tests
+
+The dataset contains 15 sets of monozygotic (i.e.\ identical) twins, one of whom has schizophrenia (``Affected'') and the other who does not (``Unaffected''). The idea of using identical twins is to hold constant unobserved genetic and socioeconomic confounding variables that might influence whether someone develops schizophrenia. You can download the data from my website as follows:
+<<>>=
+data.url <- "http://www.ditraglia.com/econ103/case0202.csv"
+twins <- read.csv(data.url)
+head(twins)
+@
+For this question you may assume that the sample differences between the left hippocampus volume of the ``Affected'' and ``Unaffected'' twins are drawn from a normal population with unknown variance.
+	\begin{parts}
+	\part Carry out a one-sided test at the 5\% level of the null hypothesis of no difference against the alternative that the affected twin has a larger left hippocampus, on average. What is your test statistic? What is your critical value? What is your decision rule? What is your decision?
+  \begin{solution}
+  First load the data and calculate the quantities we'll need to carry out all of the tests below.
+<<>>=
+twin.diff <- twins$Unaffected - twins$Affected
+mean.diff <- mean(twin.diff)
+n.twins <- length(twin.diff)
+SE.paired <- sqrt(var(twin.diff)/n.twins)
+@
+Notice that we calculated the differences as Unaffected twin minus Affected twin. We need to be careful about the sign here to see when we should reject the null. In this part, we are testing against the one-sided alternative that the \emph{Affected} twin has a larger left hippocampus. Thus, we should reject when \texttt{twin.diff} is \emph{sufficiently negative}. Now we calculate the test statistic and critical value for the one-sided test:
+<<>>=
+test.stat <- mean.diff/SE.paired
+test.stat
+critical.value <- qt(0.05, df = n.twins - 1)
+critical.value
+test.stat <= critical.value
+@
+In this case, our decision rule is to reject the null if the test statistic is \emph{less than} \Sexpr{critical.value}. (Remember, we have to keep track of the sign.) We see that this is not the case, so we fail to reject the null. We have not found evidence that the Affected twin has a larger left hippocampus.
+  \end{solution}
+	\part Repeat part (a) for a test against the \emph{opposite} one-sided alternative.
+    \begin{solution}
+    The test statistic remains the same in this case, but our decision rule and critical value have changed. Again, note that we calculated the differences as Unaffected twin minus Affected twin. Thus, a large \emph{positive} value of \texttt{mean.diff} would provide evidence that we should reject the null in favor of the one-sided alternative that the Unaffected twin has the larger left hippocampus, on average. The critical value simply changes sign to reflect this:
+<<>>=
+critical.value <- qt(1 - 0.05, df = n.twins - 1)
+critical.value
+test.stat >= critical.value
+@
+  Our decision rule is to reject when the test statistic is greater than or equal to \Sexpr{critical.value}. Since this is the case, we reject the null hypothesis that the difference is zero at the 5\% significance level. We have found evidence that schizophrenia is associated with a smaller left hippocampus based on the twin data. 
+    \end{solution}
+	\part Repeat part (a) but test against the \emph{two-sided} alternative.
+    \begin{solution}
+      Again, the test statistic remains the same. Since we're testing against the two-sided alternative, however, we reject if it is too large \emph{or} two small. This is equivalent to asking whether the \emph{absolute value} of the test statistic is larger than the appropriate (positive) two-sided critical value:
+<<>>=
+critical.value  <- qt(1 - 0.05/2, df = n.twins - 1)
+critical.value
+abs(test.stat) >= critical.value
+@
+We see that this is indeed the case, so we would reject that null hypothesis that the difference is zero against the two-sided alternative at the 5\% significance level.
+    \end{solution}
+	\part Explain the differences between your results in parts (a), (b), and (c).
+    \begin{solution}
+    Both parts (b) and parts (c) give the same result: reject the null. Parts (a) and (b) are mutually exclusive: if we reject in favor of one of the one-sided alternatives, we can't reject in favor of the other. This is because the \texttt{mean.diff} is either positive or negative: if positive, it suggests that the Unaffected twin has a larger left hippocampus; if negative, that the Affected twin does. We saw in class that, in borderline cases, it is possible to reject against a one-sided alternative without rejecting against the two-sided alternative. We are not in such a situation here.
+    \end{solution}
+	\part Calculate the p-values corresponding to parts (b) and (c).
+    \begin{solution}
+<<>>=
+1 - pt(test.stat, df = n.twins - 1)
+2 * (1 - pt(abs(test.stat), df = n.twins - 1))
+@
+  We see that both the one-sided p-value for part (b) and the two-sided p-value for (c) are quite small: there is extremely strong evidence against the null hypothesis of no difference. From these values, for example, we see that we would have still rejected if we had carried out these two tests at the 1\% rather than the 5\% level.
+    \end{solution}
+	\end{parts}
+	
+
+
+\question This problem concerns a dataset comparing the scores of men and women on the Armed Forces Qualifying Test (AFQT). In an earlier assignment you used this dataset to construct confidence intervals. In this question you will carry out hypothesis tests instead. Throughout you may assume that the sample size is large enough for the CLT to apply. As before, the data are available from my website:
+<<>>=
+data.url <- "http://www.ditraglia.com/econ103/ex0222.csv"
+test.scores <- read.csv(data.url)
+head(test.scores)
+@
+Each row is an individual who took the test. The first column gives that individual's sex, while the second through fifth columns give the individual's score on four parts of the test. The final column is an overall percentile score for the test. 
+	\begin{parts}
+		\part For each section of the exam, as well as for overall percentile scores, test the null hypothesis that the population mean scores are equal for men and women at the 5\% level. In which cases do you reject, and in which cases do you fail to reject? 
+    \begin{solution}
+    First load the data and calculate the quantities we'll need to carry out the tests.
+<<>>=
+test.men <- subset(test.scores, Gender == 'male')[,-1]
+means.men <- apply(test.men, 2, mean)
+var.men <- apply(test.men, 2, var)
+n.men <- nrow(test.men)
+test.women <-subset(test.scores, Gender == 'female')[,-1]
+means.women <- apply(test.women, 2, mean)
+var.women <- apply(test.women, 2, var)
+n.women <- nrow(test.women)
+diff.means <- means.men - means.women
+SE <- sqrt(var.women/n.women + var.men/n.men)
+@
+Since we've arranged the differences of means and associated standard errors in \emph{vectors}, we can calculate all of the test statistics at once!
+<<>>=
+test.stats <- diff.means/SE
+test.stats
+@
+Now, the critical value for a 5\%, two-sided test in this case is \Sexpr{qnorm(1 - 0.05/2)}
+<<>>=
+critical.value <- qnorm(1 - 0.05/2)
+@
+So for which comparisons would we reject the null?
+<<>>=
+abs(test.stats) >= critical.value
+@
+    \end{solution}
+		\part How do your results from part (a) relate to the CIs you constructed using this dataset in an earlier assignment?
+  \begin{solution}
+    We can construct the confidence intervals from the previous homework assignment as follows:
+<<>>=
+ME <- qnorm(1 - 0.05/2) * SE
+LCL <- diff.means - ME
+UCL <- diff.means + ME
+rbind(LCL, UCL)
+@
+  Because of the relationship between a two-sided test at the 5\% level and a 95\% confidence interval, we rejected the null in \emph{exactly} the cases where the corresponding confidence interval did not contain zero.
+  \end{solution}
+		\part Calculate the two-sided p-values for each test from part (a).
+      \begin{solution}
+<<>>=
+p.values <- 2 * (1 - pnorm(abs(test.stats)))
+round(p.values, 4)
+@
+We have found extremely strong evidence of a difference between men and women on the Arithmetic and Paragraph portions, and very strong evidence of a difference on the Math portion. We found some evidence suggestive of a difference in overall quantile scores, but no evidence of a difference in the Word knowledge portion of the test.
+      \end{solution}
+	\end{parts}
+
+
+\question In April of 2013, Public Policy Polling carried out a survey of 1247 registered voters to determine whether Republicans and Democrats differ in their beliefs about various conspiracy theories. To answer this question, you'll need to download the full results of their survey which I've posted on my website for convenience:\\
+\url{http://www.ditraglia.com/econ103/conspiracy.pdf}\\
+In an earlier assignment you used these data to construct confidence intervals. In this question you'll use them to carry out hypothesis tests. Throughout you may assume that the sample size is large enough for the approximate based on the central limit theorem to be valid.
+	\begin{parts}
+		\part Suppose we wanted to test the null hypothesis that 20\% of registered voters believe that a UFO crashed at Roswell, New Mexico in 1947 and the US Government covered it up. There are two possible test statistics we could use. Calculate them both and explain the difference. Which is preferable?
+			\begin{solution}
+				Overall percentages appear on page 2 of the report, and this question refers to Q3. The sample size is 1247 and $\widehat{p} = 0.21$
+<<>>=
+p.hat <- 0.21
+n <- 1247
+@
+				We calculate the numerator of the test statistic as follows
+<<>>=
+p.null <- 0.20
+numerator <- p.hat - p.null
+@
+				For the denominator we need the standard error of $\widehat{p}$. There are two possibilities. The first is to use the estimated standard error
+<<>>=
+n <- 1247
+SE.est <- sqrt(p.hat * (1 - p.hat)/n)
+@ 
+				The second option is to use the exact standard error \emph{under the null hypothesis}
+<<>>=
+SE.0 <- sqrt(p.null * (1 - p.null)/n)
+@
+				The two test statistics are as follows:
+<<>>=
+test.stat <- numerator / SE.est
+test.stat.refined <- numerator / SE.0
+test.stat
+test.stat.refined
+@
+			The refined test statistic is preferable since it \emph{fully imposes} the null hypothesis. This is the test statistic that we will use below.
+			\end{solution}
+		\part Suppose that we wanted to test the null hypothesis from the preceding part against the one-sided alternative that more than 20\% of registered voters believe in the UFO conspiracy. Calculate the p-value for this test.
+		\begin{solution}
+<<>>=
+1 - pnorm(test.stat.refined)
+@
+		\end{solution}
+		\part Repeat the preceding part for the \emph{two-sided} alternative.
+		\begin{solution}
+<<>>=
+2 * (1 - pnorm(test.stat.refined))
+@
+		\end{solution}
+		\part Calculate the p-value for a test of the null hypothesis that equal proportions of Romney and Obama voters believe in the UFO conspiracy against the two-sided alternative. There are two test statistics you could use. Calculate the p-value using each and explain the difference. Which should we prefer?
+			\begin{solution}
+				Percentages broken down by 2012 vote appear in page 5 of the survey results. Overall percentages of Romney and Obama voters in the sample appear on page 3. Of the 1247 registered voters in the sample, 50\% voted for Obama and 44\% voted for Romney. We'll call this $n_{O} = 623$ and $n_{R} = 547$. The sample proportions are $\widehat{p}_{O} = 0.16$ for Obama voters versus $\widehat{p}_{R} = 0.27$ for Romney voters:
+<<>>=
+n.R <- 547
+p.R <- 0.27
+n.O <- 623
+p.O <- 0.16
+diff <- p.R - p.O
+@
+				The two statistics correspond to different ways of calculating the standard error of the difference of sample means. The first possibility is to use the estimated standard errors for each population and combine them using the independence of the samples, as we did when constructing confidence intervals:
+<<>>=
+SE.R <- sqrt(p.R * (1 - p.R)/n.R)
+SE.O <- sqrt(p.O * (1 - p.O)/n.O)
+SE <- sqrt(SE.R^2 + SE.O^2)
+@
+			The second possibility is to construct a \emph{pooled} estimator of the standard error based on a \emph{pooled} sample proportion. This is preferable because it fully imposes the null hypothesis:
+<<>>=
+n.total <- n.O + n.R
+p.pooled <- ((n.O * p.O) + (n.R * p.R)) / n.total
+SE.pooled <- sqrt(p.pooled * (1 - p.pooled) * (1/n.O + 1/n.R))
+@		
+			The resulting test statistics are as follows:
+<<>>=
+test.stat <- diff / SE
+test.stat.refined <- diff / SE.pooled
+test.stat
+test.stat.refined
+@
+			The two test statistics are quite similar in this particular example and both p-values are essentially zero:
+<<>>=
+2 * (1 - pnorm(test.stat))
+2 * (1 - pnorm(test.stat.refined))
+@
+			Using either test statistic, we would find extremely strong evidence against the null hypothesis. 
+			\end{solution}
+		
+	\end{parts}
+
+
+\question Suppose $X_1, \hdots, X_n \sim \mbox{iid } N(\mu_x, \sigma_X^2)$ independently of $Y_1, \hdots, Y_m \sim \mbox{iid } N(\mu_Y, \sigma_Y^2)$.
+	\begin{parts}
+		\part Suppose $n = m = 10$ and you know that $\sigma_X^2 = \sigma_Y^2 = 10$. Express the power of a two-sided test of $H_0\colon \mu_X = \mu_Y$ at the 5\% level  in terms of the true, unknown difference of population means $\Delta = \mu_X - \mu_Y$.
+			\begin{solution}
+			Since the population variances are known and both populations are normal, the test statistic
+				$$\frac{\bar{X}_n - \bar{Y_n}}{\sqrt{\sigma_X^2/n + \sigma_Y^2/m}} = \frac{\bar{X}_n - \bar{Y}_m}{\sqrt{2}}$$
+			follows a standard normal distribution under the null. This is \emph{exact} because we know the population is normal. Under the alternative $H_1\colon \mu_X \neq \mu_Y$, however, the above test statistic does \emph{not} follow a standard normal distribution. Instead,
+					$$\frac{(\bar{X}_n - \bar{Y}_m) - (\mu_X - \mu_Y)}{\sqrt{2}}  \sim N(0,1)$$
+					Hence, 
+					$$\frac{\bar{X}_n - \bar{Y}_m}{\sqrt{2}} = \frac{(\bar{X}_n - \bar{Y}_m) - (\mu_X - \mu_Y)}{\sqrt{2}}  + \frac{\mu_X - \mu_Y}{\sqrt{2}}  \sim N\left(\frac{\mu_X - \mu_Y}{\sqrt{2}} , 1\right)$$
+					a normal distribution whose mean is only zero under the null. It follows that
+					$$\bar{X}_n - \bar{Y}_m  \sim N(\mu_X - \mu_Y, 2)$$
+		Now, at the 5\% level we reject $H_0$ when the absolute value of the test statistic is greater than or equal to 
+				$$\texttt{qnorm(1 - 0.05/2)} \approx 2$$
+			that is, we reject if
+				$$|\bar{X}_n - \bar{Y}_m| \geq \texttt{qnorm(1 - 0.05/2)} \times \sqrt{2} \approx 2.77$$					
+					Combining this decision rule with the distribution of the test statistic under the alternative, we calculate power as follows:
+					\begin{eqnarray*}
+						\mbox{Power}(\Delta) &=& P(\mbox{Reject } H_0|H_0 \mbox{ False})\\
+						&=& P\left(\left|\bar{X}_n - \bar{Y}_m\right| \geq 2.77\right)\\
+						&=&P\left( \bar{X}_n - \bar{Y}_m \geq 2.77  \right) + P\left( \bar{X}_n - \bar{Y}_m \leq -2.77  \right) \\
+						&=&1 - \texttt{ pnorm}(2.77, \texttt{ mean = }\Delta, \texttt{ sd = }\sqrt{2}) \\
+						&& \quad  \quad +  \texttt{ pnorm}(-2.77, \texttt{ mean = }\Delta, \texttt{ sd = }\sqrt{2})
+					\end{eqnarray*}
+			\end{solution}
+			\part Evaluate the power formula you derived in part (a) using R by setting
+			$$\texttt{delta <- seq(from = -10, to = 10, by = 0.01)}$$ 
+			Plot your results. Approximately how large would the true difference of population means have to be for you to have at least a 50\% chance of rejecting the null at the 5\% level? What is the power when $\Delta = 0$? Why?
+      \begin{solution}
+      To make things easier, we can write the following function:
+<<>>=
+power.10 <- function(delta){
+  greater <- 1 - pnorm(2.77, mean = delta, sd = sqrt(2))
+  less <- pnorm(-2.77, mean = delta, sd = sqrt(2))
+  power <- greater + less
+  return(power)
+}
+@
+Now, we can make the plot as follows:
+<<>>=
+delta <- seq(from = -10, to = 10, by = 0.01)
+plot(delta, power.10(delta), type = 'l')
+@
+From this plot, it looks like we need $\Delta$ around 3 in absolute value for the power to be at least 0.5. (Notice that the curve is symmetric.) Let's try a few values:
+<<>>=
+power.10(3)
+@
+So it looks like we can make $\Delta$ even smaller:
+<<>>=
+power.10(2.7)
+@
+Those are too small. Let's try making it a little bigger
+<<>>=
+power.10(2.75)
+power.10(2.76)
+power.10(2.77)
+@
+Notice that because of the symmetry:
+<<>>=
+power.10(-2.77)
+@
+Thus, in order to have at least a 50\% of rejecting the null with a sample size of 10, the true difference of means needs to be \emph{at least} 2.77 in absolute value. This is quite a large difference relative to the population standard deviations!
+
+Finally, let's evaluate the power when $\Delta = 0$:
+<<>>=
+power.10(0)
+@
+We get 0.05, which is the significance level of the test! (The only reason it is not exactly equal to 0.05 is that I rounded when multiplying $\sqrt{2}$ by \texttt{qnorm}.) The reason this happens is that when $\Delta = 0$ the null is \emph{true}. In hypothesis testing, we set everything up so the probability of rejecting a true null equals $\alpha$.
+      \end{solution}
+			\part Repeat parts (a) and (b) with $n = m = 100$. How do your results change? Explain.
+        \begin{solution}
+        We can use the same procedure as above. The only difference is the standard error used in the test statistic. Whereas before this was $\sqrt{2}$, now we have:
+        $$SE = \sqrt{\sigma_X^2/n + \sigma_Y^2/m} = \sqrt{10/100 + 10/100} = \sqrt{1/5} = 1/\sqrt{5}$$
+    Thus, putting $1/\sqrt{5}$ in place of $\sqrt{2}$, we have
+      $$\frac{\bar{X}_n - \bar{Y}_m}{1/\sqrt{5}} \sim N\left(\frac{\mu_X - \mu_Y}{1/\sqrt{5}}, 1\right)$$
+      so that
+      $$\bar{X}_n - \bar{Y}_m \sim N(\mu_X - \mu_Y, 1/5)$$
+       and we reject if
+       $$|\bar{X}_n - \bar{Y}_m| \geq \texttt{qnorm(1 - 0.05/2)} \times 1/\sqrt{5} \approx 0.88$$
+       Thus,
+         				\begin{eqnarray*}
+						\mbox{Power}(\Delta) &=& P(\mbox{Reject } H_0|H_0 \mbox{ False})\\
+						&=& P\left(\left|\bar{X}_n - \bar{Y}_m\right| \geq 0.88\right)\\
+						&=&P\left( \bar{X}_n - \bar{Y}_m \geq 0.88  \right) + P\left( \bar{X}_n - \bar{Y}_m \leq -0.88  \right) \\
+						&=&1 - \texttt{ pnorm}(0.88, \texttt{ mean = }\Delta, \texttt{ sd = }1/\sqrt{5}) \\
+						&& \quad  \quad +  \texttt{ pnorm}(-0.88, \texttt{ mean = }\Delta, \texttt{ sd = }1/\sqrt{5})
+					\end{eqnarray*}
+  Making the necessary changes to the function for calculating power:
+<<>>=
+power.100 <- function(delta){
+  greater <- 1 - pnorm(0.88, mean = delta, sd = 1/sqrt(5))
+  less <- pnorm(-0.88, mean = delta, sd = 1/sqrt(5))
+  power <- greater + less
+  return(power)
+}
+@
+We can compare this to the power function when $n=m=10$ by plotting them on the same graph as follows:
+<<>>=
+y <- cbind(power.10(delta), power.100(delta))
+matplot(delta, y, type = 'l', ylab = 'Power', col = c('blue', 'red'), lty = 1)
+@
+where the red curve is $n = m = 100$ and the blue curve is $n=m=10$. We see that for any value of $\Delta$, power is higher for the test based on a larger sample size: we are more likely to detect a difference of a given size using large samples. 
+
+Experimenting with \texttt{power.100} as we did above for \texttt{power.10}, 
+<<>>=
+power.100(1)
+power.100(0.9)
+power.100(0.89)
+power.100(0.88)
+@
+So it looks like we need a difference between the two population means of at least 0.88 (in absolute value) to have at least a 50\% chance of rejecting the null of no difference. Notice that this is a much smaller difference than we needed above (2.77) because of the increased sample size. 
+
+Finally, as above, if $\Delta = 0$ then the null is true, and the probability of rejecting a \emph{true} null is simply $\alpha$
+<<>>=
+power.100(0)
+@
+Again, there's only a slight difference from the exact value of 0.05. This is because I rounded when plugging in the value for $\sqrt{5}$.
+        \end{solution}
+	\end{parts}
+
+
+\question  Professor Neil is interested in determining whether viewing different colors affects subjects' mental states in a way that alters their athletic ability. As a part of her research she carries out the following experiment. Each subject is randomly assigned to wait in one of two rooms: a room in which all of the walls have been painted pink or another in which all of the walls have been painted red. After waiting for five minutes, each subject is taken to a track and asked to run a 5K as fast as possible. Using the data from this experiment, Professor Neil carries out a statistical test of the null hypothesis that the population mean 5K time is equal across groups (those who waited in the pink room versus those who waited in the red room). Testing at the 1\% level, she finds a statistically significant difference. For each of the following, answer True or False. If false, explain.
+	\begin{parts}
+		\part The p-value for the null hypothesis that population means are equal across groups is greater than 0.01.
+			\begin{solution}
+			False: the p-value is \emph{less than or equal to} 0.01. 
+			\end{solution}
+		\part Professor Neil would also have found a statistically significant difference had she carried out her test at the 5\% level.
+		\begin{solution}
+		True.
+		\end{solution}
+		\part If there were really no difference in population means across the two groups, the chance of observing a test statistic at least as extreme as that observed by Professor Neil would be 0.01 or less.
+		\begin{solution}
+		True.
+		\end{solution}
+		\part Professor Neil's findings have important practical implications for sports regulatory organizations such as the International Olympic Committee: all locker rooms should be painted exactly the same color to keep from throwing off the outcomes of sporting events.
+			\begin{solution}
+			False. Professor Neil has found strong evidence of a difference in population means across the two groups. However, none of the information given above provides any indication of whether this difference is large enough to have any practical importance. In the words of the textbook ``statistical significance and practical significance are two entirely different matters.'' For example, the difference of population means could be one second. This is far too small to be likely to change the outcome of a 5K race, but with a large enough sample size we would still be able to detect it. Unlike a confidence interval, which gives us a range of plausible values for the difference in population means, a hypothesis test merely tells us whether we have strong evidence that a difference exists. 
+			\end{solution}
+	\end{parts}
+
+
+
+\end{questions}
+
+
+\end{document}

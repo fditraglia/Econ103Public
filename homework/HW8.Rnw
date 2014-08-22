@@ -1,0 +1,188 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\cov}{Cov}
+\newcommand{\cprob}{\rightarrow_{p}}
+\newcommand{\cas}{\rightarrow_{as}}
+\newcommand{\clp}{\rightarrow_{L^p}}
+\newcommand{\clone}{\rightarrow_{L^1}}
+\newcommand{\cltwo}{\rightarrow_{L^2}}
+\newcommand{\cd}{\rightarrow_{d}}
+\newcommand{\cv}{\Rightarrow_{v}}
+\newcommand{\dec}{\downarrow}
+\newcommand{\inc}{\uparrow}
+\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
+\newcommand{\limn}{\lim_{n \rightarrow \infty}}
+\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
+\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
+\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
+\newcommand{\slfrac}[2]{\left.#1\right/#2}
+
+%-------------------DON'T CHANGE---------------------%
+%The following is needed to prevent a conflict between knitr and the exam class involving the package ``framed.''
+<<include=FALSE>>= 
+knit_hooks$set(document=function(x){ 
+  sub('\\usepackage{framed}', '', x, fixed=TRUE) 
+}) 
+@ 
+%-------------------DON'T CHANGE---------------------%
+
+
+
+%This keeps images from being too big, centers them, and makes sure we use pdf images
+<<include=FALSE>>=
+opts_chunk$set(fig.width=4, fig.height=4, fig.align='center',dev='pdf')
+@
+
+
+%Change the default width of the output to fit within the solution boxes
+<<include=FALSE>>=
+options(width = 60)
+@
+
+
+
+\printanswers
+%\noprintanswers
+
+\title{Problem Set \#8}
+\author{Econ 103}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Part I -- Problems from the Textbook}
+No problems from the textbook on this assignment.
+\section*{Part II -- Additional Problems}
+\begin{questions}
+  
+  \question For this question assume that we have a random sample from a normal distribution with unknown mean but \emph{known} variance.
+    \begin{parts}
+      \part Suppose that we have 36 observations, the sample mean is 5, and the population variance is 9. Construct a 95\% confidence interval for the population mean.
+        \begin{solution}
+        Since the population variance is 9, the population standard deviation is $3$. Hence, the desired confidence interval is
+        $5 \pm 2 \times 3/\sqrt{36} = 5\pm 1 = (4,6)$
+        \end{solution}
+      \part Repeat the preceding with a population variance of 25 rather than 9. 
+      \begin{solution}
+      The population standard deviation becomes $5$ so the confidence interval becomes 
+      $5 \pm 2 \times 5/\sqrt{36} = 5\pm 10/6 \approx  (3.3,6.7)$
+      \end{solution}
+      \part Repeat the preceding with a sample size of  25 rather than 36.
+        \begin{solution}
+              $5 \pm 2 \times 5/\sqrt{25} = 5\pm 2 = (3,7)$
+        \end{solution}
+      \part Repeat the preceding but construct a 50\% rather than 95\% confidence interval.
+      \begin{solution}
+      Here we need to use R to get the appropriate quantile:
+<<>>=
+SE <- 5/sqrt(25)
+ME <- qnorm(1 - 0.5/2) * SE
+Lower <- 5 - ME
+Upper <- 5 + ME
+c(Lower, Upper)
+@
+      \end{solution}
+      \part Repeat the preceding but construct a 99\% rather than a 50\% confidence interval.
+            \begin{solution}
+      Again we use R to get the appropriate quantile:
+<<>>=
+SE <- 5/sqrt(25)
+ME <- qnorm(1 - 0.01/2) * SE
+Lower <- 5 - ME
+Upper <- 5 + ME
+c(Lower, Upper)
+@
+      \end{solution}
+    \end{parts}
+  \question In this question you will carry out a simulation exercise similar to the one I used to make the plot of twenty confidence intervals from lecture 16.
+    \begin{parts}
+      \part Write a function called \texttt{my.CI} that calculates a confidence interval for the mean of a normal population when the population standard deviation is known. It should take three arguments: \texttt{data} is a vector containing the observed data from which we will calculate the sample mean, \texttt{pop.sd} is the population standard deviation, and \texttt{alpha} controls the confidence level (e.g.\ \texttt{alpha = 0.1} for a 90\% confidence interval). Your function should return a vector whose first element is the lower confidence limit and whose second element is the upper confidence limit. Test out your function on a simple example to make sure it's working properly.
+\begin{solution}
+<<>>=
+my.CI <- function(data, pop.sd, alpha){
+
+  x.bar <- mean(data)
+  n <- length(data)
+  
+  SE <- pop.sd / sqrt(n)
+  ME <- qnorm(1 - alpha/2) * SE
+  
+  lower <- x.bar - ME
+  upper <- x.bar + ME
+  
+  out <- c(lower, upper)
+  return(out)
+  
+}
+@
+Testing this out on fake data containing twenty-five zeros and assuming a population variance of one, we have
+<<>>=
+fake.data <- rep(0, 25)
+my.CI(fake.data, pop.sd = 1, alpha = 0.05)
+@
+If we calculated the corresponding interval by hand, assuming a population standard deviation of one, we'd get
+  $$0 \pm  2 \times 1 \times 1/5 = (-0.4, 0.4)$$
+Which is almost exactly the same. The reason for the slight discrepancy is that when working by hand we use the approximation \texttt{qnorm(0.975)}$\approx 2$ whereas the exact value, which R provides, is more like 1.96.
+\end{solution}
+      \part Write a function called \texttt{CI.sim} that takes a single argument \texttt{sample.size}. Your function should carry out the following steps. First generate \texttt{sample.size} draws from a standard normal distribution. Second, pass your sample of standard normals to \texttt{my.CI} with \texttt{alpha} set to 0.05 and \texttt{pop.sd} set to 1. Third, return the resulting confidence interval. Test your function on a sample of size 10. (What we're doing here is constructing a 95\% confidence interval for the mean of a normal population using simulated data. The population mean is in fact zero, but we want to see how our confidence interval procedure works. To do this we ``pretend'' that we don't know the population mean and only know the population variance. Think about this carefully and make sure you understand the intuition.)
+      \begin{solution}
+<<>>=
+CI.sim <- function(sample.size){
+    sims <- rnorm(sample.size)
+    CI <- my.CI(sims, pop.sd = 1, alpha = 0.05)
+    return(CI)
+}
+CI.sim(10)
+@
+      \end{solution}
+    \part Use \texttt{replicate} to construct 10000 confidence intervals based on simulated data using the function \texttt{CI.sim} with \texttt{sample.size} equal to 10. (Note that \texttt{replicate} will, in this case, return a matrix with \emph{2} rows and \emph{10000} columns. Each column correponds to one of the simulated confidence intervals. The first row contains the lower confidence limit while the second row contains the upper confidence limit.) Calculate the proportion of the resulting confidence intervals contain the true population mean. Did you get the answer you were expecting?
+    \begin{solution}
+<<cache=TRUE>>=
+simCIs <- replicate(10000, CI.sim(10))
+simCIs[,1:5]
+lower <- simCIs[1,]
+upper <- simCIs[2,]
+covers.truth <- (lower < 0) & (upper > 0) 
+sum(covers.truth)/length(covers.truth)
+@
+The answer is pretty much dead on: almost exactly 95\% of the intervals contain the true population mean (zero).
+    \end{solution}
+    \part Repeat the preceding but rather than using \texttt{CI.sim} write a new function called \texttt{CI.sim2}. This new function should be identical to \texttt{CI.sim} except that, when calling \texttt{my.CI}, it sets \texttt{pop.sd = 1/2} rather than 1. How do your results change? Try to provide some intuition for any differences you find.
+    \begin{solution}
+<<cache=TRUE>>=
+CI.sim2 <- function(sample.size){
+    sims <- rnorm(sample.size)
+    CI <- my.CI(sims, pop.sd = 1/2, alpha = 0.05)
+    return(CI)
+}
+simCIs <- replicate(10000, CI.sim2(10))
+simCIs[,1:5]
+lower <- simCIs[1,]
+upper <- simCIs[2,]
+covers.truth <- (lower < 0) & (upper > 0) 
+sum(covers.truth)/length(covers.truth)
+@
+In this case the procedure didn't work: many fewer than 95\% of the intervals contain the true population mean. The problem is that \texttt{CI.sim2} constructs a confidence interval using the \emph{wrong} population standard deviation! Since it uses 1/2 rather than 1, the resulting intervals are too short, so too few of them contain the true population mean. 
+\end{solution}
+    \end{parts}
+
+\end{questions}
+
+
+
+\end{document}
