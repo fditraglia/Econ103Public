@@ -1,4 +1,53 @@
-\documentclass[addpoints,12pt]{exam}
+\documentclass[addpoints,12pt]{exam}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 \usepackage{amsmath, amssymb}
 \linespread{1.1}
 \usepackage{hyperref}
@@ -38,22 +87,14 @@
 
 %-------------------DON'T CHANGE---------------------%
 %The following is needed to prevent a conflict between knitr and the exam class involving the package ``framed.''
-<<include=FALSE>>= 
-knit_hooks$set(document=function(x){ 
-  sub('\\usepackage{framed}', '', x, fixed=TRUE) 
-}) 
-@ 
+
 
 %This keeps images from being too big, centers them, and makes sure we use pdf images
-<<include=FALSE>>=
-opts_chunk$set(fig.width=4, fig.height=4, fig.align='center',dev='pdf')
-@
+
 
 
 %Change the default width of the output to fit within the solution boxes
-<<include=FALSE>>=
-options(width = 60)
-@
+
 %-------------------DON'T CHANGE---------------------%
 
 
@@ -63,6 +104,7 @@ options(width = 60)
 \title{Problem Set \#9}
 \author{Econ 103}
 \date{}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 \maketitle
 
@@ -90,16 +132,30 @@ The second command is simply a quick way to tell R to store \texttt{speed} as a 
 	\begin{parts}
 		\part If we choose an orange at random, what is the probability that it will weigh less than 10 ounces?
 			\begin{solution}
-<<>>=
-pnorm(10, mean = 12, sd = 2)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{pnorm}\hlstd{(}\hlnum{10}\hlstd{,} \hlkwc{mean} \hlstd{=} \hlnum{12}\hlstd{,} \hlkwc{sd} \hlstd{=} \hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.1587
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 			\end{solution}
 		\part If we choose 25 oranges at random, what is the probability that they will have a total weight of less than 250 ounces?
 			\begin{solution}
 			Since the weight of any individual orange is an independent draw from a normal distribution with mean 12 ounces and standard deviation 2 ounces, the weight of \emph{25} oranges can be represented as a draw from a normal distribution with mean $25 \times 12 = 300$ and variance $25 \times 4 = 100$. Hence, the standard deviation is 10. Plugging this into R:
-<<>>=
-pnorm(250, mean = 300, sd = 10)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{pnorm}\hlstd{(}\hlnum{250}\hlstd{,} \hlkwc{mean} \hlstd{=} \hlnum{300}\hlstd{,} \hlkwc{sd} \hlstd{=} \hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 2.867e-07
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 			\end{solution}
 	\end{parts}
 
@@ -141,11 +197,30 @@ pnorm(250, mean = 300, sd = 10)
 		Thus, the width equals $2(1 - \alpha/2) \times \sigma/\sqrt{n}$. From the problem statement $\sigma = 6$. For a 99\% confidence interval we set $\alpha = 0.005$. Plugging this into R, we find \texttt{qnorm}$(1 - 0.01/2) \approx 2.58$. Thus, in terms of $n$, the width of our interval is approximately 
 		$$ 2 \times 2.58 \times 6/\sqrt{n} \approx 31/\sqrt{n}$$
 		Solving $1 = 31/\sqrt{n}$ for $n$ gives $n = 961$. Double checking this in R:
-<<>>=
-n <- 950:961
-width <- 2 * qnorm(1 - 0.01/2) * 6/sqrt(n)
-cbind(n, width)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{n} \hlkwb{<-} \hlnum{950}\hlopt{:}\hlnum{961}
+\hlstd{width} \hlkwb{<-} \hlnum{2} \hlopt{*} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlnum{6}\hlopt{/}\hlkwd{sqrt}\hlstd{(n)}
+\hlkwd{cbind}\hlstd{(n, width)}
+\end{alltt}
+\begin{verbatim}
+##         n  width
+##  [1,] 950 1.0029
+##  [2,] 951 1.0023
+##  [3,] 952 1.0018
+##  [4,] 953 1.0013
+##  [5,] 954 1.0007
+##  [6,] 955 1.0002
+##  [7,] 956 0.9997
+##  [8,] 957 0.9992
+##  [9,] 958 0.9987
+## [10,] 959 0.9981
+## [11,] 960 0.9976
+## [12,] 961 0.9971
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 so the exact answer is 956, which is pretty close to what we got using a rounded value for $2 \times \texttt{qnorm(1 - 0.01/2)} \times 6$ as we did above.
 	\end{solution}
 
@@ -162,44 +237,65 @@ so the exact answer is 956, which is pretty close to what we got using a rounded
 \question This question uses the same data as question 8-9 from the textbook. (See above for instructions on how to download the data.) You may assume that the data constitute a random sample from a normal population.
   \begin{solution}
   First, read in the data and make sure they look reasonable:
-<<>>=
-speed.data <- read.csv("http://www.ditraglia.com/econ103/speed.csv", header = FALSE)
-speed.data <- speed.data[,1]
-head(speed.data)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{speed.data} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlstr{"http://www.ditraglia.com/econ103/speed.csv"}\hlstd{,} \hlkwc{header} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\hlstd{speed.data} \hlkwb{<-} \hlstd{speed.data[,}\hlnum{1}\hlstd{]}
+\hlkwd{head}\hlstd{(speed.data)}
+\end{alltt}
+\begin{verbatim}
+## [1] 49 71 78 58 83 74
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
   \end{solution}
 	\begin{parts}
 		\part Construct a 90\% confidence interval for population variance.
     \begin{solution}
-<<>>=
-n.speed <- length(speed.data)
-a.speed <- qchisq(0.1/2, df = n.speed - 1)
-b.speed <- qchisq(1 - 0.1/2, df = n.speed - 1)
-LCL <- (n.speed - 1) * var(speed.data)/b.speed
-UCL <- (n.speed - 1) * var(speed.data)/a.speed
-c(LCL, UCL)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{n.speed} \hlkwb{<-} \hlkwd{length}\hlstd{(speed.data)}
+\hlstd{a.speed} \hlkwb{<-} \hlkwd{qchisq}\hlstd{(}\hlnum{0.1}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{= n.speed} \hlopt{-} \hlnum{1}\hlstd{)}
+\hlstd{b.speed} \hlkwb{<-} \hlkwd{qchisq}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{= n.speed} \hlopt{-} \hlnum{1}\hlstd{)}
+\hlstd{LCL} \hlkwb{<-} \hlstd{(n.speed} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlkwd{var}\hlstd{(speed.data)}\hlopt{/}\hlstd{b.speed}
+\hlstd{UCL} \hlkwb{<-} \hlstd{(n.speed} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlkwd{var}\hlstd{(speed.data)}\hlopt{/}\hlstd{a.speed}
+\hlkwd{c}\hlstd{(LCL, UCL)}
+\end{alltt}
+\begin{verbatim}
+## [1] 100.0 212.4
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
     \end{solution}
 		\part The data for this problem are given in kilometers per hour. How would the confidence interval change if the data were expressed in miles per hour? Note that 1 km $\approx 0.62$ miles.
       \begin{solution}
       One way to solve this would be to convert the data to miles per hour and then repeat the above, noting that this will only change the sample variance so we can re-used everything else:
-<<>>=
-LCL.mhr <- (n.speed - 1) * var(0.62 * speed.data)/b.speed
-UCL.mhr <- (n.speed - 1) * var(0.62 * speed.data)/a.speed
-c(LCL.mhr, UCL.mhr)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{LCL.mhr} \hlkwb{<-} \hlstd{(n.speed} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlkwd{var}\hlstd{(}\hlnum{0.62} \hlopt{*} \hlstd{speed.data)}\hlopt{/}\hlstd{b.speed}
+\hlstd{UCL.mhr} \hlkwb{<-} \hlstd{(n.speed} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlkwd{var}\hlstd{(}\hlnum{0.62} \hlopt{*} \hlstd{speed.data)}\hlopt{/}\hlstd{a.speed}
+\hlkwd{c}\hlstd{(LCL.mhr, UCL.mhr)}
+\end{alltt}
+\begin{verbatim}
+## [1] 38.45 81.65
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
   Another way would be to transform the confidence interval we have already created. From above:
-    $$P(\Sexpr{round(LCL,2)} < \sigma^2 < \Sexpr{round(UCL,2)}) = 0.9$$
+    $$P(100.01 < \sigma^2 < 212.41) = 0.9$$
     where $\sigma^2$ has units (km/hr)$^2$. To transform to units of (miles/hr)$^2$ we need to multiply by (0.62 miles/km)$^2$. Notice that this leaves the meaning of the probability statement unchanged:
-    $$P(\Sexpr{round(0.62^2 * LCL,2)} < 0.62^2 \times \sigma^2 < \Sexpr{round(0.62^2 * UCL,2)}) = 0.9$$
+    $$P(38.45 < 0.62^2 \times \sigma^2 < 81.65) = 0.9$$
     Notice that this agrees with the alternative solution that we found by transforming the \emph{data} rather than the interval.
       \end{solution}
 		\part Construct a 90\% confidence interval for the population \emph{standard deviation} in kilometers per hour.
       \begin{solution}
         To solve this, we use the fact that we can carry out algebraic manipulations within a probability statement without changing the meaning of that statement and hence the associated probability. (This is the logical equivalence rule). From above, we found a confidence interval
-            $$P(\Sexpr{round(LCL,2)} < \sigma^2 < \Sexpr{round(UCL,2)}) = 0.9$$
+            $$P(100.01 < \sigma^2 < 212.41) = 0.9$$
         where the data are measured in km/hour. Taking square roots of everything:
-        $$P(\Sexpr{round(sqrt(LCL),2)} < \sigma < \Sexpr{round(sqrt(UCL),2)}) = 0.9$$
+        $$P(10 < \sigma < 14.57) = 0.9$$
       \end{solution}
 	\end{parts}
 
@@ -212,34 +308,55 @@ sleep <- sleep[,1]
 The second command is simply a quick way to tell R to store \texttt{sleep} as a vector rather than a dataframe since it only contains one column. You may assume that the data represent a random sample from a normal population.
   \begin{solution}
   First, read in the data and make sure they look reasonable:
-<<>>=
-data.url <- "http://www.ditraglia.com/econ103/sleep.csv"
-sleep.data <- read.csv(data.url, header = FALSE)
-sleep.data <- sleep.data[,1]
-head(sleep.data)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data.url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/sleep.csv"}
+\hlstd{sleep.data} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data.url,} \hlkwc{header} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\hlstd{sleep.data} \hlkwb{<-} \hlstd{sleep.data[,}\hlnum{1}\hlstd{]}
+\hlkwd{head}\hlstd{(sleep.data)}
+\end{alltt}
+\begin{verbatim}
+## [1] 5.0 4.0 6.5 5.0 5.0 6.0
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
   \end{solution}
 \begin{parts}
 	\part Construct a 95\% confidence interval for the population mean.
   \begin{solution}
-<<>>=
-n.sleep <- length(sleep.data)
-SE.sleep <- sd(sleep.data)/sqrt(n.sleep)
-ME.sleep <- qt(1 - 0.05/2, df = n.sleep - 1) * SE.sleep
-LCL <- mean(sleep.data) - ME.sleep
-UCL <- mean(sleep.data) + ME.sleep
-c(LCL, UCL)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{n.sleep} \hlkwb{<-} \hlkwd{length}\hlstd{(sleep.data)}
+\hlstd{SE.sleep} \hlkwb{<-} \hlkwd{sd}\hlstd{(sleep.data)}\hlopt{/}\hlkwd{sqrt}\hlstd{(n.sleep)}
+\hlstd{ME.sleep} \hlkwb{<-} \hlkwd{qt}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{= n.sleep} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{SE.sleep}
+\hlstd{LCL} \hlkwb{<-} \hlkwd{mean}\hlstd{(sleep.data)} \hlopt{-} \hlstd{ME.sleep}
+\hlstd{UCL} \hlkwb{<-} \hlkwd{mean}\hlstd{(sleep.data)} \hlopt{+} \hlstd{ME.sleep}
+\hlkwd{c}\hlstd{(LCL, UCL)}
+\end{alltt}
+\begin{verbatim}
+## [1] 5.528 6.222
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
   \end{solution}
 	\part Construct a 95\% confidence interval for the population variance.
   \begin{solution}
-<<>>=
-a.sleep <- qchisq(0.05/2, df = n.sleep - 1)
-b.sleep <- qchisq(1 - 0.05/2, df = n.sleep - 1)
-LCL <- (n.sleep - 1) * var(sleep.data)/b.sleep
-UCL <- (n.sleep - 1) * var(sleep.data)/a.sleep
-c(LCL, UCL)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{a.sleep} \hlkwb{<-} \hlkwd{qchisq}\hlstd{(}\hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{= n.sleep} \hlopt{-} \hlnum{1}\hlstd{)}
+\hlstd{b.sleep} \hlkwb{<-} \hlkwd{qchisq}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{= n.sleep} \hlopt{-} \hlnum{1}\hlstd{)}
+\hlstd{LCL} \hlkwb{<-} \hlstd{(n.sleep} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlkwd{var}\hlstd{(sleep.data)}\hlopt{/}\hlstd{b.sleep}
+\hlstd{UCL} \hlkwb{<-} \hlstd{(n.sleep} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlkwd{var}\hlstd{(sleep.data)}\hlopt{/}\hlstd{a.sleep}
+\hlkwd{c}\hlstd{(LCL, UCL)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.7893 1.9394
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
   \end{solution}
 \end{parts}
 

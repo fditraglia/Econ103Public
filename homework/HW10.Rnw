@@ -29,7 +29,7 @@ options(width = 60)
 %-------------------DON'T CHANGE---------------------%
 
 
-\printanswers
+%\printanswers
 %\noprintanswers
 
 \title{Problem Set \# 10}

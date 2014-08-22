@@ -1,0 +1,669 @@
+\documentclass[addpoints,12pt]{exam}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+
+
+%-------------------DON'T CHANGE---------------------%
+%The following is needed to prevent a conflict between knitr and the exam class involving the package ``framed.''
+
+
+%This keeps images from being too big, centers them, and makes sure we use pdf images
+
+
+%Change the default width of the output to fit within the solution boxes
+
+%-------------------DON'T CHANGE---------------------%
+
+
+%\printanswers
+%\noprintanswers
+
+\title{Problem Set \# 10}
+\author{Econ 103}
+\date{}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\maketitle
+
+
+\section*{Part I -- Problems from the Textbook}
+ Chapter 6: 15, 17, 19(b), 21\\
+ Chapter 8: 17(c), 17(d), 19, 21\\
+
+\noindent \emph{I'll provide full  solutions to 6-17 and 8-21.}
+
+\begin{questions}
+  \item[]
+  \begin{solution} (\textbf{6-17})
+  There are a number of different ways to solve this question. The ``exact'' solution, which is not the one in the book, directly uses the fact that this is a Binomial sampling model: given that 20\% of the cars in the population are defective, what is the probability that no more than 5 of the cars in a sample of size 50 are defective? We can calculate the answer in R as follows:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{pbinom}\hlstd{(}\hlnum{5}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{50}\hlstd{,} \hlkwc{prob} \hlstd{=} \hlnum{0.2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.04803
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+The ``point'' of this question, however, is to get an \emph{approximate} answer using what we know about the Central Limit Theorem. Since this is a result about the sampling distribution of sample means, we need to re-express the desired probability in these terms. The mechanic wants to know the probability that no more than 5 out of 50 cars are defective. This is the same thing as saying that the \emph{sample mean}, which is just the sample proportion, is no greater than $5/50 = 0.1$. Now, by the CLT, if we center the sample mean at the population mean and scale it by its standard error, the result is approximately standard normal:
+$$P(\bar{X}_n \leq 0.1) = P\left(\frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \leq \frac{0.1 - \mu}{SE(\bar{X}_n)} \right) \approx \texttt{pnorm}((0.1 - \mu)/SE(\bar{X}_n) )$$
+In this example the standard error is: $\sqrt{p(1-p)/n}$ where $n$ is the sample size, 50, and $p$ is the population proportion: 0.2. The population mean for this problem is simply the population proportion: 0.2. Thus, we have
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p} \hlkwb{<-} \hlnum{0.2}
+\hlstd{n} \hlkwb{<-} \hlnum{50}
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p)} \hlopt{/} \hlstd{n)}
+\hlkwd{pnorm}\hlstd{((}\hlnum{0.1} \hlopt{-} \hlnum{0.2}\hlstd{)}\hlopt{/}\hlstd{SE)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.03855
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+which agrees with the answer in the back of the book. Notice that this is \emph{slightly different} from the ``exact'' answer given above. This is because the CLT is an \emph{approximation}. 
+  \end{solution}
+	\item[]
+		\begin{solution} (\textbf{8-21}) Although the answer is in the back of the book, there has been some confusion about part (b) in past semesters. Here are my calculations using R. 
+  \begin{enumerate}[(a)]
+    \item I enter the data and calculate the rates as follows:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{group} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{'treatment'}\hlstd{,} \hlstr{'control'}\hlstd{,} \hlstr{'refused'}\hlstd{)}
+\hlstd{n.children} \hlkwb{<-} \hlnum{1000} \hlopt{*} \hlkwd{c}\hlstd{(}\hlnum{200}\hlstd{,} \hlnum{200}\hlstd{,} \hlnum{340}\hlstd{)}
+\hlstd{n.polio} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{57}\hlstd{,} \hlnum{142}\hlstd{,} \hlnum{157}\hlstd{)}
+\hlstd{rate} \hlkwb{<-} \hlstd{n.polio}\hlopt{/}\hlstd{n.children}
+\hlstd{polio.data} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(group, n.children, n.polio, rate)}
+\hlstd{polio.data}
+\end{alltt}
+\begin{verbatim}
+##       group n.children n.polio      rate
+## 1 treatment     200000      57 0.0002850
+## 2   control     200000     142 0.0007100
+## 3   refused     340000     157 0.0004618
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \item Now I construct the confidence interval for the \emph{rates}:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{treatment} \hlkwb{<-} \hlkwd{subset}\hlstd{(polio.data, group} \hlopt{==} \hlstr{'treatment'}\hlstd{)}
+\hlstd{control} \hlkwb{<-} \hlkwd{subset}\hlstd{(polio.data, group} \hlopt{==} \hlstr{'control'}\hlstd{)}
+
+\hlstd{estimate} \hlkwb{<-} \hlstd{control}\hlopt{$}\hlstd{rate} \hlopt{-} \hlstd{treatment}\hlopt{$}\hlstd{rate}
+
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(}
+  \hlstd{control}\hlopt{$}\hlstd{rate} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{control}\hlopt{$}\hlstd{rate)}\hlopt{/}\hlstd{control}\hlopt{$}\hlstd{n.children}
+  \hlopt{+} \hlstd{treatment}\hlopt{$}\hlstd{rate} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{treatment}\hlopt{$}\hlstd{rate)}\hlopt{/}\hlstd{control}\hlopt{$}\hlstd{n.children}
+  \hlstd{)}
+
+\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+\hlstd{CI} \hlkwb{<-} \hlkwd{c}\hlstd{(estimate} \hlopt{-} \hlstd{ME, estimate} \hlopt{+} \hlstd{ME)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  before converting them to cases per 100,000 children:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{estimate} \hlopt{*} \hlnum{10}\hlopt{^}\hlnum{5}
+\end{alltt}
+\begin{verbatim}
+## [1] 42.5
+\end{verbatim}
+\begin{alltt}
+\hlstd{ME} \hlopt{*} \hlnum{10}\hlopt{^}\hlnum{5}
+\end{alltt}
+\begin{verbatim}
+## [1] 13.82
+\end{verbatim}
+\begin{alltt}
+\hlstd{CI} \hlopt{*} \hlnum{10}\hlopt{^}\hlnum{5}
+\end{alltt}
+\begin{verbatim}
+## [1] 28.68 56.32
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  After rounding, this agrees with the answer in the book.
+  \end{enumerate}
+
+		\end{solution}
+\end{questions}
+
+
+
+ \section*{Part II -- Additional Problems}
+
+\begin{questions}
+
+\question Write R code to carry out the simulation experiments presented on slides 17--19 of Lecture 18 illustrating the central limit theorem. The R command for drawing from a Uniform$(0,1)$ distribution is \texttt{runif} and the corresponding density is \texttt{dunif}. In each case, plot the density or mass function of the population and compare it to the histograms of the sample mean computed for random samples drawn from that population. In each simulation, use 10000 replications.
+	\begin{solution}
+		First the Uniform$(0,1)$
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{x} \hlkwb{<-} \hlkwd{seq}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0.01}\hlstd{)}
+\hlstd{y} \hlkwb{<-} \hlkwd{dunif}\hlstd{(x)}
+\hlkwd{plot}\hlstd{(x, y,} \hlkwc{main} \hlstd{=} \hlstr{"Uniform(0,1) Density"}\hlstd{,} \hlkwc{type} \hlstd{=} \hlstr{'l'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/uniform_clt1} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlstd{uniform.means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{runif}\hlstd{(}\hlnum{20}\hlstd{)))}
+\hlkwd{hist}\hlstd{(uniform.means,} \hlkwc{main} \hlstd{=} \hlstr{"Uniform(0,1), n = 20"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/uniform_clt2} 
+
+}
+
+
+
+\end{knitrout}
+Next, the $\chi^2(5)$	
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{x} \hlkwb{<-} \hlkwd{seq}\hlstd{(}\hlnum{0.01}\hlstd{,} \hlnum{15}\hlstd{,} \hlnum{0.01}\hlstd{)}
+\hlstd{y} \hlkwb{<-} \hlkwd{dchisq}\hlstd{(x,} \hlkwc{df} \hlstd{=} \hlnum{5}\hlstd{)}
+\hlkwd{plot}\hlstd{(x,y,} \hlkwc{type} \hlstd{=} \hlstr{'l'}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{"Chi-squared Density, df = 5"}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/chisq_clt1} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlstd{chisq.means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{rchisq}\hlstd{(}\hlnum{20}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{5}\hlstd{)))}
+\hlkwd{hist}\hlstd{(chisq.means,} \hlkwc{main} \hlstd{=} \hlstr{"Chi-squared(5), n = 20"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/chisq_clt2} 
+
+}
+
+
+
+\end{knitrout}
+Finally, the Bernoulli$(0.3)$
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{x} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{)}
+\hlstd{y} \hlkwb{<-} \hlkwd{dbinom}\hlstd{(x,} \hlkwc{size} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{p} \hlstd{=} \hlnum{0.3}\hlstd{)}
+\hlkwd{plot}\hlstd{(x, y,} \hlkwc{type} \hlstd{=} \hlstr{'h'}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{"Bernoulli(0.3) pmf"}\hlstd{,} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{),} \hlkwc{xlim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{),} \hlkwc{ylab} \hlstd{=} \hlstr{'p(x)'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/bernoulli_clt1} 
+
+}
+
+
+\begin{kframe}\begin{alltt}
+\hlstd{bernoulli.means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{rbinom}\hlstd{(}\hlnum{20}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0.3}\hlstd{)))}
+\hlkwd{hist}\hlstd{(bernoulli.means,} \hlkwc{main} \hlstd{=} \hlstr{"Bernoulli(0.3), n = 20"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=\maxwidth]{figure/bernoulli_clt2} 
+
+}
+
+
+
+\end{knitrout}
+	\end{solution}
+
+\question In April of 2013, Public Policy Polling carried out a survey of 1247 registered voters to determine whether Republicans and Democrats differ in their beliefs about various conspiracy theories. To answer this question, you'll need to download the full results of their survey which I've posted on my website for convenience:
+\url{http://www.ditraglia.com/econ103/conspiracy.pdf}. Note that this is a \emph{pdf file} so you can't import it into R. You'll need to go read through the document to find the data from the poll.
+	\begin{parts}
+		\part Construct a 99\% confidence interval for the proportion of registered voters who belive that a UFO crashed at Roswell, New Mexico in 1947 and the US Government covered it up. 
+			\begin{solution}
+				Overall percentages appear on page 2 of the report, and this question refers to Q3. The sample size is 1247 and $\widehat{p} = 0.21$. We can carry out the calculations in R as follows:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p.hat} \hlkwb{<-} \hlnum{0.21}
+\hlstd{n} \hlkwb{<-} \hlnum{1247}
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p.hat} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p.hat)}\hlopt{/}\hlstd{n)}
+\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+\hlstd{LCL} \hlkwb{<-} \hlstd{p.hat} \hlopt{-} \hlstd{ME}
+\hlstd{UCL} \hlkwb{<-} \hlstd{p.hat} \hlopt{+} \hlstd{ME}
+\hlkwd{c}\hlstd{(LCL, UCL)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.1803 0.2397
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+			\end{solution}
+		\part Is there evidence that male and female voters differ in their beliefs about Roswell and UFOs? 
+			\begin{solution}
+				Percentages broken down by sex appear on page 15, while overall percentages of men and women appear on page 3. Of the 1247 registered voters in the poll, about 50\% were women and 50\% were men. We'll call that $n = 623$ for each. The sample proportions are $\widehat{p}_{W} = 0.19$ for women versus $\widehat{p}_{M} = 0.24$ for men.  Using R, we find:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{n} \hlkwb{<-} \hlnum{623}
+\hlstd{p.M} \hlkwb{<-} \hlnum{0.24}
+\hlstd{p.W} \hlkwb{<-} \hlnum{0.19}
+\hlstd{SE.M} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p.M} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p.M)}\hlopt{/}\hlstd{n)}
+\hlstd{SE.W} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p.W} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p.W)}\hlopt{/}\hlstd{n)}
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(SE.M}\hlopt{^}\hlnum{2} \hlopt{+} \hlstd{SE.W}\hlopt{^}\hlnum{2}\hlstd{)}
+\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+\hlstd{diff} \hlkwb{<-} \hlstd{p.M} \hlopt{-} \hlstd{p.W}
+\hlstd{LCL} \hlkwb{<-} \hlstd{diff} \hlopt{-} \hlstd{ME}
+\hlstd{UCL} \hlkwb{<-} \hlstd{diff} \hlopt{+} \hlstd{ME}
+\hlkwd{c}\hlstd{(LCL, UCL)}
+\end{alltt}
+\begin{verbatim}
+## [1] -0.009846  0.109846
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+			This 99\% CI just barely includes zero. A 95\% wouldn't (try this out for yourself). We have found evidence suggesting that a higher proportion of men believe in the Roswell conspiracy compared to women.
+			\end{solution}
+		\part Is there evidence that Romney voters differ from Obama voters in their beliefs about Roswell and UFOs? 
+			\begin{solution}
+				Percentages broken down by 2012 vote appear in page 5. Overall percentages of Romney and Obama voters in the sample appear on page 3. Of the 1247 registered voters in the sample, 50\% voted for Obama and 44\% voted for Romney. We'll call this $n_{O} = 623$ and $n_{R} = 547$. The sample proportions are $\widehat{p}_{O} = 0.16$ for Obama voters versus $\widehat{p}_{R} = 0.27$ for Romney voters. Using R, we find:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{n.R} \hlkwb{<-} \hlnum{547}
+\hlstd{p.R} \hlkwb{<-} \hlnum{0.27}
+\hlstd{SE.R} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p.R} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p.R)}\hlopt{/}\hlstd{n.R)}
+\hlstd{n.O} \hlkwb{<-} \hlnum{623}
+\hlstd{p.O} \hlkwb{<-} \hlnum{0.16}
+\hlstd{SE.O} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p.O} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p.O)}\hlopt{/}\hlstd{n.O)}
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(SE.R}\hlopt{^}\hlnum{2} \hlopt{+} \hlstd{SE.O}\hlopt{^}\hlnum{2}\hlstd{)}
+\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+\hlstd{diff} \hlkwb{<-} \hlstd{p.R} \hlopt{-} \hlstd{p.O}
+\hlstd{UCL} \hlkwb{<-} \hlstd{diff} \hlopt{+} \hlstd{ME}
+\hlstd{LCL} \hlkwb{<-} \hlstd{diff} \hlopt{-} \hlstd{ME}
+\hlkwd{c}\hlstd{(LCL, UCL)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.04818 0.17182
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+			We have found strong evidence that a substantially greater proportion of Romney voters believe in the Roswell conspiracy.
+			\end{solution}
+		\part How should we interpret the results of the preceding two parts?
+			\begin{solution}
+				Since we know the men are more likely to vote for Republican candidates than women, it's difficult to tell whether the effect has to do with sex or political affiliation. To learn more, we'd need to compare \emph{female} Romney voters to \emph{female} Obama voters and then \emph{separately} compare male Obama voters to male Romney voters.
+			\end{solution}
+	\end{parts}
+
+\question Construct an approximate 95\% confidence interval for the Anchoring Experiment based on the CLT using \emph{this semester's} data, following the details in Lecture 19. Be sure to properly account for missing values. How does it compare to the interval based on the data from lecture?
+	\begin{solution} 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data.url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/survey_clean.csv"}
+\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data.url)}
+\hlstd{anchoring} \hlkwb{<-} \hlstd{survey[,}\hlkwd{c}\hlstd{(}\hlstr{"rand.num"}\hlstd{,} \hlstr{"africa.percent"}\hlstd{)]}
+\hlstd{lo} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"10"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
+\hlstd{hi} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"65"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
+\hlstd{lo} \hlkwb{<-} \hlstd{lo[}\hlopt{!}\hlkwd{is.na}\hlstd{(lo)]}
+\hlstd{hi} \hlkwb{<-} \hlstd{hi[}\hlopt{!}\hlkwd{is.na}\hlstd{(hi)]}
+\hlstd{SE.lo} \hlkwb{<-} \hlkwd{sd}\hlstd{(lo)}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlkwd{length}\hlstd{(lo))}
+\hlstd{SE.hi} \hlkwb{<-} \hlkwd{sd}\hlstd{(hi)}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlkwd{length}\hlstd{(hi))}
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(SE.hi}\hlopt{^}\hlnum{2} \hlopt{+} \hlstd{SE.lo}\hlopt{^}\hlnum{2}\hlstd{)}
+\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{0.975}\hlstd{)} \hlopt{*} \hlstd{SE}
+\hlstd{diff} \hlkwb{<-} \hlkwd{mean}\hlstd{(hi)} \hlopt{-} \hlkwd{mean}\hlstd{(lo)}
+\hlstd{LCL} \hlkwb{<-} \hlstd{diff} \hlopt{-} \hlstd{ME}
+\hlstd{UCL} \hlkwb{<-} \hlstd{diff} \hlopt{+} \hlstd{ME}
+\hlkwd{c}\hlstd{(LCL, UCL)}
+\end{alltt}
+\begin{verbatim}
+## [1] -3.821  4.625
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+	\end{solution}
+
+
+\question This problem concerns a dataset comparing the scores of men and women on the Armed Forces Qualifying Test (AFQT). The data are available from my website:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data.url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/ex0222.csv"}
+\hlstd{test.scores} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data.url)}
+\hlkwd{head}\hlstd{(test.scores)}
+\end{alltt}
+\begin{verbatim}
+##   Gender Arith Word Parag Math AFQT
+## 1   male    19   27    14   14 70.3
+## 2 female    23   34    11   20 60.4
+## 3   male    30   35    14   25 98.3
+## 4 female    30   35    13   21 84.7
+## 5 female    13   30    11   12 44.5
+## 6 female     8   15     6    4  4.0
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+Each row is an individual who took the test. The first column gives that individual's sex, while the second through fifth columns give the individual's score on four parts of the test. The final column is an overall percentile score for the test. 
+  \begin{parts}
+    \part Suppose we want to compare the scores of men and women. Is this a problem based on two independent samples or matched pairs data?
+      \begin{solution}
+      Independent samples: each person's score on the exam is independent of every other person's score. There is no sensible way to match up pairs of observations here. Indeed, there are different numbers of men and women!
+      \end{solution}
+      \part For each of the four parts of the test, as well as for the overall percentile score, construct an approximate 95\% CI for the difference of population means (men - women) based on the CLT. To make the calculations easier, notice that we can use the function \texttt{apply} to calculate the mean and variance of \emph{each column at once}. For example, extracting the data for men:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{test.men} \hlkwb{<-} \hlkwd{subset}\hlstd{(test.scores, Gender} \hlopt{==} \hlstr{'male'}\hlstd{)[,}\hlopt{-}\hlnum{1}\hlstd{]}
+\hlstd{means.men} \hlkwb{<-} \hlkwd{apply}\hlstd{(test.men,} \hlnum{2}\hlstd{, mean)}
+\hlstd{var.men} \hlkwb{<-} \hlkwd{apply}\hlstd{(test.men,} \hlnum{2}\hlstd{, var)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  Setting the second argument equal to 2 tells R to apply the function in the third argument to the \emph{columns} of \texttt{test.men}.
+  \begin{solution}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{test.men} \hlkwb{<-} \hlkwd{subset}\hlstd{(test.scores, Gender} \hlopt{==} \hlstr{'male'}\hlstd{)[,}\hlopt{-}\hlnum{1}\hlstd{]}
+\hlstd{test.women} \hlkwb{<-}\hlkwd{subset}\hlstd{(test.scores, Gender} \hlopt{==} \hlstr{'female'}\hlstd{)[,}\hlopt{-}\hlnum{1}\hlstd{]}
+\hlstd{means.men} \hlkwb{<-} \hlkwd{apply}\hlstd{(test.men,} \hlnum{2}\hlstd{, mean)}
+\hlstd{var.men} \hlkwb{<-} \hlkwd{apply}\hlstd{(test.men,} \hlnum{2}\hlstd{, var)}
+\hlstd{n.men} \hlkwb{<-} \hlkwd{nrow}\hlstd{(test.men)}
+\hlstd{means.women} \hlkwb{<-} \hlkwd{apply}\hlstd{(test.women,} \hlnum{2}\hlstd{, mean)}
+\hlstd{var.women} \hlkwb{<-} \hlkwd{apply}\hlstd{(test.women,} \hlnum{2}\hlstd{, var)}
+\hlstd{n.women} \hlkwb{<-} \hlkwd{nrow}\hlstd{(test.women)}
+\hlstd{diff.means} \hlkwb{<-} \hlstd{means.men} \hlopt{-} \hlstd{means.women}
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(var.women}\hlopt{/}\hlstd{n.women} \hlopt{+} \hlstd{var.men}\hlopt{/}\hlstd{n.men)}
+\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+\hlstd{LCL} \hlkwb{<-} \hlstd{diff.means} \hlopt{-} \hlstd{ME}
+\hlstd{UCL} \hlkwb{<-} \hlstd{diff.means} \hlopt{+} \hlstd{ME}
+\hlstd{CI} \hlkwb{<-} \hlkwd{rbind}\hlstd{(LCL, UCL)}
+\hlkwd{round}\hlstd{(diff.means,} \hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Arith  Word Parag  Math  AFQT 
+##  2.04 -0.02 -0.57  0.75  2.04
+\end{verbatim}
+\begin{alltt}
+\hlkwd{round}\hlstd{(CI,} \hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##     Arith  Word Parag Math  AFQT
+## LCL  1.49 -0.57 -0.81 0.27 -0.10
+## UCL  2.58  0.52 -0.33 1.24  4.18
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \end{solution}
+      \part Interpret your results.
+      \begin{solution}
+      Men score, on average, higher on the Arithmetic Reasoning and Mathematical Knowledge portions of the test. Women score higher, on average, on the Paragraph Comprehension portion of the test, while men and women appear to score about the same on the Word Knowledge portion. In terms of overall results, men seem to score higher than women, although the 95\% CI does include zero. 
+      \end{solution}
+  \end{parts}
+
+\question This problem uses a dataset that investigates the relationship between schizophrenia and the volume (in cm$^3$) of a particular region of the brain (the left hippocampus) measured using an MRI machine. The dataset contains 15 sets of monozygotic (i.e.\ identical) twins, one of whom has schizophrenia (``Affected'') and the other who does not (``Unaffected''). The idea of using identical twins is to hold constant unobserved genetic and socioeconomic confounding variables that might influence whether someone develops schizophrenia. You can download the data from my website as follows:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data.url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/case0202.csv"}
+\hlstd{twins} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data.url)}
+\hlkwd{head}\hlstd{(twins)}
+\end{alltt}
+\begin{verbatim}
+##   Unaffected Affected
+## 1       1.94     1.27
+## 2       1.44     1.63
+## 3       1.56     1.47
+## 4       1.58     1.39
+## 5       2.06     1.93
+## 6       1.66     1.26
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+	\begin{parts}
+		\part Should these data be analyzed as independent samples or matched pairs?
+      \begin{solution}
+      This is matched pairs data. We would expect the size of the left hippocampus to be very similar for identical twins!
+      \end{solution}
+		\part Construct an approximate 95\% confidence interval for the difference of means using the CLT and treating the data as two independent samples.
+    \begin{solution}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{mean.affected} \hlkwb{<-} \hlkwd{mean}\hlstd{(twins}\hlopt{$}\hlstd{Affected)}
+\hlstd{var.affected} \hlkwb{<-} \hlkwd{var}\hlstd{(twins}\hlopt{$}\hlstd{Affected)}
+\hlstd{n.affected} \hlkwb{<-} \hlkwd{length}\hlstd{(twins}\hlopt{$}\hlstd{Affected)}
+\hlstd{mean.unaffected} \hlkwb{<-} \hlkwd{mean}\hlstd{(twins}\hlopt{$}\hlstd{Unaffected)}
+\hlstd{var.unaffected} \hlkwb{<-} \hlkwd{var}\hlstd{(twins}\hlopt{$}\hlstd{Unaffected)}
+\hlstd{n.unaffected} \hlkwb{<-} \hlkwd{length}\hlstd{(twins}\hlopt{$}\hlstd{Unaffected)}
+\hlstd{diff.means} \hlkwb{<-} \hlstd{mean.unaffected} \hlopt{-} \hlstd{mean.affected}
+\hlstd{SE.indep} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(}
+    \hlstd{var.affected}\hlopt{/}\hlstd{n.affected}
+    \hlopt{+} \hlstd{var.unaffected}\hlopt{/}\hlstd{n.unaffected)}
+\hlstd{ME.indep} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE.indep}
+\hlstd{CI.indep} \hlkwb{<-} \hlkwd{c}\hlstd{(diff.means} \hlopt{-} \hlstd{ME.indep, diff.means} \hlopt{+} \hlstd{ME.indep)}
+\hlkwd{round}\hlstd{(CI.indep,} \hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.003 0.394
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \end{solution}
+		\part Construct an approximate 95\% confidence interval for the difference of means using the CLT and treating the data as matched pairs.
+    \begin{solution}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{twin.diff} \hlkwb{<-} \hlstd{twins}\hlopt{$}\hlstd{Unaffected} \hlopt{-} \hlstd{twins}\hlopt{$}\hlstd{Affected}
+\hlstd{n.twins} \hlkwb{<-} \hlkwd{length}\hlstd{(twin.diff)}
+\hlstd{SE.paired} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(}\hlkwd{var}\hlstd{(twin.diff)}\hlopt{/}\hlstd{n.twins)}
+\hlstd{ME.paired} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE.paired}
+\hlstd{CI.paired} \hlkwb{<-} \hlkwd{c}\hlstd{(diff.means} \hlopt{-} \hlstd{ME.paired, diff.means} \hlopt{+} \hlstd{ME.paired)}
+\hlkwd{round}\hlstd{(CI.paired,} \hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.078 0.319
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+    \end{solution}
+		\part The dataset only contains 15 pairs, a fairly small sample. Since the CLT is a large sample approximation, it may not work well in this situation. Suppose we were willing to assume that the within-twin differences came from a normal population. Construct an \emph{exact} 95\% confidence interval for the difference of means (again treating the data as matched pairs) under this assumption.
+      \begin{solution}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ME.t} \hlkwb{<-} \hlkwd{qt}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{= n.twins} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{SE.paired}
+\hlstd{CI.paired.t} \hlkwb{<-} \hlkwd{c}\hlstd{(diff.means} \hlopt{-} \hlstd{ME.t, diff.means} \hlopt{+} \hlstd{ME.t)}
+\hlkwd{round}\hlstd{(CI.paired.t,} \hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.067 0.331
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+      \end{solution}
+      \part Compare each of the intervals you have constructed. Why and how do they differ? What should we conclude?
+        \begin{solution}
+          The shortest interval is the one based on matched pairs using the CLT (\texttt{qnorm}). The widest is the one that assumes the samples are independent, which they are not. This interval is wider because the measurements are correlated across twins so that the sample variance of the differences is less than the sum of the sample variances of the affected and unaffected twins. 
+          
+          The interval based on the assumption that the differences come from a normal distribution is narrower than that based on assuming independent samples for the same reason, but wider than the equivalent interval based on the CLT. This is because each of them uses the same standard error estimate but \texttt{qt(0.975, df = 14)} is larger than \texttt{qnorm(0.975)}. 
+          
+          Although we may doubt that 15 is large enough for the approximation based on the CLT to work well, we may equally well doubt that the differences come from a normal population. Fortunately, both of the intervals based on differences give the same basic result: the twin with schizophrenia has, on average, a smaller left hippocampus. If we wanted to be conservative, we could report the wider of the two intervals.
+        \end{solution}
+	\end{parts}
+
+\question This question examines a situation in which the textbook confidence interval for a population proportion, based on the CLT, performs poorly but the refined interval works well. Recall that the refined CI is based on the quantity
+    $$\widetilde{p} = \frac{1}{n+4} \left(2+ \sum_{i=1}^n X_i\right)$$
+while the textbook CI is based on $\widehat{p}=(\sum_{i=1}^n X_i)/n$.
+  \begin{parts}
+    \part Show that $\widetilde{p} = (n\widehat{p} +2)/(n+4)$
+  		\begin{solution}
+				\begin{eqnarray*}
+						\widetilde{p} &=& \frac{1}{n+4} \left(2+ \sum_{i=1}^n X_i\right)\\
+							&=& \frac{2}{n+4} + \frac{n}{n+4} \left(\frac{1}{n}\sum_{i=1}^n X_i\right)\\
+							&=& \frac{2}{n+4} + \left(\frac{n}{n+4}\right) \widehat{p}\\
+							&=& \frac{n\widehat{p}+2}{n+4}
+				\end{eqnarray*}								
+				
+			\end{solution}
+      \part Suppose the true population proportion is $p = 0.5$ and we draw an iid sample of size 50, that is $X_1, \hdots, X_{50} \sim \mbox{iid Bernoulli}(0.5)$. We want to examine how often the textbook CI contains the true population proportion (0.5) in a large number of repeated samples. Since $\widehat{p}$ does not use the \emph{individual} $X_i$, but only their sum, we can simulate $\widehat{p}$ based on an iid sample of size 50 by drawing a \emph{single} Binomial(50, 0.5) random variable and dividing it by 50. In R,
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{rbinom}\hlstd{(}\hlnum{1}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{50}\hlstd{,} \hlkwc{prob} \hlstd{=} \hlnum{0.5}\hlstd{)}\hlopt{/}\hlnum{50}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.58
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+Note that you may get a different answer from me since this is \emph{random}. Indeed, if you run it repeatedly, you will typically get a different answer. The idea is to run this \emph{many times}, and construct a confidence interval based on each result and see how many of them contain $0.5$. Here is some code that does exactly that. Explain, step-by-step, how it works and what the result means. Then try running it yourself.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{n} \hlkwb{<-} \hlnum{50}
+\hlstd{p} \hlkwb{<-} \hlnum{0.5}
+\hlstd{N.reps} \hlkwb{<-} \hlnum{100}
+\hlstd{p.hat} \hlkwb{<-} \hlkwd{rbinom}\hlstd{(N.reps,} \hlkwc{size} \hlstd{= n,} \hlkwc{prob} \hlstd{= p)}\hlopt{/}\hlstd{n}
+\hlstd{ME.hat} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{0.975}\hlstd{)} \hlopt{*} \hlkwd{sqrt}\hlstd{(p.hat} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p.hat)} \hlopt{/} \hlstd{n)}
+\hlstd{LCL.hat} \hlkwb{<-} \hlstd{p.hat} \hlopt{-} \hlstd{ME.hat}
+\hlstd{UCL.hat} \hlkwb{<-} \hlstd{p.hat} \hlopt{+} \hlstd{ME.hat}
+\hlstd{CI.hat} \hlkwb{<-} \hlkwd{cbind}\hlstd{(LCL.hat, UCL.hat)}
+\hlstd{Coverage} \hlkwb{<-} \hlstd{(LCL.hat} \hlopt{<=} \hlstd{p)} \hlopt{&} \hlstd{(p} \hlopt{<=} \hlstd{UCL.hat)}
+\hlstd{Coverage} \hlkwb{<-} \hlkwd{sum}\hlstd{(Coverage)}\hlopt{/}\hlstd{N.reps}
+\hlstd{Coverage}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.96
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \begin{solution}
+  The first four lines calculate 100 values of $\widehat{p}$ from 100 repeated samples of size 50 from a Bernoulli population with probability of success 0.5. These values are stored in the vector \texttt{p.hat}. The next four lines construct the approximate textbook 95\% confidence interval for a population proportion corresponding to \emph{each} of the 100 values for $\widehat{p}$ from the repeated samples. The third to last command checks each of these intervals to make sure that it contains the true value: 0.5. If so, it stores the value \texttt{TRUE} otherwise it stores the value \texttt{FALSE}. The second to last command uses a clever trick: if you sum a vector of \texttt{TRUE} and \texttt{FALSE} in R, it will treat the \texttt{TRUE} values as 1 and the \texttt{FALSE} values as 0. Thus, the sum \emph{counts} how many of the intervals contain the true population parameter before dividing it by 100 to get the \emph{fraction} of intervals that contain the truth. The result is close to what it should be: 0.95. 
+  \end{solution}
+  \part How would the results change if you re-ran the above code with \texttt{N.reps <- 10000}? Try making the change and re-running the code.
+    \begin{solution}
+    This just changes \emph{how many times we repeat the sampling}. It does \emph{not change the sample size}. If we increase this number, we get closer to what we actually mean by repeated sampling, namely an \emph{infinite number} of replications. In practical terms, the answer is much more precise and once again is close to 0.95 which is what we would expect.
+    \end{solution}
+        \part From here on, use \texttt{N.reps <- 10000}. What happens if you re-run the above code with \texttt{p <- 0.1} and \texttt{n <- 10}?
+    \begin{solution}
+    This changes the population from which we are sampling as well as the sample size. Formerly the population proportion was 0.5 and the sample size 50 whereas now the population proportion is 0.1 and the sample size is 0.1. The result is as follows:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{n} \hlkwb{<-} \hlnum{10}
+\hlstd{p} \hlkwb{<-} \hlnum{0.1}
+\hlstd{N.reps} \hlkwb{<-} \hlnum{10000}
+\hlstd{p.hat} \hlkwb{<-} \hlkwd{rbinom}\hlstd{(N.reps,} \hlkwc{size} \hlstd{= n,} \hlkwc{prob} \hlstd{= p)}\hlopt{/}\hlstd{n}
+\hlstd{ME.hat} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{0.975}\hlstd{)} \hlopt{*} \hlkwd{sqrt}\hlstd{(p.hat} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p.hat)} \hlopt{/} \hlstd{n)}
+\hlstd{LCL.hat} \hlkwb{<-} \hlstd{p.hat} \hlopt{-} \hlstd{ME.hat}
+\hlstd{UCL.hat} \hlkwb{<-} \hlstd{p.hat} \hlopt{+} \hlstd{ME.hat}
+\hlstd{CI.hat} \hlkwb{<-} \hlkwd{cbind}\hlstd{(LCL.hat, UCL.hat)}
+\hlstd{Coverage} \hlkwb{<-} \hlstd{(LCL.hat} \hlopt{<=} \hlstd{p)} \hlopt{&} \hlstd{(p} \hlopt{<=} \hlstd{UCL.hat)}
+\hlstd{Coverage} \hlkwb{<-} \hlkwd{sum}\hlstd{(Coverage)}\hlopt{/}\hlstd{N.reps}
+\hlstd{Coverage}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.6399
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+    As we talked about in class, the textbook CI for a population proportion can work poorly if $p$ is close to zero or one and $n$ is small.
+    \end{solution}
+    \part Adapt the above code to examine the performance of the refined CI when $p = 0.1$ and $n = 10$. Use \texttt{N.reps <- 10000} as above. Hint: you can reuse the \texttt{p.hat} vector from part (c) by using the formula from part (a).
+      \begin{solution}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p.tilde} \hlkwb{<-} \hlstd{(n} \hlopt{*} \hlstd{p.hat} \hlopt{+} \hlnum{2}\hlstd{)} \hlopt{/} \hlstd{(n} \hlopt{+} \hlnum{4}\hlstd{)}
+\hlstd{ME.tilde} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{0.975}\hlstd{)} \hlopt{*} \hlkwd{sqrt}\hlstd{(p.tilde} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p.tilde)} \hlopt{/} \hlstd{(n} \hlopt{+} \hlnum{4}\hlstd{))}
+\hlstd{LCL.tilde} \hlkwb{<-} \hlstd{p.tilde} \hlopt{-} \hlstd{ME.tilde}
+\hlstd{UCL.tilde} \hlkwb{<-} \hlstd{p.tilde} \hlopt{+} \hlstd{ME.tilde}
+\hlstd{CI.tilde} \hlkwb{<-} \hlkwd{cbind}\hlstd{(LCL.tilde, UCL.tilde)}
+\hlstd{Cover.tilde} \hlkwb{<-} \hlstd{(LCL.tilde} \hlopt{<=} \hlstd{p)} \hlopt{&} \hlstd{(p} \hlopt{<=} \hlstd{UCL.tilde)}
+\hlstd{Cover.tilde} \hlkwb{<-} \hlkwd{sum}\hlstd{(Cover.tilde)}\hlopt{/}\hlstd{N.reps}
+\hlstd{Cover.tilde}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.9352
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+      \end{solution}
+  \end{parts}
+
+
+
+\end{questions}
+
+
+\end{document}

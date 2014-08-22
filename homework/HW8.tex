@@ -1,4 +1,53 @@
-\documentclass[addpoints,12pt]{exam}
+\documentclass[addpoints,12pt]{exam}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 \usepackage{amsmath, amssymb}
 \linespread{1.1}
 \usepackage{hyperref}
@@ -34,25 +83,17 @@
 
 %-------------------DON'T CHANGE---------------------%
 %The following is needed to prevent a conflict between knitr and the exam class involving the package ``framed.''
-<<include=FALSE>>= 
-knit_hooks$set(document=function(x){ 
-  sub('\\usepackage{framed}', '', x, fixed=TRUE) 
-}) 
-@ 
+
 %-------------------DON'T CHANGE---------------------%
 
 
 
 %This keeps images from being too big, centers them, and makes sure we use pdf images
-<<include=FALSE>>=
-opts_chunk$set(fig.width=4, fig.height=4, fig.align='center',dev='pdf')
-@
+
 
 
 %Change the default width of the output to fit within the solution boxes
-<<include=FALSE>>=
-options(width = 60)
-@
+
 
 
 
@@ -62,6 +103,7 @@ options(width = 60)
 \title{Problem Set \#8}
 \author{Econ 103}
 \date{}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 \maketitle
 
@@ -89,94 +131,154 @@ No problems from the textbook on this assignment.
       \part Repeat the preceding but construct a 50\% rather than 95\% confidence interval.
       \begin{solution}
       Here we need to use R to get the appropriate quantile:
-<<>>=
-SE <- 5/sqrt(25)
-ME <- qnorm(1 - 0.5/2) * SE
-Lower <- 5 - ME
-Upper <- 5 + ME
-c(Lower, Upper)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{SE} \hlkwb{<-} \hlnum{5}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlnum{25}\hlstd{)}
+\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.5}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+\hlstd{Lower} \hlkwb{<-} \hlnum{5} \hlopt{-} \hlstd{ME}
+\hlstd{Upper} \hlkwb{<-} \hlnum{5} \hlopt{+} \hlstd{ME}
+\hlkwd{c}\hlstd{(Lower, Upper)}
+\end{alltt}
+\begin{verbatim}
+## [1] 4.326 5.674
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
       \end{solution}
       \part Repeat the preceding but construct a 99\% rather than a 50\% confidence interval.
             \begin{solution}
       Again we use R to get the appropriate quantile:
-<<>>=
-SE <- 5/sqrt(25)
-ME <- qnorm(1 - 0.01/2) * SE
-Lower <- 5 - ME
-Upper <- 5 + ME
-c(Lower, Upper)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{SE} \hlkwb{<-} \hlnum{5}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlnum{25}\hlstd{)}
+\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+\hlstd{Lower} \hlkwb{<-} \hlnum{5} \hlopt{-} \hlstd{ME}
+\hlstd{Upper} \hlkwb{<-} \hlnum{5} \hlopt{+} \hlstd{ME}
+\hlkwd{c}\hlstd{(Lower, Upper)}
+\end{alltt}
+\begin{verbatim}
+## [1] 2.424 7.576
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
       \end{solution}
     \end{parts}
   \question In this question you will carry out a simulation exercise similar to the one I used to make the plot of twenty confidence intervals from lecture 16.
     \begin{parts}
       \part Write a function called \texttt{my.CI} that calculates a confidence interval for the mean of a normal population when the population standard deviation is known. It should take three arguments: \texttt{data} is a vector containing the observed data from which we will calculate the sample mean, \texttt{pop.sd} is the population standard deviation, and \texttt{alpha} controls the confidence level (e.g.\ \texttt{alpha = 0.1} for a 90\% confidence interval). Your function should return a vector whose first element is the lower confidence limit and whose second element is the upper confidence limit. Test out your function on a simple example to make sure it's working properly.
 \begin{solution}
-<<>>=
-my.CI <- function(data, pop.sd, alpha){
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{my.CI} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{data}\hlstd{,} \hlkwc{pop.sd}\hlstd{,} \hlkwc{alpha}\hlstd{)\{}
 
-  x.bar <- mean(data)
-  n <- length(data)
-  
-  SE <- pop.sd / sqrt(n)
-  ME <- qnorm(1 - alpha/2) * SE
-  
-  lower <- x.bar - ME
-  upper <- x.bar + ME
-  
-  out <- c(lower, upper)
-  return(out)
-  
-}
-@
+  \hlstd{x.bar} \hlkwb{<-} \hlkwd{mean}\hlstd{(data)}
+  \hlstd{n} \hlkwb{<-} \hlkwd{length}\hlstd{(data)}
+
+  \hlstd{SE} \hlkwb{<-} \hlstd{pop.sd} \hlopt{/} \hlkwd{sqrt}\hlstd{(n)}
+  \hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlstd{alpha}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+
+  \hlstd{lower} \hlkwb{<-} \hlstd{x.bar} \hlopt{-} \hlstd{ME}
+  \hlstd{upper} \hlkwb{<-} \hlstd{x.bar} \hlopt{+} \hlstd{ME}
+
+  \hlstd{out} \hlkwb{<-} \hlkwd{c}\hlstd{(lower, upper)}
+  \hlkwd{return}\hlstd{(out)}
+
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 Testing this out on fake data containing twenty-five zeros and assuming a population variance of one, we have
-<<>>=
-fake.data <- rep(0, 25)
-my.CI(fake.data, pop.sd = 1, alpha = 0.05)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{fake.data} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{25}\hlstd{)}
+\hlkwd{my.CI}\hlstd{(fake.data,} \hlkwc{pop.sd} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] -0.392  0.392
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 If we calculated the corresponding interval by hand, assuming a population standard deviation of one, we'd get
   $$0 \pm  2 \times 1 \times 1/5 = (-0.4, 0.4)$$
 Which is almost exactly the same. The reason for the slight discrepancy is that when working by hand we use the approximation \texttt{qnorm(0.975)}$\approx 2$ whereas the exact value, which R provides, is more like 1.96.
 \end{solution}
       \part Write a function called \texttt{CI.sim} that takes a single argument \texttt{sample.size}. Your function should carry out the following steps. First generate \texttt{sample.size} draws from a standard normal distribution. Second, pass your sample of standard normals to \texttt{my.CI} with \texttt{alpha} set to 0.05 and \texttt{pop.sd} set to 1. Third, return the resulting confidence interval. Test your function on a sample of size 10. (What we're doing here is constructing a 95\% confidence interval for the mean of a normal population using simulated data. The population mean is in fact zero, but we want to see how our confidence interval procedure works. To do this we ``pretend'' that we don't know the population mean and only know the population variance. Think about this carefully and make sure you understand the intuition.)
       \begin{solution}
-<<>>=
-CI.sim <- function(sample.size){
-    sims <- rnorm(sample.size)
-    CI <- my.CI(sims, pop.sd = 1, alpha = 0.05)
-    return(CI)
-}
-CI.sim(10)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{CI.sim} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{sample.size}\hlstd{)\{}
+    \hlstd{sims} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(sample.size)}
+    \hlstd{CI} \hlkwb{<-} \hlkwd{my.CI}\hlstd{(sims,} \hlkwc{pop.sd} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
+    \hlkwd{return}\hlstd{(CI)}
+\hlstd{\}}
+\hlkwd{CI.sim}\hlstd{(}\hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.01118 1.25077
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
       \end{solution}
     \part Use \texttt{replicate} to construct 10000 confidence intervals based on simulated data using the function \texttt{CI.sim} with \texttt{sample.size} equal to 10. (Note that \texttt{replicate} will, in this case, return a matrix with \emph{2} rows and \emph{10000} columns. Each column correponds to one of the simulated confidence intervals. The first row contains the lower confidence limit while the second row contains the upper confidence limit.) Calculate the proportion of the resulting confidence intervals contain the true population mean. Did you get the answer you were expecting?
     \begin{solution}
-<<cache=TRUE>>=
-simCIs <- replicate(10000, CI.sim(10))
-simCIs[,1:5]
-lower <- simCIs[1,]
-upper <- simCIs[2,]
-covers.truth <- (lower < 0) & (upper > 0) 
-sum(covers.truth)/length(covers.truth)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{simCIs} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{CI.sim}\hlstd{(}\hlnum{10}\hlstd{))}
+\hlstd{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
+\end{alltt}
+\begin{verbatim}
+##          [,1]    [,2]    [,3]    [,4]     [,5]
+## [1,] -1.17035 -1.0628 -0.7007 -0.2710 -1.22072
+## [2,]  0.06924  0.1768  0.5389  0.9686  0.01887
+\end{verbatim}
+\begin{alltt}
+\hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
+\hlstd{upper} \hlkwb{<-} \hlstd{simCIs[}\hlnum{2}\hlstd{,]}
+\hlstd{covers.truth} \hlkwb{<-} \hlstd{(lower} \hlopt{<} \hlnum{0}\hlstd{)} \hlopt{&} \hlstd{(upper} \hlopt{>} \hlnum{0}\hlstd{)}
+\hlkwd{sum}\hlstd{(covers.truth)}\hlopt{/}\hlkwd{length}\hlstd{(covers.truth)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.9513
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 The answer is pretty much dead on: almost exactly 95\% of the intervals contain the true population mean (zero).
     \end{solution}
     \part Repeat the preceding but rather than using \texttt{CI.sim} write a new function called \texttt{CI.sim2}. This new function should be identical to \texttt{CI.sim} except that, when calling \texttt{my.CI}, it sets \texttt{pop.sd = 1/2} rather than 1. How do your results change? Try to provide some intuition for any differences you find.
     \begin{solution}
-<<cache=TRUE>>=
-CI.sim2 <- function(sample.size){
-    sims <- rnorm(sample.size)
-    CI <- my.CI(sims, pop.sd = 1/2, alpha = 0.05)
-    return(CI)
-}
-simCIs <- replicate(10000, CI.sim2(10))
-simCIs[,1:5]
-lower <- simCIs[1,]
-upper <- simCIs[2,]
-covers.truth <- (lower < 0) & (upper > 0) 
-sum(covers.truth)/length(covers.truth)
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{CI.sim2} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{sample.size}\hlstd{)\{}
+    \hlstd{sims} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(sample.size)}
+    \hlstd{CI} \hlkwb{<-} \hlkwd{my.CI}\hlstd{(sims,} \hlkwc{pop.sd} \hlstd{=} \hlnum{1}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
+    \hlkwd{return}\hlstd{(CI)}
+\hlstd{\}}
+\hlstd{simCIs} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{CI.sim2}\hlstd{(}\hlnum{10}\hlstd{))}
+\hlstd{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
+\end{alltt}
+\begin{verbatim}
+##        [,1]     [,2]    [,3]     [,4]    [,5]
+## [1,] -1.141 -0.52405 -0.1795 -0.06908 -0.4866
+## [2,] -0.521  0.09575  0.4403  0.55071  0.1331
+\end{verbatim}
+\begin{alltt}
+\hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
+\hlstd{upper} \hlkwb{<-} \hlstd{simCIs[}\hlnum{2}\hlstd{,]}
+\hlstd{covers.truth} \hlkwb{<-} \hlstd{(lower} \hlopt{<} \hlnum{0}\hlstd{)} \hlopt{&} \hlstd{(upper} \hlopt{>} \hlnum{0}\hlstd{)}
+\hlkwd{sum}\hlstd{(covers.truth)}\hlopt{/}\hlkwd{length}\hlstd{(covers.truth)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.6761
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 In this case the procedure didn't work: many fewer than 95\% of the intervals contain the true population mean. The problem is that \texttt{CI.sim2} constructs a confidence interval using the \emph{wrong} population standard deviation! Since it uses 1/2 rather than 1, the resulting intervals are too short, so too few of them contain the true population mean. 
 \end{solution}
     \end{parts}

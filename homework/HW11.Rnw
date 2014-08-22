@@ -28,7 +28,7 @@ options(width = 60)
 @
 
 
-\printanswers
+%\printanswers
 %\noprintanswers
 
 \title{Problem Set \#11}
