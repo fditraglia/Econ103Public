@@ -4,9 +4,6 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 \usepackage{multirow}
-%\boxedpoints
-%\pointsinmargin
-
 
 
 
@@ -32,8 +29,13 @@ options(width = 60)
 %-------------------DON'T CHANGE---------------------%
 
 
-%\printanswers
-%\noprintanswers
+%To include the answers use:
+%  pdflatex "\def\showanswers{1} \input{thisfile.tex}"
+\ifdefined\showanswers
+  \printanswers
+\else
+  \noprintanswers
+\fi
 
 \title{Problem Set \#12}
 \author{Econ 103}

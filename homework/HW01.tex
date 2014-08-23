@@ -2,11 +2,14 @@
 \usepackage{amsmath, amssymb}
 \usepackage{hyperref}
 \linespread{1.1}
-%\boxedpoints
-%\pointsinmargin
 
-%\printanswers
-%\noprintanswers
+%To include the answers use:
+%	pdflatex "\def\showanswers{1} \input{thisfile.tex}"
+\ifdefined\showanswers
+  \printanswers
+\else
+  \noprintanswers
+\fi
 
 \title{Problem Set \#1}
 \author{Econ 103}

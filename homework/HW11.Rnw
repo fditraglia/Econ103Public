@@ -4,8 +4,6 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 \usepackage{multirow}
-%\boxedpoints
-%\pointsinmargin
 
 %-------------------DON'T CHANGE---------------------%
 %The following is needed to prevent a conflict between knitr and the exam class involving the package ``framed.''
@@ -28,8 +26,13 @@ options(width = 60)
 @
 %-------------------DON'T CHANGE---------------------%
 
-%\printanswers
-%\noprintanswers
+%To include the answers use:
+%  pdflatex "\def\showanswers{1} \input{thisfile.tex}"
+\ifdefined\showanswers
+  \printanswers
+\else
+  \noprintanswers
+\fi
 
 \title{Problem Set \#11}
 \author{Econ 103}
