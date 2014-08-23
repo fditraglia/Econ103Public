@@ -1,0 +1,5 @@
+#!/bin/sh
+R CMD BATCH BuildHomework.R
+rm *.log
+rm *.out
+rm *.aux
