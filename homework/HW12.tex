@@ -53,9 +53,6 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 \usepackage{multirow}
-%\boxedpoints
-%\pointsinmargin
-
 
 
 
@@ -73,8 +70,13 @@
 %-------------------DON'T CHANGE---------------------%
 
 
-%\printanswers
-%\noprintanswers
+%To include the answers use:
+%  pdflatex "\def\showanswers{1} \input{thisfile.tex}"
+\ifdefined\showanswers
+  \printanswers
+\else
+  \noprintanswers
+\fi
 
 \title{Problem Set \#12}
 \author{Econ 103}
@@ -214,19 +216,6 @@ The columns contained in this dataset are as follows:
 \hlstd{data.url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/child_test_data.csv"}
 \hlstd{data} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data.url)}
 \hlkwd{attach}\hlstd{(data)}
-\end{alltt}
-\begin{verbatim}
-## The following objects are masked from data (position 3):
-## 
-##     kid.score, mom.age, mom.hs, mom.iq
-## The following objects are masked from data (position 4):
-## 
-##     kid.score, mom.age, mom.hs, mom.iq
-## The following objects are masked from data (position 5):
-## 
-##     kid.score, mom.age, mom.hs, mom.iq
-\end{verbatim}
-\begin{alltt}
 \hlstd{reg1} \hlkwb{<-} \hlkwd{lm}\hlstd{(kid.score} \hlopt{~} \hlstd{mom.age)}
 \hlkwd{display}\hlstd{(reg1)}
 \end{alltt}
