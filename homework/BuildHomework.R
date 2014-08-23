@@ -25,6 +25,7 @@ for(i in 1:length(rnw.list)){
   knit(rnw.list[i])
   purl(rnw.list[i], documentation = 0)
 }
+rm(list = ls())
 #
 # The next step is compile all the .tex files 
 # for the problem sets. Note that we do *not*
@@ -55,3 +56,39 @@ HWxx.list <- list.files(".", match.HWxx)
 #
 # We'll start by compiling without answers:
 noanswers <- paste0("pdflatex ", HWxx.list)
+for(i in 1:length(noanswers)){
+  #Run twice to the LaTex counters etc. are correct
+  system(noanswers[i])
+  system(noanswers[i])
+}
+#
+# To compile with answers, the commands are 
+# more complicated. First, we need to pass the
+# appropriate command line argument so that
+# we get "\printanswers." Second, we want to
+# specify the name of the *output file* so that
+# it takes the form HWxx_solutions.pdf. We'll
+# build up the commands in steps:
+#
+# Step 1: generate output file names
+out.names <- paste0(sapply(strsplit(HWxx.list, split = ".", fixed = TRUE), function(x) x[1]), "_solutions")
+#
+# Step 2: build up all of the commands
+commands <- rep(NA, length(out.names))
+for (i in 1:length(out.names)){
+  # Double quotes inside single quotes are 
+  # a more readable way to escape quoted text
+  arg1 <- paste0('-jobname="',  out.names[i], '"')
+  arg2 <- paste0('"\\def\\showanswers{1} \\input{',  HWxx.list[i], '}"')
+  command <- paste("pdflatex", arg1, arg2)
+  commands[i] <- command
+}
+#
+# Step 3: Run each command twice
+for(i in 1:length(out.names)){
+  system(commands[i])
+  system(commands[i])
+}
+#
+# Finally, clean up
+rm(list = ls())
