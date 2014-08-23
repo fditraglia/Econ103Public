@@ -33,6 +33,7 @@ hist(sims, probability = TRUE)
 x <- seq(from = 0, to = max(sims), by = 0.01)
 points(x, dchisq(x, df = 1), type = 'l', col = 'red')
 ```
+
 It works! The histogram of simulations aligns almost perfectly with a plot of the *actual* density of a $\chi^2(1)$ random variable, which we got from ``dchisq``.
 
 Notice that I had to set ``probability = TRUE`` so that we got a histogram of relative frequencies rather than counts. Otherwise the scale of the histogram relative to the $\chi^2$ density would have been wrong.
@@ -65,6 +66,7 @@ hist(sims, probability = TRUE)
 x <- seq(from = min(sims), to = max(sims), by = 0.01)
 points(x, dt(x, df = 1), type = 'l', col = 'red')
 ```
+
 Wow! That looks weird! I told you in class that the Student-t distribution is really *wild*. What I meant was that it generates lots of "outliers" which is why the histogram looks so strange. We can "zoom in" on the region near zero by trimming out these outliers:
 ```{r,cache=TRUE}
 sims <- subset(sims, -6 <= sims & sims <= 6)
@@ -72,6 +74,7 @@ hist(sims, probability = TRUE)
 x <- seq(from = min(sims), to = max(sims), by = 0.01)
 points(x, dt(x, df = 1), type = 'l', col = 'red')
 ```
+
 Again we see that it works well. The Student-t gets much less *wild* when its degrees of freedom increase, so we don't need to do any trimming to make the plot readable:
 ```{r,cache=TRUE}
 sims <- replicate(10000, my.rt(30))
@@ -100,5 +103,5 @@ hist(sims, probability = TRUE)
 x <- seq(from = 0, to = max(sims), by = 0.01)
 points(x, df(x, df1 = 5, df2 = 40), type = 'l', col = 'red')
 ```
-***
+
 I hope this was helpful!

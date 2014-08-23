@@ -58,6 +58,7 @@ p.sim <- table(binom.sims)/10^5
 p.sim
 plot(p.sim, type = 'h')
 ```
+
 What we've done here is approximate a pmf using Monte Carlo simulation. Now let's compare it to the *actual* pmf of a Binomial RV.
 
 ### The Exact pmf for a Bernoulli$(n =10, p=0.5)$ 
@@ -68,15 +69,12 @@ p.true <- dbinom(support, size = 10, prob = 0.5)
 rbind(support, p.true)
 plot(support, p.true, type = 'h')
 ```
+
 The plot of the actual pmf and the associated probabilities match those from the simulation almost perfectly:
 ```{r}
 p.sim - p.true
 ```
 As you can see, the differences are *tiny*. They'd be even smaller if we used more replications.
-***
+
 **I hope this example has given you a bit more intuition about the Binomial RV. I'm not going to assign any exercises here, but it would be a good idea to try some simulation experiments of your own with different values for $n$ and $p$.**
-***
-
-
-
 
