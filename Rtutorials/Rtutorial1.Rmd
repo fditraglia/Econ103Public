@@ -1,7 +1,15 @@
-R Tutorial #1 -- Econ 103 
-========================================================
+---
+title: 'R Tutorial #1 -- Econ 103'
+output:
+  html_document:
+    css: custom.css
+    theme: readable
+    toc: yes
+  pdf_document:
+    highlight: zenburn
+    toc: yes
+---
 
-### Introduction
 This is a long tutorial, but the material is fairly straightforward. If you run into any trouble feel free to post on Piazza. 
 
 
@@ -27,7 +35,7 @@ Note that you can run one line of your script at a time by moving your cursor to
 
 
 
-Part 2: TryR Online Tutorial
+Part 2: TryR
 --------------------------------------------------------
 
 In this section, you'll be completing levels 1-6 on Try R, an online tutorial for learning R.
@@ -42,11 +50,11 @@ For your reference, I have posted a complete transcript of the commands introduc
 
 
 
-Part 3: Some Additional R Material
+Part 3: More Commands
 --------------------------------------------------------
 TryR gives a good foundation for starting out with R, but there are some important commands it doesn't mention. Once you've finished TryR, work through this material. Corresponding exercises are given in Part 4 below. You may also want to read this part before attempting the exercises for TryR Section 6.
 
-### A Note About Variable Names in R
+### Variable Names
 You can use nearly anything as a variable name in R. The only rules are:
   1. Your variable name must not start with a number
   2. and must not include any characters that have a "special meaning" such as ``*`` ``+`` and so on
@@ -226,7 +234,7 @@ Watch what happens if I try to add ``person`` to ``my.matrix``
 cbind(my.matrix, person)
 ```
 R has added quotation marks! Since ``person`` contains character data rather than numeric data, R changed all the *numbers* in ``my.matrix`` to be character data as well. This is called *coercion* and it's what R does when you give it incompatible data types. We can check this by attempting to subtract 1 from the ``weight`` column of this new matrix
-```{r}
+```{r,error=TRUE}
 cbind(my.matrix, person)[,2] - 1
 ```
 It doesn't work.
@@ -525,7 +533,3 @@ head(survivors)
 men <- subset(titanic, sex == 'male')
 tail(men)
 ```
-
-
-
-

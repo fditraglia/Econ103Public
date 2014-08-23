@@ -1,10 +1,17 @@
-Simulating Friends of the Normal
-========================================================
-***
+---
+title: "Friends of the Normal Distribution"
+output:
+  html_document:
+    toc: true
+    theme: readable
+    css: custom.css
+  pdf_document:
+    toc: true
+    highlight: zenburn
+---
+
 In Lecture 13 I introducted three distributions that are derived from the normal: Student-t, $\chi^2$ and $F$. This document uses simulations to, I hope, make these relationships a little clearer. This is the key point **all of these random variables arise from independent standard normals.**
-***
-Full source code for this document is available on my [GitHub page](https://gist.github.com/fditraglia/7121684).
-***
+
 ### The $\chi^2(\nu)$ Random Variable
 This is what you get if you take $\nu$ independent standard normals, square them, and sum the result. The paramter $\nu$ is called the "degrees of freedom." 
 

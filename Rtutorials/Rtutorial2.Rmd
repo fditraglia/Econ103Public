@@ -1,11 +1,18 @@
-R Tutorial #2 -- Econ 103
-========================================================
-
+---
+title: "R Tutorial #2 -- Econ 103"
+output:
+  html_document:
+    toc: true
+    theme: readable
+    css: custom.css
+  pdf_document:
+    toc: true
+    highlight: zenburn
+---
 This tutorial has two parts. In the first part, you'll learn how to implement the summary statistics and graphics from class using R. In the second part, you'll use what you've learned to explore a real-world dataset: the passenger manifest from the Titanic.
 
 
-Part 1: Basic Summary Statistics and Graphics
---------------------------------------------------------
+## Summary Stats and Graphics
 
 ### Load the Data
 In this section we'll work with data from the student survey. Since results for this semester haven't been collected yet, we'll start with data from a previous semester:
@@ -28,20 +35,24 @@ The command for a histogram in R is ``hist``. Its input has to be a vector, not 
 ```{r}
 hist(survey$handedness)
 ```
+
 The default title and axis label aren't very nice. We can change them using the following options
 ```{r}
 hist(survey$handedness, xlab = 'Handedness Score', main = 'Histogram of Handedness Scores', ylab = '# of Students')
 ```
+
 Note that R doesn't care if you use single or double quotes as long are you're consistent (the symbol you start with is the symbol you end with). 
 
 You can change the number of bins via the argument ``breaks``
 ```{r}
 hist(survey$handedness, breaks = 20, xlab = 'Handedness Score', main = 'Histogram of Handedness Scores')
 ```
+
 By default, R produces histograms in terms of *frequencies*. That is, it counts the *numbers* of observations in each bin. To change this to *relative frequencies*, that is proportions, we set the argument ``freq`` to ``FALSE`` 
 ```{r}
 hist(survey$handedness, breaks = 20, freq = FALSE, xlab = 'Handedness Score', main = 'Histogram of Handedness')
 ```
+
 Notice that if you don't supply a label for the y-axis, R defaults to "Frequency" unless you set ``freq = FALSE``, in which case it uses "Density." We'll learn about densities later in the course.
 
 ### ``plot``
@@ -49,26 +60,32 @@ The general-purpose command for plotting in R is rather unimaginatively called `
 ```{r}
 plot(survey$height, survey$handspan)
 ```
+
 Again, these arguments need to be vectors so we select the desired columns of our dataframe. If you change the order, you reverse the plot:
 ```{r}
 plot(survey$handspan, survey$height)
 ```
+
 You can use the same arguments for ``plot`` as you did for ``hist`` to change the title and axis labels and make the plot look cleaner:
 ```{r}
 plot(survey$height, survey$handspan, xlab = "height (in)", ylab = "handspan (cm)")
 ```
+
 Plot has many different arguments that you can use to customize the appearance of your plot. We can change the color of the points:
 ```{r}
 plot(survey$height, survey$handspan, xlab = "height (in)", ylab = "handspan (cm)", col = "red")
 ```
+
 the shape of the points:
 ```{r}
 plot(survey$height, survey$handspan, xlab = "height (in)", ylab = "handspan (cm)", col = "red", pch = 3)
 ```
+
 and we can even plot connected line segments rather than points, although this isn't really useful for the current example:
 ```{r}
 plot(survey$height, survey$handspan, xlab = "height (in)", ylab = "handspan (cm)", col = "red", pch = 3, type = 'l')
 ```
+
 Have a look at the help file for plot and try out some of the other options.
 
 
@@ -78,6 +95,7 @@ The function ``pairs`` is a great way to visualize many columns of a dataframe a
 survey.measurements <- survey[, c("handedness", "handspan", "height")]
 pairs(survey.measurements)
 ```
+
 There seems to be a strong positive relationship between handspan and height but not much of a relationship between handeness and either of the other columns.
 
 It takes a bit of practice to be able to read a pairs plot. Spend a little time looking at this one to figure it out and look at the help file if needed. 
@@ -87,6 +105,7 @@ A boxplot is an alternative way to visualize the distribution of a dataset. The 
 ```{r}
 boxplot(survey$handspan, ylab = "Handspan(cm)")
 ```
+
 The "box" in a boxplot shows the middle 75% of the data. The thick line in the middle is the median, and the lines immediately above and below are the 25th and 75th percentiles. This means that the width of the box equals the interquartile range of the data.
 
 Traditionally, the "whiskers" in a boxplot show the maximum and minimum of the data, but R has an interesting special feature. If there are any observations that are extremely unusual (very big or very small compared to all other observations), it leaves them out when deciding where to put the whiskers and just plots them directly. Such points are called "outliers," like the book by Malcom Gladwell. We see two such outliers in the plot above.
@@ -97,6 +116,7 @@ One of the main advantages of boxplots over histograms is that they are simple e
 ```{r}
 boxplot(handspan ~ sex, data = survey, ylab= "Handspan (cm)", main = "Handspan by Sex")
 ```
+
 The syntax used above is different from what we've seen so far but since it will appear again when we look at regression it's worth spending some time to explain. The syntax ``handspan ~ sex`` indicates that we want ``handspan`` *as a function of* ``height``. The argument ``data = survey`` tells R where to find the variables handspan and sex: they're stored as columns in the dataframe survey.
 
 ### ``table``
@@ -133,13 +153,13 @@ round(100 * prop.table(my.table), digits = 0)
 ### Summary Statistics
 You've met several of the summary statistics from class in R Tutorial #1. I'll remind you of them here and introduce some others. 
 
-#### ``summary``
+### ``summary``
 This command takes a *whole dataframe* as its argument, unlike the other commands for summary statistics. It gives us the mean of each column along with the five-number summary. It also indicates if there are any missing observations (NA's) in the columns:
 ```{r}
 summary(survey)
 ```
 
-#### ``NA``
+### ``NA``
 Remember: R's code for a missing observation is NA. If you try to perform calculations with missing observations, you won't get the answer you expect:
 ```{r}
 sum(survey$height)
@@ -149,25 +169,25 @@ To tell R to ignore missing observations, set the argument ``na.rm`` to ``TRUE``
 sum(survey$height, na.rm = TRUE)
 ```
 
-#### ``mean``
+### ``mean``
 Calculates the sample mean of a numeric vector
 ```{r}
 mean(survey$height, na.rm = TRUE)
 ```
 
-#### ``median``
+### ``median``
 Calculates the sample median of a numeric vector
 ```{r}
 median(survey$height, na.rm = TRUE)
 ```
 
-#### ``var``
+### ``var``
 Calculates the sample variance of a numeric vector
 ```{r}
 var(survey$height, na.rm = TRUE)
 ```
 
-#### ``sd`` 
+### ``sd`` 
 Calculates the sample standard deviation of a numeric vector
 ```{r}
 sd(survey$height, na.rm = TRUE)
@@ -177,13 +197,13 @@ This is identical to the (positive) square root of the sample variance:
 sqrt(var(survey$height, na.rm = TRUE))
 ```
 
-#### ``IQR``
+### ``IQR``
 Calculates the interquartile range of a numeric vector (the 75th percentile minus the 25th percentile)
 ```{r}
 IQR(survey$height, na.rm = TRUE)
 ```
 
-#### ``max, min``
+### ``max, min``
 These do exactly what they say
 ```{r}
 max(survey$height, na.rm = TRUE)
@@ -199,7 +219,7 @@ range(survey$height, na.rm = TRUE)
 ```
 Note that this does *not* compute the *summary statistic* called the range. 
 
-#### ``quantile``
+### ``quantile``
 This function calculates sample quantiles, aka percentiles, of a numeric vector. If you simply pass it a numeric vector with no other arguments, it will give you the five-number summary:
 ```{r}
 quantile(survey$height, na.rm = TRUE)
@@ -275,15 +295,11 @@ cut(grades, c(60, 70, 80, 90, 100), c("D", "C", "B", "A"), right = FALSE)
 Notice that if you used $n$ breakpoints, you need $n-1$ labels since they correspond to the "gaps" between the breaks.
 
 
-
-Part 2: Exploring the Titanic 
---------------------------------------------------------
+## Exploring the Titanic
 Now it's your turn: using what you've learned above, you'll take a closer look at the titanic dataset introduced in R Tutorial #1. You already know enough R to answer some interesting questions, so let's dive in! 
 
 
 #### A Helpful Hint: Taking the mean of a vector of ones and zeros is the *same thing* as calculating the *proportion of ones*.
-
-
 
 1. Read the documentation file for the titanic dataset so that you know what each column in the data represents: http://www.ditraglia.com/econ103/titanic3.txt
 

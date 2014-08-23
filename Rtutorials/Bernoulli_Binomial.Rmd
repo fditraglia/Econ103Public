@@ -1,10 +1,15 @@
-Getting the Binomial RV from the Bernoulli
-========================================================
+---
+title: "Getting the Binomial RV from the Bernoulli"
+output:
+  html_document:
+    toc: false
+    theme: readable
+  pdf_document:
+    toc: false
+    highlight: zenburn
+---
 In class we defined the Binomial$(n,p)$ random variable as the sum of $n$ independent Bernoulli$(p)$ random variables. In other words, the Binomial$(n,p)$ equals the total number of successes (ones) in $n$ independent Bernoulli trials, each with probability of success (one) equal to $p$. The point of this document is to convince you that this definition actually makes sense and really does lead to the formulas from class.
-***
-A complete transcript of the R source code for this document is available on my [Github Page](https://gist.github.com/fditraglia/7011503)
-***
-## A Function to Simulate Bernoulli Random Variables
+
 R doesn't have a built-in function to simulate Bernoulli Random Variables since it treats them as a Binomial$(n=1,p)$ random variable. Let's make our own:
 ```{r}
 #This function simulates n independent, identically distributed Bernoulli Random Variables
@@ -21,7 +26,7 @@ rbern(30, 0.1)
 rbern(30, 0.5)
 rbern(30, 0.9)
 ```
-## A Function to Simulate the Sum of Bernoullis
+
 The function ``rbern`` returns all the *individual* Bernoulli draws. What we need to make a connection with the Binomial RV is a function that returns the *sum* of these draws instead. This is easy: we just call ``rbern`` and take its sum:
 ```{r}
 #This function simulates n independent, identically distributed Bernoulli Random Variables and returns their sum
@@ -38,10 +43,10 @@ rbern.sum(50, 0.1)
 rbern.sum(50, 0.5)
 rbern.sum(50, 0.9)
 ```
-## Finally the Binomial RV
+## The Binomial RV
 It turns out that our function ``rbern.sum`` makes a *single* random draw from a Binomial$(n,p)$ random variable. How do I know this? We constructed it exactly following the definition of the Binomial from class: draw the some Bernoullis and sum them up. But don't take my word for it. Let's verify this with a simulation.
 
-### Simulating 100,000 Binomial$(n = 10, p = 0.5)$ Draws
+### 100,000 Binomial$(n = 10, p = 0.5)$ Draws
 To do this, we'll use ``rbern.sum`` and ``replicate``
 ```{r}
 binom.sims <- replicate(10^5, rbern.sum(10, 0.5))
@@ -63,7 +68,7 @@ p.true <- dbinom(support, size = 10, prob = 0.5)
 rbind(support, p.true)
 plot(support, p.true, type = 'h')
 ```
-The plot of the *actual* pmf and the associated probabilities match those from the simulation *almost perfectly*:
+The plot of the actual pmf and the associated probabilities match those from the simulation almost perfectly:
 ```{r}
 p.sim - p.true
 ```
