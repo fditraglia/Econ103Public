@@ -21,7 +21,7 @@
 require(knitr)
 match.rnw <- glob2rx("*.Rnw")
 rnw.list <- list.files(".", match.rnw)
-for(i in 1:length(f)){
+for(i in 1:length(rnw.list)){
   knit(rnw.list[i])
   purl(rnw.list[i], documentation = 0)
 }
