@@ -88,8 +88,10 @@ sympy-plots-for-*.tex/
 # xindy
 *.xdy
 
-#knitr homework aux files
+#knitr homework aux files and R script stuff
 cache/
 figure/
 *-concordance.tex
 *.Rhistory
+*.RData
+*.Rout
