@@ -374,6 +374,7 @@ The reason we loaded ``zoo`` is because it allows us to make some really nice pl
 ```{r}
 plot(apple.prices)
 ```
+
 We're mainly going to be interested in the closing prices, which we can plot by themselves as follows:
 ```{r}
 plot(apple.prices$Close, main = 'Daily Closing Prices: Apple Computer - 2012', xlab = 'Date', ylab = 'Price')
