@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage{rotating}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\linespread{1.5}
+
+\begin{table}
+\centering
+	\begin{tabular}{l|ll}
+	\hline
+	& Discrete & Continuous\\
+	\hline
+	Support & Countable set of values & Uncountable set of values\\\\
+	Probabilities & pmf: $P(X=x)= p(x)$ &$P(X=x)= 0 \neq f(x)$ for all $x$\\
+	&&$P(a\leq X \leq b) = \int_{a}^{b} f(x)dx=F(b) - F(a)$\\\\
+	Expected Value & $\mu_X=\mathbb{E}[X] =\sum_x xp(x)$ &$\mu_X=\mathbb{E}[X] =\int_{-\infty}^{\infty} xf(x)\; dx$\\
+	& $\mathbb{E}[g(X)] =\sum_x g(x)p(x)$ &$\mathbb{E}[g(X)] =\int_{-\infty}^{\infty} g(x)f(x)\; dx$\\\\
+	 Independence & $p_{XY}(x,y) = p_X(x)p_Y(y)$ & $f_{XY}(x,y) = f_X(x) f_Y(y)$\\
+	\hline
+	\end{tabular}
+	\caption{Differences between Discrete and Continous Random Variables}
+	
+\end{table}
+
+
+
+
+\begin{table}
+\centering
+\begin{tabular}{l|l}
+\hline
+	Probability Mass Function $p(x)$& Probability Density Function $f(x)$\\
+	\hline
+	Discrete Random Variables & Continuous Random Variables\\
+	$p(x) = P(X=x)$& $f(x) \neq P(X=x)=0$\\
+	$p(x)\geq 0$ & $f(x)\geq 0$\\
+	$p(x) \leq 1$ & $f(x)$ \emph{can} be greater than one!\\
+	$\sum_{x}p(x) = 1$&$\int_{-\infty}^{\infty}f(x)\; dx = 1$\\
+	$F(x_0)= \sum_{x\leq x_0} p(x)$& $F(x_0) = \int_{-\infty}^{x_0} f(x)\; dx$\\
+	\hline
+\end{tabular}
+\caption{Properties of probability mass function (pmf) versus probability density function.}
+\end{table}
+
+
+\begin{sidewaystable}
+\centering
+\begin{tabular}{l|l}
+\hline
+Definition of R.V.\ & $X\colon S \rightarrow \mathbb{R}$ (RV is a fixed function from sample space to reals) \\
+Support& Set of all values the RV can take\\
+CDF & $F(x_0) = P(X\leq x_0)$\\
+Definition of Variance&$\sigma_X^2 = Var(X) = E\left[\left(X - E[X]\right)^2 \right]$\\
+Shortcut for Variance&$Var(X) = E[X^2] - \left(E[X]\right)^2$\\
+Definition of Std.\ Dev.\ &$\sigma_X = \sqrt{\sigma_X^2}$\\
+Covariance&$\sigma_{XY} = Cov(X,Y) = E\left[\left(X - E[X]\right)\left(Y - E[Y]\right)\right]$\\
+	Cov.\ and Independence&$X,Y$ indep.\ $\Rightarrow Cov(X,Y) = 0$ but $Cov(X,Y)=0 \nRightarrow X,Y$ indep.\\
+	Functions and Independence& $X,Y$ indep.\ $\Rightarrow g(X), h(Y)$ indep.\ where $g,h$ are any functions\\
+Shortcut for Covariance&$Cov(X,Y) = E[XY] - E[X]E[Y]$\\
+Definition of Correlation & $\rho_{XY} = Corr(X,Y) = \sigma_{XY}/(\sigma_X \sigma_Y)$ \\
+Expectations of Functions& $E[g(X)] \neq g\left( E[X]\right)$\\
+Linear Functions & $E[a + bX] = a + b E[X]$ where $a,b$ are constants and $X$ is a RV\\
+&  $Var(a+bX) = b^2 Var(X)$  where $a,b$ are constants and $X$ is a RV \\
+& $E[X_1 + \hdots + X_k] = E[X_1] + \hdots E[X_k]$ where $X_1, \hdots, X_k$ are \emph{any} RVs\\
+& $Var(X_1 + \hdots + X_k) = Var(X_1) + \hdots Var(X_k)$ if $X_1, \hdots, X_k$ are \emph{independent} RVs\\
+&$Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X,Y)$ for \emph{any} RVs $X,Y$ and constants $a,b$\\
+\hline
+\end{tabular}
+\caption{Essential facts that hold for \emph{all} random variables, continuous or discrete}
+\end{sidewaystable}
+
+
+\begin{sidewaystable}
+\centering
+\begin{tabular}{l|l|l|l}
+&Sample Statistic & Population Parameter & Population Parameter\\
+\hline
+Setup & Sample from a population&  Population viewed as list of objects& Population viewed as a RV\\
+Mean &$\bar{x} = \displaystyle\frac{1}{n}\sum_{i=1}^n x_i$&$\displaystyle \mu_X = \frac{1}{N}\sum_{i=1}^N x_i$&Discrete $\;\;\; \displaystyle \mu_X = \sum_{x}xp(x)$\\
+&&&Continuous $\;\;\; \mu_X = \int_{-\infty}^\infty xf(x)\; dx$\\
+&&&\\
+Variance &$\displaystyle s_X^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$&$\displaystyle \sigma_X^2 = \frac{1}{N} \sum_{i=1}^N (x_i - \mu_X)^2$& $\sigma^2_X = E\left[\left(X - E[X]\right)^2 \right]$\\
+&&&\\
+Std.\ Dev.\ &$s_X = \sqrt{s^2_X}$&$\sigma_X = \sqrt{\sigma^2_x}$&$\sigma_X = \sqrt{\sigma^2_x}$\\
+&&&\\
+Covariance &$\displaystyle s_{XY} = \frac{1}{n-1} \sum_{i=1}^n (x_i -\bar{x})(y_i - \bar{y})$&$\sigma_{XY} = \displaystyle \frac{1}{N} \sum_{i=1}^N (x_i -\mu_X)(y_i - \mu_Y)$&$\sigma_{XY} = E\left[ \left(X - \mu_X \right) \left(Y - \mu_Y \right)  \right]$ \\
+&&&\\
+Correlation &$r_{XY} = s_{XY}/(s_X s_Y)$&$\rho_{XY} = \sigma_{XY}/(\sigma_X \sigma_Y)$& $\rho_{XY} = \sigma_{XY}/(\sigma_X \sigma_Y)$\\
+\hline
+\end{tabular}
+
+\end{sidewaystable}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
