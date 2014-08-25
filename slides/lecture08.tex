@@ -1,58 +1,16 @@
-\documentclass[handout]{beamer}  
+%To compile as handout, use
+%pdflatex "\def\ishandout{1} \input{filename.tex}"
+%Defaults to non-handout mode (with slide reveals)
+\ifdefined\ishandout
+  \documentclass[handout]{beamer}
+\else
+  \documentclass{beamer}
+\fi
+ 
+\usepackage{econ103slides} 
 
-%Smaller gap at between top and bottom of block when there are displayed equations
-\addtobeamertemplate{block begin}{\setlength\abovedisplayskip{0pt}}
-{\setlength{\belowdisplayskip}{0pt}}
-
-
-\usepackage{setspace}
-\linespread{1.3}
-\usepackage{amssymb, amsmath, amsthm} 
-\usepackage{rotating}
-\usepackage{multirow}
-\usepackage{graphicx}
-\usepackage{synttree}
-\usepackage{verbatim}
-\usepackage{fancybox}
-\usepackage{color}
-\usepackage{tikz}
-\usetikzlibrary{shapes,backgrounds}
-\usepackage{hyperref}
-\usetikzlibrary{trees}
-\newcommand{\p}{\mathbb{P}}
-\newcommand{\expect}{\mathbb{E}}
-
-
-%\setbeamertemplate{blocks}[rounded][shadow=true] 
-%gets rid of bottom navigation bars
-\setbeamertemplate{footline}{
-   \begin{beamercolorbox}[ht=4ex,leftskip=0.3cm,rightskip=0.3cm]{author in head/foot}
-%    \usebeamercolor{UniBlue}
-    \vspace{0.1cm}
-    %\insertshorttitle \ - \insertdate 
-    \hfill \insertframenumber / \inserttotalframenumber
-   \end{beamercolorbox}
-   \vspace*{0.1cm}
-} 
-
-
-%gets rid of navigation symbols
-\setbeamertemplate{navigation symbols}{}
-
-
-%Include or exclude the notes?
-%\setbeameroption{show notes}
-\setbeameroption{hide notes}
-
-
-\title[Econ 103]{Economics 103 -- Statistics for Economists} 
-\author[F. DiTraglia]{Francis J.\ DiTraglia}
-\institute{University of Pennsylvania}
-\date{Lecture 8}
+\date{Lecture \# 8}
 \begin{document} 
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -80,32 +38,6 @@ Notion of event subsumed by that of \emph{\alert{Random Variable}}
 
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{Don't Be Surprised if You're a Little Confused}
-%
-%There is a conceptual hurdle involved in the transition to thinking about probabilities in terms of Random Variables. This is a point in the course where some students start to feel ``lost.'' To keep this from happening to you, it is very important to focus on the intuition and the connection to what we have already learned.
-% 
-%\vspace{2em}
-%Don't be afraid to ask questions about this material, either in person or on Piazza. Random Variables are confusing at first, but understanding them will make the rest of the course \alert{much easier}.
-%
-%\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Why Random Variables?}
-%  
-% \begin{block}{Statistics}
-% Use samples to learn about populations.
-% \end{block}
-%  
-% \begin{block}{Preliminaries}
-% Take population as given and then work out the probabilistic behavior of samples.
-% \end{block}
-%  
-% \begin{block}{Random Variables as Probability Models}
-% A mathematical abstraction to represent the key features of sampling.
-% \end{block}
-% \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{A New Way of Thinking about Populations}
@@ -226,30 +158,6 @@ Although a Random Variable is a deterministic function, the \alert{\emph{values 
 \caption{This random variable maps the outcomes of flipping a coin $\{\mbox{Heads}, \mbox{Tails}\}$ to the set $\{0,1\}\subseteq \mathbb{R}$. Hence, its support is $\{0,1\}$}
 \end{figure}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Why map to $\mathbb{R}$?}
-
-% We can do math with real numbers, but we can't do math with ``Heads'' or ``Tails.'' The point is to make our lives easier at the same time as we develop a richer framework for thinking about probabilities.
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% 	\frametitle{Countable and Uncountable Sets}
-% 	 
-% 	\begin{block}{Countable}
-% 	All elements can be enumerated in a list: $1, 2, 3, \hdots$. Does \emph{not} mean finite, although finite sets are countable. 
-	
-% 	 
-% 	\emph{Examples:} any finite set, $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$.
-% 	\end{block}
-% 	 
-% 	\begin{block}{Uncountable}
-% 	All elements \emph{cannot} be enumerated in a list. Implies infinite, but some infinities are larger than others!
-	
-% 	 
-% 	\emph{Examples:} $\mathbb{R}$, any subset made up of intervals on $\mathbb{R}$
-% 	 \end{block}
-% \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Types of Random Variables}
@@ -262,9 +170,6 @@ Although a Random Variable is a deterministic function, the \alert{\emph{values 
 	Takes on an uncountably infinite number of different values, e.g.\ all real numbers in the interval $[0,1]$ or $(-\infty, \infty)$.
 	\end{block}
 
-	%  	
-	% \vspace{1em}
-	% \alert{It's possible to give a unified treatment of continuous and discrete RVs but for this class we'll treat them separately. We'll start with discrete RVs since they're simpler, but most of the ideas will carry over to continuous RVs.}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -374,11 +279,12 @@ where ``all $x$'' is shorthand for ``all $x$ in the support of $X$.''
 
 \vspace{2em}
 \begin{alertblock}{But Where Do These Come From?}
-The key point is that $\{X=x\}$ is an \emph{event}. We proceed by working backwards until we are in familiar territory...
+The key point is that $\{X=x\}$ is an \emph{event}. We proceed by working backwards until we are in familiar territory.
 \end{alertblock}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \frametitle{Which Event Corresponds to $\{X=x_1\}$?}
 
@@ -666,18 +572,7 @@ $\{0,1\}$ -- 1 traditionally called ``success,'' 0 ``failure''
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% Notice that when I defined the Bernoulli Random Variable on the previous slide \emph{\alert{I didn't say anything about the random experiment in the background.}} There's no problem with this, in fact it is how we'll proceed from now on: talking about random variables without being explicit about the random experiment that gives rise to them.
 
-% \vspace{1em}
-
-%  
-
-%  \begin{block}{Why?} 
-%  There is an unlimited number of random experiments that give rise to the same random variable. We can study \emph{\alert{all of them at the same time}} by simply studying the random variable that represents them.
-%   \end{block} 
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Average Winnings Per Trial \hfill \includegraphics[scale = 0.05]{./images/clicker}}
 If the realizations of the coin-flip RV were \alert{payoffs}, how much would you expect to win per play \emph{on average} in a long sequence of plays?
@@ -722,5 +617,10 @@ $$\sum_{\mbox{all} \; x} x \cdot p(x) = 0 \cdot (1-p) + 1 \cdot p = p$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}
+	\begin{center}
+		\Huge Next Time: Midterm I
+	\end{center}
+\end{frame}
 
 \end{document}
