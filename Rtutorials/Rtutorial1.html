@@ -88,7 +88,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>This is a long tutorial, but the material is fairly straightforward. If you run into any trouble feel free to post on Piazza.</p>
 <div id="part-1-installing-r" class="section level2">
 <h2>Part 1: Installing R</h2>
-<p>Carry out the following steps <em>in order</em> to install R and RStudio.</p>
+<p>Carry out the following two steps <em>in order</em></p>
 <ol style="list-style-type: decimal">
 <li><p>Go to <a href="http://cran.r-project.org/">http://cran.r-project.org/</a> and install the version of R for your operating system.</p></li>
 <li><p>Go to <a href="http://rstudio.org/download/desktop">http://rstudio.org/download/desktop</a> and click the link listed under “Recommended for Your System”. Follow the instructions to install RStudio.</p></li>
@@ -187,8 +187,10 @@ z</code></pre>
 ## [5,] 5 10</code></pre>
 <p>and <code>rbind</code> is short for “row bind”</p>
 <pre class="r"><code>z &lt;- rbind(x,y)
-x</code></pre>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
+z</code></pre>
+<pre><code>##   [,1] [,2] [,3] [,4] [,5]
+## x    1    2    3    4    5
+## y    2    4    6    8   10</code></pre>
 <p>We can use these commands in more complicated ways as well:</p>
 <pre class="r"><code>rbind(z,x)</code></pre>
 <pre><code>##   [,1] [,2] [,3] [,4] [,5]
