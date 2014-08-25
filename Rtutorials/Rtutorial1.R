@@ -50,7 +50,7 @@ z
 
 
 z <- rbind(x,y)
-x
+z
 
 
 
@@ -271,7 +271,7 @@ sum(savings)
 
 
 #Ex. 2-12
-years <- c(2009, 2010, 2011, 2012)
+years <- c(2009, 2010, 2011, 2012, 2013)
 income <- c(50000, 52000, 52500, 48000, NA)
 #If we just use sum, we'll get NA
 sum(income)
@@ -370,7 +370,7 @@ exp(sum(log(x)))
 
 #Ex. Additional-3
 numbers <- 1:10
-square.roots <- sqrt(foo)
+square.roots <- sqrt(numbers)
 cbind(numbers, square.roots)
 
 
