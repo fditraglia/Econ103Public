@@ -14,10 +14,9 @@ This is a long tutorial, but the material is fairly straightforward. If you run 
 
 
 
-Part 1: Installing R
---------------------------------------------------------
+## Part 1: Installing R
 
-Carry out the following steps *in order* to install R and RStudio.
+Carry out the following two steps *in order*
 
 1. Go to http://cran.r-project.org/ and install the version of R for your operating system.
 
@@ -127,7 +126,7 @@ z
 and ``rbind`` is short for "row bind"
 ```{r}
 z <- rbind(x,y)
-x
+z
 ```
 We can use these commands in more complicated ways as well:
 ```{r}
@@ -388,7 +387,7 @@ sum(savings)
 12. Redefine the vector ``years`` so that it runs from 2009-2013. Redefine ``income`` to match but record ``income`` for 2013 as ``NA`` (this is R's code for missing data). How can we compute the sum of the elements of this new ``income`` vector?
 ```{r echo=FALSE,results='hide',fig.show='hide'}
 #Ex. 2-12
-years <- c(2009, 2010, 2011, 2012)
+years <- c(2009, 2010, 2011, 2012, 2013)
 income <- c(50000, 52000, 52500, 48000, NA)
 #If we just use sum, we'll get NA
 sum(income)
@@ -507,7 +506,7 @@ exp(sum(log(x)))
 ```{r echo=FALSE,results='hide',fig.show='hide'}
 #Ex. Additional-3
 numbers <- 1:10
-square.roots <- sqrt(foo)
+square.roots <- sqrt(numbers)
 cbind(numbers, square.roots)
 ```
 4. Repeat the preceding exercise, but arrange the numbers in rows rather than columns.

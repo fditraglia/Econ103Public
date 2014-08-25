@@ -250,6 +250,7 @@ titanic$age.group <- age.group
 
 
 
+#Ex-12
 men <- subset(titanic, sex == 'male')
 women <- subset(titanic, sex == 'female')
 results.men <- by(men$survived, men[,c("age.group", "pclass")], mean, na.rm = TRUE)

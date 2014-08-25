@@ -26,7 +26,6 @@ plot(x, y, type = "l")
 x <- seq(from = -2, to = 2, by = 0.01)
 y <- x^3
 plot(x, y, type = 'l')
-# Note that the exercise said to plot x^2 not x^3
 
 
 

@@ -380,6 +380,7 @@ titanic$age.group <- age.group
 ```
 12. Create two tables: one for men and one for women. Each table should show break down survival proportions by pclass and age.group. [Hint: use ``subset`` and ``by``] What do your results suggest? Is there any thing wrong with the way we defined the "Senior" age group in the previous part? 
 ```{r echo=FALSE,results='hide',fig.show='hide'}
+#Ex-12
 men <- subset(titanic, sex == 'male')
 women <- subset(titanic, sex == 'female')
 results.men <- by(men$survived, men[,c("age.group", "pclass")], mean, na.rm = TRUE)
