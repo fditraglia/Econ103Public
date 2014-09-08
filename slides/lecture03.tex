@@ -30,15 +30,15 @@
 \begin{block}{Range}
 Maximum Observation - Minimum Observation
 \end{block}
-\pause
+
 \begin{block}{Interquartile Range (IQR)}
 IQR= $\mbox{Q}_3 - \mbox{Q}_1$
 \end{block}
-\pause
+
 \begin{block}{Variance}
 $\displaystyle s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$
 \end{block}
-\pause
+
  \begin{block}{Standard Deviation}
 	$s = \sqrt{s^2}$
 \end{block}
@@ -50,15 +50,15 @@ $\displaystyle s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$
 \begin{block}{Variance}
 Essentially the average squared distance from the mean. Sensitive to both skewness and outliers.
 \end{block}
-\pause
+
 \begin{block}{Standard Deviation}
 $\sqrt{\mbox{Variance}}$, but more convenient since \alert{same units as data}
 \end{block}
-\pause
+
 \begin{block}{Range}
 Difference between larges and smallest observations. \emph{Very} sensitive to outliers. Displayed in boxplot.
 \end{block}
-\pause
+
 \begin{block}{Interquartile Range}
 Range of middle 50\% of the data. Insensitive to outliers, skewness. Displayed in boxplot.
 \end{block}
@@ -133,22 +133,7 @@ Variance measures average squared distance from center, taking \alert{mean} as t
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 
-\frametitle{Skewness -- A Measure of Symmetry}
-
-\begin{center}
-\fbox{$\displaystyle\mbox{Skewness} = \frac{1}{n}\frac{\sum_{i=1}^n (x_i - \bar{x})^3}{s^3}$}
-\end{center}
-\pause
-\begin{block}{What do the values indicate?}Zero $\Rightarrow$ symmetry, positive right-skewed, negative left-skewed.\end{block} \pause
-\begin{block}{Why cubed?}To get the desired sign.\end{block} \pause
-\begin{block}{Why divide by $s^3$?}So that skewness is unitless\end{block}\pause
-\begin{block}{Rule of Thumb}Typically (but not always), right-skewed $\Rightarrow$ mean $>$ median\\ left-skewed $\Rightarrow$ mean $<$ median\end{block}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \centering \includegraphics[scale = 0.75]{./images/handspan_skew}
@@ -465,11 +450,11 @@ Please respond with your remote.
 \begin{block}{Two Samples of Numeric Data}
 $x_1, \hdots, x_n$ and $y_1, \hdots, y_n$
 \end{block}
-\pause
+
 \begin{block}{Dependence}
 Do $x$ and $y$ both tend to be large (or small) at the same time?
 \end{block}
-\pause
+
 
 \begin{block}{Key Point}
 Use the idea of centering and standardizing to decide what ``big'' or ``small'' means in this context.
