@@ -1,55 +1,17 @@
-\documentclass[handout]{beamer}  
+%To compile as handout, use
+%pdflatex "\def\ishandout{1} \input{filename.tex}"
+%Defaults to non-handout mode (with slide reveals)
+\ifdefined\ishandout
+  \documentclass[handout]{beamer}
+\else
+  \documentclass{beamer}
+\fi
+ 
+\usepackage{econ103slides} 
 
-%Smaller gap at between top and bottom of block when there are displayed equations
-\addtobeamertemplate{block begin}{\setlength\abovedisplayskip{0pt}}
-{\setlength{\belowdisplayskip}{0pt}}
-
-
-\usepackage{setspace}
-\linespread{1.3}
-\usepackage{amssymb, amsmath, amsthm} 
-\usepackage{rotating}
-\usepackage{multirow}
-\usepackage{graphicx}
-\usepackage{synttree}
-\usepackage{verbatim}
-\usepackage{fancybox}
-\usepackage{color}
-\usepackage{tikz}
-\usetikzlibrary{shapes,backgrounds}
-\usepackage{hyperref}
-\usetikzlibrary{trees}
-\newcommand{\p}{\mathbb{P}}
-\newcommand{\expect}{\mathbb{E}}
-
-
-%\setbeamertemplate{blocks}[rounded][shadow=true] 
-%gets rid of bottom navigation bars
-\setbeamertemplate{footline}{
-   \begin{beamercolorbox}[ht=4ex,leftskip=0.3cm,rightskip=0.3cm]{author in head/foot}
-%    \usebeamercolor{UniBlue}
-    \vspace{0.1cm}
-    %\insertshorttitle \ - \insertdate 
-    \hfill \insertframenumber / \inserttotalframenumber
-   \end{beamercolorbox}
-   \vspace*{0.1cm}
-} 
-
-
-%gets rid of navigation symbols
-\setbeamertemplate{navigation symbols}{}
-
-
-%Include or exclude the notes?
-%\setbeameroption{show notes}
-\setbeameroption{hide notes}
-
-
-\title[Econ 103]{Economics 103 -- Statistics for Economists} 
-\author[F. DiTraglia]{Francis J.\ DiTraglia}
-\institute{University of Pennsylvania}
-\date{Lecture 9}
+\date{Lecture \# 9}
 \begin{document} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[plain]
@@ -57,6 +19,7 @@
 	
 
 \end{frame} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -339,7 +302,7 @@ Let $X$ be a RV and $a,b$ be constants. Then:
 \begin{block}{Variance (Var)}
 	$$\sigma^2 = Var(X) = E\left[ (X - \mu)^2\right] = E\left[ (X - E[X])^2\right]$$
 \end{block}
-\pause
+
 
 \begin{block}{Standard Deviation (SD)}
 $$\sigma = \sqrt{\sigma^2} = SD(X)$$
@@ -369,7 +332,7 @@ It follows that:
 
 Recall that	$\displaystyle \mu = E[X] = \sum_{\mbox{all } x} xp(x)$
 
-\pause
+
 \vspace{3em}
 
 $$Var(X) = E\left[ (X - \mu)^2 \right] =\sum_{\mbox{all } x} (x - \mu)^2 p(x)$$
@@ -385,7 +348,7 @@ This is \emph{not} the definition, it's a shortcut for doing calculations:
 	Var(X) = E\left[ (X - \mu)^2 \right] = E[X^2] - \left(E[X]\right)^2
 \end{eqnarray*}
 
-\alert{We'll prove this next week.}
+\alert{We'll prove this in an upcoming lecture.}
 
 \end{frame}
 
@@ -395,19 +358,23 @@ This is \emph{not} the definition, it's a shortcut for doing calculations:
 \begin{frame}
 \frametitle{Variance of Bernoulli RV -- via the Shortcut Formula}
 
-\begin{block}{Step 1 -- $E[X]$} \pause
+\begin{block}{Step 1 -- $E[X]$} 
 $\mu = E[X] = \displaystyle \sum_{x \in \{0,1\}} p(x) \cdot x = (1-p) \cdot 0 + p \cdot 1 = p$
 \end{block}
 
-\begin{block}{Step 2 -- $E[X^2]$} \pause
+\pause
+
+\begin{block}{Step 2 -- $E[X^2]$} 
 \begin{eqnarray*}
 	E[X^2] = \sum_{x \in \{0,1\}} x^2 p(x) = 0^2 (1-p) + 1^2 p = p
 \end{eqnarray*}
 \end{block}
 
-\begin{block}{Step 3 -- Combine with Shortcut Formula} \pause
+\pause
+
+\begin{block}{Step 3 -- Combine with Shortcut Formula} 
 \begin{eqnarray*}
-	\sigma^2 = Var[X] = E[X^2] - \left(E[X]\right)^2 = \pause p - p^2 = \pause p(1-p)
+	\sigma^2 = Var[X] = E[X^2] - \left(E[X]\right)^2 = \ p - p^2 =  p(1-p)
 \end{eqnarray*}
 \end{block}
 
@@ -420,7 +387,7 @@ $\mu = E[X] = \displaystyle \sum_{x \in \{0,1\}} p(x) \cdot x = (1-p) \cdot 0 + 
 \begin{frame}
 \frametitle{Variance of Bernoulli RV -- Without Shortcut}
 
-\alert{You will fill in the missing on the problem set...}
+\alert{You will fill in the missing steps on Problem Set 5.}
 
 \begin{eqnarray*}
 	\sigma^2 &=& Var(X) = \sum_{x \in \{0,1\}} (x - \mu)^2 p(x)\\
@@ -495,7 +462,7 @@ Suppose we flip a fair coin 3 times. What is the probability that we get exactly
 \pause
 
 \begin{block}{Answer}
-Three basic outcomes make up this event: $\{HHT, HTH, THH\}$. \pause Each of these has probability $1/8 = 1/2 \times 1/2 \times 1/2$ so, since basic outcomes are mutually exclusive we sum to get \pause \alert{$3/8 = 0.375$}
+Three basic outcomes make up this event: $\{HHT, HTH, THH\}$. \pause Each of these has probability $1/8 = 1/2 \times 1/2 \times 1/2$ so, since basic outcomes are mutually exclusive we sum to get \alert{$3/8 = 0.375$}
 \end{block}
 
 \end{frame}
@@ -506,14 +473,14 @@ Three basic outcomes make up this event: $\{HHT, HTH, THH\}$. \pause Each of the
 Suppose we flip an \emph{unfair} coin 3 times, where the probability of heads is 1/3. What is the probability that we get exactly 2 heads?
 \end{block}
 
-\pause
+
 
 \begin{block}{Answer}
-The basic outcomes of the experiment are no longer equally likely, but those with exactly two heads \emph{\alert{remain so}} \pause
+The basic outcomes of the experiment are no longer equally likely, but those with exactly two heads \emph{\alert{remain so}} 
 	\begin{eqnarray*}
-	 P(HHT) &=&  (1/3)^2 (1 - 1/3) =  2/27\\ \pause
-	 P(THH) &=&2/27\\ \pause
-	 P(HTH) &=&2/27 \pause
+	 P(HHT) &=&  (1/3)^2 (1 - 1/3) =  2/27\\ 
+	 P(THH) &=&2/27\\ 
+	 P(HTH) &=&2/27 
 	\end{eqnarray*}
 	Summing gives \alert{$2/9 \approx 0.22$}
 \end{block}
@@ -526,7 +493,7 @@ Suppose we flip an unfair coin \emph{4} times, where the probability of heads is
 
 \vspace{2em}
 
-\pause
+
 
 \begin{columns}
 \column{0.35\textwidth}
@@ -547,17 +514,17 @@ $${4\choose 2}(1/3)^2(2/3)^2$$
 
 \begin{frame}
 \frametitle{Binomial Random Variable}
-Let $X = $ the sum of $n$ independent Bernoulli trials, each with probability of success $p$. \pause \alert{Then we say that:
-		$X \sim \mbox{Binomial}(n,p)$} \pause
+Let $X = $ the sum of $n$ independent Bernoulli trials, each with probability of success $p$.  \alert{Then we say that:
+		$X \sim \mbox{Binomial}(n,p)$} 
 
 \vspace{2em}
-\begin{block}{Parameters}\pause
+\begin{block}{Parameters}
 $p =$ probability of ``success,'' $n=$ \# of trials
-\end{block}\pause
-\begin{block}{Support} \pause
-$\{0, 1, 2, \hdots, n\}$ \pause
 \end{block}
-\begin{block}{Probability Mass Function (pmf)} \pause
+\begin{block}{Support} 
+$\{0, 1, 2, \hdots, n\}$ 
+\end{block}
+\begin{block}{Probability Mass Function (pmf)} 
 $$p(x) = {n \choose x} p^x (1-p)^{n-x}$$ 
 \end{block}
 \end{frame}
@@ -588,8 +555,9 @@ $$p(x) = {n \choose x} p^x (1-p)^{n-x}$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-	\frametitle{\href{http://ditraglia.com/econ103/Bernoulli_Binomial.html}{http://ditraglia.com/econ103/Bernoulli\_Binomial.html}}
-\framesubtitle{Source Code on my \href{https://gist.github.com/fditraglia/7011503}{\fbox{Github Page}}}
+	\frametitle{\href{http://fditraglia.github.com/Econ103Public/Rtutorials/Bernoulli_Binomial.html}{\small http://fditraglia.github.com/Econ103Public/Rtutorials/Bernoulli\_Binomial.html}}
+
+\framesubtitle{Source Code on my \href{https://github.com/fditraglia/Econ103Public/blob/master/Rtutorials/Bernoulli_Binomial.R}{\fbox{Github Page}}}
 
 
 
@@ -600,38 +568,6 @@ $$p(x) = {n \choose x} p^x (1-p)^{n-x}$$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-% \frametitle{Binomial pmfs for Assorted Parameter Values}
-% \begin{figure}
-% \centering
-% \includegraphics[scale=0.35]{./images/binom_pmfs}
-% \end{figure}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Corresponding Binomial CDFs}
-% \begin{figure}
-% \centering
-% \includegraphics[scale=0.35]{./images/binom_cdfs}
-% \end{figure}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{Binomial Gives a Model for Polling a Random Sample}
-%
-%\begin{itemize}
-%	\item Suppose a fraction $p$ of the US population supports gay marriage and you poll a random sample of size $n$. \pause
-%	\item Binomial pmf lets you work out the probability of any outcome of your poll in terms of $n$ and $p$. \pause
-%	\item If $n$ is large, the proportion who support gay marriage in your \alert{\alert{sample}} is very unlikely to be far from $p$, the true \alert{population} proportion.
-%\end{itemize}
-% 
-% \pause
-%\hfill\alert{We'll learn more about the Binomial RV next week...}
-%\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 
 \end{document}
