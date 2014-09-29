@@ -1,0 +1,268 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+%\boxedpoints
+%\pointsinmargin
+
+\printanswers
+%\noprintanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm Examination \#1, Page \thepage\ of \numpages}
+              {September 29th, 2014}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Midterm Examination \#1\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} September 29th, 2014}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+
+
+
+
+\question Mark each statement as True or False. If you mark a statement as False, provide a brief explanation. If you mark a statement as True, no explanation is needed.
+ 	\begin{parts} 
+    \part[4] In a double-blind, randomized controlled trial, neither the patients participating in the study nor the statistician analyzing the results knows who was given the placebo and who was given the real drug.
+      \begin{solution}[1.2in]
+        FALSE: in a double-blind RCT it is the patients and \emph{experimenters} who are blind, not the statistician. To find out if the treatment worked the statistician definitely needs to know which patients received it!
+      \end{solution}
+    \part[4] In large populations that are approximately bell-shaped, roughly 95\% of observations will lie within one standard deviation of the mean.
+      \begin{solution}[1.2in]
+        FALSE: roughly 68\% of observations will lie within one standard deviation of the mean. Another way to correct this is to say that roughly 95\% of observations will liw within \emph{two} standard deviations of the mean.
+      \end{solution}
+    \part[4] The average deviation of a data set from its mean is always zero.
+      \begin{solution}[1.2in]
+        TRUE. We showed in class that $\frac{1}{n}\sum_{i=1}^{n} (x_i - \bar{x}) = 0$
+      \end{solution}
+    \part[4] If the correlation between $x$ and $y$ is positive, then it must be smaller than the covariance between $x$ and $y$.
+      \begin{solution}[1.2in]
+        FALSE: $r_{xy} = s_{xy}/(s_x s_y)$ so if, for example, $s_x$ and $s_y$ are both less than one, the correlation will be \emph{larger} than the covariance.
+      \end{solution}
+ 		\part[4] The complement rule is one of the axioms of probability.
+      \begin{solution}[1.2in]
+        FALSE: it is a \emph{consequence} of the axioms, not an axiom itself.
+      \end{solution}
+    \part[4] The intuition behind the addition rule is simply this: don't double-count $A\cap B$ when calculating the probability of $A\cup B$.
+      \begin{solution}[1.2in]
+        TRUE
+      \end{solution}
+    \part[4] A random variable is neither random nor a variable: it is a fixed function.
+    \begin{solution}[1.2in]
+      TRUE. This is the definition from class.
+    \end{solution}
+    \part[4] If $X$ is a random variable, the CDF $F(x_0)$ of $X$ gives the probability that $X$ exceeds a specified threshold $x_0$.
+      \begin{solution}[1.2in]
+        FALSE: it gives the probability that $X$ \emph{does not} exceed $x_0$, namely $P(X \leq x_0)$.
+      \end{solution}
+    \part[4] The support set of the Bernoulli random variable is $\{0,1\}$.
+      \begin{solution}[1.2in]
+        TRUE
+      \end{solution}
+    \part[4] Let $X$ be a random variable with support set $\{-1, 0, 1\}$ and probability mass function  $p(-1) = 1/2, p(0) = 1/4, p(1) = 1/4$. Then $E[X]=0$.
+      \begin{solution}[1.2in]
+         $1/2 \times -1 + 1/4 \times 0 + 1/4 \times 1 = -1/2 + 1/4 = -1/4 \neq 0$
+       \end{solution} 
+    \end{parts}
+
+\newpage
+
+\question Suppose I flip a fair coin three times. Let $A$ be the event that I get a heads on the first toss and $B$ be the event that I get tails on the third toss. When listing outcomes of the experiment, use the notation \texttt{[T/H][T/H][T/H]}. For example, \texttt{THT} indicates tails on the first toss, heads on the second, and tails on the third.
+  \begin{parts}
+    \part[3] How many basic outcomes are there in the sample space for this example?
+      \begin{solution}[1.2in]
+      $2 \times 2\times 2 = 8$ or you can write them all out and count by hand. 
+      \end{solution}
+    \part[3] Which basic outcomes make up the event $A\cap B$?
+      \begin{solution}[1.2in]
+        \texttt{HHT, HTT}
+      \end{solution}
+    \part[3] Which basic outcomes make up the event $A \cup B$?
+      \begin{solution}[1.2in]
+        Everything  \emph{except} \texttt{TTH,THH}. In other words:
+        \texttt{HHH, HTH, TTT, THT, HHT, HTT}.
+      \end{solution}
+    \part[3] Which basic outcomes make up the event $(A\cup B)\cap(A\cap B)$?
+      \begin{solution}[1.2in]
+        \texttt{HHT, HTT}
+      \end{solution}
+    \part[3] Calculate the conditional probability of $A\cap B$ given $A \cup B$.
+      \begin{solution}[1.2in]
+        $P\left[(A\cup B)\cap(A\cap B)\right] = P(A\cap B) = 2/8 = 1/4$ and $P(A\cup B) = 6/8 = 3/4$. Hence, the conditional probability is $(1/4)/(3/4) = 1/3$.
+      \end{solution}
+  \end{parts}
+
+
+
+\newpage
+
+\question An R dataframe called \texttt{height.data} records the annual earnings in US dollars, height in inches, and sex of 1192 individuals. In the sample, the mean earnings are \$20,400 and the mean height is 67 inches. Here are the first few rows of the dataframe:
+\begin{verbatim}
+   earn height    sex
+  50000     74   male
+  60000     66 female
+  30000     64 female
+  50000     63 female
+  51000     63 female
+   9000     64 female
+\end{verbatim}
+
+\begin{parts}
+  \part[4] Suppose I were to use a linear regression of the form $\widehat{y} = a + bx$ to predict \texttt{earn} from \texttt{height}. What would be the units of $a$? What would be the units of $b$?
+    \begin{solution}[1.5in]
+      The units of $a$ would be dollars, and the units of $b$ would be dollars per inch.  
+    \end{solution}
+  \part[3] Write out the full R command you would use to calculate $a$ and $b$ from the previous part using the data contained in \texttt{height.data}.
+    \begin{solution}[1.5in]
+\begin{verbatim}
+lm(earn ~ height, data = height.data)
+\end{verbatim}
+    \end{solution}
+  \part[4] The results from the preceding part are $\widehat{y} = -60000 + 1200 x$. Who would you predict will earn more: someone who is 5 feet tall or someone who is 6 feet tall? What difference in earnings would you predict for these two individuals?
+    \begin{solution}[1.5in]
+    We would predict that the taller person would earn $12 \times 1200 = 14400$ dollars more per year.
+  \end{solution}
+  \part[8] Suppose I were to create an R vector called \texttt{height.center}, as follows
+\texttt{height.center <- height.data\$height - mean(height.data\$height)}\\
+  and then run a linear regression predicting \texttt{earn} from \texttt{height.center}. What would be the regression intercept? Explain your answer.
+  \begin{solution}[1.5in]
+    The vector \texttt{height.center} is a \emph{centered} version of \texttt{height}, constructed by subtracting the sample mean height from each observation. As we showed in clase, the average deviation of any dataset from its mean is zero, so the sample mean of \texttt{height.center} is zero. Thus, if we run a linear regression with \texttt{height.center} as the $x$-variable, we'll have $a = \bar{y} - b\bar{x} = \bar{y} - b \times 0 = \bar{y}$. Thus the intercept will simply be the sample mean of the $y$-variable, \texttt{height}, which we were told in the problem statement is \$23000.
+  \end{solution}
+  \part[8] Write R code to create two dataframes: \texttt{males} contains only the observations from \texttt{height.data} for which \texttt{sex} is \texttt{male}, and \texttt{females}  contains only the observations from \texttt{height.data} for which \texttt{sex} is \texttt{female}. Then use these dataframes to calculate the average height and average earnings \emph{separately} for each group. 
+    \begin{solution}[1.75in]
+  \begin{verbatim}
+males <- subset(height.data, sex == "male")
+females <- subset(height.data, sex == "female")
+mean(males$height)
+mean(females$height)
+mean(males$earn)
+  \end{verbatim}
+     \end{solution} 
+  \part[8] The results of the commands from the preceding part are as follows:
+
+  \vspace{1em}
+  \begin{tabular}{l|rr}
+  & \texttt{females} & \texttt{males}\\
+  \hline
+  mean \texttt{earn} & \$18000 &\$30000\\
+  mean \texttt{height}& 65 in & 70 in
+  \end{tabular}
+  \vspace{1em}
+
+  Based on all the results presented above, do you think there is a causal relationship between height and income? Why or why not? Explain briefly.
+  \begin{solution}[2in]
+    We can't tell simply from running a regression whether height causes income. Based on the results presented here, however, there is reason to be suspicious. Sex is clearly a confounder since women are, on average, shorter than men, and earn less. The relationship we found between height and income may be nothing more than a consequence of labor market discrimination against women. 
+  \end{solution}
+\end{parts}
+\question 
+\begin{parts}
+  \part[15] Write a function called \texttt{tip.calculator} that calculates a restaurant tip. (Don't worry about taxes or rounding your results to the nearest cent.) Your function should take two inputs: \texttt{bill} is the restaurant bill \emph{excluding tip} in dollars and cents, e.g.\ \texttt{34.50}, and \texttt{percent} is the desired tip in percentage points, e.g.\ \texttt{18} for 18\%. Your function should return a dataframe with columns named \texttt{bill}, \texttt{percent}, \texttt{tip}, and \texttt{total}. The first two elements \texttt{bill} and \texttt{percent} are the function inputs while \texttt{tip} is the tip in dollars and cents and \texttt{total} is the total bill \emph{including tip}. For example, if I input \texttt{45} for \texttt{bill} and \texttt{20} for \texttt{percent}, your function should return:
+\begin{verbatim}
+bill percent tip total
+  45      20   9    54
+\end{verbatim} 
+\begin{solution}[2.3in]
+\begin{verbatim}
+tip.calculator <- function(bill, percent){
+  tip <- percent/100 * bill
+  total <- bill + tip
+  return(data.frame(bill, percent, tip, total))
+}
+\end{verbatim}
+\end{solution}  
+  \part[5] After creating the \texttt{tip.calculator} function, suppose I entered the following commands at the R console:
+  \begin{verbatim}
+    x <- c(1, 10, 100)
+    y <- c(100, 10, 1)
+    tip.calculator(bill = x, percent = y)     
+  \end{verbatim}
+  Write out in full the output that R will generate from the last command, namely \texttt{tip.calculator(bill = x, percent = y)}.
+  \begin{solution}[2.3in]
+\begin{verbatim}
+bill percent tip total
+   1     100   1     2
+  10      10   1    11
+ 100       1   1   101
+\end{verbatim}   
+  The point is to recognize that: (1) all basic mathematical operations in R are vectorized, and (2) the names of the objects provided as arguments to a function are irrelevant.   
+    \end{solution}    
+\end{parts} 
+
+\question Approximately 80\% of all emails sent over the internet are spam. About 10\% of spam emails contain the word ``viagra'' compared to 1\% of non-spam emails. About 5\% of spam emails contain the word ``herbal'' compared to 3\% of non-spam.
+  \begin{parts}
+  \part[20] Assume that the occurrences of words in emails are independent for both spam and non-spam. If an email contains both the words ``viagra'' and ``herbal'' what is the probability that it is spam?
+    \begin{solution}[3in]
+      Use Bayes' Rule:
+      \[
+      P(\mbox{spam}|\mbox{herbal}\cap\mbox{viagra}) = \frac{P(\mbox{herbal}\cap\mbox{viagra}|\mbox{Spam})P(\mbox{spam})}{P(\mbox{herbal}\cap\mbox{viagra})}
+      \]
+      By the Law of Total Probability,
+     \begin{eqnarray*}
+       P(\mbox{herbal}\cap\mbox{viagra}) &=& P(\mbox{herbal}\cap\mbox{viagra}|\mbox{spam})P(\mbox{spam})\\ &&+ P(\mbox{herbal}\cap\mbox{viagra}|\mbox{non-spam})P(\mbox{non-spam})\\
+       &=& 1/10 \times 1/20 \times 4/5 + 1/100 \times 3/100 \times 1/5\\
+       &=& 1/1000 \times (4 + 3/50)
+     \end{eqnarray*}
+     Hence,
+     \[
+     P(\mbox{spam}|\mbox{herbal}\cap\mbox{viagra}) = \frac{4}{4 + 3/50} \approx 99\%
+     \]
+    \end{solution}
+  \part[10] After completing your calculations, you learn an additional piece of information: approximately 14.5\% of spam emails contain the word ``herbal'' \emph{or} ``viagra.'' Does this new information support or contradict the assumption that words appear independently in emails? Explain.
+  \begin{solution}
+     This question is only for spam emails, so we won't explicitly write the conditioning on spam. Let $H$ be the event that a spam email contains at least one occurrence of ``herbal'' and $V$ be the event that it contains at least one occurrence of ``viagra.'' We are given that $P(V) = 0.1$, $P(H) = 0.05$ and $P(V\cup H) = 0.145$. By the addition rule $P(V\cup H) = P(V) + P(H) - P(V\cap H)$ Substituting the known probabilities, we see that $0.145 = 0.15 - P(V\cap H)$. Hence, $P(V\cap H) = 0.15 - 0.145 = 0.005$. Independence requires that $P(H\cap H) = P(H)P(V)= 0.1 \times 0.05 = 0.005$ so this piece of information tells us that, at least for spam emails, the words ``herbal'' and ``viagra'' occur independently.
+    \end{solution}
+  \end{parts}
+
+\end{questions}
+
+\end{document}
