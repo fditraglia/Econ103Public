@@ -31,8 +31,8 @@
 \newcommand{\inprod}[1]{\left\langle#1\right\rangle}
 \newcommand{\slfrac}[2]{\left.#1\right/#2}
 
-\printanswers
-%\noprintanswers
+%\printanswers
+\noprintanswers
 
 
 \pagestyle{headandfoot}
@@ -108,7 +108,7 @@ Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
 					$$P(A\cup B) = P(A) + P(B) - P(A\cap B)$$
 				but for mutually exclusive events,
 					$$P(A \cup B) = P(A) + P(B)$$
-				by the third Axiom of Probability. Combining these, $P(A \cap B) = 0$. Two events $A$ and $B$ are independent if and only if $P(A\cap B) = P(A)P(B)$. But we know that $P(A)>0$ and $P(B)>0$ so, $P(A)P(B)>0$. Since $P(A\cap B)=0$ it follows that $A$ and $B$ cannot be independent. The intuition is as follows.  If $A$ and $B$ are independent, then the fact that one of them has occurred \emph{completely rules out} the possibility that the other has occurred. In contrast, if two events are independent, knowing that one has occurred gives us \emph{no} information about whether the other will. Thus $A$ and $B$ can't be independent (except in the trivial case where one or both of them has zero probability, which was ruled out in the question statement).
+				by the third Axiom of Probability. Combining these, $P(A \cap B) = 0$. Two events $A$ and $B$ are independent if and only if $P(A\cap B) = P(A)P(B)$. But we know that $P(A)>0$ and $P(B)>0$ so, $P(A)P(B)>0$. Since $P(A\cap B)=0$ it follows that $A$ and $B$ cannot be independent. The intuition is as follows.  If $A$ and $B$ are mutually exclusive, then the fact that one of them has occurred \emph{completely rules out} the possibility that the other has occurred. In contrast, if two events are independent, knowing that one has occurred gives us \emph{no} information about whether the other will. Thus $A$ and $B$ can't be independent (except in the trivial case where one or both of them has zero probability, which was ruled out in the question statement).
 			\end{solution}
 
 
