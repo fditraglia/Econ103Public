@@ -1,55 +1,17 @@
-\documentclass[handout]{beamer}  
+%To compile as handout, use
+%pdflatex "\def\ishandout{1} \input{filename.tex}"
+%Defaults to non-handout mode (with slide reveals)
+\ifdefined\ishandout
+  \documentclass[handout]{beamer}
+\else
+  \documentclass{beamer}
+\fi
+ 
+\usepackage{econ103slides} 
 
-%Smaller gap at between top and bottom of block when there are displayed equations
-\addtobeamertemplate{block begin}{\setlength\abovedisplayskip{0pt}}
-{\setlength{\belowdisplayskip}{0pt}}
-
-
-\usepackage{setspace}
-\linespread{1.3}
-\usepackage{amssymb, amsmath, amsthm} 
-\usepackage{rotating}
-\usepackage{multirow}
-\usepackage{graphicx}
-\usepackage{synttree}
-\usepackage{verbatim}
-\usepackage{fancybox}
-\usepackage{color}
-\usepackage{tikz}
-\usetikzlibrary{shapes,backgrounds}
-\usepackage{hyperref}
-\usetikzlibrary{trees}
-\newcommand{\p}{\mathbb{P}}
-\newcommand{\expect}{\mathbb{E}}
-
-
-%\setbeamertemplate{blocks}[rounded][shadow=true] 
-%gets rid of bottom navigation bars
-\setbeamertemplate{footline}{
-   \begin{beamercolorbox}[ht=4ex,leftskip=0.3cm,rightskip=0.3cm]{author in head/foot}
-%    \usebeamercolor{UniBlue}
-    \vspace{0.1cm}
-    %\insertshorttitle \ - \insertdate 
-    \hfill \insertframenumber / \inserttotalframenumber
-   \end{beamercolorbox}
-   \vspace*{0.1cm}
-} 
-
-
-%gets rid of navigation symbols
-\setbeamertemplate{navigation symbols}{}
-
-
-%Include or exclude the notes?
-%\setbeameroption{show notes}
-\setbeameroption{hide notes}
-
-
-\title[Econ 103]{Economics 103 -- Statistics for Economists} 
-\author[F. DiTraglia]{Francis J.\ DiTraglia}
-\institute{University of Pennsylvania}
-\date{Lecture 10}
+\date{Lecture \# 9}
 \begin{document} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[plain]
@@ -57,65 +19,7 @@
 	
 
 \end{frame} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{R Material is Giving Some Students Trouble}
-% \begin{columns}
 
-% \column{0.3\textwidth}
-
-% \begin{table}
-% \footnotesize
-% \centering
-% \begin{tabular}{l|cc}
-% &Low& High\\
-% \hline
-% Mean & 40 & 75\\
-% Std.\ Dev.\ & 12 & 12\\
-% Prop.&  20\%& 80\%\\	
-% \end{tabular}
-% \end{table}
-
-
-% \column{0.7\textwidth}
-% \begin{figure}
-% \centering
-% \includegraphics[scale = 0.5]{./images/m1clusthist}
-% \end{figure}
-
-
-% \end{columns}
-
-
-
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Effort Matters More than Ability}
-
-
-% \begin{columns}
-
-% \column{0.45\textwidth}
-% \footnotesize
-% \begin{itemize}
-% 	\item ``Active'' = active on Piazza.
-% 	\item Active students scored on average 9 \% points higher.
-% 	\item Equivalent to $9/0.66 \approx 14$ points higher on Diagnostic
-% 	\item 14 points diff.\ on Diagnostic is 1.7 standard deviations!
-% 	\item Diagnostic is related to ability, Piazza activity to effort.
-% \end{itemize}
-
-% \column{0.65\textwidth}
-% \begin{figure}
-% \centering
-% \includegraphics[scale = 0.35]{./images/m1predict}
-% \caption{\footnotesize Intercepts: \textcolor{blue}{44}, \textcolor{red}{53}. Both slopes: 0.66}
-% \end{figure}
-
-
-% \end{columns}
-% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 
@@ -197,7 +101,7 @@ Let $X$ and $Y$ be discrete random variables. The joint probability mass functio
 
 
 
-$$p_{XY}(1,2) = \pause  P(X=1 \cap Y =2) = \pause \alert{1/4}$$
+$$p_{XY}(1,2) =   P(X=1 \cap Y =2) =  \alert{1/4}$$
 
 \end{frame}
 
@@ -222,7 +126,7 @@ $$p_{XY}(1,2) = \pause  P(X=1 \cap Y =2) = \pause \alert{1/4}$$
 
 \pause
 
-$$p_{XY}(2,1) = \pause  P(X=2 \cap Y =1) = \pause \alert{0}$$
+$$p_{XY}(2,1) =  P(X=2 \cap Y =1) = \alert{0}$$
 
 \end{frame}
 
@@ -260,7 +164,7 @@ $$p_{XY}(2,1) = \pause  P(X=2 \cap Y =1) = \pause \alert{0}$$
 \pause
 
 \begin{enumerate}
-	\item $p(x,y) \geq 0$ for all pairs $(x,y)$\pause
+	\item $p(x,y) \geq 0$ for all pairs $(x,y)$
 	\item $\sum_x\sum_{y} p(x,y) = 1/8 + 1/4 + 1/8 + 1/4 + 1/8 + 1/8 = 1$
 \end{enumerate}
 
@@ -284,7 +188,7 @@ $p_X(x) = P(X=x)$\\ $p_Y(y) = P(Y=y)$
 
 \vspace{1em}
 
-\alert{Can't calculate joint pmf will be from marginals alone but \emph{can} calculate marginals will be from the joint!}
+\alert{You can't calculate a joint pmf from marginals alone but you \emph{can} calculate marginals from the joint!}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -319,7 +223,7 @@ $p_X(x) = P(X=x)$\\ $p_Y(y) = P(Y=y)$
 &2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\onslide<4->{\textcolor{blue}{3/8}}\\
 &3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}&\onslide<5->{\textcolor{blue}{1/8}}\\
 \hline 
-&&&&&\onslide<6->{\textcolor{blue}{1}}\\
+&&&&&\onslide<5->{\textcolor{blue}{1}}\\
 \hline
 \end{tabular}
 \end{table}
@@ -351,7 +255,7 @@ $p_X(x) = P(X=x)$\\ $p_Y(y) = P(Y=y)$
 &2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\\
 &3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}&\\
 \hline 
-&&\onslide<2->{\textcolor{blue}{1/4}}&\onslide<3->{ \textcolor{blue}{1/2} }& \onslide<4->{\textcolor{blue}{1/4}} &\onslide<5->{\textcolor{blue}{1}}\\
+&&\onslide<2->{\textcolor{blue}{1/4}}&\onslide<3->{ \textcolor{blue}{1/2} }& \onslide<4->{\textcolor{blue}{1/4}} &\onslide<4->{\textcolor{blue}{1}}\\
 \hline
 \end{tabular}
 \end{table}
@@ -397,7 +301,7 @@ You can figure this out from what you already know about probability, using the 
 \frametitle{Conditional PMF from Joint and Marginal}
 
 \begin{eqnarray*}
-	p_{Y|X}(y|x) = P(Y=y|X=x) = \pause \frac{P(Y=y \cap X=x)}{P(X=x)} = \pause \frac{p_{XY}(x,y)}{p_X(x)}\pause
+	p_{Y|X}(y|x) = P(Y=y|X=x) =  \frac{P(Y=y \cap X=x)}{P(X=x)} =  \frac{p_{XY}(x,y)}{p_X(x)}
 \end{eqnarray*}
 \vspace{1em}
 
@@ -512,7 +416,7 @@ From the previous slide, it follows that an equivalent definition of independenc
 \begin{eqnarray*}
 	p_{XY}(2,1) &=& 0\\ \pause
 	p_X(2) \times p_Y(1) &=& \pause (3/8) \times (1/4) \neq 0
-\end{eqnarray*}\pause
+\end{eqnarray*}
 
 \alert{Therefore $X$ and $Y$ are \emph{not} independent.}
 \end{frame}
@@ -559,13 +463,13 @@ Take the mean of the conditional pmf of $Y$ given $X=x$.
 \hline
 \end{tabular}
 \end{table}
-\pause
+
 We showed above that the conditional pmf of $Y|X=2$ is:
 	$$\boxed{\begin{array}{ccc}p_{Y|X}(1|2) =0 \quad&p_{Y|X}(2|2) =2/3 \quad&p_{Y|X}(3|2) =1/3\end{array}}$$
 	
-	\pause
+	
 Hence
-	$$E[Y|X=2] = \pause 2 \times 2/3 + 3 \times 1/3 = \pause \alert{7/3}$$
+	$$E[Y|X=2] = 2 \times 2/3 + 3 \times 1/3 =  \alert{7/3}$$
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -589,17 +493,17 @@ Hence
 \hline
 \end{tabular}
 \end{table}
-\pause
-The conditional pmf of $Y|X=0$ is \pause
+
+The conditional pmf of $Y|X=0$ is 
 	$$\boxed{\begin{array}{ccc}p_{Y|X}(1|0) =1 \quad&p_{Y|X}(2|0) =0 \quad&p_{Y|X}(3|0) =0\end{array}}$$
 	
-	\pause
+
 \alert{Hence $E[Y|X=0] = 1$}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Calculate $E[Y|X=3]$ \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+	\frametitle{Calculate $E[Y|X=3]$}
 
 \footnotesize
 \begin{table}
@@ -618,11 +522,11 @@ The conditional pmf of $Y|X=0$ is \pause
 \hline
 \end{tabular}
 \end{table}
-\pause
-The conditional pmf of $Y|X=3$ is \pause
+
+
+The conditional pmf of $Y|X=3$ is
 	$$\boxed{\begin{array}{ccc}p_{Y|X}(1|3) =1 \quad&p_{Y|X}(2|3) =0 \quad&p_{Y|X}(3|3) =0\end{array}}$$
 	
-	\pause
 \alert{Hence $E[Y|X=3] = 1$}
 
 \end{frame}
@@ -648,10 +552,10 @@ The conditional pmf of $Y|X=3$ is \pause
 \end{tabular}
 \end{table}
 \pause
-The conditional pmf of $Y|X=1$ is \pause
+The conditional pmf of $Y|X=1$ is
 	$$\boxed{\begin{array}{ccc}p_{Y|X}(1|1) =0 \quad&p_{Y|X}(2|1) =2/3 \quad&p_{Y|X}(3|1) =1/3\end{array}}$$
 	
-	\pause
+
 Hence
 	$$E[Y|X=1] = 2 \times 2/3 + 3 \times 1/3 = \alert{7/3}$$
 
@@ -665,7 +569,7 @@ In this particular example we have seen that:
 	7/3& X = 1\\
 	7/3& X = 2\\ 
 	1& X = 3 
-	\end{array}\right.$$ \pause
+	\end{array}\right.$$ 
 But from above we know the marginal distribution of $X:$
 	\begin{eqnarray*}
 		P(X=0)= 1/8 && P(X=1) = 3/8\\
@@ -679,14 +583,14 @@ But from above we know the marginal distribution of $X:$
 \frametitle{The Law of Iterated Expectations}
 Since $E[Y|X]$ is a random variable, we can ask what its expectation is. It turns out that, for any RVs $X$ and $Y$
 	$$\boxed{E\left[E\left[Y|X  \right]  \right] = E[Y]}$$
-and this is called the \alert{Law of Iterated Expectations}. I've posted a proof on Piazza for those who want are interested.
+and this is called the \alert{Law of Iterated Expectations}. I've posted a proof \textcolor{blue}{\href{http://fditraglia.github.io/Econ103Public/IteratedExpectationsProof.pdf}{\fbox{HERE}}} for those who want are interested.
 
 
 \vspace{2em}
 \hfill This will be helpful in Econ 104...
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
+\begin{frame}[t]
 \frametitle{Law of Iterated Expectations for Our Example}
 
 \begin{columns}
@@ -701,8 +605,7 @@ and this is called the \alert{Law of Iterated Expectations}. I've posted a proof
 \pause
 
 \begin{eqnarray*}
-	E[Y] &=& 1\times 1/4 + 2 \times 1/2 + 3 \times 1/4\\ \pause
-		&=&1/4 + 1 + 3/4\\ \pause
+	E[Y] &=& 1\times 1/4 + 2 \times 1/2 + 3 \times 1/4\\
 		&=&2
 \end{eqnarray*}
 \end{block}
@@ -712,9 +615,7 @@ and this is called the \alert{Law of Iterated Expectations}. I've posted a proof
 \begin{block}{$E[Y|X]$}
 	\begin{eqnarray*}
 	 E[Y|X] &=& \left\{\begin{array}{cc} 1& \mbox{w/ prob. } 1/4\\ 7/3& \mbox{w/ prob. } 3/4\end{array}\right.\\\\ \pause
-	 E\left[E\left[Y|X \right] \right] &=& 1 \times 1/4 + 7/3 \times 3/4\\ \pause
-	 &=& 1/4 + 7/4\\ \pause
-	 &=& 8/4\\ \pause
+	 E\left[E\left[Y|X \right] \right] &=& 1 \times 1/4 + 7/3 \times 3/4\\ 
 	 &=& 2
 	\end{eqnarray*}
 	\vspace{1em}
@@ -754,7 +655,7 @@ Much easier for calculating:
 
 
 \vspace{2em}
-\hfill{We'll talk more about this in the next lecture...}
+\hfill{We'll talk more about this in an upcoming lecture...}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -786,9 +687,9 @@ Much easier for calculating:
 \column{0.65\textwidth}
 \footnotesize
 \begin{eqnarray*}
-	E[X] &=&3/8 + 2 \times 3/8 + 3 \times 1/8 = 3/2\\\\ \pause
+	E[X] &=&3/8 + 2 \times 3/8 + 3 \times 1/8 = 3/2\\\\ 
 	E[Y] &=&1/4 + 2 \times 1/2 + 3 \times 1/4 = 2 \\ \\ \pause
-	E[XY] &=& 1/4\times ( 2 + 4) + 1/8 \times (3 + 6 + 3)\\ \pause
+	E[XY] &=& 1/4\times ( 2 + 4) + 1/8 \times (3 + 6 + 3)\\ 
 		&=& 3\\ \\ \pause
 	Cov(X,Y) &=& E[XY] - E[X]E[Y]\\ \pause
 			&=& 3 - 3/2\times 2 = 0\\\\ \pause
