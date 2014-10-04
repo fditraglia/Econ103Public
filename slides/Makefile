@@ -7,7 +7,7 @@ OUTFILES += $(HANDOUTS)
 
 all : $(OUTFILES) 
 
-%.tex : slides.sty
+%.tex : econ103slides.sty
 
 
 %_screen.pdf : %.tex
@@ -19,4 +19,4 @@ all : $(OUTFILES)
 	pdflatex -jobname=$*_handout "\def\ishandout{1}\input{$<}"
 
 clean :
-	rm *.aux *.log *.toc *.snm *.out  *.nav 
+	-rm *.aux *.log *.toc *.snm *.out  *.nav *.vrb
