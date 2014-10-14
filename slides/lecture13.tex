@@ -1,56 +1,17 @@
-\documentclass[handout]{beamer}  
+%To compile as handout, use
+%pdflatex "\def\ishandout{1} \input{filename.tex}"
+%Defaults to non-handout mode (with slide reveals)
+\ifdefined\ishandout
+  \documentclass[handout]{beamer}
+\else
+  \documentclass{beamer}
+\fi
+ 
+\usepackage{econ103slides} 
 
-%Smaller gap at between top and bottom of block when there are displayed equations
-\addtobeamertemplate{block begin}{\setlength\abovedisplayskip{0pt}}
-{\setlength{\belowdisplayskip}{0pt}}
-
-
-\usepackage{setspace}
-\linespread{1.3}
-\usepackage{amssymb, amsmath, amsthm} 
-\usepackage{rotating}
-\usepackage{multirow}
-\usepackage{graphicx}
-\usepackage{synttree}
-\usepackage{verbatim}
-\usepackage{fancybox}
-\usepackage{color}
-\usepackage{tikz}
-\usetikzlibrary{shapes,backgrounds}
-\usepackage{hyperref}
-\usetikzlibrary{trees}
-\newcommand{\p}{\mathbb{P}}
-\newcommand{\expect}{\mathbb{E}}
-
-
-%\setbeamertemplate{blocks}[rounded][shadow=true] 
-%gets rid of bottom navigation bars
-\setbeamertemplate{footline}{
-   \begin{beamercolorbox}[ht=4ex,leftskip=0.3cm,rightskip=0.3cm]{author in head/foot}
-%    \usebeamercolor{UniBlue}
-    \vspace{0.1cm}
-    %\insertshorttitle \ - \insertdate 
-    \hfill \insertframenumber / \inserttotalframenumber
-   \end{beamercolorbox}
-   \vspace*{0.1cm}
-} 
-
-
-%gets rid of navigation symbols
-\setbeamertemplate{navigation symbols}{}
-
-
-%Include or exclude the notes?
-%\setbeameroption{show notes}
-\setbeameroption{hide notes}
-
-\title[Econ 103]{Economics 103 -- Statistics for Economists} 
-\author[F. DiTraglia]{Francis J.\ DiTraglia}
-\institute{University of Pennsylvania}
-\date{Lecture 13}
-
-
+\date{Lecture \# 12}
 \begin{document} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[plain]
@@ -58,7 +19,6 @@
 	
 
 \end{frame} 
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -109,7 +69,7 @@ F(x_0) &\equiv& P(X \leq x_0) \\ \\
 Plug in a probability $p$, get out the value of $x_0$ such that $F(x_0)=p$
 \end{block}
 $$Q(p) = F^{-1}(p)$$
-\pause
+
 In other words:
 	$$Q(p) = \mbox{the value of } x_0 \mbox{ such that } \int_{-\infty}^{x_0} f(x) \; dx = p$$
 	
@@ -227,15 +187,15 @@ Quantile Function $Q(p)$ & \texttt{qnorm(p, mean = $\mu$,  sd = $\sigma$)}\\
 
 One Way:
 			\begin{eqnarray*}
-				P(X \geq 10) &=& \pause 1 - P(X \leq 10) = \pause 1 - P(X /4\leq 10/4)\\
-				&=& \pause 1 - P(Z\leq 2.5) = \pause  1 - \Phi(2.5) = \pause 1 - \mbox{\texttt{pnorm(2.5)}}\\ \pause
+				P(X \geq 10) &=&  1 - P(X \leq 10) = 1 - P(X /4\leq 10/4)\\
+				&=& 1 - P(Z\leq 2.5) =   1 - \Phi(2.5) =  1 - \mbox{\texttt{pnorm(2.5)}}\\ 
 				&\approx& 0.006
 			\end{eqnarray*}
 \pause
 An Easier Way:
 	\begin{eqnarray*}
-	P(X \geq 10) &=& \pause 1 - P(X \leq 10)\\ \pause
-	&=& \pause 1 - \texttt{pnorm(10, mean = 0, sd = 4)} \\ \pause
+	P(X \geq 10) &=& 1 - P(X \leq 10)\\ 
+	&=&  1 - \texttt{pnorm(10, mean = 0, sd = 4)} \\ 
 	&\approx& 0.006
 	\end{eqnarray*}
 \end{frame}
@@ -399,19 +359,18 @@ Let $X \sim N(0,1)$ independent of $Y \sim \chi^2(\nu)$. Then,
 $$\frac{X}{\sqrt{Y/\nu}}\sim t(\nu)$$
 where the parameter $\nu$ is the degrees of freedom.
 
+\pause
+
+\begin{itemize}
+	\item Support = $(-\infty, \infty)$
+	\item As $\nu \rightarrow \infty$, $t \rightarrow$ Standard Normal.
+	\item Symmetric around zero, but mean and variance may not exist!
+	\item Degrees of freedom $\nu$ control ``thickness of tails''
+\end{itemize}
 \vspace{1em}
 
-\alert{Support = $(-\infty, \infty)$}
 
-\vspace{1em}
-
-\alert{As $\nu \rightarrow \infty$, $t \rightarrow$ Standard Normal.}\\
-\vspace{2em}
-
-\alert{Student-t Distribution is always symmetric and centered at zero, but mean and variance may  not exist. Degrees of freedom ($\nu$) control thickness of tails.}
 \end{frame}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -430,7 +389,7 @@ Suppose $X \sim \chi^2(\nu)$ independent of $Y \sim \chi^2(\omega)$. Then,
 where $\nu$ is the numerator degrees of freedom and $\omega$ is the denominator degrees of freedom.
 \vspace{1em}
 
-\pause
+
 \alert{Support = $(0, \infty)$}\\
 
 \end{frame}
@@ -470,8 +429,8 @@ $F(\nu,\omega)$&\texttt{pf(x, df1 = $\nu$, df2 = $\omega$)}&\texttt{qf(p, df1 = 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{\href{http://www.ditraglia.com/econ103/friends_of_normal.html}{http://www.ditraglia.com/econ103/friends\_of\_normal.html}}
-\framesubtitle{Source Code on my \href{https://gist.github.com/fditraglia/7121684}{\fbox{Github Page}}}
+	\frametitle{\normalsize \href{http://fditraglia.github.io/Econ103Public/Rtutorials/friends_of_normal.html}{http://fditraglia.github.io/Econ103Public/Rtutorials/friends\_of\_normal.html}}
+\framesubtitle{Source Code on my \href{https://github.com/fditraglia/Econ103Public/blob/master/Rtutorials/friends_of_normal.R}{\fbox{Github Page}}}
 
 
 
