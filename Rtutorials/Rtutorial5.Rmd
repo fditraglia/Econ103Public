@@ -257,7 +257,7 @@ Suppose you carry out a poll of 200 randomly selected Penn male undergraduates t
 
 
 ### Exercise #11
-There is a discrete random variable that we did not cover in class called the Poisson. It has one parameter $\lambda$ which is sometimes called the "rate parameter". Essentially, the Poisson is what you get in the limit if you take a Binomial$(n,p)$ random variable and let $n \rightarrow \infty$ while holding $p$ fixed. 
+There is a discrete random variable that we did not cover in class called the Poisson. It has one parameter $\lambda$ which is sometimes called the "rate parameter". Essentially, the Poisson is what you get in the limit if you take a Binomial$(n,p)$ random variable and let $n \rightarrow \infty$ while holding $np$ fixed. 
 
 The R functions for the Poisson RV that correspond to ``rbinom``, ``dbinom`` and ``pbinom`` for the Binomial RV are ``rpois``, ``dpois`` and ``ppois``. In place of the parameters ``size`` and ``prob`` that we needed for the Binomial, these functions for the Poisson have the single parameter ``lambda``. Otherwise, they work in the same way.
 

@@ -158,13 +158,13 @@ matplot(x, y, type = 'l', col = c(&quot;red&quot;, &quot;blue&quot;), lty = c(1,
 <h3><code>rbinom</code> - Simulate Binomial Draws</h3>
 <p>This function takes 3 arguments: <code>n</code> is the number of random draws we want, <code>size</code> is what we call n in class, namely the underlying number of Bernoulli trials (coin flips) that we’re adding together to create the Binomial RV, and <code>prob</code> is <span class="math">\(p\)</span> from class. So, to get 20 draws from a Binomial<span class="math">\((n=10, p = 1/2)\)</span> random variable, I would use the following command:</p>
 <pre class="r"><code>rbinom(20, size = 10, prob = 1/2)</code></pre>
-<pre><code>##  [1] 5 7 6 6 5 4 5 6 2 6 7 4 2 6 6 5 8 3 6 6</code></pre>
+<pre><code>##  [1] 5 5 7 5 3 6 4 6 6 4 3 4 6 6 5 2 5 5 4 4</code></pre>
 <p>Remember, the support of this random variable is <span class="math">\(\{0, 1, 2, ..., 10\}\)</span> so each draw is a number between 0 and 10. In class we learned that the mean of a Binomial RV is <span class="math">\(np\)</span> while the variance is <span class="math">\(np(1-p)\)</span>. We can check this for particular examples using Monte Carlo Simulation. For this example, we don’t need <code>replicate</code> ***</p>
 <pre class="r"><code>sims &lt;- rbinom(100000, size = 10, prob = 1/2)
 mean(sims) - (10 * 1/2)</code></pre>
-<pre><code>## [1] -0.00067</code></pre>
+<pre><code>## [1] 0.00219</code></pre>
 <pre class="r"><code>var(sims) - (10 * 1/2 * 1/2)</code></pre>
-<pre><code>## [1] 0.004835</code></pre>
+<pre><code>## [1] 0.00443</code></pre>
 <hr />
 </div>
 <div id="exercise-5" class="section level3">
@@ -243,7 +243,7 @@ plot(x, y, ylab = 'F(x)')</code></pre>
 </div>
 <div id="exercise-11" class="section level3">
 <h3>Exercise #11</h3>
-<p>There is a discrete random variable that we did not cover in class called the Poisson. It has one parameter <span class="math">\(\lambda\)</span> which is sometimes called the “rate parameter”. Essentially, the Poisson is what you get in the limit if you take a Binomial<span class="math">\((n,p)\)</span> random variable and let <span class="math">\(n \rightarrow \infty\)</span> while holding <span class="math">\(p\)</span> fixed.</p>
+<p>There is a discrete random variable that we did not cover in class called the Poisson. It has one parameter <span class="math">\(\lambda\)</span> which is sometimes called the “rate parameter”. Essentially, the Poisson is what you get in the limit if you take a Binomial<span class="math">\((n,p)\)</span> random variable and let <span class="math">\(n \rightarrow \infty\)</span> while holding <span class="math">\(np\)</span> fixed.</p>
 <p>The R functions for the Poisson RV that correspond to <code>rbinom</code>, <code>dbinom</code> and <code>pbinom</code> for the Binomial RV are <code>rpois</code>, <code>dpois</code> and <code>ppois</code>. In place of the parameters <code>size</code> and <code>prob</code> that we needed for the Binomial, these functions for the Poisson have the single parameter <code>lambda</code>. Otherwise, they work in the same way.</p>
 <ol style="list-style-type: decimal">
 <li>Use <code>rpois</code> to simulate 10000 draws from each of the following Possion RVs and store the results: <span class="math">\(\lambda = 1, \lambda = 5, \lambda = 10, \lambda = 15\)</span>.</li>
