@@ -1,4 +1,4 @@
-\documentclass[handout]{beamer}  
+\documentclass{beamer}  
 
 %Smaller gap at between top and bottom of block when there are displayed equations
 \addtobeamertemplate{block begin}{\setlength\abovedisplayskip{0pt}}
@@ -266,10 +266,9 @@ Biased Sample!
 \begin{frame}[fragile]
 
 <<echo=FALSE,results='hide'>>=
-setwd("~/Dropbox/Econ103") 
 candy <- read.csv("candy.csv", header = FALSE)
 candy <- candy[,1]
-truth <- 940 #UPDATE EACH SEMESTER
+truth <- 958 #UPDATE EACH SEMESTER
 @
 
 \frametitle{Candy Weighing: \Sexpr{length(candy)} Estimates, Each With $n=5$}
@@ -654,73 +653,7 @@ $n$&$\bar{X}_n$\\
 Although I showed two examples involving normal RVs, the LLN holds IN GENERAL!
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
-% Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the sampling distribution of $\sqrt{n}(\bar{X}_n - \mu)/\sigma$?
-% 
-% 
-% \begin{enumerate}[(a)]
-% \item $N(\mu, \sigma^2)$
-% \item $N(0,1)$
-% \item $N(0,\sigma)$
-% \item $N(\mu, 1)$
-% \item Not enough information to determine.
-% \end{enumerate}
-% 
-% \end{frame}
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Z-score!}
-% Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. From above,
-% 	\begin{eqnarray*}
-% 			E[\bar{X}_n] &=& \mu\\
-% 			Var(\bar{X}_n) &=&  \sigma^2/n\\ \pause
-% 			&\Rightarrow& SD(\bar{X}_n) =\sigma/\sqrt{n}
-% 	\end{eqnarray*} \pause
-% Thus,
-% 	$$\sqrt{n}(\bar{X}_n - \mu)/\sigma = \pause \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} = \pause \frac{\bar{X}_n - E[\bar{X}_n]}{SD(\bar{X}_n)}  \pause\sim N(0,1)$$ \pause
-% Remember that we call the standard deviation of a sampling distribution the \alert{standard error}, written $SE$, so $$\frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \sim N(0,1)$$
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-% \begin{frame}
-% \frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
-% Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the approximate value of the following?
-% 	$$\p\left(-2 \leq \frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \leq 2 \right)\pause \alert{\approx 0.95}$$
-% 
-% \end{frame}
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{What happens if I rearrange?}
-% 	\begin{eqnarray*}
-% 		\p\left(-2 \leq \frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \leq 2 \right) &=& 0.95\\ \\ \pause
-% 			\p\left(-2\cdot SE\leq \bar{X}_n - \mu \leq 2 \cdot SE\right) &=& 0.95\\ \\ \pause
-% 			\p\left(-2\cdot SE - \bar{X}_n \leq - \mu \leq 2 \cdot SE - \bar{X}_n \right) &=& 0.95\\ \\ \pause
-% 			\alert{\p\left( \bar{X}_n - 2\cdot SE \leq \mu \leq \bar{X}_n + 2\cdot SE \right)}&\alert{=}& \alert{0.95}
-% 	\end{eqnarray*}
-% 
-% \end{frame}
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Midterm II Next Time}
-\begin{itemize}
-  \item Covers everything up to and including today's lecture but I won't directly ask you about material from before the previous midterm.
-	\item Practice midterm and solutions on Piazza
-	\item Exam Details
-		\begin{itemize}
-			\item 70 minutes (please arrive on time)
-			\item Closed-notes, closed-book
-			\item You may write in pen or pencil
-			\item Bring a scientific or ordinary calculator (no graphing calculators permitted)
-			\item Bring your id card
-		\end{itemize}
-\end{itemize}
 
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
