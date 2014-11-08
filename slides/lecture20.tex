@@ -1,48 +1,14 @@
-\documentclass[handout]{beamer}  
-%use [handout] option to print without all the pauses!
-\usepackage{setspace}
-\linespread{1.3}
-\usepackage{amssymb, amsmath, amsthm} 
-\usepackage{rotating}
-\usepackage{multirow}
-\usepackage{graphicx}
-\usepackage{enumerate}
-\usepackage{synttree}
-\usepackage{fancybox}
-\usepackage{color}
-\usepackage{tikz}
-\usetikzlibrary{trees}
-\newcommand{\p}{\mathbb{P}}
-\newcommand{\expect}{\mathbb{E}}
-\newcommand{\var}{\mathbb{V}}
+%To compile as handout, use
+%pdflatex "\def\ishandout{1} \input{filename.tex}"
+%Defaults to non-handout mode (with slide reveals)
+\ifdefined\ishandout
+  \documentclass[handout]{beamer}
+\else
+  \documentclass{beamer}
+\fi
+ 
+\usepackage{econ103slides} 
 
-
-
-%\setbeamertemplate{blocks}[rounded][shadow=true] 
-%gets rid of bottom navigation bars
-\setbeamertemplate{footline}{
-   \begin{beamercolorbox}[ht=4ex,leftskip=0.3cm,rightskip=0.3cm]{author in head/foot}
-%    \usebeamercolor{UniBlue}
-    \vspace{0.1cm}
-    %\insertshorttitle \ - \insertdate 
-    \hfill \insertframenumber / 
-    \inserttotalframenumber
-   \end{beamercolorbox}
-   \vspace*{0.1cm}
-} 
-
-%gets rid of navigation symbols
-\setbeamertemplate{navigation symbols}{}
-
-
-%Include or exclude the notes?
-%\setbeameroption{show notes}
-\setbeameroption{hide notes}
-
-
-\title[Econ 103]{Economics 103, Statistics for Economists} 
-\author[F. DiTraglia]{Francis J.\ DiTraglia}
-\institute{University of Pennsylvania}
 \date{Lecture 20}
 
 
@@ -58,6 +24,7 @@
 	
 
 \end{frame} 
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -403,8 +370,8 @@ $T_n\colon$ \# of Cokes correctly identified. Sampling Dist.\ under $H_0$:
 	\pause
 	
 	\vspace{2em}
-	Want $P(\mbox{Reject } H_0|H_0 \mbox{ True})\leq 0.05$\\ \pause
-	$P(T_n \geq 3 |\mbox{Just Guessing}) = 17/70 \approx 0.23 > 0.05$ \pause
+	Want $P(\mbox{Reject } H_0|H_0 \mbox{ True})\leq 0.05$\\ 
+	$P(T_n \geq 3 |\mbox{Just Guessing}) = 17/70 \approx 0.23 > 0.05$ 
 	$P(T_n \geq 4 |\mbox{Just Guessing}) = 1/70 \approx 0.014 \alert{\leq 0.05}$ 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -423,8 +390,8 @@ $T_n\colon$ \# of Cokes correctly identified. Sampling Dist.\ under $H_0$:
 	\pause
 	
 	\vspace{2em}
-	Want $P(\mbox{Reject } H_0|H_0 \mbox{ True})\leq 0.25$\\ \pause
-	$P(T_n \geq 2 |\mbox{Just Guessing}) = 53/70 \approx 0.76 > 0.25$  \pause
+	Want $P(\mbox{Reject } H_0|H_0 \mbox{ True})\leq 0.25$\\ 
+	$P(T_n \geq 2 |\mbox{Just Guessing}) = 53/70 \approx 0.76 > 0.25$ 
 	$P(T_n \geq 3 |\mbox{Just Guessing}) = 17/70 \approx 0.23 \alert{\leq 0.25}$ 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -459,7 +426,7 @@ $T_n\colon$ \# of Cokes correctly identified. Has following sampling under the n
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Example: Pepsi Challenge \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\frametitle{Example: Pepsi Challenge}
 \footnotesize 
 $H_0\colon$ Expert is just guessing randomly.\\
 $H_1\colon$ Expert can distinguish Coke from Pepsi.\\
@@ -476,12 +443,12 @@ $T_n\colon$ \# of Cokes correctly identified. Has following sampling under the n
 	\normalsize
 	\alert{If I choose $\alpha =0.05$, what decision rule should I use?}\\
 \vspace{1em}
-	Need $P(\mbox{Reject } H_0|H_0 \mbox{ True})\leq \alpha = 0.05$ \pause
+	Need $P(\mbox{Reject } H_0|H_0 \mbox{ True})\leq \alpha = 0.05$ 
 	\begin{eqnarray*}
-		P(T_n \geq 3 |\mbox{Just Guessing}) &=& 17/70 \pause \approx 0.23 > 0.05 \\\pause
-	P(T_n \geq 4 |\mbox{Just Guessing}) &=& 1/70 \pause \approx 0.014 \alert{\leq 0.05}
+		P(T_n \geq 3 |\mbox{Just Guessing}) &=& 17/70 \approx 0.23 > 0.05 \\
+	P(T_n \geq 4 |\mbox{Just Guessing}) &=& 1/70  \approx 0.014 \alert{\leq 0.05}
 	\end{eqnarray*}
-	\vspace{1em}\pause
+	\vspace{1em}
 	\alert{Critical value for $\alpha = 0.05$ is 4}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -544,7 +511,7 @@ $T_n\colon$ \# of Cokes correctly identified. Has following sampling under the n
 	\end{center}
 	\vspace{2em}
 	\normalsize
-	\alert{Our observed test statistic was $\boxed{2}$ since the expert correctly identified this many Cokes. What is the p-value in this case?}\pause
+	\alert{Our observed test statistic was $\boxed{?}$ since the expert correctly identified this many Cokes. What is the p-value in this case?}\pause
 	\begin{eqnarray*}
 		P(T_n \geq \alert{\boxed{2}}|H_0 \mbox{ True}) = (1 + 16 + 36)/70 \approx 0.76
 	\end{eqnarray*}
