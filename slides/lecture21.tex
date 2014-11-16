@@ -35,26 +35,26 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{Central Idea of Hypothesis Testing: Control Type I Errors}
-%\pause
-%	\begin{enumerate}
-%		\item Choose significance level $\alpha$ \pause
-%			\begin{itemize} 
-%				\item Max prob.\ of Type I error (reject true $H_0$) we will accept \pause
-%			\end{itemize}
-%		\item Choose a test statistic $T_n$ \pause
-%			\begin{itemize}
-%				\item Known sampling distribution under $H_0$ \pause
-%			 \end{itemize} 
-%		\item Specify a decision rule involving $T_n$ and critical value $c_\alpha$ \pause
-%			\begin{itemize}
-%				\item Chosen to keep Type I error probability $\leq \alpha$ \pause
-%				\item Typically: Reject $H_0$ if $T_n \geq c_\alpha$ \pause
-%				\item (Could be $\leq$ depending on the problem) 
-%			\end{itemize}
-%	\end{enumerate}
-%\end{frame}
+\begin{frame}
+\frametitle{Central Idea of Hypothesis Testing: Control Type I Errors}
+\pause
+	\begin{enumerate}
+		\item Choose significance level $\alpha$ \pause
+			\begin{itemize} 
+				\item Max prob.\ of Type I error (reject true $H_0$) we will accept \pause
+			\end{itemize}
+		\item Choose a test statistic $T_n$ \pause
+			\begin{itemize}
+				\item Known sampling distribution under $H_0$ \pause
+			 \end{itemize} 
+		\item Specify a decision rule involving $T_n$ and critical value $c_\alpha$ \pause
+			\begin{itemize}
+				\item Chosen to keep Type I error probability $\leq \alpha$ \pause
+				\item Typically: Reject $H_0$ if $T_n \geq c_\alpha$ \pause
+				\item (Could be $\leq$ depending on the problem) 
+			\end{itemize}
+	\end{enumerate}
+\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -208,42 +208,42 @@ You are a senior manager at McDonald's and are concerned that franchises may be 
 \end{enumerate}
 \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Example: Bias in Jury Selection \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-% You are investigating a judge who is suspected of showing bias against women in jury selection. Of the 700 jury members he has selected only $15\%$ were women. In contrast, $29\%$ of eligible jurors were women. Let $p$ be the probability that a juror drawn by this judge is a woman.\\
+\begin{frame}
+\frametitle{Example: Bias in Jury Selection \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+You are investigating a judge who is suspected of showing bias against women in jury selection. Of the 700 jury members he has selected only $15\%$ were women. In contrast, $29\%$ of eligible jurors were women. Let $p$ be the probability that a juror drawn by this judge is a woman.\\
 
-% \vspace{1em}
+\vspace{1em}
 
-% \alert{What should our null hypothesis be in this case?}
+\alert{What should our null hypothesis be in this case?}
 
-% \begin{enumerate}[(a)]
-% 	\item $H_0\colon p = 0.5$
-% 	\item $H_0\colon p = 0.29$
-% 	\item $H_0\colon p = 0.15$
-% 	\item $H_0\colon p \neq 0.29$
-% \end{enumerate}
+\begin{enumerate}[(a)]
+	\item $H_0\colon p = 0.5$
+	\item $H_0\colon p = 0.29$
+	\item $H_0\colon p = 0.15$
+	\item $H_0\colon p \neq 0.29$
+\end{enumerate}
 
-% \end{frame}
+\end{frame}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Example: Bias in Jury Selection \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-% You are investigating a judge who is suspected of showing bias against women in jury selection. Of the 700 jury members he has selected only $15\%$ were women. In contrast, $29\%$ of eligible jurors were women. Let $p$ be the probability that a juror drawn by this judge is a woman.\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Bias in Jury Selection \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+You are investigating a judge who is suspected of showing bias against women in jury selection. Of the 700 jury members he has selected only $15\%$ were women. In contrast, $29\%$ of eligible jurors were women. Let $p$ be the probability that a juror drawn by this judge is a woman.\\
 
-% \vspace{1em}
+\vspace{1em}
 
-% \alert{What should our alternative hypothesis be in this case?}
+\alert{What should our alternative hypothesis be in this case?}
 
-% \begin{enumerate}[(a)]
-% 	\item $H_1\colon p \neq 0.29$
-% 	\item $H_1\colon p \neq 0.15$
-% 	\item $H_1\colon p < 0.29$
-% 	\item $H_1\colon p > 0.29$
-% \end{enumerate}
+\begin{enumerate}[(a)]
+	\item $H_1\colon p \neq 0.29$
+	\item $H_1\colon p \neq 0.15$
+	\item $H_1\colon p < 0.29$
+	\item $H_1\colon p > 0.29$
+\end{enumerate}
 
-% \end{frame}
+\end{frame}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \begin{center}
@@ -601,9 +601,6 @@ Reject $H_0$ based on two-sided test $\implies$ Reject $H_0$ based on appropriat
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \begin{frame}
 \frametitle{The Anchoring Experiment}
 On the first day of class, you were each shown a random number. You were then asked what proportion of UN member states are located in Africa. 
@@ -955,22 +952,22 @@ For proportions, mean and SE are are linked!
 	where $\widehat{\pi} = \frac{n\widehat{p} + m\widehat{q}}{n+m}$
 \end{block}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Refined Test and Refined CI}
+\small
+\begin{block}{Refined Test Imposes $H_0$ in \emph{both} Numerator \& Denominator}
+Our procedures for proportions are approximations based on the CLT. (The population in question is actually Bernoulli!) Fully imposing the null, as on the previous slide, makes the approximation work better.
+\end{block}
+
+\pause
+
+\begin{block}{Ideally Invert Refined Test to get CI}
+Earlier in this lecture, we talked about how the set of all parameter values that are not rejected by a two-sided test with significance level $\alpha$ gives a $100\times(1-\alpha)\%$ CI. Ideally, we could invert the refined tests for proportions to get \emph{corresponding} refined CIs. The math required for this, however, is a little tricky.
+\end{block}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Refined Test and Refined CI}
-% \small
-% \begin{block}{Refined Test Imposes $H_0$ in \emph{both} Numerator \& Denominator}
-% Our procedures for proportions are approximations based on the CLT. (The population in question is actually Bernoulli!) Fully imposing the null, as on the previous slide, makes the approximation work better.
-% \end{block}
-
-% \pause
-
-% \begin{block}{Ideally Invert Refined Test to get CI}
-% Earlier in this lecture, we talked about how the set of all parameter values that are not rejected by a two-sided test with significance level $\alpha$ gives a $100\times(1-\alpha)\%$ CI. Ideally, we could invert the refined tests for proportions to get \emph{corresponding} refined CIs. The math required for this, however, is a little tricky.
-% \end{block}
-
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{``Refined'' Procedures for Proportions}
 \begin{columns}
@@ -1002,26 +999,26 @@ For proportions, mean and SE are are linked!
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Refined Test and Refined CI}
-% \small
-% \begin{block}{Inverting \emph{Unrefined Tests} Gives Textbook CI}
-% The \emph{unrefined} tests for proportions do not use the fact that, under the null, we actually have some additional information regarding the standard errors. If we invert these tests, we get the textbook confidence intervals studied earlier (see preceding slides). 
-% \end{block}
+\begin{frame}
+\frametitle{Refined Test and Refined CI}
+\small
+\begin{block}{Inverting \emph{Unrefined Tests} Gives Textbook CI}
+The \emph{unrefined} tests for proportions do not use the fact that, under the null, we actually have some additional information regarding the standard errors. If we invert these tests, we get the textbook confidence intervals studied earlier (see preceding slides). 
+\end{block}
 
-% \pause
+\pause
 
-% \begin{block}{Refined CIs are an \emph{Approximation} to Inverting Refined Tests}
-% A few lectures ago, we talked about the refined CIs for proportions that involved adding ``fake'' observations to the data. These are \emph{very close} to what you get if you inverted the refined tests. \alert{This is why we use them.}
-% \end{block}
+\begin{block}{Refined CIs are an \emph{Approximation} to Inverting Refined Tests}
+A few lectures ago, we talked about the refined CIs for proportions that involved adding ``fake'' observations to the data. These are \emph{very close} to what you get if you inverted the refined tests. \alert{This is why we use them.}
+\end{block}
 
-% \pause
+\pause
 
-% \vspace{1em} 
-% \large
-% \alert{Unless instructed otherwise, you should \emph{always} use the refined tests and refined CIs when working with proportions: they work better.}
+\vspace{1em} 
+\large
+\alert{Unless instructed otherwise, you should \emph{always} use the refined tests and refined CIs when working with proportions: they work better.}
 
-% \end{frame}
+\end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{What is a Type I Error? \includegraphics[scale = 0.05]{./images/clicker}}
@@ -1051,17 +1048,17 @@ For proportions, mean and SE are are linked!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Which is the Probability of a Type I Error? \includegraphics[scale = 0.05]{./images/clicker}}
+\begin{frame}
+\frametitle{Which is the Probability of a Type I Error? \includegraphics[scale = 0.05]{./images/clicker}}
 
-% \begin{enumerate}[(a)]
-% 	\item $\beta$
-% 	\item $1 - \beta$
-% 	\item $1-\alpha$
-% 	\item $\alpha$
-% \end{enumerate}
+\begin{enumerate}[(a)]
+	\item $\beta$
+	\item $1 - \beta$
+	\item $1-\alpha$
+	\item $\alpha$
+\end{enumerate}
 
-% \end{frame}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[c]\frametitle{The Power of a Test}
     
@@ -1260,13 +1257,13 @@ Chance of detecting an effect given that one exists.
 \alert{Go back and compare to factors that affect width of CI...}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{An Important Point}
-% For any discrepancy from $p = 0.5$, there is always a sample size large enough to make the power of our test \emph{arbitrarily close to one}. In other words, we can be almost certain to detect an effect, no matter how small, provided that we use a large enough sample. \alert{However, this does not mean that the affect we have found is important}.
+\begin{frame}
+\frametitle{An Important Point}
+For any discrepancy from $p = 0.5$, there is always a sample size large enough to make the power of our test \emph{arbitrarily close to one}. In other words, we can be almost certain to detect an effect, no matter how small, provided that we use a large enough sample. \alert{However, this does not mean that the affect we have found is important}.
 
-% \vspace{2em}
-% If it turned out that the true probability of heads was closer to 0.50001 rather than 0.5, should we really care? 
-% \end{frame}
+\vspace{2em}
+If it turned out that the true probability of heads was closer to 0.50001 rather than 0.5, should we really care? 
+\end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{An R Function to Calculate Power For Coin Example}
@@ -1315,17 +1312,7 @@ Try out different choices for $p,n$ and $\alpha$ and see what you get! I'll post
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Next Time}
-% 	\begin{enumerate}
-% 	\item Some final points about Hypothesis testing and CIs
-% 	\item Regression Part II
-% 	\end{enumerate}
-% \end{frame}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \begin{center}
@@ -1500,46 +1487,46 @@ Evaulate this statement in light of our hypothesis test:
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Green Jelly Beans Cause Acne!}
-% \framesubtitle{\href{http://xkcd.com/882/}{\fbox{xkcd \#882}}}
-% \begin{center}
-% 	\includegraphics[scale=0.45]{./images/xkcd1}
-% \end{center}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \begin{center}
-% 	\includegraphics[scale=0.45]{./images/xkcd2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Green Jelly Beans Cause Acne!}
+\framesubtitle{\href{http://xkcd.com/882/}{\fbox{xkcd \#882}}}
+\begin{center}
+	\includegraphics[scale=0.45]{./images/xkcd1}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{center}
+	\includegraphics[scale=0.45]{./images/xkcd2}
 
-% \end{center}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \begin{center}
-% 	\includegraphics[scale=0.45]{./images/xkcd3}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{center}
+	\includegraphics[scale=0.45]{./images/xkcd3}
 
-% \end{center}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \begin{center}
-% 	\includegraphics[scale=0.45]{./images/xkcd4}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{center}
+	\includegraphics[scale=0.45]{./images/xkcd4}
 
-% \end{center}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-% Ignoring outside information, that is strictly on the basis of the hypothesis tests presented in the cartoon, do you think we have reason to believe that green jelly beans are linked to acne?
-% 	\begin{enumerate}[(a)]
-% 		\item Yes
-% 		\item No
-% 		\item Not Sure
-% 	\end{enumerate}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+Ignoring outside information, that is strictly on the basis of the hypothesis tests presented in the cartoon, do you think we have reason to believe that green jelly beans are linked to acne?
+	\begin{enumerate}[(a)]
+		\item Yes
+		\item No
+		\item Not Sure
+	\end{enumerate}
 
-% \end{frame}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Data-Dredging}
@@ -1570,46 +1557,46 @@ Evaulate this statement in light of our hypothesis test:
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \begin{frame}
-% \frametitle{Don't Compare P-Values Across Different Tests!}
-% \framesubtitle{\fbox{\href{http://www.people-press.org/files/2012/08/8-10-12-Knowledge-release.pdf}{Pew: ``What Voters Know About Campaign 2012''}}}
+\begin{frame}
+\frametitle{Don't Compare P-Values Across Different Tests!}
+\framesubtitle{\fbox{\href{http://www.people-press.org/files/2012/08/8-10-12-Knowledge-release.pdf}{Pew: ``What Voters Know About Campaign 2012''}}}
 
 
-% \footnotesize
+\footnotesize
 
-% Of 239 Republicans, 61\% knew Romney is pro-life vs.\ 53\% of 238 Democrats.
-% \pause
-% \begin{block}{$H_0\colon p_{Rep} = 0.5$ vs.\ $H_1\colon p_{Rep} \neq 0.5$}
-%  $$T = \frac{0.61 - 0.5}{\sqrt{0.5(1-0.5)/239}} \approx  3.4 \implies \mbox{ p-value } \approx 0.0007$$
-% \end{block}
-% \pause
-% \begin{block}{$H_0\colon q_{Dem} = 0.5$ vs.\ $H_1\colon q_{Dem} \neq 0.5$}
-%  $$T = \frac{0.53 - 0.5}{\sqrt{0.5(1-0.5)/238}} \approx 0.93  \implies \mbox{ p-value } \approx 0.35$$
-% \end{block}
-% \pause
-% \begin{block}{$H_0\colon p_{Rep} =q_{Dem}$ vs.\ $H_1\colon p_{Rep} \neq q_{Dem}$}
-%  $$T = \frac{0.61 - 0.53}{\sqrt{\left(\frac{1}{239}+ \frac{1}{238}\right)\left(\frac{239 \times 0.61 + 238 \times 0.53}{239 + 238}\right)}} \approx  1.76 \implies \mbox{ p-value } \approx 0.08$$
-% \end{block}
+Of 239 Republicans, 61\% knew Romney is pro-life vs.\ 53\% of 238 Democrats.
+\pause
+\begin{block}{$H_0\colon p_{Rep} = 0.5$ vs.\ $H_1\colon p_{Rep} \neq 0.5$}
+ $$T = \frac{0.61 - 0.5}{\sqrt{0.5(1-0.5)/239}} \approx  3.4 \implies \mbox{ p-value } \approx 0.0007$$
+\end{block}
+\pause
+\begin{block}{$H_0\colon q_{Dem} = 0.5$ vs.\ $H_1\colon q_{Dem} \neq 0.5$}
+ $$T = \frac{0.53 - 0.5}{\sqrt{0.5(1-0.5)/238}} \approx 0.93  \implies \mbox{ p-value } \approx 0.35$$
+\end{block}
+\pause
+\begin{block}{$H_0\colon p_{Rep} =q_{Dem}$ vs.\ $H_1\colon p_{Rep} \neq q_{Dem}$}
+ $$T = \frac{0.61 - 0.53}{\sqrt{\left(\frac{1}{239}+ \frac{1}{238}\right)\left(\frac{239 \times 0.61 + 238 \times 0.53}{239 + 238}\right)}} \approx  1.76 \implies \mbox{ p-value } \approx 0.08$$
+\end{block}
 
 
-% \end{frame}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Don't Compare P-Values Across Different Tests!}
+\begin{frame}
+\frametitle{Don't Compare P-Values Across Different Tests!}
 
-% \begin{itemize}
-% 	\item P-Value measures strength of evidence against the null, not the size of an affect! \pause
-% 	\item Use a single test to address a single research question: if you are actually interested in differences between Republicans and Democrats, test for this directly! \pause
-% \end{itemize}
+\begin{itemize}
+	\item P-Value measures strength of evidence against the null, not the size of an affect! \pause
+	\item Use a single test to address a single research question: if you are actually interested in differences between Republicans and Democrats, test for this directly! \pause
+\end{itemize}
 
-% \vspace{1em}
+\vspace{1em}
 
-% \pause
+\pause
 
-% For more on the problems associated with comparing p-values from different hypothesis tests, along with an even starker example than the one I just showed you, see \href{http://amstat.tandfonline.com/doi/abs/10.1198/000313006X152649}{\textcolor{blue}{\fbox{Gelman \& Stern (2006)}}}
+For more on the problems associated with comparing p-values from different hypothesis tests, along with an even starker example than the one I just showed you, see \href{http://amstat.tandfonline.com/doi/abs/10.1198/000313006X152649}{\textcolor{blue}{\fbox{Gelman \& Stern (2006)}}}
 
-% \end{frame}
+\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
