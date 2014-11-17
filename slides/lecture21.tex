@@ -4,7 +4,7 @@
 \ifdefined\ishandout
   \documentclass[handout]{beamer}
 \else
-  \documentclass{beamer}
+  \documentclass[handout]{beamer}
 \fi
  
 \usepackage{econ103slides} 
@@ -27,84 +27,203 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\begin{center}
-	\huge Hypothesis Testing -- Part II
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Central Idea of Hypothesis Testing: Control Type I Errors}
-\pause
-	\begin{enumerate}
-		\item Choose significance level $\alpha$ \pause
-			\begin{itemize} 
-				\item Max prob.\ of Type I error (reject true $H_0$) we will accept \pause
-			\end{itemize}
-		\item Choose a test statistic $T_n$ \pause
-			\begin{itemize}
-				\item Known sampling distribution under $H_0$ \pause
-			 \end{itemize} 
-		\item Specify a decision rule involving $T_n$ and critical value $c_\alpha$ \pause
-			\begin{itemize}
-				\item Chosen to keep Type I error probability $\leq \alpha$ \pause
-				\item Typically: Reject $H_0$ if $T_n \geq c_\alpha$ \pause
-				\item (Could be $\leq$ depending on the problem) 
-			\end{itemize}
-	\end{enumerate}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \begin{block}{Last Time}
 Simple Example of Hypothesis Testing: the Pepsi Challenge
 \end{block}
 
-\begin{block}{Today}
+\begin{block}{Today and Next Two Lectures}
 Hypothesis Testing More Generally
 \end{block}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
-
-\begin{alertblock}{Step 1}
-Specify the Null and Alternative Hypotheses.
-\end{alertblock}
-
+\frametitle{Hypothesis: Assertion about Population(s)}
+	\begin{itemize}
+	\item A Big Mac contains, on average, 550 kcal: \alert{$\mu = 550$}
+	\item Midterm 2 was harder than Midterm 1: \alert{$\mu_{1} >\mu_2$}
+	\item Equal proportions of Republicans and Democrats know that John Roberts is the chief justice of SCOTUS: \alert{$p = q$}
+	\item Google stock is riskier than IBM stock: \alert{$\sigma^2_{X} > \sigma^2_{Y}$}
+	\item There is no correlation between height and income: \alert{$\rho = 0$} 
+	\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Hypotheses Are Assertions about Population Parameters}
-\begin{block}{For Example:}
+	\frametitle{Hypothesis Testing: Try to 
+	Find Evidence \emph{Against} $H_0$}
+\begin{block}
+	{Null Hypothesis: $H_0$}
 	\begin{itemize}
-		\item Population mean is zero ($\mu = 0$)
-		\item Population proportion is 50\% ($p=0.5$) 
-		% \item Population Variance greater than 5 ($\sigma^2 > 5$) 
-		% \item Proportion in first popn.\ greater than in second $(p - q \geq 0)$ 
-		\item The means of two populations are equal $(\mu_x = \mu_y)$ 
+		\item Start off assuming $H_0$ is true --
+		 ``innocent until proven guilty''
+		\item ``Under the Null'' = Assuming the null is true
+		\item $H_0$ $\Rightarrow$ know something about population, can calculate probs.
 	\end{itemize}
-	
+\end{block}
+\begin{alertblock}
+	{This Course: \emph{Simple} Null Hypotheses}
+	$H_0\colon f(\mbox{Parameters}) = \mbox{Known Constant}$, for example
+	\begin{itemize}
+		\item $\mu_1 - \mu_2 = 0$
+		\item $p = 0.5$
+		\item $\mu = 0$
+		\item $\sigma^2_X/\sigma^2_Y = 1$
+	\end{itemize}
+\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{How do I know what my null hypothesis is?}
+	There is no rule I can give you for this: it depends on the problem. Here are some guidelines:
+	\begin{itemize}
+		\item It will take the form $f(\mbox{Parameters}) = \mbox{Known Constant}$
+		\item Nulls are typically things like ``there is no effect,'' ``these two groups are not different,'' i.e.\ the \emph{status quo}. 
+		\item Nulls are \emph{very specific}: we need to be able to do probability calculations under the null -- c.f.\ the Pepsi Challenge.
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Example: How many calories in a Big Mac? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\begin{itemize}
+	\item According to McDonald's: 550 kcal on average
+	\item Measure calories in random sample of $9$ Big Macs: $X_1, \hdots, X_{9} \sim \mbox{iid } N(\mu, \sigma^2)$
+\end{itemize}
+
+\vspace{1em}
+
+\alert{If we wanted to test McDonald's claim, what would be $H_0$?}
+\begin{enumerate}[(a)]
+	\item $\sigma^2 = 1$
+	\item $\mu = 0$
+	\item $\mu > 550$ 
+	\item $\mu = 550$
+	\item $\mu \neq 550$
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Example: How many calories in a Big Mac? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\begin{itemize}
+	\item According to McDonald's: 550 kcal on average
+	\item Measure calories in random sample of $100$ Big Macs: $X_1, \hdots, X_{9} \sim \mbox{iid } N(\mu, \sigma^2)$
+\end{itemize}
+
+\vspace{1em}
+
+\alert{If McDonald's is telling the truth, approximately what value should we get for the sample mean caloric content of the $9$ Big Macs?} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Example: How many calories in a Big Mac? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\begin{itemize}
+	\item According to McDonald's: 550 kcal on average
+	\item Measure calories in random sample of $100$ Big Macs: $X_1, \hdots, X_{9} \sim \mbox{iid } N(\mu, \sigma^2)$
+\end{itemize}
+
+\vspace{1em}
+
+\alert{If the sample mean does not equal 550, does this prove that McDonald's is lying?}
+\begin{enumerate}[(a)]
+	\item Yes
+	\item No
+	\item Not Sure
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{How to find evidence against $H_0$? Test Statistic!}
+	\begin{block}
+		{Test Statistic: $T_n$}
+		A random variable with a \emph{known} sampling distribution \emph{under $H_0$}, i.e.\ a sampling distribution that \emph{does not depend} on any unknown parameters.
 	\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{For This Course: Simple Null Hypotheses}
-	Our null hypotheses will always take the form $H_0\colon \theta = \theta_0$ where $\theta$ is a population parameter and $\theta_0$ is \alert{some specified value}, e.g.\ 3.\\ 
-	 
-	\vspace{2em}
-	\alert{What will differ depending on the situation is the alternative hypothesis...}
+\begin{frame}[t]
+	\frametitle{Example: How many calories in a Big Mac? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\begin{itemize}
+	\item Measure calories in random sample of $n$ Big Macs: $X_1, \hdots, X_9 \sim \mbox{iid } N(\mu, \sigma^2)$
+	\item $H_0\colon \mu = 550$
+\end{itemize}
+
+\vspace{1em}
+
+\alert{Which of these should we use as our test statistic?}
+\begin{enumerate}[(a)]
+	\item $S^2$
+	\item $\bar{X} - 550$
+	\item $\bar{X}$
+	\item $\bar{X} / S$ 
+	\item $(\bar{X} - 550)/(S/3)$
+\end{enumerate}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Example: How many calories in a Big Mac? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\begin{itemize}
+	\item Measure calories in random sample of $n$ Big Macs: $X_1, \hdots, X_9 \sim \mbox{iid } N (\mu, \sigma^2)$
+	\item $H_0\colon \mu = 550$
+\end{itemize}
 
+\vspace{1em}
 
+\alert{If McDonald's is telling the truth, i.e.\ under the null, what is \emph{exact}  sampling distribution of $3(\bar{X} - 550)/S$?}
+\begin{enumerate}[(a)]
+	\item $\chi^2_{9}$
+	\item $N(550, 1)$
+	\item $F(9, 1)$
+	\item $N(0,1)$ 
+	\item $t_{9}$
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Important!}
+	\begin{itemize}
+		\item I've assumed that the population is normal in this example, resulting in a Student $t$ sampling distribution.
+		\item This is an \emph{exact} result assuming the assumption is correct.
+		\item Nine observations is simply too few for the CLT to kick in.
+		\item If you had more observations you could solve this problem without assuming normality: the steps would be very similar.
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{What if the null is false?}
+
+	\begin{block}
+		{Alternative hypothesis: $H_1$}
+		The \emph{negation} of the null hypothesis.
+	\end{block}
+	\begin{block}
+		{Examples:}
+		\begin{enumerate}
+			\item 
+				\begin{itemize}
+					\item $H_0\colon$ This parameter equals 5.
+				\item $H_1\colon$ This parameter does \emph{not} equal 5.
+		\end{itemize}
+			\item 
+				\begin{itemize}
+					\item $H_0\colon$ There is no difference between these two groups.
+					\item $H_1\colon$ There \emph{is} a difference between these two groups.
+				\end{itemize}
+		\end{enumerate}
+		
+	\end{block}
+
+	\alert{Sometimes we only care about \emph{certain kinds} of violations of $H_0$...}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{One-sided vs.\ Two-sided Alternative}
-\alert{In each case the null hypothesis is $H_0\colon \theta = \theta_0$}
+\alert{Let $\theta$ be a population parameter and $\theta_0$ be a specified constant.}
+\begin{block}
+	{Null Hypothesis}
+\begin{itemize}
+	\item $H_0\colon \theta = \theta_0$
+\end{itemize}\end{block}
 	\begin{block}{Two-sided Alternative}
 		\begin{itemize}
 			\item $H_1\colon \theta \neq \theta_0$
@@ -119,38 +238,7 @@ Specify the Null and Alternative Hypotheses.
 \end{block}
 \end{frame}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Suing McDonald's}
-
-A class action lawsuit claims that McDonald's has been  understating the caloric content of the ``Big Mac,'' misleading consumers into thinking the sandwich is healthier than it really is. McDonald's claims the sandwich contains $550$ kcal on average. \\
-
-\vspace{1em}
-Presumably there's some variation, both sandwich to sandwich and in the device used to measure calories, so we should interpret this as a claim about the \alert{population mean} caloric content of the sandwich ($\mu$).
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Example: Suing McDonald's \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-A class action lawsuit claims that McDonald's has been  understating the caloric content of the ``Big Mac,'' misleading consumers into thinking the sandwich is healthier than it really is. McDonald's claims the sandwich contains $550$ kcal on average. \\
-
-\vspace{1em}
-\alert{Suppose you're the judge in this case. What is your null hypothesis?}
-
-	\begin{enumerate}[(a)]
-		\item $H_0\colon \mu \neq 550$ kcal
-		\item $H_0\colon \mu < 550$ kcal
-		\item $H_0\colon \mu > 550$ kcal
-		\item $H_0\colon \mu = 550$ kcal
-\end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
 \frametitle{Example: Suing McDonald's \hfill \includegraphics[scale = 0.05]{./images/clicker}}
 
@@ -160,42 +248,18 @@ A class action lawsuit claims that McDonald's has been  understating the caloric
 \alert{Suppose you're the judge in this case. What is your alternative hypothesis?}
 
 	\begin{enumerate}[(a)]
-		\item $H_1\colon \mu \neq 550$ kcal
-		\item $H_1\colon \mu < 550$ kcal
-		\item $H_1\colon \mu > 550$ kcal
-		\item $H_1\colon \mu = 550$ kcal
-\end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Quality Control at McDonald's}
-
-You are a senior manager at McDonald's and are concerned that franchises may be deviating from company policy on the calorie count of a Big Mac sandwich, which is supposed to be 550 kcal on average. Because intervening is costly, you will only take action is there is strong evidence of deviation company policy. 
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Quality Control at McDonald's \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-You are a senior manager at McDonald's and are concerned that franchises may be deviating from company policy on the calorie count of a Big Mac sandwich, which is supposed to be 550 kcal on average. Because intervening is costly, you will only take action is there is strong evidence of deviation company policy. \\
-
-\vspace{1em}
-
-\alert{What is your null hypothesis?}
-	\begin{enumerate}[(a)]
 		\item $H_0\colon \mu \neq 550$ kcal
 		\item $H_0\colon \mu < 550$ kcal
 		\item $H_0\colon \mu > 550$ kcal
 		\item $H_0\colon \mu = 550$ kcal
 \end{enumerate}
 \end{frame}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \frametitle{Example: Quality Control at McDonald's \hfill \includegraphics[scale = 0.05]{./images/clicker}}
 
-You are a senior manager at McDonald's and are concerned that franchises may be deviating from company policy on the calorie count of a Big Mac sandwich, which is supposed to be 550 kcal on average. Because intervening is costly, you will only take action is there is strong evidence of deviation company policy. \\
+You are a senior manager at McDonald's and are concerned that franchises may be deviating from company policy on the calorie count of a Big Mac sandwich, which is supposed to be 550 kcal on average. Because intervening is costly, you will only take action is there is strong evidence of deviation from company policy. \\
 
 \vspace{1em}
 
@@ -207,103 +271,20 @@ You are a senior manager at McDonald's and are concerned that franchises may be 
 		\item $H_1\colon \mu = 550$ kcal
 \end{enumerate}
 \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Example: Bias in Jury Selection \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-You are investigating a judge who is suspected of showing bias against women in jury selection. Of the 700 jury members he has selected only $15\%$ were women. In contrast, $29\%$ of eligible jurors were women. Let $p$ be the probability that a juror drawn by this judge is a woman.\\
-
-\vspace{1em}
-
-\alert{What should our null hypothesis be in this case?}
-
-\begin{enumerate}[(a)]
-	\item $H_0\colon p = 0.5$
-	\item $H_0\colon p = 0.29$
-	\item $H_0\colon p = 0.15$
-	\item $H_0\colon p \neq 0.29$
-\end{enumerate}
-
+	\frametitle{Decision Rule: When should we reject $H_0$?}
+	\begin{itemize}
+		\item Test statistic: RV with known sampling distribution under $H_0$
+		\item McDonald's Example: $T_n = 3(\bar{X} - 550)/S$
+		\item \emph{Random} since $\bar{X}$ and $S$ are RVs under random sampling: functions of $X_1, \hdots, X_9$.
+		\item Observed dataset: \emph{realizations} $x_1, \hdots, x_9$ of RVs $X_1, \hdots, X_9$
+		\item Plug in observed data to get estimates (constants) $\bar{x}$ and $s$.
+		\item Plug these into the formula for the test statistic to get a \emph{number} -- this is a \emph{realization} of $T_n$ 
+		\item Depending on this number, decide whether to reject $H_0$.
+	\end{itemize}
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Bias in Jury Selection \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-You are investigating a judge who is suspected of showing bias against women in jury selection. Of the 700 jury members he has selected only $15\%$ were women. In contrast, $29\%$ of eligible jurors were women. Let $p$ be the probability that a juror drawn by this judge is a woman.\\
-
-\vspace{1em}
-
-\alert{What should our alternative hypothesis be in this case?}
-
-\begin{enumerate}[(a)]
-	\item $H_1\colon p \neq 0.29$
-	\item $H_1\colon p \neq 0.15$
-	\item $H_1\colon p < 0.29$
-	\item $H_1\colon p > 0.29$
-\end{enumerate}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\begin{center}
-\huge Which alternative to use depends on the problem at hand.
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\begin{alertblock}{Step 2}
-Identify a \emph{Test Statistic}: a function of the data and the unknown parameter that has a \emph{known sampling distribution if $H_0$ is true} (i.e.\ ``Under the Null'').
-\end{alertblock}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{The Two McDonald's Examples}
-Suppose we take a random sample of $n$ Big Macs and measure their caloric content: $X_1, \hdots, X_n \sim \mbox{iid} (\mu, \sigma^2)$
-
-\begin{block}{Lawsuit: One-sided Alternative}
-$H_0\colon \mu = 550$\\
-$H_1\colon \mu > 550$
-\end{block}
-\begin{block}{Quality Control: Two-sided Alternative}
-$H_0\colon \mu = 550$\\
-$H_1\colon \mu \neq 550$
-\end{block}
-\alert{What test statistic has a known distribution under the null?}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What Test Statistic to Use?}
-Suppose we take a random sample of $n$ Big Macs and measure their caloric content: $X_1, \hdots, X_n \sim \mbox{iid} (\mu, \sigma^2)$
-
-\begin{block}{Possibility I: Assume the Population is Normal}
- $$H_0\colon \mu = 550 \Rightarrow \displaystyle \frac{\bar{X}_n - 550}{S/\sqrt{n}}\sim t(n-1)$$
-\end{block}
-
-\begin{block}{Possibility II: Assume $n$ is large and use CLT}
- $$H_0\colon \mu = 550 \Rightarrow \displaystyle \frac{\bar{X}_n - 550}{S/\sqrt{n}}\approx N(0,1)$$
-\end{block}
-
-\alert{Same basic idea in each case. I'll show you the first one.}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\begin{alertblock}{Step 3}
-Specify a \emph{Decision Rule} and a \emph{Critical Value} so that if $H_0$ is true (i.e.\ ``Under the Null'') the probability of rejecting equals $\alpha$, a \emph{user specified Type I Error Rate}.
-\end{alertblock}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{What Form Should the Decision Rule Take?}
 \begin{columns}
@@ -312,7 +293,7 @@ Specify a \emph{Decision Rule} and a \emph{Critical Value} so that if $H_0$ is t
 \end{column}
 
 \begin{column}[r]{6cm}
-$H_0\colon \mu=550 \Rightarrow \displaystyle \frac{\bar{X}_n - 550}{S/\sqrt{n}} \sim t(n-1)$\\ \pause
+$H_0\colon \mu=550 \Rightarrow \displaystyle \frac{\bar{X} - 550}{S/3} \sim t(3)$\\ \pause
 \vspace{1em}
 One-sided Alternative $H_1\colon \mu > 550$\\ \pause
 \vspace{1em}
@@ -323,6 +304,65 @@ Two-sided Alternative $H_1\colon \mu \neq 550$
  
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Suing McDonald's \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+The plaintiffs allege that McDonald's has \emph{understated} the true caloric content of a Big Mac: it's actually \emph{greater} than 550 kcal. \alert{Suppose the plaintiffs are right. Then what sort of value should we expect the test statistic $3(\bar{X} - 550)/S$ to take on?}
+
+\vspace{1em}
+\begin{enumerate}[(a)]
+	\item A value \emph{less} than zero.
+	\item A value close to zero.
+	\item A value \emph{greater} than zero.
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Quality Control at McDonald's \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+The senior manager is worried that franchises are deviating from company policy on the caloric content of Big Macs.
+plaintiffs allege that McDonald's has \emph{understated} the true caloric content of a Big Mac: it's actually \emph{greater} than 550 kcal. \alert{Suppose the plaintiffs are right. Then what sort of value should we expect the test statistic $3(\bar{X} - 550)/S$ to take on?}
+
+\vspace{1em}
+\begin{enumerate}[(a)]
+	\item A value \emph{less} than zero.
+	\item A value close to zero.
+	\item A value \emph{greater} than zero.
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Two Kinds of Mistakes in Hypothesis Testing}
+	\begin{block}
+		{Type I Error}
+		\begin{itemize}
+			\item Rejecting the null when it's actually true.
+			\item $P(\mbox{Type I Error}) = \alpha\quad \quad$ \alert{\boxed{$\alpha = $\emph{``Significance Level'' of Test}}}
+		\end{itemize}
+	\end{block}
+	\begin{block}
+		{Type II Error}
+		\begin{itemize}
+			\item Failing to reject the null when it's false.
+			\item $P(\mbox{Type II Error}) = \beta \quad \quad$ \alert{\boxed{$1 - \beta =$\emph{``Power'' of Test}}}
+		\end{itemize}
+	\end{block}
+	\begin{alertblock}
+		{Important!}
+		Hypothesis testing \emph{controls} probability of a Type I error since this is assumed to be the \emph{worse} kind of mistake: convicting the innocent.	
+	\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Construct a Decision Rule to \emph{Fix} $\alpha$ at Specified Value}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{alertblock}{Step 3}
+Specify a \emph{Decision Rule} and a \emph{Critical Value} so that if $H_0$ is true (i.e.\ ``Under the Null'') the probability of rejecting equals $\alpha$, a \emph{user specified Type I Error Rate}.
+\end{alertblock}
+\end{frame}
+
+
 
 
 \begin{frame}
