@@ -4,7 +4,7 @@
 \ifdefined\ishandout
   \documentclass[handout]{beamer}
 \else
-  \documentclass[handout]{beamer}
+  \documentclass{beamer}
 \fi
  
 \usepackage{econ103slides} 
@@ -175,18 +175,8 @@ Hypothesis Testing More Generally
 	\item $N(550, 1)$
 	\item $F(9, 1)$
 	\item $N(0,1)$ 
-	\item $t_{9}$
+	\item $t_{8}$
 \end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Important!}
-	\begin{itemize}
-		\item I've assumed that the population is normal in this example, resulting in a Student $t$ sampling distribution.
-		\item This is an \emph{exact} result assuming the assumption is correct.
-		\item Nine observations is simply too few for the CLT to kick in.
-		\item If you had more observations you could solve this problem without assuming normality: the steps would be very similar.
-	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -293,7 +283,7 @@ You are a senior manager at McDonald's and are concerned that franchises may be 
 \end{column}
 
 \begin{column}[r]{6cm}
-$H_0\colon \mu=550 \Rightarrow \displaystyle \frac{\bar{X} - 550}{S/3} \sim t(3)$\\ \pause
+$H_0\colon \mu=550 \Rightarrow \displaystyle \frac{\bar{X} - 550}{S/3} \sim t(8)$\\ \pause
 \vspace{1em}
 One-sided Alternative $H_1\colon \mu > 550$\\ \pause
 \vspace{1em}
@@ -330,6 +320,25 @@ The senior manager is worried that franchises are deviating from company policy 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{What Form Should the Decision Rule Take?}
+$X_1, \hdots, X_n \sim \mbox{iid } N(\mu, \sigma^2)$ 
+\begin{block}{Common Null Hypothesis $H_0\colon \mu = 550$}
+Under $H_0$, $T_n = \sqrt{n}(\bar{X}_n - 550)/S \sim t(n-1)$ 
+\end{block}
+\begin{block}{One-sided Alternative $H_1\colon \mu > 550$}
+Reject $H_0$ if $T_n$ is ``too big'' 
+\end{block}
+\begin{block}{Two-sided Alternative $H_1\colon \mu \neq 550$} 
+Reject $H_0$ if $T_n$ is ``too big'' or ``too small''
+\end{block}
+
+\vspace{1em}
+
+\alert{But how big of a discrepancy is ``big enough'' to reject?}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 	\frametitle{Two Kinds of Mistakes in Hypothesis Testing}
 	\begin{block}
 		{Type I Error}
@@ -354,36 +363,28 @@ The senior manager is worried that franchises are deviating from company policy 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Construct a Decision Rule to \emph{Fix}}
+	\frametitle{Construct a Decision Rule to \emph{Fix} $\alpha$ at User-Chosen Level}
+
+	\begin{block}
+		{Critical Value $c_{\alpha}$} 
+	\begin{itemize}
+		\item Threshold for rejecting $H_0$
+		\item Chosen so that $P(\mbox{Reject } H_0|H_0 \mbox{ is True}) = \alpha$
+		\item Depends on \emph{both} $\alpha$ \emph{and} the alternative hypothesis.
+	\end{itemize}
+	\end{block}
+	\begin{block}
+		{One-Sided Alternative}
+		Reject $H_0$ if $T_n >$ Critical Value
+	\end{block}
+	\begin{block}
+		{Two-Sided Alternative}
+		Reject $H_0$ if $|T_n| >$ Critical Value
+	\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-\begin{alertblock}{Step 3}
-Specify a \emph{Decision Rule} and a \emph{Critical Value} so that if $H_0$ is true (i.e.\ ``Under the Null'') the probability of rejecting equals $\alpha$, a \emph{user specified Type I Error Rate}.
-\end{alertblock}
-\end{frame}
-
-
-
-
-\begin{frame}
-\frametitle{What Form Should the Decision Rule Take?}
-Suppose we take a random sample of $n$ Big Macs and measure their caloric content. Assume that the population is normal: $X_1, \hdots, X_n \sim \mbox{iid } N(\mu, \sigma^2)$ 
-\begin{block}{Common Null Hypothesis $H_0\colon \mu = 550$}
-Under $H_0$, $T_n = \sqrt{n}(\bar{X}_n - 550)/S \sim t(n-1)$ 
-\end{block}
-\begin{block}{One-sided Alternative $H_1\colon \mu > 550$}
-Reject $H_0$ if $T_n$ is ``too big'' 
-\end{block}
-\begin{block}{Two-sided Alternative $H_1\colon \mu \neq 550$} 
-Reject $H_0$ if $T_n$ is ``too big'' or ``too small''
-\end{block}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{One-sided Alternative $H_1\colon \mu > 550$}
+\frametitle{Example: One-sided Alternative $H_1\colon \mu > 550$}
 The critical value is chosen to reflect both the alternative hypothesis and the significance level. 
 \begin{figure}
 \includegraphics[scale = 0.45]{./images/one_side}
@@ -395,7 +396,7 @@ One-sided Critical Value: \texttt{qt($1-\alpha$, df  = $n-1$)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Two-sided Alternative $H_1\colon \mu \neq 550$}
+\frametitle{Example: Two-sided Alternative $H_1\colon \mu \neq 550$}
 The critical value is chosen to reflect both the alternative hypothesis and the significance level. 
 \begin{figure}
 \includegraphics[scale = 0.45]{./images/two_side}
@@ -414,44 +415,99 @@ Suppose, for example, $\alpha = 0.05$, $n = 9$
 \includegraphics[scale = 0.3]{./images/one_side}
 \includegraphics[scale = 0.3]{./images/two_side}
 \end{figure}
-One-sided Alternative: Reject $H_0$ if $\sqrt{n}(\bar{X}_n - 550)/S \geq 1.86$\\
+One-sided Alternative: Reject $H_0$ if $3(\bar{X}_n - 550)/S \geq 1.86$\\
 \vspace{0.5em}
-Two-sided Alternative: Reject $H_0$ if $\left|\sqrt{n}(\bar{X}_n - 550)/S\right| \geq 2.3$\\
+Two-sided Alternative: Reject $H_0$ if $\left|3(\bar{X}_n - 550)/S\right| \geq 2.3$\\
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Example with Simulated Data: $\alpha = 0.05$}
-Suppose $n=9$, $\bar{x} = 563$, $s = 34$. What is the test statistic?
+\frametitle{McDonald's Example\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+Suppose $n=9$, $\bar{x} = 563$, $s = 34$. What is  the value of our test statistic?
 
-
+\pause
 \vspace{1em}
 	$$\frac{563 - 550}{34/\sqrt{9}}= \frac{13}{34/3} \approx 1.14$$
 
 
+\end{frame}
 
-One-sided Alternative: Reject $H_0$ if $T_n\geq 1.86$\\
-Two-sided Alternative: Reject $H_0$ if $\left|T_n\right| \geq 2.3$\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{McDonald's Example: $\alpha = 0.05$\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+Recall that:
+\begin{eqnarray*}
+		&&\texttt{qt(0.95, df  = 8)}\approx 1.86\\
+		 &&\texttt{qt(0.975, df  = 8)}\approx 2.3
+	\end{eqnarray*}
+Based on an observed test statistic of $1.14$, would we reject $H_0$ against the one-sided alternative at the 5\% significance level?
+\begin{enumerate}[(a)]
+	\item Yes
+	\item No
+	\item Not Sure
+\end{enumerate}
 
-\vspace{1em}
-\alert{In this example, we would fail to reject $H_0$ in either case.}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{McDonald's Example: $\alpha = 0.05$\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+Recall that:
+\begin{eqnarray*}
+		&&\texttt{qt(0.95, df  = 8)}\approx 1.86\\
+		 &&\texttt{qt(0.975, df  = 8)}\approx 2.3
+	\end{eqnarray*}
+Based on an observed test statistic of $1.14$, would we reject $H_0$ against the \alert{two-sided} alternative at the 5\% significance level?
+\begin{enumerate}[(a)]
+	\item Yes
+	\item No
+	\item Not Sure
+\end{enumerate}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{Reporting the Results of a Hypothesis Test}
+	\begin{block}
+		{Lawsuit Example}
+		The judge \emph{failed to reject} the null hypothesis that $\mu = 550$ against the one-sided alternative $\mu > 550$ at the 5\% significance level.
+	\end{block}
+	\begin{block}
+		{Quality Control Example}
+		The senior manager \emph{failed to reject} the null hypothesis that $\mu 550$ against the two-sided alternative at the 5\% significance level.
+	\end{block}
+	\begin{block}
+		{Interpretation}
+		In each of these two cases, there was \emph{insufficient evidence} the initial assumption that $\mu = 550$ \emph{given the significance level used}.
+	\end{block}
+	\alert{But what if we have used a \emph{different} significance level?}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{The P-Value of a Hypothesis Test}
+	\begin{block}
+		{Two Equivalent Definitions:}
+		\begin{enumerate}
+			\item Given the value we calculated for our test statistic, what is the \emph{smallest $\alpha$} at which we would have rejected the null?
+			\item Under the null, what is the probability of observing a test statistic \emph{at least as extreme} as the one we \emph{actually} observed?
+		\end{enumerate}
+	\end{block}
+	\begin{block}
+		{Why Report P-Values?}
+		\begin{itemize}
+			\item More informative than reporting $\alpha$ and Reject/Fail to Reject
+			\item E.g. a p-value of 0.03 means we would have rejected the null for any $\alpha \geq 0.03$ and failed to reject it for any $\alpha < 0.03$ 
+		\end{itemize}
+	\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \begin{center}
-\huge Decision Rule and Critical Value Depend on Which Alternative We Have Specified!
+\huge P-Value Depends on Which Alternative We Have Specified!
 \end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\begin{alertblock}{Alternate Step 3}
-Instead of calculating a critical value for a fixed significance level ($\alpha$), calculate the \emph{P-Value}, the minimum significance level at which we would reject the null hypothesis given the observed data.
-\end{alertblock}
-
-
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -610,13 +666,6 @@ Reject $H_0$ based on two-sided test $\implies$ Reject $H_0$ based on appropriat
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\begin{center}
-\huge P-Value Depends on Which Alternative We Have Specified!
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Steps in Hypothesis Testing}
 
