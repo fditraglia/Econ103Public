@@ -456,6 +456,10 @@ $\texttt{2 * (1 - pnorm(1.36))} =  \texttt{2 * pnorm(-1.36)} \approx 0.18$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+	\frametitle{Work through one-sample Romney Example}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 	\frametitle{Tests for Proportions: Two-Sample Example}
 	\begin{block}
 		{From Pew Polling Data}
@@ -477,116 +481,27 @@ $\texttt{2 * (1 - pnorm(1.36))} =  \texttt{2 * pnorm(-1.36)} \approx 0.18$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Tests and CIs for Proportions}
-\footnotesize
-Suppose $X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$ indep.\ of $Y_1, \hdots, Y_m \sim \mbox{iid Bernoulli}(q)$.\\
-\normalsize
-\vspace{1em}
-
-From the CLT:
-	$$\frac{\hat{p} - p}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}} \approx N(0,1)$$
-and
-$$\frac{(\hat{p} - \hat{q}) - (p-q)}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n} + \frac{\hat{q}(1-\hat{q})}{m}}} \approx N(0,1)$$
-
-\alert{We can use these results for both testing and building CIs}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{``Textbook'' CIs for Proportions}
-	$$\widehat{p} \pm \texttt{qnorm}(1 - \alpha/2) \times \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
-	
-	$$\left(\widehat{p} -\widehat{q}\right)\pm \texttt{qnorm}(1 - \alpha/2) \times \sqrt{\frac{\hat{p}(1-\hat{p})}{n} + \frac{\hat{q}(1-\hat{q})}{m}}$$
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{``Unrefined'' Tests for Proportions -- Like Tests for Means}
-	$$H_0\colon p = p_0 \Rightarrow \frac{\hat{p} - p_0}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}} \approx N(0,1)$$
-	\vspace{1em}
-	
-	$$H_0\colon p = q \Rightarrow \frac{\hat{p} - \hat{q}}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n} + \frac{\hat{q}(1-\hat{q})}{m}}} \approx N(0,1)$$
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Refined Tests for Proportions: Fully Impose $H_0$}
-
-\begin{block}{Under $H_0$ we know something about the standard error!}
-For proportions, mean and SE are are linked!
-\end{block}
-\begin{block}{One-sample: SE Known under $H_0$}
-	$$H_0\colon p = p_0 \Rightarrow \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \approx N(0,1)$$
-\end{block}
-	\pause
-\begin{block}{Two-sample: Pooled SE estimator under $H_0$}
-	$$H_0\colon p = q \Rightarrow \frac{\hat{p} - \hat{q}}{\sqrt{\left(\frac{1}{n} + \frac{1}{m} \right)\widehat{\pi}(1-\widehat{\pi})}} \approx N(0,1)$$
-	where $\widehat{\pi} = \frac{n\widehat{p} + m\widehat{q}}{n+m}$
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Refined Test and Refined CI}
-\small
-\begin{block}{Refined Test Imposes $H_0$ in \emph{both} Numerator \& Denominator}
-Our procedures for proportions are approximations based on the CLT. (The population in question is actually Bernoulli!) Fully imposing the null, as on the previous slide, makes the approximation work better.
-\end{block}
-
-\pause
-
-\begin{block}{Ideally Invert Refined Test to get CI}
-Earlier in this lecture, we talked about how the set of all parameter values that are not rejected by a two-sided test with significance level $\alpha$ gives a $100\times(1-\alpha)\%$ CI. Ideally, we could invert the refined tests for proportions to get \emph{corresponding} refined CIs. The math required for this, however, is a little tricky.
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{``Refined'' Procedures for Proportions}
-\begin{columns}
-	\column{0.45\textwidth}
+	\frametitle{Two-Sample Test for Proportions}
 	\begin{block}
-		{Refined CI}
-		Add four ``fake'' observations.
+		{Sampling Model}
+		$X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$ independently  of $Y_1, \hdots, Y_m \sim \mbox{iid Bernoulli}(q)$
 	\end{block}
-	\column{0.45\textwidth}
-		\begin{block}
-			{Refined Test} Fully impose $H_0$ in $T_n$
-		\end{block}
-\end{columns}
-
-\vspace{2em}
-
-\begin{block}
-	{What's Going on Here?}
-		\begin{itemize}
-		\item $X_1, \hdots, X_n \sim \mbox{ iid Bernoulli}(p)$ has special structure:
-			\begin{enumerate}
-				\item Discrete Data (zeros and ones)
-				\item Single Population parameter $p$ 
-			\end{enumerate}
-		\item Use this structure to improve the approximation of the CLT
-		\item Turns out that the refined CI is approximately what you get from inverting the corresponding refined test.
-	\end{itemize}
-\end{block}
+	\begin{block}
+		{Null Hypothesis}
+		$H_0\colon p = q \quad \Leftarrow \; $\fbox{ i.e.\ $p - q = 0$}
+	\end{block}
+	\begin{block}
+		{Pooled Estimator of SE under $H_0$}
+		$\widehat{\pi} = $
+	\end{block}
+	\begin{block}
+		{Test Statistic}
+		$\displaystyle T_n = \frac{\widehat{p}- \widehat{q}}{\widehat{SE}_{Pooled}} \approx N(0,1)$ under $H_0$ provided $n$
+	\end{block}
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Refined Test and Refined CI}
-\small
-\begin{block}{Inverting \emph{Unrefined Tests} Gives Textbook CI}
-The \emph{unrefined} tests for proportions do not use the fact that, under the null, we actually have some additional information regarding the standard errors. If we invert these tests, we get the textbook confidence intervals studied earlier (see preceding slides). 
-\end{block}
-
-\pause
-
-\begin{block}{Refined CIs are an \emph{Approximation} to Inverting Refined Tests}
-A few lectures ago, we talked about the refined CIs for proportions that involved adding ``fake'' observations to the data. These are \emph{very close} to what you get if you inverted the refined tests. \alert{This is why we use them.}
-\end{block}
-
-\pause
-
-\vspace{1em} 
-\large
-\alert{Unless instructed otherwise, you should \emph{always} use the refined tests and refined CIs when working with proportions: they work better.}
-
+	\frametitle{Work through two-sample Romney example}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
