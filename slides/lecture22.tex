@@ -456,15 +456,30 @@ $\texttt{2 * (1 - pnorm(1.36))} =  \texttt{2 * pnorm(-1.36)} \approx 0.18$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Work through one-sample Romney Example}
-	Just need to put in the calculations...
+	\frametitle{One-Sample Example $H_0\colon p = 0.5$}
+	\fbox{\footnotesize 54\% of a random sample of 771 registered voters knew Mitt Romney is Pro-Life.}
+
+\vspace{1em}
+
+	\begin{eqnarray*}
+		T_n &=& \frac{\widehat{p} - p_0}{\sqrt{\displaystyle \frac{p_0(1 - p_0)}{n}}} = 2 \sqrt{771}(0.54 - 0.5)\\ \\
+		&=& 0.08 \times \sqrt{771} \approx 2.2
+	\end{eqnarray*}
+	\begin{block}
+		{One-Sided p-value}
+		\texttt{1 - pnorm(2.2)} $\approx 0.014$
+	\end{block}
+	\begin{block}
+		{Two-Sided p-value}
+		\texttt{2 * (1 - pnorm(2.2))} $\approx 0.028$
+	\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Tests for Proportions: Two-Sample Example}
 	\begin{block}
 		{From Pew Polling Data}
-		53\% of a random sample of 238 Democrats correctly identified Mitt Romney as Pro-Life vs.\ 61\% of 239 Republicans.
+		53\% of a random sample of 238 Democrats correctly identified Mitt Romney as Pro-Life versus 61\% of 239 Republicans.
 	\end{block}
 	\begin{block}
 		{Sampling Model}
@@ -472,7 +487,7 @@ $\texttt{2 * (1 - pnorm(1.36))} =  \texttt{2 * pnorm(-1.36)} \approx 0.18$
 		Democrats: $Y_1, \hdots,Y_{m} \sim \mbox{iid Bernoulli}(q)$ 
 	\end{block}
 	\begin{block}
-		{Sample Statistic}
+		{Sample Statistics}
 		Sample Proportions: $\displaystyle\widehat{p} = \frac{1}{n}\sum_{i=1}^{n} X_i, \quad\displaystyle\widehat{q} = \frac{1}{m}\sum_{i=1}^{m} Y_i$
 	\end{block}
 
@@ -482,15 +497,46 @@ $\texttt{2 * (1 - pnorm(1.36))} =  \texttt{2 * pnorm(-1.36)} \approx 0.18$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{More Efficient Estimator?}
-	Unlike the one-sample example we don't known the SE under the null. If the null is true, however, there is a better estimator of the standard error based on pooling the data.
+	\frametitle{A More Efficient Estimator of the SE Under $H_0$}
+	\begin{alertblock}
+		{Don't Forget!}
+		Standard Error (SE) means ``std.\ dev.\ of sampling distribution'' so you should know how to prove that that:
+	$$SE(\widehat{p} - \widehat{q}) = \sqrt{\frac{p(1-p)}{n} + \frac{q(1-q)}{m}}$$
+	\end{alertblock}
+
+	\begin{block}
+		{Under $H_0\colon p = q$}
+		\emph{Don't} know values of $p$ and $q$: only that they are equal.
+	\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{A More Efficient Estimator of the SE Under $H_0$}
+	\begin{block}
+		{One Possible Estimate}
+	$$\widehat{SE} = \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n} + \frac{\widehat{q}(1-\widehat{q})}{m}}$$
+	\end{block}
+	\begin{block}
+		{A \emph{Better} Estimate Under $H_0$}
+		$$\widehat{SE}_{Pooled} = \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( \frac{1}{n} + \frac{1}{m} \right) } \quad \mbox{where}\quad \widehat{\pi} = \displaystyle \frac{n \widehat{p} + m \widehat{q}}{n + m}$$
+	\end{block}
+	\begin{alertblock}
+		{Why Pool?}
+		If $p = q$, the two populations \emph{are the same}. This means we can get a \emph{more precise} estimate of the \emph{common} population proportion by pooling. More data = Lower Variance $\implies$ better estimated SE.
+	\end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Two-Sample Test for Proportions}
 	\begin{block}
 		{Sampling Model}
-		$X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$ independently  of $Y_1, \hdots, Y_m \sim \mbox{iid Bernoulli}(q)$
+		\small
+		$X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$ indep.\  of $Y_1, \hdots, Y_m \sim \mbox{iid Bernoulli}(q)$
+	\end{block}
+	\begin{block}
+		{Sample Statistics}
+			Sample Proportions: $\displaystyle\widehat{p} = \frac{1}{n}\sum_{i=1}^{n} X_i, \quad\displaystyle\widehat{q} = \frac{1}{m}\sum_{i=1}^{m} Y_i$
 	\end{block}
 	\begin{block}
 		{Null Hypothesis}
@@ -498,17 +544,31 @@ $\texttt{2 * (1 - pnorm(1.36))} =  \texttt{2 * pnorm(-1.36)} \approx 0.18$
 	\end{block}
 	\begin{block}
 		{Pooled Estimator of SE under $H_0$}
-		$\widehat{\pi} = $
+		$\widehat{\pi} = \displaystyle \frac{n \widehat{p} + m \widehat{q}}{n + m}, \quad \widehat{SE}_{Pooled} = \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( 1/n + 1/m \right) }$
 	\end{block}
 	\begin{block}
 		{Test Statistic}
-		$\displaystyle T_n = \frac{\widehat{p}- \widehat{q}}{\widehat{SE}_{Pooled}} \approx N(0,1)$ under $H_0$ provided $n$
+		$\displaystyle T_n = \frac{\widehat{p}- \widehat{q}}{\widehat{SE}_{Pooled}} \approx N(0,1)$ under $H_0$ provided $n$ and $m$ are large
 	\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Work through two-sample Romney example}
-	Just need to put in the calculations...
+	\frametitle{Two-Sample Example $H_0\colon p = q$}
+	\fbox{\footnotesize 53\% of 238 Democrats knew Romney is Pro-Life vs.\ 61\% of 239 Republicans}
+	\small
+$$\widehat{\pi} = \frac{n\widehat{p}+ m\widehat{q}}{n + m} = \frac{239 \times 0.61 + 238 \times 0.53}{239 + 238}\approx 0.57$$
+	\begin{eqnarray*}
+	\widehat{SE}_{Pooled} &=&  \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( 1/n + 1/m \right) }= \sqrt{0.57 \times 0.63 (1/239 + 1/238)}\\
+		&\approx& 0.054
+	\end{eqnarray*}
+$$T_n = \frac{\widehat{p} - \widehat{q}}{\widehat{SE}_{Pooled}}= \frac{0.61 - 0.53}{0.054} \approx 1.48$$
+\begin{block}
+	{One-Sided P-Value}
+	\texttt{1 - pnorm(1.48)}$\approx 0.07$
+\end{block}\begin{block}
+	{Two-Sided P-Value}
+	\texttt{2 * (1 - pnorm(1.48))}$\approx 0.14$
+\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
