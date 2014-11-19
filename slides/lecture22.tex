@@ -558,16 +558,16 @@ $\texttt{2 * (1 - pnorm(1.36))} =  \texttt{2 * pnorm(-1.36)} \approx 0.18$
 	\small
 $$\widehat{\pi} = \frac{n\widehat{p}+ m\widehat{q}}{n + m} = \frac{239 \times 0.61 + 238 \times 0.53}{239 + 238}\approx 0.57$$
 	\begin{eqnarray*}
-	\widehat{SE}_{Pooled} &=&  \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( 1/n + 1/m \right) }= \sqrt{0.57 \times 0.63 (1/239 + 1/238)}\\
-		&\approx& 0.054
+	\widehat{SE}_{Pooled} &=&  \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( 1/n + 1/m \right) }= \sqrt{0.57 \times 0.43 (1/239 + 1/238)}\\
+		&\approx& 0.045
 	\end{eqnarray*}
-$$T_n = \frac{\widehat{p} - \widehat{q}}{\widehat{SE}_{Pooled}}= \frac{0.61 - 0.53}{0.054} \approx 1.48$$
+$$T_n = \frac{\widehat{p} - \widehat{q}}{\widehat{SE}_{Pooled}}= \frac{0.61 - 0.53}{0.045} \approx 1.78$$
 \begin{block}
 	{One-Sided P-Value}
-	\texttt{1 - pnorm(1.48)}$\approx 0.07$
+	\texttt{1 - pnorm(1.78)}$\approx 0.04$
 \end{block}\begin{block}
 	{Two-Sided P-Value}
-	\texttt{2 * (1 - pnorm(1.48))}$\approx 0.14$
+	\texttt{2 * (1 - pnorm(1.78))}$\approx 0.08$
 \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
