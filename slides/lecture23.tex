@@ -209,7 +209,7 @@
 		$\bar{X} \sim N(11, 1/4)\quad \implies \quad$  \alert{$P(\bar{X}>11) = 1/2$} 
 	\end{alertblock}
 
-\vspace{2em}
+\vspace{1em}
 
 	\alert{\fbox{\Large The \emph{power} of this test is 50\%}}
 \end{frame}
@@ -276,17 +276,64 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Distribution of $T_n$ \emph{Under the Alternative}}
-	This is just algebra:
 	\begin{eqnarray*}
-		T_n &=& \frac{\bar{X}_n}{\sigma/\sqrt{n}}\\\\
-		&=& \frac{\bar{X}_n}{\sigma/\sqrt{n}} \alert{- \frac{\mu}{\sigma/\sqrt{n}} + \frac{\mu}{\sigma/\sqrt{n}}} \\ \\
-		&=& \left( \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \right) + \frac{\mu}{\sigma/\sqrt{n}}
+		T_n &=& \frac{\bar{X}_n}{\sigma/\sqrt{n}}\\\\ \pause
+		&=& \frac{\bar{X}_n}{\sigma/\sqrt{n}} \alert{- \frac{\mu}{\sigma/\sqrt{n}} + \frac{\mu}{\sigma/\sqrt{n}}} \\ \\ \pause
+		&=& \left( \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \right) + \frac{\mu}{\sigma/\sqrt{n}} \\ \\ \pause
+		&=& Z + \sqrt{n}(\mu/\sigma) \pause 
+		\sim \alert{N\left( \sqrt{n}(\mu/\sigma),1  \right)} 
 	\end{eqnarray*}
+	Where $Z \sim N(0,1)$
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+	\frametitle{Power of One-Sided Test}
+\small
+\begin{block}
+	{Under the Alternative}
+	$T_n = \sqrt{n}(\bar{X}_n/\sigma) \sim N\left( \sqrt{n}(\mu/\sigma),1  \right)$
+\end{block}
+\begin{block}
+	{Decision Rule}
+	Reject $H_0\colon \mu = 0$ if $T_n> \texttt{qnorm}(1- \alpha)$  
+\end{block}
+\begin{eqnarray*}
+	\mbox{Power} &=& P(\mbox{Reject } H_0|H_0 \mbox{ false}) \pause = P(T_n >\texttt{qnorm}(1- \alpha)|\mu \neq 0)\\
+	&=& P \left( Z + \sqrt{n}(\mu/\sigma) > \texttt{qnorm}(1- \alpha)\right)\\ \pause
+	&=& P \left( Z >    \texttt{qnorm}(1- \alpha)-\sqrt{n}(\mu/\sigma)\right)\\ \pause 
+	&=& 1 - P \left( Z \leq  \texttt{qnorm}(1- \alpha)-\sqrt{n}(\mu/\sigma)\right) \\
+	&=& 1 - \texttt{pnorm}\left( \texttt{qnorm}(1 - \alpha) - \sqrt{n}(\mu/\sigma) \right) 
+\end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Shiny App Here!}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Power of Two-Sided Test}
+\small
+\begin{block}
+	{Under the Alternative}
+	$T_n = \sqrt{n}(\bar{X}_n/\sigma) \sim N\left( \sqrt{n}(\mu/\sigma),1  \right)$
+\end{block}
+\begin{block}
+	{Decision Rule}
+	Reject $H_0\colon \mu = 0$ if $|T_n|> \texttt{qnorm}(1- \alpha)$  
+\end{block}
+\begin{eqnarray*}
+	\mbox{Power} &=& P(\mbox{Reject } H_0|H_0 \mbox{ false}) \pause = P(|T_n| >\texttt{qnorm}(1- \alpha)|\mu \neq 0)\\
+\end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Shiny App Here!}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\begin{frame}
 \frametitle{Power More Generally}
 	\begin{block}{Power $ = (1 - \beta) = 1 -  P$(Type II Error)}
 Chance of detecting an effect given that one exists.
