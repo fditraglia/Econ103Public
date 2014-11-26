@@ -31,7 +31,7 @@ options(width = 60)
 \ifdefined\showanswers
   \printanswers
 \else
-  \printanswers
+  \noprintanswers
 \fi
 
 \title{Problem Set \#11}
