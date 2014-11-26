@@ -31,7 +31,7 @@ options(width = 60)
 \ifdefined\showanswers
   \printanswers
 \else
-  \noprintanswers
+  \printanswers
 \fi
 
 \title{Problem Set \#11}
@@ -320,24 +320,20 @@ test.stat.refined
 		\part Suppose $n = m = 10$ and you know that $\sigma_X^2 = \sigma_Y^2 = 10$. Express the power of a two-sided test of $H_0\colon \mu_X = \mu_Y$ at the 5\% level  in terms of the true, unknown difference of population means $\Delta = \mu_X - \mu_Y$.
 			\begin{solution}
 			Since the population variances are known and both populations are normal, the test statistic
-				$$\frac{\bar{X}_n - \bar{Y_n}}{\sqrt{\sigma_X^2/n + \sigma_Y^2/m}} = \frac{\bar{X}_n - \bar{Y}_m}{\sqrt{2}}$$
+				$$T = \frac{\bar{X}_n - \bar{Y_n}}{\sqrt{\sigma_X^2/n + \sigma_Y^2/m}} = \frac{\bar{X}_n - \bar{Y}_m}{\sqrt{2}}$$
 			follows a standard normal distribution under the null. This is \emph{exact} because we know the population is normal. Under the alternative $H_1\colon \mu_X \neq \mu_Y$, however, the above test statistic does \emph{not} follow a standard normal distribution. Instead,
 					$$\frac{(\bar{X}_n - \bar{Y}_m) - (\mu_X - \mu_Y)}{\sqrt{2}}  \sim N(0,1)$$
 					Hence, 
 					$$\frac{\bar{X}_n - \bar{Y}_m}{\sqrt{2}} = \frac{(\bar{X}_n - \bar{Y}_m) - (\mu_X - \mu_Y)}{\sqrt{2}}  + \frac{\mu_X - \mu_Y}{\sqrt{2}}  \sim N\left(\frac{\mu_X - \mu_Y}{\sqrt{2}} , 1\right)$$
-					a normal distribution whose mean is only zero under the null. It follows that
-					$$\bar{X}_n - \bar{Y}_m  \sim N(\mu_X - \mu_Y, 2)$$
-		Now, at the 5\% level we reject $H_0$ when the absolute value of the test statistic is greater than or equal to 
-				$$\texttt{qnorm(1 - 0.05/2)} \approx 2$$
-			that is, we reject if
-				$$|\bar{X}_n - \bar{Y}_m| \geq \texttt{qnorm(1 - 0.05/2)} \times \sqrt{2} \approx 2.77$$					
+					In other words $T \sim N(\Delta/\sqrt{2}, 1)$. This distribution is normal, but it is only \emph{standard normal} under the null hypothesis that $\mu_X = \mu_Y$, i.e.\ $\Delta = 0$. 
+		Now, at the 5\% level we reject $H_0$ when $|T| > \texttt{qnorm(1 - 0.05/2)}\approx 2$.
 					Combining this decision rule with the distribution of the test statistic under the alternative, we calculate power as follows:
 					\begin{eqnarray*}
-						\mbox{Power}(\Delta) &=& P(\mbox{Reject } H_0|H_0 \mbox{ False})\\
-						&=& P\left(\left|\bar{X}_n - \bar{Y}_m\right| \geq 2.77\right)\\
-						&=&P\left( \bar{X}_n - \bar{Y}_m \geq 2.77  \right) + P\left( \bar{X}_n - \bar{Y}_m \leq -2.77  \right) \\
-						&=&1 - \texttt{ pnorm}(2.77, \texttt{ mean = }\Delta, \texttt{ sd = }\sqrt{2}) \\
-						&& \quad  \quad +  \texttt{ pnorm}(-2.77, \texttt{ mean = }\Delta, \texttt{ sd = }\sqrt{2})
+						\mbox{Power}(\Delta) &=& P(\mbox{Reject } H_0|H_0 \mbox{ False})= P(|T|>2)\\
+            &=& P(T < -2) + P(T > 2) \\
+            &=& P(Z + \Delta/\sqrt{2} < -2) +P(Z + \Delta/\sqrt{2} > 2)\\
+            &=& P(Z < -2 - \Delta/\sqrt{2}) +P(Z> 2 - \Delta/\sqrt{2})\\
+            &=& \texttt{pnorm}(-2 - \Delta/\sqrt{2}) + \left[1 - \texttt{pnorm}(2 - \Delta/\sqrt{2})\right]
 					\end{eqnarray*}
 			\end{solution}
 			\part Evaluate the power formula you derived in part (a) using R by setting
@@ -347,8 +343,8 @@ test.stat.refined
       To make things easier, we can write the following function:
 <<>>=
 power.10 <- function(delta){
-  greater <- 1 - pnorm(2.77, mean = delta, sd = sqrt(2))
-  less <- pnorm(-2.77, mean = delta, sd = sqrt(2))
+  greater <- 1 - pnorm(2 - delta/sqrt(2))
+  less <- pnorm(-2 - delta/sqrt(2))
   power <- greater + less
   return(power)
 }
@@ -382,31 +378,19 @@ Finally, let's evaluate the power when $\Delta = 0$:
 <<>>=
 power.10(0)
 @
-We get 0.05, which is the significance level of the test! (The only reason it is not exactly equal to 0.05 is that I rounded when multiplying $\sqrt{2}$ by \texttt{qnorm}.) The reason this happens is that when $\Delta = 0$ the null is \emph{true}. In hypothesis testing, we set everything up so the probability of rejecting a true null equals $\alpha$.
+We get 0.05, which is the significance level of the test! (The only reason it is not exactly equal to 0.05 is that we rounded the critical value for our test to 2. 
+The reason this happens is that when $\Delta = 0$ the null is \emph{true}. In hypothesis testing, we set everything up so the probability of rejecting a true null equals $\alpha$.
       \end{solution}
 			\part Repeat parts (a) and (b) with $n = m = 100$. How do your results change? Explain.
         \begin{solution}
         We can use the same procedure as above. The only difference is the standard error used in the test statistic. Whereas before this was $\sqrt{2}$, now we have:
         $$SE = \sqrt{\sigma_X^2/n + \sigma_Y^2/m} = \sqrt{10/100 + 10/100} = \sqrt{1/5} = 1/\sqrt{5}$$
     Thus, putting $1/\sqrt{5}$ in place of $\sqrt{2}$, we have
-      $$\frac{\bar{X}_n - \bar{Y}_m}{1/\sqrt{5}} \sim N\left(\frac{\mu_X - \mu_Y}{1/\sqrt{5}}, 1\right)$$
-      so that
-      $$\bar{X}_n - \bar{Y}_m \sim N(\mu_X - \mu_Y, 1/5)$$
-       and we reject if
-       $$|\bar{X}_n - \bar{Y}_m| \geq \texttt{qnorm(1 - 0.05/2)} \times 1/\sqrt{5} \approx 0.88$$
-       Thus,
-         				\begin{eqnarray*}
-						\mbox{Power}(\Delta) &=& P(\mbox{Reject } H_0|H_0 \mbox{ False})\\
-						&=& P\left(\left|\bar{X}_n - \bar{Y}_m\right| \geq 0.88\right)\\
-						&=&P\left( \bar{X}_n - \bar{Y}_m \geq 0.88  \right) + P\left( \bar{X}_n - \bar{Y}_m \leq -0.88  \right) \\
-						&=&1 - \texttt{ pnorm}(0.88, \texttt{ mean = }\Delta, \texttt{ sd = }1/\sqrt{5}) \\
-						&& \quad  \quad +  \texttt{ pnorm}(-0.88, \texttt{ mean = }\Delta, \texttt{ sd = }1/\sqrt{5})
-					\end{eqnarray*}
-  Making the necessary changes to the function for calculating power:
+    $$\mbox{Power}(\Delta) = \texttt{pnorm}(-2 - \Delta\sqrt{5}) + \left[1 - \texttt{pnorm}(2 - \Delta\sqrt{5})\right]$$  
 <<>>=
 power.100 <- function(delta){
-  greater <- 1 - pnorm(0.88, mean = delta, sd = 1/sqrt(5))
-  less <- pnorm(-0.88, mean = delta, sd = 1/sqrt(5))
+  greater <- 1 - pnorm(2 - delta * sqrt(5))
+  less <- pnorm(-2 - delta * sqrt(5))
   power <- greater + less
   return(power)
 }
@@ -431,7 +415,7 @@ Finally, as above, if $\Delta = 0$ then the null is true, and the probability of
 <<>>=
 power.100(0)
 @
-Again, there's only a slight difference from the exact value of 0.05. This is because I rounded when plugging in the value for $\sqrt{5}$.
+Again, there's only a slight difference from the exact value of 0.05. This is because we rounded the critical value for our test to 2. 
         \end{solution}
 	\end{parts}
 

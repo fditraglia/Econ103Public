@@ -72,7 +72,7 @@
 \ifdefined\showanswers
   \printanswers
 \else
-  \noprintanswers
+  \printanswers
 \fi
 
 \title{Problem Set \#11}
@@ -112,7 +112,7 @@
 \hlstd{test.stat}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.1866
+## [1] 0.1865588
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -126,7 +126,7 @@ The critical value is
 \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.282
+## [1] 1.281552
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -150,7 +150,7 @@ Our decision rule is to reject if the test statistic exceeds the critical value:
 \hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test.stat)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.426
+## [1] 0.4260033
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -164,7 +164,7 @@ The critical value is
 \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlopt{/}\hlnum{2}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.645
+## [1] 1.644854
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -188,7 +188,7 @@ Our decision rule is to reject if the \emph{absolute value} of the test statisti
 \hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test.stat))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.852
+## [1] 0.8520066
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -240,14 +240,14 @@ Notice that we calculated the differences as Unaffected twin minus Affected twin
 \hlstd{test.stat}
 \end{alltt}
 \begin{verbatim}
-## [1] 3.229
+## [1] 3.228928
 \end{verbatim}
 \begin{alltt}
 \hlstd{critical.value} \hlkwb{<-} \hlkwd{qt}\hlstd{(}\hlnum{0.05}\hlstd{,} \hlkwc{df} \hlstd{= n.twins} \hlopt{-} \hlnum{1}\hlstd{)}
 \hlstd{critical.value}
 \end{alltt}
 \begin{verbatim}
-## [1] -1.761
+## [1] -1.76131
 \end{verbatim}
 \begin{alltt}
 \hlstd{test.stat} \hlopt{<=} \hlstd{critical.value}
@@ -257,7 +257,7 @@ Notice that we calculated the differences as Unaffected twin minus Affected twin
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-In this case, our decision rule is to reject the null if the test statistic is \emph{less than} \ensuremath{-1.7613}. (Remember, we have to keep track of the sign.) We see that this is not the case, so we fail to reject the null. We have not found evidence that the Affected twin has a larger left hippocampus.
+In this case, our decision rule is to reject the null if the test statistic is \emph{less than} \ensuremath{-1.7613101}. (Remember, we have to keep track of the sign.) We see that this is not the case, so we fail to reject the null. We have not found evidence that the Affected twin has a larger left hippocampus.
   \end{solution}
 	\part Repeat part (a) for a test against the \emph{opposite} one-sided alternative.
     \begin{solution}
@@ -269,7 +269,7 @@ In this case, our decision rule is to reject the null if the test statistic is \
 \hlstd{critical.value}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.761
+## [1] 1.76131
 \end{verbatim}
 \begin{alltt}
 \hlstd{test.stat} \hlopt{>=} \hlstd{critical.value}
@@ -279,7 +279,7 @@ In this case, our decision rule is to reject the null if the test statistic is \
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-  Our decision rule is to reject when the test statistic is greater than or equal to 1.7613. Since this is the case, we reject the null hypothesis that the difference is zero at the 5\% significance level. We have found evidence that schizophrenia is associated with a smaller left hippocampus based on the twin data. 
+  Our decision rule is to reject when the test statistic is greater than or equal to 1.7613101. Since this is the case, we reject the null hypothesis that the difference is zero at the 5\% significance level. We have found evidence that schizophrenia is associated with a smaller left hippocampus based on the twin data. 
     \end{solution}
 	\part Repeat part (a) but test against the \emph{two-sided} alternative.
     \begin{solution}
@@ -291,7 +291,7 @@ In this case, our decision rule is to reject the null if the test statistic is \
 \hlstd{critical.value}
 \end{alltt}
 \begin{verbatim}
-## [1] 2.145
+## [1] 2.144787
 \end{verbatim}
 \begin{alltt}
 \hlkwd{abs}\hlstd{(test.stat)} \hlopt{>=} \hlstd{critical.value}
@@ -315,13 +315,13 @@ We see that this is indeed the case, so we would reject that null hypothesis tha
 \hlnum{1} \hlopt{-} \hlkwd{pt}\hlstd{(test.stat,} \hlkwc{df} \hlstd{= n.twins} \hlopt{-} \hlnum{1}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.003031
+## [1] 0.003030772
 \end{verbatim}
 \begin{alltt}
 \hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pt}\hlstd{(}\hlkwd{abs}\hlstd{(test.stat),} \hlkwc{df} \hlstd{= n.twins} \hlopt{-} \hlnum{1}\hlstd{))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.006062
+## [1] 0.006061544
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -379,12 +379,12 @@ Since we've arranged the differences of means and associated standard errors in 
 \hlstd{test.stats}
 \end{alltt}
 \begin{verbatim}
-##    Arith     Word    Parag     Math     AFQT 
-##  7.31242 -0.07984 -4.60229  3.04909  1.87015
+##       Arith        Word       Parag        Math        AFQT 
+##  7.31241751 -0.07983706 -4.60228958  3.04909284  1.87014777
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Now, the critical value for a 5\%, two-sided test in this case is 1.96
+Now, the critical value for a 5\%, two-sided test in this case is 1.959964
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -417,9 +417,9 @@ So for which comparisons would we reject the null?
 \hlkwd{rbind}\hlstd{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
-##     Arith    Word   Parag   Math   AFQT
-## LCL 1.491 -0.5655 -0.8120 0.2686 -0.098
-## UCL 2.583  0.5212 -0.3269 1.2355  4.179
+##        Arith       Word      Parag      Math        AFQT
+## LCL 1.491059 -0.5654962 -0.8119748 0.2686287 -0.09799557
+## UCL 2.583052  0.5212295 -0.3269459 1.2354610  4.17891115
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -494,13 +494,13 @@ In an earlier assignment you used these data to construct confidence intervals. 
 \hlstd{test.stat}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.867
+## [1] 0.8669819
 \end{verbatim}
 \begin{alltt}
 \hlstd{test.stat.refined}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.8828
+## [1] 0.8828222
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -514,7 +514,7 @@ In an earlier assignment you used these data to construct confidence intervals. 
 \hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test.stat.refined)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.1887
+## [1] 0.1886662
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -527,7 +527,7 @@ In an earlier assignment you used these data to construct confidence intervals. 
 \hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test.stat.refined))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.3773
+## [1] 0.3773324
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -575,13 +575,13 @@ In an earlier assignment you used these data to construct confidence intervals. 
 \hlstd{test.stat}
 \end{alltt}
 \begin{verbatim}
-## [1] 4.583
+## [1] 4.583097
 \end{verbatim}
 \begin{alltt}
 \hlstd{test.stat.refined}
 \end{alltt}
 \begin{verbatim}
-## [1] 4.598
+## [1] 4.597651
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -592,13 +592,13 @@ In an earlier assignment you used these data to construct confidence intervals. 
 \hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test.stat))}
 \end{alltt}
 \begin{verbatim}
-## [1] 4.581e-06
+## [1] 4.581394e-06
 \end{verbatim}
 \begin{alltt}
 \hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test.stat.refined))}
 \end{alltt}
 \begin{verbatim}
-## [1] 4.273e-06
+## [1] 4.272809e-06
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -613,24 +613,20 @@ In an earlier assignment you used these data to construct confidence intervals. 
 		\part Suppose $n = m = 10$ and you know that $\sigma_X^2 = \sigma_Y^2 = 10$. Express the power of a two-sided test of $H_0\colon \mu_X = \mu_Y$ at the 5\% level  in terms of the true, unknown difference of population means $\Delta = \mu_X - \mu_Y$.
 			\begin{solution}
 			Since the population variances are known and both populations are normal, the test statistic
-				$$\frac{\bar{X}_n - \bar{Y_n}}{\sqrt{\sigma_X^2/n + \sigma_Y^2/m}} = \frac{\bar{X}_n - \bar{Y}_m}{\sqrt{2}}$$
+				$$T = \frac{\bar{X}_n - \bar{Y_n}}{\sqrt{\sigma_X^2/n + \sigma_Y^2/m}} = \frac{\bar{X}_n - \bar{Y}_m}{\sqrt{2}}$$
 			follows a standard normal distribution under the null. This is \emph{exact} because we know the population is normal. Under the alternative $H_1\colon \mu_X \neq \mu_Y$, however, the above test statistic does \emph{not} follow a standard normal distribution. Instead,
 					$$\frac{(\bar{X}_n - \bar{Y}_m) - (\mu_X - \mu_Y)}{\sqrt{2}}  \sim N(0,1)$$
 					Hence, 
 					$$\frac{\bar{X}_n - \bar{Y}_m}{\sqrt{2}} = \frac{(\bar{X}_n - \bar{Y}_m) - (\mu_X - \mu_Y)}{\sqrt{2}}  + \frac{\mu_X - \mu_Y}{\sqrt{2}}  \sim N\left(\frac{\mu_X - \mu_Y}{\sqrt{2}} , 1\right)$$
-					a normal distribution whose mean is only zero under the null. It follows that
-					$$\bar{X}_n - \bar{Y}_m  \sim N(\mu_X - \mu_Y, 2)$$
-		Now, at the 5\% level we reject $H_0$ when the absolute value of the test statistic is greater than or equal to 
-				$$\texttt{qnorm(1 - 0.05/2)} \approx 2$$
-			that is, we reject if
-				$$|\bar{X}_n - \bar{Y}_m| \geq \texttt{qnorm(1 - 0.05/2)} \times \sqrt{2} \approx 2.77$$					
+					In other words $T \sim N(\Delta/\sqrt{2}, 1)$. This distribution is normal, but it is only \emph{standard normal} under the null hypothesis that $\mu_X = \mu_Y$, i.e.\ $\Delta = 0$. 
+		Now, at the 5\% level we reject $H_0$ when $|T| > \texttt{qnorm(1 - 0.05/2)}\approx 2$.
 					Combining this decision rule with the distribution of the test statistic under the alternative, we calculate power as follows:
 					\begin{eqnarray*}
-						\mbox{Power}(\Delta) &=& P(\mbox{Reject } H_0|H_0 \mbox{ False})\\
-						&=& P\left(\left|\bar{X}_n - \bar{Y}_m\right| \geq 2.77\right)\\
-						&=&P\left( \bar{X}_n - \bar{Y}_m \geq 2.77  \right) + P\left( \bar{X}_n - \bar{Y}_m \leq -2.77  \right) \\
-						&=&1 - \texttt{ pnorm}(2.77, \texttt{ mean = }\Delta, \texttt{ sd = }\sqrt{2}) \\
-						&& \quad  \quad +  \texttt{ pnorm}(-2.77, \texttt{ mean = }\Delta, \texttt{ sd = }\sqrt{2})
+						\mbox{Power}(\Delta) &=& P(\mbox{Reject } H_0|H_0 \mbox{ False})= P(|T|>2)\\
+            &=& P(T < -2) + P(T > 2) \\
+            &=& P(Z + \Delta/\sqrt{2} < -2) +P(Z + \Delta/\sqrt{2} > 2)\\
+            &=& P(Z < -2 - \Delta/\sqrt{2}) +P(Z> 2 - \Delta/\sqrt{2})\\
+            &=& \texttt{pnorm}(-2 - \Delta/\sqrt{2}) + \left[1 - \texttt{pnorm}(2 - \Delta/\sqrt{2})\right]
 					\end{eqnarray*}
 			\end{solution}
 			\part Evaluate the power formula you derived in part (a) using R by setting
@@ -642,8 +638,8 @@ In an earlier assignment you used these data to construct confidence intervals. 
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{power.10} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{delta}\hlstd{)\{}
-  \hlstd{greater} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlnum{2.77}\hlstd{,} \hlkwc{mean} \hlstd{= delta,} \hlkwc{sd} \hlstd{=} \hlkwd{sqrt}\hlstd{(}\hlnum{2}\hlstd{))}
-  \hlstd{less} \hlkwb{<-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{2.77}\hlstd{,} \hlkwc{mean} \hlstd{= delta,} \hlkwc{sd} \hlstd{=} \hlkwd{sqrt}\hlstd{(}\hlnum{2}\hlstd{))}
+  \hlstd{greater} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlnum{2} \hlopt{-} \hlstd{delta}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlnum{2}\hlstd{))}
+  \hlstd{less} \hlkwb{<-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{2} \hlopt{-} \hlstd{delta}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlnum{2}\hlstd{))}
   \hlstd{power} \hlkwb{<-} \hlstd{greater} \hlopt{+} \hlstd{less}
   \hlkwd{return}\hlstd{(power)}
 \hlstd{\}}
@@ -659,7 +655,7 @@ Now, we can make the plot as follows:
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-34} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-34-1} 
 
 }
 
@@ -673,7 +669,7 @@ From this plot, it looks like we need $\Delta$ around 3 in absolute value for th
 \hlkwd{power.10}\hlstd{(}\hlnum{3}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.5646
+## [1] 0.5483002
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -684,7 +680,7 @@ So it looks like we can make $\Delta$ even smaller:
 \hlkwd{power.10}\hlstd{(}\hlnum{2.7}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.4803
+## [1] 0.4638674
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -695,19 +691,19 @@ Those are too small. Let's try making it a little bigger
 \hlkwd{power.10}\hlstd{(}\hlnum{2.75}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.4944
+## [1] 0.4779274
 \end{verbatim}
 \begin{alltt}
 \hlkwd{power.10}\hlstd{(}\hlnum{2.76}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.4972
+## [1] 0.4807434
 \end{verbatim}
 \begin{alltt}
 \hlkwd{power.10}\hlstd{(}\hlnum{2.77}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.5
+## [1] 0.4835604
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -718,7 +714,7 @@ Notice that because of the symmetry:
 \hlkwd{power.10}\hlstd{(}\hlopt{-}\hlnum{2.77}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.5
+## [1] 0.4835604
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -731,37 +727,25 @@ Finally, let's evaluate the power when $\Delta = 0$:
 \hlkwd{power.10}\hlstd{(}\hlnum{0}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.05015
+## [1] 0.04550026
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-We get 0.05, which is the significance level of the test! (The only reason it is not exactly equal to 0.05 is that I rounded when multiplying $\sqrt{2}$ by \texttt{qnorm}.) The reason this happens is that when $\Delta = 0$ the null is \emph{true}. In hypothesis testing, we set everything up so the probability of rejecting a true null equals $\alpha$.
+We get 0.05, which is the significance level of the test! (The only reason it is not exactly equal to 0.05 is that we rounded the critical value for our test to 2. 
+The reason this happens is that when $\Delta = 0$ the null is \emph{true}. In hypothesis testing, we set everything up so the probability of rejecting a true null equals $\alpha$.
       \end{solution}
 			\part Repeat parts (a) and (b) with $n = m = 100$. How do your results change? Explain.
         \begin{solution}
         We can use the same procedure as above. The only difference is the standard error used in the test statistic. Whereas before this was $\sqrt{2}$, now we have:
         $$SE = \sqrt{\sigma_X^2/n + \sigma_Y^2/m} = \sqrt{10/100 + 10/100} = \sqrt{1/5} = 1/\sqrt{5}$$
     Thus, putting $1/\sqrt{5}$ in place of $\sqrt{2}$, we have
-      $$\frac{\bar{X}_n - \bar{Y}_m}{1/\sqrt{5}} \sim N\left(\frac{\mu_X - \mu_Y}{1/\sqrt{5}}, 1\right)$$
-      so that
-      $$\bar{X}_n - \bar{Y}_m \sim N(\mu_X - \mu_Y, 1/5)$$
-       and we reject if
-       $$|\bar{X}_n - \bar{Y}_m| \geq \texttt{qnorm(1 - 0.05/2)} \times 1/\sqrt{5} \approx 0.88$$
-       Thus,
-         				\begin{eqnarray*}
-						\mbox{Power}(\Delta) &=& P(\mbox{Reject } H_0|H_0 \mbox{ False})\\
-						&=& P\left(\left|\bar{X}_n - \bar{Y}_m\right| \geq 0.88\right)\\
-						&=&P\left( \bar{X}_n - \bar{Y}_m \geq 0.88  \right) + P\left( \bar{X}_n - \bar{Y}_m \leq -0.88  \right) \\
-						&=&1 - \texttt{ pnorm}(0.88, \texttt{ mean = }\Delta, \texttt{ sd = }1/\sqrt{5}) \\
-						&& \quad  \quad +  \texttt{ pnorm}(-0.88, \texttt{ mean = }\Delta, \texttt{ sd = }1/\sqrt{5})
-					\end{eqnarray*}
-  Making the necessary changes to the function for calculating power:
+    $$\mbox{Power}(\Delta) = \texttt{pnorm}(-2 - \Delta\sqrt{5}) + \left[1 - \texttt{pnorm}(2 - \Delta\sqrt{5})\right]$$  
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{power.100} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{delta}\hlstd{)\{}
-  \hlstd{greater} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlnum{0.88}\hlstd{,} \hlkwc{mean} \hlstd{= delta,} \hlkwc{sd} \hlstd{=} \hlnum{1}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlnum{5}\hlstd{))}
-  \hlstd{less} \hlkwb{<-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{0.88}\hlstd{,} \hlkwc{mean} \hlstd{= delta,} \hlkwc{sd} \hlstd{=} \hlnum{1}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlnum{5}\hlstd{))}
+  \hlstd{greater} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlnum{2} \hlopt{-} \hlstd{delta} \hlopt{*} \hlkwd{sqrt}\hlstd{(}\hlnum{5}\hlstd{))}
+  \hlstd{less} \hlkwb{<-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{2} \hlopt{-} \hlstd{delta} \hlopt{*} \hlkwd{sqrt}\hlstd{(}\hlnum{5}\hlstd{))}
   \hlstd{power} \hlkwb{<-} \hlstd{greater} \hlopt{+} \hlstd{less}
   \hlkwd{return}\hlstd{(power)}
 \hlstd{\}}
@@ -777,7 +761,7 @@ We can compare this to the power function when $n=m=10$ by plotting them on the 
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-41} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-41-1} 
 
 }
 
@@ -793,25 +777,25 @@ Experimenting with \texttt{power.100} as we did above for \texttt{power.10},
 \hlkwd{power.100}\hlstd{(}\hlnum{1}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.6058
+## [1] 0.5933214
 \end{verbatim}
 \begin{alltt}
 \hlkwd{power.100}\hlstd{(}\hlnum{0.9}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.5179
+## [1] 0.5050012
 \end{verbatim}
 \begin{alltt}
 \hlkwd{power.100}\hlstd{(}\hlnum{0.89}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.509
+## [1] 0.4960838
 \end{verbatim}
 \begin{alltt}
 \hlkwd{power.100}\hlstd{(}\hlnum{0.88}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.5
+## [1] 0.4871686
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -824,11 +808,11 @@ Finally, as above, if $\Delta = 0$ then the null is true, and the probability of
 \hlkwd{power.100}\hlstd{(}\hlnum{0}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.0491
+## [1] 0.04550026
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-Again, there's only a slight difference from the exact value of 0.05. This is because I rounded when plugging in the value for $\sqrt{5}$.
+Again, there's only a slight difference from the exact value of 0.05. This is because we rounded the critical value for our test to 2. 
         \end{solution}
 	\end{parts}
 
