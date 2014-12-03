@@ -1,10 +1,4 @@
-
-
-## source("http://www.ditraglia.com/econ103/display.R")
-
-
-
-library(arm)
+source("http://www.ditraglia.com/econ103/display.R")
 
 
 
