@@ -304,6 +304,7 @@ Each row contains data for a single professor. The column \texttt{rank} is a cat
 \begin{solution}[6cm]
 	\begin{verbatim}
 		prop.test <- function(x, p.0){
+		  x <- c(x, 1, 1, 0, 0)
 		  p.hat <- mean(x)
 		  SE.0 <- sqrt(p.0 * (1 - p.0) / length(x))
 		  test.stat <- abs((p.hat - p.0) / SE.0)
