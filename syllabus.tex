@@ -1,8 +1,6 @@
 \documentclass[11pt, letterpaper]{article}
 \usepackage{geometry}
 \geometry{margin=1in} 
-\usepackage{totcount}
-\usepackage{termcal}
 \usepackage[T1]{fontenc}
 \usepackage[sc]{mathpazo} 
 \usepackage{setspace}
@@ -14,48 +12,14 @@
 
 
 
-%%%%%%%%%%%%% A Command to create an automatically numbered Quiz Icon in the course calendar.
-\newtotcounter{quizcounter}
-\newcommand{\quiz}{\addtocounter{quizcounter}{1}\fbox{\emph{Quiz \#\arabic{quizcounter}}}}
 
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} 
 \pagestyle{fancy} % options: empty , plain , fancy
 \renewcommand{\headrulewidth}{0.4pt} % customise the layout...
-%\chead{}\rhead{}
-%\lfoot{}\cfoot{\thepage}\rfoot{}
-%\rfoot{\footnotesize Econ 103}
 \rhead{\footnotesize DiTraglia -- Fall 2014}
 \lhead{\footnotesize Econ 103 Syllabus}
 \renewcommand\footrulewidth{0pt}
-
-
-
-% Some useful commands (our classes always meet either on Monday and Wednesday 
-% or on Tuesday and Thursday)
-\newcommand{\MWClass}{%
-\calday[Monday]{\classday} % Monday
-\skipday % Tuesday (no class)
-\calday[Wednesday]{\classday} % Wednesday
-\skipday % Thursday (no class)
-\skipday % Friday 
-\skipday\skipday % weekend (no class)
-}
-
-\newcommand{\TRClass}{%
-\skipday % Monday (no class)
-\calday[Tuesday]{\classday} % Tuesday
-\skipday % Wednesday (no class)
-\calday[Thursday]{\classday} % Thursday
-\skipday % Friday 
-\skipday\skipday % weekend (no class)
-}
-
-\newcommand{\Holiday}[2]{%
-\options{#1}{\noclassday}
-\caltext{#1}{#2}
-}
-
 
 
 \begin{document}
@@ -288,8 +252,8 @@ Use these responsibly: you gain nothing from simply reading the solutions.
 \medskip
 
 \noindent \textbf{Quizzes:} 
-Your RIs will administer \total{quizcounter} short quizzes in recitation over the course of the semester. 
-(See the semester calendar below.) 
+Your RIs will administer a number of  short quizzes in recitation over the course of the semester. 
+For dates, see the semester calendar on the course website.
 Each quiz will cover basic material from the most recent lectures since the last quiz or midterm. 
 When calculating your quiz average, I will drop your two lowest scores and weight the remaining quizzes evenly. 
 No makeup quizzes will be given so use your two ``free skips'' carefully.
@@ -298,12 +262,13 @@ Quizzes will not be returned and answers will not be posted.
 \medskip
 
 \noindent \textbf{Exams:} 
-There will be two in-class midterm exams, September 29\textsuperscript{th} and November 3\textsuperscript{rd}, and a final on December 16\textsuperscript{th}.
+There will be two in-class midterm exams and a final exam during the exam period.
+For dates, times and locations, see the semester calendar on the course website.
 Each midterm is worth 20\% and the final is worth 30\% of your grade.
 Neither midterm is comprehensive, but the final is.  
 Attendance at all exams is \emph{mandatory}.
 There will be no makeup midterms. 
-In exceptional circumstances, e.g.\ a death in the family or a serious documented illness, please contact the instructor in advance. 
+In exceptional circumstances, e.g.\ a death in the family or a serious documented illness, please contact the instructor in advance via the course email address.
 The makeup final will take place at the beginning of next semester and is outside of the instructor's control: eligibility as well as the time and date are determined by the Economics Department. 
 Regrade requests must be made in writing within a week of receiving your graded exam. 
 As we re-grade the entire exam, your score could rise or fall. 
@@ -311,62 +276,6 @@ You may not discuss your answers with an RI or the instructor before submitting 
 Exams will be photocopied before being returned and you may write in pencil or pen. 
 Scientific calculators are permitted but graphing calculators are not. 
 We will check ID cards at each exam so please be sure to bring yours. 
-
-
-%NOTE: don't use leading zeros in dates! In other words, use 1/1/2014 rather than 01/01/2014
-
-\begin{center}
-\small
-\begin{calendar}{8/25/2014}{16} %Date of Monday in first week of classes, NOT the date of the first class!
-\setlength{\calboxdepth}{.3in}
-\MWClass
-% schedule
-\caltexton{1}{Introduction \hfill \fbox{\emph{Recitation: Math Diagnostic}}}
-\caltextnext{Descriptive Stats.\ \& Graphics I \hfill \quiz}
-\caltextnext{Descriptive Stats.\ \& Graphics II}
-\caltextnext{Regression I \hfill \quiz}
-\caltextnext{Basic Probability I}
-\caltextnext{Basic Probability II \hfill\quiz}
-\caltextnext{Basic Probability III}
-\caltextnext{Discrete RVs I  \hfill \fbox{\emph{Recitation: Midterm Review}}}
-\caltextnext{Discrete RVs II}
-\caltextnext{Discrete RVs III}
-\caltextnext{Discrete RVs IV, Continuous RVs I \\ \vspace{0.25em}\hfill \fbox{\emph{Fall Break: No Recitations}}}
-\caltextnext{Continuous RVs II}
-\caltextnext{Continuous RVs III \hfill \quiz}
-\caltextnext{Sampling Dists.\ \& Estimation I}
-\caltextnext{Sampling Dists.\ \& Estimation II \hfill \quiz}
-\caltextnext{Confidence Intervals I}
-\caltextnext{Confidence Intervals II \\ \vspace{0.25em} \hfill \fbox{\emph{Recitation: Midterm Review}}}
-\caltextnext{Confidence Intervals III}
-\caltextnext{Confidence Intervals IV}
-\caltextnext{Hypothesis Testing I \hfill \quiz}
-\caltextnext{Hypothesis Testing II}
-\caltextnext{Hypothesis Testing III \hfill \quiz}
-\caltextnext{Hypothesis Testing IV}
-\caltextnext{Regression II}
-\caltextnext{Regression III \hfill \quiz}
-\caltextnext{In-class Review Session (Attendance Optional)}
-% ... and so on
-
-% Holidays
-\Holiday{8/25/2014}{\textbf{Summer Vacation -- No Class}}
-\Holiday{9/1/2014}{\textbf{Labor Day -- No Class}}
-\Holiday{11/26/2014}{\textbf{Wednesday is the new Friday -- No Class} \\ \vspace{0.25em} \hfill \fbox{\emph{No Recitations: Happy Thanksgiving!}}}
-
-
-\options{9/29/2014}{\noclassday} % first midterm exam
-\caltext{9/29/2014}{\shadowbox{\textbf{Midterm I} -- Covers Aug.\ 27 through Sep.\ 24th}}
-\options{11/3/2014}{\noclassday} %second midterm exam
-\caltext{11/3/2014}{\shadowbox{\textbf{Midterm II} -- Covers Oct.\ 1st through 29th}}
-
-\options{12/10/2014}{\noclassday} % finals
-\caltext{12/10/2014}{\textbf{Reading Day -- No Class}}
-%\options{12/19/2013}{\noclassday} % finals
-%\caltext{12/19/2013}{\doublebox{\textbf{Final} (6--8pm, Location TBA)}}
-\end{calendar}
-\end{center}
-
             
 \section*{Installing R and RStudio} First, download and install R from \url{http://cran.r-project.org/}. Second, download and install RStudio by visiting \url{http://rstudio.org/download/desktop} and clicking the link listed under ``Recommended for Your System.'' 
 
@@ -401,45 +310,4 @@ We will check ID cards at each exam so please be sure to bring yours.
 		\end{quote}
 \end{itemize}
 
-% \newpage
-
-% \thispagestyle{empty}
-% \begin{center}
-% 	[This page intentionally left blank]
-% \end{center}
-
-
-% \newpage
-
-% \thispagestyle{empty}
-% \begin{center}
-% 	[This page intentionally left blank]
-% \end{center}
-
-
-% \newpage
-
-
-% \thispagestyle{empty}
-
-% \Large
-
-
-
-% \begin{center}
-%   \fbox{\fbox{\parbox{5.5in}{\centering
-%         I have read and understood the syllabus for Econ 103 and agree to abide by all course policies contained therein.}}}
-% \end{center}
-% \vspace{0.2in}
-% \makebox[\textwidth]{Name:\enspace\hrulefill}
-
-% \vspace{0.2in}
-% \noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
-
-% \vspace{0.3in}
-% \noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
-                                                                                                                                                                                                               
 \end{document}
-
-
-
