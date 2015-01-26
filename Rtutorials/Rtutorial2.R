@@ -245,7 +245,7 @@ as.table(by(titanic$survived, titanic[, c("sex", "pclass")], mean))
 
 
 #Ex-11
-age.group <- cut(titanic$age, c(0, 15, 25, 65, 200), c("Child", "Youth", "Adult", "Senior"))
+age.group <- cut(titanic$age, c(0, 15, 25, 65, 200), c("Child", "Youth", "Adult", "Senior"), right = FALSE)
 titanic$age.group <- age.group
 
 

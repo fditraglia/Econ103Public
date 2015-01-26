@@ -375,7 +375,7 @@ as.table(by(titanic$survived, titanic[, c("sex", "pclass")], mean))
   - Senior = [65, 200)
 ```{r echo=FALSE,results='hide',fig.show='hide'}
 #Ex-11
-age.group <- cut(titanic$age, c(0, 15, 25, 65, 200), c("Child", "Youth", "Adult", "Senior"))
+age.group <- cut(titanic$age, c(0, 15, 25, 65, 200), c("Child", "Youth", "Adult", "Senior"), right = FALSE)
 titanic$age.group <- age.group
 ```
 12. Create two tables: one for men and one for women. Each table should show break down survival proportions by pclass and age.group. [Hint: use ``subset`` and ``by``] What do your results suggest? Is there any thing wrong with the way we defined the "Senior" age group in the previous part? 
