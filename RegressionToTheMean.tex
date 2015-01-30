@@ -93,6 +93,33 @@ This could be the case, but even if it weren't we'd \emph{still} expect to see s
 Those who had particularly strong first years were good a sports and lucky.
 Next year they'll still be good at sports, but very few of them will get lucky two years in a row.
 
+\section*{Numerical Example}
+Imagine a test where your grade depends on effort and luck according to the following relationship
+$$\mbox{grade} = 40 + 50 \times \mbox{effort} + \mbox{luck}$$
+where effort is the fraction of effort that you exerted while studying, a number between zero and one, and luck is random: it is equally likely to take on any integer value from $-10$ to $10$, including zero.
+
+Now suppose I give this test to a large number of students and look at \emph{only those} who scored 98 or higher.
+What effort did these students expend?
+While we can't say for certain, we know that it was at least 0.96.
+This is becuase the highest possible value for luck is 10, so the highest possible ``baseline grade'' is $40 + 10 = 50$.
+To end up with 98 on top of this baseline, you need $50 \times \mbox{effort}$ to be at least 48, which corresponds to $\mbox{effort} = 0.96$.
+Thus, if a student scores 98 or higher, her effort level must have been between 0.96 and 1.
+What about her value of ``luck?''
+If she exerted full effort, then her luck value could have been as low as 8; if she only exerted 0.96 effort, then her luck must have been 10.
+In summary, someone who scored 98 or above exerted effort between 0.96 and 1, and got a luck value between 8 and 10. 
+
+Now suppose that we give a second test to the students who scored 98 or above without giving them another chance to study.
+Than whatever effort value they had on the first test carries over to the second.
+Luck, on the other hand, is random and shows no dependence.
+Maybe you'll wake up sick on the day of the exam and luck will be -10, or maybe I won't ask any questions about regression, which you didn't study, so you luck is 10.
+The question is, what fraction of the students who got 98 or higher on the first test will get 98 or higher on the second?
+
+Since we don't know their exact effort levels, we can't answer this question exactly, but we can product an \emph{upper bound}.
+The best case, that is the one that makes it most likely that they'll score well on the second exam, is when effort is 1.
+Suppose this is the case.
+Then what is the probability of getting 98 or higher?
+Since this corresponds to a luck value of 8, 9 or 10 and each possible value for luck is equally likely, the probability is $3/21 = 1/7$ which is just under 0.15.
+Thus, among those students who got 98 or higher on the first exam, \emph{fewer than 15\%} will do at least as well on the second exam.
+The rest will do worse.
+
 \end{document}
-
-
