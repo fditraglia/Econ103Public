@@ -1,0 +1,121 @@
+%        File: ClassicalProbability.tex
+%     Created: Sat Jan 31 04:00 PM 2015 E
+% Last Change: Sat Jan 31 04:00 PM 2015 E
+%
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+\title{Basic Combinatorics and Classical Probability\\ \large Addendum to Lecture \# 5}
+\author{Econ 103}
+\begin{document}
+\maketitle
+
+\section*{Introduction}
+In lecture I don't spend much time on Classical Probability since I expect that this material should be familiar from High School.
+If it's not familiar, or if you'd like a refresher, this document should help.
+Since Classical Probability is all about counting, we'll start off with a short review of combinatorics.
+
+\section*{Basic Combinatorics: Rules for Counting}
+\subsection*{The Multiplication Rule}
+When I visit Chipotle, I'm presented with a sequence of independent choices:
+\begin{enumerate}
+  \item Burrito, bowl, soft tacos, or crispy tacos? (4 options)
+  \item White or brown rice? (2 options)
+  \item Black or pinto beans? (2 options)
+  \item Chicken, carnitas, steak, barbacoa, sofritas, or vegetables? (6 options) 
+  \item Mild, medium or hot salsa? (3 options)
+  \item Cheese? (2 options: yes/no)
+  \item Guacamole? (2 options: yes/no)
+\end{enumerate}
+I've left off a number of the toppings, but you get the idea.
+The question is: how many different meals could I order?
+To answer this, we'll use a principle called the \emph{multiplication rule}.
+
+Imagine a gigantic rectangular classroom, College Hall Room 200 perhaps, with 50 rows of seats, each containing 20 chairs.
+Now suppose that I asked you to count the number of chairs in the room.
+Would you visit each row individually and count each chair? 
+Of course not: you'd simply multiply 50 by 20 to get 200.
+This is just a special case of the multiplication rule.
+
+Let me phrase the question a little differently.
+How many different ways could you choose where to sit if this lecture hall were completely empty?
+We already know that the answer is 200, but let's try getting it a different way.
+The room is rectangular, so each chair is uniquely identified by its \emph{column} and \emph{row}.
+Choosing a seat is equivalent to choosing a row and a column.
+There are 50 ways to choose a row, and \emph{for each of these} there are 20 ways to choose a column.
+This means that, if we want the total number of ways to choose, we need to repeatedly add the number 20 a total of 50 times.
+But that's just the definition of multiplication, so the answer is 200.
+
+Now suppose I added one more choice: there are \emph{three} identical classrooms, each with 50 rows of 20 seats.
+If all the seats are empty, how many ways are there to decide where you want to sit?
+Well, we already know how to solve the problem for \emph{each} classroom so to find the total, we just need to add up this answer three times.
+But again, that is simply the definition of multiplication, so our answer is $3 \times 20 \times 50 = 600$.
+
+Are you starting to see the pattern here?
+This has nothing in particular to do with chairs in classrooms, but it's a basic feature of \emph{how we count things}: \textbf{if you have a series of independent decisions to make, the total number of ways to decide equals the product of the number of ways to make each individual choice}.
+Stated more mathematically, if you have $k$ independent decisions to make and there are $n_1$ ways to make the first decision, $n_2$ ways to make the second decision, $\hdots$, and $n_k$ ways to make the $k^{th}$ decision, then there are $n_1 \times n_2 \times \cdots \times n_k$ total ways to decide.
+The \emph{key requirement here} is that the decisions are \emph{independent}.
+What I mean by this is that the number of ways to make a particular decision does not depend on what you chose in a \emph{separate decision}.
+Going back to the classroom example, this is the same as requiring that each room have the same number of rows and columns of chairs.
+Since the Chipotle example also has this structure, we can solve it as follows: $4 \times 2 \times 2 \times 6 \times 3 \times 2 \times 2 = 1152$.
+That's a lot of possibilities!
+
+If you find the multiplication rule confusiong, try thinking about some other examples of how we count things in real life.
+It's very important to have a good intuitive grasp of this idea since all the other rules of counting are really just special cases of the multiplication rule.
+
+\subsection*{Example: Lining up for a Photo}
+Suppose that you're taking a picture of your three best friends: Alice, Bob, Charlotte.
+Feeling unimaginative, you decide to have them stand side-by-side in a line.
+How many different ways are there to set up the picture?
+
+Although it's very simple, this example raises an important point about counting that comes up over and over again in probability questions: before we can decide \emph{how many} of something we have, we need to be clear about what gets to ``count'' as a distinct object. 
+In posing the question about taking a photograph, I am implicitly considering \emph{different orderings} of your four friends as different ways to set up the picture.
+The key distinction here is whether or not order matters.
+In this case it clearly does: we consider (Alice, Bob, Charlotte) to be a different ``item'' than (Charlotte, Bob, Alice).
+In mathematics, this is like the difference between a \emph{set} and an \emph{ordered pair}: $(1,2)$ and $(2,1)$ are different points in the Cartesian coordinate system but $\left\{ 1,2 \right\}$ and $\left\{ 2,1 \right\}$ represent the same set since order doesn't matter in set theory.
+
+Now back to our problem.
+How can we use the multiplication rule here?
+The trick is to break it into a series of decisions.
+Essentially, we are trying to allocate three objects to three slots:
+\begin{equation*}
+  \underset{1}{\underbar{\quad}}\;
+  \underset{2}{\underbar{\quad}}\;
+  \underset{3}{\underbar{\quad}}\;
+\end{equation*}
+so our decisions are as follows:
+\begin{enumerate}
+  \item Who goes in slot \#1? (3 options)
+  \item Who goes in slot \#2? (2 options)
+  \item Who goes in slot \#3? (1 options)
+\end{enumerate}
+Using the multiplication rule, we see that there are $3 \times 2 \times 1 = 6$ possible ways to arrange your friends in the picture.
+The key is noticing that, each time we make a decision in this example, we have one fewer person who could go in the next slot.
+(This makes it a little different from the Chipotle example, although we can still apply the multiplication rule.)
+
+If you find this confusing, try directly enumerating all of the possibilities.
+This example is simple enough that it won't take too long.
+First suppose that Alice is in position \#1.
+Then there are two possibilities: either Bob is in position \#2 and Charlotte is in position \#3 or the reverse.
+Now suppose that Bob is in position \#1.
+Then there are two possibilities: either Alice is in position \#2 and Charlotte is in position \#3 or the reverse.
+Finally, suppose that Charlotte is in position \#1.
+Then there are two possibilities: either Alice is in position \#2 and Bob is in position \#3 or the reverse.
+Counting up each of these possibilites, we get six as expected.
+
+It's no accident that the answer to this question can be expressed as $3!$.
+Using exactly the same reasoning as I gave above, we can reach the following general conclusion: \textbf{there are $k!$ ways to arrange $k$ objects in order}.
+
+\subsection*{Permutations}
+Permutations are almost exactly like the example from the preceding section in which we arranged three people in a line.
+The difference is that in a permutation there are more people than there are slots in the photo.
+Just as in the photo example, \emph{order matters}.
+In particular, a permutation is \textbf{the number of ways to arrange $n$ objects in $k$ ordered positions}.
+
+
+\subsection*{Combinations}
+
+\section*{Classical Probability: Equally Likely Outcomes}
+
+\end{document}
+
+
