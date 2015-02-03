@@ -109,13 +109,102 @@ Using exactly the same reasoning as I gave above, we can reach the following gen
 Permutations are almost exactly like the example from the preceding section in which we arranged three people in a line.
 The difference is that in a permutation there are more people than there are slots in the photo.
 Just as in the photo example, \emph{order matters}.
-In particular, a permutation is \textbf{the number of ways to arrange $n$ objects in $k$ ordered positions}.
-
+In particular, a permutation is \textbf{the number of ways to arrange $n$ objects in $k$ ordered positions}:
+\begin{equation*}
+  P^n_k = \frac{n!}{\left( n-k \right)!}
+\end{equation*}
+The reasoning behind this formula is best illustrated through an example.
+Suppose 10 people are running a race.
+How many different ways are there to award first, second and third place?
+In this question there are $n=10$ objects and $k=3$ ordered positions.
+To answer it, we again turn to the multiplication rule.
+We have to make three decisions: who gets first place, who gets second place, and who gets third place.
+There are 10 ways to make the first decision.
+But after we've assigned someone first place, only 9 people remain.
+Thus, there are 9 ways to award second place.
+But after we've awarded second place, only 8 people remain.
+Therefore, there are 8 ways to award second place.
+Multiplying these together, we get $10 \times 9 \times 8 = 720$.
+Now let's try using the formula:
+\begin{equation*}
+  P^{10}_{3} = \frac{10!}{\left( 10-3 \right)!} = \frac{10!}{7!}= 10 \times 9 \times 8
+\end{equation*}
+It works!
+The formula is really just a general version of the same reasoning we just applied when counting how many ways to assign prizes in the race.
+There are $n$ ways to assign an object to the first ordered position, $n-1$ ways to assign an object to the second ordered position, and so on, all the way up to $n-k$ ways to assign an object to the $k^{th}$ ordered position.
+The formula for a permutation gives us \emph{precisely} the product of these numbers.
 
 \subsection*{Combinations}
+A combination is almost exactly like a permutation with \emph{one important difference}: for a combination, order \emph{doesn't matter}.
+For example, suppose we have 10 people and want to form a committee with 3 members.
+How many different committees can we form?
+The trick first to figure out how many ways there are to arrange the members of a given committee in order, and then use this number to \emph{correct} the result that we would get if we used the formula for a permutation.
+
+In the previous section, we saw that there are 720 ways to allocate 10 objects among 3 ordered positions.
+This answer is \emph{larger} than the total number of committees with 3 members that we can form from a group of 10 people.
+To see why, consider the committee $\left\{ Alice, Bob, Charlotte \right\}$.
+This is the \emph{same} committee as $\left\{ Charlotte, Bob, Alice \right\}$ since order doesn't matter.
+The permutation counts each of these possibilities separately since it assumes that order matters.
+So how can we correct this?
+There are $3!$ ways to arrange the members of the committee $\left\{ Alice, Bob, Charlotte \right\}$: 3 ways to choose who is in the first position time 2 ways to choose who is in the second position times 1 way to choose who is in the third position.
+This is true for \emph{any committee with three members}.
+It follows that the result we got by calculating the permutation is \emph{six times too large}: it counts each committee six times.
+Thus, to get the correct answer, we simply need to divide the result for the permutation by 6, yielding $720/6=120$ distinct committees.
+
+This is \emph{precisely} the reasoning we use to get the general formula for a combination:
+\begin{equation*}
+  {n\choose k} = \frac{P^{n}_{k}}{k!} = \frac{n!}{k!\left( n-k \right)!}
+\end{equation*}
+There are $P^{n}_{k}$ ways to arrange $n$ objects in $k$ ordered positions.
+For each distinct collection of $k$ objects, there are $k!$ ways to arrange its members in order.
+Thus, the permutation is too large by a factor of $k!$ to yield the combination.
 
 \section*{Classical Probability: Equally Likely Outcomes}
+Classical Probability is the name given to the special case in which all basic outcomes are equally likely.
+Since basic outcomes are, by definition, mutually exclusive, it follows that to calculate the probability of any event $A$ we simply need to count how many of the basic outcomes are contained in $A$ and divide by the total number of basic outcomes.
+We saw a few examples of this in class, but here I'll show you two more: one were
+Remember from above that when we count things, we need to be clear about whether order matters.
+The same goes when calculating classical probabilities since, in this case, probability is simply a matter of counting.
+A common mistake that students sometimes make is to use a \emph{different} convention when counting the basic outcomes in $A$ than they used when counting the total number of basic outcomes.
+Don't let this happen to you!
+If you decide that order matters, your calculations for \emph{both} the numerator and the denominator should reflect this.
+The same goes if you decide that order doesn't matter.
+We looked at several examples in class, but I'll provide two more here in case you want more practice: one where the answer involves a permutation, and another where it involves a combination.
 
+\subsection*{A Problem Involving a Permutation}
+\begin{quote}
+  A small museum only has space in its gallery for 4 paintings, arranged in a row from left to right.
+  In the basement of the museum, however, there are 6 additional paintings.
+  The new curator wants to mix things up, so she randomly selects 4 of the 10 paintings owned by the museum, shuffles them, and hangs them in the gallery.
+  What is the probability that the gallery remains unchanged?
+\end{quote}
+This is a ridiculous example, but I designed it to be simple rather than realistic!
+The first thing we need to do is count the basic outcomes.
+These consist of all possible ways to allocate 10 paintings to 3 ordered positions: a permutation.
+Thus, the denominator in our probability calculation will be $P^{10}_{4}=10\times 9 \times 8 \times 7 =5040$.
+Each of these is equally likely, and only one of them corresponds to the exact same arrangement as we started with, so the probability is $1/5040 \approx 0.0002$.
+
+\subsection*{A Problem Involving a Combination}
+\begin{quote}
+  What is the probability of getting a total of 3 heads when you flip a fair coin 5 times?
+\end{quote}
+To answer this question, we first need to identify the (equally likely) basic outcomes of this random experiment.
+The sample space consists of all ordered sequences of five symbols, each of which is either $H$ or $T$.
+There are 2 ways to choose the first, 2 ways to choose the second and so on leading to a total of $2^{5}=32$ sequences.
+Each of these sequences has the same probability: $\left( 1/2 \right)^{5}=1/32$.
+To find the numerator, we need to count the number of sequences that contain exactly three heads.
+This is equivalent to asking how many ways there are to choose a committee of 3 members from a group of 5 people.
+Once we decide where the three heads will be placed in the sequence, we're done: the rest of the positions will contain the tails.
+
+So what's going on here?
+We have five ordered positions, and we are trying to allocate the three heads.
+But the \emph{heads themselves} are not distinguishable: all that matters is where they are \emph{placed}.
+So while its true that the order of the \emph{sequences} matters, one we decide which spots will contain the heads, it doesn't matter \emph{how} we allocate the heads to these selected slots: an $H$ is an $H$ is an $H$.
+If this doesn't make sense, remember: we only have a single coin here.
+When allocating a given symbol, $H$ or $T$, to a given position in the sequence, there's no information beyond which symbol is where.
+The symbols refer to outcomes for the same coin, which is different from our example with two dice from class.
+
+Using this intuition, we see that there are ${5\choose 3}=10$ ways to allocate the three heads, so the probability of getting three heads in a sequence of five tosses of a fair coin is $10/32 = 0.3125$.
 \end{document}
 
 
