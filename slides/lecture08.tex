@@ -20,95 +20,11 @@
 
 \end{frame} 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Probability Theory}
 
-
-\begin{block}{What We've Done So Far}
-Axioms of probability, rules for computing probabilities of events
-\end{block}
-
-\begin{block}{What Remains}
-Notion of event subsumed by that of \emph{\alert{Random Variable}}
-\end{block}
-\begin{block}{Random Variable}
-	A more abstract way of representing a random experiment: focus only on the important information, not the irrelevant details.
-\end{block}
-
-
-\end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{A New Way of Thinking about Populations}
-
-\begin{itemize}
-	\item \emph{No longer} think of a population as a list of $N$ objects.
-	\item \emph{Represent} a population by a \alert{probability model} using the language of Random Variables.
-	\item Re-express population parameters as \emph{features} of the Random Variables that \emph{represent} a population.
-	\item E.g.\ if we say ``$\mu$ is the mean of a random variable $X$'' the idea is that $\mu$ is the mean of a \alert{\emph{population represented}} by the random variable $X$.
-\end{itemize}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Why are we getting rid of population size $N$?}
-
- 
-\begin{enumerate}
-	\item Don't know $N$ for real-world populations. 
-	\item For sampling $N$ is irrelevant: all that matters are the \alert{\emph{relative frequencies}} in the population. 
-\end{enumerate}
-
-\begin{block}{Key Innovation}
-Treat population relative frequencies as \emph{probabilities} rather than counts divided by $N$.
-\end{block}
- 
-\begin{block}{Why Does This Make Sense?}
-We defined probability as long-run relative frequency. The idea of ``long-run'' here is repeated sampling from the population.
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Treating Population Relative Frequencies as Probabilities}
- 
-\begin{block}{Discrete Data $\Rightarrow$ Discrete Random Variables}
-It's obvious what the ``right probability'' is in this case. For example if 52000 people in a population of 100000 voted for Obama, we'd represent this as a probability of $0.52$.
-\end{block}
-
- 
-\begin{block}{Continuous Data $\Rightarrow$ Continuous Random Variables}
-Here things are more complicated. What proportion of people have a height of exactly 62.374827 inches? To get around this problem we'll proceed by an analogy to histograms.
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\Large The first thing to know about Random Variables is that they are neither random nor variables...
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{block}{Random Variable (RV)}
-\emph{Fixed} function from sample space $S$ to real numbers ($X\colon S \mapsto \mathbb{R}$). Turns \emph{basic outcomes} of random experiment into \emph{numbers}.
-\end{block}
- 
-\begin{block}{Realization}
-Particular value that RV takes on, i.e.\ the result of applying the function defined by $X$ to the \emph{outcome} of the random experiment. We write $X= x$. Note that $\{X = x\}$ is an \emph{event}.
-\end{block}
- 
-\begin{block}{Support Set}
-The set of all possible realizations of a RV.
-\end{block}
- 
-\begin{block}{Notation}
-RVs denoted by capital letters, e.g.\ $X,Y,Z$, their realizations by the corresponsing lowercase letters, e.g.\ $x,y,z$.
-\end{block}
-
+\centering \Huge Discrete Random Variables I
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,29 +37,27 @@ RVs denoted by capital letters, e.g.\ $X,Y,Z$, their realizations by the corresp
 	node [above] at (0,2) {$X\colon S \mapsto \mathbb{R}$}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Random Variables}
+  \frametitle{A random variable is neither random nor a variable\ldots}
+\begin{block}{Random Variable (RV): $X$}
+  A deterministic (i.e.\ non-random) function that assigns a numeric value to each basic outcome of a random experimnet.
+\end{block}
+ 
+\begin{block}{Realization: $x$}
+A particular numeric value that an RV could take on. We write $\{X = x\}$ to refer to the \emph{event} that the RV $X$ took on the value $x$.  
+\end{block}
+ 
+\begin{block}{Support Set (aka Support)}
+The set of all possible realizations of a RV.
+\end{block}
+ 
+\begin{block}{Notation}
+Capital latin letters for RVs, e.g.\ $X,Y,Z$, and the corresponsing lowercase letters for their realizations, e.g.\ $x,y,z$.
+\end{block}
 
-\begin{figure}
-\centering
-\begin{tikzpicture}
-	\draw \RVraw;
-	\draw [->] (-2.5,0.5) node [below]{$o$} to [out=35,in=145] (2.5,0.5) node [below]{$x = X(o)$};
-\end{tikzpicture}
-\caption{A Random Variable $X$ is a fixed, i.e.\ deterministic, function that maps each basic outcome in the sample space $S$ to a real number. Here $o$ is a basic outcome and $x$ is a realization, equal to $X(o)$.}
-\end{figure}
-
-
+\begin{block}{Intuition}
+  You can think of an RV as a machine that spits out random numbers: although the machine is deterministic, its inputs, the outcomes of a random experiment, are not.
+\end{block}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Important Distinction}
-
-
-Although a Random Variable is a deterministic function, the \alert{\emph{values it takes on}} are random since its input, the outcome of a random experiment, is random!
-
-
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Example: Coin Flip Random Variable}
@@ -155,10 +69,10 @@ Although a Random Variable is a deterministic function, the \alert{\emph{values 
 	\draw [->] (-2.5,0.75) node [below]{Tails} to [out=35,in=145] (2.5,0.75) node [below]{$0$};
 	\draw [->] (-2.5,-0.75) node [above]{Heads} to [out=315,in=225] (2.5,-0.75) node [above]{$1$};
 \end{tikzpicture}
-\caption{This random variable maps the outcomes of flipping a coin $\{\mbox{Heads}, \mbox{Tails}\}$ to the set $\{0,1\}\subseteq \mathbb{R}$. Hence, its support is $\{0,1\}$}
+\caption{This random variable assigns numeric values to the random experiment of flipping a fair coin one time.}
 \end{figure}
 \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Types of Random Variables}
  
@@ -169,13 +83,6 @@ Although a Random Variable is a deterministic function, the \alert{\emph{values 
 	\begin{block}{Continuous RVs}
 	Takes on an uncountably infinite number of different values, e.g.\ all real numbers in the interval $[0,1]$ or $(-\infty, \infty)$.
 	\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\centering \Huge Discrete Random Variables I
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -221,36 +128,6 @@ $$X = \left\{ \begin{array}{l}  0, \mbox{Tails}\\ 1, \mbox{Heads}\end{array} \ri
 \end{figure}
 \end{columns}
 
-\vspace{3em}
-\alert{Where did this come from?}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\small
-\begin{figure}
-\centering
-\fbox{
-\begin{tikzpicture}[scale=0.45]
-	\draw \RVraw;
-	\draw [->] (-2.5,1) node [below]{Tails} to [out=35,in=145] (2.5,1) node [below]{$0$};
-	\draw [->] (-2.5,-1) node [above]{Heads} to [out=315,in=225] (2.5,-1) node [above]{$1$};
-\end{tikzpicture}}
-\end{figure}
- 
-\begin{block}{Support Set $\{0,1\}$}
-The only possible realizations are $X=0$ and $X=1$
-\end{block}
- 
-\begin{block}{Events}
-Tracing the arrows backwards, $\{X=0\}$ corresponds to the event ``Tails'' while $\{X=1\}$ corresponds to the event ``Heads.''
-\end{block}
- 
-\begin{block}{Probabilities}
-Since $P(\mbox{Heads}) = P(\mbox{Tails}) = 1/2$, $P(X=0) = P(X=1) = 1/2$
-\end{block}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -273,125 +150,9 @@ If $p(x)$ is the pmf of a random variable $X$, then
 
 \vspace{0.75em}
 where ``all $x$'' is shorthand for ``all $x$ in the support of $X$.''
-
-
- 
-
-\vspace{2em}
-\begin{alertblock}{But Where Do These Come From?}
-The key point is that $\{X=x\}$ is an \emph{event}. We proceed by working backwards until we are in familiar territory.
-\end{alertblock}
-
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Which Event Corresponds to $\{X=x_1\}$?}
-
-\begin{figure}
-	\centering
-\begin{tikzpicture}[scale = 1]
-	\draw \RVraw;
-	\draw [blue, ultra thick] (-2.85,0) circle [radius=0.8];
-	\draw node [blue, below left] at (-3,-0.8) {$A$};
-	\draw [->] (-2.5,0.5) node [left]{$o_1$} to [out=25,in=150] (2.5,0.1);
-	\draw [->] (-2.5,-0.5) node [left]{$o_2$} to [out=335,in=210] (2.5,-0.1);
-	\draw (2.5, 0) node [right]{$x_1$};
-\end{tikzpicture}
-\end{figure}
-
-
-
-Define \textcolor{blue}{$A = \{o \in S \colon X(o) = x_1\}$}. Since it is a subset of the sample space, $A$ is an event. Since $A$ contains \emph{all} the basic outcomes that map to $x_1$, \textcolor{blue}{$A = \{X=x_1\}$}, hence \textcolor{blue}{$P(A) = P(X=x_1)$}.
-
-
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Link Between Axioms of Probability and Random Variables}
-
-	\begin{enumerate}
-		\item We can equate $\{X=x\}$ with an event $A$ in $S$ for any realization $x$ in the support of $X$. Thus $P(X=x) = p(x)$ is a bona fide probability and
-				$$0 \leq p(x) \leq 1$$
-		\item Since $X$ is a \emph{function}, the events $\{X= x\}$ are \alert{mutually exclusive} and \alert{collectively exhaustive}, hence:
-		$$\sum_{\mbox{all } x} p(x) = \sum_{\mbox{all } x} P(X=x) = P(S) = 1$$
-	\end{enumerate}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Is This Possible? (A = Yes, B = No) \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{figure}
-\begin{tikzpicture}
-	\draw \RVraw;
-		\draw [->] (-2.5,0) node [left]{$o_1$} to [out=25,in=170] (2.5,0.75) node [right]{$x_1$};
-	\draw [->] (-2.5,0) to [out=335,in=190] (2.5,-0.75) node [right]{$x_2$};
-\end{tikzpicture}
-\caption{This diagram shows the random variable $X$ mapping the basic outcome $o_1$ to two different realizations: $x_1$ and $x_2$. Is this allowed?}
-\end{figure}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{This is NOT POSSIBLE}
-
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale = 0.8]
-	\draw \RVraw;
-		\draw [->] (-2.5,0) node [left]{$o_1$} to [out=25,in=170] (2.5,0.75) node [right]{$x_1$};
-	\draw [->] (-2.5,0) to [out=335,in=190] (2.5,-0.75) node [right]{$x_2$};
-\end{tikzpicture}
-\end{figure}
-
-\begin{itemize}
-	\item A function cannot map a single input to two different outputs! You may know this as the ``vertical line test.''
-	\item We have to rule this situation out since it would mean that $\{X = x_1\}$ and $\{X = x_2\}$ are \emph{not mututally exclusive}.
-\end{itemize}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Is This Possible? (A = Yes, B = No) \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale = 0.8]
-	\draw \RVraw;
-		\draw [->] (-2.5,0) node [left]{$o_1$} to [out=25,in=170] (2.5,0.75) node [right]{$x_1$};
-	\draw (-2.5,-0.75) node [right]{$o_2$};
-\end{tikzpicture}
-\caption{This diagram shows the random variable $X$ mapping the basic outcome $o_1$ to the realization $x_1$. The basic outcome $o_2$ doesn't get mapped anywhere. Is this allowed?}
-\end{figure}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{This is NOT POSSIBLE}
-
-
-
-\begin{figure}
-\begin{tikzpicture}
-	\draw \RVraw;
-		\draw [->] (-2.5,0) node [left]{$o_1$} to [out=25,in=170] (2.5,0.75) node [right]{$x_1$};
-	\draw (-2.5,-0.75) node [right]{$o_2$};
-\end{tikzpicture}
-\end{figure}
-\begin{itemize}
-	\item A function associates \emph{every} value in its domain with a value in its range: $o_2$ has to map to something!
-	\item We have to rule this situation out since it would mean that the events $\{X = x\}$ are \emph{not collectively exhaustive}. 
-\end{itemize}
-
-
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -400,9 +161,6 @@ Define \textcolor{blue}{$A = \{o \in S \colon X(o) = x_1\}$}. Since it is a subs
 
 The CDF gives the probability that a RV $X$ \alert{does not exceed} a specified threshold $x_0$, as a function of $x_0$
 	$$F(x_0) = P(X \leq x_0)$$
-
-
- 
 
 \begin{alertblock}{Important!}
 The threshold $x_0$ is allowed to be \emph{any real number}. In particular, it doesn't have to be in the support of $X$! 
@@ -457,8 +215,8 @@ $$X = \left\{ \begin{array}{l}  0, \mbox{Tails}\\ 1, \mbox{Heads}\end{array} \ri
 
 \small
  
-\begin{block}{Proof}
-Use the fact that the events $\{X = x\}$ are mutually exclusive:
+\begin{block}{Why?}
+The events $\{X = x\}$ are mutually exclusive, so we sum to get the probability of their union for all $x\leq x_0$:
 	$$F(x_0) = P(X \leq x_0)=   P\left(\bigcup_{x\leq x_0}\{X = x\}\right) =   \sum_{x \leq x_0} P(X = x) =   \sum_{x \leq x_0} p(x)$$
 \end{block}
 
@@ -618,9 +376,14 @@ $$\sum_{\mbox{all} \; x} x \cdot p(x) = 0 \cdot (1-p) + 1 \cdot p = p$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-	\begin{center}
-		\Huge Next Time: Midterm I
-	\end{center}
+  \frametitle{Why Random Variables?}
+  Many random experiments are ``the same'' from a probabilistic perspective. Focus on only the essential details. Examples.
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Why Random Variables?}
+  Use as a model for population. No longer talk about population size $N$, because this turns out to be irrelevant. Explain why with a simple example. This slide should probably come after I actually introduce Bernoulli RV, etc. Treat population relative frequencies as probabilities rather than counts divided by $N$. Defined probability as long-run relative frequency and here we would think of repeatedly sampling from the population. Also we never know $N$ in practice. Emphasize that from the perspective of sampling, $N$ is irrelevant. Give a simple urn example. Try to distinguish continuous and discrete. Then again, maybe it's still too early for them to digest this.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
