@@ -27,249 +27,6 @@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Overview}
-
-\begin{block}{So Far}
-Consider one RV at a time.
-\end{block}
-
-\begin{block}{Today}
-Consider relationships \emph{between} two RVs.
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Definition of Joint PMF}
-Let $X$ and $Y$ be discrete random variables. The joint probability mass function $p_{XY}(x,y)$ gives the probability of each pair of realizations $(x,y)$ in the support:
-\Large
- $$\boxed{p_{XY}(x,y) = P(X = x \cap Y=y)}$$
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Joint PMF in Tabular Form}
-
-\begin{table}
-\begin{tabular}{|cc|ccc|}
-\hline
-&&\multicolumn{3}{c|}{$Y$}\\
-&&1 & 2&3\\
-\hline
-\multirow{4}{*}{$X$}
-&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
-&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
-\hline
-\end{tabular}
-\end{table}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Plot of Joint PMF}
-\begin{figure}
-	\includegraphics[scale = 0.53]{./images/joint_dist}
-\end{figure}
-
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What is $p_{XY}(1,2)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{table}
-\begin{tabular}{|cc|ccc|}
-\hline
-&&\multicolumn{3}{c|}{$Y$}\\
-&&1 & 2&3\\
-\hline
-\multirow{4}{*}{$X$}
-&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
-&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
-\hline
-\end{tabular}
-\end{table}
-
-\pause
-
-
-
-$$p_{XY}(1,2) =   P(X=1 \cap Y =2) =  \alert{1/4}$$
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What is $p_{XY}(2,1)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{table}
-\begin{tabular}{|cc|ccc|}
-\hline
-&&\multicolumn{3}{c|}{$Y$}\\
-&&1 & 2&3\\
-\hline
-\multirow{4}{*}{$X$}
-&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
-&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
-\hline
-\end{tabular}
-\end{table}
-
-\pause
-
-$$p_{XY}(2,1) =  P(X=2 \cap Y =1) = \alert{0}$$
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Properties of Joint PMF}
-	\begin{enumerate}
-		\item $0\leq p_{XY}(x,y)\leq 1$ for any pair $(x,y)$
-		\item The sum of $p_{XY}(x,y)$ over all pairs $(x,y)$ in the support is 1:
-			$$\sum_{x}\sum_{y} p(x,y) = 1$$
-	\end{enumerate}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Does this satisfy the properties of a joint pmf? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\alert{(A = YES, B = NO)}
-\begin{table}
-\begin{tabular}{|cc|ccc|}
-\hline
-&&\multicolumn{3}{c|}{$Y$}\\
-&&1 & 2&3\\
-\hline
-\multirow{4}{*}{$X$}
-&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
-&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
-\hline
-\end{tabular}
-\end{table}
-
-\pause
-
-\begin{enumerate}
-	\item $p(x,y) \geq 0$ for all pairs $(x,y)$
-	\item $\sum_x\sum_{y} p(x,y) = 1/8 + 1/4 + 1/8 + 1/4 + 1/8 + 1/8 = 1$
-\end{enumerate}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Joint versus Marginal PMFs}
-
-\begin{block}{Joint PMF}
- $p_{XY}(x,y) = P(X=x \cap Y=y)$
-\end{block}
-
-
-
-\begin{block}{Marginal PMFs}
-$p_X(x) = P(X=x)$\\ $p_Y(y) = P(Y=y)$
-\end{block}
-
-
-
-\vspace{1em}
-
-\alert{You can't calculate a joint pmf from marginals alone but you \emph{can} calculate marginals from the joint!}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Marginals from Joint}
-
-	$$\boxed{p_X(x) = \sum_{\mbox{all } y} p_{XY}(x,y)}$$
-	
-	$$\boxed{p_Y(y) = \sum_{\mbox{all } x} p_{XY}(x,y)}$$
-
-
-\begin{block}{Why?}
-	\begin{eqnarray*}
-	p_Y(y) &=& P(Y=y) = P\left( \bigcup_{\mbox{all } x}\left\{ X=x \cap Y=y \right\}  \right)\\
-		&=& \sum_{\mbox{all } x} P(X=x \cap Y=y) = \sum_{\mbox{all } x} p_{XY}(x,y)
-	\end{eqnarray*}
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{To get the marginals sum ``into the margins'' of the table.}
-
-\begin{table}
-\begin{tabular}{|cc|ccc|c|}
-\hline
-&&\multicolumn{3}{c|}{$Y$}&\\
-&&1 & 2&3&\\
-\hline
-\multirow{4}{*}{$X$}
-&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}&\onslide<2->{\textcolor{blue}{1/8}}\\
-&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\onslide<3->{\textcolor{blue}{3/8}}\\
-&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\onslide<4->{\textcolor{blue}{3/8}}\\
-&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}&\onslide<5->{\textcolor{blue}{1/8}}\\
-\hline 
-&&&&&\onslide<5->{\textcolor{blue}{1}}\\
-\hline
-\end{tabular}
-\end{table}
-
-\begin{eqnarray*}
-	\onslide<2->{p_X(0) &=& 1/8 + 0 + 0 = 1/8}\\
-	\onslide<3->{p_X(1) &=&0 + 1/4 + 1/8 = 3/8}\\
-	\onslide<4->{p_X(2) &=&0 + 1/4 + 1/8 = 3/8}\\
-	\onslide<5->{p_X(3) &=&1/8 + 0 + 0 = 1/8}
-\end{eqnarray*}
-
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{What is $p_Y(2)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{table}
-\begin{tabular}{|cc|ccc|c|}
-\hline
-&&\multicolumn{3}{c|}{$Y$}&\\
-&&1 & 2&3&\\
-\hline
-\multirow{4}{*}{$X$}
-&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}&\\
-&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\\
-&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\\
-&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}&\\
-\hline 
-&&\onslide<2->{\textcolor{blue}{1/4}}&\onslide<3->{ \textcolor{blue}{1/2} }& \onslide<4->{\textcolor{blue}{1/4}} &\onslide<4->{\textcolor{blue}{1}}\\
-\hline
-\end{tabular}
-\end{table}
-
-\begin{eqnarray*}
-	\onslide<2->{p_Y(1) &=& 1/8 + 0 + 0 + 1/8 = 1/4}\\
-	\onslide<3->{p_Y(2) &=&0 + 1/4 + 1/4 + 0 = 1/2}\\
-	\onslide<4->{p_Y(3) &=&0 + 1/8 + 1/8 + 0= 1/4}
-\end{eqnarray*}
-
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Definition of Conditional PMF}
@@ -723,6 +480,229 @@ However, independence \emph{does} imply zero covariance (correlation)
 	&=& \pause E[Y- \mu_Y]E[X- \mu_X] \\
 	&=& 0
 \end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Linearity of Expectation, Again}
+\framesubtitle{Holds for Continuous RVs as well, but different proof.}
+In general, $E[g(X,Y)]\neq g(E[X],E[Y])$. The key exception is when $g$ is a linear function:
+
+\Large
+$$\boxed{E[aX + bY + c] = aE[X] + bE[Y] + c}$$
+
+\normalsize
+where $X,Y$ are random variables and $a,b,c$ are constants.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Proof of Linearity of Expectation for Discrete RVs}
+\footnotesize
+\begin{eqnarray*}
+	E[aX+bY+c] &=& \sum_x \sum_y (ax+by+c) p(x,y) \\
+		&=& \pause \sum_x \sum_y\left[ axp(x,y) + byp(x,y) + cp(x,y)\right]\\
+		&=&\pause \alert{a} \sum_x \sum_y xp(x,y) + \alert{b}\sum_y \sum_x y p(x,y) + \alert{c} \sum_y \sum_x  p(x,y) \\
+		&=& \pause a \sum_x \sum_y xp(x,y) + b\sum_y \sum_x y p(x,y) + \alert{c}\\
+				&=& \pause a \sum_{\alert{x}} \alert{x} \left(\sum_{\alert{y}} p(x,y)\right) + b\sum_{\alert{y}} \alert{y} \left(\sum_{\alert{x}}  p(x,y)\right) + c\\
+		&=& \pause a\sum_x x \alert{p(x)} + b\sum_y y  \alert{p(y)}+c\\
+		&=& \pause aE[X] + bE[Y] + c
+\end{eqnarray*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Application: Shortcut Formula for Variance}
+
+By the Linearity of Expectation, 
+\begin{eqnarray*}
+	Var(X) &=&  E[(X - \mu)^2] = \pause E[X^2 - 2\mu X + \mu^2]\\
+		&=& \pause E[X^2] - 2\mu E[X] + \mu^2\\
+		&=& \pause E[X^2] - 2\mu^2 + \mu^2\\
+		&=& \pause E[X^2] - \mu^2
+\end{eqnarray*}
+
+\alert{We saw in a previous lecture that it's typically much easier to calculate variances using the shortcut formula.}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Another Application: Shortcut Formula for Covariance}
+\alert{Similar to Shortcut for Variance: in fact $Var(X) = Cov(X,X)$}
+\begin{eqnarray*}
+	Cov(X,Y)&=& E[(X - \mu_X)(Y-\mu_Y)]\\
+			&=& E[XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y]\\
+			&\vdots& \\
+			%&=&E[XY] - \mu_xE[Y] - \mu_Y E[X] + \mu_X \mu_Y\\
+			%&=& E[XY] - \mu_X\mu_Y - \mu_Y\mu_X + \mu_X \mu_Y\\
+			%&=& E[XY] - \mu_X \mu_Y\\
+			&=& E[XY] - E[X]E[Y]
+\end{eqnarray*}
+
+\hfill \alert{You'll fill in the details for homework...}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Expected Value of Sum = Sum of Expected Values}
+Repeatedly applying the linearity of expectation,
+$$E[X_1 + X_2 + \hdots + X_n] = E[X_1] + E[X_2] + \hdots + E[X_n]$$
+regardless of how the RVs $X_1, \hdots, X_n$ are related to each other. In particular it \alert{doesn't matter if they're dependent or independent}.
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Independent and Identically Distributed (iid) RVs}
+
+\begin{block}{Example}
+	$X_1, X_2, \hdots X_n \sim \mbox{iid Bernoulli}(p)$
+\end{block}
+
+\begin{block}{Independent}
+Joint pmf equals product of marginal pmfs (see last lecture): Knowing the realization of one of the RVs gives no information about the others.
+\end{block}
+
+\begin{block}{Identically Distributed}
+Each $X_i$ is the same kind of RV, with the same values for any parameters. (Hence same pmf, cdf, mean, variance, etc.)
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Binomial$(n,p)$ Random Variable}
+
+\begin{block}{Definition}
+Sum of $n$ independent Bernoulli RVs, each with probability of ``success,'' i.e.\ 1, equal to $p$
+\end{block}
+
+
+\begin{block}{Parameters}
+$p =$ probability of ``success,'' $n=$ \# of trials
+\end{block}
+
+
+\begin{block}{Support} 
+$\{0, 1, 2, \hdots, n\}$
+\end{block}
+
+
+\begin{alertblock}{Using Our New Notation}
+Let $X_1, X_2, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$, $Y = X_1 + X_2 + \hdots + X_n$. Then $Y \sim \mbox{Binomial}(n,p)$.
+\end{alertblock}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Which of these is the PMF of a Binomial$(n,p)$ RV? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+\begin{enumerate}[(a)]
+	\item $p(x) = p^x (1-p)^{n-x}$
+	\item $p(x) = {n \choose x} p^x (1-p)^{n-x}$
+	\item $p(x) = {x \choose n} p^x$
+	\item $p(x) = {n \choose x} p^{n-x} (1-p)^{x}$
+	\item $p(x) = p^n (1-p)^{x}$
+\end{enumerate}
+
+\pause
+ 
+$$\alert{p(x) = {n \choose x} p^x (1-p)^{n-x}}$$ 
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Expected Value of Binomial RV}
+
+Use the fact that a Binomial$(n,p)$ RV is defined as the sum of $n$ iid Bernoulli$(p)$ Random Variables and the Linearity of Expectation:
+\begin{eqnarray*}
+E[Y] &=& E[X_1 + X_2 + \hdots + X_n] = \pause E[X_1] + E[X_2] + \hdots +E[X_n]\\
+	&=&\pause p + p + \hdots + p\\
+	&=& \pause \alert{np}
+\end{eqnarray*}
+\vspace{3em}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\huge
+Extremely Important:\\
+\vspace{1em}
+\alert{Variance of Sum $\neq$ Sum of Variances!}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Variance of a Sum}
+\footnotesize
+\begin{eqnarray*}
+	Var(aX + bY) &=& E\left[\left\{\left( aX + bY\right) - E[aX + bY]\right\}^2  \right]\\ \pause
+	&=& E\left[  \left\{a (X - \mu_X) + b(Y - \mu_Y)\right\}^2 \right]\\ \pause
+	&=& E\left[a^2(X-\mu_X)^2 + b^2(Y-\mu_Y)^2 + 2ab(X-\mu_X)(Y-\mu_Y)  \right]\\ \pause
+	&=&a^2E[(X-\mu_X)^2] + b^2 E[(Y-\mu_Y)^2] + 2ab E[(X-\mu_X)(Y-\mu_Y)]\\ \pause
+	&=& \alert{a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X,Y)}
+\end{eqnarray*}
+
+
+\vspace{3em}
+\normalsize
+Since $\sigma_{XY} = \rho\sigma_X \sigma_Y$, this is sometimes written as:
+$$\alert{\boxed{Var(aX + bY) = a^2 \sigma_X^2 + b^2 \sigma_Y^2 + 2ab \rho \sigma_X \sigma_Y}}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Independence $\Rightarrow Var(X+Y) = Var(X) + Var(Y)$}
+
+We showed last time that if $X$ and $Y$ are independent, $Cov(X,Y)=0$. Hence, independence implies
+\begin{eqnarray*}
+	Var(X + Y) &=& Var(X) + Var(Y) + 2 Cov(X,Y)\\
+			&=& \alert{Var(X) +Var(Y)}
+\end{eqnarray*}
+
+
+\begin{block}{This is also true for more than two RVs}
+If $X_1, X_2, \hdots, X_n$ are independent, then
+	$$Var(X_1 + X_2 + \hdots X_n) = Var(X_1) + Var(X_2) + \hdots + Var(X_n)$$
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Crucial Distinction}
+\begin{block}{Expected Value}
+It is \alert{always} true that
+	$$E[X_1 + X_2 + \hdots + X_n] = E[X_1] + E[X_2] + \hdots + E[X_n]$$
+\end{block}
+
+
+\begin{block}{Variance}
+It is \alert{not true in general} that 
+	$$Var[X_1 + X_2 + \hdots + X_n] = Var[X_1] + Var[X_2] + \hdots + Var[X_n]$$
+but it \alert{is true} in the special case where $X_1, \hdots X_n$ are independent.
+\end{block}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Variance of Binomial Random Variable}
+\begin{block}{Definition from Sequence of Bernoulli Trials}
+If $X_1, X_2, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$ then 
+	$$Y = X_1 + X_2 + \hdots + X_n \sim \mbox{Binomial}(n,p)$$
+\end{block}
+
+\alert{Using Independence}
+\begin{eqnarray*}
+Var[Y] &=&  Var[X_1 + X_2 + \hdots + X_n]\\
+	&=& Var[X_1] + Var[X_2] + \hdots +Var[X_n]\\
+	&=&\pause p(1-p) + p(1-p) + \hdots + p(1-p)\\
+	&=& \pause \alert{np(1-p)}
+\end{eqnarray*}
+\vspace{3em}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
