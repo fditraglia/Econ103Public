@@ -117,7 +117,7 @@ One of the main advantages of boxplots over histograms is that they are simple e
 boxplot(handspan ~ sex, data = survey, ylab= "Handspan (cm)", main = "Handspan by Sex")
 ```
 
-The syntax used above is different from what we've seen so far but since it will appear again when we look at regression it's worth spending some time to explain. The syntax ``handspan ~ sex`` indicates that we want ``handspan`` *as a function of* ``height``. The argument ``data = survey`` tells R where to find the variables handspan and sex: they're stored as columns in the dataframe survey.
+The syntax used above is different from what we've seen so far but since it will appear again when we look at regression it's worth spending some time to explain. The syntax ``handspan ~ sex`` indicates that we want ``handspan`` *as a function of* ``sex``. The argument ``data = survey`` tells R where to find the variables handspan and sex: they're stored as columns in the dataframe survey.
 
 ### ``table``
 The command ``table`` is used for making cross-tabs, aka two-way tables, a useful way of summarizing the relationship between two categorical variables. Both arguments of table must be vectors. For example, we can make a cross-tab of eyecolor and sex as follows:
