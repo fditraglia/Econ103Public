@@ -28,247 +28,7 @@
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Last Time}
-\begin{block}{Random Variable (RV)}
-$X\colon S \mapsto \mathbb{R}$
-\end{block}
-\begin{block}{Probability Mass Function (pmf)}
-$p(x) = P(X = x)$
-\end{block}
-\begin{block}{Cumulative Distribution Function (CDF)}
-$F(x_0) = P(X \leq x_0)$
-\end{block}
-\begin{block}{Expected Value (aka Expectation/Mean)}
-$\mu = E[X] = \displaystyle\sum_{\mbox{all } x} x \cdot p(x)$
-\end{block}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-% \frametitle{Last Time}
-
-% \begin{block}{Expected Value (aka Expectation)}
-% For a discrete RV, the the \alert{probability-weighted average} of all realizations	
-% $$E[X] = \sum_{\mbox{all} \; x} x \cdot p(x)$$
-% \end{block}	
-
-% \begin{block}{Population Model}
-% 	If the RV $X$ is a probability model for some population, we equate $E[X]$ with the population mean $\mu$.
-% \end{block}
-	
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Last Time}
-
-% \begin{block}{Expected Value of Bernoulli RV}
-% 	$$X = \left\{ \begin{array}{l}  0, \mbox{Failure: } 1-p\\ 1, \mbox{Success: } p\end{array} \right.$$
-
-% 	$$\sum_{\mbox{all} \; x} x \cdot p(x) = 0 \cdot (1-p) + 1 \cdot p = p$$
-% \end{block}
-
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Today}
-\begin{block}{More About Expected Value}
-	\begin{itemize}
-		\item Random Variables and Parameters
-		\item Expectation of Functions
-		\item Variance \& Standard Deviation
-		\item Variance of Bernoulli RV
-	\end{itemize}
-
-\end{block}
-\begin{block}{Binomial Random Variable}
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Random Variables and Parameters}
-
-
-
-\begin{block}{Notation: $X \sim$ Bernoulli$(p)$}
-Means $X$ is a Bernoulli RV with $P(X = 1) = p$ and $P(X= 0) = 1-p$. The tilde is read ``distributes as.''
-
-\end{block}
-
-
-\begin{block}{Parameter}
-Any constant that appears in the definition of a RV, here $p$. 
-\end{block}
-
-
-\begin{alertblock}{Important}
-	Use RVs to model populations $\implies$ this definition of parameter corresponds to the one from earlier in the semester: a ``feature of the population (e.g.\ mean).''
-\end{alertblock}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Constants Versus Random Variables}
-
- \alert{This is a crucial distinction that students sometimes miss:}
- \vspace{1em}
- 
-
- 		\begin{block}{Random Variables}
- 			\begin{itemize}
- 			\item Suppose $X$ is a RV -- the values it takes on are random
- 			\item A function $g(X)$ of a RV is itself a RV as we'll learn today.
- 			\end{itemize}
- 		\end{block}
- 
- 		\begin{block}{Constants}
- 			\begin{itemize}
- 				\item $\mu = E[X]$ is a constant (you should convince yourself of this)
- 				\item Realizations $x$ are constants. What is random is \emph{which} realization the RV takes on.
- 				\item Parameters are constants (e.g.\ $p$ for Bernoulli RV)
- 				\item Sample size $n$ is a constant
- 			\end{itemize}
- 		\end{block} 
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\Huge \centering The St.\ Petersburg Game
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{How Much Would You Pay?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-How much would you be willing to pay for the right to play the following game?
-
-\vspace{1em}
-\begin{quote}
-Imagine a fair coin. The coin is tossed once. If it falls heads, you receive a prize of \$2 and the game stops. If not, it is tossed again. If it falls heads on the second toss, you get \$4 and the game stops. If not, it is tossed again. If it falls heads on the third toss, you get \$8 and the game stops, and so on. The game stops after the first head is thrown. If the first head is thrown on the $x^{th}$ toss, the prize is \$$2^x$
-\end{quote}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$X =$ Trial Number of First Head}
-\begin{table}
-\begin{tabular}{c|c|c|c}
-	$x$ & $2^x$ & $p(x)$& $2^x \cdot p(x)$\\
-		\hline \uncover<2->{
-	1&2&1/2&1\\
-	2&4&1/4&1\\
-	3&8&1/8&1\\}\uncover<3->{
-	$\vdots$&$\vdots$&$\vdots$&$\vdots$\\
-	n&$2^n$&$1/2^n$&1\\
-	$\vdots$&$\vdots$&$\vdots$&$\vdots$}
-\end{tabular}
-\end{table}
-$$E[Y] = \sum_{\mbox{all } x} 2^x\cdot p(x) = \uncover<4->{1 + 1 + 1 + \hdots}\uncover<5->{ = \infty}$$
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\begin{center}
-\Huge Functions of Random Variables are Themselves Random Variables
-\end{center}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Example: Function of Bernoulli RV}
-\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
-\vspace{2em}
-
-\begin{block}{Support of $Y$} \pause
-$\{e^0, e^1\} =\{1, e\}$
-\end{block}
-
-\begin{block}{Probability Mass Function for $Y$} \pause
-	$$p_Y(y) = \left\{\begin{array}{ll}p& y =e\\ 1-p& y = 1\\ 0& \mbox{otherwise}\end{array}\right.$$
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Expectation: Function of Bernoulli RV}
-\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
-\vspace{2em}
-
-\begin{block}{Probability Mass Function for $Y$} 
-	$$p_Y(y) = \left\{\begin{array}{ll}p& y =e\\ 1-p& y = 1\\ 0& \mbox{otherwise}\end{array}\right.$$
-\end{block}
-
-\begin{block}{Expectation of $Y = e^X$}\pause
-$$\sum_{y \in \{1, e\}} y \cdot p_Y(y) =\pause (1-p) \cdot 1 + p \cdot e = 1 + p(e - 1)$$
-\end{block}
-
-
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Expectation: Function of Bernoulli RV}
-\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
-\vspace{2em}
-
-
-
-\begin{block}{Expectation of the Function}
-$$\sum_{y \in \{1, e\}} y \cdot p_Y(y) = (1-p) \cdot 1 + p \cdot e = 1 + p(e - 1)$$
-\end{block}
-
-\begin{block}{Function of the Expectation}
-$$e^{E[X]} = e^p $$
-\end{block}
-
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\huge $$E[g(X)] \neq g(E[X])$$
-\begin{center}
-	\large (Expected value of Function $\neq$ Function of Expected Value)
-\end{center}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Expectation of a Function of a Discrete RV}
-Let $X$ be a random variable and $g$ be a function. Then:
-$$\boxed{E[g(X)] = \sum_{\mbox{all } x} g(x) p(x)}$$
-
-
- \alert{This is how we proceeded in the St.\ Petersburg Game Example}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Your Turn: Calculate $E[X^2]$ \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-$X$ has support $\{-1, 0, 1\}$, $p(-1) = p(0) = p(1) = 1/3$.
-\pause
-
-\begin{eqnarray*}
- E[X^2] &=&  \sum_{\mbox{all } x} x^2 p(x) = \sum_{x \in \{-1, 0, 1\}} x^2 p(x) \\ \\ \pause
- 	&=& (-1)^2 \cdot (1/3) + (0)^2 \cdot (1/3) + (1)^2 \cdot (1/3)\\ \pause
- 	&=& 1/3 + 1/3\\ 
- 	&=& 2/3 \approx 0.67
-\end{eqnarray*}
-
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -568,6 +328,243 @@ $$p(x) = {n \choose x} p^x (1-p)^{n-x}$$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+  \begin{center}
+    \huge How to handle \emph{multiple RVs} at once?
+  \end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Definition of Joint PMF}
+Let $X$ and $Y$ be discrete random variables. The joint probability mass function $p_{XY}(x,y)$ gives the probability of each pair of realizations $(x,y)$ in the support:
+\Large
+ $$\boxed{p_{XY}(x,y) = P(X = x \cap Y=y)}$$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Joint PMF in Tabular Form}
+
+\begin{table}
+\begin{tabular}{|cc|ccc|}
+\hline
+&&\multicolumn{3}{c|}{$Y$}\\
+&&1 & 2&3\\
+\hline
+\multirow{4}{*}{$X$}
+&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
+&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
+\hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Plot of Joint PMF}
+\begin{figure}
+	\includegraphics[scale = 0.53]{./images/joint_dist}
+\end{figure}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is $p_{XY}(1,2)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+\begin{table}
+\begin{tabular}{|cc|ccc|}
+\hline
+&&\multicolumn{3}{c|}{$Y$}\\
+&&1 & 2&3\\
+\hline
+\multirow{4}{*}{$X$}
+&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
+&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
+\hline
+\end{tabular}
+\end{table}
+
+\pause
+
+
+
+$$p_{XY}(1,2) =   P(X=1 \cap Y =2) =  \alert{1/4}$$
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is $p_{XY}(2,1)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+\begin{table}
+\begin{tabular}{|cc|ccc|}
+\hline
+&&\multicolumn{3}{c|}{$Y$}\\
+&&1 & 2&3\\
+\hline
+\multirow{4}{*}{$X$}
+&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
+&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
+\hline
+\end{tabular}
+\end{table}
+
+\pause
+
+$$p_{XY}(2,1) =  P(X=2 \cap Y =1) = \alert{0}$$
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Properties of Joint PMF}
+	\begin{enumerate}
+		\item $0\leq p_{XY}(x,y)\leq 1$ for any pair $(x,y)$
+		\item The sum of $p_{XY}(x,y)$ over all pairs $(x,y)$ in the support is 1:
+			$$\sum_{x}\sum_{y} p(x,y) = 1$$
+	\end{enumerate}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Does this satisfy the properties of a joint pmf? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\alert{(A = YES, B = NO)}
+\begin{table}
+\begin{tabular}{|cc|ccc|}
+\hline
+&&\multicolumn{3}{c|}{$Y$}\\
+&&1 & 2&3\\
+\hline
+\multirow{4}{*}{$X$}
+&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
+&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
+\hline
+\end{tabular}
+\end{table}
+
+\pause
+
+\begin{enumerate}
+	\item $p(x,y) \geq 0$ for all pairs $(x,y)$
+	\item $\sum_x\sum_{y} p(x,y) = 1/8 + 1/4 + 1/8 + 1/4 + 1/8 + 1/8 = 1$
+\end{enumerate}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Joint versus Marginal PMFs}
+
+\begin{block}{Joint PMF}
+ $p_{XY}(x,y) = P(X=x \cap Y=y)$
+\end{block}
+
+
+
+\begin{block}{Marginal PMFs}
+$p_X(x) = P(X=x)$\\ $p_Y(y) = P(Y=y)$
+\end{block}
+
+
+
+\vspace{1em}
+
+\alert{You can't calculate a joint pmf from marginals alone but you \emph{can} calculate marginals from the joint!}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Marginals from Joint}
+
+	$$\boxed{p_X(x) = \sum_{\mbox{all } y} p_{XY}(x,y)}$$
+	
+	$$\boxed{p_Y(y) = \sum_{\mbox{all } x} p_{XY}(x,y)}$$
+
+
+\begin{block}{Why?}
+	\begin{eqnarray*}
+	p_Y(y) &=& P(Y=y) = P\left( \bigcup_{\mbox{all } x}\left\{ X=x \cap Y=y \right\}  \right)\\
+		&=& \sum_{\mbox{all } x} P(X=x \cap Y=y) = \sum_{\mbox{all } x} p_{XY}(x,y)
+	\end{eqnarray*}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{To get the marginals sum ``into the margins'' of the table.}
+
+\begin{table}
+\begin{tabular}{|cc|ccc|c|}
+\hline
+&&\multicolumn{3}{c|}{$Y$}&\\
+&&1 & 2&3&\\
+\hline
+\multirow{4}{*}{$X$}
+&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}&\onslide<2->{\textcolor{blue}{1/8}}\\
+&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\onslide<3->{\textcolor{blue}{3/8}}\\
+&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\onslide<4->{\textcolor{blue}{3/8}}\\
+&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}&\onslide<5->{\textcolor{blue}{1/8}}\\
+\hline 
+&&&&&\onslide<5->{\textcolor{blue}{1}}\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{eqnarray*}
+	\onslide<2->{p_X(0) &=& 1/8 + 0 + 0 = 1/8}\\
+	\onslide<3->{p_X(1) &=&0 + 1/4 + 1/8 = 3/8}\\
+	\onslide<4->{p_X(2) &=&0 + 1/4 + 1/8 = 3/8}\\
+	\onslide<5->{p_X(3) &=&1/8 + 0 + 0 = 1/8}
+\end{eqnarray*}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{What is $p_Y(2)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+\begin{table}
+\begin{tabular}{|cc|ccc|c|}
+\hline
+&&\multicolumn{3}{c|}{$Y$}&\\
+&&1 & 2&3&\\
+\hline
+\multirow{4}{*}{$X$}
+&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}&\\
+&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\\
+&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}&\\
+&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}&\\
+\hline 
+&&\onslide<2->{\textcolor{blue}{1/4}}&\onslide<3->{ \textcolor{blue}{1/2} }& \onslide<4->{\textcolor{blue}{1/4}} &\onslide<4->{\textcolor{blue}{1}}\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{eqnarray*}
+	\onslide<2->{p_Y(1) &=& 1/8 + 0 + 0 + 1/8 = 1/4}\\
+	\onslide<3->{p_Y(2) &=&0 + 1/4 + 1/4 + 0 = 1/2}\\
+	\onslide<4->{p_Y(3) &=&0 + 1/8 + 1/8 + 0= 1/4}
+\end{eqnarray*}
+
+
+\end{frame}
 
 
 \end{document}

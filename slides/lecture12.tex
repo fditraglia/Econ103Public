@@ -31,191 +31,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Last Time: Continuous RVs,  Probability As Area}
-\begin{block}{Probability Density Function (pdf)}
-	\begin{itemize}
-		\item $\int_a^b f(x) \; dx = P(a \leq X \leq b)$
-		\item $f(x) \geq 0$ for all $x$ in the support
-		\item $f(x) \neq P(X=x)$, can be greater than one
-	\end{itemize}
-\end{block}
-
-\begin{block}{Cumulative Distribution Function}
-	\begin{itemize}
-		\item $F(x_0) \equiv P(X\leq x_0) =  \int_{-\infty}^{x_0} f(x) \; dx$
-		\item First Fundamental Theorem of Calculus: $f(x) = F'(x)$ 
-	\end{itemize}
-\end{block}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Last Time: Uniform$(0,1)$ RV}
-\begin{block}{Intuition}
-Equally likely to take on any value on its support: $[0,1]$
-\end{block}
-\begin{block}{Probability Density Function}
-	$f(x) = 1$ for $x \in [0,1]$, zero otherwise
-\end{block}
-\begin{block}{Cumulative Distribution Function}
-	$$ F(x_0) = \left\{ \begin{array}{c} 0, x_0 < 0\\ x_0, 0\leq x_0 \leq 1\\ 1, x_0 > 1   \end{array}\right.$$
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\Huge \begin{center}Key Idea: Probability of Intervals\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What is $P(0.4 \leq X \leq 0.8)$ if $X\sim \mbox{Uniform}(0,1)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\centering
-	\includegraphics[scale = 0.6]{./images/uniform_density_interval}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$F(0.8) = P(X \leq 0.8)$}
-
-\centering
-	\includegraphics[scale = 0.6]{./images/density_interval_cdf1}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$F(0.8) - F(0.4) = $ ?}
-\centering
-	\includegraphics[scale = 0.6]{./images/density_interval_cdf2}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$F(0.8) - F(0.4) = P(0.4 \leq X \leq 0.8) = 0.4$}
-\centering
-	\includegraphics[scale = 0.6]{./images/uniform_density_interval}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Probability of Interval for Continuous RV}
-
-$$\boxed{P(a\leq X \leq b) = \int_a^b f(x) \; dx = F(b) - F(a)}$$
-
-\vspace{2em}
-\alert{This is just the Second Fundamental Theorem of Calculus.}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Expected Value for Continuous RVs}
-$$\boxed{\int_{-\infty}^\infty x f(x) \; dx  }$$
-
-\vspace{2em}
-\alert{Remember: Integrals Replace Sums!}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Uniform(0,1) Random Variable \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\begin{eqnarray*}
-	E[X] &=&  \int_{-\infty}^\infty x f(x) \; dx =\pause  \int_{0}^1 x \cdot 1 \; dx \\ \\
-		&=&  \left.\frac{x^2}{2}\right|_0^1 = 1/2  - 0 = 1/2
-\end{eqnarray*}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Expected Value of a Function of a Continuous RV}
-	$$\boxed{E[g(X)] = \int_{-\infty}^\infty g(x) f(x) \; dx}$$
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Example: Uniform$(0,1)$ RV}
-	\begin{eqnarray*}
-	E[X^2] &=& \int_{-\infty}^\infty x^2 f(x) \; dx = \int_0^1 x^2 \cdot 1 \; dx\\ \\
-		&=& \left. \frac{x^3}{3}\right|_0^1 = 1/3
-	\end{eqnarray*}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-Once we have defined expected value for continuous RVs, we can use everything we know about variance, covariance, etc.\ from discrete RVs!
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Variance of Continuous RV}
-
-$$\boxed{Var(X) = \int_{-\infty}^{\infty} (x - \mu)^2 f(x) \; dx}$$
-
-\vspace{2em}
-where
-$$\mu = E[X]=\int_{-\infty}^\infty x f(x) \; dx $$
-
-\vspace{2em}
-\alert{Shortcut formula still holds for continuous RVs!}
-	$$Var(X) = E[X^2] - \left(E[X]\right)^2$$
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Example: Uniform(0,1) Random Variable \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\begin{eqnarray*}
- Var(X) &=& E\left[ \left( X - E[X] \right)^2\right] = E[X^2] - \left(E[X]\right)^2\\ \pause
- 	&=& 1/3  - (1/2)^2\\ 
- 	&=& 1/12 \\
- 	&\approx& 0.083
-\end{eqnarray*}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Much More Complicated Without the Shortcut Formula!}
-\begin{eqnarray*}
- Var(X) &=& E\left[ \left( X - E[X] \right)^2\right] = \int_{-\infty}^{\infty} (x - \mu)^2 f(x) \; dx\\ \\
- 	&=&\int_{0}^{1} (x -1/2)^2 \cdot 1 \; dx = \int_{0}^{1} (x^2  - x + 1/4) \; dx \\ \\
- 		&=& \left. \left(\frac{x^3}{3} - \frac{x^2}{2} + \frac{x}{4}  \right)\right|_0^1 = 1/3 - 1/2 + 1/4\\ \\ 
- 			&=& 4/12 - 6/12 + 3/12 = 1/12
-\end{eqnarray*}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{We're Won't Say More About These, But Just So You're Aware of Them...}
-
-\begin{block}{Joint Density}
-$ \displaystyle P(a\leq X \leq b \cap c\leq Y \leq d) = \int_c^d \int_a^b f(x,y) \; dxdy$
-\end{block}
-\begin{block}{Marginal Densities}
-$f_X(x) = \int_{-\infty}^\infty f(x,y)\; dy$, $\;\;\;\;\;\;\; f_Y(y) = \int_{-\infty}^\infty f(x,y)\; dx$
-\end{block}
-\begin{block}{Independence in Terms of Joint and Marginal Densities}
-$f_{XY}(x,y) = f_X(x)f_Y(y)$
-\end{block}
-\begin{block}{Conditional Density}
-$f_{Y|X} = f_{XY}(x,y)/f_X(x)$
-\end{block}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-\huge We've now covered everything on the \href{http://fditraglia.github.io/Econ103Public/RandomVariablesHandout.pdf}{\textcolor{blue}{\fbox{Random Variables Handout}}}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 \Huge \begin{center}
 The Most Important RV of All
 \end{center}
@@ -570,5 +385,214 @@ P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) &=& P\left( -2 \leq \frac{X-\mu}{\sig
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}
+\frametitle{Percentiles/Quantiles for Continuous RVs}
+\begin{block}{Quantile Function $Q(p)$ is the inverse of CDF $F(x_0)$}
+Plug in a probability $p$, get out the value of $x_0$ such that $F(x_0)=p$
+\end{block}
+$$Q(p) = F^{-1}(p)$$
+
+In other words:
+	$$Q(p) = \mbox{the value of } x_0 \mbox{ such that } \int_{-\infty}^{x_0} f(x) \; dx = p$$
+	
+\begin{alertblock}{Inverse exists as long as $F(x_0)$ is \emph{strictly increasing}.} \end{alertblock}	
+	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Median}
+The median of a continuous random variable is $Q(0.5)$, i.e.\ the value of $x_0$ such that 
+	$$\int_{-\infty}^{x_0} f(x)\; dx = 1/2$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is the median of a standard normal RV?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\pause
+By symmetry, $Q(0.5) = 0$. R command: \texttt{qnorm()}
+\begin{center}
+\includegraphics[scale = 0.6]{./images/normal_median}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{90th Percentile of a Standard Normal}
+\texttt{qnorm(0.9)}$\approx 1.28$
+\begin{center}
+\includegraphics[scale = 0.6]{./images/normal90}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Using Quantile Function to find Symmetric Intervals}
+Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail1}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\texttt{qnorm(0.75)}$\approx 0.67$}
+Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail2}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\texttt{qnorm(0.75)}$\approx 0.67$}
+Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail3}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{\texttt{pnorm(0.67)-pnorm(-0.67)}$\approx$?}
+Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail4}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{\texttt{pnorm(0.67)-pnorm(-0.67)}$\approx 0.5$}
+Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail5}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{68\% Central Interval for Standard Normal \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+Suppose $X$ is a standard normal random variable. What value of $c$ ensures that $P(-c \leq X \leq c) \approx 0.68$?
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{95\% Central Interval for Standard Normal \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+Suppose $X$ is a standard normal random variable. What value of $c$ ensures that $P(-c \leq X \leq c) \approx \alert{0.95}$?
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{R Commands for \emph{Arbitrary} Normal Distributions}
+Let $X \sim N(\mu, \sigma^2)$ . Then we can use R to evaluate the CDF and Quantile function of $X$ as follows:
+\vspace{1em}
+\begin{table}
+\centering
+\fbox{\begin{tabular}{ll}
+CDF $F(x)$&\texttt{pnorm(x, mean = $\mu$,  sd = $\sigma$)}\\
+Quantile Function $Q(p)$ & \texttt{qnorm(p, mean = $\mu$,  sd = $\sigma$)}\\
+\end{tabular}}
+\end{table}
+\vspace{1em}
+\alert{Notice that this means you don't have to transform $X$ to a standard normal in order to find areas under its pdf using R.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example from Homework: $X \sim N(0,16)$}
+
+One Way:
+			\begin{eqnarray*}
+				P(X \geq 10) &=&  1 - P(X \leq 10) = 1 - P(X /4\leq 10/4)\\
+				&=& 1 - P(Z\leq 2.5) =   1 - \Phi(2.5) =  1 - \mbox{\texttt{pnorm(2.5)}}\\ 
+				&\approx& 0.006
+			\end{eqnarray*}
+\pause
+An Easier Way:
+	\begin{eqnarray*}
+	P(X \geq 10) &=& 1 - P(X \leq 10)\\ 
+	&=&  1 - \texttt{pnorm(10, mean = 0, sd = 4)} \\ 
+	&\approx& 0.006
+	\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+Suppose $X$ has mean $\mu_x$ variance $\sigma_x^2$ and is independent of $Y$, which has mean $\mu_y$ variance $\sigma_y^2$. Let $a,b$ be constants.
+\vspace{2em}
+
+\begin{block}{What is $E[aX + bY]$?}
+\pause
+$E[aX + bY]=a E[X] + b E[Y] = \alert{a\mu_x + b\mu_y}$
+\end{block}
+\vspace{1em}
+
+\begin{block}{What is $Var(aX + bY)$?}
+\pause
+$Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) = \alert{a^2 \sigma_x^2 + b^2 \sigma_y^2}$
+\\\alert{By independence.}
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+Now suppose $X \sim N(\mu_x, \sigma^2_x)$ independent of $Y \sim N(\mu_y, \sigma^2_y)$. Let $a,b$ be constants.
+\vspace{2em}
+
+\begin{block}{What is $E[aX + bY]$?}
+\pause
+$E[aX + bY]=a E[X] + b E[Y] = \alert{a\mu_x + b\mu_y}$
+\end{block}
+\vspace{1em}
+
+\begin{block}{What is $Var(aX + bY)$?}
+\pause
+$Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) = \alert{a^2 \sigma_x^2 + b^2 \sigma_y^2}$
+\\\alert{By independence.}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Here's the Surprising Thing:}
+\alert{If $X$ and $Y$ are independent Normal Random Variables and $a,b$ are constants, then $aX + bY$ is \emph{also} a Normal Random Variable!}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Linear Combinations of Independent Normals}
+Let $X \sim N(\mu_x, \sigma^2_x)$ independent of $Y \sim N(\mu_y, \sigma^2_y)$. Then if $a,b,c$ are constants:
+
+$$\boxed{aX + bY +c \sim N(a\mu_x + b\mu_y + c, a^2 \sigma_x^2 + b^2 \sigma_y^2)}$$
+
+
+
+\begin{block}{Important}
+	\begin{itemize}
+		\item Result assumes independence
+		\item Particular to Normal Distribution
+		\item Extends to more than two Normal RVs
+	\end{itemize}
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Suppose $X_1, X_2, \sim \mbox{iid } N(\mu, \sigma^2)$ \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+Let $\bar{X} = (X_1 + X_2)/2$. What is the distribution of $\bar{X}$?
+\begin{enumerate}[(a)]
+\item $N(\mu, \sigma^2/2)$
+\item $N(0,1)$
+\item $N(\mu, \sigma^2)$
+\item $N(\mu, 2\sigma^2)$
+\item $N(2\mu, 2\sigma^2)$
+\end{enumerate}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}

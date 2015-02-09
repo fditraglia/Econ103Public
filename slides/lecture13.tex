@@ -28,257 +28,26 @@ Continuous RVs -- Part III
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-
-\begin{block}{Last Time}
-\begin{itemize}
-	\item Expectation for Continuous RVs
-	\item Normal Random Variable
-	\item Linear Combination of Normal RV
-	\item Areas under Normal pdfs
-\end{itemize}
-\end{block}
-
-\begin{block}{Today}
-	\begin{itemize}
-		\item Percentiles/Quantiles for Continuous RVs
-		\item Linear Combination of \emph{\alert{Several}} Normal RVs
-		\item Friends of Normal Distribution
-	\end{itemize}
-\end{block}
-
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Recall: Def.\ of Cumulative Distribution Function (CDF)}
-
-
-\begin{eqnarray*}
-F(x_0) &\equiv& P(X \leq x_0) \\ \\
-		&=& \int_{-\infty}^{x_0} f(x)\; dx \mbox{ for Continuous RVs}
-\end{eqnarray*}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Percentiles/Quantiles for Continuous RVs}
-\begin{block}{Quantile Function $Q(p)$ is the inverse of CDF $F(x_0)$}
-Plug in a probability $p$, get out the value of $x_0$ such that $F(x_0)=p$
-\end{block}
-$$Q(p) = F^{-1}(p)$$
-
-In other words:
-	$$Q(p) = \mbox{the value of } x_0 \mbox{ such that } \int_{-\infty}^{x_0} f(x) \; dx = p$$
-	
-\begin{alertblock}{Inverse exists as long as $F(x_0)$ is \emph{strictly increasing}.} \end{alertblock}	
-	
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Median}
-The median of a continuous random variable is $Q(0.5)$, i.e.\ the value of $x_0$ such that 
-	$$\int_{-\infty}^{x_0} f(x)\; dx = 1/2$$
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What is the median of a standard normal RV?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\pause
-By symmetry, $Q(0.5) = 0$. R command: \texttt{qnorm()}
-\begin{center}
-\includegraphics[scale = 0.6]{./images/normal_median}
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{90th Percentile of a Standard Normal}
-\texttt{qnorm(0.9)}$\approx 1.28$
-\begin{center}
-\includegraphics[scale = 0.6]{./images/normal90}
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Using Quantile Function to find Symmetric Intervals}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail1}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\texttt{qnorm(0.75)}$\approx 0.67$}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail2}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\texttt{qnorm(0.75)}$\approx 0.67$}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail3}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{\texttt{pnorm(0.67)-pnorm(-0.67)}$\approx$?}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail4}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\frametitle{\texttt{pnorm(0.67)-pnorm(-0.67)}$\approx 0.5$}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail5}
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{68\% Central Interval for Standard Normal \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Suppose $X$ is a standard normal random variable. What value of $c$ ensures that $P(-c \leq X \leq c) \approx 0.68$?
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{95\% Central Interval for Standard Normal \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Suppose $X$ is a standard normal random variable. What value of $c$ ensures that $P(-c \leq X \leq c) \approx \alert{0.95}$?
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{R Commands for \emph{Arbitrary} Normal Distributions}
-Let $X \sim N(\mu, \sigma^2)$ . Then we can use R to evaluate the CDF and Quantile function of $X$ as follows:
-\vspace{1em}
-\begin{table}
-\centering
-\fbox{\begin{tabular}{ll}
-CDF $F(x)$&\texttt{pnorm(x, mean = $\mu$,  sd = $\sigma$)}\\
-Quantile Function $Q(p)$ & \texttt{qnorm(p, mean = $\mu$,  sd = $\sigma$)}\\
-\end{tabular}}
-\end{table}
-\vspace{1em}
-\alert{Notice that this means you don't have to transform $X$ to a standard normal in order to find areas under its pdf using R.}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example from Homework: $X \sim N(0,16)$}
-
-One Way:
-			\begin{eqnarray*}
-				P(X \geq 10) &=&  1 - P(X \leq 10) = 1 - P(X /4\leq 10/4)\\
-				&=& 1 - P(Z\leq 2.5) =   1 - \Phi(2.5) =  1 - \mbox{\texttt{pnorm(2.5)}}\\ 
-				&\approx& 0.006
-			\end{eqnarray*}
-\pause
-An Easier Way:
-	\begin{eqnarray*}
-	P(X \geq 10) &=& 1 - P(X \leq 10)\\ 
-	&=&  1 - \texttt{pnorm(10, mean = 0, sd = 4)} \\ 
-	&\approx& 0.006
-	\end{eqnarray*}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-Suppose $X$ has mean $\mu_x$ variance $\sigma_x^2$ and is independent of $Y$, which has mean $\mu_y$ variance $\sigma_y^2$. Let $a,b$ be constants.
-\vspace{2em}
-
-\begin{block}{What is $E[aX + bY]$?}
-\pause
-$E[aX + bY]=a E[X] + b E[Y] = \alert{a\mu_x + b\mu_y}$
-\end{block}
-\vspace{1em}
-
-\begin{block}{What is $Var(aX + bY)$?}
-\pause
-$Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) = \alert{a^2 \sigma_x^2 + b^2 \sigma_y^2}$
-\\\alert{By independence.}
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-Now suppose $X \sim N(\mu_x, \sigma^2_x)$ independent of $Y \sim N(\mu_y, \sigma^2_y)$. Let $a,b$ be constants.
-\vspace{2em}
-
-\begin{block}{What is $E[aX + bY]$?}
-\pause
-$E[aX + bY]=a E[X] + b E[Y] = \alert{a\mu_x + b\mu_y}$
-\end{block}
-\vspace{1em}
-
-\begin{block}{What is $Var(aX + bY)$?}
-\pause
-$Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) = \alert{a^2 \sigma_x^2 + b^2 \sigma_y^2}$
-\\\alert{By independence.}
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Here's the Surprising Thing:}
-\alert{If $X$ and $Y$ are independent Normal Random Variables and $a,b$ are constants, then $aX + bY$ is \emph{also} a Normal Random Variable!}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Linear Combinations of Independent Normals}
-Let $X \sim N(\mu_x, \sigma^2_x)$ independent of $Y \sim N(\mu_y, \sigma^2_y)$. Then if $a,b,c$ are constants:
-
-$$\boxed{aX + bY +c \sim N(a\mu_x + b\mu_y + c, a^2 \sigma_x^2 + b^2 \sigma_y^2)}$$
-
-
-
-\begin{block}{Important}
-	\begin{itemize}
-		\item Result assumes independence
-		\item Particular to Normal Distribution
-		\item Extends to more than two Normal RVs
-	\end{itemize}
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Suppose $X_1, X_2, \sim \mbox{iid } N(\mu, \sigma^2)$ \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Let $\bar{X} = (X_1 + X_2)/2$. What is the distribution of $\bar{X}$?
-\begin{enumerate}[(a)]
-\item $N(\mu, \sigma^2/2)$
-\item $N(0,1)$
-\item $N(\mu, \sigma^2)$
-\item $N(\mu, 2\sigma^2)$
-\item $N(2\mu, 2\sigma^2)$
-\end{enumerate}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 \begin{figure}
 \includegraphics[scale = 0.2]{./images/normal_friends}
 \caption{The Normal Distribution and Friends.}
 \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{\normalsize \href{http://ditraglia.com/Econ103Public/Rtutorials/friends_of_normal.html}{http://ditraglia.com/Econ103Public/Rtutorials/friends\_of\_normal.html}}
+\framesubtitle{Source Code on my \href{https://github.com/fditraglia/Econ103Public/blob/master/Rtutorials/friends_of_normal.R}{\fbox{Github Page}}}
+
+
+
+\begin{figure}
+	\fbox{\includegraphics[scale = 0.2]{./images/normal_friends_screenshot}}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \frametitle{Functions of Independent RVs are Independent}
 
@@ -427,20 +196,6 @@ $F(\nu,\omega)$&\texttt{pf(x, df1 = $\nu$, df2 = $\omega$)}&\texttt{qf(p, df1 = 
 \alert{Mnemonic: ``p'' is for Probability, ``q'' is for Quantile.}
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{\normalsize \href{http://fditraglia.github.io/Econ103Public/Rtutorials/friends_of_normal.html}{http://fditraglia.github.io/Econ103Public/Rtutorials/friends\_of\_normal.html}}
-\framesubtitle{Source Code on my \href{https://github.com/fditraglia/Econ103Public/blob/master/Rtutorials/friends_of_normal.R}{\fbox{Github Page}}}
-
-
-
-\begin{figure}
-	\fbox{\includegraphics[scale = 0.2]{./images/normal_friends_screenshot}}
-\end{figure}
-
-\end{frame}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{R Commands -- PDFs and Random Draws}

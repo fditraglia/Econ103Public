@@ -20,97 +20,7 @@
 
 \end{frame} 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Probability Theory}
 
-
-\begin{block}{What We've Done So Far}
-Axioms of probability, rules for computing probabilities of events
-\end{block}
-
-\begin{block}{What Remains}
-Notion of event subsumed by that of \emph{\alert{Random Variable}}
-\end{block}
-\begin{block}{Random Variable}
-	A more abstract way of representing a random experiment: focus only on the important information, not the irrelevant details.
-\end{block}
-
-
-\end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{A New Way of Thinking about Populations}
-
-\begin{itemize}
-	\item \emph{No longer} think of a population as a list of $N$ objects.
-	\item \emph{Represent} a population by a \alert{probability model} using the language of Random Variables.
-	\item Re-express population parameters as \emph{features} of the Random Variables that \emph{represent} a population.
-	\item E.g.\ if we say ``$\mu$ is the mean of a random variable $X$'' the idea is that $\mu$ is the mean of a \alert{\emph{population represented}} by the random variable $X$.
-\end{itemize}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Why are we getting rid of population size $N$?}
-
- 
-\begin{enumerate}
-	\item Don't know $N$ for real-world populations. 
-	\item For sampling $N$ is irrelevant: all that matters are the \alert{\emph{relative frequencies}} in the population. 
-\end{enumerate}
-
-\begin{block}{Key Innovation}
-Treat population relative frequencies as \emph{probabilities} rather than counts divided by $N$.
-\end{block}
- 
-\begin{block}{Why Does This Make Sense?}
-We defined probability as long-run relative frequency. The idea of ``long-run'' here is repeated sampling from the population.
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Treating Population Relative Frequencies as Probabilities}
- 
-\begin{block}{Discrete Data $\Rightarrow$ Discrete Random Variables}
-It's obvious what the ``right probability'' is in this case. For example if 52000 people in a population of 100000 voted for Obama, we'd represent this as a probability of $0.52$.
-\end{block}
-
- 
-\begin{block}{Continuous Data $\Rightarrow$ Continuous Random Variables}
-Here things are more complicated. What proportion of people have a height of exactly 62.374827 inches? To get around this problem we'll proceed by an analogy to histograms.
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\Large The first thing to know about Random Variables is that they are neither random nor variables...
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{block}{Random Variable (RV)}
-\emph{Fixed} function from sample space $S$ to real numbers ($X\colon S \mapsto \mathbb{R}$). Turns \emph{basic outcomes} of random experiment into \emph{numbers}.
-\end{block}
- 
-\begin{block}{Realization}
-Particular value that RV takes on, i.e.\ the result of applying the function defined by $X$ to the \emph{outcome} of the random experiment. We write $X= x$. Note that $\{X = x\}$ is an \emph{event}.
-\end{block}
- 
-\begin{block}{Support Set}
-The set of all possible realizations of a RV.
-\end{block}
- 
-\begin{block}{Notation}
-RVs denoted by capital letters, e.g.\ $X,Y,Z$, their realizations by the corresponsing lowercase letters, e.g.\ $x,y,z$.
-\end{block}
-
-
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Some macros for diagrams of random variables
 \def\RVraw{(-2.5,0) circle [radius=1.7]
@@ -121,58 +31,97 @@ RVs denoted by capital letters, e.g.\ $X,Y,Z$, their realizations by the corresp
 	node [above] at (0,2) {$X\colon S \mapsto \mathbb{R}$}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Random Variables}
-
-\begin{figure}
-\centering
-\begin{tikzpicture}
-	\draw \RVraw;
-	\draw [->] (-2.5,0.5) node [below]{$o$} to [out=35,in=145] (2.5,0.5) node [below]{$x = X(o)$};
-\end{tikzpicture}
-\caption{A Random Variable $X$ is a fixed, i.e.\ deterministic, function that maps each basic outcome in the sample space $S$ to a real number. Here $o$ is a basic outcome and $x$ is a realization, equal to $X(o)$.}
-\end{figure}
-
-
+  \frametitle{Random Variables}
+  \begin{quote}
+    A random variable is neither random nor a variable.
+  \end{quote}
+\begin{block}{Random Variable (RV): $X$}
+  A deterministic (i.e.\ non-random) function that assigns a numeric value to each basic outcome of a random experimnet.
+\end{block}
+ 
+\begin{block}{Realization: $x$}
+A particular numeric value that an RV could take on. We write $\{X = x\}$ to refer to the \emph{event} that the RV $X$ took on the value $x$.  
+\end{block}
+ 
+\begin{block}{Support Set (aka Support)}
+The set of all possible realizations of a RV.
+\end{block}
+ 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Important Distinction}
+  \frametitle{Random Variables (continued)}
+\begin{block}{Notation}
+Capital latin letters for RVs, e.g.\ $X,Y,Z$, and the corresponsing lowercase letters for their realizations, e.g.\ $x,y,z$.
+\end{block}
 
-
-Although a Random Variable is a deterministic function, the \alert{\emph{values it takes on}} are random since its input, the outcome of a random experiment, is random!
-
-
+\begin{block}{Intuition}
+  You can think of an RV as a machine that spits out random numbers: although the machine is deterministic, its inputs, the outcomes of a random experiment, are not.
+\end{block}
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Example: Coin Flip Random Variable}
 
 \begin{figure}
 \centering
 \begin{tikzpicture}
-	\draw \RVraw;
-	\draw [->] (-2.5,0.75) node [below]{Tails} to [out=35,in=145] (2.5,0.75) node [below]{$0$};
-	\draw [->] (-2.5,-0.75) node [above]{Heads} to [out=315,in=225] (2.5,-0.75) node [above]{$1$};
+\draw \RVraw;
+\draw [->] (-2.5,0.75) node [below]{Tails} to [out=35,in=145] (2.5,0.75) node [below]{$0$};
+\draw [->] (-2.5,-0.75) node [above]{Heads} to [out=315,in=225] (2.5,-0.75) node [above]{$1$};
 \end{tikzpicture}
-\caption{This random variable maps the outcomes of flipping a coin $\{\mbox{Heads}, \mbox{Tails}\}$ to the set $\{0,1\}\subseteq \mathbb{R}$. Hence, its support is $\{0,1\}$}
+\caption{This random variable assigns numeric values to the random experiment of flipping a fair coin once: Heads is assigned 1 and Tails 0.}
 \end{figure}
 \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Types of Random Variables}
- 
-	\begin{block}{Discrete RVs}
-	Takes on a finite or countably infinite number of different values, e.g.\  $\{-1, 0, 1\}$ or $\{0, 1, 2, 3, 4, 5, 6, \hdots ...\}$
-	\end{block}
- 	
-	\begin{block}{Continuous RVs}
-	Takes on an uncountably infinite number of different values, e.g.\ all real numbers in the interval $[0,1]$ or $(-\infty, \infty)$.
-	\end{block}
-
+  \frametitle{Which of these is a realization of the Coin Flip RV?\hfill\includegraphics[scale = 0.05]{./images/clicker}}
+  \begin{enumerate}[(a)]
+    \item Tails
+    \item 2
+    \item 0 
+    \item Heads
+    \item 1/2
+  \end{enumerate}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{What is the support set of the Coin Flip RV?\hfill\includegraphics[scale = 0.05]{./images/clicker}}
+  \begin{enumerate}[(a)]
+    \item $\left\{ \mbox{Heads}, \mbox{Tails} \right\}$ 
+    \item 1/2 
+    \item 0 
+    \item $\left\{ 0,1 \right\}$
+    \item 1
+  \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Let $X$ denote the Coin Flip RV \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+  What is $P\left( X=1 \right)$?
 
+  \vspace{1em}
+
+  \begin{enumerate}[(a)]
+    \item 0 
+    \item 1  
+    \item 1/2 
+    \item Not enough information to determine
+  \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Two Kinds of RVs: Discrete and Continuous}
+  \begin{description}
+    \item[Discrete] support set is finite or countable , e.g.\ $\left\{ 0,1 \right\}$,  $\left\{ \hdots, -2, -1, 0, 1, 2,\hdots \right\}$
+    \item[Continuous] support set is \emph{uncountable} e.g.\ $[-1,1]$, $\mathbb{R}$.
+  \end{description}
+
+  \vspace{1em}
+
+  \alert{Start with the discrete case since it's easier, but most of the ideas we learn will carry over to the continuous case.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 
 \centering \Huge Discrete Random Variables I
@@ -181,7 +130,7 @@ Although a Random Variable is a deterministic function, the \alert{\emph{values 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Probability Mass Function (pmf)}
- Probability that a \alert{Discrete RV} takes on the particular value $x$ as a function of $x$:
+ A function that gives $P(X=x)$ for any realization $x$ in the support set of a discrete RV $X$. We use the following notation for the pmf:
  $$p(x) = P(X =x)$$
 
  
@@ -221,36 +170,6 @@ $$X = \left\{ \begin{array}{l}  0, \mbox{Tails}\\ 1, \mbox{Heads}\end{array} \ri
 \end{figure}
 \end{columns}
 
-\vspace{3em}
-\alert{Where did this come from?}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\small
-\begin{figure}
-\centering
-\fbox{
-\begin{tikzpicture}[scale=0.45]
-	\draw \RVraw;
-	\draw [->] (-2.5,1) node [below]{Tails} to [out=35,in=145] (2.5,1) node [below]{$0$};
-	\draw [->] (-2.5,-1) node [above]{Heads} to [out=315,in=225] (2.5,-1) node [above]{$1$};
-\end{tikzpicture}}
-\end{figure}
- 
-\begin{block}{Support Set $\{0,1\}$}
-The only possible realizations are $X=0$ and $X=1$
-\end{block}
- 
-\begin{block}{Events}
-Tracing the arrows backwards, $\{X=0\}$ corresponds to the event ``Tails'' while $\{X=1\}$ corresponds to the event ``Heads.''
-\end{block}
- 
-\begin{block}{Probabilities}
-Since $P(\mbox{Heads}) = P(\mbox{Tails}) = 1/2$, $P(X=0) = P(X=1) = 1/2$
-\end{block}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -273,125 +192,9 @@ If $p(x)$ is the pmf of a random variable $X$, then
 
 \vspace{0.75em}
 where ``all $x$'' is shorthand for ``all $x$ in the support of $X$.''
-
-
- 
-
-\vspace{2em}
-\begin{alertblock}{But Where Do These Come From?}
-The key point is that $\{X=x\}$ is an \emph{event}. We proceed by working backwards until we are in familiar territory.
-\end{alertblock}
-
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Which Event Corresponds to $\{X=x_1\}$?}
-
-\begin{figure}
-	\centering
-\begin{tikzpicture}[scale = 1]
-	\draw \RVraw;
-	\draw [blue, ultra thick] (-2.85,0) circle [radius=0.8];
-	\draw node [blue, below left] at (-3,-0.8) {$A$};
-	\draw [->] (-2.5,0.5) node [left]{$o_1$} to [out=25,in=150] (2.5,0.1);
-	\draw [->] (-2.5,-0.5) node [left]{$o_2$} to [out=335,in=210] (2.5,-0.1);
-	\draw (2.5, 0) node [right]{$x_1$};
-\end{tikzpicture}
-\end{figure}
-
-
-
-Define \textcolor{blue}{$A = \{o \in S \colon X(o) = x_1\}$}. Since it is a subset of the sample space, $A$ is an event. Since $A$ contains \emph{all} the basic outcomes that map to $x_1$, \textcolor{blue}{$A = \{X=x_1\}$}, hence \textcolor{blue}{$P(A) = P(X=x_1)$}.
-
-
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Link Between Axioms of Probability and Random Variables}
-
-	\begin{enumerate}
-		\item We can equate $\{X=x\}$ with an event $A$ in $S$ for any realization $x$ in the support of $X$. Thus $P(X=x) = p(x)$ is a bona fide probability and
-				$$0 \leq p(x) \leq 1$$
-		\item Since $X$ is a \emph{function}, the events $\{X= x\}$ are \alert{mutually exclusive} and \alert{collectively exhaustive}, hence:
-		$$\sum_{\mbox{all } x} p(x) = \sum_{\mbox{all } x} P(X=x) = P(S) = 1$$
-	\end{enumerate}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Is This Possible? (A = Yes, B = No) \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{figure}
-\begin{tikzpicture}
-	\draw \RVraw;
-		\draw [->] (-2.5,0) node [left]{$o_1$} to [out=25,in=170] (2.5,0.75) node [right]{$x_1$};
-	\draw [->] (-2.5,0) to [out=335,in=190] (2.5,-0.75) node [right]{$x_2$};
-\end{tikzpicture}
-\caption{This diagram shows the random variable $X$ mapping the basic outcome $o_1$ to two different realizations: $x_1$ and $x_2$. Is this allowed?}
-\end{figure}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{This is NOT POSSIBLE}
-
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale = 0.8]
-	\draw \RVraw;
-		\draw [->] (-2.5,0) node [left]{$o_1$} to [out=25,in=170] (2.5,0.75) node [right]{$x_1$};
-	\draw [->] (-2.5,0) to [out=335,in=190] (2.5,-0.75) node [right]{$x_2$};
-\end{tikzpicture}
-\end{figure}
-
-\begin{itemize}
-	\item A function cannot map a single input to two different outputs! You may know this as the ``vertical line test.''
-	\item We have to rule this situation out since it would mean that $\{X = x_1\}$ and $\{X = x_2\}$ are \emph{not mututally exclusive}.
-\end{itemize}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Is This Possible? (A = Yes, B = No) \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale = 0.8]
-	\draw \RVraw;
-		\draw [->] (-2.5,0) node [left]{$o_1$} to [out=25,in=170] (2.5,0.75) node [right]{$x_1$};
-	\draw (-2.5,-0.75) node [right]{$o_2$};
-\end{tikzpicture}
-\caption{This diagram shows the random variable $X$ mapping the basic outcome $o_1$ to the realization $x_1$. The basic outcome $o_2$ doesn't get mapped anywhere. Is this allowed?}
-\end{figure}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{This is NOT POSSIBLE}
-
-
-
-\begin{figure}
-\begin{tikzpicture}
-	\draw \RVraw;
-		\draw [->] (-2.5,0) node [left]{$o_1$} to [out=25,in=170] (2.5,0.75) node [right]{$x_1$};
-	\draw (-2.5,-0.75) node [right]{$o_2$};
-\end{tikzpicture}
-\end{figure}
-\begin{itemize}
-	\item A function associates \emph{every} value in its domain with a value in its range: $o_2$ has to map to something!
-	\item We have to rule this situation out since it would mean that the events $\{X = x\}$ are \emph{not collectively exhaustive}. 
-\end{itemize}
-
-
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -401,52 +204,10 @@ Define \textcolor{blue}{$A = \{o \in S \colon X(o) = x_1\}$}. Since it is a subs
 The CDF gives the probability that a RV $X$ \alert{does not exceed} a specified threshold $x_0$, as a function of $x_0$
 	$$F(x_0) = P(X \leq x_0)$$
 
-
- 
-
 \begin{alertblock}{Important!}
 The threshold $x_0$ is allowed to be \emph{any real number}. In particular, it doesn't have to be in the support of $X$! 
 \end{alertblock}
 
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\frametitle{CDF of Coin Flip Random Variable}
-\begin{columns}
-\column{0.4\textwidth}
-$$X = \left\{ \begin{array}{l}  0, \mbox{Tails}\\ 1, \mbox{Heads}\end{array} \right.$$
-
-\begin{eqnarray*}
-	F(x_0) = \left\{\begin{array}{ll} 0,& x_0 < 0\\ \frac{1}{2}, &0\leq x_0 < 1\\ 1,& x_0 \geq 1\end{array}\right.
-\end{eqnarray*}
-
-
-\column{0.6\textwidth}
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale = 1.5]
-\draw [<->] (0,2) node [above]{$F(x_0)$} -- (0,0) -- (3,0) node [right]{$x_0$};
-\draw (-0.05, 1.6) node [black, left]{$1$} -- (0.05,1.6);
-\draw (-0.05, 0.8) node [black, left]{$\frac{1}{2}$} -- (0.05,0.8);
-\draw [blue, ultra thick] (0,0) -- (0.93,0);
-\draw [blue, ultra thick] (1,0.8) -- (1.93,0.8);
-\draw [blue, ultra thick] (2,1.6) -- (3,1.6);
-\draw (1,-0.05) node [black, below]{0} -- (1,0.05);
-\draw (2,-0.05) node [black, below]{1} -- (2,0.05);
-\draw (0,0) node [black, left]{$0$};
-\draw [blue] (1,0) circle [radius = 0.07];
-\draw [fill = blue] (1,0.8) circle [radius = 0.06];
-\draw [blue] (2,0.8) circle [radius = 0.07];
-\draw [fill = blue] (2,1.6) circle [radius = 0.06];
-\end{tikzpicture}
-\caption{ CDF for Coin Flip Random Variable}
-\end{figure}
-\end{columns}
-
-\vspace{3em}
-\hfill\alert{\large Where did we get this from?}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -457,14 +218,15 @@ $$X = \left\{ \begin{array}{l}  0, \mbox{Tails}\\ 1, \mbox{Heads}\end{array} \ri
 
 \small
  
-\begin{block}{Proof}
-Use the fact that the events $\{X = x\}$ are mutually exclusive:
+\begin{block}{Why?}
+The events $\{X = x\}$ are mutually exclusive, so we sum to get the probability of their union for all $x\leq x_0$:
 	$$F(x_0) = P(X \leq x_0)=   P\left(\bigcup_{x\leq x_0}\{X = x\}\right) =   \sum_{x \leq x_0} P(X = x) =   \sum_{x \leq x_0} p(x)$$
 \end{block}
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[t]
 	% \frametitle{Sum the pmf to get the CDF}
@@ -579,48 +341,220 @@ If the realizations of the coin-flip RV were \alert{payoffs}, how much would you
 $$X = \left\{ \begin{array}{l}  \$0, \mbox{Tails}\\ \$1, \mbox{Heads}\end{array} \right.$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Fair Price \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-If I were \emph{bankrolling} a long sequence of trials of this game, how much should I charge per play so that I break even in the long run?
-$$X = \left\{ \begin{array}{l}  \$0, \mbox{Tails}\\ \$1, \mbox{Heads}\end{array} \right.$$
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\centering \Huge Expected Value: Probability-Weighted Average of Realizations
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Expected Value (aka Expectation)}
 The expected value of a discrete RV $X$ is given by
 	$$E[X] = \sum_{\mbox{all} \; x} x \cdot p(x)$$
-	
- 
-	
-	\vspace{2em}
-\begin{alertblock}{Treating the random variable $X$ as a probability model for a population, we equate $E[X]$ with the population mean $\mu$.}\end{alertblock}
+
+  \vspace{1em}
+  \alert{In other words, the expected value of a discrete RV is the \emph{probability-weighted average of its realizations}.}
+
+  \vspace{1em}
+
+  \begin{block}{Notation}
+    We sometimes write $\mu$ as shorthand for $E[X]$.  \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Expected Value of Bernoulli Random Variable\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Suppose $p = 1/4$ since you can only enter numeric results on the clicker.
+  \frametitle{Expected Value of Bernoulli RV}
 $$X = \left\{ \begin{array}{l}  0, \mbox{Failure: } 1-p\\ 1, \mbox{Success: } p\end{array} \right.$$
 
-\pause
 \vspace{2em}
  
 $$\sum_{\mbox{all} \; x} x \cdot p(x) = 0 \cdot (1-p) + 1 \cdot p = p$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Your Turn to Caculate an Expected Value \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+  Let $X$ be a random variable with support set $\left\{ 1,2,3 \right\}$ where $p(1)=p(2)=1/3$. Calculate $E[X]$.
+
+  \pause
+
+  \vspace{1em}
+  \begin{equation*}
+    E[X] = \sum_{\mbox{all }x} x \cdot p(x) = 1 \times 1/3 + 2 \times 1/3 + 3 \times 1/3 = 2
+  \end{equation*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-	\begin{center}
-		\Huge Next Time: Midterm I
-	\end{center}
+\frametitle{Random Variables and Parameters}
+
+
+
+\begin{block}{Notation: $X \sim$ Bernoulli$(p)$}
+Means $X$ is a Bernoulli RV with $P(X = 1) = p$ and $P(X= 0) = 1-p$. The tilde is read ``distributes as.''
+
+\end{block}
+
+
+\begin{block}{Parameter}
+Any constant that appears in the definition of a RV, here $p$. 
+\end{block}
+
+
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Constants Versus Random Variables}
+
+ \alert{This is a crucial distinction that students sometimes miss:}
+ \vspace{1em}
+ 
+
+ 		\begin{block}{Random Variables}
+ 			\begin{itemize}
+ 			\item Suppose $X$ is a RV -- the values it takes on are random
+ 			\item A function $g(X)$ of a RV is itself a RV as we'll learn today.
+ 			\end{itemize}
+ 		\end{block}
+ 
+ 		\begin{block}{Constants}
+ 			\begin{itemize}
+ 				\item $E[X]$ is a constant (you should convince yourself of this)
+ 				\item Realizations $x$ are constants. What is random is \emph{which} realization the RV takes on.
+ 				\item Parameters are constants (e.g.\ $p$ for Bernoulli RV)
+ 				\item Sample size $n$ is a constant
+ 			\end{itemize}
+ 		\end{block} 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\Huge \centering The St.\ Petersburg Game
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{How Much Would You Pay?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+How much would you be willing to pay for the right to play the following game?
+
+\vspace{1em}
+\begin{quote}
+Imagine a fair coin. The coin is tossed once. If it falls heads, you receive a prize of \$2 and the game stops. If not, it is tossed again. If it falls heads on the second toss, you get \$4 and the game stops. If not, it is tossed again. If it falls heads on the third toss, you get \$8 and the game stops, and so on. The game stops after the first head is thrown. If the first head is thrown on the $x^{th}$ toss, the prize is \$$2^x$
+\end{quote}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$X =$ Trial Number of First Head}
+\begin{table}
+\begin{tabular}{c|c|c|c}
+	$x$ & $2^x$ & $p(x)$& $2^x \cdot p(x)$\\
+		\hline \uncover<2->{
+	1&2&1/2&1\\
+	2&4&1/4&1\\
+	3&8&1/8&1\\}\uncover<3->{
+	$\vdots$&$\vdots$&$\vdots$&$\vdots$\\
+	n&$2^n$&$1/2^n$&1\\
+	$\vdots$&$\vdots$&$\vdots$&$\vdots$}
+\end{tabular}
+\end{table}
+$$E[Y] = \sum_{\mbox{all } x} 2^x\cdot p(x) = \uncover<4->{1 + 1 + 1 + \hdots}\uncover<5->{ = \infty}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{center}
+\Huge Functions of Random Variables are Themselves Random Variables
+\end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Example: Function of Bernoulli RV}
+\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
+\vspace{2em}
+
+\begin{block}{Support of $Y$} \pause
+$\{e^0, e^1\} =\{1, e\}$
+\end{block}
+
+\begin{block}{Probability Mass Function for $Y$} \pause
+	$$p_Y(y) = \left\{\begin{array}{ll}p& y =e\\ 1-p& y = 1\\ 0& \mbox{otherwise}\end{array}\right.$$
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Expectation: Function of Bernoulli RV}
+\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
+\vspace{2em}
+
+\begin{block}{Probability Mass Function for $Y$} 
+	$$p_Y(y) = \left\{\begin{array}{ll}p& y =e\\ 1-p& y = 1\\ 0& \mbox{otherwise}\end{array}\right.$$
+\end{block}
+
+\begin{block}{Expectation of $Y = e^X$}\pause
+$$\sum_{y \in \{1, e\}} y \cdot p_Y(y) =\pause (1-p) \cdot 1 + p \cdot e = 1 + p(e - 1)$$
+\end{block}
+
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Expectation: Function of Bernoulli RV}
+\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
+\vspace{2em}
+
+
+
+\begin{block}{Expectation of the Function}
+$$\sum_{y \in \{1, e\}} y \cdot p_Y(y) = (1-p) \cdot 1 + p \cdot e = 1 + p(e - 1)$$
+\end{block}
+
+\begin{block}{Function of the Expectation}
+$$e^{E[X]} = e^p $$
+\end{block}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\huge $$E[g(X)] \neq g(E[X])$$
+\begin{center}
+	\large (Expected value of Function $\neq$ Function of Expected Value)
+\end{center}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Expectation of a Function of a Discrete RV}
+Let $X$ be a random variable and $g$ be a function. Then:
+$$\boxed{E[g(X)] = \sum_{\mbox{all } x} g(x) p(x)}$$
+
+
+ \alert{This is how we proceeded in the St.\ Petersburg Game Example}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Your Turn: Calculate $E[X^2]$ \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+$X$ has support $\{-1, 0, 1\}$, $p(-1) = p(0) = p(1) = 1/3$.
+\pause
+
+\begin{eqnarray*}
+ E[X^2] &=&  \sum_{\mbox{all } x} x^2 p(x) = \sum_{x \in \{-1, 0, 1\}} x^2 p(x) \\ \\ \pause
+ 	&=& (-1)^2 \cdot (1/3) + (0)^2 \cdot (1/3) + (1)^2 \cdot (1/3)\\ \pause
+ 	&=& 1/3 + 1/3\\ 
+ 	&=& 2/3 \approx 0.67
+\end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+  %\frametitle{Why Random Variables?}
+  %Use as a model for population. No longer talk about population size $N$, because this turns out to be irrelevant. Explain why with a simple example. This slide should probably come after I actually introduce Bernoulli RV, etc. Treat population relative frequencies as probabilities rather than counts divided by $N$. Defined probability as long-run relative frequency and here we would think of repeatedly sampling from the population. Also we never know $N$ in practice. Emphasize that from the perspective of sampling, $N$ is irrelevant. Give a simple urn example. Try to distinguish continuous and discrete. Then again, maybe it's still too early for them to digest this.
+  %Many random experiments are ``the same'' from a probabilistic perspective. Focus on only the essential details. Examples.
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
