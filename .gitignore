@@ -95,3 +95,6 @@ figure/
 *.Rhistory
 *.RData
 *.Rout
+
+#since I use vim...
+*.swp
