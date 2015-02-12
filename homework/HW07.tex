@@ -84,6 +84,8 @@
 \begin{document}
 \maketitle
 
+% This problem set concerns random sampling and the theory of point estimators. It also has a few R exercises based on Lecture 13 which is a video lecture.
+
 \section*{Part I -- Problems from the Textbook}
 Chapter 6: 1, 3, 5, 7\\
 Chapter 7: 1, 3, 5, 9, 13, 17, 18, 19\\
@@ -149,89 +151,7 @@ All we have to do in this question is take the square root of the answers from t
 \end{questions}
 
 \section*{Part II -- Additional Problems}
-
-\noindent \paragraph{Note:} \emph{In questions 1--5,  $X_1, X_2 \sim \mbox{ iid } N(\mu, \sigma^2)$, $Y = (X_1 - \mu)/\sigma$, $Z = (X_2 - \mu)/\sigma$.}
-
-
 \begin{questions}
-
-
-
-\question 
-	\begin{parts}
-		\part What is the distribution of $X_1 + X_2$?
-			\begin{solution}
-				$X_1 + X_2 \sim N(2\mu, 2\sigma^2)$
-			\end{solution}
-		\part Use R to calculate $P(X_1 + X_2 > 5)$ if $\mu = 5$ and $\sigma^2 = 50$.
-			\begin{solution}
-			In this case, $X_1 + X_2 \sim N(10, 100)$, hence
-			\begin{eqnarray*}
-				P(X_1 + X_2 > 5) &=& 1 - P(X_1 + X_2 \leq 5) \\
-				&=& 1 - P\left(\frac{X_1 + X_2 - 10}{10} \leq \frac{5-10}{10}\right)\\
-				&=& 1 - \mbox{\texttt{pnorm(-0.5)}}\\
-				&\approx& 0.6914625
-			\end{eqnarray*}
-			Alternatively, we could use  \texttt{1- pnorm(5, mean = 10, sd = 10)}, which gives the same result.
-			\end{solution}
-		\part Use R to calculate the 10th percentile of the distribution of $X_1 + X_2$.
-			\begin{solution}
-				\texttt{qnorm(p = 0.1, mean = 10, sd = 10)} gives -2.815516.
-			\end{solution}
-	\end{parts}
-\question 
-	\begin{parts}
-		\part What is the distribution of $Y^2$?
-			\begin{solution}
-				As the sum of squares of one standard normal RV, $Y^2 \sim \chi^2(1)$.
-			\end{solution}
-		\part Use R to calculate $P(Y^2 \geq 1)$.
-			\begin{solution}
-				\begin{eqnarray*}
-					P(Y^2 \geq 1) = 1 - P(Y^2 \leq 1) = 1 -  \mbox{\texttt{pchisq(1, df = 1)}} \approx 0.3173105
-				\end{eqnarray*}
-			\end{solution}
-	\end{parts}
-	
-\question
-	\begin{parts}
-		\part What is the distribution of $Y^2 + Z^2$?
-			\begin{solution}
-			Since this is the sum of squares of two independent standard normal random variables, $Y^2 + Z^2 \sim \chi^2(2)$.
-			\end{solution}
-		\part Use R to calculate the 95th percentile of the distribution of $Y^2 + Z^2$.
-			\begin{solution}
-				\texttt{qchisq(p = 0.95, df = 2)} gives 5.991465
-			\end{solution}
-	\end{parts}
-\question 
-	\begin{parts}
-	\part What is the distribution of $Z/\sqrt{Y^2}$?
-		\begin{solution}
-			Since it is the ratio of a standard normal to the square root of an independent $\chi^2$ random variable divided by its degrees of freedom (in this case one), $Z/\sqrt{Y^2}\sim t(1)$.
-		\end{solution}
-	\part What value of $c$ satisfies $P(-c\ \leq Z/\sqrt{Y^2} \leq c )=0.95$?
-		\begin{solution}
-			By the symmetry of the $t$-distribution, it suffices to find the $97.5$th percentile (this allocates 2.5\% probability to the upper and lower tails).  The command \texttt{qt(p = 0.975, df = 1)} gives 12.7062, so $c \approx 12.7$. Alternatively, we could have calculated the 2.5th percentile: \texttt{qt(p = 0.025, df = 1)} gives -12.7062.
-		\end{solution}
-	\part How does the interval in part (b) compare to the corresponding interval for $Z$?
-		\begin{solution}
-		Since $Z$ is a standard normal RV, $P(-2\leq Z \leq 2) \approx 0.95$. We see that the interval for a $t(1)$ RV is \emph{much wider} than the corresponding interval for a standard normal. In other words, extreme outcomes are much more likely under the $t(1)$ distribution.
-		\end{solution}
-	\end{parts}
-	
-\question 
-	\begin{parts}
-		\part What is the distribution of $Y^2/Z^2$?
-			\begin{solution}
-				This is the ratio of two independent $\chi^2$ random variables, each divided by its degrees of freedom (in this case, one). Hence $Y^2/Z^2\sim F(1,1)$.
-			\end{solution}
-		\part Use R to calculate the 95th percentile of the distribution of $Y^2/Z^2$.
-			\begin{solution}
-				\texttt{qf(p = 0.95, df1 = 1, df2 = 1)} gives 161.4476
-			\end{solution}
-	\end{parts}
-	
 	
 \question In this question you will replicate some of the density plots from Lecture 13.
 \begin{parts}
@@ -248,7 +168,7 @@ All we have to do in this question is take the square root of the answers from t
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-4} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-4-1} 
 
 }
 
@@ -269,7 +189,7 @@ Carrying on from the code in the previous part:
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-5} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-5-1} 
 
 }
 
@@ -289,7 +209,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-6} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-6-1} 
 
 }
 
@@ -308,7 +228,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-7} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-7-1} 
 
 }
 
@@ -338,7 +258,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \hlkwd{sum}\hlstd{((sims} \hlopt{>= -}\hlnum{1}\hlstd{)} \hlopt{&} \hlstd{(sims} \hlopt{<=} \hlnum{1}\hlstd{))}\hlopt{/}\hlkwd{length}\hlstd{(sims)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.6819
+## [1] 0.68126
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -351,7 +271,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \hlkwd{sum}\hlstd{((sims} \hlopt{>= -}\hlnum{2}\hlstd{)} \hlopt{&} \hlstd{(sims} \hlopt{<=} \hlnum{2}\hlstd{))}\hlopt{/}\hlkwd{length}\hlstd{(sims)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9534
+## [1] 0.9552
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -364,7 +284,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \hlkwd{sum}\hlstd{((sims} \hlopt{>= -}\hlnum{3}\hlstd{)} \hlopt{&} \hlstd{(sims} \hlopt{<=} \hlnum{3}\hlstd{))}\hlopt{/}\hlkwd{length}\hlstd{(sims)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9973
+## [1] 0.99739
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -377,19 +297,19 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \hlkwd{pnorm}\hlstd{(}\hlnum{1}\hlstd{)} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.6827
+## [1] 0.6826895
 \end{verbatim}
 \begin{alltt}
 \hlkwd{pnorm}\hlstd{(}\hlnum{2}\hlstd{)} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{2}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9545
+## [1] 0.9544997
 \end{verbatim}
 \begin{alltt}
 \hlkwd{pnorm}\hlstd{(}\hlnum{3}\hlstd{)} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{3}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9973
+## [1] 0.9973002
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -421,7 +341,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-14} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-14-1} 
 
 }
 
@@ -430,7 +350,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \hlkwd{mean}\hlstd{(height)}
 \end{alltt}
 \begin{verbatim}
-## [1] 67.55
+## [1] 67.54545
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -458,7 +378,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \hlkwd{x.bar.draw}\hlstd{(}\hlnum{10000}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 67.48
+## [1] 67.5624
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -484,32 +404,32 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \hlkwd{mean}\hlstd{(x.bar.5)}
 \end{alltt}
 \begin{verbatim}
-## [1] 67.53
+## [1] 67.53742
 \end{verbatim}
 \begin{alltt}
 \hlkwd{mean}\hlstd{(x.bar.10)}
 \end{alltt}
 \begin{verbatim}
-## [1] 67.55
+## [1] 67.52975
 \end{verbatim}
 \begin{alltt}
 \hlkwd{mean}\hlstd{(x.bar.20)}
 \end{alltt}
 \begin{verbatim}
-## [1] 67.54
+## [1] 67.53301
 \end{verbatim}
 \begin{alltt}
 \hlkwd{mean}\hlstd{(x.bar.50)}
 \end{alltt}
 \begin{verbatim}
-## [1] 67.55
+## [1] 67.54734
 \end{verbatim}
 \begin{alltt}
 \hlkwd{hist}\hlstd{(x.bar.5)}
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-181} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-18-1} 
 
 }
 
@@ -519,7 +439,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-182} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-18-2} 
 
 }
 
@@ -529,7 +449,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-183} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-18-3} 
 
 }
 
@@ -539,7 +459,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-184} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-18-4} 
 
 }
 
@@ -548,25 +468,25 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \hlkwd{var}\hlstd{(x.bar.5)}
 \end{alltt}
 \begin{verbatim}
-## [1] 3.913
+## [1] 3.961876
 \end{verbatim}
 \begin{alltt}
 \hlkwd{var}\hlstd{(x.bar.10)}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.952
+## [1] 1.898782
 \end{verbatim}
 \begin{alltt}
 \hlkwd{var}\hlstd{(x.bar.20)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9636
+## [1] 0.9595143
 \end{verbatim}
 \begin{alltt}
 \hlkwd{var}\hlstd{(x.bar.50)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.3931
+## [1] 0.3818701
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -613,7 +533,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-20} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-20-1} 
 
 }
 
@@ -634,7 +554,7 @@ The two plots overlap almost perfectly: it looks like we've only plotted one cur
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-21} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-21-1} 
 
 }
 
@@ -653,7 +573,7 @@ This plot looks totally different from the previous one: the ``running means'' n
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-22} 
+{\centering \includegraphics[width=\maxwidth]{figure/unnamed-chunk-22-1} 
 
 }
 
