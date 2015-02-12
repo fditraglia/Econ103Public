@@ -19,9 +19,10 @@
 \begin{document}
 \maketitle
 
+% This problem set concerns continuous random variables
+
 \section*{Part I -- Problems from the Textbook}
-Chapter 5: 1, 3, 5, 9, 11, 13, 17\\
-Chapter 4: 19, 21, 23 \\
+Chapter 4: 19, 21, 23
 (\emph{When necessary, use R rather than the Normal tables in the front of the textbook.})
 
 % \section*{Part II -- R Tutorial}
@@ -35,105 +36,6 @@ Chapter 4: 19, 21, 23 \\
 \begin{questions}
 
 
-\question Let $X$ and $Y$ be discrete random variables and $a,b,c,d$ be constants. Prove the following:
-	\begin{parts}
-		\part $Cov(a+bX, c + dY) = bd Cov(X,Y)$
-		\begin{solution}
-		Let $\mu_X = E[X]$ and $\mu_Y = E[Y]$. By the linearity of expectation,
-			\begin{eqnarray*}
-				E[a + bX] &=& a + b\mu_X\\
-				E[c + dY] &=& c + d\mu_Y
-			\end{eqnarray*}
-	Thus, we have
-			\begin{eqnarray*}
-				(a+bx) - E[a + bX]&=& b(x - \mu_X)\\
-				(c + dy) - E[c + dY]&=& d(y-\mu_Y)
-			\end{eqnarray*}
-	Substituting these into the formula for the covariance between two discrete random variables,
-			\begin{eqnarray*}
-				Cov(a+bX, c+dY) &=& \sum_{x} \sum_{y} \left[b(x - \mu_X)\right]\left[d(y-\mu_Y)\right]p(x,y)\\
-					&=&bd\sum_{x} \sum_{y} (x - \mu_X)(y-\mu_Y)p(x,y)\\
-					&=&bd Cov(X,Y)
-			\end{eqnarray*}
-		\end{solution}
-		\part $Corr(a+bX, c + dY) = Corr(X,Y)$
-		\begin{solution}
-			\begin{eqnarray*}
-				Corr(a+bX, c + dY) &=& \frac{Cov(a+bX, c+dY)}{\sqrt{Var(a+bX)Var(c+dY)}}\\
-				&=& \frac{bd Cov(X,Y)}{\sqrt{b^2Var(X)d^2Var(Y)}}\\
-				&=&\frac{ Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}\\
-				&=& Corr(X,Y)
-			\end{eqnarray*}
-		\end{solution}
-	\end{parts}
-
-
-\question Fill in the missing steps from the lecture to prove the shortcut formula for covariance:
-	$$Cov(X,Y) = E[XY] - E[X]E[Y]$$
-	\begin{solution}
-	By the Linearity of Expectation,
-	\begin{eqnarray*}
-	Cov(X,Y)&=& E[(X - \mu_X)(Y-\mu_Y)]\\
-			&=& E[XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y]\\
-			&=&E[XY] - \mu_xE[Y] - \mu_Y E[X] + \mu_X \mu_Y\\
-			&=& E[XY] - \mu_X\mu_Y - \mu_Y\mu_X + \mu_X \mu_Y\\
-			&=& E[XY] - \mu_X \mu_Y\\
-			&=& E[XY] - E[X]E[Y]
-\end{eqnarray*}
-	\end{solution}
-
-
-\question Let $X_1$ be a random variable denoting the returns of stock 1, and $X_2$ be a random variable denoting the returns of stock 2. Accordingly let $\mu_1 = E[X_1]$, $\mu_2 = E[X_2]$, $\sigma_1^2 = Var(X_1)$, $\sigma_2^2 = Var(X_2)$ and $\rho = Corr(X_1, X_2)$. A \emph{portfolio}, $\Pi$,  is a linear combination of $X_1$ and $X_2$ with weights that sum to one, that is $\Pi(\omega) = \omega X_1 + (1-\omega)X_2$, indicating the proportions of stock 1 and stock 2 that an investor holds. In this example, we require $\omega \in [0,1]$, so that \emph{negative} weights are not allowed. (This rules out short-selling.) 
-	\begin{parts}
-		\part Calculate $E[\Pi(\omega)]$ in terms of $\omega$, $\mu_1$ and $\mu_2$.
-			\begin{solution}
-				\begin{eqnarray*}
-					E[\Pi(\omega)] &=& E[\omega X_1 + (1-\omega) X_2] = \omega E[X_1] + (1-\omega) E[X_2]\\
-						&=& \omega \mu_1 + (1-\omega) \mu_2
-				\end{eqnarray*}
-			\end{solution}
-		\part If $\omega \in [0,1]$ is it possible to have $E[\Pi(\omega)]>\mu_1$ \emph{and} $E[\Pi(\omega)]>\mu_2$? What about $E[\Pi(\omega)]<\mu_1$ and $E[\Pi(\omega)]<\mu_2$? Explain.
-			\begin{solution}
-			No. If short-selling is disallowed, the portfolio expected return must be between $\mu_1$ and $\mu_2$.
-			\end{solution}
-		\part Express $Cov(X_1, X_2)$ in terms of $\rho$ and $\sigma_1$, $\sigma_2$.
-			\begin{solution}
-				$Cov(X,Y) = \rho \sigma_1 \sigma_2$
-			\end{solution}
-		\part What is $Var[\Pi(\omega)]$? (Your answer should be in terms of $\rho$, $\sigma_1^2$ and $\sigma_2^2$.)
-			\begin{solution}
-				\begin{eqnarray*}
-					Var[\Pi(\omega)] &=& Var[\omega X_1 + (1-\omega) X_2]\\
-					& =& \omega^2 Var(X_1) + (1-\omega)^2 Var(X_2) + 2\omega (1-\omega) Cov(X_1, X_2)\\
-					&=&\omega^2 \sigma_1^2 + (1-\omega)^2\sigma_2^2 + 2\omega (1-\omega)\rho \sigma_1 \sigma_2 
-				\end{eqnarray*}
-			\end{solution}
-		\part Using part (d) show that the value of $\omega$ that minimizes $Var[\Pi(\omega)]$ is
-			$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
-			In other words, $\Pi(\omega^*)$ is the \emph{minimum variance portfolio}. 
-		\begin{solution}
-			The First Order Condition is:
-				$$2\omega \sigma_1^2 - 2(1-\omega)\sigma_2^2 + (2 - 4\omega)\rho \sigma_1\sigma_2=0$$
-				Dividing both sides by two and rearranging:
-				\begin{eqnarray*}
-				\omega \sigma_1^2 - (1-\omega)\sigma_2^2 + (1-2\omega)\rho\sigma_1 \sigma_2&=&0\\
-				\omega\sigma_1^2 - \sigma_2^2 + \omega \sigma_2^2 + \rho \sigma_1\sigma_2 - 2\omega \rho \sigma_1\sigma_2 &=& 0\\
-				\omega(\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2) &=& \sigma_2^2 - \rho\sigma_1\sigma_2
-				\end{eqnarray*}
-				So we have
-					$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
-		\end{solution}
-		\part If you want a challenge, check the second order condition from part (e).
-			\begin{solution}
-							The second derivative is
-				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2$$
-				and, since $\rho=1$ is the largest possible value for $\rho$,
-				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2 \geq 2\sigma_1^2 - 2\sigma_2^2 - 4\sigma_1\sigma_2 = 2(\sigma_1 - \sigma_2)^2 \geq 0$$
-				so the second derivative is positive, indicating a minimum. This is a global minimum since the problem is quadratic in $\omega$.
-			\end{solution}
-	\end{parts}
-
-	
 \question Suppose that $X$ is a random variable with the following PDF
 	$$f(x)=\left\{\begin{array}{ll}x & 0\leq x\leq1 \\ 2-x  & 1 \leq x \leq 2\\ 0  & \mbox{otherwise}\end{array}\right. $$	
 	\begin{parts}
@@ -209,7 +111,7 @@ Chapter 4: 19, 21, 23 \\
 	\end{parts}
 
 	
-\question Suppose that $X\sim N(0, 16)$ independent of $Y\sim N(2, 4)$. Recall that when our convention is to express the normal distribution in terms of its mean and variance, i.e.\ $N(\mu, \sigma^2)$. Hence, $X$ has a mean of zero and variance of 16, while $Y$ has a mean of 2 and a variance of 4. In completing some parts of this question you will need to use the R function \texttt{pnorm} described in class. In this case, please write down the command you used as well as the numeric result.
+\question Suppose that $X\sim N(0, 16)$ independent of $Y\sim N(2, 4)$. Recall that our convention is to express the normal distribution in terms of its mean and variance, i.e.\ $N(\mu, \sigma^2)$. Hence, $X$ has a mean of zero and variance of 16, while $Y$ has a mean of 2 and a variance of 4. In completing some parts of this question you will need to use the R function \texttt{pnorm} described in class. In this case, please write down the command you used as well as the numeric result.
 	\begin{parts}
 		\part Calculate $P( -8\leq X \leq 8)$.
 			\begin{solution}
@@ -247,9 +149,85 @@ where $Z$ is a standard normal random variable.
 	\end{parts}	
 	
 
+\noindent \paragraph{Note:} \emph{In the following five questions  $X_1, X_2 \sim \mbox{ iid } N(\mu, \sigma^2)$, $Y = (X_1 - \mu)/\sigma$, $Z = (X_2 - \mu)/\sigma$.}
+
+
+\question 
+	\begin{parts}
+		\part What is the distribution of $X_1 + X_2$?
+			\begin{solution}
+				$X_1 + X_2 \sim N(2\mu, 2\sigma^2)$
+			\end{solution}
+		\part Use R to calculate $P(X_1 + X_2 > 5)$ if $\mu = 5$ and $\sigma^2 = 50$.
+			\begin{solution}
+			In this case, $X_1 + X_2 \sim N(10, 100)$, hence
+			\begin{eqnarray*}
+				P(X_1 + X_2 > 5) &=& 1 - P(X_1 + X_2 \leq 5) \\
+				&=& 1 - P\left(\frac{X_1 + X_2 - 10}{10} \leq \frac{5-10}{10}\right)\\
+				&=& 1 - \mbox{\texttt{pnorm(-0.5)}}\\
+				&\approx& 0.6914625
+			\end{eqnarray*}
+			Alternatively, we could use  \texttt{1- pnorm(5, mean = 10, sd = 10)}, which gives the same result.
+			\end{solution}
+		\part Use R to calculate the 10th percentile of the distribution of $X_1 + X_2$.
+			\begin{solution}
+				\texttt{qnorm(p = 0.1, mean = 10, sd = 10)} gives -2.815516.
+			\end{solution}
+	\end{parts}
+\question 
+	\begin{parts}
+		\part What is the distribution of $Y^2$?
+			\begin{solution}
+				As the sum of squares of one standard normal RV, $Y^2 \sim \chi^2(1)$.
+			\end{solution}
+		\part Use R to calculate $P(Y^2 \geq 1)$.
+			\begin{solution}
+				\begin{eqnarray*}
+					P(Y^2 \geq 1) = 1 - P(Y^2 \leq 1) = 1 -  \mbox{\texttt{pchisq(1, df = 1)}} \approx 0.3173105
+				\end{eqnarray*}
+			\end{solution}
+	\end{parts}
+	
+\question
+	\begin{parts}
+		\part What is the distribution of $Y^2 + Z^2$?
+			\begin{solution}
+			Since this is the sum of squares of two independent standard normal random variables, $Y^2 + Z^2 \sim \chi^2(2)$.
+			\end{solution}
+		\part Use R to calculate the 95th percentile of the distribution of $Y^2 + Z^2$.
+			\begin{solution}
+				\texttt{qchisq(p = 0.95, df = 2)} gives 5.991465
+			\end{solution}
+	\end{parts}
+\question 
+	\begin{parts}
+	\part What is the distribution of $Z/\sqrt{Y^2}$?
+		\begin{solution}
+			Since it is the ratio of a standard normal to the square root of an independent $\chi^2$ random variable divided by its degrees of freedom (in this case one), $Z/\sqrt{Y^2}\sim t(1)$.
+		\end{solution}
+	\part What value of $c$ satisfies $P(-c\ \leq Z/\sqrt{Y^2} \leq c )=0.95$?
+		\begin{solution}
+			By the symmetry of the $t$-distribution, it suffices to find the $97.5$th percentile (this allocates 2.5\% probability to the upper and lower tails).  The command \texttt{qt(p = 0.975, df = 1)} gives 12.7062, so $c \approx 12.7$. Alternatively, we could have calculated the 2.5th percentile: \texttt{qt(p = 0.025, df = 1)} gives -12.7062.
+		\end{solution}
+	\part How does the interval in part (b) compare to the corresponding interval for $Z$?
+		\begin{solution}
+		Since $Z$ is a standard normal RV, $P(-2\leq Z \leq 2) \approx 0.95$. We see that the interval for a $t(1)$ RV is \emph{much wider} than the corresponding interval for a standard normal. In other words, extreme outcomes are much more likely under the $t(1)$ distribution.
+		\end{solution}
+	\end{parts}
+	
+\question 
+	\begin{parts}
+		\part What is the distribution of $Y^2/Z^2$?
+			\begin{solution}
+				This is the ratio of two independent $\chi^2$ random variables, each divided by its degrees of freedom (in this case, one). Hence $Y^2/Z^2\sim F(1,1)$.
+			\end{solution}
+		\part Use R to calculate the 95th percentile of the distribution of $Y^2/Z^2$.
+			\begin{solution}
+				\texttt{qf(p = 0.95, df1 = 1, df2 = 1)} gives 161.4476
+			\end{solution}
+	\end{parts}
+
 \end{questions}
-
-
 
 
 \end{document}
