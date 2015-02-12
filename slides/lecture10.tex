@@ -340,7 +340,8 @@ But from above we know the marginal distribution of $X:$
 \frametitle{The Law of Iterated Expectations}
 Since $E[Y|X]$ is a random variable, we can ask what its expectation is. It turns out that, for any RVs $X$ and $Y$
 	$$\boxed{E\left[E\left[Y|X  \right]  \right] = E[Y]}$$
-and this is called the \alert{Law of Iterated Expectations}. I've posted a proof \textcolor{blue}{\href{http://fditraglia.github.io/Econ103Public/IteratedExpectationsProof.pdf}{\fbox{HERE}}} for those who want are interested.
+and this is called the \alert{Law of Iterated Expectations}.
+I've posted a proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}} for those who are interested.
 
 
 \vspace{2em}
@@ -467,19 +468,9 @@ Hence, zero covariance (correlation) does \emph{not} imply independence!
 \huge
 However, independence \emph{does} imply zero covariance (correlation)
 
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$X,Y$ Independent $\Rightarrow Cov(X,Y) = 0$}
-\begin{eqnarray*}
-	Cov(X,Y) &=&\pause E[(X-\mu_X)(Y-\mu_Y)]\\
-	&=&\pause \sum_x \sum_y (x - \mu_X)(y- \mu_Y)p(x,y)\\
-	&=&\pause  \sum_x \sum_y (x - \mu_X)(y- \mu_Y)p(x)p(y) \\
-	&=& \pause \sum_x  (x - \mu_X)p(x)\left[ \sum_y (y- \mu_Y)p(y)\right] \\
-	&=& \pause E[Y- \mu_Y] \sum_x  (x - \mu_X)p(x)\\
-	&=& \pause E[Y- \mu_Y]E[X- \mu_X] \\
-	&=& 0
-\end{eqnarray*}
+\vspace{2em}
+\normalsize 
+I've posted a proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}} for those who are interested.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -493,22 +484,8 @@ $$\boxed{E[aX + bY + c] = aE[X] + bE[Y] + c}$$
 
 \normalsize
 where $X,Y$ are random variables and $a,b,c$ are constants.
+I've posted a proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}} for those who are interested.
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Proof of Linearity of Expectation for Discrete RVs}
-\footnotesize
-\begin{eqnarray*}
-	E[aX+bY+c] &=& \sum_x \sum_y (ax+by+c) p(x,y) \\
-		&=& \pause \sum_x \sum_y\left[ axp(x,y) + byp(x,y) + cp(x,y)\right]\\
-		&=&\pause \alert{a} \sum_x \sum_y xp(x,y) + \alert{b}\sum_y \sum_x y p(x,y) + \alert{c} \sum_y \sum_x  p(x,y) \\
-		&=& \pause a \sum_x \sum_y xp(x,y) + b\sum_y \sum_x y p(x,y) + \alert{c}\\
-				&=& \pause a \sum_{\alert{x}} \alert{x} \left(\sum_{\alert{y}} p(x,y)\right) + b\sum_{\alert{y}} \alert{y} \left(\sum_{\alert{x}}  p(x,y)\right) + c\\
-		&=& \pause a\sum_x x \alert{p(x)} + b\sum_y y  \alert{p(y)}+c\\
-		&=& \pause aE[X] + bE[Y] + c
-\end{eqnarray*}
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -657,7 +634,7 @@ $$\alert{\boxed{Var(aX + bY) = a^2 \sigma_X^2 + b^2 \sigma_Y^2 + 2ab \rho \sigma
 \begin{frame}
 \frametitle{Independence $\Rightarrow Var(X+Y) = Var(X) + Var(Y)$}
 
-We showed last time that if $X$ and $Y$ are independent, $Cov(X,Y)=0$. Hence, independence implies
+As explained above, if $X$ and $Y$ are independent, $Cov(X,Y)=0$. Hence, independence implies
 \begin{eqnarray*}
 	Var(X + Y) &=& Var(X) + Var(Y) + 2 Cov(X,Y)\\
 			&=& \alert{Var(X) +Var(Y)}
