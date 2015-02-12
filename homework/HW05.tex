@@ -19,8 +19,11 @@
 \begin{document}
 \maketitle
 
+% This problem set concerns discrete random variables: lectures 8-11
+
 \section*{Part I -- Problems from the Textbook}
-Chapter 4: 1, 3, 5, 7, 9, 11, 13, 15, 25, 27, 29
+Chapter 4: 1, 3, 5, 7, 9, 11, 13, 15, 25, 27, 29\\
+Chapter 5: 1, 3, 5, 9, 11, 13, 17
 
 
 % \section*{Part II -- R Tutorial}
@@ -142,6 +145,103 @@ Chapter 4: 1, 3, 5, 7, 9, 11, 13, 15, 25, 27, 29
 		\end{solution}
 	\end{parts}
 
+\question Let $X$ and $Y$ be discrete random variables and $a,b,c,d$ be constants. Prove the following:
+	\begin{parts}
+		\part $Cov(a+bX, c + dY) = bd Cov(X,Y)$
+		\begin{solution}
+		Let $\mu_X = E[X]$ and $\mu_Y = E[Y]$. By the linearity of expectation,
+			\begin{eqnarray*}
+				E[a + bX] &=& a + b\mu_X\\
+				E[c + dY] &=& c + d\mu_Y
+			\end{eqnarray*}
+	Thus, we have
+			\begin{eqnarray*}
+				(a+bx) - E[a + bX]&=& b(x - \mu_X)\\
+				(c + dy) - E[c + dY]&=& d(y-\mu_Y)
+			\end{eqnarray*}
+	Substituting these into the formula for the covariance between two discrete random variables,
+			\begin{eqnarray*}
+				Cov(a+bX, c+dY) &=& \sum_{x} \sum_{y} \left[b(x - \mu_X)\right]\left[d(y-\mu_Y)\right]p(x,y)\\
+					&=&bd\sum_{x} \sum_{y} (x - \mu_X)(y-\mu_Y)p(x,y)\\
+					&=&bd Cov(X,Y)
+			\end{eqnarray*}
+		\end{solution}
+		\part $Corr(a+bX, c + dY) = Corr(X,Y)$
+		\begin{solution}
+			\begin{eqnarray*}
+				Corr(a+bX, c + dY) &=& \frac{Cov(a+bX, c+dY)}{\sqrt{Var(a+bX)Var(c+dY)}}\\
+				&=& \frac{bd Cov(X,Y)}{\sqrt{b^2Var(X)d^2Var(Y)}}\\
+				&=&\frac{ Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}\\
+				&=& Corr(X,Y)
+			\end{eqnarray*}
+		\end{solution}
+	\end{parts}
+
+
+\question Fill in the missing steps from lecture to prove the shortcut formula for covariance:
+	$$Cov(X,Y) = E[XY] - E[X]E[Y]$$
+	\begin{solution}
+	By the Linearity of Expectation,
+	\begin{eqnarray*}
+	Cov(X,Y)&=& E[(X - \mu_X)(Y-\mu_Y)]\\
+			&=& E[XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y]\\
+			&=&E[XY] - \mu_xE[Y] - \mu_Y E[X] + \mu_X \mu_Y\\
+			&=& E[XY] - \mu_X\mu_Y - \mu_Y\mu_X + \mu_X \mu_Y\\
+			&=& E[XY] - \mu_X \mu_Y\\
+			&=& E[XY] - E[X]E[Y]
+\end{eqnarray*}
+	\end{solution}
+
+
+\question Let $X_1$ be a random variable denoting the returns of stock 1, and $X_2$ be a random variable denoting the returns of stock 2. Accordingly let $\mu_1 = E[X_1]$, $\mu_2 = E[X_2]$, $\sigma_1^2 = Var(X_1)$, $\sigma_2^2 = Var(X_2)$ and $\rho = Corr(X_1, X_2)$. A \emph{portfolio}, $\Pi$,  is a linear combination of $X_1$ and $X_2$ with weights that sum to one, that is $\Pi(\omega) = \omega X_1 + (1-\omega)X_2$, indicating the proportions of stock 1 and stock 2 that an investor holds. In this example, we require $\omega \in [0,1]$, so that \emph{negative} weights are not allowed. (This rules out short-selling.) 
+	\begin{parts}
+		\part Calculate $E[\Pi(\omega)]$ in terms of $\omega$, $\mu_1$ and $\mu_2$.
+			\begin{solution}
+				\begin{eqnarray*}
+					E[\Pi(\omega)] &=& E[\omega X_1 + (1-\omega) X_2] = \omega E[X_1] + (1-\omega) E[X_2]\\
+						&=& \omega \mu_1 + (1-\omega) \mu_2
+				\end{eqnarray*}
+			\end{solution}
+		\part If $\omega \in [0,1]$ is it possible to have $E[\Pi(\omega)]>\mu_1$ \emph{and} $E[\Pi(\omega)]>\mu_2$? What about $E[\Pi(\omega)]<\mu_1$ and $E[\Pi(\omega)]<\mu_2$? Explain.
+			\begin{solution}
+			No. If short-selling is disallowed, the portfolio expected return must be between $\mu_1$ and $\mu_2$.
+			\end{solution}
+		\part Express $Cov(X_1, X_2)$ in terms of $\rho$ and $\sigma_1$, $\sigma_2$.
+			\begin{solution}
+				$Cov(X,Y) = \rho \sigma_1 \sigma_2$
+			\end{solution}
+		\part What is $Var[\Pi(\omega)]$? (Your answer should be in terms of $\rho$, $\sigma_1^2$ and $\sigma_2^2$.)
+			\begin{solution}
+				\begin{eqnarray*}
+					Var[\Pi(\omega)] &=& Var[\omega X_1 + (1-\omega) X_2]\\
+					& =& \omega^2 Var(X_1) + (1-\omega)^2 Var(X_2) + 2\omega (1-\omega) Cov(X_1, X_2)\\
+					&=&\omega^2 \sigma_1^2 + (1-\omega)^2\sigma_2^2 + 2\omega (1-\omega)\rho \sigma_1 \sigma_2 
+				\end{eqnarray*}
+			\end{solution}
+		\part Using part (d) show that the value of $\omega$ that minimizes $Var[\Pi(\omega)]$ is
+			$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
+			In other words, $\Pi(\omega^*)$ is the \emph{minimum variance portfolio}. 
+		\begin{solution}
+			The First Order Condition is:
+				$$2\omega \sigma_1^2 - 2(1-\omega)\sigma_2^2 + (2 - 4\omega)\rho \sigma_1\sigma_2=0$$
+				Dividing both sides by two and rearranging:
+				\begin{eqnarray*}
+				\omega \sigma_1^2 - (1-\omega)\sigma_2^2 + (1-2\omega)\rho\sigma_1 \sigma_2&=&0\\
+				\omega\sigma_1^2 - \sigma_2^2 + \omega \sigma_2^2 + \rho \sigma_1\sigma_2 - 2\omega \rho \sigma_1\sigma_2 &=& 0\\
+				\omega(\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2) &=& \sigma_2^2 - \rho\sigma_1\sigma_2
+				\end{eqnarray*}
+				So we have
+					$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
+		\end{solution}
+		\part If you want a challenge, check the second order condition from part (e).
+			\begin{solution}
+							The second derivative is
+				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2$$
+				and, since $\rho=1$ is the largest possible value for $\rho$,
+				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2 \geq 2\sigma_1^2 - 2\sigma_2^2 - 4\sigma_1\sigma_2 = 2(\sigma_1 - \sigma_2)^2 \geq 0$$
+				so the second derivative is positive, indicating a minimum. This is a global minimum since the problem is quadratic in $\omega$.
+			\end{solution}
+	\end{parts}
 
 
 \end{questions}
