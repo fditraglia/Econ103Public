@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+
+\title{Optional Proofs from Lecture \# 10}
+\author{Francis J.\ DiTraglia}
+\date{Econ 103}
+
+\begin{document}
+
+\maketitle
+
+\noindent None of these proofs is required for this course: I won't test you on them on exams and my upcoming lectures do not assume that you've read this document.
+However, none of the steps used in any of these proofs goes beyond what we've covered in Econ 103.
+If you want extra practice working with sums and discrete random variables, going through these proofs will be very helpful.
+Moreover, if you're interested in going further with probability and statistics, perhaps by doing a minor in statistics at Wharton, the material covered here will help you with the more advanced courses you'll take later in your college career.
+The proofs I give here are for discrete RVs but you can adapt the same ideas to generalize these results so they cover continuous RVs as well: just replace sums with integrals.
+
+\section*{Law of Iterated Expectations}
+
+\begin{eqnarray*}
+	E_X\left[ E_{Y|X}\left[Y|X\right] \right] &=&E_X\left[ \sum_y y \; p_{Y|X}(y|x)\right] = \sum_x \left( \sum_y y \; p_{Y|X}(y|x)\right) p_X(x) \\
+		&=& \sum_x \sum_y y \; p_X(x) \; p_{Y|X}(y|x) = \sum_x \sum_y y \; p_{XY}(x,y)\\
+		&=& \sum_y y \sum_x p_{XY}(x,y) = \sum_y y \;p_Y(y) = E[Y]
+\end{eqnarray*}
+The second step is the tricky one. Here what we're doing is calculating the expected value of the function $g(X) = \sum_y p_{Y|X}(y|X)$ with respect to the \emph{marginal} pmf of $X$. 
+
+\section*{Independence Implies Zero Covariance}
+\begin{eqnarray*}
+	Cov(X,Y) &=& E[(X-\mu_X)(Y-\mu_Y)]\\
+	&=& \sum_x \sum_y (x - \mu_X)(y- \mu_Y)p(x,y)\\
+	&=&\sum_x \sum_y (x - \mu_X)(y- \mu_Y)p(x)p(y) \\
+	&=& \sum_x  (x - \mu_X)p(x)\left[ \sum_y (y- \mu_Y)p(y)\right] \\
+	&=& E[Y- \mu_Y] \sum_x  (x - \mu_X)p(x)\\
+	&=& E[Y- \mu_Y]E[X- \mu_X] \\
+	&=& 0
+\end{eqnarray*}
+
+\section*{Linearity of Expectations}
+\begin{eqnarray*}
+	E[aX+bY+c] &=& \sum_x \sum_y (ax+by+c) p(x,y) \\
+		&=& \sum_x \sum_y\left[ axp(x,y) + byp(x,y) + cp(x,y)\right]\\
+		&=& a \sum_x \sum_y xp(x,y) + b\sum_y \sum_x y p(x,y) + c \sum_y \sum_x  p(x,y) \\
+		&=& a \sum_x \sum_y xp(x,y) + b\sum_y \sum_x y p(x,y) + c\\
+				&=& a \sum_{x} x \left(\sum_{y} p(x,y)\right) + b\sum_{y} y \left(\sum_{x}  p(x,y)\right) + c\\
+		&=& a\sum_x x p(x) + b\sum_y y  p(y)+c\\
+		&=& aE[X] + bE[Y] + c
+\end{eqnarray*}
+\end{document}
