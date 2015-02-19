@@ -21,60 +21,32 @@
 \end{frame} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-\begin{center}
-\Huge Continuous Distributions -- Part II
-\end{center}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\Huge \begin{center}
-The Most Important RV of All
-\end{center}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Normal Random Variable}
-\begin{block}{Notation: $X \sim N(\mu, \sigma^2)$}
-Parameters: $\mu = E[X]$, $\sigma^2 = Var(X)$\\ Support:  $(-\infty, +\infty)$
-\end{block}
-
-
-\begin{block}{Probability Density Function}
-	$$ f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left\{ - \frac{1}{2} \left(\frac{x - \mu}{\sigma} \right)^2 \right\}$$
-\end{block}
-
-
-\begin{block}{No Explicit Formula for CDF (use computer instead)}
-	$$F(x_0) = \int_{-\infty}^{x_0}  \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left\{ - \frac{1}{2} \left(\frac{x - \mu}{\sigma} \right)^2 \right\} \; dx$$
-\end{block}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\frametitle{Normal PDF Centered at the Mean (Here $\mu = 0$, $\sigma^2 = 1$)}
-
+  \frametitle{Continuous RVs II: The Normal RV}
 \begin{figure}
-\includegraphics[scale = 0.65]{./images/std_normal_PDF}
+\includegraphics[scale = 0.2]{./images/normal_etsy1}
+\caption{Standard Normal Distribution (PDF)}
 \end{figure}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 \begin{frame}
-\frametitle{Normal CDF ($\mu = 0$, $\sigma^2 = 1$)}
+\frametitle{Standard Normal Random Variable: $N(0,1)$}
 
-\begin{figure}
-\includegraphics[scale = 0.62]{./images/std_normal_CDF}
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+  \includegraphics[scale = 0.3]{./images/std_normal_PDF}
+  &  
+  \includegraphics[scale = 0.3]{./images/std_normal_CDF}
+\end{tabular}
+\caption{Standard Normal PDF (left) and CDF (Right)}
 \end{figure}
+\begin{itemize}
+  \item Notation: $X \sim N(0,1)$
+  \item Symmetric, Bell-shaped, $E[X]=0$, $Var[X]=1$
+  \item Support Set $= (-\infty,\infty)$
+\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,15 +61,102 @@ Parameters: $\mu = E[X]$, $\sigma^2 = Var(X)$\\ Support:  $(-\infty, +\infty)$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
 \begin{frame}
-\frametitle{Different Means, Same Variance}
+  \frametitle{Standard Normal Distribution: $N(0,1)$}
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+  \includegraphics[scale = 0.3]{./images/std_normal_PDF}
+  &  
+  \includegraphics[scale = 0.3]{./images/std_normal_CDF}
+\end{tabular}
+\end{figure}
+\begin{itemize}
+  \item There is no closed-form expression for the $N(0,1)$ CDF.
+  \item For Econ 103, don't need to know formula for $N(0,1)$ PDF.
+  \item You \emph{do need} to know the R commands\dots
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{R Commands for the Standard Normal RV}
+  \begin{block}{\texttt{dnorm} -- \small Standard Normal PDF}
+    \begin{itemize}
+      \item Mnemonic: \texttt{d} $=$ density, \texttt{norm} $=$ normal
+      \item Example: \texttt{dnorm(0)} gives height of $N(0,1)$ PDF at zero.
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{\texttt{pnorm} -- \small Standard Normal CDF}
+    \begin{itemize}
+      \item Mnemonic: \texttt{p} $=$ probability, \texttt{norm} $=$ normal
+      \item Example: $\texttt{pnorm(1)} = P(X\leq 1)$ if $X\sim N(0,1)$.
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{block}{\texttt{rnorm} -- \small Simulate Standard Normal Draws}
+    \begin{itemize}
+      \item Mnemonic: \texttt{r} $=$ random, \texttt{norm} $=$ normal. 
+      \item Example: \texttt{rnorm(10)} makes ten iid $N(0,1)$ draws.
+    \end{itemize}
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{$\Phi(x_0)$ Denotes the $N(0,1)$ CDF}
+  You will sometimes encounter the notation $\Phi(x_0)$.
+  It means the same thing as $\texttt{pnorm}(x_0)$ but it's not an R command. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{The $N(\mu, \sigma^2)$ Random Variable}
+  \begin{block}{Idea}
+   Take a linear function of the $N(0,1)$ RV.
+  \end{block}
+  \begin{block}{Formal Definition}
+    \alert{$N(\mu, \sigma^2) \equiv \mu + \sigma X$} where $X \sim N(0,1)$ and $\mu, \sigma$ are constants.
+  \end{block}
+  \begin{block}{Properties of $N(\mu, \sigma^2)$ RV}
+    \begin{itemize}
+      \item Symmetric and bell-shaped. 
+      \item Support Set $=(-\infty,\infty)$
+      \item $N(0,1)$ is the special case where $\mu=0$ and $\sigma^2 = 1$. 
+    \end{itemize}
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{If $X\sim N(0,1)$ what is $E[\mu + \sigma X]$?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+  \begin{enumerate}[(a)]
+    \item 0
+    \item $\mu + \sigma$
+    \item $\sigma$
+    \item $\sigma^2$
+    \item $\mu$
+    \item Not enough information to determine. 
+  \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{If $X\sim N(0,1)$ what is $Var(\mu + \sigma X)$?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+  \begin{enumerate}[(a)]
+    \item 1
+    \item $\mu + \sigma$
+    \item $\sigma$
+    \item $\mu$
+    \item Not enough information to determine. 
+  \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Expected Value: $\mu$ \emph{shifts} PDF}
+\framesubtitle{all of these have $\sigma=1$}
 
 \begin{figure}
-\includegraphics[scale = 0.65]{./images/normal_means}
+\includegraphics[scale = 0.5]{./images/normal_means}
+\caption{\textcolor{blue}{Blue $\mu = -1$},
+Black $\mu = 0$,
+\textcolor{red}{Red $\mu = 1$}}
 \end{figure}
 \end{frame}
 
@@ -105,10 +164,14 @@ Parameters: $\mu = E[X]$, $\sigma^2 = Var(X)$\\ Support:  $(-\infty, +\infty)$
 
 
 \begin{frame}
-\frametitle{Same Mean, Different Variances}
+  \frametitle{Standard Deviation: $\sigma$ \emph{scales} PDF}
+\framesubtitle{all of these have $\mu=0$}
 
 \begin{figure}
-\includegraphics[scale = 0.62]{./images/normal_std_devs}
+\includegraphics[scale = 0.5]{./images/normal_std_devs}
+\caption{\textcolor{blue}{Blue $\sigma^2 = 4$},
+Black $\sigma^2=1$,
+\textcolor{red}{Red $\sigma^2= 1/4$}}
 \end{figure}
 \end{frame}
 
@@ -122,12 +185,11 @@ Parameters: $\mu = E[X]$, $\sigma^2 = Var(X)$\\ Support:  $(-\infty, +\infty)$
 Suppose that $X \sim N(\mu, \sigma^2)$. Then if $a$ and $b$ constants,
 $$\boxed{a + bX \sim N(a + b\mu, b^2 \sigma^2)}$$
 
-
 \begin{block}{Important}
 	\begin{itemize}
-		\item  Using what know know about expectations of linear functions, no surprise what mean and variance are.
-		\item Surprise is that the linear combination is \emph{\alert{normal}}
-		\item Linear trans.\ does not preserve, e.g.,  Bernoulli or Binomial.
+    \item  For \emph{any} RV $X$, $E[a + bX] = a +bX$ and $Var(a +bX) = b^2 X$.
+		\item Key point: linear transformation of normal is still normal!
+    \item Linear transformation of Binomial is \emph{not} Binomial!
 	\end{itemize}
 \end{block}
 
@@ -147,51 +209,6 @@ Suppose $X \sim N(\mu, \sigma^2)$ and let $Z = (X -\mu)/\sigma$. What is the dis
 \end{enumerate}
 \end{frame}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{figure}
-\includegraphics[scale = 0.2]{./images/normal_etsy1}
-\caption{Standard Normal Distribution (PDF)}
-\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Standard Normal Distribution: $N(0,1)$}
-\begin{figure}
-\includegraphics[scale = 0.2]{./images/normal_etsy2}
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Standard Normal Distribution: $N(0,1)$}
-Mean = 0, Variance = Standard Deviation = 1
-	$$f(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$$
-
-Special symbol for Standard Normal CDF (no closed form):
-	$$\Phi(x_0) = \int_{-\infty}^{x_0}\frac{1}{\sqrt{2\pi}} e^{-x^2/2}\; dx $$
-	
-R Command: $\Phi(x_0) =$\texttt{pnorm()}
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\begin{figure}
-%\includegraphics[scale = 0.2]{./images/normal_etsy_pumpkin}
-%\caption{Standard Normal PDF -- Halloween Edition}
-%\end{figure}
-%\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\begin{figure}
-%\includegraphics[scale = 0.2]{./images/normal_etsy_bat}
-%\caption{Standard Normal PDF -- Alternate Halloween Edition}
-%\end{figure}
-%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Where does the Empirical Rule come from?}
@@ -199,10 +216,33 @@ R Command: $\Phi(x_0) =$\texttt{pnorm()}
 \begin{block}{Empirical Rule}
 Approximately 68\% of observations within $\mu\pm \sigma$\\
 Approximately 95\% of observations within $\mu\pm 2 \sigma$\\
-Nearly all observations within $\mu\pm 3 \sigma$\\
+Nearly all observations within $\mu\pm 3 \sigma$
 \end{block}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{\texttt{pnorm(1)}$\approx 0.84$}
+
+\begin{figure}
+\includegraphics[scale = 0.65]{./images/middle68_1}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\texttt{pnorm(1) - pnorm(-1)}$\approx 0.84 - 0.16$}
+\begin{figure}
+\includegraphics[scale = 0.65]{./images/middle68_2}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\texttt{pnorm(1) - pnorm(-1)}$\approx 0.68$}
+\begin{figure}
+\includegraphics[scale = 0.65]{./images/middle68_3}
+\end{figure}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -213,63 +253,22 @@ Nearly all observations within $\mu\pm 3 \sigma$\\
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Middle 95\% of $N(0,1)\Rightarrow$ approx.\ $(-2,2)$}
-
-\begin{figure}
-\includegraphics[scale = 0.65]{./images/normal_middle95}
-\caption{PDF for t-Distribution}
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{More Formally...}
-$$\int_{-1}^1 \frac{1}{\sqrt{2\pi}} e^{-x^2/2}\; dx  \approx 0.68$$
-\vspace{2em}
-$$\int_{-2}^2 \frac{1}{\sqrt{2\pi}} e^{-x^2/2}\; dx  \approx 0.95$$
-\begin{alertblock}{But how do we know this?}\end{alertblock}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{$\Phi(1) =$\texttt{pnorm(1)}$\approx 0.84$}
-
-\begin{figure}
-\includegraphics[scale = 0.65]{./images/middle68_1}
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$\Phi(1) - \Phi(-1) =$\texttt{pnorm(1) - pnorm(-1)}$\approx 0.84 - 0.16$}
-\begin{figure}
-\includegraphics[scale = 0.65]{./images/middle68_2}
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$\Phi(1) - \Phi(-1) =$\texttt{pnorm(1) - pnorm(-1)}$\approx 0.68$}
-\begin{figure}
-\includegraphics[scale = 0.65]{./images/middle68_3}
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Suppose $X \sim N(0,1)$}
 \begin{eqnarray*}
-	P(-2 \leq X \leq 2) &=& \Phi(2) - \Phi(-2) \\
-		&=& \mbox{\texttt{pnorm(2) - pnorm(-2)}}\\
-		&\approx& 0.95
+	P(-1 \leq X \leq 1) &=& \mbox{\texttt{pnorm(1) - pnorm(-1)}}\\
+		&\approx& 0.683
 \end{eqnarray*}
-\pause
 \begin{eqnarray*}
-	P(-3 \leq X \leq 3) &=& \Phi(3) - \Phi(-3) \\
-		&=& \mbox{\texttt{pnorm(3) - pnorm(-3)}}\\
-		&\approx& 1
+	P(-2 \leq X \leq 2) &=& \mbox{\texttt{pnorm(2) - pnorm(-2)}}\\
+		&\approx& 0.954
+\end{eqnarray*}
+\begin{eqnarray*}
+	P(-3 \leq X \leq 3) &=& \mbox{\texttt{pnorm(3) - pnorm(-3)}}\\
+		&\approx& 0.997
 \end{eqnarray*}
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{What if $X \sim N(\mu, \sigma^2)$?}
@@ -287,59 +286,33 @@ Where $Z$ is a standard normal random variable, i.e.\ $N(0,1)$.
 \frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
 Which of these equals $P\left(Z \leq (a-\mu)/\sigma\right)$ if $Z\sim N(0,1)$?
 	\begin{enumerate}[(a)]
-		\item $\Phi(a)$
-		\item $1 - \Phi(a)$
-		\item $\Phi(a)/\sigma - \mu$
-		\item $\Phi\left(\frac{a - \mu}{\sigma}  \right)$
+    \item $\texttt{pnorm(a)}$
+    \item $1 - \texttt{pnorm(a)}$
+    \item $\texttt{pnorm(a)}/\sigma - \mu$
+    \item $\texttt{pnorm}\left(\frac{a - \mu}{\sigma}  \right)$
 		\item None of the above.
 	\end{enumerate}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{What if $X \sim N(\mu, \sigma^2)$?}
-\begin{eqnarray*}
-	P(X \leq a) &=&\ P(X - \mu \leq a - \mu)\\\\
-		&=& P\left( \frac{X-\mu}{\sigma} \leq \frac{a - \mu}{\sigma} \right)\\\\
-		&=& P\left(Z \leq  \frac{a - \mu}{\sigma}\right)\\
-		&=&\alert{\Phi\left(\frac{a - \mu}{\sigma}  \right)}\\
-		&=&\alert{ \mbox{\texttt{pnorm}}((a-\mu)/\sigma)}
-\end{eqnarray*}
-Where $Z$ is a standard normal random variable, i.e.\ $N(0,1)$.
-\end{frame}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Suppose $X \sim N(\mu, \sigma^2)$ \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-Which of these is $P(X \geq b)$?
-\begin{enumerate}[(a)]
-	\item $\Phi(b)$
-	\item $1 - \Phi\left( \frac{b - \mu}{\sigma} \right)$
-	\item $1 - \Phi(b)$
-	\item $1 - \left(\Phi(b)/\sigma - \mu\right)$
-\end{enumerate}
-
-\end{frame}
-\begin{frame}
-\frametitle{Suppose $X \sim N(\mu, \sigma^2)$}
+  \frametitle{Probability \emph{Above} a Threshold: $X \sim N(\mu, \sigma^2)$}
 \begin{eqnarray*}
-	P(X \geq b) &=&\pause 1 - P(X\leq b) =\pause 1 - P\left( \frac{X-\mu}{\sigma} \leq \frac{b-\mu}{\sigma} \right) \\ \\
-	&=&\pause 1 - P\left( Z \leq \frac{b-\mu}{\sigma} \right) = 1 - \Phi\left( \frac{b-\mu}{\sigma} \right)\\ \\
-	&=&\pause 1 -\mbox{\texttt{pnorm}}((b-\mu)/\sigma)
+	P(X \geq b) &=&1 - P(X\leq b) =1 - P\left( \frac{X-\mu}{\sigma} \leq \frac{b-\mu}{\sigma} \right) \\ \\
+	&=& 1 - P\left( Z \leq \frac{b-\mu}{\sigma} \right) \\
+	&=& 1 -\mbox{\texttt{pnorm}}((b-\mu)/\sigma)
 \end{eqnarray*}
 Where $Z$ is a standard normal random variable.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Suppose $X \sim N(\mu, \sigma^2)$}
+\frametitle{Probability of an Interval: $X \sim N(\mu, \sigma^2)$}
 
 
 \begin{eqnarray*}
-	P(a \leq X \leq b) &=& \pause P\left( \frac{a - \mu}{\sigma} \leq \frac{X - \mu}{\sigma} \leq \frac{b-\mu}{\sigma} \right)\\ \\ 
-	&=& \pause P\left( \frac{a - \mu}{\sigma} \leq Z \leq \frac{b-\mu}{\sigma} \right)\\ \\ 
-	&=& \pause \Phi\left( \frac{b-\mu}{\sigma}\right) - \Phi\left( \frac{a - \mu}{\sigma}\right)\\ \\
-	&=&\pause \mbox{\texttt{pnorm}}((b-\mu)/\sigma) -  \mbox{\texttt{pnorm}}((a-\mu)/\sigma)
+	P(a \leq X \leq b) &=&  P\left( \frac{a - \mu}{\sigma} \leq \frac{X - \mu}{\sigma} \leq \frac{b-\mu}{\sigma} \right)\\ \\ 
+	&=& P\left( \frac{a - \mu}{\sigma} \leq Z \leq \frac{b-\mu}{\sigma} \right)\\ \\ 
+	&=&\ \mbox{\texttt{pnorm}}((b-\mu)/\sigma) -  \mbox{\texttt{pnorm}}((a-\mu)/\sigma)
 \end{eqnarray*}
 Where $Z$ is a standard normal random variable.
 \end{frame}
@@ -347,41 +320,15 @@ Where $Z$ is a standard normal random variable.
 \begin{frame}
 \frametitle{Suppose $X \sim N(\mu, \sigma^2)$\hfill \includegraphics[scale = 0.05]{./images/clicker}}
 What is $P(\mu - \sigma \leq X \leq \mu + \sigma)$?
-\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Suppose $X \sim N(\mu, \sigma^2)$}
-
+\pause
 \begin{eqnarray*}
 P(\mu - \sigma \leq X \leq \mu + \sigma) &=& P\left( -1 \leq \frac{X-\mu}{\sigma} \leq 1\right)\\ \\
 	&=& P\left( -1 \leq Z \leq 1\right)\\
-	&=& \Phi(1) - \Phi(-1)\\
 	&=& \mbox{\texttt{pnorm(1)}} -  \mbox{\texttt{pnorm(-1)}}\\
 	&\approx& 0.68
 \end{eqnarray*}
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Suppose $X \sim N(\mu, \sigma^2)$\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-What is $P(\mu - 2\sigma \leq X \leq \mu + 2\sigma)$?
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Suppose $X \sim N(\mu, \sigma^2)$}
-
-\begin{eqnarray*}
-P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) &=& P\left( -2 \leq \frac{X-\mu}{\sigma} \leq 2\right)\\ \\
-	&=& P\left( -2 \leq Z \leq 2\right)\\
-	&=& \Phi(2) - \Phi(-2)\\
-	&=& \mbox{\texttt{pnorm(2)}} -  \mbox{\texttt{pnorm(-2)}}\\
-	&\approx& 0.95
-\end{eqnarray*}
-\end{frame}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
