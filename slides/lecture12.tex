@@ -118,34 +118,12 @@
   \end{block}
   \begin{block}{Properties of $N(\mu, \sigma^2)$ RV}
     \begin{itemize}
+      \item Parameters: Expected Value $= \mu$, Variance $= \sigma^2$
       \item Symmetric and bell-shaped. 
       \item Support Set $=(-\infty,\infty)$
       \item $N(0,1)$ is the special case where $\mu=0$ and $\sigma^2 = 1$. 
     \end{itemize}
   \end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{If $X\sim N(0,1)$ what is $E[\mu + \sigma X]$?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-  \begin{enumerate}[(a)]
-    \item 0
-    \item $\mu + \sigma$
-    \item $\sigma$
-    \item $\sigma^2$
-    \item $\mu$
-    \item Not enough information to determine. 
-  \end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{If $X\sim N(0,1)$ what is $Var(\mu + \sigma X)$?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-  \begin{enumerate}[(a)]
-    \item 1
-    \item $\mu + \sigma$
-    \item $\sigma$
-    \item $\mu$
-    \item Not enough information to determine. 
-  \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -209,6 +187,38 @@ Suppose $X \sim N(\mu, \sigma^2)$ and let $Z = (X -\mu)/\sigma$. What is the dis
 \end{enumerate}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Linear Combinations of \emph{Multiple Independent} Normals}
+Let $X \sim N(\mu_x, \sigma^2_x)$ independent of $Y \sim N(\mu_y, \sigma^2_y)$. Then if $a,b,c$ are constants:
+
+$$\boxed{aX + bY +c \sim N(a\mu_x + b\mu_y + c, a^2 \sigma_x^2 + b^2 \sigma_y^2)}$$
+
+
+
+\begin{block}{Important}
+	\begin{itemize}
+		\item Result assumes independence
+		\item Particular to Normal Distribution
+		\item Extends to more than two Normal RVs
+	\end{itemize}
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Suppose $X_1, X_2, \sim \mbox{iid } N(\mu, \sigma^2)$ \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+Let $\bar{X} = (X_1 + X_2)/2$. What is the distribution of $\bar{X}$?
+\begin{enumerate}[(a)]
+\item $N(\mu, \sigma^2/2)$
+\item $N(0,1)$
+\item $N(\mu, \sigma^2)$
+\item $N(\mu, 2\sigma^2)$
+\item $N(2\mu, 2\sigma^2)$
+\end{enumerate}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Where does the Empirical Rule come from?}
@@ -418,15 +428,6 @@ Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \l
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{68\% Central Interval for Standard Normal \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Suppose $X$ is a standard normal random variable. What value of $c$ ensures that $P(-c \leq X \leq c) \approx 0.68$?
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 \frametitle{95\% Central Interval for Standard Normal \hfill \includegraphics[scale = 0.05]{./images/clicker}}
 
 Suppose $X$ is a standard normal random variable. What value of $c$ ensures that $P(-c \leq X \leq c) \approx \alert{0.95}$?
@@ -467,78 +468,6 @@ An Easier Way:
 	&=&  1 - \texttt{pnorm(10, mean = 0, sd = 4)} \\ 
 	&\approx& 0.006
 	\end{eqnarray*}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-Suppose $X$ has mean $\mu_x$ variance $\sigma_x^2$ and is independent of $Y$, which has mean $\mu_y$ variance $\sigma_y^2$. Let $a,b$ be constants.
-\vspace{2em}
-
-\begin{block}{What is $E[aX + bY]$?}
-\pause
-$E[aX + bY]=a E[X] + b E[Y] = \alert{a\mu_x + b\mu_y}$
-\end{block}
-\vspace{1em}
-
-\begin{block}{What is $Var(aX + bY)$?}
-\pause
-$Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) = \alert{a^2 \sigma_x^2 + b^2 \sigma_y^2}$
-\\\alert{By independence.}
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-Now suppose $X \sim N(\mu_x, \sigma^2_x)$ independent of $Y \sim N(\mu_y, \sigma^2_y)$. Let $a,b$ be constants.
-\vspace{2em}
-
-\begin{block}{What is $E[aX + bY]$?}
-\pause
-$E[aX + bY]=a E[X] + b E[Y] = \alert{a\mu_x + b\mu_y}$
-\end{block}
-\vspace{1em}
-
-\begin{block}{What is $Var(aX + bY)$?}
-\pause
-$Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) = \alert{a^2 \sigma_x^2 + b^2 \sigma_y^2}$
-\\\alert{By independence.}
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Here's the Surprising Thing:}
-\alert{If $X$ and $Y$ are independent Normal Random Variables and $a,b$ are constants, then $aX + bY$ is \emph{also} a Normal Random Variable!}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Linear Combinations of Independent Normals}
-Let $X \sim N(\mu_x, \sigma^2_x)$ independent of $Y \sim N(\mu_y, \sigma^2_y)$. Then if $a,b,c$ are constants:
-
-$$\boxed{aX + bY +c \sim N(a\mu_x + b\mu_y + c, a^2 \sigma_x^2 + b^2 \sigma_y^2)}$$
-
-
-
-\begin{block}{Important}
-	\begin{itemize}
-		\item Result assumes independence
-		\item Particular to Normal Distribution
-		\item Extends to more than two Normal RVs
-	\end{itemize}
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Suppose $X_1, X_2, \sim \mbox{iid } N(\mu, \sigma^2)$ \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Let $\bar{X} = (X_1 + X_2)/2$. What is the distribution of $\bar{X}$?
-\begin{enumerate}[(a)]
-\item $N(\mu, \sigma^2/2)$
-\item $N(0,1)$
-\item $N(\mu, \sigma^2)$
-\item $N(\mu, 2\sigma^2)$
-\item $N(2\mu, 2\sigma^2)$
-\end{enumerate}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
