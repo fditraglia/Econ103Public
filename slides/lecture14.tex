@@ -80,14 +80,14 @@ When the bag and scale reach your team, do the following:
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Using a Random Variable to Model a Population}
+  \frametitle{Step 1: Random Variable as Model for Population}
   \framesubtitle{Treat Population as RV rather than list of objects}
 \small
   \begin{tabular}[h]{cc}
     \hline
     \begin{minipage}[t]{0.6\textwidth}
       \begin{block}{Old Way}
-       Among 138 million voters, 69 million will vote for Hillary Cinton\\
+       Among 138 million voters, 69 million will vote for Hillary Clinton\\
       \end{block}
     \end{minipage}
     &
@@ -116,23 +116,9 @@ When the bag and scale reach your team, do the following:
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Population Size is Irrelevant Under Random Sampling}
-  \framesubtitle{Though we'll see sample size is crucial.}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{(Sample) Statistic}
-
-  Any function of the data \emph{alone}, e.g.\ sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$. Typically used to estimate an unknown population parameter: e.g.\ $\bar{x}$ is an estimate of $\mu$.
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{(Simple) Random Sample}
+\frametitle{Recall: (Simple) Random Sample}
 
 \begin{block}{Definition in Words}
 Select a sample of $n$ objects from a population in such a way that:
@@ -153,6 +139,77 @@ Select a sample of $n$ objects from a population in such a way that:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+  \frametitle{Random Sample Means \emph{Sample With Replacement}}
+
+
+\begin{itemize}
+  \item Without replacement $\Rightarrow$ dependence between samples
+  \item But sample small relative to popn.\ $\Rightarrow$ dependence negligible.
+  \item This means our candy experiment (in progress) isn't bogus.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Step 2: iid RVs Represent Random Sampling from Popn.}
+  \begin{block}{Who Will Vote for Hillary Clinton Example}
+   Poll random sample of 1000 registered voters:
+   $$X_1, \hdots, X_{1000} \sim \mbox{ iid Bernoulli}(p = 1/2)$$
+  \end{block}
+  \begin{block}{Heights of US Males Example}
+   Measure the heights of random sample of 50 US males:
+   $$Y_1, \hdots, Y_{50}  \sim \mbox{ iid } N(\mu = 69, \sigma^2 = 36)$$
+  \end{block}
+
+  \begin{block}{Key Question}
+   What do the properties of the population imply about the properties of the sample? 
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{What does the population imply about the sample? \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+Suppose that exactly half of US voters plan to vote for Hillary Clinton. 
+If you poll a random sample of 4 voters, what is the probability that \emph{none of them} are Hillary supporters?
+
+\pause
+
+$$(1/2)^4 = 1/16 = 0.0625$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{What does the population imply about the sample? \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+Suppose that exactly half of US voters plan to vote for Hillary Clinton. 
+If you poll a random sample of 4 voters, what is the probability that \emph{exactly half} are Hillary supporters? 
+
+\pause
+
+$${4 \choose 2} \left( 1/2 \right)^2 \left( 1/2 \right)^2 = 3/8 = 0.375$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{What does the population imply about the sample? \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+Suppose that exactly half of US voters plan to vote for Hillary Clinton. 
+If you poll a random sample of 4 voters, what is the probability that \emph{exactly half} are Hillary supporters? 
+
+\pause
+
+$${4 \choose 2} \left( 1/2 \right)^2 \left( 1/2 \right)^2 = 3/8 = 0.375$$
+\end{frame}
+\begin{frame}
+  \frametitle{Population Size is Irrelevant Under Random Sampling}
+  \framesubtitle{Though we'll see sample size is crucial.}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{(Sample) Statistic}
+
+  Any function of the data \emph{alone}, e.g.\ sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$. Typically used to estimate an unknown population parameter: e.g.\ $\bar{x}$ is an estimate of $\mu$.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Random Sampling}
 In other words:
 	$$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$$
@@ -164,20 +221,6 @@ Sample is drawn randomly, so sample statistics are \emph{also random}. Use what 
 \end{block}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sample with or Without Replacement?}
-
-\begin{itemize}
-  \item Random sampling requires that we draw \emph{with replacement}
-  \item Without replacement $\Rightarrow$ dependence between samples
-  \item Does this mean our candy experiment (in progress) is bogus?
-\end{itemize}
-
-\vspace{1em}
-
-\alert{The amount of dependence created by drawing without replacement is negligible if the sample is small relative to the population.}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
