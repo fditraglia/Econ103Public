@@ -48,6 +48,90 @@ A sample estimator $\widehat{\theta}_n$ of a population parameter $\theta_0$ is 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\begin{center}
+\huge Why $(n-1)$ for sample variance?
+\end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Why $(n-1)$ for sample variance?}
+\alert{We will show that having $n-1$ in the denominator ensures:}
+$$E[S^2] =E\left[ \frac{1}{n-1} \sum_{i=1}^n \left(X_i - \bar{X}\right)^2\right] = \sigma^2$$
+\alert{under random sampling.}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Why $(n-1)$ for sample variance?}
+\begin{block}{Step \# 1 -- Tedious but straightforward algebra gives:}
+	$$\sum_{i=1}^n \left(X_i - \bar{X}\right)^2 = \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right] - n(\bar{X}-\mu)^2$$
+\end{block}
+\alert{You are not responsible for proving Step \#1 on an exam.}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\scriptsize
+\begin{eqnarray*}
+	\sum_{i=1}^n \left(X_i - \bar{X}\right)^2 &=& \sum_{i=1}^n \left(X_i - \mu + \mu - \bar{X}\right)^2 = \sum_{i=1}^n \left[(X_i -\mu) - (\bar{X} - \mu)\right]^2\\
+		&=&\sum_{i=1}^n \left[(X_i -\mu)^2 - 2(X_i -\mu)(\bar{X} - \mu) + (\bar{X} - \mu)^2\right]\\
+		&=&\sum_{i=1}^n (X_i -\mu)^2 - \sum_{i=1}^n 2(X_i -\mu)(\bar{X} - \mu) + \sum_{i=1}^n (\bar{X} - \mu)^2\\
+		&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu) \sum_{i=1}^n (X_i -\mu)+n(\bar{X} - \mu)^2\\
+				&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu) \left( \sum_{i=1}^n X_i- \sum_{i=1}^n \mu \right)+n(\bar{X} - \mu)^2\\
+				&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu)(n\bar{X}-n\mu)+n(\bar{X} - \mu)^2\\
+				&=&\left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2n(\bar{X} - \mu)^2+n(\bar{X} - \mu)^2\\
+				&=&\left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - n(\bar{X} - \mu)^2
+\end{eqnarray*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Why $(n-1)$ for sample variance?}
+\begin{block}{Step \# 2 -- Take Expectations of Step \# 1:}
+	\begin{eqnarray*}
+		E\left[\sum_{i=1}^n \left(X_i - \bar{X}\right)^2\right] &=& E\left[\left\{  \sum_{i=1}^n \left(X_i - \mu\right)^2\right\} - n(\bar{X}-\mu)^2\right]\\
+			&=&\pause E\left[ \sum_{i=1}^n \left(X_i - \mu\right)^2\right] -E\left[ n(\bar{X}-\mu)^2\right]\\
+			&=&\pause  \sum_{i=1}^n E\left[\left(X_i - \mu\right)^2\right] -n\;E\left[ (\bar{X}-\mu)^2\right]\\
+	\end{eqnarray*}
+\end{block}
+\alert{Where we have used the linearity of expectation.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Why $(n-1)$ for sample variance?}
+\begin{block}{Step \# 3 -- Use assumption of random sampling:}
+\alert{$X_1, \hdots, X_n \sim \mbox{ iid}$ with mean $\mu$ and variance $\sigma^2$}
+	\begin{eqnarray*}
+		E\left[\sum_{i=1}^n \left(X_i - \bar{X}\right)^2\right] &=&  \sum_{i=1}^n E\left[\left(X_i - \mu\right)^2\right] -n\;E\left[ (\bar{X}-\mu)^2\right]\\
+		&=&  \pause \sum_{i=1}^n Var(X_i) -n\;E\left[ (\bar{X}-E[\bar{X}])^2\right]\\
+		&=& \pause   \sum_{i=1}^n Var(X_i) -n\;Var(\bar{X})= n\sigma^2 - \sigma^2\\
+		&=& \pause (n-1)\sigma^2
+	\end{eqnarray*}
+\end{block}
+\alert{Since we showed earlier today that  $E[\bar{X}]=\mu$ and $Var(\bar{X})=\sigma^2/n$ under this random sampling assumption.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Why $(n-1)$ for sample variance?}
+\begin{block}{Finally -- Divide Step \# 3 by $(n-1)$:}
+	\begin{eqnarray*}
+		E[S^2] &=& E\left[\frac{1}{n-1}\sum_{i=1}^n \left(X_i - \bar{X}\right)^2\right]= \frac{(n-1)\sigma^2}{n-1} = \sigma^2
+	\end{eqnarray*}
+\end{block}
+\alert{Hence, having $(n-1)$ in the denominator ensures that the sample variance is ``correct on average,'' that is \emph{unbiased}.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{A Different Estimator of the Population Variance}
 
@@ -61,120 +145,6 @@ E[\widehat{\sigma}^2 ] = E\left[\frac{1}{n}\sum_{i=1}^n \left(X_i - \bar{X}\righ
 \vspace{0.75em}
 $\displaystyle E[\widehat{\sigma}^2 ] - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n}  - \sigma^2 = \frac{(n-1)\sigma^2}{n}  - \frac{n\sigma^2}{n} = -\sigma^2/n$
 \end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Procedure versus Result of the Procedure}
-\begin{block}{Procedure = Random Variable}
-\begin{itemize}
-\item $X_1, \hdots, X_n$ represents \alert{procedure of taking a random sample}. 
-\item $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$ represents \alert{procedure of taking sample mean}  
-\end{itemize}
-\end{block}
-\pause
-\begin{block}{Sampling Dist.\ = Probabilistic Behavior of Procedure}
-If I repeat the procedure of taking the mean of a random sample over and over for many samples, what relative frequencies do I get \alert{for the sample means?}
-\end{block}
-
-\pause
-\begin{block}{Result of Procedure = Constant}
- \begin{itemize}
-\item $x_1, \hdots, x_n$ is the  \alert{result of sampling}, the observed data. 
-\item $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ is the \alert{result of taking sample mean}  
-\end{itemize}
-\end{block}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Procedure? Long-Run Relative Freqencies?}
-
-Why would I advise you not to play the lottery?
-\pause
-	\begin{itemize}
-		\item You may sometimes win, but if you play the lottery many times, on average you will lose money. \pause
-		\item Let $X$ be a random variable representing lottery winnings. I am arguing that $E[X]$ - Cost of Ticket $< 0$
-	\end{itemize}
-\pause
-\begin{block}{Procedure = Random Variable}
-Making a habit of playing the lottery. Expectation is negative.
-\end{block}
-\pause
-\begin{block}{Result of that Procedure = Constant}
-How much you win in a \emph{particular} lottery. Could be greater than or less than cost of ticket in any \emph{individual} instance.
-\end{block}
-\end{frame}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sampling Distribution of $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$}
-
-\begin{center}
-\setlength{\unitlength}{1cm}
-\begin{picture}(5,7)
-\put(-2,6){\framebox(9,1){Choose $n$ Students from Class List with Replacement}}
-
-\pause
-
-\put(0.5,6){\vector(-1,-1){1.5}}
-\put(-2.3,3.7){\framebox(2.5,0.65){Sample 1}}
-
-\pause
-
-\put(-1,3.5){\vector(0,-1){1}}
-\put(-1.1,1.9){\makebox{\small $\bar{x}_1$}}
-
-\pause
-
-\put(2,6){\vector(0,-1){1.5}}
-\put(0.7,3.7){\framebox(2.5,0.65){Sample 2}}
-
-\pause
-
-\put(2,3.5){\vector(0,-1){1}}
-\put(1.9,1.9){\makebox{\small $\bar{x}_2$}}
-
-\pause
-
-\put(3.8,4){\makebox{...}}
-\put(3.8,2){\makebox{...}}
-
-\pause
-
-\put(4.5,6){\vector(1,-1){1.5}}
-\put(4.8,3.7){\framebox(2.5,0.65){Sample M}}
-
-\pause
-
-\put(6,3.5){\vector(0,-1){1}}
-\put(5.9,1.9){\makebox{\small $\bar{x}_M$}}
-
-\pause
-
-\put(-1,1){\makebox{\small Repeat $M$ times $\rightarrow$  get $M$ different sample means}}
-
-\pause
-
-\put(-1.1,0.4){\makebox{\small \alert{Sampling Dist: long run relative frequencies of the $\bar{x}_i$}}}
-
-\end{picture}
-\end{center}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Height of Econ 103 Students}
-\begin{figure}
-\includegraphics[scale = 0.4]{./images/height_hist}
-\includegraphics[scale = 0.4]{./images/height_mean_n_5}
-\caption{Left: Population, Right: Sampling distribution of $\bar{X}_5$}
-\end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
