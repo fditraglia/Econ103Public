@@ -173,7 +173,7 @@ If you poll a random sample of 4 voters, what is the probability that \emph{none
 
 \pause
 
-$$(1/2)^4 = 1/16 = 0.0625$$
+\alert{$$(1/2)^4 = 1/16 = 0.0625$$}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -183,22 +183,42 @@ If you poll a random sample of 4 voters, what is the probability that \emph{exac
 
 \pause
 
-$${4 \choose 2} \left( 1/2 \right)^2 \left( 1/2 \right)^2 = 3/8 = 0.375$$
+\alert{$${4 \choose 2} \left( 1/2 \right)^2 \left( 1/2 \right)^2 = 3/8 = 0.375$$}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{What does the population imply about the sample? \hfill\includegraphics[scale = 0.05]{./images/clicker}}
-Suppose that exactly half of US voters plan to vote for Hillary Clinton. 
-If you poll a random sample of 4 voters, what is the probability that \emph{exactly half} are Hillary supporters? 
+  \frametitle{The rest of the probabilities\dots}
+  Suppose that exactly half of US voters plan to vote for Hillary Clinton and we poll a random sample of 4 voters.
+  \begin{eqnarray*}
+    P\left( \mbox{Exactly 0 Hillary Voters in the Sample} \right) &=& 0.0625\\
+    P\left( \mbox{Exactly 1 Hillary Voters in the Sample} \right) &=& 0.25\\
+    P\left( \mbox{Exactly 2 Hillary Voters in the Sample} \right) &=& 0.375\\
+    P\left( \mbox{Exactly 3 Hillary Voters in the Sample} \right) &=& 0.25\\
+    P\left( \mbox{Exactly 4 Hillary Voters in the Sample} \right) &=& 0.0625 
+  \end{eqnarray*}
 
-\pause
-
-$${4 \choose 2} \left( 1/2 \right)^2 \left( 1/2 \right)^2 = 3/8 = 0.375$$
+  \vspace{1em}
+  \alert{You should be able to work these out yourself. If not, review the lecture slides on the Binomial RV.}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Population Size is Irrelevant Under Random Sampling}
   \framesubtitle{Though we'll see sample size is crucial.}
 
+  \begin{block}{Crucial Point}
+    \emph{None} of the preceding calculations involved the population size: I didn't even tell you what it was!
+    We'll never talk about population size again in this course.
+  \end{block}
+
+  \begin{block}{Why?}
+    Since we're drawing with replacement it doesn't matter how many \emph{total voters} there are: all that matters is the \emph{proportion} of Hillary supporters in the population and the number of samples we draw. 
+  \end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Step 3: Random Sampling $\Rightarrow$ \emph{Sample Statistics} are RVs} 
+  Sample proportions in Hillary election example.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
