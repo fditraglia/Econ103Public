@@ -1,0 +1,309 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\boxedpoints
+\pointsinmargin
+
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Second Midterm Examination, Page \thepage\ of \numpages}
+              {March 24th, 2015}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large Second Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} March 24th, 2015}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{questions}
+  \question For each of the following parts, simply write down the answer: no explanation is needed.
+  \begin{parts}
+    \part[3] If $X_1, \hdots, X_n \sim \mbox{ iid}$ with mean $\mu$ and variance $\sigma^2$, what is $Var(\bar{X}_n)$?
+    \begin{solution}[0.8in]
+      $\sigma^2/n$
+    \end{solution}
+    \part[3] Suppose $X_1, \hdots, X_n \sim \mbox{iid } N(\mu, \sigma^2)$. 
+    Write down an expression for the approximate 95\% CI for $\mu$ if $\sigma$ is known.
+    \begin{solution}[0.8in]
+      $\bar{X}_n \pm 2 \times \sigma/\sqrt{n}$
+    \end{solution}
+    \part[3] What is the median of a normal RV with mean -4 and variance 36?
+    \begin{solution}[0.8in]
+      By symmetry: -4
+    \end{solution}
+    \part[3] Write down the pmf of a Binomial$(10,1/3)$ RV.
+    \begin{solution}[0.8in]
+      $p(x) = {10 \choose x} (1/3)^x (2/3)^{10 - x}$
+    \end{solution}
+    \part[3] Suppose that $X$ is a continuous RV that is equally likely to take on any value in $[-2,2]$ but never takes on a value outside this range.
+    Write down its pdf.
+    \begin{solution}[0.8in]
+      $f(x)=1/4$ on $[-2,2]$, zero otherwise.
+    \end{solution}
+    \part[3] Write down a single line of R code to make 50 random draws from a normal distribution with mean -1 and standard deviation 10. 
+    \begin{solution}[0.8in]
+      \texttt{rnorm(50, -1, 10)}
+    \end{solution}
+    \part[3] Suppose $Z\sim N(0,1)$. Write a single line of R code to calculate the value of $c$ such that $P(-c \leq Z \leq c) = 0.8$.
+    \begin{solution}[0.8in]
+      \texttt{qnorm(0.9)}
+    \end{solution}
+    \part[3] What is the support set of a Binomial$(5,1/2)$ RV?
+    \begin{solution}[0.75in]
+      $\left\{ 0, 1, 2, 3, 4, 5 \right\}$
+    \end{solution}
+    \part[3] Write a single line of R code to calculate the 70th percentile of a normal RV with mean -1 and variance 4.
+    \begin{solution}[0.8in]
+      \texttt{qnorm(0.7, mean = -1, sd = 2)}
+    \end{solution}
+    \part[3] Calculate the approximate value of $P\left( Z > 3 \right)$ if $Z \sim N(\mu = 1, \sigma^2 = 4)$.
+    \begin{solution}[0.8in]
+      $P(Z>3) = P\left( \left[ Z-1 \right]/2 > 1 \right)\approx 0.16$
+    \end{solution}
+  \end{parts}
+
+
+\question Suppose $X_1, X_2, X_3 \sim \mbox{ iid } N(0,1)$. 
+For each of the following parts, simply write down the answer: no explanation is needed.
+\begin{parts}
+  \part[4] What kind of random variable is $X_1 + X_2 + X_3$? 
+  What is its support and what are the values of its parameters?
+  \begin{solution}[0.8in]
+    Normal with mean zero and variance 3. 
+    Its support is $(-\infty, \infty)$.
+  \end{solution}
+  \part[4] What kind of random variable is $X_1^2 + X_2^2 + X_3^2$? 
+  What is its support and what are the values of its parameters?
+  \begin{solution}[0.8in]
+    $\chi^2$ with 3 degrees of freedom.
+    Its support is $[0, \infty)$ or equivalently $(0,\infty)$ since $P(X_1^2 + X_2^2 + X_3^2 = 0) = 0$.
+  \end{solution}
+  \part[4] Write a single line of R code to calculate the median of $X_1^2 + X_2^2 + X_3^2$.
+  \begin{solution}[0.8in]
+    \texttt{qchisq(0.5, df = 3)}
+  \end{solution}
+  \part[4] What kind of random variable is $X_1 /\sqrt{\left( X_2^2 + X_3^2 \right)/2}$? 
+  What is its support and what are the values of its parameters?
+  \begin{solution}[0.8in]
+    $t$ with 2 degrees of freedom. 
+    Its support is $\left( -\infty,\infty \right)$.
+  \end{solution}
+  \part[4] Write a single line of R code to calculate $P\left[X_1 /\sqrt{\left( X_2^2 + X_3^2 \right)/2} > 2\right]$.
+  \begin{solution}[0.8in]
+    \texttt{1 - pt(2, df = 2)}
+  \end{solution}
+\end{parts}
+
+
+
+  \question Suppose $X \sim \mbox{Uniform}(0,1)$ and let $A$ be the \emph{area} of a circle with radius equal to $X$. 
+   Recall that the area of a circle with radius $r$ is $\pi r^2$.
+  \begin{parts}
+    \part[5] Calculate $E[X]$.  
+    \begin{solution}[2in]
+        $E[X] = \int_{0}^{1} x \; dx = \left. (x^2/2) \right|_0^1 =  1/2$
+      \end{solution}
+    \part[5] Calculate $E[A]$.
+    \begin{solution}[2in]
+      $E[A] = E[\pi X^2] = \pi E[X^2] = \pi\int_{0}^{1} x^2  \; dx = \pi/3$
+    \end{solution}
+    \part[5] Suppose I constructed a circle with radius equal to $E[X]$. 
+    Would its area equal $E[A]$? Why or why not? Explain briefly.
+    \begin{solution}[2in]
+      No: in general the expected value of a function is not equal to the function of the expected value.
+      Here, $E[\pi X^2]\neq \pi E[X]^2$ -- the first of these equals $\pi/3$ while the second equals $\pi/4$.
+    \end{solution}
+    \part[5] Calculate $Var(A)$. You may leave your answer in terms of $\pi$. 
+    \begin{solution}[2.75in]
+      \begin{eqnarray*}
+        Var(A) &=&  E[A^2] - E[A]^2 = E\left[ \pi^2 X^4 \right] - \left( \pi/3 \right)^2 \\
+        &=& \pi^2 \int_0^1 x^4 \; dx - \pi^2/9 \\
+      &=& \pi^2 \cdot \left. \frac{x^5}{5} \right|_0^1 - \pi^2/9 = \pi^2\left( 1/5 - 1/9 \right) = 4\pi^2/45
+      \end{eqnarray*}
+    \end{solution}
+  \end{parts}
+
+  \question Let $X$ and $Y$ be two random variables with covariance $\sigma_{XY}$ and variances $\sigma_{X}^2$ and $\sigma_{Y}^2$ where $E[X]=E[Y]=0$.
+  Define $\beta = \sigma_{XY}/\sigma_{X}^2$ and $Z = Y - \beta X$.
+  \begin{parts}
+    \part[4] Is $\beta$ a random variable or a constant? Explain briefly.
+    \begin{solution}[1.25in]
+      A constant: it's a function parameters, which are constants.
+    \end{solution}
+    \part[4] Is $Z$ a random variable or a constant? Explain briefly.
+    \begin{solution}[1.25in]
+      A random variable: it's a function of the RVs $Y$ and $X$.
+    \end{solution}
+    \part[5] Calculate $E[Z]$.
+    \begin{solution}[1.75in]
+      $E[Z] = E[Y - \beta X] = E[Y] - \beta E[X] = 0$
+    \end{solution}
+    \part[12] Calculate $Cov(X,Z)$.
+    \begin{solution}[2.75in]
+      Since both $X$ and $Z$ have zero mean,
+      \begin{eqnarray*}
+        Cov(X,Z) &=& E[XZ] = E\left[ X\left( Y - \beta X \right) \right]\\
+        &=& E[XY] - \beta E[X^2] = Cov(X,Y) - \beta Var(X) \\
+        &=& \sigma_{XY} - \frac{\sigma_{XY}}{\sigma_{X}^2} \cdot \sigma_X^2 = 0
+      \end{eqnarray*}
+      using the fact that $E[X]=E[Y]=0$ and the definition of $\beta$.
+    \end{solution}
+    %\part[12] Which is larger: $Var(Z)$ or $Var(Y)$? Prove your answer.
+    %\begin{solution}
+      %\begin{eqnarray*}
+        %Var(Z) &=& E[Z^2] = E\left[ (Y - \beta X)^2 \right]\\
+      %&=& E\left[ Y^2 \right] - 2\beta E\left[ XY \right] + \beta^2 E[X^2]\\
+      %&=&  \sigma_{Y}^2- 2 \frac{\sigma_{XY}}{\sigma_X^2} \cdot \sigma_{XY} + \left( \frac{\sigma_{XY}}{\sigma^2_X} \right)^2 \sigma_X^2\\
+        %&=& \sigma_{Y}^2- 2 \frac{\sigma_{XY}^2}{\sigma_X^2} +  \frac{\sigma_{XY}^2}{\sigma^2_X}  \\
+        %&=& \sigma_Y^2 - \frac{\sigma_{XY}^2}{\sigma_X^2}
+      %\end{eqnarray*}
+      %The covariance $\sigma_{XY}$ can be positive, negative, or zero. 
+      %the \emph{squared covariance} $\sigma_{XY}^2$, however, can only be positive or zero. 
+      %Since $\sigma^2_X > 0$ we see that $Var(Z) \leq Var(Y)$ with equality if and only if $\sigma_{XY}=0$. 
+    %\end{solution}
+  \end{parts}
+
+
+  \question Mallesh wants to know the proportion $p$ of Penn undergraduates who smoke cigarettes, so he interviews a random sample of $n$ students.
+  Let $X_i$ be a random variable that indicates whether the $i^{th}$ person in the sample is \emph{truly} a smoker: 0 = No, 1 = Yes.
+  Because of social stigma, conditional on being a smoker, person $i$ will \emph{lie} and claim to be a non-smoker with probability $q$ when interviewed.
+  Conditional on being a non-smoker, person $i$ always tells the truth when interviewed.
+  Let $Y_i$ be a random variable that indicates whether the $i^{th}$ person in the sample \emph{claims} to be a smoker: 0 = No, 1 = Yes.
+  \begin{parts}
+    \part[12] For a single individual $i$, write the joint distribution of $X_i$ and $Y_i$ in tabular form, arranging $X_i$ in the \emph{rows} and $Y_i$ in the \emph{columns} of your table.
+    Your answer should be expressed in terms of $p$ and $q$.
+    \begin{solution}[3.25in]
+        We construct the table of joint probabilities using the conditional pmf of $Y_i$ given $X_i$. 
+        We have:
+        \begin{eqnarray*}
+          P(X_i=0, Y_i=0) &=&  P(Y_i=0|X_i=0)P(X_i=0) = 1-p\\
+          P\left( X_i=0, Y_i=1 \right) &=&  P\left( Y_i = 1 | X_{i} =0 \right)P(X_i=0) = 0\\
+          P\left( X_i = 1, Y_i = 0 \right) &=& P(Y_i = 0|X_i = 1)P(X_i=1) =  qp \\
+          P\left( X_i = 1, Y_i = 1 \right) &=& P(Y_i = 1|X_i = 1)P(X_i=1) = (1-q)p 
+        \end{eqnarray*}
+			\begin{center}
+				\begin{tabular}{|cc|cc|}
+				\hline
+				&&\multicolumn{2}{c|}{$Y_i$}\\
+				&& 0 & 1\\
+				\hline
+				\multirow{2}{*}{$X_i$}
+				&0& $1-p$ & 0\\
+				&1& $qp$& $(1-q)p$\\
+				\hline
+				\end{tabular}
+			\end{center}
+    \end{solution}
+    \part[4] Using your answer to the preceding, calculate the marginal pmf of $Y_i$.
+    \begin{solution}[1.75in]
+      Summing over the entries in each \emph{column} of the table, we have, $P(Y_i = 0) = [1- (p - qp)]$ and $P(Y_i = 1) = (p - qp)$.
+    \end{solution}
+    \part[6] Using your answers to the preceding two parts, calculate $Cov(X_i, Y_i)$.
+    \begin{solution}[2.75in]
+    We proceed using the shortcut formula.
+    First, since $E[X_i] = p$ and $E[Y_i]=(p-qp)$, $E[X_i]E[Y_i] = p^2(1-q)$.
+    To calculate $E[X^2]$, we only need to look at the lower right entry in the joint pmf table: all other terms in the sum are zero.
+    Thus: $Cov(X_i, Y_i) = p(1-q) - p^2(1-q)= p(1-p)(1-q)$.
+    \end{solution}
+    \part[8] Since some students may be lying to him, Mallesh does \emph{not} observe $X_1, \hdots, X_n$.
+    He only observes $Y_1, \hdots, Y_n$.
+    If Mallesh uses the sample mean of $Y_1, \hdots, Y_n$ to estimate $p$, will this procedure be unbiased?
+    If so, prove it.
+    If not, will this procedure produce an overestimate or an underestimate?
+    Why?
+    \begin{solution}[2.75in]
+      $E\left[ \left( Y_1 + \cdots + Y_n \right)/n \right] = E\left[ Y_i \right]= p - qp$. 
+      Since the expected value of this estimator is not $p$, Mallesh's procedure is biased. 
+      In particular, the bias is: $p - (p - qp) = -qp$. 
+      Unless $q=0$, Mallesh will tend to \emph{underestimate} the true fraction of smokers.
+      This is because some smokers lie and say that they are non-smokers, but no non-smokers lie and say they are smokers.
+    \end{solution}
+  \end{parts}
+
+
+
+  \question Suppose we have a dataframe called \texttt{StudentData} with two columns: \texttt{height} and \texttt{handspan}.
+  Each row in the dataset corresponds to a student who took Econ 103 at Penn over the past three years: \texttt{height} gives her height in inches while \texttt{handspan} gives her handspan in centimeters.
+  In the spirit of the sampling experiment I discussed in class, which you replicated on Problem Set \#7, suppose we want to examine the sampling distribution of the \emph{sample covariance} between height and handspan using a Monte Carlo simulation in which we treat \texttt{StudentData} as a \emph{population} from which we repeatedly draw random samples.
+  \begin{parts}
+    \part[10] Write an R function called \texttt{cov.sim} that takes a random sample of \texttt{n} \emph{rows} of \texttt{StudentData} and returns the sample correlation between \texttt{height} and \texttt{handspan} based on the sampled rows.
+    Your function should take a single input argument: \texttt{n}.
+    You may assume that there are no missing values.
+    \begin{solution}[3in]
+\begin{verbatim}
+cov.sim <- function(n){
+  sim.rows <- sample(1:nrow(StudentData), n, replace = TRUE)
+  sim.data <- StudentData[sim.rows,]
+  return(cov(sim.data$height, sim.data$handspan))
+}
+\end{verbatim}
+  \end{solution}
+  \part[5] Using your function from the previous part, write R code to plot a histogram of the sampling distribution of the sample covariance with a sample size of 20, based on 1000 simulation replications.
+  \begin{solution}[2in]
+\begin{verbatim}
+sims <- replicate(1000, cov.sim(20))
+hist(sims)
+\end{verbatim}
+  \end{solution}
+  \end{parts}
+
+
+
+\end{questions}
+
+
+\end{document}
