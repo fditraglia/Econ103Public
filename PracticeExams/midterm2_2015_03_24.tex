@@ -256,7 +256,7 @@ For each of the following parts, simply write down the answer: no explanation is
     \begin{solution}[2.75in]
     We proceed using the shortcut formula.
     First, since $E[X_i] = p$ and $E[Y_i]=(p-qp)$, $E[X_i]E[Y_i] = p^2(1-q)$.
-    To calculate $E[X^2]$, we only need to look at the lower right entry in the joint pmf table: all other terms in the sum are zero.
+    To calculate $E[XY]$, we only need to look at the lower right entry in the joint pmf table: all other terms in the sum are zero.
     Thus: $Cov(X_i, Y_i) = p(1-q) - p^2(1-q)= p(1-p)(1-q)$.
     \end{solution}
     \part[8] Since some students may be lying to him, Mallesh does \emph{not} observe $X_1, \hdots, X_n$.
@@ -268,7 +268,7 @@ For each of the following parts, simply write down the answer: no explanation is
     \begin{solution}[2.75in]
       $E\left[ \left( Y_1 + \cdots + Y_n \right)/n \right] = E\left[ Y_i \right]= p - qp$. 
       Since the expected value of this estimator is not $p$, Mallesh's procedure is biased. 
-      In particular, the bias is: $p - (p - qp) = -qp$. 
+      In particular, the bias is: $(p - qp) - p = -qp$. 
       Unless $q=0$, Mallesh will tend to \emph{underestimate} the true fraction of smokers.
       This is because some smokers lie and say that they are non-smokers, but no non-smokers lie and say they are smokers.
     \end{solution}
