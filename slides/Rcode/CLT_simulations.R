@@ -19,7 +19,7 @@ hist(replicate(N.sims, mean(runif(20))), xlab = '', ylab = '', main = 'Sample Me
 
 
 #Bernoulli
-plot(0:1, c(0.7, 0.3), type = 'h',bty = 'n', xlab = 'x', ylab = 'p(x)', main = 'Bernoulli(0.3) Population', xlim = c(-1, 2), ylim = c(0,1))
+plot(0:1, c(0.7, 0.3), type = 'h', bty = 'n', xlab = 'x', ylab = 'p(x)', main = 'Bernoulli(0.3) Population', xlim = c(-1, 2), ylim = c(0,1))
 hist(replicate(N.sims, rbinom(1, size = 20, 0.3)/n), xlab = '', ylab = '', main = 'Sample Mean - Ber(0.3) Pop (n = 20)')
 
 
