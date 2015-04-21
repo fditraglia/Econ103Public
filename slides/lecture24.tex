@@ -461,29 +461,25 @@ The value of the $Y$-variable that we would \emph{predict} for person $i$ using 
 
 
 \begin{block}{Residual $\widehat{\epsilon}_i$}
-The difference between the actual value of the $Y$-variable that we observed for person $i$ ($y_i$) and the value predicted from our regression model: \alert{$\widehat{\epsilon}_i = y_i - \widehat{y}_i$}. The residuals are \emph{stand-ins} for the errors $\epsilon_i$, which we don't observe.
+  A fancier name for person i's \emph{vertical deviation} from the regression line: \alert{$\widehat{\epsilon}_i = y_i - \widehat{y}_i$}. 
 \end{block}
+
+\vspace{1em}
+\alert{The residuals are \emph{stand-ins} for the errors $\epsilon_i$, which we don't observe.}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Residual Standard Deviation: $\widehat{\sigma}$}
-	$$\widehat{\sigma}  = \sqrt{\frac{\sum_{i=1}^n \widehat{\epsilon}_i^2}{n -k}}$$ 
 	\begin{itemize}
-		\item 	Average distance observations fall from regression line.
-		\item Summarizes scale of the residuals $\widehat{\epsilon}_i$ 
+    \item Idea: use residuals $\widehat{\epsilon}$ to estimate $\sigma$:
+	$$\widehat{\sigma}  = \sqrt{\frac{\sum_{i=1}^n \widehat{\epsilon}_i^2}{n -k}}$$ 
+		\item Measures avg.\ distance of $y_i$ from regression line.
 				\begin{itemize}
-					\item Suppose model predicting children's test scores has $\widehat{\sigma}=16$. This model predicts to an accuracy of about 16 points. 
+					\item E.g.\ if $Y$ is points scored on a test and $\widehat{\sigma}=16$, the regression predicts to an accuracy of about 16 points. 
 				\end{itemize}
-	\item A  measure of ``unexplained variation'' in $Y$
-		\begin{itemize}
-			\item Higher values means there is more unexplained variation in $Y$ 
-		\end{itemize}
 	\item Same units as $Y$ (Exam practice: verify this) 
-	\item Denominator  ($n-k$) = ``degrees of freedom'' of regression
-		\begin{itemize}
-			\item (\# Datapoints - \# of $X$ variables) 
-		\end{itemize}
+	\item Denominator  ($n-k$) = (\# Datapoints - \# of $X$ variables) 
 	\end{itemize}
 
 \end{frame}
@@ -496,16 +492,17 @@ The difference between the actual value of the $Y$-variable that we observed for
 \frametitle{Proportion of Variance Explained: $R^2$}
 \framesubtitle{aka Coefficient of Determination}
 	\begin{eqnarray*}
-		R^2 =  1 - \left[\frac{\sum_{i=1}^n \widehat{\epsilon}_i^2}{\sum_{i=1}^n (y_i - \bar{y})^2} \right]  \approx 1 - \frac{\widehat{\sigma^2}}{s_y^2}
+		R^2 \approx 1 - \frac{\widehat{\sigma^2}}{s_y^2}
 	\end{eqnarray*}
 		\begin{itemize}
-			\item Measures proportion of variance in $Y$ explained by the model. 
+			\item Measures proportion of variance in $Y$ 
+        ``explained'' by the regression.
 			\begin{itemize}
 			\item Higher value means greater proportion explained 
 			\end{itemize}
 			\item Unitless, between 0 and 1 
-			\item People often claim ``you want $R^2$ to be as high as possible'' but this is not quite accurate... 
-			\item \alert{For simple linear regression $R^2 = (r_{xy})^2$ and this where its name comes from!}
+      \item Tricker to interpret than $\widehat{\sigma}$ so we won't worry too much about it. 
+			\item \alert{Important Fact: for simple linear regression $R^2 = (r_{xy})^2$ and this where its name comes from!}
 		\end{itemize}
 \end{frame}
 
@@ -567,40 +564,5 @@ residual sd = 3.56, R-Squared = 0.40
 
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
