@@ -456,23 +456,23 @@ residual sd = 3.56, R-Squared = 0.40
 \frametitle{Fitted Values and Residuals}
 
 \begin{block}{Fitted Value $\widehat{y}_i$}
-The value of the $Y$-variable that we would \emph{predict} for person $i$ using our estimated regression coefficients, given her values for all of the $X$-variables: \alert{$\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_{i1} + \hdots + \widehat{\beta}_k x_{ik}$}
+Predicted $y$-value for person $i$ given her $x$-variables using estimated regression coefficients: \alert{$\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_{i1} + \hdots + \widehat{\beta}_k x_{ik}$}
 \end{block}
 
 
 \begin{block}{Residual $\widehat{\epsilon}_i$}
-  A fancier name for person i's \emph{vertical deviation} from the regression line: \alert{$\widehat{\epsilon}_i = y_i - \widehat{y}_i$}. 
+  Person i's \emph{vertical deviation} from regression line: \alert{$\widehat{\epsilon}_i = y_i - \widehat{y}_i$}. 
 \end{block}
 
 \vspace{1em}
-\alert{The residuals are \emph{stand-ins} for the errors $\epsilon_i$, which we don't observe.}
+\alert{The residuals are \emph{stand-ins} for the unobserved errors $\epsilon_i$.}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Residual Standard Deviation: $\widehat{\sigma}$}
 	\begin{itemize}
-    \item Idea: use residuals $\widehat{\epsilon}$ to estimate $\sigma$:
+    \item Idea: use residuals $\widehat{\epsilon}_i$ to estimate $\sigma$
 	$$\widehat{\sigma}  = \sqrt{\frac{\sum_{i=1}^n \widehat{\epsilon}_i^2}{n -k}}$$ 
 		\item Measures avg.\ distance of $y_i$ from regression line.
 				\begin{itemize}
@@ -495,14 +495,14 @@ The value of the $Y$-variable that we would \emph{predict} for person $i$ using 
 		R^2 \approx 1 - \frac{\widehat{\sigma^2}}{s_y^2}
 	\end{eqnarray*}
 		\begin{itemize}
-			\item Measures proportion of variance in $Y$ 
+			\item $R^2$ = proportion of $Var(Y)$ 
         ``explained'' by the regression.
 			\begin{itemize}
-			\item Higher value means greater proportion explained 
+			\item Higher value $\implies$ greater proportion explained 
 			\end{itemize}
 			\item Unitless, between 0 and 1 
-      \item Tricker to interpret than $\widehat{\sigma}$ so we won't worry too much about it. 
-			\item \alert{Important Fact: for simple linear regression $R^2 = (r_{xy})^2$ and this where its name comes from!}
+      \item Generally harder to interpret than $\widehat{\sigma}$, but\dots 
+			\item \alert{For simple linear regression $R^2 = (r_{xy})^2$ and this where its name comes from!}
 		\end{itemize}
 \end{frame}
 
