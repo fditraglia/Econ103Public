@@ -163,7 +163,7 @@ replicate(10, sample(1:10, 5, replace = FALSE))
 
 
 
-Now let's try writing a slightly more general version of the ``two.dice`` function so we can see how to use ``replicate`` with a function that *takes its own arguments*. The function ``dice.sum2`` takes one argument ``n.dice`` that specifies *how many* six-sided dice we will roll and sum
+Now let's try writing a slightly more general version of the ``two.dice`` function so we can see how to use ``replicate`` with a function that *takes its own arguments*. The function ``dice.sum`` takes one argument ``n.dice`` that specifies *how many* six-sided dice we will roll and sum
 ```{r}
 dice.sum <- function(n.dice){
   dice <- sample(1:6, size = n.dice, replace = TRUE)
