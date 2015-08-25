@@ -45,7 +45,7 @@ In this section, you'll be completing levels 1-6 on Try R, an online tutorial fo
 
 3. Complete levels 1-6. After you complete each level, go back to RStudio and solve the corresponding exercises given in Part 4 below to test your understanding. Save your work in an R script. 
 
-For your reference, I have posted a complete transcript of the commands introduced in TryR on Piazza under Course Page > Resources > R Tutorials. 
+For your reference, I have posted a complete transcript of the commands introduced in TryR on the course webpage.
 
 
 
