@@ -42,13 +42,25 @@ Let $X$ be a RV and $a,b$ be constants. Then:
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Example: Linearity of Expectation \hfill \includegraphics[scale = 0.05]{./images/clicker} }
+Let $X \sim \mbox{Bernoulli}(1/3)$ and define $Y = 3X + 2$
+\vspace{1em}
+
+\begin{enumerate}
+  \item What is $E[X]$? \pause \hspace{2em} \alert{$E[X] = 0 \times 2/3 + 1 \times 1/3 = 1/3$} \pause
+  \item What is $E[Y]$? \pause \hspace{2em} \alert{$E[Y] = E[3X + 2] = 3E[X] + 2 = 3$}
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
 \frametitle{Proof: Linearity of Expectation For Discrete RV}
 
 \begin{eqnarray*}
-	E[a + bX] &=& \pause \sum_{\mbox{all } x}  (a + bx) p(x)\\ \\
-	 &=&\pause  \sum_{\mbox{all } x} p(x) \cdot a + \sum_{\mbox{all } x}p(x) \cdot bx\\ \\
-	&=& \pause a\sum_{\mbox{all } x} p(x) + b\sum_{\mbox{all } x} x \cdot p(x) \\ \\
-	&=& \pause a + b E[X]
+	E[a + bX] &=& \sum_{\mbox{all } x}  (a + bx) p(x)\\ \\
+	 &=&  \sum_{\mbox{all } x} p(x) \cdot a + \sum_{\mbox{all } x}p(x) \cdot bx\\ \\
+	&=&  a\sum_{\mbox{all } x} p(x) + b\sum_{\mbox{all } x} x \cdot p(x) \\ \\
+	&=&  a + b E[X]
 \end{eqnarray*}
 
 
@@ -113,6 +125,16 @@ This is \emph{not} the definition, it's a shortcut for doing calculations:
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: The Shortcut Formula \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+Let $X\sim \mbox{Bernoulli}(1/2)$.
+\begin{enumerate}
+  \item What is $E[X]$? \hspace{1em} \pause \alert{$E[X] = 0 \times 1/2 + 1 \times 1/2 = 1/2$} \pause
+    \item What is $E[X^2]$? \pause \hspace{1em} \alert{$E[X^2] = 0^2 \times 1/2 + 1^2 \times 1/2 = 1/2$} \pause
+    \item What is $Var(X)$? \pause \hspace{1em} \alert{$E[X^2] - \left( E[X] \right)^2 = 1/2 - (1/2)^2 = 1/4$} 
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{frame}
@@ -122,7 +144,6 @@ This is \emph{not} the definition, it's a shortcut for doing calculations:
 $\mu = E[X] = \displaystyle \sum_{x \in \{0,1\}} p(x) \cdot x = (1-p) \cdot 0 + p \cdot 1 = p$
 \end{block}
 
-\pause
 
 \begin{block}{Step 2 -- $E[X^2]$} 
 \begin{eqnarray*}
@@ -130,7 +151,6 @@ $\mu = E[X] = \displaystyle \sum_{x \in \{0,1\}} p(x) \cdot x = (1-p) \cdot 0 + 
 \end{eqnarray*}
 \end{block}
 
-\pause
 
 \begin{block}{Step 3 -- Combine with Shortcut Formula} 
 \begin{eqnarray*}
@@ -193,11 +213,11 @@ Var(a + bX) &= &b^2 \sigma^2 \\\\
 \frametitle{Variance of a Linear Transformation}
 
 \begin{eqnarray*}
- Var(a + bX) &=& E\left[\left\{(a+bX) - E(a+bX)\right\}^2 \right] \\ \pause
- 	&=& E\left[\left\{(a+bX) - (a+bE[X])\right\}^2 \right] \\ \pause
- 	&=&E\left[\left(bX - bE[X]\right)^2 \right] \\ \pause
- 	&=&E[b^2 (X - E[X])^2]\\ \pause
- 	&=& b^2 E[(X-E[X])^2]\\ \pause
+ Var(a + bX) &=& E\left[\left\{(a+bX) - E(a+bX)\right\}^2 \right] \\ 
+ 	&=& E\left[\left\{(a+bX) - (a+bE[X])\right\}^2 \right] \\
+ 	&=&E\left[\left(bX - bE[X]\right)^2 \right] \\ 
+ 	&=&E[b^2 (X - E[X])^2]\\ 
+ 	&=& b^2 E[(X-E[X])^2]\\ 
  	&=& b^2 Var(X) = b^2 \sigma^2
 \end{eqnarray*}
 \alert{The key point here is that variance is defined in terms of expectation and expectation is linear.}
@@ -209,65 +229,6 @@ Var(a + bX) &= &b^2 \sigma^2 \\\\
 		\Huge Binomial Random Variable	\\
 		\large What we get if we sum a bunch of indep.\ Bernoulli RVs
 	\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} }
-\begin{block}{Question}
-Suppose we flip a fair coin 3 times. What is the probability that we get exactly 2 heads?
-\end{block}
-
-\pause
-
-\begin{block}{Answer}
-Three basic outcomes make up this event: $\{HHT, HTH, THH\}$. \pause Each of these has probability $1/8 = 1/2 \times 1/2 \times 1/2$ so, since basic outcomes are mutually exclusive we sum to get \alert{$3/8 = 0.375$}
-\end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{A More Complicated Example}
-\begin{block}{Question}
-Suppose we flip an \emph{unfair} coin 3 times, where the probability of heads is 1/3. What is the probability that we get exactly 2 heads?
-\end{block}
-
-
-
-\begin{block}{Answer}
-The basic outcomes of the experiment are no longer equally likely, but those with exactly two heads \emph{\alert{remain so}} 
-	\begin{eqnarray*}
-	 P(HHT) &=&  (1/3)^2 (1 - 1/3) =  2/27\\ 
-	 P(THH) &=&2/27\\ 
-	 P(HTH) &=&2/27 
-	\end{eqnarray*}
-	Summing gives \alert{$2/9 \approx 0.22$}
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Starting to see a pattern?}
-
-Suppose we flip an unfair coin \emph{4} times, where the probability of heads is 1/3. What is the probability that we get exactly 2 heads?
-
-\vspace{2em}
-
-
-
-\begin{columns}
-\column{0.35\textwidth}
-\begin{tabular}{cc}
-HHTT&TTHH\\
-HTHT&THTH\\
-HTTH&THHT
-\end{tabular}
-
-\column{0.55\textwidth}
-\alert{Six equally likely, mutually exclusive basic outcomes make up this event:}
-$${4\choose 2}(1/3)^2(2/3)^2$$
-\end{columns}
-
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -303,17 +264,6 @@ $$p(x) = {n \choose x} p^x (1-p)^{n-x}$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-\begin{frame}
-\frametitle{Don't forget this!}
- \large A Binomial Random Variable counts up the \emph{total} number of successes (ones) in $n$ independent Bernoulli trials, each with probability of success $p$.
-
-
-\vspace{5em}
-\alert{We'll learn more about the Binomial RV in the coming lectures...}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
 	\frametitle{\href{http://fditraglia.github.com/Econ103Public/Rtutorials/Bernoulli_Binomial.html}{\small http://fditraglia.github.com/Econ103Public/Rtutorials/Bernoulli\_Binomial.html}}
 
@@ -322,23 +272,79 @@ $$p(x) = {n \choose x} p^x (1-p)^{n-x}$$
 
 
 \begin{figure}
-	\fbox{\includegraphics[scale = 0.2]{./images/binom_bernoulli_sim_screenshot}}
+	\fbox{\includegraphics[scale = 0.15]{./images/binom_bernoulli_sim_screenshot}}
 \end{figure}
 
+\begin{alertblock}{Don't forget this!}
+ Binomial RV counts up the \emph{total} number of successes (ones) in $n$ indep.\ Bernoulli trials, each with prob.\ of success $p$.
+\end{alertblock}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
+\frametitle{Where does the Binomial pmf come from? \includegraphics[scale = 0.05]{./images/clicker} }
+\begin{block}{Question}
+Suppose we flip a fair coin 3 times. What is the probability that we get exactly 2 heads?
+\end{block}
 
-  \begin{center}
-    \huge How to handle \emph{multiple RVs} at once?
-  \end{center}
+\pause
+
+\begin{block}{Answer}
+Three basic outcomes make up this event: $\{HHT, HTH, THH\}$, each has probability $1/8 = 1/2 \times 1/2 \times 1/2$. Basic outcomes are mutually exclusive, so sum to get \alert{$3/8 = 0.375$}
+\end{block}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Definition of Joint PMF}
+\frametitle{Where does the Binomial pmf come from?}
+\begin{block}{Question}
+Suppose we flip an \emph{unfair} coin 3 times, where the probability of heads is 1/3. What is the probability that we get exactly 2 heads?
+\end{block}
+
+
+
+\begin{block}{Answer}
+  No longer true that \emph{all} basic outcomes are equally likely, but those with exactly two heads \emph{\alert{still are}} 
+	\begin{eqnarray*}
+	 P(HHT) &=&  (1/3)^2 (1 - 1/3) =  2/27\\ 
+	 P(THH) &=&2/27\\ 
+	 P(HTH) &=&2/27 
+	\end{eqnarray*}
+	Summing gives \alert{$2/9 \approx 0.22$}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Where does the Binomial pmf come from?}
+\framesubtitle{Starting to see a pattern?}
+
+Suppose we flip an unfair coin \emph{4} times, where the probability of heads is 1/3. What is the probability that we get exactly 2 heads?
+
+\vspace{2em}
+
+
+
+\begin{columns}
+\column{0.35\textwidth}
+\begin{tabular}{cc}
+HHTT&TTHH\\
+HTHT&THTH\\
+HTTH&THHT
+\end{tabular}
+
+\column{0.55\textwidth}
+\alert{Six equally likely, mutually exclusive basic outcomes make up this event:}
+$${4\choose 2}(1/3)^2(2/3)^2$$
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Multiple RVs \emph{at once} - Definition of Joint PMF}
 Let $X$ and $Y$ be discrete random variables. The joint probability mass function $p_{XY}(x,y)$ gives the probability of each pair of realizations $(x,y)$ in the support:
 \Large
  $$\boxed{p_{XY}(x,y) = P(X = x \cap Y=y)}$$
