@@ -179,7 +179,7 @@ Biased Sample!
 <<echo=FALSE,results='hide'>>=
 candy <- read.csv("candy.csv", header = FALSE)
 candy <- candy[,1]
-truth <- 958 #UPDATE EACH SEMESTER
+truth <- 960 #UPDATE EACH SEMESTER
 @
 
 \frametitle{Candy Weighing: \Sexpr{length(candy)} Estimates, Each With $n=5$}
