@@ -1,0 +1,352 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\boxedpoints
+\pointsinmargin
+
+\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm II, Page \thepage\ of \numpages}
+              {November 2nd, 2015}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large Second Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} November 2nd, 2015}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+\question For each of the following, write down R code to carry out the requested operation. 
+\begin{parts}
+  \part[3] Make 100 iid draws from a standard normal distribution. 
+  \begin{solution}[0.75in]
+    \texttt{rnorm(100)}
+  \end{solution}
+  \part[3] Calculate $c$ such that $P(-c\leq Z \leq c)=0.80$ if $Z\sim N(0,1)$.
+  \begin{solution}[0.75in]
+    \texttt{qnorm(0.9)}
+  \end{solution}
+  \part[3] Calculate the 75th percentile of a $t(5)$ RV.
+  \begin{solution}[0.75in]
+    \texttt{qt(0.75, df = 5)}
+  \end{solution}
+  \part[3] Plot $(x^3 - x)$ on $[-2,2]$ with a step size of $0.01$. 
+  \begin{solution}[0.75in]
+\begin{verbatim}
+x <- seq(from = -2, to = 2, by = 0.01)
+plot(x, x^3 - x)
+\end{verbatim}
+  \end{solution}
+  \part[3] Find the probability that a Binomial$(10,0.4)$ RV takes on a value in $\left\{ 3, 4, \dots, 8 \right\}$. 
+  \begin{solution}[0.75in]
+    \texttt{sum(dbinom(3:8, 10, 0.4))}
+  \end{solution}
+  \part[10] Write an R function \texttt{exact95CI} to calculate an \emph{exact} 95\% confidence interval for the mean of a normal population when the population variance is unknown. 
+  The function should take one input, \texttt{x} a vector of data, and return a vector with two elements: the lower and upper confidence limits of the interval.
+  \begin{solution}[2.5in]
+\begin{verbatim}
+exact95CI <- function(x){
+  n <- length(x)
+  SE <- sd(x) / sqrt(n)
+  ME <- qt(1 - 0.05/2, df = n-1) * SE
+  LCL <- mean(x) + ME
+  UCL <- mean(x) - ME
+  return(c(LCL, UCL))
+}
+\end{verbatim}
+\end{solution}
+\end{parts}
+
+\question Let $X, Y, Z \sim \mbox{ iid } N(0,1)$. No explanation is needed for any of the following.
+\begin{parts}
+  \part[4] What kind of RV is $3X + 2$? Specify all parameters of its distribution.
+  \begin{solution}[1.4in]
+    $N(2, \sigma^2 = 9)$
+  \end{solution}
+  \part[4] What kind of RV is $X^2 + Y^2 + Z^2$? Specify all parameters of its distribution.
+  \begin{solution}[1.4in]
+    $\chi^2(3)$
+  \end{solution}
+  \part[4] What kind of RV is $(X + Y + Z)/3$? Specify all parameters of its distribution.
+  \begin{solution}[1.4in]
+    $N(0, \sigma^2 = 1/3)$
+  \end{solution}
+  \part[4] What kind of RV is $X^2/Y^2$? Specify all parameters of its distribution.
+  \begin{solution}[1.4in]
+    $F(1,1)$
+  \end{solution}
+  \part[4] Calculate $P(X<Y)$.
+  \begin{solution}[1.4in]
+    $P(X<Y) = P(X-Y<0) = P\left[ N(0,\sigma^2 = 2) < 0 \right] = 1/2$
+  \end{solution}
+\end{parts}
+
+
+\question Let $X$ be a Binomial$(2,1/3)$ random variable (RV). Define the RV $Y$ as follows.
+Given that $X=0$, $Y$ can only take on the values $-1,0$ or $1$, each with probability 1/3. 
+Given that $X=1$, $Y$ can only take on the values $0,1$ or $2$ each with probability 1/3.
+Finally given that $X=2$, $Y$ can only take on the values $1,2$ or $3$, each with probability $1/3$.  
+\begin{parts}
+  \part[4] Write down the marginal pmf of $X$. Be sure to specify the support set.
+  \begin{solution}[1in]
+    $p_X(x) = {2\choose x}\left( 1/3 \right)^x(2/3)^{2-x}$ with support set $\left\{ 0, 1, 2 \right\}$
+  \end{solution}
+  \part[12] Write out the joint pmf of $X,Y$ in a table. To make this problem easier to grade, please put the values of $X$ in the \emph{rows} of your table.
+  \begin{solution}[3.6in]
+  We are given the marginal distribution of $X$ and the conditional distribution of $Y$ given $X$.
+  By the multiplication rule, $p_{XY}(x,y)= p_{Y|X}(y|x)p_X(x)$.
+  From the problem statement, we know that the only possible values $Y$ can take on given that $X=x$ are $\left\{ x-1, x, x+1 \right\}$ and that these each occur with probability $1/3$.
+  Using the result of the preceding part, we calculate the marginal probabilities for $X$ as follows:
+  \begin{equation*}
+    p_X(0) = 4/9, \quad
+    p_X(1) = 4/9, \quad
+    p_X(2) = 1/9 
+  \end{equation*}
+  Thus, we find that:
+\begin{center}
+\begin{tabular}{|cc|ccccc|}
+	\hline
+	&&\multicolumn{5}{c|}{$Y$}\\
+	&&-1 & 0 & 1 & 2 & 3 \\
+	\hline
+	\multirow{3}{*}{$X$}
+	&0& \multicolumn{1}{|c}{4/27} & 4/27 & 4/27 & 0 & 0\\
+	&1& \multicolumn{1}{|c}{0} & 4/27 & 4/27 & 4/27 & 0\\
+	&2& \multicolumn{1}{|c}{0} & 0 & 1/27 & 1/27 & 1/27\\
+	\hline
+\end{tabular}
+\end{center}
+\end{solution}
+  \part[4] Calculate the marginal pmf of $Y$. Make sure to specify its support set.
+  \begin{solution}[1.4in]
+    The support is $\left\{-1, 0, 1, 2, 3  \right\}$ and $p_Y(-1) = 4/27$, $p_Y(0)= 8/27$, $p_Y(1) = 9/27$, $p_Y(2) = 5/27$, and $p_Y(3) = 1/27$.
+  \end{solution}
+%  \part[5] Calculate $E[XY]$.
+%  \begin{solution}
+%    We can ignore any entries in the table that are zero, as well as the first row and second column since these correspond to a zero for either $X$, $Y$ or both.
+%    Thus, based on the remaining entries:
+%    \begin{eqnarray*}
+%      E[XY] &=&  (1 \times 1 + 1 \times 2) \times 4/27 + (2 \times 1 + 2 \times 2 + 2\times 3) \times 1/27 \\
+%      &=&3 \times 4/27 + 12 \times 1/27 = 24/27
+%    \end{eqnarray*}
+%  \end{solution}
+\end{parts}
+
+\newpage
+\question Let $X$ be a continuous random variable with support set $[0,\infty)$ and pdf $f(x) = e^{-x}$. 
+  This is a special case of the so-called ``Exponential'' random variable, an example we did not cover in class. 
+  This question asks you to apply what you know about continuous random variables in general to this new example.  
+  \begin{parts}
+    \part[5] Calculate the CDF $F(x_0)$ of $X$.
+    \begin{solution}[1.6in]
+      $\int_{-\infty}^{x_0} f(x)\; dx = \int_{0}^{x_0} e^{-x}\; dx = \left. -e^{-x}\right|_0^{x_0} = -e^{-x^0} -\left( -e^{0} \right) = 1 - e^{-x_0}$
+    \end{solution}
+    \part[5] Calculate $P(0 \leq X \leq 1)$.
+    \begin{solution}[1.6in]
+      $P(0\leq X \leq 1) = F(1) - F(0) = F(1) = 1 - 1/e \approx 0.63$
+    \end{solution}
+    \part[5] Derive the quantile function $Q(p)$ of $X$.
+    \begin{solution}[1.6in]
+      Since $Q(p) = F^{-1}(x)$, we simply solve $p = F(x) = 1-e^{-x}$ for $x$, yielding: $Q(p) = -\log(1-p)$ where $\log$ denotes the natural logarithm.
+    \end{solution}
+    \part[5] The ``Survival Function'' of a continuous RV $Y$ is defined as $S(t) = P(Y>t)$ where $t$ is some threshold. Calculate the survival function of $X$. 
+    \begin{solution}[1.6in]
+      By the complement rule: 
+      $$S(t) = P(X>t) = 1-P(X\leq t) = 1 - F(t) = e^{-t}$$
+    \end{solution}
+%    \part[4] Using your answer to the preceding part, calculate $P(X>2|X>1)$.
+%    \begin{solution}[1.25in]
+%    By the definition of conditional probability:
+%    \begin{eqnarray*}
+%      P(X>2|X>1) &=&  \frac{P(X>2, X>1)}{P(X>1)} = \frac{P(X>2)}{P(X>1)}\\
+%      &=& \frac{S(2)}{S(1)} = \frac{e^{-2}}{e^{-1}} = 1/e \approx 0.37
+%    \end{eqnarray*}
+%      where the second equality comes from the fact that $\{X>2\} \cap \{X>1\}$ has the same probability as $\{X>2\}$ since the two events are logically equivalent.
+%    \end{solution}
+  \end{parts}
+  
+
+
+\question The ``Moment Generating Function'' of a random variable $X$ is defined as $M_X(t) = E[e^{tX}]$ where $t$ is a constant. 
+Don't let the constant $t$ confuse you: this is simply the expected value of a function $g$ of $X$, namely $g(x) = e^{tx}$.
+\begin{parts}
+  \part[3] Suppose that $X$ is a discrete RV. Use the general formula for $E[g(X)]$ from class to express $M_X(t)$ as a sum involving the pmf $p(x)$ of $X$.
+  \begin{solution}[1.25in]
+    $M_X(t) = \displaystyle \sum_{\mbox{all } x} e^{tx}p(x)$ 
+  \end{solution}
+  \part[3] Suppose that $X$ is a continuous RV. Use the general formula for $E[g(X)]$ from class to express $M_X(t)$ as an integral involving the pdf $f(x)$ of $X$.
+  \begin{solution}[1.25in]
+    $M_X(t) = \displaystyle \int_{-\infty}^{\infty} e^{tx}f(x)\; dx$
+  \end{solution}
+  \part[4] Use your answer to part (a) to calculate the moment generating function of the Bernoulli$(p)$ random variable. \emph{Hint:} we worked out a special case of this calculation in class, namely $t=1$.
+  \begin{solution}[1.7in]
+    $M_X(t) = pe^{t\times1} + (1-p) e^{t\times 0} = 1 - p + pe^t$
+  \end{solution}
+  \part[5] Use your answer to part (b) to calculate the moment generating function of the Uniform$(0,1)$ random variable.
+  \begin{solution}[1.7in]
+    $M_X(t) = \displaystyle \int_0^1 e^{tx} \times 1 \; dx = \frac{1}{t}\left. e^{tx}\right|_0^1 = \frac{1}{t}(e^t - 1)$
+  \end{solution}
+\end{parts}
+
+
+
+\question Dr.\ Evil teaches Reverse Psychology at Minion State University. Grades in his course are based solely on a midterm and final exam but students are allowed to choose their \emph{own weights} at the start of the semester. 
+The only restrictions are that you cannot give an exam negative weight, and your weights must sum to one.
+You \emph{are} allowed to give an exam zero weight.
+By testing both exams on a very large number of students, Dr.\ Evil has determined that the population mean score on the midterm is 75 points out of 100 with a standard deviation of 10 points.
+In contrast, the population mean score on his final is 85 points out of 100 with a standard deviation of 15 points.
+Scores on the midterm and final are \emph{not} independent: the population correlation equals 0.5.
+\begin{parts}
+  \part[2] Let $w$ be the weight you elect to place on the midterm, and let $(X,Y,Z)$ be three RVs representing your grades: $X$ is your midterm exam score, $Y$ your final exam score, and $Z$ your overall course grade. 
+  Express $Z$ as a function of $X,Y$ and $w$. 
+  \begin{solution}[1.7in]
+    $Z = wX + (1-w)Y$
+  \end{solution}
+  \part[3] Express the expected value of your course grade as a function of $w$. Simplify your result: you'll need this expression below.
+  \begin{solution}[1.7in]
+    By the Linearity of Expectation,
+    $$E[Z] = w E[X] + (1-w)E[Y] = 75w + 85(1-w) = 85 - 10w$$
+  \end{solution}
+  \part[3] Suppose you wanted to maximize your expected grade in Dr.\ Evil's course using the population information given above. 
+  What weights should you choose?
+  \begin{solution}[1.7in]
+    To maximize the function from the preceding part we need to make $w$ as small as possible. Since you cannot give an exam negative weight, you should set $w=0$ which corresponds to giving 100\% of the weight to the final.
+  \end{solution}
+  \part[2] Calculate the covariance between scores on Dr.\ Evil's midterm and final exams.
+  \begin{solution}[1.7in]
+    $Cov(X,Y) = SD(X) \times SD(Y) \times Corr(X,Y) = 10 \times 15 \times 0.5 = 75$
+  \end{solution}
+  \part[6] Express the variance of your course grade as a function of $w$. Simplify your result: you'll need this expression below. 
+  \begin{solution}[2.75in]
+    \begin{eqnarray*}
+    Var(Z) &=& w^2 Var(X) + (1-w)^2 Var(Y) + 2w(1-w)Cov(X,Y)\\
+    &=& 100 w^2 + 225 (1-2w+w^2) + 150(w - w^2)\\
+    &=& 225 - 300w + 175 w^2
+    \end{eqnarray*}
+  \end{solution}
+  \part[4] Suppose you wanted to minimize the variance of your grade in Dr.\ Evil's course using the population information given above.
+  What weights should you choose? You do not need to check the second order condition.
+  \begin{solution}[2.75in]
+    Differentiating the solution from the previous part with respect to $w$ yields the first order condition $350w - 300 =0$. Solving, $w^* = 6/7 \approx 0.86$.
+  \end{solution}
+\end{parts}
+
+
+
+
+\question Aimee wants to find out the fraction of Democratic primary voters who support Bernie Sanders, so she carries out a poll. Her dataset contains responses from 500 individuals, of whom 200 say they support Sanders.
+For parts (a) and (b), assume that Aimee's 500 individuals constitute a random sample from the population of all Democratic primary voters.
+Part (c) asks you to explore the possible consequences of non-random sampling.
+\begin{parts}
+\part[6] Calculate Aimee's estimate $\widehat{p}$ of the true population proportion $p$ of voters who support Sanders, along with its associated standard error.
+\begin{solution}[1.75in]
+  $\widehat{p} = 200/500 = 0.4$ and 
+  $$\widehat{SE}(\widehat{p}) = \sqrt{\widehat{p}(1-\widehat{p})/n}= \sqrt{0.4 \times 0.6/500} \approx 0.02$$
+\end{solution}
+%\part[6] Is the estimator from the preceding part unbiased? Is it consistent? Briefly explain.
+%\begin{solution}[2in]
+%  Under random sampling, the sample mean is an unbiased estimator of the population mean.
+%  Moreover, since its variance decreases with $n$, the sample mean is also a consistent estimator of the population mean.
+%  The sample proportion is nothing more than the sample mean of a collection of Bernoulli draws, and the population proportion is simply the population mean of the Bernoulli distribution.
+%  Thus, Aimee's estimator is both unbiased and consistent.
+%\end{solution}
+  \part[8] Continuing from the preceding parts, construct an approximate 95\% confidence interval for $p$ based on the Central Limit Theorem.
+  \begin{solution}[2in]
+    The margin of error for an approximate 95\% CI based on the Central Limit Theorem is roughly $2 \times \widehat{SE}(\widehat{p}) \approx 0.04$. 
+    Thus, the confidence interval is $0.4 \pm 0.04$ or equivalently (0.36, 0.44).
+  \end{solution}
+%  \part[5] Interpret the confidence interval you constructed in the preceding part.
+%  Explain briefly in language that someone who has not taken Econ 103 would understand.
+%\begin{solution}
+%    Intuitively, the interval in the preceding part gives a range of possible values for the true population proportion $p$ that are consistent with the data we have obtained.
+%    Based on these results, it does not appear that Bernie Sanders commands a majority among Democratic Primary voters.
+%\end{solution}
+%  \part[3] Although the confidence interval from the preceding part used an approximation based on the normal distribution, the actual sampling model for a poll like the one Aimee carried out does \emph{not} involve the normal RV. What random variable does it involve? Write down the sampling model.
+%  \begin{solution}[1.25in]
+%    $X_1, \dots, X_{500} \sim \mbox{ iid Bernoulli}(p)$. 
+%  \end{solution}
+%  \part[6] Suppose that \emph{precisely} 40\% of Democratic Primary voters truly support Sanders.
+%  Using your answer to the preceding part, write down R code to calculate the \emph{exact} probability that Aimee would get an estimate between $30\%$ and $50\%$, inclusive, based on a random sample of 500 individuals. Your answer should not involve simulation. 
+%  \begin{solution}[2in]
+%    Various possibilities, but the point is to use the probabilities from the binomial pmf. 
+%    Getting an estimate between 0.3 and 0.5 inclusive corresponds to a total of between 150 and 250 people out of 500 who support Sanders.
+%    Thus, one way to do the calculation is as follows:
+%\begin{verbatim}
+%sum(dbinom(150:250, 500, 0.4)) 
+%\end{verbatim}
+%\end{solution}
+%  \part[6] Repeat the preceding part but instead of performing the exact calculation, write R code to approximate it by making 10,000 simulation draws from the sampling model that corresponds to Aimee's poll. 
+%  \begin{solution}[2.5in]
+%    Various possibilities, but the point is to generate simulations using \texttt{rbinom}. Here is one possible answer:
+%\begin{verbatim}
+%sims <- rbinom(10000, 500, 0.4) / 500
+%mean((sims >= 0.35) & (sims <= 0.45))
+%\end{verbatim}
+%  \end{solution}
+  \part[6] It turns out that the 500 individuals in Aimee's poll might \emph{not} represent a random sample: although she sent the poll to 800 people, only 500 of them responded. Suppose we know nothing about the 300 individuals who \emph{failed} to respond to Aimee's poll. What is the range of possible values for $\widehat{p}$ that she \emph{could have gotten} if all of these individuals had responded? Explain in no more than two sentences.
+  \begin{solution}
+    We calculate the range by considering the two most extreme possibilities.
+    The first is that all of the 300 non-respondents are Sanders supporters. 
+    If this were the case, and all of them had responded then Aimee's estimate would have been $(200 + 300) / 800 = 5/8 = 87.5\%.$
+    If, on the other hand, \emph{none} of the 300 non-respondents are Sanders supporters, then Aimee's estimate would have been $200/800 =25\%$ if they had all responded.
+    Thus the overall range of possible estimates is $[25\%, 62.5\%]$.
+  \end{solution}
+\end{parts}
+
+
+\end{questions}
+\end{document}
+\grid
