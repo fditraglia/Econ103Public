@@ -1,0 +1,486 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\boxedpoints
+\pointsinmargin
+
+%\printanswers
+\noprintanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Final Examination, Page \thepage\ of \numpages}
+              {May 4th, 2015}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Final Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} May 4th, 2015}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 120 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+
+ \question Mark each statement as TRUE or FALSE.
+ If FALSE, provide a one sentence explanation.
+ \begin{parts}
+  \part[3] All else equal, a 99\% confidence interval is narrower than a 95\% interval.
+  \begin{solution}[0.55in]
+    FALSE: it is \emph{wider}.
+  \end{solution}
+ 	\part[3] A p-value $> 0.05$ implies that we would reject the null hypothesis with $\alpha = 0.05$. 
+ 	\begin{solution}[0.55in]
+ 	FALSE: we would reject if the p-value is \emph{less} than 0.05.
+ 	\end{solution}	
+  \part[3] If you reject $H_0$ with $\alpha = 0.05$, you would also have rejected with $\alpha = 0.1$. 
+  \begin{solution}[0.55in]
+    TRUE
+  \end{solution}
+  \part[3] If zero lies outside a 90\% confidence interval for $\mu$, this implies that we would reject $H_0\colon \mu = 0$ with $\alpha = 0.1$ against the two-sided alternative.
+  \begin{solution}[0.55in]
+    TRUE
+  \end{solution}
+ 	\part[3] If $\alpha$ is the Type I error rate for a hypothesis test, $1 - \alpha$ is the power of that test.
+  \begin{solution}[0.55in]
+    FALSE: power is one minus the Type \emph{II} error rate.
+  \end{solution}
+   \part[3] For any \emph{mutually exclusive} events $A$ and $B$  we have $P(A\cup B) = P(A)P(B)$.
+   \begin{solution}[0.55in]
+     FALSE: $P(A\cup B) = P(A) + P(B)$ under this assumption.
+   \end{solution}
+   \part[3] For any two events $A$ and $B$, $P(A|B)/P(B|A) = P(A)/P(B)$.
+ 	\begin{solution}[0.55in]
+    TRUE
+ 	\end{solution}	
+  \part[3] The pmf $p(x)$ of a discrete random variable $X$ gives $P(X=x)$.
+  \begin{solution}[0.55in]
+    TRUE
+  \end{solution}
+ 	\part[3] For any continuous random variable $X$, $P(X\leq 0) = P(X < 0)$.
+ 	\begin{solution}[0.55in]
+    TRUE
+ 	\end{solution}
+  \part[3] For any two random variables $X$ and $Y$, $E[XY] = E[X]E[Y]$.
+  \begin{solution}[0.55in]
+    FALSE: this only holds if $Cov(X,Y) = 0$.
+  \end{solution}
+  %\part[3] A biased estimator can never be consistent.
+  %\begin{solution}
+    %FALSE: as long as the bias and variance go to zero in the limit, an estimator that is biased in finite samples will nevertheless be consistent.
+  %\end{solution}
+ 	%\part[3] A Type I error occurs when we fail to reject a false null hypothesis. 
+ 	%\begin{solution}
+ 	%FALSE: it is when we reject a \emph{true} null hypothesis.	
+ 	%\end{solution}
+ 	%\part[3] A Type II error occurs when we reject a true null hypothesis. 
+ 	%\begin{solution}
+ 		%TRUE	
+ 	%\end{solution}
+  %\part[3] If zero lies in a 95\% confidence interval for $\mu$ there is a 95\% chance that $\mu=0$.
+  %\begin{solution}
+    %FALSE: In repeated samples 95\% of such intervals would contain $\mu$.
+  %\end{solution}
+  %\part[3] A p-value is the largest value of $\alpha$ for which we would reject $H_0$ given the observed test statistic.
+  %\begin{solution}
+    %FALSE: it equals the \emph{minimum} $\alpha$ level at which we would have rejected the null.
+  %\end{solution}
+  %\part[3] A two-sided p-value always equals two times the corresponding one-sided p-value.
+  %\begin{solution}
+    %TRUE
+  %\end{solution}
+\end{parts}
+
+ \question For each part, write your answer in the space provided. No explanation is needed.
+  	\begin{parts} 
+  		\part[3] What result will I get if I run \texttt{pnorm(10, mean = 10, sd = 5)} in R?
+      \begin{solution}[0.55in]
+  			0.5
+  		\end{solution}
+ 		 \part[3] Write an R command to calculate the median of a $\chi^2(2)$ random variable. 
+     \begin{solution}[0.55in]
+ 			 \texttt{qchisq(0.5, df = 2)}
+ 		 \end{solution}
+  		\part[3] Approximately what result will I get if I run \texttt{qnorm(0.16)} in R?
+      \begin{solution}[0.5in]
+  			-1
+  		\end{solution}
+  		\part[3] Given a dataframe called \texttt{grades} with columns \texttt{exam1} and \texttt{exam2}, write out the full R command to run a regression predicting \texttt{exam2} from \texttt{exam1}.
+      \begin{solution}[0.55in]
+  			\texttt{lm(exam2 \~{} exam1, data = grades)}
+  		\end{solution}
+  		\part[3] Write a single line of R code to display the 4th row of a dataframe called \texttt{studentdata}.
+      \begin{solution}[0.55in]
+  		 	\texttt{studentdata[4,]}
+  		 \end{solution} 
+       \part[5] Given a dataframe called \texttt{studentdata} with a column called \texttt{exam1}, write a single line of R code to display data for all students who scored above 70 on \texttt{exam1}.
+       \begin{solution}[0.55in]
+  		 	\texttt{subset(studentdata, midterm1 > 70)}
+  		 \end{solution}
+ 		 \part[5] Write a single R command to draw three numbers at random from the digits 0--9 \emph{with replacement}.
+     \begin{solution}[0.55in]
+ 		 	\texttt{sample(0:9, size = 3, replace = TRUE)}
+ 		 \end{solution}
+  		\part[5] Write R code to plot the pdf of a standard normal random variable between -3 and 3 using a grid of $x$-values with a step size of 0.01.
+      \begin{solution}[1.35in]
+  			\begin{verbatim}
+ x <- seq(from = -3, to = 3, by = 0.01)
+ plot(x, dnorm(x), type = 'l')
+  			\end{verbatim}
+  		\end{solution}
+  		\part[5] Write an R function called \texttt{zscores} that takes a vector \texttt{x} as its only input and outputs the z-scores of \texttt{x}. You may use any R functions that you like in your answer and may assume that there are no missing values.
+      \begin{solution}[1.5in]
+  			\begin{verbatim}
+ zscores <- function(x){
+ 	return((x - mean(x))/sd(x))
+ }
+  			\end{verbatim}
+ 		 \end{solution}
+ 	 \end{parts}
+
+   \question Let $Y_1, \hdots, Y_7 \sim \mbox{iid } N(\mu = -3, \sigma^2 = 9)$. 
+   \begin{parts}
+     \part[3] Let $X =  1 + Y_1/3$. What kind of random variable is $X$?
+     You do not need to explain your answer, but be sure to specify any and all relevant parameters.
+     \begin{solution}[0.55in]
+       $N(0,1)$
+     \end{solution}
+     \part[3] Let $W = (Y_2 + Y_3 + Y_4 + Y_5 + Y_6 + Y_7)/6$. What kind of random variable is $W$?
+     You do not need to explain your answer, but be sure to specify any and all relevant parameters.
+     \begin{solution}[0.55in]
+       $N(\mu = -3, \sigma^2 = 3/2)$
+     \end{solution}
+     \part[3] What kind of random variable is $X + W$?
+     You do not need to explain your answer, but be sure to specify any and all relevant parameters.
+     \begin{solution}[0.55in]
+       $N(\mu = -3, \sigma^2 = 5/2)$
+     \end{solution}
+     \part[3] Let $Z = X^2$. What kind of random variable is $Z$? 
+     You do not need to explain your answer, but be sure to specify any and all relevant parameters.
+     \begin{solution}[0.55in]
+       $\chi^2(1)$
+     \end{solution}
+     \part[8] Calculate $E[X^2]$. Briefly explain your reasoning.
+     \begin{solution}[1.35in]
+       By the shortcut formula $Var(X) = E[X^2] - E[X]^2$.
+       Now, since $X$ is standard normal we know that its variance is one and its mean is zero.
+       Substituting this information, we have $1 = E[X^2]$.
+     \end{solution}
+   \end{parts}
+
+
+\question On Monday Rodrigo arrives at the office and informs Yiwen that, over the weekend, he has developed extra-sensory perception (ESP). 
+He claims to be able to predict the outcome of a coin-flip with \emph{better} than 50\% accuracy.
+Yiwen is dubious and proposes and experiment in which Rodrigo will be asked to predict the outcomes of 100 flips of a fair coin.
+She asks Rodrigo to write down his predictions, in order, and seal them in an envelope.
+To make sure that the experiment is fair, she enlists Rossa to carry out the 100 coin flips while she and Rodrigo both watch. 
+Rossa then opens the envelope and reads the predictions: Rodrigo has successfully predicted 51 of the 100 coin flips. 
+\begin{parts}
+  \part[15] Rodrigo claims that the results of the experiment prove that he has ESP but Yiwen isn't convinced.
+  She decides to use what we've learned about tests for proportions in Econ 103 to test the null hypothesis that Rodrigo is just guessing the outcomes of the coin flips at random against the two-sided alternative with $\alpha= 0.05$.
+  To ensure that her test is as accurate as possible, Yiwen \emph{fully imposes the null} when specifying her test statistic.
+  What test statistic does Yiwen use?
+  What is its sampling distribution under the null?
+  What is the numeric value of her test statistic? 
+  What is the critical value for her test?
+  What is the outcome of the test?
+  \begin{solution}[5.25in]
+    The test statistic is $(\widehat{p} - 0.5)/\sqrt{(0.5)^2/100}$.
+    Substituting the fact that Rodrigo got 51/100 correct, the value of the test statistic is $0.2$.
+    Under the null hypothesis, this is a realization from a distribution that is approximately $N(0,1)$, by the CLT.
+    The approximate critical value for a two-sided test with $\alpha = 0.05$ based on the normal distribution is 2.
+    Since 0.2 is less than 2, we fail to reject the null hypothesis that Rodrigo is simply guessing at random.
+  \end{solution}
+  \part[5] Rodrigo objects to Yiwen's procedure claiming that she should have tested against the \emph{one-sided} alternative.
+  Re-do the preceding part using the one-sided alternative and briefly explain which, if any, of the following items will change: the test statistic, the sampling distribution of the test statistic under the null, the numeric value of the test statistic, the critical value, and the outcome of the test.
+  \begin{solution}[3in]
+    The only thing that changes is the critical value: it is now \emph{smaller} than two.
+    To find its precise value, we need to use R: \texttt{qnorm(0.95)}.
+    However, we know that the critical value must be greater than one since \texttt{pnorm(1)}$\approx 0.84$ is one of the values we have memorized from the Empirical Rule.
+    Thus we would still fail to reject the null.
+  \end{solution}
+  %\part[4] Why do you think that Rodrigo wanted Yiwen to test against the one-sided alternative rather than the two-sided alternative? 
+  %\begin{solution}
+    %There are at least two possible answers here: either and or both are fine.
+    %First, Rodrigo claimed to be able to do \emph{better} than random guessing.
+    %Since this is the ``interesting'' alternative, this suggests a one-sided test.
+    %Another possibility is that Rodrigo realizes the one-sided test is less stringent.
+    %He's invested in the outcome and wants to be vindicated by the experiment.
+    %Using a one-sided test makes it more likely that we will reject the null.
+  %\end{solution}
+  \part[15] Let $p$ denote Rodrigo's accuracy in predicting coin flips and assume, for the sake of argument, that he really does have ESP so that $p>1/2$. 
+  (For example, if he correctly predicts the outcome of a coin flip 60\% of the time, then $p = 0.6$.)
+  Calculate the approximate power of a one-sided test with $\alpha = 0.16$ based on Yiwen's experiment as a function of $p$.
+  Note that your answer should be an R command \emph{that depends on $p$}, not a specific numeric value.
+  \begin{solution}[3.1in]
+    The first step is to work out the rejection rule in this case.
+    The one-sided critical value for $\alpha= 0.16$ is one so we reject if
+    $(\widehat{p} - 0.5)/(\sqrt{0.5^2/100}) > 1$.
+    Rearranging, this is equivalent to rejecting if $\widehat{p} > 0.55$.
+    The power of the test is the probability that this event occurs as a function of $p$.
+    Whatever is the true value of $p$, we have $(\widehat{p} - p)/(\sqrt{p(1-p)/100}) \approx N(0,1)$ by the CLT.
+    In other words: $\widehat{p} \approx N\left(\mu = p, \sigma^2 =  p(1-p)/100 \right)$. 
+    Thus,
+    \begin{eqnarray*}
+      \mbox{Power}(p) &=& P(\widehat{p} > 0.55) = 1 - P(\widehat{p} \leq 0.55)\\
+      &=& 1 - \texttt{pnorm(0.55, mean = p, sd = sqrt(p*(1-p)/100))}
+    \end{eqnarray*}
+  \end{solution}
+\end{parts}
+
+   \question This question concerns a dataframe called \texttt{earnings} containing data on the height in inches (\texttt{height}), sex (\texttt{female} = 1 denotes female), and annual earnings in US dollars (\texttt{earn}) of a random sample of 1379 individuals.
+   Here are the first few rows:
+\begin{verbatim}
+    earn height female
+1  50000     74      0
+2  60000     66      1
+3  30000     64      1
+4  50000     63      1
+5  51000     63      1
+6   9000     64      1
+\end{verbatim}
+and here are some summary statistics: 
+
+\vspace{1em}
+
+\begin{tabular}[h]{|l|ccc|}
+  \hline
+  &\texttt{earn} & \texttt{height} & \texttt{female} \\ 
+  \hline
+  Mean& 20015 & 67 & 0.62\\
+  Median& 16400 & 66 & 1\\
+  S.D.& 19764 & 4 & 0.48\\
+  \hline
+\end{tabular}
+\vspace{1em}
+
+To answer this question you will need to consult the regression results that appear on the last page of this exam.
+(You may want to tear out the page of regression results to avoid having to flip back-and-forth.)
+\begin{parts}
+  \part[5] Is there evidence of skewness in \texttt{height} or \texttt{earnings}? 
+  Explain briefly.
+  \begin{solution}[1.75in]
+    A rule of thumb for detecting skewness is to compare the sample median to the sample mean.
+    For both of these variables, the median is below the mean, suggesting that both are somewhat right-skewed.
+  \end{solution}
+  \part[5] About how many of the individuals in this dataset are female? Explain briefly.
+  \begin{solution}[1.75in]
+    The sample mean of \texttt{female} is 0.62.
+    Since this is a dummy variable taking the value one if a given individual is female, this means that means that 62\% of the 1379 individuals in the dataset are female, so roughly 855.
+  \end{solution}
+  \part[10] Who's taller on average in this dataset: males or females?
+  About how much taller?
+  Does the difference in sample means in this dataset provide compelling evidence of a difference of mean heights in the population from which these individuals were sampled?
+  Support your answer by constructing an approximate 95\% confidence interval for the difference of population mean heights (female minus male) and interpreting the results.
+  \begin{solution}[2.75in]
+    To answer this question we use the results from the regression that has \texttt{formula = height \~{} female}.
+    The coefficient \texttt{female} gives the difference of mean heights: females minus males. 
+    We see that, on average, females are 5.54 inches shorter than males. 
+    The standard error associated with this estimate is 0.15 leading to a margin of error of 0.3 for an approximate 95\% confidence interval: $5.54 \pm 0.3$ or equivalently $(5.24, 5.84)$.
+    We have found strong evidence that females are substantially shorter than men in the population: this isn't merely an artifact of sampling error. 
+  \end{solution}
+  \part[15] Who earns more on average in this dataset: males or females?
+  About how much more?
+  Does the difference in sample means in this dataset provide compelling evidence of a difference of mean earnings in the population from which these individuals were sampled?
+  Support your answer by testing the null hypothesis that males and females earn the same amount against the two-sided alternative with $\alpha = 0.05$ and interpreting the results.
+  Be sure to specify the value of the test statistic, the decision rule, critical value, and outcome of the test.
+  Approximately what is the associated p-value?
+  \begin{solution}[2.75in]
+    To answer this question we use the results from the regression that has \texttt{formula  = earn \~{} female}.
+    The coefficient \texttt{female} gives the difference of mean earnings: females minus males.
+    We see that, on average, females earn \$14307 less per year.
+    The standard error associated with this estimate is about 1029 so our test statistic for the null hypothesis that the population mean earnings are the same for males and females is $14307/1029\approx 14$.
+    The critical value for a two-sided test with $\alpha = 0.05$ is 2. 
+    Accordingly, our decision rule is to reject the null \emph{either} for values of the test statistic \emph{greater} then 2 or \emph{less} than -2 since we are carrying out a two-sided test.
+    Since 14 is larger than 2, we reject the null.
+    We know that the probability of a standard normal RV taking on a value outside of $\left( -3, 3 \right)$ is less than 0.01.
+    Given that our test statistic is more than \emph{four times} larger than 3, the p-value in this case is for all intents and purposes zero.
+    We have found extremely strong evidence that females earn less, on average, than males in the population: this isn't merely an artifact of sampling error.
+  \end{solution}
+  \part[5] What is the sample correlation between \texttt{height} and \texttt{earn}? 
+  Whare the units of this summary statistic?
+  \begin{solution}[2.4in]
+    It's unitless and its value is $\sqrt{0.09} = 0.3$.
+  \end{solution}
+  \part[5] What is the sample covariance between \texttt{height} and \texttt{earn}?
+  What are the units of this summary statistic?
+  \begin{solution}[2.4in]
+    Its units are inches $\times$ dollars and its value is $0.3 \times 4 \times 19764 \approx 23716$.
+  \end{solution}
+  \part[5] What is the value of the estimated intercept for the regression that uses \texttt{height} to predict \texttt{earn}?
+  What are its units?
+  Briefly explain the meaning of this estimate.
+  \begin{solution}[2.4in]
+    The intercept is -84078.32 and the units are dollars.
+    This is the amount that we would predict a person whose height is zero inches would earn in a year.
+    Clearly this is a completely meaningless quantity!
+  \end{solution}
+  \part[5] What is the value of the estimated slope for the regression that uses \texttt{height} to predict \texttt{earn}?
+  What are its units?
+  Briefly explain the meaning of this estimate.
+  \begin{solution}[2.4in]
+    The estimated slope is about \$1563 dollars per inch.
+    This means that, for two people who differ by one inch in height, we would predict that the taller person earns about \$1563 dollars more per year.
+  \end{solution}
+  \part[5] Construct an approximate 95\% confidence interval for the regression slope from the previous part and interpret it.
+  In particular, do you find evidence that there is a positive relationship between height and income in the population?
+  \begin{solution}[2.4in]
+    The margin of error is $2 \times 133.45 \approx 267$ yielding a confidence interval of $1563 \pm 267$ or $\left( 1296, 1830 \right)$.
+    This is very convincing evidence that earnings are positively related to height in the population.
+    Moreover, the effect is very large: the smallest value in this confidence interval would imply a slope of just under \$1300 dollars per additional inch of height!
+  \end{solution}
+  \part[5] Which more accurately predicts \texttt{earnings}: \texttt{height} or \texttt{female}? Explain briefly.
+  \begin{solution}[2.4in]
+    The residual standard deviation for the regression using \texttt{height} to predict earnings is about 18854, while that of the regression using \texttt{female} is a bit lower: 18513.
+    So it appears that \texttt{female} is a slightly more accurate as a predictor of \texttt{earn} but neither model is particularly good: in each case we're only predicting to an accuracy of around \$19,000.
+  \end{solution}
+  \part[15] Kevin argues that the results discussed above provide evidence that women are discriminated against in the labor market.
+  He says ``the only reason that there is a positive relationship between height and earnings is that women are systematically and unfairly paid less than men and women also happen to be shorter, on average.''
+  Amanda does not believe that women are discriminated against and argues that the situation is exactly the \emph{reverse} of what Kevin claims.
+  She says: ``taller people earn more than shorter people since being tall is valuable in many careers.  
+  Since women are shorter than men, this fully explains why they earn less, on average.''
+  Use what you have learned in Econ 103 along with the \emph{full} set of regression results on the final page of this exam to discuss Kevin and Amanda's interpretation of the regressions results and whether you agree with either, both or neither of them.
+  You will be graded on the clarity of your answer and the extent to which it incorporates the tools and concepts we studied in the course.
+  Write your answer using bullet points with \emph{no more than five bullets}: all other things equal, a concise answer will be treated more favorably.
+  \begin{solution}
+    There are various possible answers.
+    At a minimum students should recognize that they need to consider the final set of regression results, the one with \texttt{formula = earn \~{} height + female}. 
+    By allowing a different intercept in the relationship between earnings and height for males and females, this regression allows us to see whether the difference in earnings between men and women is completely explained by the fact that women are shorter than men.
+    When both \texttt{height} and \texttt{female} are used to predict \texttt{earn} we there is still a strongly positive relationship between height and income (with an approximate 95\% confidence interval of $551 \pm 370$).
+    This is a much smaller estimate that we had without \texttt{female} in the regression, which is explained by the fact that women are shorter on average and also earn less.
+    However, as we see from the estimate for the coefficient \texttt{female} this regression predicts that, when comparing a man and woman of the same height, we would predict that the women earns about \$11,255 less per year.
+    This is a very large difference and we have strong evidence that isn't merely sampling variability: the associated 95\% confidence interval is $11254 \pm 2898$ or equivalently $(8368, 14164)$.
+    Even after taking into account differences in height, women earn substantially less than men.
+    In this sense, Amanda is incorrect: the difference in earnings between men and women cannot be fully accounted for by differences in height, even if we believed that being taller is intrinsically valuable in the labor market.
+    At the same time, Kevin is incorrect: even after adjusting for differences in earnings between men and women, which could be evidence of discrimination, there is \emph{still} a positive relationship between height and earnings.
+    So what can we say about discrimination?
+    This is an observational dataset: the sex and height were not randomly assigned to individuals.
+    This makes it hard to be sure of what's going on since there are many possible confounding variables.
+    There are various possible arguments one could make here. 
+  \end{solution}
+\end{parts}
+\end{questions}
+
+\newpage
+\thispagestyle{empty}
+\small
+
+
+\noindent\line(1,0){350}
+\begin{verbatim}
+lm(formula = earn ~ female)
+            coef.est  coef.se  
+(Intercept)  28926.92    811.86
+female      -14307.02   1028.65
+---
+n = 1379, k = 2
+residual sd = 18513.23, R-Squared = 0.12
+\end{verbatim}
+
+\noindent\line(1,0){350}
+
+\begin{verbatim}
+lm(formula = height ~ female)
+            coef.est coef.se
+(Intercept) 70.05     0.12  
+female      -5.54     0.15  
+---
+n = 1379, k = 2
+residual sd = 2.70, R-Squared = 0.50
+\end{verbatim}
+
+\noindent\line(1,0){350}
+
+\begin{verbatim}
+lm(formula = earn ~ height)
+            coef.est  coef.se  
+(Intercept) -84078.32   8901.10
+height        1563.14    133.45
+---
+n = 1379, k = 2
+residual sd = 18853.92, R-Squared = 0.09
+\end{verbatim}
+
+\noindent\line(1,0){350}
+
+\begin{verbatim}
+lm(formula = earn ~ height + female)
+            coef.est  coef.se  
+(Intercept)  -9636.63  12953.75
+height         550.54    184.57
+female      -11254.57   1448.89
+---
+n = 1379, k = 3
+residual sd = 18460.37, R-Squared = 0.13
+\end{verbatim}
+
+\noindent\line(1,0){350}
+
+%\begin{verbatim}
+%lm(formula = earn ~ height + female + height:female)
+              %coef.est  coef.se  
+%(Intercept)   -25178.90  19281.31
+%height           772.43    275.02
+%female         16012.95  25099.33
+%height:female   -403.67    370.95
+%---
+%n = 1379, k = 4
+%residual sd = 18459.13, R-Squared = 0.13
+%\end{verbatim}
+%
+%\noindent\line(1,0){350}
+
+
+\end{document}
