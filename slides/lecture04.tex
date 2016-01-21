@@ -29,29 +29,29 @@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{How to fairly account for missing midterm score?}
-	\begin{itemize}
-		\item In my first semester at Penn, several students missed Midterm 2 because of illness so I decided to up-weight their finals. 
-		\item Problem: Midterm 2 turned out easier than Midterm 1 and this put the students who had missed the second midterm at a disadvantage when I curved the class.
-	\item In order to correct for this, I needed a way to \emph{\alert{fill in}} a score for the missing midterm.
-	\item How could I do this fairly?\pause
-		\begin{itemize}
-			\item Just fill in mean score on second exam?\pause
-			\item Use performance on first midterm to predict?
-		\end{itemize}
-\end{itemize}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Data for students who took both midterms:}
-\begin{figure}
-	\includegraphics[scale = 0.48]{./images/midterms0}
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{How to fairly account for missing midterm score?}
+%	\begin{itemize}
+%		\item In my first semester at Penn, several students missed Midterm 2 because of illness so I decided to up-weight their finals. 
+%		\item Problem: Midterm 2 turned out easier than Midterm 1 and this put the students who had missed the second midterm at a disadvantage when I curved the class.
+%	\item In order to correct for this, I needed a way to \emph{\alert{fill in}} a score for the missing midterm.
+%	\item How could I do this fairly?\pause
+%		\begin{itemize}
+%			\item Just fill in mean score on second exam?\pause
+%			\item Use performance on first midterm to predict?
+%		\end{itemize}
+%\end{itemize}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Data for students who took both midterms:}
+%\begin{figure}
+%	\includegraphics[scale = 0.48]{./images/midterms0}
+%\end{figure}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Predict Second Midterm given 81 on First \hfill \includegraphics[scale = 0.05]{./images/clicker} }
 \begin{figure}
@@ -149,24 +149,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Least Squares Regression -- Predict Using a Line}
-\begin{block}{Linear Model}
-$\hat{y} = a + b x$
-\end{block}\pause
-\begin{block}{Choose $a,b$ to Minimize Sum of Squared Vertical Deviations}
-$\displaystyle\sum_{i = 1}^n d_i^2 = \sum_{i=1}^n (y_i - a - b x_i)^2$
-\end{block}\pause
 
 \begin{block}{The Prediction}
-Predict score $\hat{y} = a + b x$ on second midterm for someone with score $x$ on first.
-\end{block}\pause
+Predict score $\hat{y} = a + b x$ on 2nd midterm if you scored $x$ on 1st
+\end{block}
 
-\begin{block}{Why Vertical Deviations? Why Squared Deviations?}
+\begin{block}{How to choose $(a,b)$?}
+  Linear regression chooses the slope ($b$) and intercept ($a$) that \alert{minimize the sum of squared vertical deviations}
+$\displaystyle\sum_{i = 1}^n d_i^2 = \sum_{i=1}^n (y_i - a - b x_i)^2$
+\end{block}
+
+\begin{block}{Why Squared Deviations?}
 \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Important Point About Notation}
-			$$\boxed{\mbox{minimize }\sum_{i = 1}^n d_i^2 = \sum_{i=1}^n (y_i - a - b x_i)^2}$$
+  $$\boxed{\underset{a,b}{\mbox{minimize }}\sum_{i = 1}^n d_i^2 = \sum_{i=1}^n (y_i - a - b x_i)^2}$$
 			$$\boxed{\hat{y} = a + bx}$$
 		\begin{itemize}
 		\item $(x_i, y_i)_{i=1}^n$ are the \alert{observed data}
@@ -174,20 +173,20 @@ Predict score $\hat{y} = a + b x$ on second midterm for someone with score $x$ o
 		\item Neither $x$ nor $\widehat{y}$ needs to be in out dataset!
 	\end{itemize}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Key Point}
-	\begin{itemize}
-\item Each choice of $a,b$ defines a line \pause
-\item Given the data, each line defines collection of vertical devs.\
-	$d_i = y_i - a - bx_i$ for $i=1, \hdots, n$ \pause
-\item Each collection of vertical devs.\ gives sum of squares $\sum_{i=1}^n d_i^2$ \pause
-\item We choose $a,b$ to minimize $\sum_{i=1}^n d_i^2$
-\end{itemize}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Key Point}
+%	\begin{itemize}
+%\item Each choice of $a,b$ defines a line \pause
+%\item Given the data, each line defines collection of vertical devs.\
+%	$d_i = y_i - a - bx_i$ for $i=1, \hdots, n$ \pause
+%\item Each collection of vertical devs.\ gives sum of squares $\sum_{i=1}^n d_i^2$ \pause
+%\item We choose $a,b$ to minimize $\sum_{i=1}^n d_i^2$
+%\end{itemize}
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \begin{figure}
 	\includegraphics[scale = 0.48]{./images/SS1}
@@ -267,24 +266,18 @@ $$\displaystyle \min_{a,b}  \sum_{i=1}^n (y_i - a - b x_i)^2$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Substitute: Eliminate $a$ from Objective Function}
-\begin{equation*}\boxed{a = \bar{y} - b\bar{x}}\end{equation*}
+  \frametitle{Substitute $a = \bar{y} - b \bar{x}$}
+  \small
 \begin{eqnarray*}
 	\sum_{i=1}^n (y_i - a - b x_i)^2 &=& \pause\sum_{i=1}^n (y_i - \bar{y} + b\bar{x} - b x_i)^2\\
 	&=&\pause\sum_{i=1}^n \left[ \left(y_i - \bar{y}\right) - b\left(x_i - \bar{x}\right) \right]^2
 \end{eqnarray*}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Objective Function Without $a$}
-$$\boxed{\sum_{i=1}^n \left[ (y_i - \bar{y}) - b(x_i - \bar{x}) \right]^2}$$
-\begin{block}{FOC with respect to $b$}
+\alert{FOC wrt $b$}
 \begin{eqnarray*}\pause
 	-2\sum_{i=1}^n \left[\left(y_i - \bar{y}\right) - b\left(x_i - \bar{x}\right) \right]\left(x_i - \bar{x} \right) &=& 0\\\pause
 	\sum_{i=1}^n \left(y_i - \bar{y}\right)\left(x_i - \bar{x} \right) - b\sum_{i=1}^n \left(x_i - \bar{x}\right)^2 &=& 0\\ \\\pause
 	b = \frac{\sum_{i=1}^n \left(y_i - \bar{y}\right)\left(x_i - \bar{x} \right)}{\sum_{i=1}^n \left(x_i - \bar{x}\right)^2}
 \end{eqnarray*}
-\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -303,11 +296,10 @@ $$\boxed{\sum_{i=1}^n \left[ (y_i - \bar{y}) - b(x_i - \bar{x}) \right]^2}$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Relating Regression to Covariance and Correlation}
-		$$b = \frac{\sum_{i=1}^n \left(y_i - \bar{y}\right)\left(x_i - \bar{x} \right)}{\sum_{i=1}^n \left(x_i - \bar{x}\right)^2} =\pause \frac{\frac{1}{n-1}\sum_{i=1}^n \left(y_i - \bar{y}\right)\left(x_i - \bar{x} \right)}{\frac{1}{n-1}\sum_{i=1}^n \left(x_i - \bar{x}\right)^2} =\pause \frac{s_{xy}}{s_x^2}$$\pause
+		$$b = \frac{\sum_{i=1}^n \left(y_i - \bar{y}\right)\left(x_i - \bar{x} \right)}{\sum_{i=1}^n \left(x_i - \bar{x}\right)^2} =\pause \frac{\frac{1}{n-1}\sum_{i=1}^n \left(y_i - \bar{y}\right)\left(x_i - \bar{x} \right)}{\frac{1}{n-1}\sum_{i=1}^n \left(x_i - \bar{x}\right)^2} = \frac{s_{xy}}{s_x^2}$$
 		
-		$$r = \frac{s_{xy}}{s_x s_y} =\pause\frac{s_{xy}}{s_x s_y} \cdot \frac{s_x}{s_x} =\pause  \frac{s_{xy}}{s_x^2} \cdot \frac{s_x}{s_y} =\pause b \frac{s_x}{s_y}$$\pause
+		$$r = \frac{s_{xy}}{s_x s_y} = b \frac{s_x}{s_y}$$
 		
-		$$b = r\frac{s_y}{s_x}$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -442,22 +434,15 @@ where \alert{$x$ is handspan and $y$ is height? }
 	\end{itemize}
 \end{alertblock}
 
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\centering{\includegraphics[scale = 0.65]{./images/zero_corr}}
-
+\centering{\includegraphics[scale = 0.45]{./images/zero_corr}}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\begin{center}
-		\Huge Why is it called ``regression?''
-	\end{center}
+  \frametitle{Regression to the Mean and the Regression Fallacy}
+
+  \alert{Please read Chapter 17 of ``Thinking Fast and Slow'' by Daniel Kahnemann which I have posted on Piazza. This reading is fair game on an exam or quiz.}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -468,45 +453,45 @@ where \alert{$x$ is handspan and $y$ is height? }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
-
-Suppose a father is very short compared to other fathers (very negative z-score). Would you expect his son to be:
-	\begin{enumerate}[(a)]
-\item Shorter
-\item About as short
-\item Taller
-\end{enumerate}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-\centering{\includegraphics[scale = 0.65]{./images/short_father}}
-
-
-\end{frame}
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+%
+%Suppose a father is very short compared to other fathers (very negative z-score). Would you expect his son to be:
+%	\begin{enumerate}[(a)]
+%\item Shorter
+%\item About as short
+%\item Taller
+%\end{enumerate}
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-
-\centering{\includegraphics[scale = 0.65]{./images/tall_father}}
-
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-
-\centering{\includegraphics[scale = 0.46]{./images/pearson}}
-
-
-\end{frame}
-
+%\begin{frame}
+%
+%\centering{\includegraphics[scale = 0.65]{./images/short_father}}
+%
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%
+%\centering{\includegraphics[scale = 0.65]{./images/tall_father}}
+%
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%
+%\centering{\includegraphics[scale = 0.46]{./images/pearson}}
+%
+%
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -524,24 +509,24 @@ $$\frac{\hat{y} - \bar{y}}{{s_y}} = r_{xy} \frac{x - \bar{x}}{s_x}$$
 You will derive the above formula in this week's homework.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Regression Fallacy}
-\framesubtitle{For More, See the Document Posted on Piazza}
-\begin{block}{Pre-test}
-Which students are strongest, which are weakest?
-\end{block}
-
-\begin{block}{Intervention} Put the best performing in an enrichment program and the worst performing in a remedial class
-\end{block}
-
-\begin{block}{Post-test}
-The weak students did better than on their first test, but the strong students did \emph{worse}.
-\end{block}
-
-\begin{block}{Mistaken Conclusion}
-Remedial classes are beneficial, enrichment programs are harmful
-\end{block}
-\end{frame}
+%\begin{frame}
+%\frametitle{Regression Fallacy}
+%\framesubtitle{For More, See the Document Posted on Piazza}
+%\begin{block}{Pre-test}
+%Which students are strongest, which are weakest?
+%\end{block}
+%
+%\begin{block}{Intervention} Put the best performing in an enrichment program and the worst performing in a remedial class
+%\end{block}
+%
+%\begin{block}{Post-test}
+%The weak students did better than on their first test, but the strong students did \emph{worse}.
+%\end{block}
+%
+%\begin{block}{Mistaken Conclusion}
+%Remedial classes are beneficial, enrichment programs are harmful
+%\end{block}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
