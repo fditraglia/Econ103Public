@@ -32,95 +32,95 @@
 \end{center}
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\centering \Huge Classical Probability Examples Where Order Doesn't Matter
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\frametitle{Poker -- Deal 5 Cards, Order Doesn't Matter}
-
-\begin{block}{Basic Outcomes}
-\vspace{0.3em} \pause
-$\displaystyle{52 \choose 5}$ possible hands
-\end{block}\pause
-\begin{block}{How Many Hands have Four Aces? \hfill \includegraphics[scale = 0.05]{./images/clicker} } \pause
-\alert{48 (\# of ways to choose the single card that is not an ace)}
-\end{block}\pause
-
-\begin{block}{What is the Probability of Getting Four Aces?}
-\vspace{0.3em} \pause
-$48/\displaystyle{52 \choose 5}$
-\end{block}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Poker -- Deal 5 Cards, Order Doesn't Matter}
-\begin{block}{How Many Hands have Four of a Kind?\hfill \includegraphics[scale = 0.05]{./images/clicker} }\pause
-	\begin{itemize}
-		\item 13 ways to choose \emph{which} card we have four of \pause
-		\item 48 ways to choose the last card in the hand \pause
-		\item $13 \times 48 = \alert{624}$ \pause
-	\end{itemize}
-\end{block}
-\begin{block}{What is the Probability of Being Dealt 4 of a Kind?}
-\vspace{0.3em} \pause
-$624/\displaystyle{52 \choose 5}$
-\end{block}
-\vspace{8em}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-\centering \Huge Even if the basic outcomes are equally likely, the events of interest may not be...
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{``Odd Question'' \# 4}
-To throw a total of 7 with a pair of dice, you have to get a 1 and a 6, or a 2 and a 5, or a 3 and a 4.
-To throw a total of 6 with a pair of dice, you have to get a 1 and a 5, or a 2 and a 4, or a 3 and another 3.
-	\vspace{1em}
-	With two fair dice, you would expect:
-		\begin{enumerate}[(a)]
-			\item To throw 7 more frequently than 6.
-			\item To throw six more frequently than 7.
-			\item To throw 6 and 7 equally often.
-		\end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Basic Outcomes Equally Likely, Events of Interest Aren't}
-
-\begin{table}
-	\begin{tabular}{|lr|cccccc|}
-	\hline
-	&&\multicolumn{6}{|c|}{Second Die}\\
-	&&1&2&3&4&5&6\\
-	\hline
-	&1&2&3&4&5&\alert{6}&\textcolor{blue}{7}\\
-	&2&3&4&5&\alert{6}&\textcolor{blue}{7}&8\\
-	First&3&4&5&\alert{6}&\textcolor{blue}{7}&8&9\\
-	Die&4&5&\alert{6}&\textcolor{blue}{7}&8&9&10\\
-	&5&\alert{6}&\textcolor{blue}{7}&8&9&10&11\\
-	&6&\textcolor{blue}{7}&8&9&10&11&12\\
-	\hline
-	\end{tabular}
-	\caption{There are 36 equally likely basic outcomes, of which 5 correspond to a sum of six and 6 correspond to a sum of  seven.}
-\end{table}
-	\alert{$P(7) = 6/36 = 1/6$}\\
-	\alert{$P(6) = 5/36$}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%
+%\centering \Huge Classical Probability Examples Where Order Doesn't Matter
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%
+%\frametitle{Poker -- Deal 5 Cards, Order Doesn't Matter}
+%
+%\begin{block}{Basic Outcomes}
+%\vspace{0.3em} \pause
+%$\displaystyle{52 \choose 5}$ possible hands
+%\end{block}\pause
+%\begin{block}{How Many Hands have Four Aces? \hfill \includegraphics[scale = 0.05]{./images/clicker} } \pause
+%\alert{48 (\# of ways to choose the single card that is not an ace)}
+%\end{block}\pause
+%
+%\begin{block}{What is the Probability of Getting Four Aces?}
+%\vspace{0.3em} \pause
+%$48/\displaystyle{52 \choose 5}$
+%\end{block}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Poker -- Deal 5 Cards, Order Doesn't Matter}
+%\begin{block}{How Many Hands have Four of a Kind?\hfill \includegraphics[scale = 0.05]{./images/clicker} }\pause
+%	\begin{itemize}
+%		\item 13 ways to choose \emph{which} card we have four of \pause
+%		\item 48 ways to choose the last card in the hand \pause
+%		\item $13 \times 48 = \alert{624}$ \pause
+%	\end{itemize}
+%\end{block}
+%\begin{block}{What is the Probability of Being Dealt 4 of a Kind?}
+%\vspace{0.3em} \pause
+%$624/\displaystyle{52 \choose 5}$
+%\end{block}
+%\vspace{8em}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%
+%\centering \Huge Even if the basic outcomes are equally likely, the events of interest may not be...
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{``Odd Question'' \# 4}
+%To throw a total of 7 with a pair of dice, you have to get a 1 and a 6, or a 2 and a 5, or a 3 and a 4.
+%To throw a total of 6 with a pair of dice, you have to get a 1 and a 5, or a 2 and a 4, or a 3 and another 3.
+%	\vspace{1em}
+%	With two fair dice, you would expect:
+%		\begin{enumerate}[(a)]
+%			\item To throw 7 more frequently than 6.
+%			\item To throw six more frequently than 7.
+%			\item To throw 6 and 7 equally often.
+%		\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Basic Outcomes Equally Likely, Events of Interest Aren't}
+%
+%\begin{table}
+%	\begin{tabular}{|lr|cccccc|}
+%	\hline
+%	&&\multicolumn{6}{|c|}{Second Die}\\
+%	&&1&2&3&4&5&6\\
+%	\hline
+%	&1&2&3&4&5&\alert{6}&\textcolor{blue}{7}\\
+%	&2&3&4&5&\alert{6}&\textcolor{blue}{7}&8\\
+%	First&3&4&5&\alert{6}&\textcolor{blue}{7}&8&9\\
+%	Die&4&5&\alert{6}&\textcolor{blue}{7}&8&9&10\\
+%	&5&\alert{6}&\textcolor{blue}{7}&8&9&10&11\\
+%	&6&\textcolor{blue}{7}&8&9&10&11&12\\
+%	\hline
+%	\end{tabular}
+%	\caption{There are 36 equally likely basic outcomes, of which 5 correspond to a sum of six and 6 correspond to a sum of  seven.}
+%\end{table}
+%	\alert{$P(7) = 6/36 = 1/6$}\\
+%	\alert{$P(6) = 5/36$}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 
 \begin{center}\Huge Derive Rules for Computing Probabilities from Axioms\end{center}
