@@ -34,22 +34,22 @@ To answer this, we'll use a principle called the \emph{multiplication rule}.
 Imagine a gigantic rectangular classroom, College Hall Room 200 perhaps, with 50 rows of seats, each containing 20 chairs.
 Now suppose that I asked you to count the number of chairs in the room.
 Would you visit each row individually and count each chair? 
-Of course not: you'd simply multiply 50 by 20 to get 200.
+Of course not: you'd simply multiply 50 by 20 to get 1000.
 This is just a special case of the multiplication rule.
 
 Let me phrase the question a little differently.
 How many different ways could you choose where to sit if this lecture hall were completely empty?
-We already know that the answer is 200, but let's try getting it a different way.
+We already know that the answer is 1000, but let's try getting it a different way.
 The room is rectangular, so each chair is uniquely identified by its \emph{column} and \emph{row}.
 Choosing a seat is equivalent to choosing a row and a column.
 There are 50 ways to choose a row, and \emph{for each of these} there are 20 ways to choose a column.
 This means that, if we want the total number of ways to choose, we need to repeatedly add the number 20 a total of 50 times.
-But that's just the definition of multiplication, so the answer is 200.
+But that's just the definition of multiplication, so the answer is 1000.
 
 Now suppose I added one more choice: there are \emph{three} identical classrooms, each with 50 rows of 20 seats.
 If all the seats are empty, how many ways are there to decide where you want to sit?
 Well, we already know how to solve the problem for \emph{each} classroom so to find the total, we just need to add up this answer three times.
-But again, that is simply the definition of multiplication, so our answer is $3 \times 20 \times 50 = 600$.
+But again, that is simply the definition of multiplication, so our answer is $3 \times 20 \times 50 = 3000$.
 
 Are you starting to see the pattern here?
 This has nothing in particular to do with chairs in classrooms, but it's a basic feature of \emph{how we count things}: \textbf{if you have a series of independent decisions to make, the total number of ways to decide equals the product of the number of ways to make each individual choice}.
