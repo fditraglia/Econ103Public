@@ -106,7 +106,7 @@ A boxplot is an alternative way to visualize the distribution of a dataset. The 
 boxplot(survey$handspan, ylab = "Handspan(cm)")
 ```
 
-The "box" in a boxplot shows the middle 75% of the data. The thick line in the middle is the median, and the lines immediately above and below are the 25th and 75th percentiles. This means that the width of the box equals the interquartile range of the data.
+The "box" in a boxplot shows the middle 50% of the data. The thick line in the middle is the median, and the lines immediately above and below are the 25th and 75th percentiles. This means that the width of the box equals the interquartile range of the data.
 
 Traditionally, the "whiskers" in a boxplot show the maximum and minimum of the data, but R has an interesting special feature. If there are any observations that are extremely unusual (very big or very small compared to all other observations), it leaves them out when deciding where to put the whiskers and just plots them directly. Such points are called "outliers," like the book by Malcom Gladwell. We see two such outliers in the plot above.
 
