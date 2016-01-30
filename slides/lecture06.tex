@@ -120,11 +120,6 @@
 %	\alert{$P(7) = 6/36 = 1/6$}\\
 %	\alert{$P(6) = 5/36$}
 %\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-\begin{center}\Huge Derive Rules for Computing Probabilities from Axioms\end{center}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Recall: Axioms of Probability}
@@ -139,11 +134,11 @@ Let $S$ be the sample space. With each event $A \subseteq S$ we associate a real
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Key Point}
-The axoims of probability are out \emph{\alert{starting assumptions}} -- they are a complete description what we \emph{\alert{mean}} when we say ``probability.'' We use the axioms to derive various results for \emph{\alert{computing}} probabilities.
-\end{frame}
-
+%\begin{frame}
+%\frametitle{Key Point}
+%The axoims of probability are out \emph{\alert{starting assumptions}} -- they are a complete description what we \emph{\alert{mean}} when we say ``probability.'' We use the axioms to derive various results for \emph{\alert{computing}} probabilities.
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Some macros for the Venn Diagrams
 \def\EventA{(-0.35,0) circle (1.2)}
@@ -157,10 +152,10 @@ The axoims of probability are out \emph{\alert{starting assumptions}} -- they ar
 	\begin{columns}
 	
 \column{0.7\textwidth}
-\uncover<2->{Since $A, A^c$ are mutually exclusive and collectively exhaustive:}
-$$\uncover<3->{P(A \cup A^c) =} \uncover<4->{P(A) + P(A^c) =} \uncover<5->{P(S) =} \uncover<6->{1}$$
-\uncover<7->{Rearranging:}
-	\uncover<8->{$$P(A^c) = 1 - P(A)$$}
+\uncover<1->{Since $A, A^c$ are mutually exclusive and collectively exhaustive:}
+$$\uncover<2->{P(A \cup A^c) =} \uncover<2->{P(A) + P(A^c) =} \uncover<3->{P(S) =} \uncover<3->{1}$$
+\uncover<4->{Rearranging:}
+	\uncover<4->{$$P(A^c) = 1 - P(A)$$}
 \column{0.3\textwidth}
 \uncover<1->{
 \begin{figure}
@@ -202,19 +197,20 @@ If $B \subseteq A$, then all the basic outcomes in $B$ are also in $A$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Deriving The Logical Consequence Rule}
+\frametitle{Proof of Logical Consequence Rule (Optional)}
+\framesubtitle{Proof won't be on a quiz or exam but is good practice with probability axioms.}
 	\begin{columns}
 	
 \column{0.75\textwidth}
-\uncover<2->{Since $B \subseteq A$, we have $B = A\cap B$ and $A = B \cup (A \cap B^c)$.}\uncover<3->{ Combining these,
+\uncover<1->{Since $B \subseteq A$, we have $B = A\cap B$ and $A = B \cup (A \cap B^c)$.}\uncover<1->{ Combining these,
 	$$A = (A \cap B) \cup (A \cap B^c)$$}
-\uncover<4->{Now since $(A \cap B) \cap (A \cap B^c) = \emptyset$,}
+\uncover<1->{Now since $(A \cap B) \cap (A \cap B^c) = \emptyset$,}
 \begin{eqnarray*}
-	\uncover<5->{P(A) &=& P(A \cap B)  + P(A \cap B^c)\\}
-	\uncover<6->{&=&  P(B) + P(A \cap B^c)\\}
-	\uncover<7->{&\geq& P(B)}
+	\uncover<1->{P(A) &=& P(A \cap B)  + P(A \cap B^c)\\}
+	\uncover<1->{&=&  P(B) + P(A \cap B^c)\\}
+	\uncover<1->{&\geq& P(B)}
 \end{eqnarray*}
-\uncover<8->{because $0 \leq P(A \cap B^c) \leq 1$.}
+\uncover<1->{because $0 \leq P(A \cap B^c) \leq 1$.}
 \column{0.25\textwidth}
 \uncover<1->{\begin{figure}
 \centering
@@ -240,7 +236,7 @@ Pia is thirty-one years old, single, outspoken, and smart. She was a philosophy 
 
 	\vspace{1em}
 
-		\begin{enumerate}[(a)]
+		\begin{enumerate}[(A)]
 			\item Pia is an active feminist.
 			\item Pia is a bank teller.
 			\item Pia works in a small bookstore.
@@ -250,50 +246,50 @@ Pia is thirty-one years old, single, outspoken, and smart. She was a philosophy 
 		\end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{``Odd Question'' \# 2 -- Seven \emph{Events}}
-Write events D, E, and F in terms of A, B, C, and Y.
-		\begin{enumerate}[A]
-			\item = Pia is an active feminist.
-			\item = Pia is a bank teller.
-			\item = Pia works in a small bookstore.
-			\item[Y] = Pia takes yoga classes.\vspace{2em}
-			\item = Pia is a bank teller and an active feminist \pause \alert{$= A\cap B$}\pause
-			\item = Pia is a bank teller and an active feminist who takes yoga classes \pause \alert{$= A \cap B \cap Y$} \pause
-			\item = Pia works in a small bookstore and is an active feminist who takes yoga classes \pause \alert{$= A \cap C \cap Y$}
-		\end{enumerate}
-\end{frame}
+%\begin{frame}
+%\frametitle{``Odd Question'' \# 2 -- Seven \emph{Events}}
+%Write events D, E, and F in terms of A, B, C, and Y.
+%		\begin{enumerate}[A]
+%			\item = Pia is an active feminist.
+%			\item = Pia is a bank teller.
+%			\item = Pia works in a small bookstore.
+%			\item[Y] = Pia takes yoga classes.\vspace{2em}
+%			\item = Pia is a bank teller and an active feminist \pause \alert{$= A\cap B$}\pause
+%			\item = Pia is a bank teller and an active feminist who takes yoga classes \pause \alert{$= A \cap B \cap Y$} \pause
+%			\item = Pia works in a small bookstore and is an active feminist who takes yoga classes \pause \alert{$= A \cap C \cap Y$}
+%		\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{``Odd Question'' \# 2 -- Which Events are Subsets?}
+%		\begin{enumerate}[A]
+%			\item = Pia is an active feminist.
+%			\item = Pia is a bank teller.
+%			\item = Pia works in a small bookstore.
+%			\item[Y] = Pia takes yoga classes.\vspace{2em}
+%			\item $=A\cap B \pause \Rightarrow \alert{D\subseteq A,} \pause \alert{D\subseteq B}$\pause
+%			\item $=A\cap B \cap Y\pause\Rightarrow \alert{E\subseteq D}$\pause
+%			\item $=A\cap C \cap Y \pause \Rightarrow \alert{F \subseteq A,} \pause\alert{F \subseteq C}$
+%		\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{``Odd Question'' \# 2 -- Apply Logical Consequence Rule}
+%		\begin{enumerate}[A]
+%			\item = Pia is an active feminist.
+%			\item = Pia is a bank teller.
+%			\item = Pia works in a small bookstore.
+%			\item[Y] = Pia takes yoga classes.\vspace{2em}
+%			\item $=A\cap B  \Rightarrow D\subseteq A, D\subseteq B \pause \Rightarrow \alert{P(D) \leq P(A), \pause P(D) \leq P(B)}$\pause
+%			\item $=A\cap B \cap Y\Rightarrow E\subseteq D \pause \Rightarrow \alert{P(E) \leq P(D)}$\pause
+%			\item $=A\cap C \cap Y \Rightarrow F \subseteq A, F \subseteq C \pause \Rightarrow \alert{P(F) \leq P(A), \pause P(F) \leq P(C)}$
+%		\end{enumerate}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{``Odd Question'' \# 2 -- Which Events are Subsets?}
-		\begin{enumerate}[A]
-			\item = Pia is an active feminist.
-			\item = Pia is a bank teller.
-			\item = Pia works in a small bookstore.
-			\item[Y] = Pia takes yoga classes.\vspace{2em}
-			\item $=A\cap B \pause \Rightarrow \alert{D\subseteq A,} \pause \alert{D\subseteq B}$\pause
-			\item $=A\cap B \cap Y\pause\Rightarrow \alert{E\subseteq D}$\pause
-			\item $=A\cap C \cap Y \pause \Rightarrow \alert{F \subseteq A,} \pause\alert{F \subseteq C}$
-		\end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{``Odd Question'' \# 2 -- Apply Logical Consequence Rule}
-		\begin{enumerate}[A]
-			\item = Pia is an active feminist.
-			\item = Pia is a bank teller.
-			\item = Pia works in a small bookstore.
-			\item[Y] = Pia takes yoga classes.\vspace{2em}
-			\item $=A\cap B  \Rightarrow D\subseteq A, D\subseteq B \pause \Rightarrow \alert{P(D) \leq P(A), \pause P(D) \leq P(B)}$\pause
-			\item $=A\cap B \cap Y\Rightarrow E\subseteq D \pause \Rightarrow \alert{P(E) \leq P(D)}$\pause
-			\item $=A\cap C \cap Y \Rightarrow F \subseteq A, F \subseteq C \pause \Rightarrow \alert{P(F) \leq P(A), \pause P(F) \leq P(C)}$
-		\end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{``Odd Question'' \# 2 -- Putting These Together...}
+\frametitle{Using the Logical Consequence Rule...}
  \footnotesize
-		\begin{enumerate}[(a)]
+		\begin{enumerate}[(A)]
 			\item Pia is an active feminist.
 			\item Pia is a bank teller.
 			\item Pia works in a small bookstore.
@@ -303,10 +299,10 @@ Write events D, E, and F in terms of A, B, C, and Y.
 		\end{enumerate}
 \begin{alertblock}{Any Correct Ranking Must Satisfy:}\end{alertblock}
 \begin{eqnarray*}
-\mbox{(a)}\geq \mbox{(d)}\geq \mbox{(e)}\\
-\mbox{(b)}\geq \mbox{(d)}\geq \mbox{(e)}\\
-\mbox{(a)}\geq \mbox{(f)}\\
-\mbox{(c)}\geq \mbox{(f)}
+P\mbox{(A)}\geq P\mbox{(D)}\geq P\mbox{(E)}\\
+P\mbox{(B)}\geq P\mbox{(D)}\geq P\mbox{(E)}\\
+P\mbox{(A)}\geq P\mbox{(F)}\\
+P\mbox{(C)}\geq P\mbox{(F)}
 \end{eqnarray*}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -314,7 +310,7 @@ Write events D, E, and F in terms of A, B, C, and Y.
 \frametitle{Throw a Fair Die Once}
 \begin{block}{$E = $ roll an even number}
 \end{block}
-\begin{block}{What are the basic outcomes?}\pause
+\begin{block}{What are the basic outcomes?}
 $\{1,2,3,4,5,6\}$
 \end{block}\pause
 \begin{block}{What is $P(E)$?\hfill \includegraphics[scale = 0.05]{./images/clicker} }\pause
@@ -327,15 +323,15 @@ $E = \{2,4,6\}$ and the basic outcomes are equally likely (and mutually exclusiv
 \begin{frame}
 \frametitle{Throw a Fair Die Once}
 \begin{block}{$E = $ roll an even number \hfill $M = $ roll a 1 or a prime number}
-\end{block}\pause
+\end{block}
 \begin{alertblock}{What is $P(E\cup M)$?\hfill \includegraphics[scale = 0.05]{./images/clicker} }\end{alertblock}
 \pause
-Key point: $E$ and $M$ are not mutually exclusive! \pause
+Key point: $E$ and $M$ are not mutually exclusive! 
 	\begin{eqnarray*}
-		P(E\cup M) &=& P(\{1,2,3,4,5,6\})= 1\\ \pause
-		P(E) &=& P(\{2,4,6\}) = 1/2\\ \pause
-		P(M) &=& P(\{1,2,3,5\}) = 4/6 = 2/3\\ \\ \pause
-		P(E) + P(M) &=& 1/2 + 2/3 = 7/6 \pause \neq P(E\cup M) = 1
+		P(E\cup M) &=& P(\{1,2,3,4,5,6\})= 1\\ 
+		P(E) &=& P(\{2,4,6\}) = 1/2\\ 
+		P(M) &=& P(\{1,2,3,5\}) = 4/6 = 2/3\\ \\
+		P(E) + P(M) &=& 1/2 + 2/3 = 7/6 \neq P(E\cup M) = 1
 	\end{eqnarray*}
 
 \end{frame}
@@ -377,7 +373,7 @@ $$P(A\cup B) = P(A) + P(B) - P(A\cap B)$$
 	\item Gaga/Gaga
 	\item Obama/Gaga
 	\item Obama/Obama
-\end{enumerate} \pause
+\end{enumerate} 
 \begin{alertblock}{I draw a card at random and look at one side: it's Obama. What is the probability that the other side is also Obama?\\\hfill\includegraphics[scale = 0.05]{./images/clicker} }\end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -488,46 +484,71 @@ $$P(A|B) = \frac{P(A\cap B)}{P(B)},\;\; \mbox{provided } P(B)>0$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Who's on the other side?}
-Let $O_F$ be the event that Obama is on the front of the card of the card we draw and $O_B$ be the event that he is on the back.\pause
-$$P(O_B|O_F) = \pause \frac{P(O_B\cap O_F)}{P(O_F)} = \pause \alert{\frac{1/3}{1/2}= \pause 2/3}$$
+Let $F$ be the event that Obama is on the front of the card of the card we draw and $B$ be the event that he is on the back.
+$$P(B|F) = \frac{P(B\cap F)}{P(F)} = \pause \alert{\frac{1/3}{1/2}= \pause 2/3}$$
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \small
+  \begin{block}{Conditional Versions of Probability Axioms}
+    \begin{enumerate}
+      \item $0 \leq P(A|B) \leq 1$
+      \item $P(B|B) = 1$
+      \item If $A_1, A_2, A_3, \dots$ are mutually exclusive events, then $P(A_1\cup A_2\cup A_3 \cup \cdots) = P(A_1|B) + P(A_2|B) + P(A_3|B)\dots$
+    \end{enumerate}
+  \end{block}
+
+  \begin{block}{Conditional Versions of Other Probability Rules}
+    \begin{itemize}
+      \item $P(A|B) = 1 - P(A^c|B)$
+      \item $A_1$ logically equivalent to $A_2 \iff P(A_1|B) = P(A_2|B)$
+      \item $A_1 \subseteq A_2 \implies P(A_1|B) \leq P(A_2|B)$  
+      \item $P(A_1 \cup A_2 | B) = P(A_1|B) + P(A_2|B) - P(A_1 \cap A_2|B)$
+    \end{itemize}
+  \end{block}
+
+
+    \alert{However: $P(A|B) \neq P(B|A)$ and $P(A|B^c) \neq 1 - P(A|B)$!}
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Independence and The Multiplication Rule}
+\begin{block}{The Multiplication Rule}
+Rearrange the definition of conditional probability:
+$P(A\cap B) = P(A|B)P(B)$
+\end{block}\pause
+\begin{block}{Statistical Independence}
+$P(A\cap B) = P(A)P(B)$
+\end{block}\pause
+\begin{alertblock}{By the Multiplication Rule}
+$\mbox{Independence } \iff P(A|B) = P(A)$\\
+\end{alertblock}\pause
+\begin{block}{Interpreting Independence}
+Knowledge that $B$ has occurred tells nothing about whether $A$ will.
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Will Having 5 Children Guarantee a Boy? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+A couple plans to have five children. Assuming that each birth is independent and male and female children are equally likely, what is the probability that they have at least one boy?
+\vspace{1em}
+
+\pause
+\alert{By Independence and the Complement Rule,}
+	\begin{eqnarray*}
+		P(\mbox{no boys})&=& P(\mbox{5 girls})\\
+							&=& 1/2 \times 1/2 \times 1/2 \times 1/2 \times 1/2\\
+							&=&\ 1/32\\ \\ \pause
+		P(\mbox{at least 1 boy})&=&1 - P(\mbox{no boys})\\
+		&=&1 - 1/32 =31/32 = 0.97
+	\end{eqnarray*}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Independence and The Multiplication Rule}
-% \begin{block}{The Multiplication Rule}
-% Just rearrange the definition of conditional probability:
-% $P(A\cap B) = P(A|B)P(B)$
-% \end{block}\pause
-% \begin{block}{Statistical Independence}
-% $P(A\cap B) = P(A)P(B)$
-% \end{block}\pause
-% \begin{alertblock}{By the Multiplication Rule}
-% $\mbox{Independence } \iff P(A|B) = P(A)$\\
-% \end{alertblock}\pause
-% \begin{block}{Interpreting Independence}
-% Knowing that $B$ has occurred doesn't give us any additional information about whether $A$ will.
-% \end{block}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-% \frametitle{Will Having 5 Children Guarantee a Boy?}
-% A couple plans to have five children. Assuming that each birth is independent and male and female children are equally likely, what is the probability that they have at least one boy?
-% \vspace{1em}
-
-% \pause
-% \alert{By Independence and the Complement Rule,}
-% 	\begin{eqnarray*}
-% 		P(\mbox{no boys})&=&\pause P(\mbox{5 girls})\\
-% 							&=&\pause 1/2 \times 1/2 \times 1/2 \times 1/2 \times 1/2\\
-% 							&=&\pause 1/32\\ \\ \pause
-% 		P(\mbox{at least 1 boy})&=&\pause1 - P(\mbox{no boys})\\
-% 		&=&\pause1 - 1/32 =\pause 31/32 = 0.97
-% 	\end{eqnarray*}
-
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %\begin{frame}
 %\frametitle{An Example -- Do you agree with this calculation?\hfill\includegraphics[scale = 0.05]{./images/clicker} }
@@ -610,5 +631,169 @@ $$P(O_B|O_F) = \pause \frac{P(O_B\cap O_F)}{P(O_F)} = \pause \alert{\frac{1/3}{1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+
+\begin{frame}
+\frametitle{The Law of Total Probability}
+If $E_1, E_2, \hdots, E_k$ are mutually exclusive, collectively exhaustive events and $A$ is another event, then
+	$$P(A) = P(A|E_1)P(E_1) + P(A|E_2)P(E_2) + \hdots + P(A|E_k)P(E_k)$$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Example of Law of Total Probability}
+  Define the following events:
+  \begin{eqnarray*}
+    F &=&  \mbox{Obama on front of card}\\
+    A &=&  \mbox{Draw card with two Gagas}\\
+    B &=&  \mbox{Draw card with two Obamas}\\
+    C &=&  \mbox{Draw card with BOTH Obama and Gaga}\\
+  \end{eqnarray*}
+  \begin{eqnarray*}
+  P(F) &=& P(F|A)P(A) + P(F|B)P(B) + P(F|C)P(C) \\ \pause
+  &=& 0 \times 1/3 + 1 \times 1/3 + 1/2 \times 1/3 \\
+  &=& 1/2
+  \end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Some macros for the Venn Diagrams
+\def\EventA{(-0.35,0) circle (1.2)}
+\def\EventB{(1.35,0) circle (1.2)}
+\def\EventC{(-0.35,0) circle (0.6)}
+\def\EventD{(0,0) circle (1.6)}
+\def\SampleSpace{(-2,-2) rectangle (3,2)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Deriving the Law of Total Probability For $k=2$}
+\framesubtitle{You are responsible for this proof on quizzes and exams.}
+
+\begin{columns}
+
+\column{0.7\textwidth}
+\uncover<2->{
+
+Since $A\cap B$ and $A \cap B^c$ are mutually exclusive and their union equals $A$,
+	$$P(A) = P(A\cap B) + P(A \cap B^c)$$}
+	\uncover<3->{
+But by the multiplication rule:
+	\begin{eqnarray*}
+		P(A\cap B)&=&P(A|B)P(B)\\
+		P(A \cap B^c)&=&P(A|B^c)P(B^c)
+	\end{eqnarray*}}
+\uncover<4->{
+Combining,
+	$$\alert{P(A) = P(A|B)P(B) + P(A|B^c)P(B^c)}$$}
+\column{0.3\textwidth}
+\uncover<1->{
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale = 0.5]
+
+	\begin{scope}[fill opacity = 0.5]
+		\fill[red] \EventB;
+      	\clip \EventA;
+      	\fill[blue] \EventB;
+    \end{scope}
+	\draw \EventA node [above] {$B$};
+	\draw \EventB node [above] {$A$};
+      \draw \SampleSpace node [right] {$S$};
+\end{tikzpicture}
+\caption{$A = (A\cap B) \cup (A \cap B^c)$, $(A\cap B) \cap (A \cap B^c) = \emptyset$}
+\end{figure}}
+
+\end{columns}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\frametitle{How do prediction markets work?}
+\framesubtitle{To learn more, see \fbox{\href{http://www.aeaweb.org/articles.php?doi=10.1257/0895330041371321}{Wolfers \& Zitzewitz (2004)}}}
+\begin{center}
+\fbox{\fbox{\begin{minipage}{0.6\textwidth}
+  \textsc{This certificate entitles the bearer to \$1 if Trump wins the 2016 US presidential election.}
+\end{minipage}}}
+\vspace{1em}
+
+\begin{block}{Buyers -- Purchase Right to Collect}
+Trump very likely to win $\Rightarrow$ buy for close to \$1. \\Trump very unlikely to win $\Rightarrow$ buy for close to \$0.
+\end{block}
+
+\begin{block}{Sellers -- Sell Obligation to Pay} 
+Trump very likely to win $\Rightarrow$ sell for close to \$1. \\Trump very unlikely to win $\Rightarrow$ sell for close to \$0.
+\end{block}
+\end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+  \begin{block}{Probabilities from Beliefs}
+    Market price of contract encodes market participants' beliefs in the form of probability:
+$$\mbox{Price}/\mbox{Payout}\approx \mbox{Subjective Probability}$$
+  \end{block} \pause
+
+	\begin{alertblock}{Statistical Arbitrage}
+    If the probabilities implied by prediction market prices violate \emph{any} of our probability rules there is a \emph{pure arbitrage opportunity}: a way make to make a guaranteed, risk-free profit.
+	\end{alertblock} \pause
+
+  \vspace{1em}
+  \alert{Last I checked a \$1 contract on Trump winning was going for \$0.29 on \url{predictit.org}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{A Simple Example of Statistical Arbitrage}
+\framesubtitle{Courtesy of  \fbox{\href{http://offsettingbehaviour.blogspot.co.nz/2012/11/barriers-to-arbitrage.html}{Eric Crampton}}}
+
+\begin{block}{November 5th, 2012}
+	\begin{itemize}
+		\item\$2.30 for contract paying \$10 if Romney wins on BetFair
+		\item \$6.58 for contract paying \$10 if Obama wins on InTrade
+	\end{itemize}
+\end{block}
+
+\begin{block}{Implied Probabilities}
+	\begin{itemize}
+	\item BetFair: $P(Romney) \approx 0.23$
+	\item InTrade: $P(Obama) \approx 0.66$
+	\end{itemize}
+\end{block}
+
+\begin{alertblock}{What's Wrong with This?}\pause
+ Violates complement rule! $P(Obama) = 1 - P(Romney)$ but the implied probabilities here don't sum up to one!
+\end{alertblock}
+
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{A Simple Example of Statistical Arbitrage}
+\framesubtitle{Courtesy of  \fbox{\href{http://offsettingbehaviour.blogspot.co.nz/2012/11/barriers-to-arbitrage.html}{Eric Crampton}}}
+
+\begin{block}{November 5th, 2012}
+	\begin{itemize}
+		\item\$2.30 for contract paying \$10 if Romney wins on BetFair
+		\item \$6.58 for contract paying \$10 if Obama wins on InTrade
+	\end{itemize}
+\end{block}
+
+\begin{alertblock}{Arbitrage Strategy}
+Buy Equal Numbers of Each 
+	\begin{itemize}
+		\item Cost = \$2.30 + \$6.58 =\$8.88 per pair 
+		\item Payout if Romney Wins: \$10 
+		\item Payout if Obama Wins: \$10
+		\item Guaranteed Profit: \$10 - \$8.88 = \$1.12 per pair
+	\end{itemize} 
+
+\end{alertblock}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
