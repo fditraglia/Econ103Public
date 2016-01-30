@@ -31,41 +31,41 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Linearity of Expectation}
-\framesubtitle{Holds for Continuous RVs as well, but proof is different.}
-Let $X$ be a RV and $a,b$ be constants. Then:
-	$$E[a + bX] = a + bE[X]$$
-\vspace{2em}
-\begin{alertblock}{This is one of the most important facts in the course: the special case in which $E[g(X)] = g(E[X])$ is $g = a+bX$.}
-\end{alertblock}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Linearity of Expectation \hfill \includegraphics[scale = 0.05]{./images/clicker} }
-Let $X \sim \mbox{Bernoulli}(1/3)$ and define $Y = 3X + 2$
-\vspace{1em}
-
-\begin{enumerate}
-  \item What is $E[X]$? \pause \hspace{2em} \alert{$E[X] = 0 \times 2/3 + 1 \times 1/3 = 1/3$} \pause
-  \item What is $E[Y]$? \pause \hspace{2em} \alert{$E[Y] = E[3X + 2] = 3E[X] + 2 = 3$}
-\end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Proof: Linearity of Expectation For Discrete RV}
-
-\begin{eqnarray*}
-	E[a + bX] &=& \sum_{\mbox{all } x}  (a + bx) p(x)\\ \\
-	 &=&  \sum_{\mbox{all } x} p(x) \cdot a + \sum_{\mbox{all } x}p(x) \cdot bx\\ \\
-	&=&  a\sum_{\mbox{all } x} p(x) + b\sum_{\mbox{all } x} x \cdot p(x) \\ \\
-	&=&  a + b E[X]
-\end{eqnarray*}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Linearity of Expectation}
+%\framesubtitle{Holds for Continuous RVs as well, but proof is different.}
+%Let $X$ be a RV and $a,b$ be constants. Then:
+%	$$E[a + bX] = a + bE[X]$$
+%\vspace{2em}
+%\begin{alertblock}{This is one of the most important facts in the course: the special case in which $E[g(X)] = g(E[X])$ is $g = a+bX$.}
+%\end{alertblock}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Example: Linearity of Expectation \hfill \includegraphics[scale = 0.05]{./images/clicker} }
+%Let $X \sim \mbox{Bernoulli}(1/3)$ and define $Y = 3X + 2$
+%\vspace{1em}
+%
+%\begin{enumerate}
+%  \item What is $E[X]$? \pause \hspace{2em} \alert{$E[X] = 0 \times 2/3 + 1 \times 1/3 = 1/3$} \pause
+%  \item What is $E[Y]$? \pause \hspace{2em} \alert{$E[Y] = E[3X + 2] = 3E[X] + 2 = 3$}
+%\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Proof: Linearity of Expectation For Discrete RV}
+%
+%\begin{eqnarray*}
+%	E[a + bX] &=& \sum_{\mbox{all } x}  (a + bx) p(x)\\ \\
+%	 &=&  \sum_{\mbox{all } x} p(x) \cdot a + \sum_{\mbox{all } x}p(x) \cdot bx\\ \\
+%	&=&  a\sum_{\mbox{all } x} p(x) + b\sum_{\mbox{all } x} x \cdot p(x) \\ \\
+%	&=&  a + b E[X]
+%\end{eqnarray*}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Variance and Standard Deviation of a RV}

@@ -696,6 +696,11 @@ $$P(B|W_B) = P(W_B|B)P(B)/P(W_B)$$
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}
+  \begin{center}
+  \Huge Random Variables
+  \end{center}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Some macros for diagrams of random variables
 \def\RVraw{(-2.5,0) circle [radius=1.7]
@@ -703,7 +708,8 @@ $$P(B|W_B) = P(W_B|B)P(B)/P(W_B)$$
 	(2.5,0) circle [radius=1.7]
 	node [above left] at (-3.75,1.25) {$S$}
 	node [above right] at (3.75,1.25) {$\mathbb{R}$}
-	node [above] at (0,2) {$X\colon S \mapsto \mathbb{R}$}}
+	%node [above] at (0,2) {$X\colon S \mapsto \mathbb{R}$}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Random Variables}
@@ -711,7 +717,7 @@ $$P(B|W_B) = P(W_B|B)P(B)/P(W_B)$$
     A random variable is neither random nor a variable.
   \end{quote}
 \begin{block}{Random Variable (RV): $X$}
-  A deterministic (i.e.\ non-random) function that assigns a numeric value to each basic outcome of a random experimnet.
+  A \emph{fixed} function that assigns a \emph{number} to each basic outcome of a random experimnet.
 \end{block}
  
 \begin{block}{Realization: $x$}
@@ -788,8 +794,8 @@ Capital latin letters for RVs, e.g.\ $X,Y,Z$, and the corresponsing lowercase le
 \begin{frame}
   \frametitle{Two Kinds of RVs: Discrete and Continuous}
   \begin{description}
-    \item[Discrete] support set is finite or countable , e.g.\ $\left\{ 0,1 \right\}$,  $\left\{ \hdots, -2, -1, 0, 1, 2,\hdots \right\}$
-    \item[Continuous] support set is \emph{uncountable} e.g.\ $[-1,1]$, $\mathbb{R}$.
+    \item[Discrete] support set is discrete, e.g.\ $\left\{ 0,1,2 \right\}$,  $\left\{ \hdots, -2, -1, 0, 1, 2,\hdots \right\}$
+    \item[Continuous] support set is continuous, e.g.\ $[-1,1]$, $\mathbb{R}$.
   \end{description}
 
   \vspace{1em}
