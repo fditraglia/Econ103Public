@@ -21,45 +21,46 @@
 \end{frame} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%
+%\begin{frame}
+%\frametitle{Definition of Conditional PMF}
+%\framesubtitle{How does the distribution of $y$ change with $x$?}
+%
+%\Large
+%$$\boxed{p_{Y|X}(y|x) = P(Y=y|X=x)}$$
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Which of these is the formula for $p_{Y|X}(y|x)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%You can figure this out from what you already know about probability, using the definition $p_{Y|X}(y|x) = P(Y=y|X=x)$
+%
+%\vspace{1em}
+%
+%\begin{enumerate}[(a)]
+%\item $p_X(x)/p_Y(y)$
+%\item $p_{XY}(x,y)/p_X(x)$
+%\item $p_X(x)p_{XY}(x,y)$
+%\item $p_{XY}(x,y)/p_Y(y)$
+%\item $p_Y(y)/p_X(x)$
+%\end{enumerate}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Definition of Conditional PMF}
 \framesubtitle{How does the distribution of $y$ change with $x$?}
-
-\Large
-$$\boxed{p_{Y|X}(y|x) = P(Y=y|X=x)}$$
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Which of these is the formula for $p_{Y|X}(y|x)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-You can figure this out from what you already know about probability, using the definition $p_{Y|X}(y|x) = P(Y=y|X=x)$
-
-\vspace{1em}
-
-\begin{enumerate}[(a)]
-\item $p_X(x)/p_Y(y)$
-\item $p_{XY}(x,y)/p_X(x)$
-\item $p_X(x)p_{XY}(x,y)$
-\item $p_{XY}(x,y)/p_Y(y)$
-\item $p_Y(y)/p_X(x)$
-\end{enumerate}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Conditional PMF from Joint and Marginal}
 
 \begin{eqnarray*}
 	p_{Y|X}(y|x) = P(Y=y|X=x) =  \frac{P(Y=y \cap X=x)}{P(X=x)} =  \frac{p_{XY}(x,y)}{p_X(x)}
 \end{eqnarray*}
 \vspace{1em}
 
-Hence,
- $$\boxed{p_{Y|X}(y|x) = \frac{p_{XY}(x,y)}{p_X(x)}}$$
- and similarly,
-  $$\boxed{p_{X|Y}(x|y) = \frac{p_{XY}(x,y)}{p_Y(y)}}$$
+%Hence,
+% $$\boxed{p_{Y|X}(y|x) = \frac{p_{XY}(x,y)}{p_X(x)}}$$
+% and similarly,
+%  $$\boxed{p_{X|Y}(x|y) = \frac{p_{XY}(x,y)}{p_Y(y)}}$$
 
 \end{frame}
 
@@ -84,8 +85,8 @@ Hence,
 \end{table}
 
 \begin{eqnarray*}
-	p_{Y|X}(1|2) &=&\pause \frac{p_{XY}(2,1)}{p_X(2)} =\pause \frac{0}{3/8} =\alert{0}\\ \\ \pause
-	p_{Y|X}(2|2) &=&\frac{p_{XY}(2,2)}{p_X(2)}= \frac{1/4}{3/8} =\alert{2/3} \\ \\ \pause
+	p_{Y|X}(1|2) &=& \frac{p_{XY}(2,1)}{p_X(2)} = \frac{0}{3/8} =\alert{0}\\ \\
+	p_{Y|X}(2|2) &=&\frac{p_{XY}(2,2)}{p_X(2)}= \frac{1/4}{3/8} =\alert{2/3} \\ \\ 
 	 p_{Y|X}(3|2) &=&\frac{p_{XY}(2,3)}{p_X(2)} = \frac{1/8}{3/8} = \alert{1/3}
 \end{eqnarray*}
 
@@ -113,12 +114,14 @@ Hence,
 \end{table}
 
 \pause
-\begin{eqnarray*}
-	p_{X|Y}(0|2) &=&\frac{p_{XY}(0,2)}{p_Y(2)} = \frac{0}{1/2} = 0\\ \pause
-	p_{X|Y}(1|2) &=&\frac{p_{XY}(1,2)}{p_Y(2)}=\frac{1/4}{1/2}= \alert{1/2}\\ \pause
-	 p_{X|Y}(2|2) &=&\frac{p_{XY}(2,2)}{p_Y(2)}=\frac{1/4}{1/2}= 1/2\\ \pause
-	 	 p_{X|Y}(3|2) &=&\frac{p_{XY}(3,2)}{p_Y(2)}=\frac{0}{1/2} = 0\\
-\end{eqnarray*}
+\begin{equation}
+	p_{X|Y}(1|2) =\frac{p_{XY}(1,2)}{p_Y(2)}=\frac{1/4}{1/2}= \alert{1/2}
+\end{equation}
+
+  \pause
+
+Similarly: 
+$$p_{X|Y}(0|2)=0, \quad p_{X|Y}(2|2)=1/2, \quad p_{X|Y}(3|2)= 0$$
 
 
 \end{frame}
@@ -127,16 +130,19 @@ Hence,
 
 
 \begin{frame}
-\frametitle{Independent RVs}
+\frametitle{Independent RVs: Joint Equals Product of Marginals}
 
 
 \begin{block}{Definition}
-We say that two discrete RVs are \alert{independent} if and only if their joint pmf equals the product of their marginal pmfs: $$p_{XY}(x,y) = p_X(x)p_Y(y)$$ for all pairs $(x,y)$ in the support.
+  Two discrete RVs are \alert{independent} if and only if
+  $$p_{XY}(x,y) = p_X(x)p_Y(y)$$ for all pairs $(x,y)$ in the support.
 \end{block}
 
 
-\begin{block}{In Terms of Conditional PMF}
-From the previous slide, it follows that an equivalent definition of independence is that both conditional pmfs equal the corresponding marginal pmfs: $p_{Y|X}(y|x) = p_Y(y)$ and  $p_{X|Y}(x|y) = p_X(x)$ for all $(x,y)$ in the support.
+\begin{block}{Equivalent Definition}
+  \vspace{-1em}
+  $$p_{Y|X}(y|x) = p_Y(y) \mbox{ and } p_{X|Y}(x|y) = p_X(x)$$
+  for all pairs $(x,y)$ in the support.
 \end{block}
 
 \end{frame}
@@ -165,8 +171,8 @@ From the previous slide, it follows that an equivalent definition of independenc
 \pause
 
 \begin{eqnarray*}
-	p_{XY}(2,1) &=& 0\\ \pause
-	p_X(2) \times p_Y(1) &=& \pause (3/8) \times (1/4) \neq 0
+	p_{XY}(2,1) &=& 0\\ 
+	p_X(2) \times p_Y(1) &=&  (3/8) \times (1/4) \neq 0
 \end{eqnarray*}
 
 \alert{Therefore $X$ and $Y$ are \emph{not} independent.}
@@ -175,18 +181,16 @@ From the previous slide, it follows that an equivalent definition of independenc
 \begin{frame}
 \frametitle{Conditional Expectation}
 \begin{block}{Intuition}
-	$E[Y|X]$ is our ``best guess'' of the realization that $Y$ will take on having observed the realization of $X$.
+	$E[Y|X] = $ ``best guess'' of realization that $Y$ after observing realization of $X$. 
 \end{block}
-\pause
 
 \begin{block}{$E[Y|X]$ is a Random Variable}
-Unlike $E[Y]$ which is a constant, $E[Y|X]$ is a function of $X$, hence it is a \alert{Random Variable}.
+While $E[Y]$ is a constant, $E[Y|X]$ is a function of $X$, hence a \alert{Random Variable}.
 \end{block}
-\pause
 
 \begin{block}{$E[Y|X=x]$ is a Constant}
-To get a ``best guess'' for $Y$, we plug in the realization we observed for $X$: $E[Y|X=x]$ is a constant, our guess of the realization of $Y$.
-\end{block}\pause
+  The constant $E[Y|X=x]$ is the ``guess'' of $Y$ if we see $X=x$.
+\end{block}
 
 \begin{block}{Calculating $E[Y|X=x]$}
 Take the mean of the conditional pmf of $Y$ given $X=x$.
@@ -314,32 +318,31 @@ Hence
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{$E[Y|X]$ is a Random Variable}
-In this particular example we have seen that:
+For this example:
 	$$E[Y|X]= \left\{\begin{array}{cc}  
 	1& X = 0\\
 	7/3& X = 1\\
 	7/3& X = 2\\ 
 	1& X = 3 
 	\end{array}\right.$$ 
-But from above we know the marginal distribution of $X:$
+From above the marginal distribution of $X$ is:
 	\begin{eqnarray*}
 		P(X=0)= 1/8 && P(X=1) = 3/8\\
 		P(X=2)=3/8 && P(X=3)=1/8
-	\end{eqnarray*} \pause
-\alert{Therefore, $E[Y|X]$ is a RV that takes on the value 1 with probability 1/4 and the value 7/3 with probability 3/4.}
+	\end{eqnarray*} 
+\alert{$E[Y|X]$ takes the value 1 with prob.\ 1/4 and 7/3 with prob.\ 3/4.}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{The Law of Iterated Expectations}
-Since $E[Y|X]$ is a random variable, we can ask what its expectation is. It turns out that, for any RVs $X$ and $Y$
+\framesubtitle{$E[Y|X]$ is an RV so what is its expectation?}
+For any RVs $X$ and $Y$
 	$$\boxed{E\left[E\left[Y|X  \right]  \right] = E[Y]}$$
-and this is called the \alert{Law of Iterated Expectations}.
-I've posted a proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}} for those who are interested.
+Option proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}}.
+(Helpful for Econ 104\dots)
 
 
-\vspace{2em}
-\hfill This will be helpful in Econ 104...
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]
@@ -354,7 +357,7 @@ I've posted a proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/Op
 	P(Y = 2) &=& 1/2\\
 	P(Y = 3) &=& 1/4
 \end{eqnarray*}
-\pause
+
 
 \begin{eqnarray*}
 	E[Y] &=& 1\times 1/4 + 2 \times 1/2 + 3 \times 1/4\\
@@ -362,11 +365,10 @@ I've posted a proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/Op
 \end{eqnarray*}
 \end{block}
 
-\pause
 \column{0.5\textwidth}
 \begin{block}{$E[Y|X]$}
 	\begin{eqnarray*}
-	 E[Y|X] &=& \left\{\begin{array}{cc} 1& \mbox{w/ prob. } 1/4\\ 7/3& \mbox{w/ prob. } 3/4\end{array}\right.\\\\ \pause
+	 E[Y|X] &=& \left\{\begin{array}{cc} 1& \mbox{w/ prob. } 1/4\\ 7/3& \mbox{w/ prob. } 3/4\end{array}\right.\\\\ 
 	 E\left[E\left[Y|X \right] \right] &=& 1 \times 1/4 + 7/3 \times 3/4\\ 
 	 &=& 2
 	\end{eqnarray*}
@@ -407,7 +409,7 @@ Much easier for calculating:
 
 
 \vspace{2em}
-\hfill{We'll talk more about this in an upcoming lecture...}
+I'll mention this again in a few slides\dots
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -453,18 +455,15 @@ Much easier for calculating:
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\huge
-Hence, zero covariance (correlation) does \emph{not} imply independence!
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\huge
-However, independence \emph{does} imply zero covariance (correlation)
+  \frametitle{Zero Covariance versus Independence}
+  \begin{itemize}
+    \item From this example we learn that zero covariance (correlation) \emph{does not} imply independence.
+    \item However, it turns out that independence \emph{does} imply zero covariance (correlation).
+  \end{itemize}
 
 \vspace{2em}
 \normalsize 
-I've posted a proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}} for those who are interested.
+Optional proof that independence implies zero covariance \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}}.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -478,7 +477,7 @@ $$\boxed{E[aX + bY + c] = aE[X] + bE[Y] + c}$$
 
 \normalsize
 where $X,Y$ are random variables and $a,b,c$ are constants.
-I've posted a proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}} for those who are interested.
+Optional proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}}.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -534,7 +533,7 @@ regardless of how the RVs $X_1, \hdots, X_n$ are related to each other. In parti
 \end{block}
 
 \begin{block}{Independent}
-Joint pmf equals product of marginal pmfs (see last lecture): Knowing the realization of one of the RVs gives no information about the others.
+Realization of one of the RVs gives no information about the others.
 \end{block}
 
 \begin{block}{Identically Distributed}
@@ -592,23 +591,16 @@ $$\alert{p(x) = {n \choose x} p^x (1-p)^{n-x}}$$
 
 Use the fact that a Binomial$(n,p)$ RV is defined as the sum of $n$ iid Bernoulli$(p)$ Random Variables and the Linearity of Expectation:
 \begin{eqnarray*}
-E[Y] &=& E[X_1 + X_2 + \hdots + X_n] = \pause E[X_1] + E[X_2] + \hdots +E[X_n]\\
-	&=&\pause p + p + \hdots + p\\
-	&=& \pause \alert{np}
+E[Y] &=& E[X_1 + X_2 + \hdots + X_n] =  E[X_1] + E[X_2] + \hdots +E[X_n]\\
+	&=& p + p + \hdots + p\\
+	&=&  \alert{np}
 \end{eqnarray*}
 \vspace{3em}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\huge
-Extremely Important:\\
-\vspace{1em}
-\alert{Variance of Sum $\neq$ Sum of Variances!}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Variance of a Sum}
+\frametitle{Variance of a Sum $\neq$ Sum of Variances!}
 \footnotesize
 \begin{eqnarray*}
 	Var(aX + bY) &=& E\left[\left\{\left( aX + bY\right) - E[aX + bY]\right\}^2  \right]\\ \pause
@@ -628,14 +620,14 @@ $$\alert{\boxed{Var(aX + bY) = a^2 \sigma_X^2 + b^2 \sigma_Y^2 + 2ab \rho \sigma
 \begin{frame}
 \frametitle{Independence $\Rightarrow Var(X+Y) = Var(X) + Var(Y)$}
 
-As explained above, if $X$ and $Y$ are independent, $Cov(X,Y)=0$. Hence, independence implies
+$X$ and $Y$ independent $\implies Cov(X,Y)=0$. Hence, independence implies
 \begin{eqnarray*}
 	Var(X + Y) &=& Var(X) + Var(Y) + 2 Cov(X,Y)\\
 			&=& \alert{Var(X) +Var(Y)}
 \end{eqnarray*}
 
 
-\begin{block}{This is also true for more than two RVs}
+\begin{block}{Also true for three or more RVs}
 If $X_1, X_2, \hdots, X_n$ are independent, then
 	$$Var(X_1 + X_2 + \hdots X_n) = Var(X_1) + Var(X_2) + \hdots + Var(X_n)$$
 \end{block}
@@ -645,15 +637,15 @@ If $X_1, X_2, \hdots, X_n$ are independent, then
 \begin{frame}
 \frametitle{Crucial Distinction}
 \begin{block}{Expected Value}
-It is \alert{always} true that
+\alert{Always} true that
 	$$E[X_1 + X_2 + \hdots + X_n] = E[X_1] + E[X_2] + \hdots + E[X_n]$$
 \end{block}
 
 
 \begin{block}{Variance}
-It is \alert{not true in general} that 
+\alert{Not true in general} that 
 	$$Var[X_1 + X_2 + \hdots + X_n] = Var[X_1] + Var[X_2] + \hdots + Var[X_n]$$
-but it \alert{is true} in the special case where $X_1, \hdots X_n$ are independent.
+except in the special case where $X_1, \hdots X_n$ are independent (or at least uncorrelated).
 \end{block}
 \end{frame}
 
