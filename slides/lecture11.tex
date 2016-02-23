@@ -22,16 +22,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \begin{frame}
-
-\centering \Huge Continuous RVs -- Part I
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{What Changes?}
+\frametitle{Continuous RVs -- What Changes?}
 	\begin{enumerate}
 \item Probability Density Functions replace Probability Mass Functions (aka Probability Distributions)
 \item Integrals Replace Sums
@@ -52,13 +44,13 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\begin{frame}
-\frametitle{What is the probability of ``Right Hand Blue?'' \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\centering
-	\includegraphics[scale = 0.6]{./images/twister}
-
-\end{frame}
+%
+%\begin{frame}
+%\frametitle{What is the probability of ``Right Hand Blue?'' \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/twister}
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{What is the probability that the spinner lands in any \emph{particular} place?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
@@ -119,19 +111,11 @@ For any realization $x$, $P(X=x) = 0 \neq f(x)$!
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\begin{center}
-	\huge
-		We'll start with the simplest possible example: the Uniform$(0,1)$ RV.
-	\end{center} 
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Uniform$(0,1)$ Random Variable}
+\frametitle{Simplest Possible Continuous RV: Uniform$(0,1)$}
+\framesubtitle{You'll look at a generalization, Uniform$(a,b)$ for homework.}
 
 \begin{block}{$X \sim \mbox{Uniform}(0,1)$}
-We say that $X$ follows a Uniform(0,1) distribution, if it is equally likely to take on \emph{any value} in the range $[0,1]$ and never takes on a value outside this range.
+A Uniform(0,1) RV is equally likely to take on \emph{any value} in the range $[0,1]$ and never takes on a value outside this range.
 \end{block}
 
 \begin{block}{Uniform PDF}
@@ -168,7 +152,7 @@ $f(x) = 1$ for $0\leq x \leq 1$, zero elsewhere.
 \centering
 	\includegraphics[scale = 0.4]{./images/uniform_density_shaded}
 \begin{eqnarray*}
-	\int_{-\infty}^{\infty} f(x) \; dx =\pause\int_{0}^1 1 \; dx = \pause \left. x \right|_0^1 =\pause 1 - 0 = 1
+	\int_{-\infty}^{\infty} f(x) \; dx = \int_{0}^1 1 \; dx = \left. x \right|_0^1 = 1 - 0 = 1
 \end{eqnarray*}
 \end{frame}
 
@@ -201,11 +185,11 @@ $f(x) = 1$ for $0\leq x \leq 1$, zero elsewhere.
 \begin{frame}
 \frametitle{Relationship between PDF and CDF}
 
-Integrate the pdf to get the CDF
+Integrate pdf $\rightarrow$ CDF
 	$$F(x_0) = P(X\leq x_0) = \int_{-\infty}^{x_0} f(x)\; dx$$
-Differentiate the CDF to get the pdf
+Differentiate CDF $\rightarrow$ pdf
  	$$f(x) =\frac{d}{dx}F(x)$$
-\alert{This is just the Fundamental Theorem of Calculus.}
+\alert{This is just the First Fundamental Theorem of Calculus.}
 \end{frame}
 
 
@@ -215,7 +199,7 @@ Differentiate the CDF to get the pdf
 
 Integrate the pdf, $f(x) = 1$, to get the CDF
 \begin{eqnarray*}
-	F(x_0) =\int_{-\infty}^{x_0} f(x)\; dx =\pause \int_{0}^{x_0} 1\; dx = \pause \left. x \right|_0^{x_0} =\pause x_0 - 0 = x_0
+	F(x_0) =\int_{-\infty}^{x_0} f(x)\; dx = \int_{0}^{x_0} 1\; dx =  \left. x \right|_0^{x_0} =  x_0 - 0 = x_0
 \end{eqnarray*}
 
 \vspace{1em}
@@ -243,11 +227,6 @@ Differentiate the CDF, $F(x_0) = x_0$, to get the pdf
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\Huge \begin{center}Key Idea: Probability of Intervals\end{center}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{What is $P(0.4 \leq X \leq 0.8)$ if $X\sim \mbox{Uniform}(0,1)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
@@ -285,7 +264,7 @@ Differentiate the CDF, $F(x_0) = x_0$, to get the pdf
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Probability of Interval for Continuous RV}
+\frametitle{Key Idea: Probability of Interval for Continuous RV}
 
 $$\boxed{P(a\leq X \leq b) = \int_a^b f(x) \; dx = F(b) - F(a)}$$
 
@@ -320,18 +299,23 @@ $$\boxed{\int_{-\infty}^\infty x f(x) \; dx  }$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Example: Uniform$(0,1)$ RV}
+\frametitle{Example: Uniform(0,1) Random Variable \hfill \includegraphics[scale = 0.05]{./images/clicker}}
 	\begin{eqnarray*}
-	E[X^2] &=& \int_{-\infty}^\infty x^2 f(x) \; dx = \int_0^1 x^2 \cdot 1 \; dx\\ \\
+	E[X^2] &=& \int_{-\infty}^\infty x^2 f(x) \; dx \pause = \int_0^1 x^2 \cdot 1 \; dx\\ \\
 		&=& \left. \frac{x^3}{3}\right|_0^1 = 1/3
 	\end{eqnarray*}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-Once we have defined expected value for continuous RVs, we can use everything we know about variance, covariance, etc.\ from discrete RVs!
+\frametitle{What about all those rules for expected value?}
+\begin{itemize}
+  \item The only difference between expectation for continuous versus discrete is how we do the \emph{calculation}.
+  \item Sum for discrete; integral for continuous.
+  \item All \emph{properties} of expected value \alert{continue to hold!}
+  \item Includes linearity, shortcut for variance, etc.
+\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -351,9 +335,9 @@ $$\mu = E[X]=\int_{-\infty}^\infty x f(x) \; dx $$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Example: Uniform(0,1) Random Variable \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\frametitle{Example: Uniform$(0,1)$ RV}
 \begin{eqnarray*}
- Var(X) &=& E\left[ \left( X - E[X] \right)^2\right] = E[X^2] - \left(E[X]\right)^2\\ \pause
+ Var(X) &=& E\left[ \left( X - E[X] \right)^2\right] = E[X^2] - \left(E[X]\right)^2\\
  	&=& 1/3  - (1/2)^2\\ 
  	&=& 1/12 \\
  	&\approx& 0.083
@@ -392,8 +376,22 @@ $f_{Y|X} = f_{XY}(x,y)/f_X(x)$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+  \frametitle{So where does that leave us?}
 
-\huge We've now covered everything on the \href{http://ditraglia.com/Econ103Public/RandomVariablesHandout.pdf}{\textcolor{blue}{\fbox{Random Variables Handout}}}
+  \begin{block}{What We've Accomplished}
+    We've covered all the basic properties of RVs on this \href{http://ditraglia.com/Econ103Public/RandomVariablesHandout.pdf}{\textcolor{blue}{\fbox{Handout}}}.
+  \end{block}
+
+  \begin{block}{Where are we headed next?}
+   Next up is the most important RV of all: the normal RV. 
+   After that it's time to do some statistics!
+  \end{block}
+
+  \begin{alertblock}{How should you be studying?}
+    If you \emph{master} the material on RVs (both continuous and discrete) and in particular the normal RV the rest of the semester will seem easy. 
+    If you don't, you're in for a rough time\dots
+  \end{alertblock}
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
