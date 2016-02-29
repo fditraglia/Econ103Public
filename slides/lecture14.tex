@@ -64,16 +64,14 @@ When the bag and scale reach your team, do the following:
   \frametitle{Building a Bridge Between Probability and Statistics}
   \begin{block}{Questions to Answer}
   \begin{enumerate}
-    \item How accurately do our sample statistics estimate the unknown population parameters?
+    \item How accurately do sample statistics estimate population parameters?
     \item How can we quantify the uncertainty in our estimates?
   \end{enumerate}
   \end{block}
-  \alert{It will take many lectures to answer these questions. We'll start by ``building a bridge'' between probability and statistics\dots}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Step 1: Random Variable as Model for Population}
-  \framesubtitle{Treat Population as RV rather than list of objects}
+  \frametitle{Step 1: Population as RV rather than List of Objects}
 \small
   \begin{tabular}[h]{cc}
     \hline
@@ -104,16 +102,16 @@ When the bag and scale reach your team, do the following:
   \end{tabular}
 
   \vspace{1em}
-  \alert{In the second example, our model assumes that the distribution of height is symmetric and bell-shaped.}
+  \alert{Second example assumes distribution of height is bell-shaped.}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Recall: (Simple) Random Sample}
+\frametitle{Random Sample}
 
-\begin{block}{Definition in Words}
-Select a sample of $n$ objects from a population in such a way that:
+\begin{block}{In Words}
+Select sample of $n$ objects from  population so that:
 	\begin{enumerate}
 \item Each member of the population has the same probability of being selected 
 \item The fact that one individual is selected does not affect the chance that any other individual is selected
@@ -122,7 +120,7 @@ Select a sample of $n$ objects from a population in such a way that:
 \end{enumerate}
 \end{block}
 
-\begin{alertblock}{Definition in Math}
+\begin{alertblock}{In Math}
 	$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$ if continuous\\
   $X_1, X_2, \hdots, X_n \sim \mbox{iid } p(x)$ if discrete
 \end{alertblock}
@@ -136,7 +134,7 @@ Select a sample of $n$ objects from a population in such a way that:
 
 \begin{itemize}
   \item Without replacement $\Rightarrow$ dependence between samples
-  \item But sample small relative to popn.\ $\Rightarrow$ dependence negligible.
+  \item Sample small relative to popn.\ $\Rightarrow$ dependence negligible.
   \item This means our candy experiment (in progress) isn't bogus.
 \end{itemize}
 \end{frame}
@@ -144,11 +142,11 @@ Select a sample of $n$ objects from a population in such a way that:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Step 2: iid RVs Represent Random Sampling from Popn.}
-  \begin{block}{Who Will Vote for Hillary Clinton Example}
+  \begin{block}{Hillary Clinton Example}
    Poll random sample of 1000 registered voters:
    $$X_1, \hdots, X_{1000} \sim \mbox{ iid Bernoulli}(p = 1/2)$$
   \end{block}
-  \begin{block}{Heights of US Males Example}
+  \begin{block}{Height Example}
    Measure the heights of random sample of 50 US males:
    $$Y_1, \hdots, Y_{50}  \sim \mbox{ iid } N(\mu = 69, \sigma^2 = 36)$$
   \end{block}
@@ -228,7 +226,7 @@ If you poll a random sample of 4 voters, what is the probability that \emph{exac
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Sampling Distribution}
-  Under random sampling, a sample stat.\ is a RV. Thus it has PDF if continuous of PMF if discrete: this is called its \emph{sampling distribution}. 
+  Under random sampling, a statistic is a RV so it has a PDF if continuous of PMF if discrete: this is its \alert{sampling distribution}. 
 
   \begin{block}{Sampling Dist.\ of Sample Mean in Polling Example}
    \begin{eqnarray*}
@@ -243,175 +241,108 @@ If you poll a random sample of 4 voters, what is the probability that \emph{exac
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Some New Terminology}
+  \frametitle{Contradiction? No, but we need better terminology\dots}
   \begin{itemize}
     \item Under random sampling, a statistic is a RV
-    \item In any real example, however, our dataset is \emph{fixed} so a sample statistic is just a \emph{constant number}
-    \item We need some more precise terminology to make this distinction precise: \alert{Estimator} vs.\ \alert{Estimate}
-    \item Use these terms instead of statistic from now on\dots \end{itemize}
+    \item Given dataset is \emph{fixed} so statistic is a \emph{constant number}
+    \item Distinguish between: \alert{Estimator} vs.\ \alert{Estimate}
+  \end{itemize}
+
+  \begin{alertblock}{Estimator}
+   Description of a general procedure. 
+  \end{alertblock}
+  \begin{alertblock}{Estimate}
+    Particular result obtained from applying the procedure.
+  \end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-\frametitle{Estimator versus Estimate}
-
-\begin{block}{Estimator}
-  A function $T(X_1, \hdots, X_n)$ of the RVs that represent the \emph{procedure} of drawing a random sample, hence a RV itself.
-\end{block}
-\pause
-\begin{block}{Sampling Distribution}
-The probability distribution (PMF of PDF) of an Estimator. 
-\end{block}
-\pause
-\begin{block}{Estimate}
-A function $T(x_1, \hdots, x_n)$ of the \emph{observed data}, i.e.\ the \emph{realizations} of the random variables we use to represent random sampling. 
-Since its a function of constants, an estimate is itself a constant.
-\end{block}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Procedure versus Result of the Procedure}
-\begin{block}{Procedure = Random Variable}
-\begin{itemize}
-\item $X_1, \hdots, X_n$ represents \alert{procedure of taking a random sample}. 
-\item $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$ represents \alert{procedure of taking sample mean}  
-\end{itemize}
-\end{block}
-\pause
-\begin{block}{Sampling Dist.\ = Probabilistic Behavior of Procedure}
-If I repeat the procedure of taking the mean of a random sample over and over for many samples, what relative frequencies do I get \alert{for the sample means?}
+  \begin{block}{$\bar{X}_n$ is an Estimator = Procedure = Random Variable}
+\begin{enumerate}
+\item Take a random sample: $X_1, \hdots, X_n \quad$ 
+\item Average what you get: $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i\quad$ 
+\end{enumerate}
 \end{block}
 
 \pause
-\begin{block}{Result of Procedure = Constant}
+\begin{block}{$\bar{x}$ is an Estimate = Result of Procedure = Constant}
  \begin{itemize}
-\item $x_1, \hdots, x_n$ is the  \alert{result of sampling}, the observed data. 
-\item $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ is the \alert{result of taking sample mean}  
+\item Result of taking a random sample was the dataset: $x_1, \hdots, x_n$ 
+\item Result of averaging the observed data was $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ 
 \end{itemize}
 \end{block}
 
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Procedure? Long-Run Relative Freqencies?}
-
-Why would I advise you not to play the lottery?
 \pause
-	\begin{itemize}
-		\item You may sometimes win, but if you play the lottery many times, on average you will lose money. \pause
-		\item Let $X$ be a random variable representing lottery winnings. I am arguing that $E[X]$ - Cost of Ticket $< 0$
-	\end{itemize}
-\pause
-\begin{block}{Procedure = Random Variable}
-Making a habit of playing the lottery. Expectation is negative.
+\begin{block}{Sampling Distribution of $\bar{X}_n$}
+  \alert{Thought experiment:} suppose I were to repeat the procedure of taking the mean of a random sample over and over \alert{forever}. What \alert{relative frequencies} would I get for the sample means?
 \end{block}
-\pause
-\begin{block}{Result of that Procedure = Constant}
-How much you win in a \emph{particular} lottery. Could be greater than or less than cost of ticket in any \emph{individual} instance.
-\end{block}
+
 \end{frame}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-
-\begin{center}
-\setlength{\unitlength}{1cm}
-\begin{picture}(5,7)
-\put(1,6){\framebox(3,1){Population: $f(x)$}}
-
-\put(4.5,6.5){\makebox{\small \alert{\emph{Probability Distribution}}}}
-\pause
-\put(2.5,6){\vector(0,-1){1}}
-\put(0,3){\framebox(5,1){$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$}}
-\put(0.5,4.5){\makebox{\small Random Sample of Size $n$}}
-
-\put(-3,3.4){\makebox{\small \alert{\emph{Random Variables}}}}
-\pause
-
-\put(0.5,3){\vector(-1,-1){1.5}}
-\put(-2.3,0.7){\framebox(2.5,0.65){$x_1^{(1)}, \hdots, x_n^{(1)}$}}
-\pause
-
-\put(2,3){\vector(0,-1){1.5}}
-\put(0.7,0.7){\framebox(2.5,0.65){$x_1^{(2)}, \hdots, x_n^{(2)}$}}
-
-\pause
-
-\put(3.5,2){\makebox{...}}
-
-\pause
-
-\put(4.5,3){\vector(1,-1){1.5}}
-\put(4.8,0.7){\framebox(2.5,0.65){$x_1^{(M)}, \hdots, x_n^{(M)}$}}
-
-\put(-1,-0.2){\makebox{\small $M$ Replications, each containing $n$ Observations}}
-
-\put(5.6,2.6){\makebox{\small \alert{\emph{Realizations}}}}
-\put(5.6,2.2){\makebox{\small \alert{\emph{(Constants)}}}}
-
-\end{picture}
-\end{center}
-
+  \frametitle{This is \emph{Only} a Thought Experiment}
+  \begin{itemize}
+    \item Real applications: observe only a \alert{single} sample:
+      \begin{itemize}
+        \item $n = $1,189 voters: 44\% Clinton, 43\% Trump, 13\% Undecided.
+      \end{itemize}
+      \pause
+    \item What does the sample tell us about the population?
+      \begin{itemize}
+        \item How close is Trump's \emph{actual} support to 43\%?
+        %\item Why should we choose the voters randomly?
+        %\item Is 500 enough people to poll?
+      \end{itemize}
+      \pause
+    \item Can't know for sure without asking \emph{all} voters! 
+      \begin{itemize}
+        \item Which is impractical and defeats the purpose of the poll!
+      \end{itemize}
+      \pause
+    \item Since we can't be sure, try to \alert{quantify} using \alert{probability}. 
+      \begin{itemize}
+        \item E.g.\ what is the prob.\ that the poll is off by $>2$\% points?
+      \end{itemize}
+      \pause
+    \item Need to speak in terms of long-run relative frequencies.
+      \begin{itemize}
+        \item Remember that is the way we define probability in Econ 103!
+      \end{itemize}
+  \end{itemize}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\begin{center}
-\setlength{\unitlength}{1cm}
-\begin{picture}(5,7)
-\put(-1,5){\framebox(4.5,0.6){$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$}}
-\put(-0.7,6){\makebox{\small Random Sample of Size $n$}}
-
-
-\put(-2.7,5.6){\makebox{\small \alert{\emph{Random}}}}
-\put(-2.7,5.2){\makebox{\small \alert{\emph{Variables}}}}
-
-\pause
-
-\put(3.8,5.3){\vector(1,0){1}}
-\put(5.5,6){\makebox{\small Estimator}}
-\put(5,5){\framebox(2.5,0.6){$T(X_1,\hdots, X_n)$}}
-
-
-
-\put(5,4){\makebox{\small \alert{$\displaystyle\bar{X}_n= \frac{1}{n} \sum_{i=1}^n X_i$}}}
-
-
-
-
-\pause
-
-\put(1.2,4.7){\vector(0,-1){2.3}}
-\put(-0.2,1.7){\makebox{\small Observations (Data)}}
-\put(0,0.7){\framebox(2.5,0.6){$x_1, \hdots, x_n$}}
-\put(-2.7,0.9){\makebox{\small \alert{\emph{Constants}}}}
-
-\pause
-
-\put(4.5,1.7){\makebox{\small Estimate}}
-\put(4,0.7){\framebox(2.5,0.6){$T(x_1, \hdots, x_n)$}}
-\put(2.8,1){\vector(1,0){1}}
-\put(4,-0.2){\makebox{\small \alert{$\displaystyle\bar{x}= \frac{1}{n} \sum_{i=1}^n x_i$}}}
-
-\end{picture}
-\end{center}
-
-
-\end{frame}
+%\begin{frame}
+%\frametitle{Procedure? Long-Run Relative Freqencies?}
+%
+%Why would I advise you not to play the lottery?
+%\pause
+%	\begin{itemize}
+%		\item You may sometimes win, but if you play the lottery many times, on average you will lose money. \pause
+%		\item Let $X$ be a random variable representing lottery winnings. I am arguing that $E[X]$ - Cost of Ticket $< 0$
+%	\end{itemize}
+%\pause
+%\begin{block}{Procedure = Random Variable}
+%Making a habit of playing the lottery. Expectation is negative.
+%\end{block}
+%\pause
+%\begin{block}{Result of that Procedure = Constant}
+%How much you win in a \emph{particular} lottery. Could be greater than or less than cost of ticket in any \emph{individual} instance.
+%\end{block}
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 \begin{frame}
-\frametitle{Population: All Students in the Class}
+\frametitle{Example: Sampling from Econ 103 Class List}
 \begin{center}
-\includegraphics[scale = 0.54]{./images/height_hist}
+\includegraphics[scale = 0.4]{./images/height_hist}
 \end{center}
+\alert{Use R to illustrate the in an example where we \emph{know} the population.  
+Can't do this in the real applications, but simulate it on the computer\dots}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -479,14 +410,12 @@ How much you win in a \emph{particular} lottery. Could be greater than or less t
 \begin{center}
 \setlength{\unitlength}{1cm}
 \begin{picture}(5,7)
-\put(-2,6){\framebox(9,1){Choose $n$ Students from Class List with Replacement}}
+\put(-2,6){\framebox(9,1){Choose 5 Students from Class List with Replacement}}
 
-\pause
 
 \put(0.5,6){\vector(-1,-1){1.5}}
 \put(-2.3,3.7){\framebox(2.5,0.65){Sample 1}}
 
-\pause
 
 \put(-1,3.5){\vector(0,-1){1}}
 \put(-1.1,1.9){\makebox{\small $\bar{x}_1$}}
@@ -496,7 +425,6 @@ How much you win in a \emph{particular} lottery. Could be greater than or less t
 \put(2,6){\vector(0,-1){1.5}}
 \put(0.7,3.7){\framebox(2.5,0.65){Sample 2}}
 
-\pause
 
 \put(2,3.5){\vector(0,-1){1}}
 \put(1.9,1.9){\makebox{\small $\bar{x}_2$}}
@@ -511,18 +439,16 @@ How much you win in a \emph{particular} lottery. Could be greater than or less t
 \put(4.5,6){\vector(1,-1){1.5}}
 \put(4.8,3.7){\framebox(2.5,0.65){Sample M}}
 
-\pause
 
 \put(6,3.5){\vector(0,-1){1}}
 \put(5.9,1.9){\makebox{\small $\bar{x}_M$}}
 
-\pause
 
 \put(-1,1){\makebox{\small Repeat $M$ times $\rightarrow$  get $M$ different sample means}}
 
 \pause
 
-\put(-1.1,0.4){\makebox{\small \alert{Sampling Dist: long run relative frequencies of the $\bar{x}_i$}}}
+\put(-1.1,0.4){\makebox{\small \alert{Sampling Dist: relative frequencies of the $\bar{x}_i$ when $M = \infty$}}}
 
 \end{picture}
 \end{center}
@@ -540,6 +466,7 @@ How much you win in a \emph{particular} lottery. Could be greater than or less t
 \end{figure}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Histograms of sampling distribution of sample mean $\bar{X}_n$}
 \alert{Random Sampling With Replacement, 10000 Reps. Each}
@@ -600,9 +527,9 @@ $n$&Mean&Variance\\
 \frametitle{Mean of Sampling Distribution of $\bar{X}_n$}
 \alert{$X_1, \hdots, X_n \sim \mbox{iid with mean }\mu$}
 \begin{eqnarray*}
-E[\bar{X_n}] = E\left[ \frac{1}{n}\sum_{i=1}^n X_i \right]\pause = \frac{1}{n} \sum_{i=1}^n E[X_i] = \pause\frac{1}{n} \sum_{i=1}^n \mu = \pause \frac{n\mu}{n} =\pause \mu
+E[\bar{X_n}] = E\left[ \frac{1}{n}\sum_{i=1}^n X_i \right]\pause = \frac{1}{n} \sum_{i=1}^n E[X_i] = \pause\frac{1}{n} \sum_{i=1}^n \mu = \pause \frac{n\mu}{n} = \mu
 \end{eqnarray*}
-\pause \alert{Hence, sample mean is ``correct on average.'' The formal term for this is \emph{unbiased}.}
+\alert{Hence, sample mean is ``correct on average.'' The formal term for this is \emph{unbiased}.}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -619,9 +546,9 @@ E[\bar{X_n}] = E\left[ \frac{1}{n}\sum_{i=1}^n X_i \right]\pause = \frac{1}{n} \
 \alert{$X_1, \hdots, X_n \sim \mbox{iid with mean }\mu \mbox{ and variance } \sigma^2$}
 \begin{eqnarray*}
 Var[\bar{X_n}] &=& Var\left[ \frac{1}{n}\sum_{i=1}^n X_i \right] \pause= \frac{1}{n^2} \sum_{i=1}^n Var(X_i) \\
-&=& \pause \frac{1}{n^2} \sum_{i=1}^n \sigma^2 = \pause \frac{n\sigma^2}{n^2} = \pause \frac{\sigma^2}{n}
+&=& \pause \frac{1}{n^2} \sum_{i=1}^n \sigma^2 = \pause \frac{n\sigma^2}{n^2} =  \frac{\sigma^2}{n}
 \end{eqnarray*}
-\pause
+
 \alert{Hence the variance of the sample mean \emph{decreases linearly with sample size}.}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -633,5 +560,107 @@ $SE(\bar{X}_n)= \sqrt{Var\left(\bar{X}_n\right)}= \sqrt{\sigma^2/n}=\sigma/\sqrt
 \end{block}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{More Generally and More Formally:}
+\framesubtitle{Sample mean isn't the only thing with a sampling distribution!}
+\begin{block}{Estimator}
+  A function $T(X_1, \hdots, X_n)$ of the RVs that represent the \emph{procedure} of drawing a random sample, hence a RV itself.
+\end{block}
 
+\begin{block}{Sampling Distribution}
+The probability distribution (PMF of PDF) of an Estimator. 
+\end{block}
+
+\begin{block}{Estimate}
+A function $T(x_1, \hdots, x_n)$ of the \emph{observed data}, i.e.\ the \emph{realizations} of the random variables we use to represent random sampling. 
+Since its a function of constants, an estimate is itself a constant.
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+
+\begin{center}
+\setlength{\unitlength}{1cm}
+\begin{picture}(5,7)
+\put(1,6){\framebox(3,1){Population: $f(x)$}}
+
+\put(4.5,6.5){\makebox{\small \alert{\emph{Probability Distribution}}}}
+\put(2.5,6){\vector(0,-1){1}}
+\put(0,3){\framebox(5,1){$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$}}
+\put(0.5,4.5){\makebox{\small Random Sample of Size $n$}}
+
+\put(-3,3.4){\makebox{\small \alert{\emph{Random Variables}}}}
+
+\put(0.5,3){\vector(-1,-1){1.5}}
+\put(-2.3,0.7){\framebox(2.5,0.65){$x_1^{(1)}, \hdots, x_n^{(1)}$}}
+
+\put(2,3){\vector(0,-1){1.5}}
+\put(0.7,0.7){\framebox(2.5,0.65){$x_1^{(2)}, \hdots, x_n^{(2)}$}}
+
+
+\put(3.5,2){\makebox{...}}
+
+
+\put(4.5,3){\vector(1,-1){1.5}}
+\put(4.8,0.7){\framebox(2.5,0.65){$x_1^{(M)}, \hdots, x_n^{(M)}$}}
+
+\put(-1,-0.2){\makebox{\small $M$ Replications, each containing $n$ Observations}}
+
+\put(5.6,2.6){\makebox{\small \alert{\emph{Realizations}}}}
+\put(5.6,2.2){\makebox{\small \alert{\emph{(Constants)}}}}
+
+\end{picture}
+\end{center}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\begin{center}
+\setlength{\unitlength}{1cm}
+\begin{picture}(5,7)
+\put(-1,5){\framebox(4.5,0.6){$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$}}
+\put(-0.7,6){\makebox{\small Random Sample of Size $n$}}
+
+
+\put(-2.7,5.6){\makebox{\small \alert{\emph{Random}}}}
+\put(-2.7,5.2){\makebox{\small \alert{\emph{Variables}}}}
+
+
+\put(3.8,5.3){\vector(1,0){1}}
+\put(5.5,6){\makebox{\small Estimator}}
+\put(5,5){\framebox(2.5,0.6){$T(X_1,\hdots, X_n)$}}
+
+
+
+\put(5,4){\makebox{\small \alert{$\displaystyle\bar{X}_n= \frac{1}{n} \sum_{i=1}^n X_i$}}}
+
+
+
+
+
+\put(1.2,4.7){\vector(0,-1){2.3}}
+\put(-0.2,1.7){\makebox{\small Observations (Data)}}
+\put(0,0.7){\framebox(2.5,0.6){$x_1, \hdots, x_n$}}
+\put(-2.7,0.9){\makebox{\small \alert{\emph{Constants}}}}
+
+
+\put(4.5,1.7){\makebox{\small Estimate}}
+\put(4,0.7){\framebox(2.5,0.6){$T(x_1, \hdots, x_n)$}}
+\put(2.8,1){\vector(1,0){1}}
+\put(4,-0.2){\makebox{\small \alert{$\displaystyle\bar{x}= \frac{1}{n} \sum_{i=1}^n x_i$}}}
+
+\end{picture}
+\end{center}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
