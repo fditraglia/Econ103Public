@@ -50,15 +50,6 @@ A sample estimator $\widehat{\theta}_n$ of a population parameter $\theta_0$ is 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-
-\begin{center}
-\huge Why $(n-1)$ for sample variance?
-\end{center}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
 \frametitle{Why $(n-1)$ for sample variance?}
 \alert{We will show that having $n-1$ in the denominator ensures:}
 $$E[S^2] =E\left[ \frac{1}{n-1} \sum_{i=1}^n \left(X_i - \bar{X}\right)^2\right] = \sigma^2$$
@@ -457,11 +448,11 @@ $\displaystyle E[\widehat{\sigma}^2 ] - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n
 Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the sampling distribution of $\bar{X}_n$?
 
 \begin{enumerate}[(a)]
-\item $\chi^2(n)$
-\item $t(n)$
-\item $F(n,n)$
+\item $N(0,1)$
 \item $N(\mu, \sigma^2/n)$
-\item Not enough information to determine.
+\item $N(\mu, \sigma^2)$
+\item $N(\mu/n, \sigma^2/n)$
+\item $N(n\mu, n\sigma^2)$
 \end{enumerate}
 
 \end{frame}
@@ -548,13 +539,13 @@ $n$&$\bar{X}_n$\\
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Important!}
-
-Although I showed two examples involving normal RVs, the LLN holds IN GENERAL!
-
-\end{frame}
-
+%\begin{frame}
+%\frametitle{Important!}
+%
+%Although I showed two examples involving normal RVs, the LLN holds IN GENERAL!
+%
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
