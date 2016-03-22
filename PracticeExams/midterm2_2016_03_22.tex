@@ -1,0 +1,262 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\usepackage{multirow}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\boxedpoints
+\pointsinmargin
+
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm II, Page \thepage\ of \numpages}
+              {March 22th, 2016}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large Second Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} March 22nd, 2016}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+\question Let $X$ and $Z$ be discrete RVs with joint pmf
+  			\begin{center}
+				\begin{tabular}{|cc|ccc|}
+				\hline
+				&&\multicolumn{3}{c|}{$Z$}\\
+				&&-1 & 0 & 1\\
+				\hline
+				\multirow{2}{*}{$X$}
+				&0& 1/6 & 1/3 & 0\\
+				&1& 0 & 1/6 & 1/3\\
+				\hline
+				\end{tabular}
+			\end{center}
+\begin{parts}
+  \part[5] What kind of RV is $X$? Specify any and all parameters of its distribution.
+  \begin{solution}[0.75in]
+    The marginal distribution of $X$ is $p_X(0) = 1/2$, $p_X(1) = 1/2$ so $X \sim \mbox{ Bernoulli }(1/2)$.
+  \end{solution}
+  \part[5] Calculate $E[X]$.
+  \begin{solution}[0.75in]
+    The expectation is of a Bernoulli is $p$, in this case $1/2$.
+  \end{solution}
+  %\part[5] Calculate $E[Z]$.
+  %\begin{solution}[2.2in]
+  %The marginal distribution of $Z$ is 
+  %$$p_Z(-1) = 1/6, \quad p_Z(0) = 1/2, \quad p_Z(1) = 1/3$$
+  %Thus $E[Z] = -1/6 + 1/3 = 1/6$.
+  %\end{solution}
+  \part[5] Calculate the conditional pmf of $Z$ given that $X = 0$.
+  \begin{solution}[2.2in]
+    The marginal probability that $X = 0$ is $1/6 + 1/3 = 1/2$.
+    Hence, dividing the joint probabilities by this quantity:
+    $$p_{Z|X}(-1|0) = 1/3, \quad p_{Z|X}(0|0) = 2/3,\quad p_{Z|X}(1|0) = 0$$
+  \end{solution}
+  %\part[3] Are $X$ and $Z$ independent? Briefly explain why or why not.
+  %\begin{solution}
+  %  We see immediately that they are \emph{not} dependent: if $X=0$ then it is impossible that $Z=1$, for example.
+    %Thus, knowing the value that $X$ takes on \emph{does} tell us something about $Z$.
+  %\end{solution}
+  \part[10] Calculate $E[XZ]$.
+  \begin{solution}[2.5in]
+    The only non-zero element in the sum that we use to calculate $E[XZ]$ is the is the one correponding to $X=1, Z=1$ so $E[XZ] = 1 \times 1 \times 1/3 = 1/3$.
+  \end{solution}
+\end{parts}
+
+\question Let $X_1, \dots X_5 \sim \mbox{iid}$ with pdf $f(x) = (x+1)/2$ and support set $x \in [-1,1]$.
+\begin{parts}
+  %\part[5] Calculate $E[X_1]$.
+  %\begin{solution}
+  %  $$E[X_1] = \int_{-\infty}^{\infty} x f(x) \; dx = \frac{1}{2}\int_{=1}^{1} x(x + 1)\; dx = \left.\frac{1}{2}\left( \frac{x^3}{3}+ \frac{x^2}{2} \right)\right|_{-1}^{1} = 1/3$$
+  %\end{solution}
+  \part[5] Calculate the CDF $F(x_0)$ of $X_1$.
+  \begin{solution}[2.5in]
+  For $x_0 \in (-1,1)$ we have
+  $$F(x_0) = \int_{-\infty}^{x_0} f(x)\; dx = \frac{1}{2}\int_{-1}^{x_0} (x+1)\; dx = \frac{1}{2}\left.\left( \frac{x^2}{2} + x \right)\right|_{-1}^{x_0} = \frac{1}{4}\left( x_0^2 + 2x_0 + 1 \right)$$
+  For $x < -1$, on the other hand, $F(x_0) = 0$ and for $x_0 > 1$ it equals 1.
+\end{solution}
+\part[5] Calculate $P(X_1 > 0)$.
+\begin{solution}[1.5in]
+    $P(X > 0) = 1 - F(0) = 1 - \frac{1}{4}\left(0^2 + 2\times 0 + 1  \right) = 3/4$
+  \end{solution}
+  \part[10] What is the probability that \emph{exactly} four of $X_1, \hdots, X_5$ are greater than zero?
+  \begin{solution}[3.5in]
+    Let $Z$ denote the number of random variables among $X_1, X_2, X_3, X_4$ that take on a positive value.
+    E.g.\ if all of them are positive then $Z$ is 4 and if none are positive then $Z$ is zero.
+    Since $X_1, X_2, X_3, X_4$ are iid and $P(X_1 >0) = 3/4$, it follows that $Z \sim \mbox{ Binomial}(4,3/4)$ and we need to calculate $p(4)$ where $p(z) = {n\choose z} p^z(1-p)^{n-z}$.
+    We have:
+    $$p(4)= {5 \choose 4} (3/4)^4 (1/4)^1 = \frac{5!}{4!1!}(3/4)^4 1/4 = 5/4 \times 81/156 \approx  0.65$$
+  \end{solution}
+\end{parts}
+
+\uplevel{\emph{This question is based on 7-17 from the textbook, which I assigned as homework. I have re-worded the problem for clarity but the substance and solution are unchanged.}}
+\question A machine produces perfectly square metal plates. 
+Occasionally, however, this machine malfunctions and the squares it produces are of the wrong area.
+To make sure the plates are the correct size, we measure the length of each one \emph{twice}.
+Our measuring device is slightly imperfect: if the true length of a particular square is $\ell$ inches, our measurement will equal $\ell + Z$ where $Z$ is a random error with mean zero and standard deviation $0.1$ inches.   
+Fortunately these errors are independent across measurements: when we measure a square twice our first measurement will be $X_1 = \ell + Z_1$ and our second will be $X_2 = \ell + Z_2$ where $Z_1, Z_2 \sim \mbox{ iid } (\mu = 0, \sigma = 0.1)$.
+We want to find a way of combining $X_1$ and $X_2$ to estimate the \emph{area} $\ell^2$ of a given plate.
+Three estimators have been proposed: $A, B$, and $C$.
+Calculate the bias of each using the shortcut formula.
+\begin{parts}
+  \part[10] $A = \displaystyle \frac{X_1^2 + X_2^2}{2}$
+  \begin{solution}[1.6in]
+    \begin{eqnarray*}
+      E[A] &=&  \frac{1}{2} \left[ E(X_1^2) + E(X_2^2) \right] \\
+      &=& E(X_1^2) = Var(X_1) + E(X_1)^2 = 0.01 + \ell^2
+    \end{eqnarray*}
+    by the shortcut formula for variance, using the fact that $X_1, X_2$ are identically distributed, so the bias is $0.01$ square inches.
+  \end{solution}
+  \part[10] $B = X_1 X_2$
+  \begin{solution}[1.6in]
+    \begin{eqnarray*}
+      E[B] &=& E[X_1 X_2] = Cov(X_1, X_2) + E(X_1)E(X_2)\\
+      &=& 0 + \ell \times \ell = \ell^2
+    \end{eqnarray*}
+    by the shortcut formula for covariance, using the fact that $X_1$ and $X_2$ are independent hence uncorrelated.
+    Therefore, $B$ is an unbiased estimator.
+  \end{solution}
+  \part[10] $C = \displaystyle \left(\frac{X_1 + X_2}{2}\right)^2$
+  \begin{solution}[1.6in]
+    Using our calculations for $E[X_1^2]$ and $E[X_1X_2]$ from above,
+    \begin{eqnarray*}
+      E[C] &=&  \frac{1}{4} E\left[ X_1^2 + 2X_1X_2 + X_2^2 \right]
+      = \frac{1}{4}\left[2 E(X_1^2) + 2E(X_1X_2) \right] \\
+      &=& \frac{1}{2}\left[(0.01 + \ell^2) + \ell^2  \right] = 0.005 + \ell^2
+    \end{eqnarray*}
+    Therefore the bias of $C$ is $0.005$ square inches.
+  \end{solution}
+\end{parts}
+
+
+
+
+  \question This question uses simulations to study what happens when we sample \emph{without} replacement from a population with 100 individuals: 40 of whom are ``ones'' and the rest of whom are ``zeros.''
+  The point is to explore the bias and variance of this procedure and compare it to the random sampling procedure (\emph{with} replacement) we studied in class.
+  \begin{parts}
+    \part[5] Let \texttt{popn} be an R vector with 100 elements, the first 40 of which are \texttt{1} and the rest of which are \texttt{0}.
+    Write an R command that makes 50 random draws from \texttt{popn} \emph{without replacement}.
+    \begin{solution}[1.5in]
+      \begin{verbatim}
+sample(popn, size = 50, replace = FALSE)
+      \end{verbatim}
+    \end{solution}
+    \part[15] Build your command from the preceding part into a function called \texttt{draw.mean} that draws a sample of size \texttt{n} from \texttt{popn} and returns the sample mean of the draws.
+    Your function should take a single input argument: $\texttt{n}$ the number of draws to make.
+    \begin{solution}[2.5in]
+      \begin{verbatim}
+draw.mean <- function(n){
+  draws <- sample(popn, size = n, replace = FALSE)
+  return(mean(draws))
+}
+      \end{verbatim}
+    \end{solution}
+    \part[5] Write R code that calls the function \texttt{draw.mean} 10000 times with \texttt{n} equal to 50 and stores the result in a vector called \texttt{sims}.
+    \begin{solution}[2in]
+      \begin{verbatim}
+sims <- replicate(10000, draw.mean(50))
+      \end{verbatim}
+    \end{solution}
+    \part[5] After running the code described in the preceding parts I entered \texttt{mean(sims)} at the R console and got 0.399912.
+    Based on this result, does it appear that the sample mean remains an unbiased estimator of the population mean when calculated from a sample drawn \emph{without replacement}? 
+    Explain briefly.
+    \begin{solution}[2in]
+      Sampling once from \texttt{popn} is equivalent to making one Bernoulli(0.4) draw.
+      Hence the population mean is 0.4 which is extremely close to the mean of the sampling distribution that we calculated by simulation.
+      The sample mean appears to remain unbiased even when sampling without replacement.
+      Or if there is a bias, it is extremly tiny.
+    \end{solution}
+    \part[5] I then entered \texttt{sd(sims)} into the R console and got 0.04946187.
+    Based on this result, how does does sampling \emph{without replacement} compare to sampling \emph{with replacement} in terms of the standard error of the sample mean? 
+    Explain briefly
+    \begin{solution}[2in]
+As explained in the solution to the preceding part, this population is essentially a Bernoulli(0.4) RV.
+Hence the population standard deviation is $\sqrt{0.4 * 0.6} \approx 0.49$.
+When sampling \emph{with replacement} (a random sample) we know that the standard error of the mean is $\sigma/\sqrt{n} = \sqrt{(0.4 \times 0.6)/50}\approx 0.07$.
+This is \emph{much larger} than the standard error of the mean for the simulations made without replacement.
+It appears that sampling without replacement reduces sampling error compared to sampling with replacement (random sampling), at least when drawing a fairly large sample from a fairly small population.
+    \end{solution}
+  \end{parts}
+
+
+
+  \question Let $X_1, \dots X_{25} \sim \mbox{ iid } N(\mu, \sigma^2 = 4)$ and define $Z = 5(\bar{X}_n - \mu)/S$ and $Y = 6S^2$. 
+  When asked for a sampling distribution in this question, be sure to name the distribution and specify the values of any and all relevant parameters.
+\begin{parts}
+  \part[10] Suppose our observed dataset $x_1, \dots, x_{25}$ has a sample mean of $\bar{x} = 2.3$.
+  Construct a $68\%$ confidence interval for $\mu$ using the fact that the population variance is known to be $4$.
+  Your answer should \emph{not} include any R commands.
+  \begin{solution}[1.7in]
+    The standard error is $\sigma/\sqrt{n} = 2/5 = 0.4$ so the confidence interval is $2.3 \pm 0.4$ or equivalently $(1.9, 2.7)$.
+  \end{solution}
+  \part[5] What is the sampling distribution of $Z$? No explanation is needed.
+  \begin{solution}[1.5in]
+    $t(24)$
+  \end{solution}
+  \part[5] Write down the R command to calculate $P(Z \leq 1)$.
+  \begin{solution}[1.5in]
+    \texttt{pt(1, df = 24)}
+  \end{solution}
+  \part[5] What is the sampling distribution of $Y$? No explanation is needed.
+  \begin{solution}[1.5in]
+    $\chi^2(24)$  
+  \end{solution}
+  \part[5] Write down the R command to calculate 90th percentile of $Y$.
+  \begin{solution}[1.5in]
+    \texttt{qchisq(0.9, df = 24)}
+  \end{solution}
+\end{parts}
+
+\end{questions}
+
+\end{document}
