@@ -176,7 +176,7 @@ At the beginning of the semester you were each shown a ``random number.'' In fac
 \begin{frame}[fragile]\frametitle{Load Data for Anchoring Experiment}
 \footnotesize
 <<anchoring_data>>=
-data.url <- "http://www.ditraglia.com/econ103/survey_clean.csv"
+data.url <- "http://www.ditraglia.com/econ103/survey_2016_spring.csv"
 survey <- read.csv(data.url)
 anchoring <- survey[,c("rand.num", "africa.percent")]
 head(anchoring)
@@ -594,12 +594,12 @@ $$1.8 \pm 2\times  \sqrt{124/71} \implies (-0.8, 4.4)$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \begin{center}
-	\huge Refined CIs for Proportions: \\``Add Two Successes and Failures''
+	\huge Refined 95\% CI for Proportion: \\``Add Two Successes and Failures''
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Refined CI for Population Proportion}
+\frametitle{Refined 95\% CI for Population Proportion}
 \small
 \alert{\fbox{Add four ``fake'' observations to the dataset: two zeros and two ones.}}
 \vspace{1em}
@@ -610,14 +610,14 @@ $$1.8 \pm 2\times  \sqrt{124/71} \implies (-0.8, 4.4)$$
 \begin{block}{Textbook Confidence Interval}
 $$\widehat{p} = \frac{1}{n}\left(\sum_{i=1}^n X_i\right)$$
 
-$$\widehat{p}\pm \texttt{qnorm}\left(1 - \frac{\alpha}{2}\right) \times\sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}$$
+$$\widehat{p}\pm \texttt{qnorm}\left(0.975\right) \times\sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}$$
 \end{block}
 
 \column{0.5\textwidth}
 \begin{block}{Refined Confidence Interval}
 $$\alert{\widetilde{p}} = \frac{1}{n+\alert{4}} \left(\alert{2}+ \sum_{i=1}^n X_i\right)$$
 
-$$\alert{\widetilde{p}} \pm \texttt{qnorm}\left(1 - \frac{\alpha}{2}\right) \times \sqrt{\frac{\alert{\widetilde{p}}(1-\alert{\widetilde{p}})}{n+\alert{4}}}$$
+$$\alert{\widetilde{p}} \pm \texttt{qnorm}\left(0.975\right) \times \sqrt{\frac{\alert{\widetilde{p}}(1-\alert{\widetilde{p}})}{n+\alert{4}}}$$
 
 \end{block}
 
@@ -629,14 +629,14 @@ $$\alert{\widetilde{p}} \pm \texttt{qnorm}\left(1 - \frac{\alpha}{2}\right) \tim
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Refined CI for Difference of Population Proportions}
+\frametitle{Refined 95\% CI for Difference of Population Proportions}
 \small
 \alert{\fbox{Add four ``fake'' observations total: two to \emph{each} dataset (a one and a zero).}}
 
 \begin{block}{Textbook Confidence Interval}
 $$\widehat{p} - \widehat{q} = \frac{1}{n}\left(\sum_{i=1}^n X_i\right) - \frac{1}{m}\left(\sum_{i=1}^n Y_i\right)$$
 
-	$$\left(\widehat{p} -\widehat{q}\right)\pm \texttt{qnorm}(1 - \alpha/2) \times \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n} + \frac{\widehat{q}(1-\widehat{q})}{m}}$$
+	$$\left(\widehat{p} -\widehat{q}\right)\pm \texttt{qnorm}(0.975) \times \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n} + \frac{\widehat{q}(1-\widehat{q})}{m}}$$
 
 \end{block}
 
@@ -644,7 +644,7 @@ $$\widehat{p} - \widehat{q} = \frac{1}{n}\left(\sum_{i=1}^n X_i\right) - \frac{1
 \begin{block}{Refined Confidence Interval}
 	$$\alert{p^*} - \alert{q^*} = \frac{1}{n+\alert{2}}\left(1 + \sum_{i=1}^n X_i\right) - \frac{1}{m+\alert{2}}\left(1 + \sum_{i=1}^m Y_i\right) $$
 
-	$$\left(\alert{p^*} -\alert{q^*}\right)\pm \texttt{qnorm}(1 - \alpha/2) \times \sqrt{\frac{\alert{p^*}(1-\alert{p^*})}{n+\alert{2}} + \frac{\alert{q^*}(1-\alert{q^*})}{m+\alert{2}}}$$
+	$$\left(\alert{p^*} -\alert{q^*}\right)\pm \texttt{qnorm}(0.975) \times \sqrt{\frac{\alert{p^*}(1-\alert{p^*})}{n+\alert{2}} + \frac{\alert{q^*}(1-\alert{q^*})}{m+\alert{2}}}$$
 \end{block}
 
 \end{frame}

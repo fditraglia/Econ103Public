@@ -229,7 +229,7 @@ If you just guess randomly, what is the probability of identifying \emph{all but
 %\frametitle{Hypothesis Testing -- Analogy to Criminal Trial}
 \footnotesize
 \begin{columns}
-\begin{column}[l]{6cm} 
+\begin{column}{6cm} 
  %FIRST COLUMN HERE
    	\begin{block}{Criminal Trial}
 	\begin{itemize}
@@ -250,7 +250,7 @@ If you just guess randomly, what is the probability of identifying \emph{all but
    
    
 \end{column} 
-\begin{column}[l]{6cm} 
+\begin{column}{6cm} 
 
  %SECOND COLUMN HERE 
 
@@ -479,44 +479,44 @@ $T_n\colon$ \# of Cokes correctly identified. Has following sampling under the n
 	\end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-At what significance levels would we reject the assumption that our expert was guessing randomly?
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{P-values}
-Reject or fail to reject at a given significance level is a somewhat crude: doesn't tell us whether it was ``close'' or ``no contest.'' P-value is more informative: \pause
-	\begin{block}{P-Value = Strength of evidence against the null}
-	The p-value for a hypothesis test is the probability that we would observe a test statistic \emph{at least as extreme} as the one actually observed \emph{if the null hypothesis were true}.
-\end{block}
-\pause
-\vspace{1em}
-\alert{This means that the p-value equals the \emph{smallest significance level} at which our observed test statistic would cause us to reject $H_0$. It may be tempting to conclude that a p-value is the probability that the null is true but this is NOT CORRECT.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Example: Pepsi Challenge \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\footnotesize 
-$H_0\colon$ Expert is just guessing randomly.\\
-$H_1\colon$ Expert can distinguish Coke from Pepsi.\\
-$T_n\colon$ \# of Cokes correctly identified. Has following sampling under the null:
-		\begin{center}
-		\begin{tabular}{rccccc}
-		\hline \footnotesize
-		\# Correct & 0 & 1 & 2 & 3 & 4\\
-		Prob.&1/70 & 16/70 & 36/70 & 16/70 &1/70\\
-		\hline
-		\end{tabular}
-	\end{center}
-	\vspace{2em}
-	\normalsize
-	\alert{Our observed test statistic was $\boxed{?}$ since the expert correctly identified this many Cokes. What is the p-value in this case?}\pause
-	\begin{eqnarray*}
-		P(T_n \geq \alert{\boxed{?}}|H_0 \mbox{ True}) = 
-	\end{eqnarray*}
-\end{frame}
-
+%\begin{frame}
+%At what significance levels would we reject the assumption that our expert was guessing randomly?
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{P-values}
+%Reject or fail to reject at a given significance level is a somewhat crude: doesn't tell us whether it was ``close'' or ``no contest.'' P-value is more informative: \pause
+%	\begin{block}{P-Value = Strength of evidence against the null}
+%	The p-value for a hypothesis test is the probability that we would observe a test statistic \emph{at least as extreme} as the one actually observed \emph{if the null hypothesis were true}.
+%\end{block}
+%\pause
+%\vspace{1em}
+%\alert{This means that the p-value equals the \emph{smallest significance level} at which our observed test statistic would cause us to reject $H_0$. It may be tempting to conclude that a p-value is the probability that the null is true but this is NOT CORRECT.}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Example: Pepsi Challenge \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%\footnotesize 
+%$H_0\colon$ Expert is just guessing randomly.\\
+%$H_1\colon$ Expert can distinguish Coke from Pepsi.\\
+%$T_n\colon$ \# of Cokes correctly identified. Has following sampling under the null:
+%		\begin{center}
+%		\begin{tabular}{rccccc}
+%		\hline \footnotesize
+%		\# Correct & 0 & 1 & 2 & 3 & 4\\
+%		Prob.&1/70 & 16/70 & 36/70 & 16/70 &1/70\\
+%		\hline
+%		\end{tabular}
+%	\end{center}
+%	\vspace{2em}
+%	\normalsize
+%	\alert{Our observed test statistic was $\boxed{?}$ since the expert correctly identified this many Cokes. What is the p-value in this case?}\pause
+%	\begin{eqnarray*}
+%		P(T_n \geq \alert{\boxed{?}}|H_0 \mbox{ True}) = 
+%	\end{eqnarray*}
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
