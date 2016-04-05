@@ -137,28 +137,28 @@ Hypothesis Testing More Generally
 	\frametitle{How to find evidence against $H_0$? Test Statistic!}
 	\begin{block}
 		{Test Statistic: $T_n$}
-		A random variable with a \emph{known} sampling distribution \emph{under $H_0$}, i.e.\ a sampling distribution that \emph{does not depend} on any unknown parameters.
+		A statistic that gives us information about the parameter we are testing and has a \emph{known} sampling distribution \emph{under $H_0$}.
 	\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[t]
-	\frametitle{Example: How many calories in a Big Mac? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\begin{itemize}
-	\item Measure calories in random sample of $n$ Big Macs: $X_1, \hdots, X_9 \sim \mbox{iid } N(\mu, \sigma^2)$
-	\item $H_0\colon \mu = 550$
-\end{itemize}
-
-\vspace{1em}
-
-\alert{Which of these should we use as our test statistic?}
-\begin{enumerate}[(a)]
-	\item $S^2$
-	\item $\bar{X} - 550$
-	\item $\bar{X}$
-	\item $\bar{X} / S$ 
-	\item $(\bar{X} - 550)/(S/3)$
-\end{enumerate}
-\end{frame}
+%\begin{frame}[t]
+%	\frametitle{Example: How many calories in a Big Mac? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%\begin{itemize}
+%	\item Measure calories in random sample of $n$ Big Macs: $X_1, \hdots, X_9 \sim \mbox{iid } N(\mu, \sigma^2)$
+%	\item $H_0\colon \mu = 550$
+%\end{itemize}
+%
+%\vspace{1em}
+%
+%\alert{Which of these should we use as our test statistic?}
+%\begin{enumerate}[(a)]
+%	\item $S^2$
+%	\item $\bar{X} - 550$
+%	\item $\bar{X}$
+%	\item $\bar{X} / S$ 
+%	\item $(\bar{X} - 550)/(S/3)$
+%\end{enumerate}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]
 	\frametitle{Example: How many calories in a Big Mac? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
@@ -169,7 +169,7 @@ Hypothesis Testing More Generally
 
 \vspace{1em}
 
-\alert{If McDonald's is telling the truth, i.e.\ under the null, what is \emph{exact}  sampling distribution of $3(\bar{X} - 550)/S$?}
+\alert{If McDonald's is telling the truth, i.e.\ under the null, what is \emph{exact}  sampling distribution of $(\bar{X} - 550)/(S/3)$?}
 \begin{enumerate}[(a)]
 	\item $\chi^2_{9}$
 	\item $N(550, 1)$
@@ -278,11 +278,11 @@ You are a senior manager at McDonald's and are concerned that franchises may be 
 \begin{frame}
 \frametitle{What Form Should the Decision Rule Take?}
 \begin{columns}
-\begin{column}[l]{6cm}
+\begin{column}{6cm}
 \includegraphics[scale = 0.5]{./images/t_pdf}
 \end{column}
 
-\begin{column}[r]{6cm}
+\begin{column}{6cm}
 $H_0\colon \mu=550 \Rightarrow \displaystyle \frac{\bar{X} - 550}{S/3} \sim t(8)$\\ \pause
 \vspace{1em}
 One-sided Alternative $H_1\colon \mu > 550$\\ \pause
