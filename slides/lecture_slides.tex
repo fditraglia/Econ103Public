@@ -1,29 +1,28 @@
 \documentclass{beamer}
-%\usepackage{econ103slides}
+\usepackage{econ103slides}
+\date{}
 
 \begin{document}
 
 
+% Only show particular lecture
 %\includeonlylecture{lecture1}
 
-\AtBeginLecture{\frame{\frametitle{Today's Lecture: \insertlecture}\tableofcontents}}
+\begin{frame}[plain]
+	\titlepage 
+	
 
-\part{First Part}
-\lecture{Vector Spaces}{lecture1}
-\section{What is a vector space?}
-\section{How to profit from vector spaces.}
-%\input{vector_profit.tex}
-\begin{frame}
-  Vector spaces suck!
-\end{frame}
+\end{frame} 
 
-\part{Second Part}
-\lecture{Scalar Products}{lecture2}
-\section{Who's afraid of scalar products?}
-\section{I am afraid of scalar products!}
-\begin{frame}
-  Scalar products rock!
-\end{frame}
+% Cover page for individual lecture
+\AtBeginLecture{\frame{\frametitle{ \insertlecture}\tableofcontents}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Lecture \#1} % ensures toc is lecture only
+\lecture{Lecture \#1 -- Introduction}{lecture1}
+\input{lecture01.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 \end{document}
