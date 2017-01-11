@@ -101,3 +101,4 @@ figure/
 
 #since I use vim...
 *.swp
+*.tex.latexmain
