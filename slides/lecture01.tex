@@ -1,19 +1,42 @@
 %!TEX root = lecture_slides.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
+\begin{frame}[c]
 
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Racial Bias in Criminal Sentencing}
+  \frametitle{Racial Discrimination in the Labor Market}
+  \framesubtitle{Source: \href{https://www.bls.gov/news.release/empsit.t02.htm}{\fbox{Bureau of Labor Statistics}}}
 
-Do you think there is racial bias in criminal sentencing? That is, do you think that judges may assign different sentences purely based on the race of the defendant?
+  \begin{table}
+    \centering
+    \begin{tabular}{lcccc}
+      \hline
+      & Oct.\ 2016 & Nov.\ 2016 & Dec.\ 2016 \\
+      \hline
+      White: & 4.3 & 4.2 & 4.3\\
+      Black/African American: & 8.6 & 8.0 & 7.8 \\
+      \hline
+    \end{tabular}
+    \caption{Unemployment rate in percentage points for men aged 20 and over in the last quarter of 2016.}
+  \end{table}
 
-\begin{enumerate}[(a)]
-	\item Yes
-	\item No
-\end{enumerate}
-%Please respond using your remote.
-
+  \alert{The unemployment rate for African Americans has historically been much higher than for whites. What can this information by itself tell us about racial discrimination in the labor market?}
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}
+%
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Racial Bias in Criminal Sentencing}
+%
+%Do you think there is racial bias in criminal sentencing? That is, do you think that judges may assign different sentences purely based on the race of the defendant?
+%
+%\begin{enumerate}[(a)]
+%	\item Yes
+%	\item No
+%\end{enumerate}
+%%Please respond using your remote.
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Overview -- Population vs.\ Sample, Probability vs.\ Statistics}
@@ -86,22 +109,22 @@ Numerical measure that describes specific characteristic of sample.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%\begin{frame}
+%
+%\frametitle{The Field of Statistics}
+%
+%\begin{block}{Descriptive Statistics}
+%Graphical and numerical procedures to summarize data.
+%\end{block}
+%
+%
+%\begin{block}{Inferential Statistics}
+%Using data to estimate, predict, quantify uncertainty.
+%\end{block}
+%
+%
+%\end{frame}
 
-\begin{frame}
-
-\frametitle{The Field of Statistics}
-
-\begin{block}{Descriptive Statistics}
-Graphical and numerical procedures to summarize data.
-\end{block}
-
-
-\begin{block}{Inferential Statistics}
-Using data to estimate, predict, quantify uncertainty.
-\end{block}
-
-
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -121,7 +144,7 @@ Using data to estimate, predict, quantify uncertainty.
 					\item All ravens are black. Mordecai is a raven, so Mordecai is black.
 				\end{itemize}
 		\end{itemize}
-	\item Statistics: Sample $\rightarrow$ Population
+	\item Inferential Statistics: Sample $\rightarrow$ Population
 		\begin{itemize}
 			\item inductive: ``risky'' argument
 				\begin{itemize}
@@ -241,36 +264,105 @@ Each member of population is chosen strictly by chance, so that: (1) selection o
 
 \end{block}
 
-\begin{block}{What about non-response bias?}
+\begin{block}{What about non-response bias? -- we'll come back to this\dots}
 \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-\frametitle{``Americans Divided on Outlook for Next Generation''}
-\framesubtitle{Source: \href{http://www.gallup.com/poll/159737/americans-divided-outlook-next-generation.aspx}{\fbox{Gallup}}}
-\vspace{1em}
-\begin{quote}
-PRINCETON, NJ -- Americans are evenly divided about whether it is likely (49\%) or unlikely (50\%) that the next generation of youth in the country will have a better life than their parents. That is a slightly more positive assessment than in early 2011, when the slight majority, 55\%, thought it was unlikely the next generation would achieve this goal.
-\end{quote}
+  \frametitle{``Negative Views of Trump's Transition''}
+  \framesubtitle{Source: \href{http://www.people-press.org/2017/01/10/negative-views-of-trumps-transition-amid-concerns-about-conflicts-tax-returns/}{\fbox{Pew Research Center}}}
+  \begin{quote}
+Ahead of Donald Trump's scheduled press conference in New York City on Wednesday, the public continues to give the president-elect low marks for how he is handling the transition process\dots 
+The latest national survey by Pew Research Center, conducted Jan. 4-9 among 1,502 adults, finds that 39\% approve of the job President-elect Trump has done so far explaining his policies and plans for the future to the American people, while a larger share (55\%) say they disapprove.
+  \end{quote}
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example of Sampling Error}
-``...evenly divided about whether it is likely (49\%) or unlikely (50\%) that the next generation of youth in the country will have a better life...''
-
-\vspace{2em}
-\begin{quote}
-Results for this USA Today/Gallup poll are based on telephone interviews conducted Dec. 14-17, 2012, with a \alert{random sample of 1025 adults}, aged 18 and older, living in all 50 U.S. states and the District of Columbia. For results based on the total sample of national adults, one can say with \alert{95\% confidence that the maximum margin of sampling error is ±4 percentage points}.
-\end{quote}
-\end{frame}
+%
+%\begin{frame}
+%\frametitle{``Americans Divided on Outlook for Next Generation''}
+%\framesubtitle{Source: \href{http://www.gallup.com/poll/159737/americans-divided-outlook-next-generation.aspx}{\fbox{Gallup}}}
+%\vspace{1em}
+%\begin{quote}
+%PRINCETON, NJ -- Americans are evenly divided about whether it is likely (49\%) or unlikely (50\%) that the next generation of youth in the country will have a better life than their parents. That is a slightly more positive assessment than in early 2011, when the slight majority, 55\%, thought it was unlikely the next generation would achieve this goal.
+%\end{quote}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Example of Sampling Error}
+%``...evenly divided about whether it is likely (49\%) or unlikely (50\%) that the next generation of youth in the country will have a better life...''
+%
+%\vspace{2em}
+%\begin{quote}
+%Results for this USA Today/Gallup poll are based on telephone interviews conducted Dec. 14-17, 2012, with a \alert{random sample of 1025 adults}, aged 18 and older, living in all 50 U.S. states and the District of Columbia. For results based on the total sample of national adults, one can say with \alert{95\% confidence that the maximum margin of sampling error is ±4 percentage points}.
+%\end{quote}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Quantifying Sampling Error}
 \framesubtitle{95\% Confidence Interval for Poll Based on Random Sample}
-	$$Margin of Error (ME) \approx 2 \sqrt{P(1-P)/n}$$
-	We Report: $P \pm ME$
+
+\begin{block}{Margin of Error a.k.a.\ ME}
+  We report $P \pm \mbox{ME}$ where $\mbox{ME} \approx 2 \sqrt{P(1-P)/n}$
+\end{block}
+
+\pause
+
+\begin{block}{Trump Transition Approval Rate}
+$P = 0.39$ and $n = 1502$ so $\mbox{ME} \approx 0.013$.  We'd report $39\%$ plus or minus $1.3\%$ if the poll were based on a simple random sample\dots
+\end{block}
+
+\vspace{1em}
+
+\pause
+
+\alert{But Pew Reports an ME of 2.9\% -- more than twice as large as the one we calculated! What's going on here?!}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Non-response bias is a huge problem\dots}
+  \framesubtitle{Source: \href{http://www.people-press.org/2012/05/15/assessing-the-representativeness-of-public-opinion-surveys}{\fbox{Pew Research Center}}}
+
+  \begin{figure}
+    \centering
+\includegraphics[scale = 0.3]{./images/pew_nonresponse_2012.png}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Methodology -- ``Negative Views of Trump's Transition''}
+  \framesubtitle{Source: \href{http://www.people-press.org/2017/01/10/negative-views-of-trumps-transition-amid-concerns-about-conflicts-tax-returns/2/}{\fbox{Pew Research Center}}}
+  \begin{quote}
+    \footnotesize
+The combined landline and cell phone sample are weighted using an iterative technique that matches gender, age, education, race, Hispanic origin and nativity and region to parameters from the 2015 Census Bureau’s American Community Survey and population density to parameters from the Decennial Census. The sample also is weighted to match current patterns of telephone status (landline only, cell phone only, or both landline and cell phone), based on extrapolations from the 2016 National Health Interview Survey. The weighting procedure also accounts for the fact that respondents with both landline and cell phones have a greater probability of being included in the combined sample and adjusts for household size among respondents with a landline phone. The margins of error reported and statistical tests of significance are adjusted to account for the survey’s design effect, a measure of how much efficiency is lost from the weighting procedures.
+  \end{quote}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Simple Example of Weighting a Survey}
+
+  \footnotesize
+  \begin{block}{Post-stratification}
+    \begin{itemize}
+  \item Women make up 49.6\% of the population but suppose they are less likely to respond to your survey than men. 
+  \item If women have different opinions of Trump, this will skew the survey.
+  \item Calculate Trump approval rate separately for men $P_M$ vs.\ women $P_W$.
+  \item Report $0.496 \times P_W +  0.504 \times P_M$, not the raw approval rate $P$.
+\end{itemize}
+  \end{block}
+
+  \pause
+    
+  \begin{alertblock}{Caveats}
+    \begin{itemize}
+      \item Post-stratification isn't a magic bullet: you have to figure out what factors could skew your poll to adjust for them.
+      \item Calculating the ME is more complicated. Since this is an intro class we'll focus on simple random samples.
+    \end{itemize}
+  \end{alertblock}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -295,22 +387,18 @@ Would this procedure:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Problem}
+\frametitle{Confounding}
 	Parents who vaccinate their kids may differ systematically from those who don't in \emph{other ways} that impact child's chance of contracting polio!
 	
 	\vspace{2em}
 	\begin{alertblock}{Wealth is related to vaccination \emph{and} whether child grows up in a hygenic environment.}
 	\end{alertblock}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Confounder}
 
+  \begin{block}{Confounder}
 Factor than influences both outcomes and whether subjects are treated or not. Masks true effect of treatment.
+  \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \begin{frame}
 
 \frametitle{Experiment Using Random Assignment: Randomized Experiment}
@@ -361,7 +449,7 @@ Random assignment \emph{neutralizes} effect of all confounding factors: since gr
 	\end{quote}
 	
 	\vspace{2em}
-	\begin{alertblock}{Randomized, double-blind experiments are generally the best way to untangle causation.}
+	\begin{alertblock}{Randomized, double-blind experiments are considered the ``gold standard'' for untangling causation.}
 	\end{alertblock}
 
 	\begin{block}{Sugar Doesn't Make Kids Hyper}
@@ -370,37 +458,27 @@ Random assignment \emph{neutralizes} effect of all confounding factors: since gr
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Racial Bias in Sentencing}
-Could we use a randomized experiment to learn whether there is racial discrimination in criminal sentencing?
-
-	\begin{enumerate}[(a)]
-		\item Yes
-		\item No
-	\end{enumerate}
-%Please respond using your remote.
-\end{frame}
+%
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Racial Bias in Sentencing}
+%Could we use a randomized experiment to learn whether there is racial discrimination in criminal sentencing?
+%
+%	\begin{enumerate}[(a)]
+%		\item Yes
+%		\item No
+%	\end{enumerate}
+%%Please respond using your remote.
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Randomization is not always possible, practical, or ethical.}
-
-
-\end{frame}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
 
 \begin{block}{Observational Data}
 Data that do not come from a randomized experiment.
 
 \end{block}
 \vspace{2em}
-\begin{alertblock}{It is very difficult to untangle cause and effect using observational data because of confounders.}
+\begin{alertblock}{It much more challenging to untangle cause and effect using observational data because of confounders. But sometimes it's all we have.}
 \end{alertblock}
 
 
@@ -408,37 +486,68 @@ Data that do not come from a randomized experiment.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
+  \frametitle{Racial Bias in the Labor Market}
+  \framesubtitle{ \href{https://www.jstor.org/stable/3592802}{\fbox{Bertrand \& Mullainathan (2004, American Economic Review)}}}
 
-\frametitle{Does Racial Discrimination  Affect Criminal Sentencing?}
-\framesubtitle{Source: \href{https://www.law.upenn.edu/live/news/2170-new-study-by-professor-david-s-abrams-confirms}{\fbox{Penn Law Website}}}
-\footnotesize
-\begin{quote}
-Social scientists have studied the issue for decades, but the seemingly simple question “Does race affect sentencing?” is surprisingly difficult to answer on the basis of empirical evidence.
-
-Abrams explains: \alert{``The most straightforward way you might look at it is to say, Let’s look at what sentences people get and see whether sentence length varies by race. If it looks like people of one race receive longer sentences than another, that might indicate that the criminal justice system is unfair. But the shortcoming to that approach is that it’s also possible that sentences can differ for many reasons; for example, it’s possible people of different races might have different criminal histories on average, and that could also explain the difference in sentence length''}
-\end{quote}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Reducing Bias in Observational Studies}
-\begin{block}{Regression}
-Technique that allows us to remove influence of confounders. Works well if we can identify and gather data on all of them. But...
-\end{block}
+  \footnotesize
+  \begin{quote}
+    When faced with observably similar African-American and White applicants, do they [employers] favor the White one? Some argue yes, citing either employer prejudice or employer perception that race signals lower productivity. Others argue that differential treatment by race is a relic of the past \dots 
+    Data limitations make it difficult to empirically test these views. 
+    \alert{Since researchers possess far less data than employers do, White and African-American workers that appear similar to researchers may look very different to employers.} 
+    So any racial difference in labor market outcomes could just as easily be attributed to differences that are observable to employers but unobservable to researchers.
+  \end{quote}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Does Racial Discrimination  Affect Criminal Sentencing?}
-\framesubtitle{Source: \href{https://www.law.upenn.edu/live/news/2170-new-study-by-professor-david-s-abrams-confirms}{\fbox{Penn Law Website}}}
-\footnotesize
-\begin{quote}
-To address that difficulty [confounders] social scientists have ... applied control variables to standard regression equations, a statistical method for identifying significant correlations between observed events. For instance, controlling for type of crime committed or for the defendant’s criminal history, researchers look to see whether the results of their equation still show racial disparity.\alert{``The problem with that is you still leave the possibility that any differences you see are due to unobserved variables, differences that might be there but that you can't control for''} Abrams says.``That might be demeanor in the courtroom, it might be the quality of the attorney you can afford, it might be some details about the crime that you might not capture in your data. If those things are correlated with race, which they probably are, you’re not going to know whether the effect you think you’re detecting is really race or is something else''
-\end{quote}
+  \frametitle{Racial Bias in the Labor Market: continued \dots}
+  \framesubtitle{ \href{https://www.jstor.org/stable/3592802}{\fbox{Bertrand \& Mullainathan (2004, American Economic Review)}}}
 
+  \footnotesize
+  \begin{quote}
+    To circumvent this difficulty, we conduct a field experiment \dots
+  We send resumes in response to help-wanted ads in Chicago and Boston newspapers and measure call-back for interview for each sent resume. 
+  \alert{We experimentally manipulate the perception of race via the name of the ficticious job applicant.}
+    We randomly assign very White-sounding names (such as Emily Walsh or Grege Baker) to half the resumes and very African-American-soundsing names (such as Lakisha Washington or Jamal Jones) to the other half.
+  \end{quote}
+
+  \vspace{1em}
+  \normalsize
+  \alert{Bring your laptop next time: we'll analyze the data from this experiment to see whether there is evidence of discrimination\dots}
 
 \end{frame}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%
+%\frametitle{Does Racial Discrimination Affect Criminal Sentencing?}
+%\framesubtitle{Source: \href{https://www.law.upenn.edu/live/news/2170-new-study-by-professor-david-s-abrams-confirms}{\fbox{Penn Law Website}}}
+%\footnotesize
+%\begin{quote}
+%Social scientists have studied the issue for decades, but the seemingly simple question “Does race affect sentencing?” is surprisingly difficult to answer on the basis of empirical evidence.
+%
+%Abrams explains: \alert{``The most straightforward way you might look at it is to say, Let’s look at what sentences people get and see whether sentence length varies by race. If it looks like people of one race receive longer sentences than another, that might indicate that the criminal justice system is unfair. But the shortcoming to that approach is that it’s also possible that sentences can differ for many reasons; for example, it’s possible people of different races might have different criminal histories on average, and that could also explain the difference in sentence length''}
+%\end{quote}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Reducing Bias in Observational Studies}
+%\begin{block}{Regression}
+%Technique that allows us to remove influence of confounders. Works well if we can identify and gather data on all of them. But...
+%\end{block}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Does Racial Discrimination  Affect Criminal Sentencing?}
+%\framesubtitle{Source: \href{https://www.law.upenn.edu/live/news/2170-new-study-by-professor-david-s-abrams-confirms}{\fbox{Penn Law Website}}}
+%\footnotesize
+%\begin{quote}
+%To address that difficulty [confounders] social scientists have ... applied control variables to standard regression equations, a statistical method for identifying significant correlations between observed events. For instance, controlling for type of crime committed or for the defendant’s criminal history, researchers look to see whether the results of their equation still show racial disparity.\alert{``The problem with that is you still leave the possibility that any differences you see are due to unobserved variables, differences that might be there but that you can't control for''} Abrams says.``That might be demeanor in the courtroom, it might be the quality of the attorney you can afford, it might be some details about the crime that you might not capture in your data. If those things are correlated with race, which they probably are, you’re not going to know whether the effect you think you’re detecting is really race or is something else''
+%\end{quote}
+%
+%
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
