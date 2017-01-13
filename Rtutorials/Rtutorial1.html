@@ -154,7 +154,7 @@ $(document).ready(function () {
 <li><p>Go to <a href="http://rstudio.org/download/desktop" class="uri">http://rstudio.org/download/desktop</a> and click the link listed under “Recommended for Your System”. Follow the instructions to install RStudio.</p></li>
 </ol>
 <p>To make sure this worked, open the program RStudio and go to File &gt; New &gt; R Script. This will open a blank text document. In the document, type the text given in the box below and then click and drag to highlight both lines of code and click the button marked “Run.” If everything is working correctly, the console should display <code>TRUE</code>.</p>
-<pre class="r"><code>x &lt;- 5
+<pre class="r"><code>x = 5
 x == 5</code></pre>
 <p>Congratulations: you’ve just written your first R script! To save it, go to File &gt; Save As, and choose a name. NOTE: Always save your scripts as .R files so they’ll open in RStudio by default.</p>
 <p>Note that you can run one line of your script at a time by moving your cursor to that line and pressing CONTROL-ENTER or COMMAND-RETURN depending on whether you’re running Mac OSX, Linux or Windows. Another helpful shortcut is CONTROL-A (COMMAND-A on Mac) which highlights all of the lines of code in the text editor.</p>
@@ -242,6 +242,7 @@ foo.bar2</code></pre>
 <pre class="r"><code>foo_bar = foo - bar
 foo_bar</code></pre>
 <pre><code>## [1] -2</code></pre>
+<p>Note: In programmer speak, <code>=</code> here is an “assignment operator” – it’s the thing used to assign values to a variable name. R also has a second assignment operator that you’re bound to see sooner or later, <code>&lt;-</code>. So <code>x &lt;- 42</code> and <code>x = 42</code> are <em>identical</em>, and both accomplish the task of assigning the value of <code>42</code> to the name <code>x</code>. We’ll try to stick with using <code>=</code> since it’s easier to type and in some ways more intuitive. See <a href="http://stackoverflow.com/questions/1741820/assignment-operators-in-r-and">this</a> wonderful post for some more history and a very subtle difference between the two operators that you needn’t concern yourself with for now.</p>
 </div>
 <div id="vectors-types" class="section level3">
 <h3>Vectors &amp; Types</h3>
@@ -458,7 +459,7 @@ x</code></pre>
 ## [[3]]
 ## [1] &quot;Frank&quot;</code></pre>
 <p>Note how different the output looks, as compared to using <code>c</code>!! The quotation marks are gone except for the last component. You can ignore the mess of <code>[[</code> and <code>[</code> for now, but as an intimation, consider some more complicated lists:</p>
-<pre class="r"><code>x &lt;- list(c(1, 2), c(&quot;a&quot;, &quot;b&quot;), c(TRUE, FALSE), c(5L, 6L))
+<pre class="r"><code>x = list(c(1, 2), c(&quot;a&quot;, &quot;b&quot;), c(TRUE, FALSE), c(5L, 6L))
 x</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2
@@ -471,7 +472,7 @@ x</code></pre>
 ## 
 ## [[4]]
 ## [1] 5 6</code></pre>
-<pre class="r"><code>y &lt;- list(list(1, 2, 3), list(4:5), 6)
+<pre class="r"><code>y = list(list(1, 2, 3), list(4:5), 6)
 y</code></pre>
 <pre><code>## [[1]]
 ## [[1]][[1]]
@@ -525,9 +526,9 @@ y</code></pre>
 <p>Data sets are the lifeblood of a data lover!</p>
 <p>As mentioned above, data sets in R basically <code>list</code>s where every element has the same length. In basic R, this is done with a <code>data.frame</code>, but it’ll be easier for a beginner to understand the syntax of a <code>data.table</code>, so you can forget about <code>data.frame</code>s for now.</p>
 <p>We can build a <code>data.table</code> from scratch with the <code>data.table</code> command. This command lets you build up a <code>data.table</code> from several vectors of the same length:</p>
-<pre class="r"><code>foo &lt;- 1:5
-bar &lt;- 2 * foo
-foo.bar &lt;- data.table(foo, bar)
+<pre class="r"><code>foo = 1:5
+bar = 2 * foo
+foo.bar = data.table(foo, bar)
 foo.bar</code></pre>
 <pre><code>##    foo bar
 ## 1:   1   2
@@ -536,7 +537,7 @@ foo.bar</code></pre>
 ## 4:   4   8
 ## 5:   5  10</code></pre>
 <p>In the preceding example I built a <code>data.table</code> with only two columns, but you can add as many as you like. Just separate them by commas:</p>
-<pre class="r"><code>y &lt;- -4:0
+<pre class="r"><code>y = -4:0
 data.table(foo, bar, y)</code></pre>
 <pre><code>##    foo bar  y
 ## 1:   1   2 -4
@@ -548,11 +549,11 @@ data.table(foo, bar, y)</code></pre>
 <div id="subsetting-data" class="section level3">
 <h3>Subsetting data</h3>
 <p>When you’re working with data, you’ll often want to look at subsets that satisfy a particular condition. First we’ll set up a simple <code>data.table</code>:</p>
-<pre class="r"><code>location &lt;- c(&quot;New York&quot;, &quot;Chicago&quot;, &quot;Boston&quot;, &quot;Boston&quot;, &quot;New York&quot;)
-salary &lt;- c(70000, 80000, 60000, 50000, 45000)
-title &lt;- c(&quot;Office Manager&quot;, &quot;Research Assistant&quot;, &quot;Analyst&quot;, &quot;Office Manager&quot;, &quot;Analyst&quot;)
-hours &lt;- c(50, 56, 65, 40, 50)
-jobsearch &lt;- data.table(location, salary, title, hours)
+<pre class="r"><code>location = c(&quot;New York&quot;, &quot;Chicago&quot;, &quot;Boston&quot;, &quot;Boston&quot;, &quot;New York&quot;)
+salary = c(70000, 80000, 60000, 50000, 45000)
+title = c(&quot;Office Manager&quot;, &quot;Research Assistant&quot;, &quot;Analyst&quot;, &quot;Office Manager&quot;, &quot;Analyst&quot;)
+hours = c(50, 56, 65, 40, 50)
+jobsearch = data.table(location, salary, title, hours)
 jobsearch</code></pre>
 <pre><code>##    location salary              title hours
 ## 1: New York  70000     Office Manager    50
@@ -765,10 +766,10 @@ weather</code></pre>
 <h3>More on <code>data.table</code> Access</h3>
 <p>One of the most fundamental R skills you’ll need to learn is how to access parts of a <code>data.table</code> or vector. This can be a little confusing at first since there are usually <em>several different ways to accomplish the same thing</em>. This section is intended to add more clarity to some of the material on <code>data.table</code>s from above. The <em>best way to learn this is to play around with different commands and see what happens</em>. There are some exercises at the end of the tutorial to do just that. If you don’t get the result you were expecting, try to think about why.</p>
 <p>First I’ll build a simple <code>data.table</code> from the following vectors:</p>
-<pre class="r"><code>person &lt;- c(&quot;Linus&quot;, &quot;Snoopy&quot;, &quot;Lucy&quot;, &quot;Woodstock&quot;)
-age &lt;- c(5, 8, 6, 2)
-weight &lt;- c(40, 25, 50, 1)
-my.data.table &lt;- data.table(person, age, weight)
+<pre class="r"><code>person = c(&quot;Linus&quot;, &quot;Snoopy&quot;, &quot;Lucy&quot;, &quot;Woodstock&quot;)
+age = c(5, 8, 6, 2)
+weight = c(40, 25, 50, 1)
+my.data.table = data.table(person, age, weight)
 my.data.table</code></pre>
 <pre><code>##       person age weight
 ## 1:     Linus   5     40
