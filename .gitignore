@@ -102,3 +102,6 @@ figure/
 #since I use vim...
 *.swp
 *.tex.latexmain
+
+#RStudio project files
+*Rproj*
