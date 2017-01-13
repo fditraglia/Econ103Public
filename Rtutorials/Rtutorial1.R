@@ -1,5 +1,5 @@
 ## ----initial_test, results='hide'----------------------------------------
-x <- 5
+x = 5
 x == 5
 
 ## ----arithmetic----------------------------------------------------------
@@ -184,9 +184,9 @@ x = list(TRUE, 1, "Frank")
 x
 
 ## ----lists_2-------------------------------------------------------------
-x <- list(c(1, 2), c("a", "b"), c(TRUE, FALSE), c(5L, 6L))
+x = list(c(1, 2), c("a", "b"), c(TRUE, FALSE), c(5L, 6L))
 x
-y <- list(list(1, 2, 3), list(4:5), 6)
+y = list(list(1, 2, 3), list(4:5), 6)
 y
 
 ## ----packages_1, eval = FALSE--------------------------------------------
@@ -196,21 +196,21 @@ y
 library(data.table)
 
 ## ----data.table_1--------------------------------------------------------
-foo <- 1:5
-bar <- 2 * foo
-foo.bar <- data.table(foo, bar)
+foo = 1:5
+bar = 2 * foo
+foo.bar = data.table(foo, bar)
 foo.bar
 
 ## ----data.table_2--------------------------------------------------------
-y <- -4:0
+y = -4:0
 data.table(foo, bar, y)
 
 ## ----subsetting_1--------------------------------------------------------
-location <- c("New York", "Chicago", "Boston", "Boston", "New York")
-salary <- c(70000, 80000, 60000, 50000, 45000)
-title <- c("Office Manager", "Research Assistant", "Analyst", "Office Manager", "Analyst")
-hours <- c(50, 56, 65, 40, 50)
-jobsearch <- data.table(location, salary, title, hours)
+location = c("New York", "Chicago", "Boston", "Boston", "New York")
+salary = c(70000, 80000, 60000, 50000, 45000)
+title = c("Office Manager", "Research Assistant", "Analyst", "Office Manager", "Analyst")
+hours = c(50, 56, 65, 40, 50)
+jobsearch = data.table(location, salary, title, hours)
 jobsearch
 
 ## ----subsetting_2--------------------------------------------------------
@@ -229,10 +229,10 @@ summary(weather)
 names(weather)
 
 ## ----data.table_extra_1--------------------------------------------------
-person <- c("Linus", "Snoopy", "Lucy", "Woodstock")
-age <- c(5, 8, 6, 2)
-weight <- c(40, 25, 50, 1)
-my.data.table <- data.table(person, age, weight)
+person = c("Linus", "Snoopy", "Lucy", "Woodstock")
+age = c(5, 8, 6, 2)
+weight = c(40, 25, 50, 1)
+my.data.table = data.table(person, age, weight)
 my.data.table
 
 ## ----data.table_extra_2--------------------------------------------------

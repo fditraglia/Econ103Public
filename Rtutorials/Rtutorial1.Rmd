@@ -25,7 +25,7 @@ Carry out the following two steps *in order*
 
 To make sure this worked, open the program RStudio and go to File > New > R Script. This will open a blank text document. In the document, type the text given in the box below and then click and drag to highlight both lines of code and click the button marked "Run." If everything is working correctly, the console should display ``TRUE``.
 ```{r initial_test, results='hide'}
-x <- 5
+x = 5
 x == 5
 ```
 
@@ -108,6 +108,8 @@ foo.bar2
 foo_bar = foo - bar
 foo_bar
 ```
+
+Note: In programmer speak, `=` here is an "assignment operator" -- it's the thing used to assign values to a variable name. R also has a second assignment operator that you're bound to see sooner or later, `<-`. So `x <- 42` and `x = 42` are _identical_, and both accomplish the task of assigning the value of `42` to the name `x`. We'll try to stick with using `=` since it's easier to type and in some ways more intuitive. See [this](http://stackoverflow.com/questions/1741820/assignment-operators-in-r-and) wonderful post for some more history and a very subtle difference between the two operators that you needn't concern yourself with for now.
 
 ### Vectors & Types
 
@@ -323,9 +325,9 @@ x
 Note how different the output looks, as compared to using `c`!! The quotation marks are gone except for the last component. You can ignore the mess of `[[` and `[` for now, but as an intimation, consider some more complicated lists:
 
 ```{r lists_2}
-x <- list(c(1, 2), c("a", "b"), c(TRUE, FALSE), c(5L, 6L))
+x = list(c(1, 2), c("a", "b"), c(TRUE, FALSE), c(5L, 6L))
 x
-y <- list(list(1, 2, 3), list(4:5), 6)
+y = list(list(1, 2, 3), list(4:5), 6)
 y
 ```
 
@@ -382,16 +384,16 @@ As mentioned above, data sets in R basically `list`s where every element has the
 We can build a `data.table` from scratch with the `data.table` command. This command lets you build up a `data.table` from several vectors of the same length:
 
 ```{r data.table_1}
-foo <- 1:5
-bar <- 2 * foo
-foo.bar <- data.table(foo, bar)
+foo = 1:5
+bar = 2 * foo
+foo.bar = data.table(foo, bar)
 foo.bar
 ```
 
 In the preceding example I built a `data.table` with only two columns, but you can add as many as you like. Just separate them by commas:
 
 ```{r data.table_2}
-y <- -4:0
+y = -4:0
 data.table(foo, bar, y)
 ```
 
@@ -400,11 +402,11 @@ data.table(foo, bar, y)
 When you're working with data, you'll often want to look at subsets that satisfy a particular condition. First we'll set up a simple `data.table`:
 
 ```{r subsetting_1}
-location <- c("New York", "Chicago", "Boston", "Boston", "New York")
-salary <- c(70000, 80000, 60000, 50000, 45000)
-title <- c("Office Manager", "Research Assistant", "Analyst", "Office Manager", "Analyst")
-hours <- c(50, 56, 65, 40, 50)
-jobsearch <- data.table(location, salary, title, hours)
+location = c("New York", "Chicago", "Boston", "Boston", "New York")
+salary = c(70000, 80000, 60000, 50000, 45000)
+title = c("Office Manager", "Research Assistant", "Analyst", "Office Manager", "Analyst")
+hours = c(50, 56, 65, 40, 50)
+jobsearch = data.table(location, salary, title, hours)
 jobsearch
 ```
 
@@ -460,10 +462,10 @@ One of the most fundamental R skills you'll need to learn is how to access parts
 First I'll build a simple `data.table` from the following vectors:
 
 ```{r data.table_extra_1}
-person <- c("Linus", "Snoopy", "Lucy", "Woodstock")
-age <- c(5, 8, 6, 2)
-weight <- c(40, 25, 50, 1)
-my.data.table <- data.table(person, age, weight)
+person = c("Linus", "Snoopy", "Lucy", "Woodstock")
+age = c(5, 8, 6, 2)
+weight = c(40, 25, 50, 1)
+my.data.table = data.table(person, age, weight)
 my.data.table
 ```
 
