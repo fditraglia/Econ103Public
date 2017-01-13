@@ -124,7 +124,21 @@ $(document).ready(function () {
 <ul>
 <li><a href="#part-1-installing-r">Part 1: Installing R</a></li>
 <li><a href="#part-2-the-absolute-basics">Part 2: The Absolute Basics</a><ul>
+<li><a href="#arithmetic">Arithmetic</a></li>
+<li><a href="#logical-comparison">Logical Comparison</a></li>
+<li><a href="#strings-text">Strings (text)</a></li>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#vectors-types">Vectors &amp; Types</a></li>
+<li><a href="#vector-arithmetic-and-functions">Vector Arithmetic and Functions</a></li>
+<li><a href="#subsetting-vectors">Subsetting Vectors: <code>[</code></a></li>
+<li><a href="#named-vectors">Named Vectors</a></li>
+<li><a href="#getting-help-documentation">Getting Help: Documentation</a></li>
+<li><a href="#lists">Lists</a></li>
 <li><a href="#packages">Packages</a></li>
+<li><a href="#data.tables"><code>data.table</code>s</a></li>
+<li><a href="#subsetting-data">Subsetting data</a></li>
+<li><a href="#loading-external-data-data-summary">Loading External Data &amp; Data Summary</a></li>
+<li><a href="#more-on-data.table-access">More on <code>data.table</code> Access</a></li>
 </ul></li>
 <li><a href="#part-3-exercises">Part 3: Exercises</a></li>
 </ul>
@@ -148,8 +162,8 @@ x == 5</code></pre>
 <div id="part-2-the-absolute-basics" class="section level2">
 <h2>Part 2: The Absolute Basics</h2>
 <p>Here are some of the most fundamental things you can do with R.</p>
-<div id="arithmetic" class="section level4">
-<h4>Arithmetic</h4>
+<div id="arithmetic" class="section level3">
+<h3>Arithmetic</h3>
 <pre class="r"><code>#add numbers
 1 + 1</code></pre>
 <pre><code>## [1] 2</code></pre>
@@ -166,8 +180,8 @@ x == 5</code></pre>
 2^10</code></pre>
 <pre><code>## [1] 1024</code></pre>
 </div>
-<div id="logical-comparison" class="section level4">
-<h4>Logical Comparison</h4>
+<div id="logical-comparison" class="section level3">
+<h3>Logical Comparison</h3>
 <pre class="r"><code>3 &lt; 4</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>3 &gt; 4</code></pre>
@@ -187,8 +201,8 @@ x == 5</code></pre>
 <pre class="r"><code>10 - 6 == 4</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
-<div id="strings-text" class="section level4">
-<h4>Strings (text)</h4>
+<div id="strings-text" class="section level3">
+<h3>Strings (text)</h3>
 <p>Numbers are bread and butter for computers, but text is what will facilitate understanding for us mere mortals.</p>
 <pre class="r"><code>'Econometrics is awesome'</code></pre>
 <pre><code>## [1] &quot;Econometrics is awesome&quot;</code></pre>
@@ -197,8 +211,8 @@ x == 5</code></pre>
 &quot;Econometrics is still awesome&quot;</code></pre>
 <pre><code>## [1] &quot;Econometrics is still awesome&quot;</code></pre>
 </div>
-<div id="variables" class="section level4">
-<h4>Variables</h4>
+<div id="variables" class="section level3">
+<h3>Variables</h3>
 <p>Just like in algebra, variables are a great form of shorthand. Instead of writing 3.1415926… all the time, we can just write <code>pi</code>.</p>
 <p>Assignment to a variable happens from right to left – the value on the right side gets assigned to the <em>name</em> on the left side. You can use nearly anything as a variable name in R. The only rules are:</p>
 <ol style="list-style-type: decimal">
@@ -229,8 +243,8 @@ foo.bar2</code></pre>
 foo_bar</code></pre>
 <pre><code>## [1] -2</code></pre>
 </div>
-<div id="vectors-types" class="section level4">
-<h4>Vectors &amp; Types</h4>
+<div id="vectors-types" class="section level3">
+<h3>Vectors &amp; Types</h3>
 <p>In R, a vector is just a (ordered) set of related things. You should basically think of it like a column in Excel.</p>
 <pre class="r"><code>x = c(4, 7, 9)
 x</code></pre>
@@ -252,8 +266,8 @@ x</code></pre>
 </ol>
 <p>Vectors are converted to the highest number on this list present – <code>x</code> above has <code>&quot;three&quot;</code> so the whole vector becomes a <code>character</code>.</p>
 </div>
-<div id="vector-arithmetic-and-functions" class="section level4">
-<h4>Vector Arithmetic and Functions</h4>
+<div id="vector-arithmetic-and-functions" class="section level3">
+<h3>Vector Arithmetic and Functions</h3>
 <p>Vectors make it easy to do many computations all at once – adding one to a list of numbers, dividing all of them by 3, etc. And as long as two vectors are the same length, we can combine them in natural ways:</p>
 <pre class="r"><code>x = c(1, 2, 3)
 x + 4</code></pre>
@@ -352,8 +366,8 @@ head(x)</code></pre>
 <pre class="r"><code>tail(x)</code></pre>
 <pre><code>## [1]  99995  99996  99997  99998  99999 100000</code></pre>
 </div>
-<div id="subsetting-vectors" class="section level4">
-<h4>Subsetting Vectors: <code>[</code></h4>
+<div id="subsetting-vectors" class="section level3">
+<h3>Subsetting Vectors: <code>[</code></h3>
 <p>Often we want to examine only part of a vector, most commonly the part of a vector that satisfies some condition, but also looking at the first or last few elements. To do this we <em>extract</em> or subset those elements by using <code>[</code>:</p>
 <pre class="r"><code>x = c(5, 4, 1)
 x[1]</code></pre>
@@ -397,8 +411,8 @@ x</code></pre>
 <pre><code>## [1] -1  5  4</code></pre>
 <pre class="r"><code>x[x &lt; 0] = 0</code></pre>
 </div>
-<div id="named-vectors" class="section level4">
-<h4>Named Vectors</h4>
+<div id="named-vectors" class="section level3">
+<h3>Named Vectors</h3>
 <p>It’s also often useful to <em>name</em> our vectors to help organize the information. Suppose we were keeping track of the ages of the Trumps:</p>
 <pre class="r"><code>trump_ages = c(70, 46, 38, 34, 32, 22, 9)</code></pre>
 <p>This is nice, but much more useful if we keep track of who each element represents:</p>
@@ -422,15 +436,15 @@ trump_ages</code></pre>
 <pre><code>## Donald Barron 
 ##     70      9</code></pre>
 </div>
-<div id="getting-help-documentation" class="section level4">
-<h4>Getting Help: Documentation</h4>
+<div id="getting-help-documentation" class="section level3">
+<h3>Getting Help: Documentation</h3>
 <p>If you’re unsure of how something works in R – what the arguments are to a function, how it works, etc. – your first step is to check the documentation:</p>
 <pre class="r"><code>?sum
 ?cos
 ?&quot;=&quot;</code></pre>
 </div>
-<div id="lists" class="section level4">
-<h4>Lists</h4>
+<div id="lists" class="section level3">
+<h3>Lists</h3>
 <p>We saw above that R doesn’t like vectors to have different types: <code>c(TRUE, 1, &quot;Frank&quot;)</code> becomes <code>c(&quot;TRUE&quot;, &quot;1&quot;, &quot;Frank&quot;)</code>. But storing objects with different types is absolutely fundamental to data analysis.</p>
 <p>R has a different type of object besides a vector used to store data of different types side-by-side: a <code>list</code>:</p>
 <pre class="r"><code>x = list(TRUE, 1, &quot;Frank&quot;)
@@ -488,25 +502,26 @@ y</code></pre>
 <p>Best of all, unlike some super-expensive programming languages, all of the thousands of packages available to R users (most importantly through CRAN, the <strong>C</strong>omprehensive <strong>R</strong> <strong>A</strong>rchive <strong>N</strong>etwork) are <em>completely free of charge</em>.</p>
 <p>The two most important things to know about packages for now is where to find them, how to install them, and how to load them.</p>
 <p>We’ll work extensively with the <code>data.table</code> package, which was built for working with huge data sets.</p>
-<div id="where-to-find-packages" class="section level5">
-<h5>Where to find packages</h5>
+<div id="where-to-find-packages" class="section level4">
+<h4>Where to find packages</h4>
 <p>Long story short: Google. Got a particular statistical technique in mind? The best R package for this is almost always the top Google result if asked correctly.</p>
 </div>
-<div id="how-to-install-packages" class="section level5">
-<h5>How to install packages</h5>
+<div id="how-to-install-packages" class="section level4">
+<h4>How to install packages</h4>
 <p>Just use <code>install.packages</code>!</p>
 <pre class="r"><code>install.packages(&quot;data.table&quot;)</code></pre>
 <p>This will download the code from the package to your computer to a place that R understands.</p>
 <p>We do <em>not</em> yet have access to the functions in the package. We have to load it first.</p>
 </div>
-<div id="how-to-load-packages" class="section level5">
-<h5>How to load packages</h5>
+<div id="how-to-load-packages" class="section level4">
+<h4>How to load packages</h4>
 <p>Just add it to your library!</p>
 <pre class="r"><code>library(data.table)</code></pre>
 <p><em>Et voila</em>! You’ll now have access to all of the awesome functions in the <code>data.table</code> package. You can also Google “tutorial data.table” (or in general “tutorial [package name]”) and you’re very likely to find a trove of sites trying to help you learn the package.</p>
 </div>
-<div id="data.tables" class="section level4">
-<h4><code>data.table</code>s</h4>
+</div>
+<div id="data.tables" class="section level3">
+<h3><code>data.table</code>s</h3>
 <p>Data sets are the lifeblood of a data lover!</p>
 <p>As mentioned above, data sets in R basically <code>list</code>s where every element has the same length. In basic R, this is done with a <code>data.frame</code>, but it’ll be easier for a beginner to understand the syntax of a <code>data.table</code>, so you can forget about <code>data.frame</code>s for now.</p>
 <p>We can build a <code>data.table</code> from scratch with the <code>data.table</code> command. This command lets you build up a <code>data.table</code> from several vectors of the same length:</p>
@@ -530,8 +545,8 @@ data.table(foo, bar, y)</code></pre>
 ## 4:   4   8 -1
 ## 5:   5  10  0</code></pre>
 </div>
-<div id="subsetting-data" class="section level4">
-<h4>Subsetting data</h4>
+<div id="subsetting-data" class="section level3">
+<h3>Subsetting data</h3>
 <p>When you’re working with data, you’ll often want to look at subsets that satisfy a particular condition. First we’ll set up a simple <code>data.table</code>:</p>
 <pre class="r"><code>location &lt;- c(&quot;New York&quot;, &quot;Chicago&quot;, &quot;Boston&quot;, &quot;Boston&quot;, &quot;New York&quot;)
 salary &lt;- c(70000, 80000, 60000, 50000, 45000)
@@ -564,8 +579,8 @@ jobsearch</code></pre>
 ## 2:   Boston  50000 Office Manager    40
 ## 3: New York  45000        Analyst    50</code></pre>
 </div>
-<div id="loading-external-data-data-summary" class="section level4">
-<h4>Loading External Data &amp; Data Summary</h4>
+<div id="loading-external-data-data-summary" class="section level3">
+<h3>Loading External Data &amp; Data Summary</h3>
 <p>The vast majority of the time, you won’t be using data that you type in by hand – you’ll be importing data from external sources. One of the most common ways to find such data is in comma-separated format – such files are structured such that each row represents a row of data, and columns are separated by a comma (actually, any separating character is possible), e.g., like this:</p>
 <pre><code>name,age,company
 Mike,24,BCG
@@ -587,8 +602,9 @@ weather</code></pre>
 ##  8:  2017-1-8               24                20               15
 ##  9:  2017-1-9               23                18               12
 ## 10: 2017-1-10               42                28               14
-## 11: 2017-1-11               54                47               40
+## 11: 2017-1-11               54                46               37
 ## 12: 2017-1-12               67                58               49
+## 13: 2017-1-13               60                53               46
 ##     Max Dew PointF MeanDew PointF Min DewpointF Max Humidity Mean Humidity
 ##  1:             29             26            24           75            48
 ##  2:             41             37            25           96            88
@@ -600,8 +616,9 @@ weather</code></pre>
 ##  8:              7              3            -1           57            46
 ##  9:              9              6             4           73            56
 ## 10:             32             18             9           84            62
-## 11:             46             40            33           93            78
+## 11:             46             40            33           93            80
 ## 12:             52             50            46           89            74
+## 13:             50             39            26           86            61
 ##     Min Humidity Max Sea Level PressureIn Mean Sea Level PressureIn
 ##  1:           30                    30.42                     30.19
 ##  2:           66                    30.45                     30.35
@@ -613,8 +630,9 @@ weather</code></pre>
 ##  8:           29                    30.69                     30.44
 ##  9:           36                    30.81                     30.72
 ## 10:           38                    30.66                     30.48
-## 11:           63                    30.37                     30.26
+## 11:           59                    30.37                     30.26
 ## 12:           58                    30.19                     30.11
+## 13:           27                    30.47                     30.33
 ##     Min Sea Level PressureIn Max VisibilityMiles Mean VisibilityMiles
 ##  1:                    29.94                  10                   10
 ##  2:                    30.19                  10                    6
@@ -627,7 +645,8 @@ weather</code></pre>
 ##  9:                    30.67                  10                   10
 ## 10:                    30.20                  10                   10
 ## 11:                    30.19                  10                    8
-## 12:                    30.02                  10                    9
+## 12:                    30.02                  10                   10
+## 13:                    30.14                  10                   10
 ##     Min VisibilityMiles Max Wind SpeedMPH Mean Wind SpeedMPH
 ##  1:                  10                18                 12
 ##  2:                   2                15                  8
@@ -639,8 +658,9 @@ weather</code></pre>
 ##  8:                  10                24                 15
 ##  9:                  10                10                  7
 ## 10:                  10                17                  7
-## 11:                   5                26                  8
-## 12:                   6                24                 16
+## 11:                   5                22                 12
+## 12:                   6                24                 15
+## 13:                  10                18                 12
 ##     Max Gust SpeedMPH PrecipitationIn CloudCover   Events
 ##  1:                25            0.00          4         
 ##  2:                25            0.16          8     Rain
@@ -652,8 +672,9 @@ weather</code></pre>
 ##  8:                31            0.00          1         
 ##  9:                NA            0.00          4         
 ## 10:                29            0.01          7         
-## 11:                35            0.37          7     Rain
+## 11:                30            0.24          7     Rain
 ## 12:                32            0.05          7     Rain
+## 13:                23            0.00          6         
 ##     WindDirDegrees&lt;br /&gt;
 ##  1:            274&lt;br /&gt;
 ##  2:             52&lt;br /&gt;
@@ -666,58 +687,59 @@ weather</code></pre>
 ##  9:            228&lt;br /&gt;
 ## 10:            175&lt;br /&gt;
 ## 11:            212&lt;br /&gt;
-## 12:            214&lt;br /&gt;</code></pre>
+## 12:            218&lt;br /&gt;
+## 13:            301&lt;br /&gt;</code></pre>
 <pre class="r"><code>summary(weather)</code></pre>
 <pre><code>##      EST            Max TemperatureF Mean TemperatureF Min TemperatureF
-##  Length:12          Min.   :23.00    Min.   :18.00     Min.   :12.00   
-##  Class :character   1st Qu.:30.00    1st Qu.:26.50     1st Qu.:18.00   
-##  Mode  :character   Median :42.50    Median :34.50     Median :30.00   
-##                     Mean   :41.33    Mean   :35.17     Mean   :28.75   
-##                     3rd Qu.:51.75    3rd Qu.:44.25     3rd Qu.:36.25   
+##  Length:13          Min.   :23.00    Min.   :18.00     Min.   :12.00   
+##  Class :character   1st Qu.:32.00    1st Qu.:28.00     1st Qu.:19.00   
+##  Mode  :character   Median :43.00    Median :38.00     Median :32.00   
+##                     Mean   :42.77    Mean   :36.46     Mean   :29.85   
+##                     3rd Qu.:54.00    3rd Qu.:45.00     3rd Qu.:37.00   
 ##                     Max.   :67.00    Max.   :58.00     Max.   :49.00   
 ##                                                                        
-##  Max Dew PointF  MeanDew PointF  Min DewpointF   Max Humidity  
-##  Min.   : 7.00   Min.   : 3.00   Min.   :-1.0   Min.   :57.00  
-##  1st Qu.:24.75   1st Qu.:16.00   1st Qu.: 7.0   1st Qu.:81.75  
-##  Median :30.50   Median :23.50   Median : 9.5   Median :90.50  
-##  Mean   :31.75   Mean   :25.75   Mean   :17.5   Mean   :86.17  
-##  3rd Qu.:46.00   3rd Qu.:37.75   3rd Qu.:27.0   3rd Qu.:93.75  
-##  Max.   :52.00   Max.   :50.00   Max.   :46.0   Max.   :97.00  
-##                                                                
-##  Mean Humidity    Min Humidity   Max Sea Level PressureIn
-##  Min.   :46.00   Min.   :14.00   Min.   :29.83           
-##  1st Qu.:57.50   1st Qu.:29.75   1st Qu.:30.19           
-##  Median :69.00   Median :34.50   Median :30.35           
-##  Mean   :67.92   Mean   :42.50   Mean   :30.36           
-##  3rd Qu.:75.00   3rd Qu.:59.25   3rd Qu.:30.50           
-##  Max.   :93.00   Max.   :89.00   Max.   :30.81           
-##                                                          
+##  Max Dew PointF  MeanDew PointF  Min DewpointF    Max Humidity  
+##  Min.   : 7.00   Min.   : 3.00   Min.   :-1.00   Min.   :57.00  
+##  1st Qu.:27.00   1st Qu.:17.00   1st Qu.: 8.00   1st Qu.:84.00  
+##  Median :32.00   Median :26.00   Median :10.00   Median :89.00  
+##  Mean   :33.15   Mean   :26.77   Mean   :18.15   Mean   :86.15  
+##  3rd Qu.:46.00   3rd Qu.:39.00   3rd Qu.:26.00   3rd Qu.:93.00  
+##  Max.   :52.00   Max.   :50.00   Max.   :46.00   Max.   :97.00  
+##                                                                 
+##  Mean Humidity    Min Humidity Max Sea Level PressureIn
+##  Min.   :46.00   Min.   :14    Min.   :29.83           
+##  1st Qu.:58.00   1st Qu.:29    1st Qu.:30.19           
+##  Median :68.00   Median :33    Median :30.37           
+##  Mean   :67.54   Mean   :41    Mean   :30.37           
+##  3rd Qu.:74.00   3rd Qu.:58    3rd Qu.:30.47           
+##  Max.   :93.00   Max.   :89    Max.   :30.81           
+##                                                        
 ##  Mean Sea Level PressureIn Min Sea Level PressureIn Max VisibilityMiles
 ##  Min.   :29.58             Min.   :29.48            Min.   :10         
-##  1st Qu.:30.03             1st Qu.:29.90            1st Qu.:10         
-##  Median :30.21             Median :30.10            Median :10         
-##  Mean   :30.18             Mean   :30.04            Mean   :10         
-##  3rd Qu.:30.37             3rd Qu.:30.19            3rd Qu.:10         
+##  1st Qu.:30.05             1st Qu.:29.92            1st Qu.:10         
+##  Median :30.24             Median :30.14            Median :10         
+##  Mean   :30.19             Mean   :30.04            Mean   :10         
+##  3rd Qu.:30.35             3rd Qu.:30.19            3rd Qu.:10         
 ##  Max.   :30.72             Max.   :30.67            Max.   :10         
 ##                                                                        
 ##  Mean VisibilityMiles Min VisibilityMiles Max Wind SpeedMPH
-##  Min.   : 4.00        Min.   : 0.000      Min.   :10.00    
-##  1st Qu.: 6.00        1st Qu.: 1.750      1st Qu.:15.00    
-##  Median : 8.00        Median : 3.500      Median :17.50    
-##  Mean   : 7.75        Mean   : 4.833      Mean   :18.67    
-##  3rd Qu.:10.00        3rd Qu.:10.000      3rd Qu.:24.00    
-##  Max.   :10.00        Max.   :10.000      Max.   :26.00    
+##  Min.   : 4           Min.   : 0.000      Min.   :10.00    
+##  1st Qu.: 6           1st Qu.: 2.000      1st Qu.:15.00    
+##  Median : 8           Median : 5.000      Median :18.00    
+##  Mean   : 8           Mean   : 5.231      Mean   :18.31    
+##  3rd Qu.:10           3rd Qu.:10.000      3rd Qu.:22.00    
+##  Max.   :10           Max.   :10.000      Max.   :24.00    
 ##                                                            
 ##  Mean Wind SpeedMPH Max Gust SpeedMPH PrecipitationIn     CloudCover   
 ##  Min.   : 5.00      Min.   :17.00     Min.   :0.00000   Min.   :1.000  
-##  1st Qu.: 7.75      1st Qu.:25.00     1st Qu.:0.00750   1st Qu.:5.500  
-##  Median :11.00      Median :28.00     Median :0.03500   Median :7.000  
-##  Mean   :10.42      Mean   :28.09     Mean   :0.07917   Mean   :6.167  
-##  3rd Qu.:12.25      3rd Qu.:31.50     3rd Qu.:0.10000   3rd Qu.:7.250  
-##  Max.   :16.00      Max.   :35.00     Max.   :0.37000   Max.   :8.000  
+##  1st Qu.: 8.00      1st Qu.:25.00     1st Qu.:0.00000   1st Qu.:6.000  
+##  Median :12.00      Median :28.00     Median :0.03000   Median :7.000  
+##  Mean   :10.77      Mean   :27.25     Mean   :0.06308   Mean   :6.154  
+##  3rd Qu.:12.00      3rd Qu.:30.25     3rd Qu.:0.08000   3rd Qu.:7.000  
+##  Max.   :15.00      Max.   :34.00     Max.   :0.24000   Max.   :8.000  
 ##                     NA's   :1                                          
 ##     Events          WindDirDegrees&lt;br /&gt;
-##  Length:12          Length:12           
+##  Length:13          Length:13           
 ##  Class :character   Class :character    
 ##  Mode  :character   Mode  :character    
 ##                                         
@@ -739,8 +761,8 @@ weather</code></pre>
 ## [23] &quot;WindDirDegrees&lt;br /&gt;&quot;</code></pre>
 <p>NB: More typically, instead of a URL, you’ll give <code>fread</code> the path to where a .csv file is stored on your computer.</p>
 </div>
-<div id="more-on-data.table-access" class="section level4">
-<h4>More on <code>data.table</code> Access</h4>
+<div id="more-on-data.table-access" class="section level3">
+<h3>More on <code>data.table</code> Access</h3>
 <p>One of the most fundamental R skills you’ll need to learn is how to access parts of a <code>data.table</code> or vector. This can be a little confusing at first since there are usually <em>several different ways to accomplish the same thing</em>. This section is intended to add more clarity to some of the material on <code>data.table</code>s from above. The <em>best way to learn this is to play around with different commands and see what happens</em>. There are some exercises at the end of the tutorial to do just that. If you don’t get the result you were expecting, try to think about why.</p>
 <p>First I’ll build a simple <code>data.table</code> from the following vectors:</p>
 <pre class="r"><code>person &lt;- c(&quot;Linus&quot;, &quot;Snoopy&quot;, &quot;Lucy&quot;, &quot;Woodstock&quot;)
@@ -753,8 +775,8 @@ my.data.table</code></pre>
 ## 2:    Snoopy   8     25
 ## 3:      Lucy   6     50
 ## 4: Woodstock   2      1</code></pre>
-<div id="fact-1-you-can-use-the-same-principles-to-select-subsets-of-vectors-and-data.tables-by-position" class="section level5">
-<h5>Fact #1: You can use the same principles to select subsets of vectors and <code>data.table</code>s <em>by position</em></h5>
+<div id="fact-1-you-can-use-the-same-principles-to-select-subsets-of-vectors-and-data.tables-by-position" class="section level4">
+<h4>Fact #1: You can use the same principles to select subsets of vectors and <code>data.table</code>s <em>by position</em></h4>
 <p>The only real difference here is that vectors are one-dimensional</p>
 <pre class="r"><code>age[1:2]</code></pre>
 <pre><code>## [1] 5 8</code></pre>
@@ -797,8 +819,8 @@ my.data.table[1:3, 3]</code></pre>
 ## 1:    Snoopy   8     25
 ## 2: Woodstock   2      1</code></pre>
 </div>
-<div id="fact-2-there-are-three-ways-to-access-the-columns-of-a-data.table-by-name." class="section level5">
-<h5>Fact #2: There are <em>three ways</em> to access the columns of a <code>data.table</code> <em>by name</em>.</h5>
+<div id="fact-2-there-are-three-ways-to-access-the-columns-of-a-data.table-by-name." class="section level4">
+<h4>Fact #2: There are <em>three ways</em> to access the columns of a <code>data.table</code> <em>by name</em>.</h4>
 <p>The first way is to use <code>[[&quot;COLUMN NAME GOES HERE&quot;]]</code></p>
 <pre class="r"><code>my.data.table[[&quot;weight&quot;]]</code></pre>
 <pre><code>## [1] 40 25 50  1</code></pre>
@@ -832,7 +854,6 @@ my.data.table[1:3, 3]</code></pre>
 ## 3:      Lucy   6
 ## 4: Woodstock   2</code></pre>
 <p>In some cases it’s easier to access columns of a <code>data.table</code> <em>by name</em> and in others it’s easier to access them <em>by position</em>.</p>
-</div>
 </div>
 </div>
 </div>
