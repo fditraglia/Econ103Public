@@ -447,7 +447,7 @@ It's very easy to read files like this into R very quickly using `fread`. The we
 We can read this into R like so:
 
 ```{r data_import}
-weather = fread('https://www.wunderground.com/history/airport/KPHL/2017/1/10/MonthlyHistory.html?format=1')
+weather = fread('http://michaelchirico.github.io/philly_weather_data.csv')
 weather
 summary(weather)
 names(weather)

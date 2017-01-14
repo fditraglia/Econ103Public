@@ -105,3 +105,4 @@ figure/
 
 #RStudio project files
 *Rproj*
+.Rproj.user
