@@ -590,7 +590,7 @@ Frank,28,FMC
 Ethan,22,AirBnB</code></pre>
 <p>It’s very easy to read files like this into R very quickly using <code>fread</code>. The weather site Weather Underground offers lots of historical data in such tabular format. E.g., the data on <a href="https://www.wunderground.com/history/airport/KPHL/2017/1/10/MonthlyHistory.html">this</a> page about the weather recorded at Philadelphia International Airport is available as a .csv online <a href="https://www.wunderground.com/history/airport/KPHL/2017/1/10/MonthlyHistory.html?format=1">here</a>.</p>
 <p>We can read this into R like so:</p>
-<pre class="r"><code>weather = fread('https://www.wunderground.com/history/airport/KPHL/2017/1/10/MonthlyHistory.html?format=1')
+<pre class="r"><code>weather = fread('http://michaelchirico.github.io/philly_weather_data.csv')
 weather</code></pre>
 <pre><code>##           EST Max TemperatureF Mean TemperatureF Min TemperatureF
 ##  1:  2017-1-1               51                42               34
@@ -604,8 +604,9 @@ weather</code></pre>
 ##  9:  2017-1-9               23                18               12
 ## 10: 2017-1-10               42                28               14
 ## 11: 2017-1-11               54                46               37
-## 12: 2017-1-12               67                58               49
-## 13: 2017-1-13               60                53               46
+## 12: 2017-1-12               66                56               45
+## 13: 2017-1-13               61                48               35
+## 14: 2017-1-14               36                33               30
 ##     Max Dew PointF MeanDew PointF Min DewpointF Max Humidity Mean Humidity
 ##  1:             29             26            24           75            48
 ##  2:             41             37            25           96            88
@@ -618,8 +619,9 @@ weather</code></pre>
 ##  9:              9              6             4           73            56
 ## 10:             32             18             9           84            62
 ## 11:             46             40            33           93            80
-## 12:             52             50            46           89            74
-## 13:             50             39            26           86            61
+## 12:             52             50            46           90            74
+## 13:             50             30            14           89            63
+## 14:             23             17            11           61            50
 ##     Min Humidity Max Sea Level PressureIn Mean Sea Level PressureIn
 ##  1:           30                    30.42                     30.19
 ##  2:           66                    30.45                     30.35
@@ -632,8 +634,9 @@ weather</code></pre>
 ##  9:           36                    30.81                     30.72
 ## 10:           38                    30.66                     30.48
 ## 11:           59                    30.37                     30.26
-## 12:           58                    30.19                     30.11
-## 13:           27                    30.47                     30.33
+## 12:           50                    30.19                     30.11
+## 13:           36                    30.71                     30.45
+## 14:           30                    30.71                     30.62
 ##     Min Sea Level PressureIn Max VisibilityMiles Mean VisibilityMiles
 ##  1:                    29.94                  10                   10
 ##  2:                    30.19                  10                    6
@@ -648,6 +651,7 @@ weather</code></pre>
 ## 11:                    30.19                  10                    8
 ## 12:                    30.02                  10                   10
 ## 13:                    30.14                  10                   10
+## 14:                    30.49                  10                   10
 ##     Min VisibilityMiles Max Wind SpeedMPH Mean Wind SpeedMPH
 ##  1:                  10                18                 12
 ##  2:                   2                15                  8
@@ -660,92 +664,80 @@ weather</code></pre>
 ##  9:                  10                10                  7
 ## 10:                  10                17                  7
 ## 11:                   5                22                 12
-## 12:                   6                24                 15
-## 13:                  10                18                 12
-##     Max Gust SpeedMPH PrecipitationIn CloudCover   Events
-##  1:                25            0.00          4         
-##  2:                25            0.16          8     Rain
-##  3:                28            0.20          8     Rain
-##  4:                34            0.01          6     Rain
-##  5:                28            0.03          7     Snow
-##  6:                17            0.04          8     Snow
-##  7:                25            0.08          7 Fog-Snow
-##  8:                31            0.00          1         
-##  9:                NA            0.00          4         
-## 10:                29            0.01          7         
-## 11:                30            0.24          7     Rain
-## 12:                32            0.05          7     Rain
-## 13:                23            0.00          6         
-##     WindDirDegrees&lt;br /&gt;
-##  1:            274&lt;br /&gt;
-##  2:             52&lt;br /&gt;
-##  3:             31&lt;br /&gt;
-##  4:            250&lt;br /&gt;
-##  5:            253&lt;br /&gt;
-##  6:            336&lt;br /&gt;
-##  7:              1&lt;br /&gt;
-##  8:            294&lt;br /&gt;
-##  9:            228&lt;br /&gt;
-## 10:            175&lt;br /&gt;
-## 11:            212&lt;br /&gt;
-## 12:            218&lt;br /&gt;
-## 13:            301&lt;br /&gt;</code></pre>
+## 12:                   6                21                 15
+## 13:                  10                24                 13
+## 14:                   6                10                  5
+##     Max Gust SpeedMPH PrecipitationIn CloudCover   Events WindDirDegrees
+##  1:                25            0.00          4                     274
+##  2:                25            0.16          8     Rain             52
+##  3:                28            0.20          8     Rain             31
+##  4:                34            0.01          6     Rain            250
+##  5:                28            0.03          7     Snow            253
+##  6:                17            0.04          8     Snow            336
+##  7:                25            0.08          7 Fog-Snow              1
+##  8:                31            0.00          1                     294
+##  9:                NA            0.00          4                     228
+## 10:                29            0.01          7                     175
+## 11:                30            0.24          7     Rain            212
+## 12:                29            0.03          7     Rain            218
+## 13:                30               T          6                     326
+## 14:                NA            0.00          8     Snow             67</code></pre>
 <pre class="r"><code>summary(weather)</code></pre>
 <pre><code>##      EST            Max TemperatureF Mean TemperatureF Min TemperatureF
-##  Length:13          Min.   :23.00    Min.   :18.00     Min.   :12.00   
-##  Class :character   1st Qu.:32.00    1st Qu.:28.00     1st Qu.:19.00   
-##  Mode  :character   Median :43.00    Median :38.00     Median :32.00   
-##                     Mean   :42.77    Mean   :36.46     Mean   :29.85   
-##                     3rd Qu.:54.00    3rd Qu.:45.00     3rd Qu.:37.00   
-##                     Max.   :67.00    Max.   :58.00     Max.   :49.00   
+##  Length:14          Min.   :23.00    Min.   :18.00     Min.   :12.00   
+##  Class :character   1st Qu.:32.50    1st Qu.:28.25     1st Qu.:20.75   
+##  Mode  :character   Median :42.50    Median :35.50     Median :31.00   
+##                     Mean   :42.29    Mean   :35.71     Mean   :28.79   
+##                     3rd Qu.:53.25    3rd Qu.:44.75     3rd Qu.:35.00   
+##                     Max.   :66.00    Max.   :56.00     Max.   :45.00   
 ##                                                                        
 ##  Max Dew PointF  MeanDew PointF  Min DewpointF    Max Humidity  
 ##  Min.   : 7.00   Min.   : 3.00   Min.   :-1.00   Min.   :57.00  
-##  1st Qu.:27.00   1st Qu.:17.00   1st Qu.: 8.00   1st Qu.:84.00  
-##  Median :32.00   Median :26.00   Median :10.00   Median :89.00  
-##  Mean   :33.15   Mean   :26.77   Mean   :18.15   Mean   :86.15  
-##  3rd Qu.:46.00   3rd Qu.:39.00   3rd Qu.:26.00   3rd Qu.:93.00  
+##  1st Qu.:24.00   1st Qu.:17.00   1st Qu.: 8.25   1st Qu.:77.25  
+##  Median :30.50   Median :23.50   Median :10.50   Median :89.50  
+##  Mean   :32.43   Mean   :25.43   Mean   :16.79   Mean   :84.64  
+##  3rd Qu.:46.00   3rd Qu.:36.75   3rd Qu.:24.75   3rd Qu.:93.00  
 ##  Max.   :52.00   Max.   :50.00   Max.   :46.00   Max.   :97.00  
 ##                                                                 
-##  Mean Humidity    Min Humidity Max Sea Level PressureIn
-##  Min.   :46.00   Min.   :14    Min.   :29.83           
-##  1st Qu.:58.00   1st Qu.:29    1st Qu.:30.19           
-##  Median :68.00   Median :33    Median :30.37           
-##  Mean   :67.54   Mean   :41    Mean   :30.37           
-##  3rd Qu.:74.00   3rd Qu.:58    3rd Qu.:30.47           
-##  Max.   :93.00   Max.   :89    Max.   :30.81           
-##                                                        
+##  Mean Humidity    Min Humidity   Max Sea Level PressureIn
+##  Min.   :46.00   Min.   :14.00   Min.   :29.83           
+##  1st Qu.:56.50   1st Qu.:30.00   1st Qu.:30.22           
+##  Median :65.50   Median :34.50   Median :30.39           
+##  Mean   :66.43   Mean   :40.29   Mean   :30.41           
+##  3rd Qu.:74.00   3rd Qu.:47.00   3rd Qu.:30.68           
+##  Max.   :93.00   Max.   :89.00   Max.   :30.81           
+##                                                          
 ##  Mean Sea Level PressureIn Min Sea Level PressureIn Max VisibilityMiles
 ##  Min.   :29.58             Min.   :29.48            Min.   :10         
-##  1st Qu.:30.05             1st Qu.:29.92            1st Qu.:10         
-##  Median :30.24             Median :30.14            Median :10         
-##  Mean   :30.19             Mean   :30.04            Mean   :10         
-##  3rd Qu.:30.35             3rd Qu.:30.19            3rd Qu.:10         
+##  1st Qu.:30.07             1st Qu.:29.93            1st Qu.:10         
+##  Median :30.25             Median :30.16            Median :10         
+##  Mean   :30.23             Mean   :30.07            Mean   :10         
+##  3rd Qu.:30.45             3rd Qu.:30.20            3rd Qu.:10         
 ##  Max.   :30.72             Max.   :30.67            Max.   :10         
 ##                                                                        
 ##  Mean VisibilityMiles Min VisibilityMiles Max Wind SpeedMPH
-##  Min.   : 4           Min.   : 0.000      Min.   :10.00    
-##  1st Qu.: 6           1st Qu.: 2.000      1st Qu.:15.00    
-##  Median : 8           Median : 5.000      Median :18.00    
-##  Mean   : 8           Mean   : 5.231      Mean   :18.31    
-##  3rd Qu.:10           3rd Qu.:10.000      3rd Qu.:22.00    
-##  Max.   :10           Max.   :10.000      Max.   :24.00    
+##  Min.   : 4.000       Min.   : 0.000      Min.   :10.00    
+##  1st Qu.: 6.250       1st Qu.: 2.000      1st Qu.:15.00    
+##  Median : 9.000       Median : 5.500      Median :17.50    
+##  Mean   : 8.143       Mean   : 5.286      Mean   :17.93    
+##  3rd Qu.:10.000       3rd Qu.:10.000      3rd Qu.:21.75    
+##  Max.   :10.000       Max.   :10.000      Max.   :24.00    
 ##                                                            
-##  Mean Wind SpeedMPH Max Gust SpeedMPH PrecipitationIn     CloudCover   
-##  Min.   : 5.00      Min.   :17.00     Min.   :0.00000   Min.   :1.000  
-##  1st Qu.: 8.00      1st Qu.:25.00     1st Qu.:0.00000   1st Qu.:6.000  
-##  Median :12.00      Median :28.00     Median :0.03000   Median :7.000  
-##  Mean   :10.77      Mean   :27.25     Mean   :0.06308   Mean   :6.154  
-##  3rd Qu.:12.00      3rd Qu.:30.25     3rd Qu.:0.08000   3rd Qu.:7.000  
-##  Max.   :15.00      Max.   :34.00     Max.   :0.24000   Max.   :8.000  
-##                     NA's   :1                                          
-##     Events          WindDirDegrees&lt;br /&gt;
-##  Length:13          Length:13           
-##  Class :character   Class :character    
-##  Mode  :character   Mode  :character    
-##                                         
-##                                         
-##                                         
+##  Mean Wind SpeedMPH Max Gust SpeedMPH PrecipitationIn      CloudCover   
+##  Min.   : 5.00      Min.   :17.00     Length:14          Min.   :1.000  
+##  1st Qu.: 7.25      1st Qu.:25.00     Class :character   1st Qu.:6.000  
+##  Median :11.50      Median :28.50     Mode  :character   Median :7.000  
+##  Mean   :10.43      Mean   :27.58                        Mean   :6.286  
+##  3rd Qu.:12.75      3rd Qu.:30.00                        3rd Qu.:7.750  
+##  Max.   :15.00      Max.   :34.00                        Max.   :8.000  
+##                     NA's   :2                                           
+##     Events          WindDirDegrees 
+##  Length:14          Min.   :  1.0  
+##  Class :character   1st Qu.: 94.0  
+##  Mode  :character   Median :223.0  
+##                     Mean   :194.1  
+##                     3rd Qu.:268.8  
+##                     Max.   :336.0  
 ## </code></pre>
 <pre class="r"><code>names(weather)</code></pre>
 <pre><code>##  [1] &quot;EST&quot;                       &quot;Max TemperatureF&quot;         
@@ -759,7 +751,7 @@ weather</code></pre>
 ## [17] &quot;Max Wind SpeedMPH&quot;         &quot;Mean Wind SpeedMPH&quot;       
 ## [19] &quot;Max Gust SpeedMPH&quot;         &quot;PrecipitationIn&quot;          
 ## [21] &quot;CloudCover&quot;                &quot;Events&quot;                   
-## [23] &quot;WindDirDegrees&lt;br /&gt;&quot;</code></pre>
+## [23] &quot;WindDirDegrees&quot;</code></pre>
 <p>NB: More typically, instead of a URL, you’ll give <code>fread</code> the path to where a .csv file is stored on your computer.</p>
 </div>
 <div id="more-on-data.table-access" class="section level3">
