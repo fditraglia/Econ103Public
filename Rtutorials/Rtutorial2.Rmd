@@ -90,62 +90,80 @@ Have a look at the help file for plot and try out some of the other options.
 
 
 ### ``pairs``
-The function ``pairs`` is a great way to visualize many columns of a dataframe at once. Unlike ``plot``, whose two first arguments need to be vectors, ``pairs`` can take a *whole dataframe* as its argument. It produces a kind of scatter plot on steroids, in which every column in the dataframe is plotted against *every other column*. Let's try it out with some of the measurements from the survey:
-```{r}
-survey.measurements <- survey[, c("handedness", "handspan", "height")]
-pairs(survey.measurements)
+The function `pairs` is a great way to visualize many columns of a `data.tabel` at once. Unlike `plot`, whose two first arguments need to be vectors, `pairs` can take a *whole data.table* as its argument. It produces a kind of scatter plot on steroids, in which every column in the dataframe is plotted against *every other column*. Let's try it out with some of the measurements from the survey:
+
+```{r pairs}
+pairs(survey[ , c("handedness", "handspan", "height")])
 ```
+
+We're including the three columns `"handedness"`, `"handspan"`, `"height"` since they're all continuous, as opposed to some of the others.
 
 There seems to be a strong positive relationship between handspan and height but not much of a relationship between handeness and either of the other columns.
 
-It takes a bit of practice to be able to read a pairs plot. Spend a little time looking at this one to figure it out and look at the help file if needed. 
+It takes a bit of practice to be able to read a `pairs` plot, but the payoff can be huge for concisely understanding the relationships present in a data set. Spend a little time looking at this one to figure it out and look at the help file (`?pairs`) if needed. 
 
-### ``boxplot``
+### Box Plots: `boxplot`
+
 A boxplot is an alternative way to visualize the distribution of a dataset. The command in R is just what you'd expect, and you can use the same labels as above. The first argument must be a vector:
-```{r}
+
+```{r boxplot, results = 'hide'}
 boxplot(survey$handspan, ylab = "Handspan(cm)")
 ```
 
-The "box" in a boxplot shows the middle 50% of the data. The thick line in the middle is the median, and the lines immediately above and below are the 25th and 75th percentiles. This means that the width of the box equals the interquartile range of the data.
+The "box" in a box plot shows the middle 50% of the data. The thick line in the middle is the median, and the lines immediately above and below are the 25th and 75th percentiles. This means that the width of the box equals the interquartile range of the data.
 
 Traditionally, the "whiskers" in a boxplot show the maximum and minimum of the data, but R has an interesting special feature. If there are any observations that are extremely unusual (very big or very small compared to all other observations), it leaves them out when deciding where to put the whiskers and just plots them directly. Such points are called "outliers," like the book by Malcom Gladwell. We see two such outliers in the plot above.
 
 In case you're interested, R considers an outlier to be any point that is more than 1.5 times the interquartile range away from the box. You don't have to memorize this rule. 
 
 One of the main advantages of boxplots over histograms is that they are simple enough to plot side-by-side. This lets us see how the distribution of a numerical variable is related to a categorical variable. For example, we could see how the distribution of handspan differs for men and women as follows:
-```{r}
-boxplot(handspan ~ sex, data = survey, ylab= "Handspan (cm)", main = "Handspan by Sex")
+
+```{r boxplot_comparison}
+boxplot(handspan ~ sex, data = survey, 
+        ylab= "Handspan (cm)", main = "Handspan by Sex")
 ```
 
-The syntax used above is different from what we've seen so far but since it will appear again when we look at regression it's worth spending some time to explain. The syntax ``handspan ~ sex`` indicates that we want ``handspan`` *as a function of* ``sex``. The argument ``data = survey`` tells R where to find the variables handspan and sex: they're stored as columns in the dataframe survey.
+The syntax used above is different from what we've seen so far but since it will appear again when we look at regression it's worth spending some time to explain. The syntax `handspan ~ sex` indicates that we want `handspan` *as a function of* `sex`. The argument ``data = survey`` tells R where to find the variables `handspan` and `sex`: they're stored as columns in the `data.table` survey.
 
-### ``table``
-The command ``table`` is used for making cross-tabs, aka two-way tables, a useful way of summarizing the relationship between two categorical variables. Both arguments of table must be vectors. For example, we can make a cross-tab of eyecolor and sex as follows:
-```{r}
-table(survey$eye.color, survey$sex)
+### `table`
+
+The command `table` is used for making cross-tabs, aka two-way tables, a useful way of summarizing the relationship between two categorical variables. Both arguments of `table` must be vectors. For example, we can make a cross-tab of eye color and sex as follows:
+
+```{r two_way_table}
+survey[ , table(eye.color, sex)]
 ```
-You can also use ``table`` to make a *one-way* crosstab:
-```{r}
-table(survey$eye.color)
+
+You can also use `table` to make a *one-way* crosstab:
+
+```{r one_way_table}
+survey[ , table(eye.color)]
 ```
-Adding the row and column sums is a little clumsy in R: you first need to give your table a name and store it, then use the function ``addmargins``
-```{r}
-my.table <- table(survey$eye.color, survey$sex)
+
+If you want the row/column totals to be printed alongside your table, the approach in R is a little clumsy: you first need to give your table a name and store it, then use the function `addmargins`:
+
+```{r addmargins}
+my.table = survey[ , table(eye.color, sex)]
 addmargins(my.table)
 ```
-To convert a cross-tab in R into *percents* rather than counts, we use the function prop.table. This is a little clumsy as well. First, store the original table, then pass it as the argument to ``prop.table`` as you did with ``addmargins`` 
-```{r}
-my.table <- table(survey$eye.color, survey$sex)
+
+To convert a cross-tab in R into *percents* rather than counts, we use the function `prop.table`. This is a little clumsy as well. First, store the original table, then pass it as the argument to `prop.table` as you did with `addmargins`
+
+```{r prop.table}
+my.table = survey[ , table(eye.color, sex)]
 prop.table(my.table)
 ```
-Now you have a table in which percents are expressed as *decimals*. For example, the value of 0.37209 in the row ``Brown`` and the column ``Female`` indicates that about 37% of the people in the dataset are women who have brown eyes. 
 
-To get ordinary percents, we multiply by 100
-```{r}
+Now you have a table in which percents are expressed as *decimals* (i.e., proportions). For example, the value of 0.37209 in the row `Brown` and the column `Female` indicates that about 37% of the people in the dataset are women who have brown eyes. 
+
+To get ordinary percents, we multiply by 100:
+
+```{r prop.table_pct}
 100 * prop.table(my.table)
 ```
+
 To make this cleaner we can round the result to a desired number of decimal places:
-```{r}
+
+```{r prob.table_round}
 round(100 * prop.table(my.table), digits = 1)
 round(100 * prop.table(my.table), digits = 0)
 ```
@@ -153,135 +171,222 @@ round(100 * prop.table(my.table), digits = 0)
 ### Summary Statistics
 You've met several of the summary statistics from class in R Tutorial #1. I'll remind you of them here and introduce some others. 
 
-### ``summary``
-This command takes a *whole dataframe* as its argument, unlike the other commands for summary statistics. It gives us the mean of each column along with the five-number summary. It also indicates if there are any missing observations (NA's) in the columns:
-```{r}
+### `summary`
+
+This command takes a *whole `data.table`* as its argument, unlike the other commands for summary statistics. It gives us the mean of each column along with the five-number summary. It also indicates if there are any missing observations (`NA`'s -- more on this below) in the columns:
+
+```{r summary}
 summary(survey)
 ```
 
-### ``NA``
-Remember: R's code for a missing observation is NA. If you try to perform calculations with missing observations, you won't get the answer you expect:
-```{r}
+### Missing Data: `NA`
+
+One ubiquitous fact of real-world data is missingness. For a gallimaufry of reasons, we're unable to get correct measurements/information about all variables that we observe in all cases.
+
+Being a language for statistics, R handles this missing data with aplomb by handling it under the appelation `NA`. However, any user must understand that trying to perform calculations with missing observations may lead to unexpected outcomes, e.g.:
+
+```{r sum_missing}
 sum(survey$height)
 ```
-To tell R to ignore missing observations, set the argument ``na.rm`` to ``TRUE``. This will work with pretty much any of the commands you know for performing mathematical operations on a vector
-```{r}
+
+Any sum involving a missing observation is missing.
+
+To tell R to ignore missing observations, set the argument `na.rm` to `TRUE`. This will work with pretty much any of the commands you know for performing mathematical operations on a vector:
+
+```{r sum_na.rm}
 sum(survey$height, na.rm = TRUE)
 ```
 
-### ``mean``
+### Average: `mean`
+
 Calculates the sample mean of a numeric vector
-```{r}
+
+```{r mean_na.rm_1}
 mean(survey$height, na.rm = TRUE)
 ```
 
-### ``median``
-Calculates the sample median of a numeric vector
-```{r}
-median(survey$height, na.rm = TRUE)
+Note that _the effective sample size decreases by the number of missing observations_!!
+
+Compare:
+
+```{r mean_na.rm_2}
+#3 observations
+mean(1:3)
+#3 observations, but one missing observation --
+#  so the denominator in the mean is 2
+mean(c(1, 2, NA), na.rm = TRUE)
 ```
 
-### ``var``
+### Variance: `var`
+
 Calculates the sample variance of a numeric vector
-```{r}
+
+```{r var_na.rm}
 var(survey$height, na.rm = TRUE)
 ```
 
-### ``sd`` 
+### Standard Deviation: `sd`
+
 Calculates the sample standard deviation of a numeric vector
-```{r}
+
+```{r sd_na.rm}
 sd(survey$height, na.rm = TRUE)
 ```
+
 This is identical to the (positive) square root of the sample variance:
+
 ```{r}
 sqrt(var(survey$height, na.rm = TRUE))
 ```
 
-### ``IQR``
-Calculates the interquartile range of a numeric vector (the 75th percentile minus the 25th percentile)
-```{r}
-IQR(survey$height, na.rm = TRUE)
+### Median: `median`
+
+Calculates the sample median of a numeric vector
+
+```{r median_na.rm}
+median(survey$height, na.rm = TRUE)
 ```
 
-### ``max, min``
-These do exactly what they say
-```{r}
-max(survey$height, na.rm = TRUE)
-min(survey$height, na.rm = TRUE)
-```
-and can be used to calculate the range
-```{r}
-max(survey$height, na.rm = TRUE) - min(survey$height, na.rm = TRUE)
-```
-To get both the maximum and minimum at once, you can use the function range;
-```{r}
-range(survey$height, na.rm = TRUE)
-```
-Note that this does *not* compute the *summary statistic* called the range. 
+### Other Quantiles: `quantile`
 
-### ``quantile``
 This function calculates sample quantiles, aka percentiles, of a numeric vector. If you simply pass it a numeric vector with no other arguments, it will give you the five-number summary:
-```{r}
+
+```{r quantile_5no}
 quantile(survey$height, na.rm = TRUE)
 ```
-You can ask for specific quantile by using the argument probs
-```{r}
+
+You can ask for specific quantile by using the argument `probs`
+
+```{r quantile_probs}
 quantile(survey$height, na.rm = TRUE, probs = 0.3)
 ```
+
 Note that quantiles are specified as *probabilities* so the preceding command gives the 30th percentile. You can also ask for multiple quantiles at once:
-```{r}
+
+```{r quantile_many_probs}
 quantile(survey$height, na.rm = TRUE, probs = c(0.1, 0.3, 0.7, 0.9))
 ```
 
-### ``by``
-The function "by" extremely useful: it allows us to calculate summary statistics for a dataframe broken down by the values of a categorical variable (in R parlance, a "factor"). It's also a very flexible function. The best way to get a sense for how it works it to look at some examples. You may also want to take a look at the help file.
+### Inter-quartile Range: `IQR`
+
+Calculates the interquartile range of a numeric vector (the 75th percentile minus the 25th percentile)
+
+```{r iqr}
+IQR(survey$height, na.rm = TRUE)
+```
+
+We could also use the `quantile` argument to produce this like so:
+
+```{r iqr_w_quantile}
+x = quantile(survey$height, na.rm = TRUE, probs = c(.25, .75))
+x[2] - x[1]
+```
+
+### Extrema: `max`, `min`, and `range`
+
+`max` and `min` do exactly what they say:
+
+```{r max_min}
+max(survey$height, na.rm = TRUE)
+min(survey$height, na.rm = TRUE)
+```
+
+and can be used to calculate the range
+
+```{r range_by_hand}
+max(survey$height, na.rm = TRUE) - min(survey$height, na.rm = TRUE)
+```
+
+To get both the maximum and minimum at once, you can use the function `range`:
+
+```{r range}
+range(survey$height, na.rm = TRUE)
+```
+
+Note that this does *not* compute the *summary statistic* called the range. 
+
+### Averages by Category: `by`
+
+Often, we want to calculate summary statistics for a `data.table` broken down by the values of a categorical variable. `data.table` has a very simple way to perform such group-wise summaries -- the `by` argument inside `[]`; let's see some examples.
 
 First we'll use it to compare the average height of men in the class to that of women:
-```{r}
-by(survey$height, survey$sex, mean, na.rm = TRUE)
-```
-Here's an explanation of each of the four arguments:
-  1. ``survey$heigh`` is the *numerical variable* that I want to compare across values of a categorical variable. 
-  2. ``survey$sex`` is the *categorical variable* (aka a factor) over which I want to compare ``survey$height``
-  3. ``mean`` is the summary statistic that I want to compute for ``survey$height``
-  4. ``na.rm = TRUE`` is an additional argument that tells the function to ignore missing values.
-  
-If we wanted to compare the variance of height by sex, we would just change ``mean`` to ``var``  
-```{r}
-by(survey$height, survey$sex, var, na.rm = TRUE)
-```
-In fact, you can substitute *any summary statistic* in place of mean. This is why ``by`` is such a powerful function. 
 
-Now, suppose we wanted to compare average height by *eye color*. To do this, simply replace ``survey$sex`` with ``survey$eye.color``
-```{r}
-by(survey$height, survey$eye.color, mean, na.rm = TRUE)
+```{r by_mean}
+survey[ , mean(height, na.rm = TRUE), by = sex]
 ```
 
-In fact, ``by`` allows us to use *two categorical variables at once* for splitting up a dataframe. Suppose  we wanted to calculate average height by sex *and* credits. In this case, we just change the third argument so that it is a *dataframe* containing the categorical variables we want to use for splitting ``survey$height`` into groups:
-```{r}
-by(survey$height, survey[,c('sex', 'credits')], mean, na.rm = TRUE)
-```
-This contains all the information we want, but it's not displayed in a particularly convenient format. There's a neat trick to make this look prettier. It's similar to how we added the column and row sums to the crosstab above. First *assign* the result of your by command to some variable. I'll call mine ``results``
-```{r}
-results <- by(survey$height, survey[,c('sex', 'credits')], mean, na.rm = TRUE)
-```
-Then pass this to the function ``as.table``
-```{r}
-as.table(results)
-```
-This is much easier to read. The empty cells indicate, for example, that there are no women in the class taking 4.5 credits. They correspond to the NA's in the less pretty version of the same results given above.
+If we wanted to compare the variance of height by sex, we would just change `mean` to `var`  
 
+```{r by_var}
+survey[ , var(height, na.rm = TRUE), by = sex]
+```
 
+Now, suppose we wanted to compare average height by *eye color*. To do this, simply change the `by` variable to `eye.color`:
 
-### ``cut``
-In class we talked about the idea of putting numerical data into "bins" to make a histogram. More generally, it's sometimes necessary to convert numerical data into categorical data. A classic example is converting scores from a course into letter grades. You can do this using the command ``cut``. (In fact, this is the function I'll use to determine your grades at the end of the semester!) First I'll create some fake grade data for us to play with
-```{r}
+```{r by_eye.color}
+survey[ , mean(height, na.rm = TRUE), by = eye.color]
+```
+
+It's not much harder to find summaries grouped by two or more variables. Suppose  we wanted to calculate average height by sex *and* credits. We simply surround the argument to `by` with `.()` like so:
+
+```{r by_multiple}
+survey[ , mean(height, na.rm = TRUE), by = .(sex, credits)]
+```
+
+This contains all the information we want, but it's not displayed in a particularly convenient format. Firstly, we may like to ignore the students with `sex` or `credits` missing like so using the function `is.na` and the logical operators `&` and `!`:
+
+The function `is.na` performed on a vector returns whether each element is missing or not:
+
+```{r is_na}
+x = c(1, 2, NA, 3, NA, 4)
+is.na(x)
+```
+
+`!` is the negation operator -- it turns `TRUE` to `FALSE` and vice-versa:
+
+```{r not}
+!is.na(x)
+```
+
+`&` is the element-wise compound operator -- `logical1 & logical2` is `TRUE` only on those elements for which _both_ `logical1` _and_ `logical2` are `TRUE`:
+
+```{r and}
+y = c(NA, 1, NA, 2, 3, NA)
+is.na(y)
+!is.na(y)
+!is.na(x) & !is.na(y)
+```
+
+So to exclude observations for which `sex` or `credits` are missing can be accomplished like so:
+
+```{r not_is_na}
+survey[!is.na(sex) & !is.na(credits),
+       mean(height, na.rm = TRUE),
+       by = .(sex, credits)]
+```
+
+Lastly, it would be nice to have the results in better order; to do this, we use the argument `keyby` instead of `by`. `keyby` is exactly the same as `by`, except that it sorts the output:
+
+```{r not_is_na}
+survey[!is.na(sex) & !is.na(credits),
+       mean(height, na.rm = TRUE),
+       keyby = .(sex, credits)]
+```
+
+### `cut`
+
+In class we talked about the idea of putting numerical data into "bins" to make a histogram. More generally, it's sometimes necessary to convert numerical data into categorical data. A classic example is converting scores from a course into letter grades. You can do this using the command `cut`. (In fact, this is the function I'll use to determine your grades at the end of the semester!) First I'll create some fake grade data for us to play with:
+
+```{r cut_1}
 grades <- c(67, 93, 85, 82, 88, 86, 78, 97, 74, 77, 81)
 ```
-The ``cut`` function is a little tricky, so it's worth opening the help file to consult as you read this. Its first argument is a numeric vector: the vector we want to cut. It's second argument gives the "cut points." Let's try this out with some simple grade boundaries:
-```{r}
+
+The `cut` function is a little tricky, so it's worth opening the help file (`?cut`) to consult as you read this. Its first argument is a numeric vector: the vector we want to "cut". It's second argument gives the "cut points." Let's try this out with some simple grade boundaries:
+
+```{r cut_2}
 cut(grades, c(60, 70, 80, 90, 100))
 ```
+
 We can tell that this has created a factor because of the line "Levels: (60,70] ..." that appears in the output. Notice That by default the intervals used in cut are "open on the left, closed on the right." You can reverse this by setting ``right = FALSE``
 ```{r}
 cut(grades, c(60, 70, 80, 90, 100), right = FALSE)
