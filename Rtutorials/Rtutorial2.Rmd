@@ -9,88 +9,141 @@ output:
     toc: true
     highlight: zenburn
 ---
-This tutorial has two parts. In the first part, you'll learn how to implement the summary statistics and graphics from class using R. In the second part, you'll use what you've learned to explore a real-world dataset: the passenger manifest from the Titanic.
+This tutorial has three parts. In the [first part](#part_one), you'll learn how to implement the summary statistics and graphics from class using R. In the [second part](#part_two), you'll use what you've learned to explore a real-world dataset: the passenger manifest from the Titanic. In the third (and shortest) part, you'll explore some data relevant to the city you live in -- wage data for all Philadelphia government employees.
 
+# Summary Stats and Graphics {#part_one}
 
-## Summary Stats and Graphics
-
-### Load the Data
+## Load the Data
 In this section we'll work with data from the student survey. Since results for this semester haven't been collected yet, we'll start with data from a previous semester:
-```{r}
-survey <- read.csv("http://www.ditraglia.com/econ103/old_survey.csv")
-```
-For this example we'll only need the first six columns of the survey so I'll first drop the others:
-```{r}
-survey <- survey[,1:6]
+```{r fread}
+#You should have data.table installed from the first R tutorial.
+#  if not, run the following line of code before library:
+#  install.packages("data.table")
+library(data.table)
+survey = fread("http://www.ditraglia.com/econ103/old_survey.csv")
 ```
 
-It's always a good idea to take a look at your data after loading it. The functions ``head`` and ``tail``, introduced in the previous tutorial, make this easy:
-```{r}
+## Adding Columns
+
+Adding and subtracting columns from a `data.table` is done with the special assignment operator `:=`, which I read as "defined as". There are other ways to assign and remove columns from a `data.table` or `data.frame`, but there are issues with this approach; if you're interested, see [here](https://rawgit.com/wiki/Rdatatable/data.table/vignettes/datatable-reference-semantics.html), [here](http://stackoverflow.com/questions/7029944/when-should-i-use-the-operator-in-data-table) and [here](http://stackoverflow.com/questions/7033106/why-has-data-table-defined-rather-than-overloading) for more background on this issue.
+
+Let's add a column to `survey` that is the ratio of `height` to `handspan`:
+
+```{r add_column, results = 'hide'}
+survey[ , height_handspan_ratio := height/handspan]
+```
+
+As always with `data.table`s, when we're doing an operation specifying something about _columns_, we do so in the _second_ argument (often referred to as simply `j`) within the square brackets `[]`. The _first_ argument (similarly, `i`) tells R which _rows_ we're interested in; by leaving it blank, we're telling R to operate on _all_ rows. 
+
+## Removing Columns
+
+Removing a column from a `data.table` shares basically the same syntax as adding a columns -- the crux is the `:=` operator. We'll exclude columns 7 through 10:
+
+```{r remove_column, results = 'hide'}
+survey[ , 7:10 := NULL]
+```
+
+There are two new things going on in this compact line:
+
+ - On the left-hand side of `:=`, we're adding/subtract _more than one_ column. We can tell this by knowing that `7:10` is really `c(7, 8, 9, 10)`, which means `:=` is being done to the 7th, 8th, 9th, and 10th columns.
+ - On the right-hand side of `:=`, we use `NULL` to indicated we'd like to delete the left-hand columns. You should read this as "Columns 7:10 are defined as NULL", which here is equivalent to deleting them. Note that we only need to say `NULL` once and it applies to all four columns on the right-hand side. 
+ 
+_Note: in general, it is not recommended to refer to columns by number, since the order might change unexpectedly. It's safer to refer to columns by their name._
+
+## Previewing Data
+
+It's always a good idea to take a look at your data after loading it.
+
+The functions `head` and `tail`, introduced in the previous tutorial, make this easy:
+```{r head_tail}
 head(survey)
 tail(survey)
 ```
 
-### ``hist`` 
-The command for a histogram in R is ``hist``. Its input has to be a vector, not a dataframe. This means you'll need to select the column you want using what you learned in R Tutorial #1. For example, we can make a histogram of the column handedness as follows:
-```{r}
-hist(survey$handedness)
+## Histograms: `hist`
+
+The command for a histogram in R is `hist`. Its input has to be a _vector_, not a `data.table`. Conveniently, we can use this function in the `j` argument. For example, we can make a histogram of the column `handedness` as follows:
+
+```{r hist_plain, results = 'hide'}
+survey[ , hist(handedness)]
 ```
 
-The default title and axis label aren't very nice. We can change them using the following options
-```{r}
-hist(survey$handedness, xlab = 'Handedness Score', main = 'Histogram of Handedness Scores', ylab = '# of Students')
+The default title and axis labels aren't very nice. We can change them using the following options:
+
+```{r hist_dressed, results = 'hide'}
+survey[ , hist(handedness, xlab = 'Handedness Score',
+               main = 'Histogram of Handedness Scores',
+               ylab = '# of Students')]
 ```
 
-Note that R doesn't care if you use single or double quotes as long are you're consistent (the symbol you start with is the symbol you end with). 
+See `?hist` or `?par` for a full list of options available during plotting; see also the exercises for a chance to explore some of these.
 
-You can change the number of bins via the argument ``breaks``
-```{r}
-hist(survey$handedness, breaks = 20, xlab = 'Handedness Score', main = 'Histogram of Handedness Scores')
+Recall that R doesn't care if you use single or double quotes, as long are you're consistent (the symbol you start with is the symbol you end with). 
+
+You can change the number of bins via the argument `breaks`
+
+```{r hist_breaks, results = 'hide'}
+survey[ , hist(handedness, breaks = 20, xlab = 'Handedness Score',
+               main = 'Histogram of Handedness Scores')]
 ```
 
-By default, R produces histograms in terms of *frequencies*. That is, it counts the *numbers* of observations in each bin. To change this to *relative frequencies*, that is proportions, we set the argument ``freq`` to ``FALSE`` 
-```{r}
-hist(survey$handedness, breaks = 20, freq = FALSE, xlab = 'Handedness Score', main = 'Histogram of Handedness')
+By default, R produces histograms in terms of *frequencies*. That is, it counts the *numbers* of observations in each bin. To change this to *relative frequencies*, that is, proportions, we set the argument `freq` to `FALSE`:
+
+```{r hist_freq, results = 'hide'}
+survey[ , hist(handedness, breaks = 20, freq = FALSE,
+               xlab = 'Handedness Score', main = 'Histogram of Handedness')]
 ```
 
-Notice that if you don't supply a label for the y-axis, R defaults to "Frequency" unless you set ``freq = FALSE``, in which case it uses "Density." We'll learn about densities later in the course.
+Notice that if you don't supply a label for the y-axis, R defaults to `"Frequency"` unless you set `freq = FALSE`, in which case it uses `"Density"`. We'll learn about densities later in the course.
 
-### ``plot``
-The general-purpose command for plotting in R is rather unimaginatively called ``plot``. This is an incredibly powerful command, but we'll mostly use it to make simple scatter plots. To plot height on the the x-axis and handspan on the y-axis, we use the following command:
-```{r}
-plot(survey$height, survey$handspan)
+## Scatter/Line Plots: `plot`
+
+The general-purpose command for plotting in R is rather unimaginatively called `plot`. This is an incredibly powerful command, but we'll mostly use it to make simple scatter plots. To plot `height` on the the x-axis and `handspan` on the y-axis, we use the following command:
+
+```{r plot_basic, results = 'hide'}
+survey[ , plot(height, handspan)]
 ```
 
-Again, these arguments need to be vectors so we select the desired columns of our dataframe. If you change the order, you reverse the plot:
-```{r}
-plot(survey$handspan, survey$height)
+If you change the order, you reverse the plot:
+
+```{r plot_rev, results = 'hide'}
+survey[ , plot(handspan, height)]
 ```
 
-You can use the same arguments for ``plot`` as you did for ``hist`` to change the title and axis labels and make the plot look cleaner:
-```{r}
-plot(survey$height, survey$handspan, xlab = "height (in)", ylab = "handspan (cm)")
+You can use the same arguments for `plot` as you did for `hist` to change the title and axis labels and make the plot look cleaner:
+
+```{r plot_ornament, results = 'hide'}
+survey[ , plot(height, handspan, xlab = "height (in)", ylab = "handspan (cm)")]
 ```
 
-Plot has many different arguments that you can use to customize the appearance of your plot. We can change the color of the points:
-```{r}
-plot(survey$height, survey$handspan, xlab = "height (in)", ylab = "handspan (cm)", col = "red")
+Plot has many different arguments (see `?plot`) that you can use to customize the appearance of your plot. We can change the color of the points using the `col` argument:
+```{r plot_col, results = 'hide'}
+survey[ , plot(height, handspan, xlab = "height (in)",
+               ylab = "handspan (cm)", col = "red")]
 ```
 
-the shape of the points:
-```{r}
-plot(survey$height, survey$handspan, xlab = "height (in)", ylab = "handspan (cm)", col = "red", pch = 3)
+the shape of the points using the `pch` argument:
+
+```{r plot_pch, results = 'hide'}
+survey[ , plot(height, handspan, xlab = "height (in)",
+               ylab = "handspan (cm)", col = "red", pch = 3)]
 ```
 
-and we can even plot connected line segments rather than points, although this isn't really useful for the current example:
-```{r}
-plot(survey$height, survey$handspan, xlab = "height (in)", ylab = "handspan (cm)", col = "red", pch = 3, type = 'l')
+See `?points` for the full list of possible choices for `pch`.
+
+We can even plot connected line segments rather than points using the `type` argument, although this isn't really useful for the current example:
+
+```{r plot_type_l, results = 'hide'}
+survey[ , plot(height, handspan, xlab = "height (in)",
+               ylab = "handspan (cm)", col = "red", pch = 3, type = 'l')]
 ```
 
-Have a look at the help file for plot and try out some of the other options.
+(in `type = 'l'`, `'l'` means _l_ine)
 
+## Scatterplot Matrix: `pairs`
 
-### ``pairs``
-The function `pairs` is a great way to visualize many columns of a `data.tabel` at once. Unlike `plot`, whose two first arguments need to be vectors, `pairs` can take a *whole data.table* as its argument. It produces a kind of scatter plot on steroids, in which every column in the dataframe is plotted against *every other column*. Let's try it out with some of the measurements from the survey:
+## ``pairs``
+The function `pairs` is a great way to visualize many columns of a `data.table` at once. Unlike `plot`, whose two first arguments need to be vectors, `pairs` can take a *whole data.table* as its argument. It produces a kind of scatter plot on steroids, in which every column in the dataframe is plotted against *every other column*. Let's try it out with some of the measurements from the survey:
 
 ```{r pairs}
 pairs(survey[ , c("handedness", "handspan", "height")])
@@ -102,7 +155,7 @@ There seems to be a strong positive relationship between handspan and height but
 
 It takes a bit of practice to be able to read a `pairs` plot, but the payoff can be huge for concisely understanding the relationships present in a data set. Spend a little time looking at this one to figure it out and look at the help file (`?pairs`) if needed. 
 
-### Box Plots: `boxplot`
+## Box Plots: `boxplot`
 
 A boxplot is an alternative way to visualize the distribution of a dataset. The command in R is just what you'd expect, and you can use the same labels as above. The first argument must be a vector:
 
@@ -125,7 +178,7 @@ boxplot(handspan ~ sex, data = survey,
 
 The syntax used above is different from what we've seen so far but since it will appear again when we look at regression it's worth spending some time to explain. The syntax `handspan ~ sex` indicates that we want `handspan` *as a function of* `sex`. The argument ``data = survey`` tells R where to find the variables `handspan` and `sex`: they're stored as columns in the `data.table` survey.
 
-### `table`
+## One- and Two-way Tables: `table`
 
 The command `table` is used for making cross-tabs, aka two-way tables, a useful way of summarizing the relationship between two categorical variables. Both arguments of `table` must be vectors. For example, we can make a cross-tab of eye color and sex as follows:
 
@@ -168,10 +221,9 @@ round(100 * prop.table(my.table), digits = 1)
 round(100 * prop.table(my.table), digits = 0)
 ```
 
-### Summary Statistics
 You've met several of the summary statistics from class in R Tutorial #1. I'll remind you of them here and introduce some others. 
 
-### `summary`
+## `summary`
 
 This command takes a *whole `data.table`* as its argument, unlike the other commands for summary statistics. It gives us the mean of each column along with the five-number summary. It also indicates if there are any missing observations (`NA`'s -- more on this below) in the columns:
 
@@ -179,7 +231,7 @@ This command takes a *whole `data.table`* as its argument, unlike the other comm
 summary(survey)
 ```
 
-### Missing Data: `NA`
+## Missing Data: `NA`
 
 One ubiquitous fact of real-world data is missingness. For a gallimaufry of reasons, we're unable to get correct measurements/information about all variables that we observe in all cases.
 
@@ -197,7 +249,7 @@ To tell R to ignore missing observations, set the argument `na.rm` to `TRUE`. Th
 sum(survey$height, na.rm = TRUE)
 ```
 
-### Average: `mean`
+## Average: `mean`
 
 Calculates the sample mean of a numeric vector
 
@@ -217,7 +269,7 @@ mean(1:3)
 mean(c(1, 2, NA), na.rm = TRUE)
 ```
 
-### Variance: `var`
+## Variance: `var`
 
 Calculates the sample variance of a numeric vector
 
@@ -225,7 +277,7 @@ Calculates the sample variance of a numeric vector
 var(survey$height, na.rm = TRUE)
 ```
 
-### Standard Deviation: `sd`
+## Standard Deviation: `sd`
 
 Calculates the sample standard deviation of a numeric vector
 
@@ -239,7 +291,7 @@ This is identical to the (positive) square root of the sample variance:
 sqrt(var(survey$height, na.rm = TRUE))
 ```
 
-### Median: `median`
+## Median: `median`
 
 Calculates the sample median of a numeric vector
 
@@ -247,7 +299,7 @@ Calculates the sample median of a numeric vector
 median(survey$height, na.rm = TRUE)
 ```
 
-### Other Quantiles: `quantile`
+## Other Quantiles: `quantile`
 
 This function calculates sample quantiles, aka percentiles, of a numeric vector. If you simply pass it a numeric vector with no other arguments, it will give you the five-number summary:
 
@@ -267,7 +319,7 @@ Note that quantiles are specified as *probabilities* so the preceding command gi
 quantile(survey$height, na.rm = TRUE, probs = c(0.1, 0.3, 0.7, 0.9))
 ```
 
-### Inter-quartile Range: `IQR`
+## Inter-quartile Range: `IQR`
 
 Calculates the interquartile range of a numeric vector (the 75th percentile minus the 25th percentile)
 
@@ -282,7 +334,7 @@ x = quantile(survey$height, na.rm = TRUE, probs = c(.25, .75))
 x[2] - x[1]
 ```
 
-### Extrema: `max`, `min`, and `range`
+## Extrema: `max`, `min`, `range`, `which.max` and `which.min`
 
 `max` and `min` do exactly what they say:
 
@@ -305,7 +357,59 @@ range(survey$height, na.rm = TRUE)
 
 Note that this does *not* compute the *summary statistic* called the range. 
 
-### Averages by Category: `by`
+Sometimes we're interested not just in _what_ the max is, but _who_ obtained the max. For example, we might want to know some other information about who the tallest/shortest person in the survey are. `which.max` and `which.min` return the row number corresponding to the maximum; we can use this to subset the data to display the full row corresponding to the maximum like so:
+
+```{r which.max_min}
+which.max(survey$height)
+survey[which.max(height)]
+survey[which.min(height)]
+```
+
+
+## Categorical Variables in R: `factor`s
+
+R has a somewhat peculiar way of handling categorical variables. It does so by using what are called `factor` variables. First, an example:
+
+```{r factors_basics}
+school = c("SAS", "Wharton", "Wharton", "SEAS", "SAS", "Nursing", "SAS")
+school_factor = factor(school)
+class(school)
+class(factor)
+school
+school_factor
+```
+
+Note that when we pass the `school` `character` vector through the `factor` function, the output, which I've called `school_factor`, is now a `"factor"`. Note the subtle difference in how `school` and `school_factor` are printed; the `factor` is most easily distinguished by the extra line starting with `Levels:` directly below the vector itself.
+
+What's going on here? First, another thing to observe, the `dput` output of `school_factor`. `dput` is an excellent tool to have in your repertoire for dealing with more complicated/unknown objects in R. It simply prints out the most fundamental representation of the object that's possible; for the things we've seen so far, this would not be very illuminating (although you should try looking at the `dput` output of a `data.table` on your own). What happens when we `dput` a `factor`?
+
+```{r factor_dput}
+dput(school_factor)
+```
+
+Recall that `school` has 7 elements. The core of what we see here is that underneath the hood, the thing that has 7 elements in `school_factor` is now a vector of _integers_: `c(2L, 4L, 4L, 3L, 2L, 1L, 2L)`.
+
+A `factor` in R is a _labelled integer vector_. The "labels" are actually called "levels", as we can see from the `levels` function:
+
+```{r factor_levels}
+levels(school_factor)
+```
+
+Note that the levels are in alphabetical order. The integer vector tells which label corresponds to a given element -- for example, the first `2L` corresponds to `"SAS"`, which is the second element of `school_factor`'s levels -- `levels(school_factor)[2]`. 
+
+There are some historical reasons why categorical variables are handled like this; interested souls can read more [here](http://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/). Most of the time, you'll be well-served just to keep variables as `character` instead of `factor`; the primary limitation is that categorical variables stored as `character` _must_ have their levels in alphabetical order, whereas there are ways to re-order the levels of a `factor` variable to be in whatever order you'd like, which is often very helpful in regression settings. 
+
+Note that `eye.color` is currently stored as a `character` variable. How can we convert it to a `factor`? We have to use `:=` again:
+
+```{r factor_convert}
+summary(survey$eye.color)
+survey[ , eye.color := factor(eye.color)]
+summary(survey$eye.color)
+```
+
+Note what's happening in the `:=` assignment line -- we're overwriting `eye.color` with a `factor` version of itself.
+
+## Averages by Category: `by`
 
 Often, we want to calculate summary statistics for a `data.table` broken down by the values of a categorical variable. `data.table` has a very simple way to perform such group-wise summaries -- the `by` argument inside `[]`; let's see some examples.
 
@@ -321,16 +425,24 @@ If we wanted to compare the variance of height by sex, we would just change `mea
 survey[ , var(height, na.rm = TRUE), by = sex]
 ```
 
+Note that the name of the outcome variable was automatically chosen as `V1` in both cases, which might make it hard to distinguish. If we want the name to be more meaningful, we use the following syntax:
+
+```{r by_var_named}
+survey[ , .(variance = var(height, na.rm = TRUE)), by = sex]
+```
+
+We 1) wrap the computation in the `j` argument with `.()` and 2) assign the computation in `j` to a name, here `var(height, na.rm = TRUE)` is being assigned to the name `variance`.
+
 Now, suppose we wanted to compare average height by *eye color*. To do this, simply change the `by` variable to `eye.color`:
 
 ```{r by_eye.color}
 survey[ , mean(height, na.rm = TRUE), by = eye.color]
 ```
 
-It's not much harder to find summaries grouped by two or more variables. Suppose  we wanted to calculate average height by sex *and* credits. We simply surround the argument to `by` with `.()` like so:
+It's not much harder to find summaries grouped by two or more variables. Suppose  we wanted to calculate average height by sex *and* credits. We simply surround the argument to `by` with `.()`, just like above when we wanted to name the output:
 
 ```{r by_multiple}
-survey[ , mean(height, na.rm = TRUE), by = .(sex, credits)]
+survey[ , .(avg_height = mean(height, na.rm = TRUE)), by = .(sex, credits)]
 ```
 
 This contains all the information we want, but it's not displayed in a particularly convenient format. Firstly, we may like to ignore the students with `sex` or `credits` missing like so using the function `is.na` and the logical operators `&` and `!`:
@@ -361,19 +473,19 @@ So to exclude observations for which `sex` or `credits` are missing can be accom
 
 ```{r not_is_na}
 survey[!is.na(sex) & !is.na(credits),
-       mean(height, na.rm = TRUE),
+       .(avg_height = mean(height, na.rm = TRUE)),
        by = .(sex, credits)]
 ```
 
 Lastly, it would be nice to have the results in better order; to do this, we use the argument `keyby` instead of `by`. `keyby` is exactly the same as `by`, except that it sorts the output:
 
-```{r not_is_na}
+```{r keyby}
 survey[!is.na(sex) & !is.na(credits),
-       mean(height, na.rm = TRUE),
+       .(avg_height = mean(height, na.rm = TRUE)),
        keyby = .(sex, credits)]
 ```
 
-### `cut`
+## `cut`
 
 In class we talked about the idea of putting numerical data into "bins" to make a histogram. More generally, it's sometimes necessary to convert numerical data into categorical data. A classic example is converting scores from a course into letter grades. You can do this using the command `cut`. (In fact, this is the function I'll use to determine your grades at the end of the semester!) First I'll create some fake grade data for us to play with:
 
@@ -387,42 +499,60 @@ The `cut` function is a little tricky, so it's worth opening the help file (`?cu
 cut(grades, c(60, 70, 80, 90, 100))
 ```
 
-We can tell that this has created a factor because of the line "Levels: (60,70] ..." that appears in the output. Notice That by default the intervals used in cut are "open on the left, closed on the right." You can reverse this by setting ``right = FALSE``
-```{r}
+`cut` has created a `factor`, which we can tell because of the line `"Levels: (60,70] ..."` that appears in the output. Notice that by default the intervals used in cut are "open on the left, closed on the right." You can reverse this by setting `right = FALSE`
+
+```{r cut_right_false}
 cut(grades, c(60, 70, 80, 90, 100), right = FALSE)
 ```
+
 This is what we'd use for grade cut-offs since they take the form "X or higher." 
 
-The last step is to add an additional argument to ``cut`` that gives the factor levels meangingful names: in this case, letter grades
-```{r}
-cut(grades, c(60, 70, 80, 90, 100), c("D", "C", "B", "A"), right = FALSE)
+The last step is to add an additional argument to `cut` that gives the factor levels meangingful names: in this case, letter grades:
+
+```{r cut_labels}
+cut(grades, c(60, 70, 80, 90, 100), 
+    labels = c("D", "C", "B", "A"), right = FALSE)
 ```
+
 Notice that if you used $n$ breakpoints, you need $n-1$ labels since they correspond to the "gaps" between the breaks.
 
+```{r TOGGLE_SOLUTIONS, echo = FALSE, purl = FALSE}
+#use this to turn the display of answers on/off
+knitr::opts_chunk$set(echo = FALSE, results = 'hide', fig.show = 'hide')
+```
 
-## Exploring the Titanic
+# Exploring the Titanic {#part_two}
+
 Now it's your turn: using what you've learned above, you'll take a closer look at the titanic dataset introduced in R Tutorial #1. You already know enough R to answer some interesting questions, so let's dive in! 
-
 
 #### A Helpful Hint: Taking the mean of a vector of ones and zeros is the *same thing* as calculating the *proportion of ones*.
 
 1. Read the documentation file for the titanic dataset so that you know what each column in the data represents: http://www.ditraglia.com/econ103/titanic3.txt
 
-2. Download the data, store it in a dataframe called titanic, and display the first few rows, just as you did in R Tutorial #1.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-2
-titanic <- read.csv("http://www.ditraglia.com/econ103/titanic3.csv")
+2. Download the data, store it in a `data.table` called `titanic`, and display the first few rows.
+
+```{r exercise_2_ti}
+library(data.table)
+titanic = fread("http://www.ditraglia.com/econ103/titanic3.csv")
 head(titanic)
 ```
 
-3. We'll only be using the following columns of titanic for this example: pclass, survived, sex, age, and fare. Select only these columns and store then in the dataframe titanic, overwriting the original dataset. (Note that I did the same thing above with the survey data.) Display the first few rows to make sure your command worked.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-3
-titanic <- titanic[,c('pclass', 'survived', 'sex', 'age', 'fare')]
+3. We'll only be using the following columns of titanic for this example: `pclass`, `survived`, `sex`, `age`, and `fare`. Delete the other columns from the data set. (Note that I did the same thing above with the `survey` data.) Display the first few rows to make sure your command worked.
+
+```{r exercise_3_ti}
+titanic[ , c("name", "sibsp", "parch", "ticket", "cabin",
+             "embarked", "boat", "body", "home.dest") := NULL]
 head(titanic)
 ```
 
-4. Using the command summary to get an overview of the dataset and answer the following questions:
+4. Convert the variables `sex` and `pclass` to `factor`.
+
+```{r exercise_4_ti}
+titanic[ , sex := factor(sex)]
+titanic[ , pclass := factor(pclass)]
+```
+
+5. Using the command `summary` to get an overview of the dataset, answer the following questions:
   - Are there any missing values in this dataset?
   - What was the average age of passengers on the Titanic?
   - What was the average ticket price for passengers on the ship?
@@ -430,71 +560,115 @@ head(titanic)
   - Were there more men or women aboard the Titanic?
   - What proportion of the passengers survived the disaster?
   - To which social class did most of the passengers belong?
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-4
+```{r exercise_5_ti}
 summary(titanic)
 ```
-5. Being sure to allow for missing values if necessary, calculate (or plot) and interpret the following:
+
+6. Being sure to allow for missing values if necessary, calculate (or plot) and interpret the following:
   - The standard deviation of fares
   - The 90th Percentile of fares 
-  - Histogram of fares
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-5
-sd(titanic$fare, na.rm = TRUE)
-quantile(titanic$fare, 0.9, na.rm = TRUE)
-hist(titanic$fare)
+  - Histogram of fares, colored red
+  
+```{r exercise_6_ti}
+titanic[ , sd(fare, na.rm = TRUE)]
+titanic[ , quantile(fare, .9, na.rm = TRUE)]
+titanic[ , hist(fare, col = 'red')]
 ```
-6. Create a boxplot of ``fare`` by ``pclass`` and interpret your results.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-6
-boxplot(fare ~ pclass, data = titanic,  main = "Boxplots of fare by pclass")
+
+7. Create a boxplot of `fare` by `pclass` and interpret your results.
+  - Explore using the `horizontal` and `las` arguments. See `?boxplot` and `?par`.
+
+```{r exercise_7_ti}
+boxplot(fare ~ pclass, data = titanic, horizontal = TRUE, las = 1L,
+        main = "Boxplots of Fare by Passenger Class")
 ```
-7. Create a dataframe called survivors, containing data for only those passengers who survived the disaster and answer the following questions:
+
+8. Answer the following related to those passengers who survived the disaster:
   - What was the average age of the survivors? 
   - Among the survivors, were there more men or women? 
   - Do you notice anything different about social class for survivors compared to all passengers? 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-7
-survivors <- subset(titanic, survived == 1)
-summary(survivors)
+  
+```{r exercise_8_ti}
+summary(titanic[survived == 1])
 ```
-8. Who paid more, on average, for passage on the titanic: men or women?
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-8
-by(titanic$fare,titanic$sex, mean, na.rm = TRUE)
+
+9. Who paid more, on average, for passage on the titanic: men or women?
+
+```{r exercise_9_ti}
+titanic[ , mean(fare, na.rm = TRUE), by = sex]
 ```
-9. Create a table of mean fares broken down by ``sex`` and ``pclass``. How does this relate to your answer to the preceding question?
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-9
-as.table(by(titanic$fare, titanic[,c('sex', 'pclass')], mean, na.rm = TRUE))
+
+10. Create a table of mean fares broken down by `sex` and `pclass`. How does this relate to your answer to the preceding question?
+
+```{r exercise_10_ti}
+titanic[ , mean(fare, na.rm = TRUE), keyby = .(sex, pclass)]
 ```
-10. How did the fraction of survivors vary by ``sex`` ``pclass``? Can you think of a possible explanation for the pattern you see in the data?
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-10
-as.table(by(titanic$survived, titanic[, c("sex", "pclass")], mean))
+
+11. How did the fraction of survivors vary by `sex` `pclass`? Can you think of a possible explanation for the pattern you see in the data?
+
+```{r exercise_11_ti}
+titanic[ , mean(survived), keyby = .(sex, pclass)]
 ```
-11. Create a categorical variable called ``age.group`` from the numerical variable age using the following cutoffs (http://www.statcan.gc.ca/concepts/definitions/age2-eng.htm). Once you've done this, add ``age.group`` to the dataframe ``titanic`` by using the command ``titanic$age.group <- age.group``
+
+12. Add to `titanic` a categorical variable called `age.group` from the numerical variable `age` using the following cutoffs (http://www.statcan.gc.ca/concepts/definitions/age2-eng.htm):
   - Child = [0, 15)  
   - Youth = [15, 25)
   - Adult = [25, 65)
   - Senior = [65, 200)
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-11
-age.group <- cut(titanic$age, c(0, 15, 25, 65, 200), c("Child", "Youth", "Adult", "Senior"), right = FALSE)
-titanic$age.group <- age.group
-```
-12. Create two tables: one for men and one for women. Each table should show break down survival proportions by pclass and age.group. [Hint: use ``subset`` and ``by``] What do your results suggest? Is there any thing wrong with the way we defined the "Senior" age group in the previous part? 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex-12
-men <- subset(titanic, sex == 'male')
-women <- subset(titanic, sex == 'female')
-results.men <- by(men$survived, men[,c("age.group", "pclass")], mean, na.rm = TRUE)
-results.women <- by(women$survived, women[,c("age.group", "pclass")], mean, na.rm = TRUE)
-round(as.table(results.women),2)
-round(as.table(results.men),2)
-#It's actually possible to do this without using subset as follows:
-full.results <- by(titanic$survived, titanic[c("age.group", "pclass", "sex")], mean, na.rm = TRUE)
-round(as.table(full.results),2)
+  
+```{r exercise_12_ti}
+titanic[ , age.group := cut(titanic$age, c(0, 15, 25, 65, 200), 
+                            c("Child", "Youth", "Adult", "Senior"), 
+                            right = FALSE)]
 ```
 
+13. Create two tables: one for men and one for women. Each table should show break down survival proportions by `pclass` and `age.group`. [Hint: `by = .()` can accept more than two arguments] What do your results suggest? Is there any thing wrong with the way we defined the `"Senior"` age group in the previous part? 
+
+```{r exercise_13_ti}
+titanic[!is.na(age), mean(survived), keyby = .(sex, pclass, age.group)]
+```
+
+# Philadelphia Employee Wages {#part_three}
+
+For transparency purposes, the City of Philadelphia releases records detailing the pay of all of its roughly 32,000 employees.
+
+You can read the documentation for this data set [here](https://dev.socrata.com/foundry/data.phila.gov/n4fw-5bch). 
+
+The data can be accessed at the following link:
+
+https://data.phila.gov/api/views/ihvw-4zq5/rows.csv
+
+Since it's a secure URL, you'll either need to install the `curl` package (`install.packages("curl")`) or simply download the data set to your own computer and specify the file path to read in the data using `fread`.
+
+1. Load the data set into a `data.table` called `wages` and display it
+
+```{r exercise_1_ph}
+wages = fread('https://data.phila.gov/api/views/ihvw-4zq5/rows.csv')
+wages
+```
+
+Note that the dollar sign `$` is preventing the `Annual Salary` column from being understood as a numeric variable. Run this line of code to fix this (you don't need to bother understanding what's being done here; those interested should search for some examples of regular expressions):
+
+``wages[ , salary := as.numeric(gsub("$", "", `Annual Salary`, fixed = TRUE))]``
+
+2. Is there evidence of skew in the salaries of Philadelphia City employees?
+
+```{r exercise_2_ph}
+wages[ , salary := as.numeric(gsub("$", "", `Annual Salary`, fixed = TRUE))]
+summary(wages$salary)
+```
+
+3. Who is the highest-paid employee in the city?
+
+```{r exercise_3_ph}
+wages[which.max(salary)]
+```
+
+4. Who are the five highest-paid employees in the city?
+
+To answer this, you'll need a new function -- `order`. The code `DT[order(V1)]` would print the `data.table` `DT` sorted by the variable `V1` in _ascending order_. Similarly, `DT[order(-V1)]` will print it in _descending order_.
+
+```{r exercise_4_ph}
+wages[order(-salary)]
+```
 
