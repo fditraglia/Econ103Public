@@ -6,23 +6,30 @@
 
 
 % Only show particular lecture
-%\includeonlylecture{lecture1}
+%\includeonlylecture{lecture02}
 
 \begin{frame}[plain]
 	\titlepage 
 	
-
 \end{frame} 
 
-% Cover page for individual lecture
-\AtBeginLecture{\frame{\frametitle{ \insertlecture}\tableofcontents}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\part{Lecture \#1} % ensures toc is lecture only
-\lecture{Lecture \#1 -- Introduction}{lecture1}
+\part{Lecture 1} % ensures toc is lecture only
+\lecture{Lecture \#1 -- Introduction}{lecture01}
 \input{lecture01.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Lecture 2} % ensures toc is lecture only
+\lecture{Lecture \#2 -- Summary Statistics Part I}{lecture02}
+\input{lecture02.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Lecture 3} % ensures toc is lecture only
+\lecture{Lecture \#3 -- Summary Statistics Part II}{lecture03}
+\input{lecture03.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
