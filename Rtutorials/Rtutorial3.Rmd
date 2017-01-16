@@ -14,7 +14,7 @@ This tutorial is a bit of a grab-bag. The [first part](#part_one) shows you how 
 
 More Summary Statistics {#part_one}
 --------------------------------------------------------
-First we'll load the survey data from R Tutorial #2.
+First we'll load the survey data from [R Tutorial #2](Rtutorial2).
 
 Like before we'll only need a subset of the columns available; rather than go to the hassle of deleting these columns afterwards, we can specify which columns to keep simultaneously with reading in the data using the `select` argument to `fread`. (There is also a `drop` argument for the reverse -- specifying columns to exclude)
 
@@ -32,7 +32,7 @@ This command calculates sample correlation coefficients. If you pass it two vect
 survey[ , cor(handspan, height, use = "complete.obs")]
 ```
 
-Of course, we could use the approach we saw in R Tutorial #2 as well; whichever feels more natural:
+Of course, we could use the approach we saw in [R Tutorial #2](Rtutorial2) as well; whichever feels more natural:
 
 ```{r cor_isna}
 survey[!is.na(handspan) & !is.na(height), cor(handspan, height)]
@@ -69,7 +69,7 @@ cov(na.omit(survey))
 
 ### Regression: `lm` and `abline`
 
-This command stands for "_l_inear _m_odel" and is R's general-purpose regression command. Its syntax is similar to that of `boxplot` from R Tutorial #2 in that we use a tilde (`~`) to indicate a functional relationship. Here the variable to the left of the tilde is the "y" variable, while the variable to the right is the "x" variable.
+This command stands for "_l_inear _m_odel" and is R's general-purpose regression command. Its syntax is similar to that of `boxplot` from [R Tutorial #2](Rtutorial2) in that we use a tilde (`~`) to indicate a functional relationship. Here the variable to the left of the tilde is the "y" variable, while the variable to the right is the "x" variable.
 
 ```{r lm}
 survey[ , lm(height ~ handspan)]
@@ -167,7 +167,7 @@ Let's walk through the above code one step at a time:
 
 Actually, step 5 is not strictly necessary -- R knows to return the output of whatever the last line of a function is. But it's safe to be explicit and let readers of your code know what your intended output of your function is.
 
-It was easy to create the `z.score` function because, as we explored in R Tutorial #1, mathematical operations in R are *vectorized*. This means, for example, that if we want to add 3 to each element of a vector `x`, we can just write `x + 3`. In other words we don't have to *separately* add three to each element of `x`. Similarly, if we want to add corresponding elements of `x` and `y`, two vectors of the same length, we use `x+y`. Try some simple examples of your own to make sure you understand how this works. See what happens if you try to add two vectors of *different* lengths. 
+It was easy to create the `z.score` function because, as we explored in [R Tutorial #1](Rtutorial1), mathematical operations in R are *vectorized*. This means, for example, that if we want to add 3 to each element of a vector `x`, we can just write `x + 3`. In other words we don't have to *separately* add three to each element of `x`. Similarly, if we want to add corresponding elements of `x` and `y`, two vectors of the same length, we use `x+y`. Try some simple examples of your own to make sure you understand how this works. See what happens if you try to add two vectors of *different* lengths. 
 
 ### Scope
 So what exactly is the status of `z` in the function `z.score`? It looks like an ordinary R variable and in a certain sense it is. But there is something slightly subtle here: `z` is a variable "inside a function", namely a variable inside the function `z.score`. This makes it different from the other variables that we've seen so far. To explain how, we'll need to introduce a programming concept called "scope."
@@ -289,7 +289,7 @@ results$std.dev
 
 ### Multiple Arguments
 
-Now we'll look at a function that takes multiple arguments: `mycov`. This is essentially a stripped-down version of `cov`, the built-in R equivalent. Unlike `cov`, which can accept two vectors as arguments *or* a whole `data.table`, our version will only accept two vectors as arguments: `x` and `y`. Handling the missing observations is a bit more complicated in this situation: we need to drop any `x` for which there isn't a corresponding `y` and any `y` for which there isn't a corresponding `x` -- We've seen some examples of how to do this in R Tutorial #2 using `!is.na` and `&`. This is because covariance is a measure of the *relationship* between `x` and `y`. Accordingly, it is calculated using *pairs* of observations rather than *individual* observations. First I'll give you the code, then I'll explain the part that's different from what we did above: 
+Now we'll look at a function that takes multiple arguments: `mycov`. This is essentially a stripped-down version of `cov`, the built-in R equivalent. Unlike `cov`, which can accept two vectors as arguments *or* a whole `data.table`, our version will only accept two vectors as arguments: `x` and `y`. Handling the missing observations is a bit more complicated in this situation: we need to drop any `x` for which there isn't a corresponding `y` and any `y` for which there isn't a corresponding `x` -- We've seen some examples of how to do this in [R Tutorial #2](Rtutorial2) using `!is.na` and `&`. This is because covariance is a measure of the *relationship* between `x` and `y`. Accordingly, it is calculated using *pairs* of observations rather than *individual* observations. First I'll give you the code, then I'll explain the part that's different from what we did above: 
 
 ```{r mycov}
 mycov = function(x, y){

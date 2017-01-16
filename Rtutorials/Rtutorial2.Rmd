@@ -54,7 +54,7 @@ _Note: in general, it is not recommended to refer to columns by number, since th
 
 It's always a good idea to take a look at your data after loading it.
 
-The functions `head` and `tail`, introduced in the previous tutorial, make this easy:
+The functions `head` and `tail`, introduced in [R Tutorial #1](Rtutorial1), make this easy:
 ```{r head_tail}
 head(survey)
 tail(survey)
@@ -221,7 +221,7 @@ round(100 * prop.table(my.table), digits = 1)
 round(100 * prop.table(my.table), digits = 0)
 ```
 
-You've met several of the summary statistics from class in R Tutorial #1. I'll remind you of them here and introduce some others. 
+You've met several of the summary statistics from class in [R Tutorial #1](Rtutorial1). I'll remind you of them here and introduce some others. 
 
 ## `summary`
 
@@ -523,7 +523,7 @@ knitr::opts_chunk$set(echo = FALSE, results = 'hide', fig.show = 'hide')
 
 # Exploring the Titanic {#part_two}
 
-Now it's your turn: using what you've learned above, you'll take a closer look at the titanic dataset introduced in R Tutorial #1. You already know enough R to answer some interesting questions, so let's dive in! 
+Now it's your turn: using what you've learned above, you'll take a closer look at the titanic dataset introduced in [R Tutorial #1](Rtutorial1). You already know enough R to answer some interesting questions, so let's dive in! 
 
 #### A Helpful Hint: Taking the mean of a vector of ones and zeros is the *same thing* as calculating the *proportion of ones*.
 

@@ -184,7 +184,7 @@ survey = fread(&quot;http://www.ditraglia.com/econ103/old_survey.csv&quot;)</cod
 <div id="previewing-data" class="section level2">
 <h2>Previewing Data</h2>
 <p>It’s always a good idea to take a look at your data after loading it.</p>
-<p>The functions <code>head</code> and <code>tail</code>, introduced in the previous tutorial, make this easy:</p>
+<p>The functions <code>head</code> and <code>tail</code>, introduced in <a href="Rtutorial1">R Tutorial #1</a>, make this easy:</p>
 <pre class="r"><code>head(survey)</code></pre>
 <pre><code>##       sex credits eye.color handedness height handspan
 ## 1:   Male       5     Brown        1.0     67     20.0
@@ -366,7 +366,7 @@ prop.table(my.table)</code></pre>
 ##    Green       1    5
 ##    Hazel       2    2
 ##    Maroon      0    1</code></pre>
-<p>You’ve met several of the summary statistics from class in R Tutorial #1. I’ll remind you of them here and introduce some others.</p>
+<p>You’ve met several of the summary statistics from class in <a href="Rtutorial1">R Tutorial #1</a>. I’ll remind you of them here and introduce some others.</p>
 </div>
 <div id="summary" class="section level2">
 <h2><code>summary</code></h2>
@@ -798,7 +798,7 @@ is.na(y)</code></pre>
 <div id="cut" class="section level2">
 <h2><code>cut</code></h2>
 <p>In class we talked about the idea of putting numerical data into “bins” to make a histogram. More generally, it’s sometimes necessary to convert numerical data into categorical data. A classic example is converting scores from a course into letter grades. You can do this using the command <code>cut</code>. (In fact, this is the function I’ll use to determine your grades at the end of the semester!) First I’ll create some fake grade data for us to play with:</p>
-<pre class="r"><code>grades &lt;- c(67, 93, 85, 82, 88, 86, 78, 97, 74, 77, 81)</code></pre>
+<pre class="r"><code>grades = c(67, 93, 85, 82, 88, 86, 78, 97, 74, 77, 81)</code></pre>
 <p>The <code>cut</code> function is a little tricky, so it’s worth opening the help file (<code>?cut</code>) to consult as you read this. Its first argument is a numeric vector: the vector we want to “cut”. It’s second argument gives the “cut points.” Let’s try this out with some simple grade boundaries:</p>
 <pre class="r"><code>cut(grades, c(60, 70, 80, 90, 100))</code></pre>
 <pre><code>##  [1] (60,70]  (90,100] (80,90]  (80,90]  (80,90]  (80,90]  (70,80] 
@@ -820,7 +820,7 @@ is.na(y)</code></pre>
 </div>
 <div id="part_two" class="section level1">
 <h1>Exploring the Titanic</h1>
-<p>Now it’s your turn: using what you’ve learned above, you’ll take a closer look at the titanic dataset introduced in R Tutorial #1. You already know enough R to answer some interesting questions, so let’s dive in!</p>
+<p>Now it’s your turn: using what you’ve learned above, you’ll take a closer look at the titanic dataset introduced in <a href="Rtutorial1">R Tutorial #1</a>. You already know enough R to answer some interesting questions, so let’s dive in!</p>
 <div id="a-helpful-hint-taking-the-mean-of-a-vector-of-ones-and-zeros-is-the-same-thing-as-calculating-the-proportion-of-ones." class="section level4">
 <h4>A Helpful Hint: Taking the mean of a vector of ones and zeros is the <em>same thing</em> as calculating the <em>proportion of ones</em>.</h4>
 <ol style="list-style-type: decimal">
