@@ -10,326 +10,333 @@ output:
     highlight: zenburn
 ---
 
-This tutorial is a bit of a grab-bag. The first part shows you how to calculate the remaining summary statistics from in class and introduces a few new plotting commands. The second part describes one of the most fundamental parts of R: creating your own functions. Finally, the third part shows you how to import stock return data in R and introduces some related concepts and tools. Rather than appearing at the end, six exercises are scattered throughout the parts of this tutorial.
+This tutorial is a bit of a grab-bag. The [first part](#part_one) shows you how to calculate the remaining summary statistics from the lectures and introduces a few new plotting commands. The [second part](#part_two) describes one of the most fundamental parts of R: creating your own functions. Finally, the [third part](#part_three) shows you how to import stock return data in R and introduces some related concepts and tools. Rather than appearing at the end, six exercises are scattered throughout the parts of this tutorial.
 
-
-More Summary Statistics
+More Summary Statistics {#part_one}
 --------------------------------------------------------
-First we'll load the survey data from R Tutorial #2
-```{r,cache=TRUE}
-survey <- read.csv("http://www.ditraglia.com/econ103/old_survey.csv")
-```
-Here we'll only need the columns ``handedness``, ``height`` and ``handspan``
-```{r}
-survey <- survey[,c("handedness", "height", "handspan")]
-head(survey)
+First we'll load the survey data from R Tutorial #2.
+
+Like before we'll only need a subset of the columns available; rather than go to the hassle of deleting these columns afterwards, we can specify which columns to keep simultaneously with reading in the data using the `select` argument to `fread`. (There is also a `drop` argument for the reverse -- specifying columns to exclude)
+
+```{r fread_select}
+library(data.table)
+survey = fread("http://www.ditraglia.com/econ103/old_survey.csv",
+               select = c("handedness", "height", "handspan"))
 ```
 
-### ``cor``
-This command calculates sample correlation coefficients. If you pass it two vectors of the same length it returns the correlation between them. If you feed it a dataframe or matrix it returns a matrix containing *all pairwise correlations* between the columns. Unlike the univariate summary statistics, in which we used ``na.rm = TRUE`` to ignore missing observations, for ``cor`` we use the argument ``use = "complete.obs"``. The reason for this difference is that ``cor`` can handle a matrix or dataframe as its input. In this case there are actually many different ways of handling missing observations. For more details, see the help file. Setting  ``use = "complete.obs"`` removes any rows with missing observations before proceeding.
-```{r}
-cor(survey$handspan, survey$height, use = "complete.obs")
+### Correlation: `cor`
+
+This command calculates sample correlation coefficients. If you pass it two vectors of the same length it returns the correlation between them. If you feed it a `data.table` or `matrix` it returns a matrix containing *all pairwise correlations* between the _columns_ (we haven't covered matrices in R since you'll only need to interpret them as output for this class -- for a primer on handling `matrix` objects, see [here](http://www.r-tutor.com/r-introduction/matrix)). Unlike the univariate summary statistics, in which we used `na.rm = TRUE` to ignore missing observations, for `cor` we use the argument `use = "complete.obs"`. The reason for this difference is that `cor` can handle a `matrix` or `data.table` as its input. In this case there are actually many different ways of handling missing observations. For more details, see `?cor`. Setting  `use = "complete.obs"` removes any rows with missing observations before proceeding.
+
+```{r cor_use}
+survey[ , cor(handspan, height, use = "complete.obs")]
 ```
-We see that there is a large positive correlation between ``height`` and ``handspan``
-```{r}
+
+Of course, we could use the approach we saw in R Tutorial #2 as well; whichever feels more natural:
+
+```{r cor_isna}
+survey[!is.na(handspan) & !is.na(height), cor(handspan, height)]
+```
+
+We can also feed the full `data.table` to `cor` like so:
+
+```{r cor_dt}
 cor(survey, use = "complete.obs")
+#alternatively, there's the na.omit
+#  function, which does just what it says:
+cor(na.omit(survey))
 ```
-and a slight positive correlation between ``height`` and ``handedness.`` There's basically no correlation between ``handedness`` and ``handspan``. The preceding matrix has ones on its main diagonal since the correlation between any variable and itself is one. (A good exercise for extra practice would be to prove this assertion using the formula for correlation from class. It's not very difficult.)
 
-If you look carefully, you'll notice that the correlation between ``height`` and ``handspan`` is slightly different when calculated at the same time as all the other correlations. This is because of the way that ``use = "complete.obs"`` drops rows. In this case, it indicates that there is at least one observation in our dataset for which we have ``height`` and ``handspan`` but not ``handedness``.
+We see that there is a large positive correlation between `height` and `handspan` and a slight positive correlation between `height` and `handedness.` There's basically no correlation between `handedness` and `handspan`. The preceding matrix has ones on its main diagonal since the correlation between any variable and itself is identically one. (A good exercise for extra practice would be to prove this assertion using the formula for correlation from class. It's not very difficult.)
 
-### ``cov``
-This command works just like ``cor`` but returns covariances rather than correlations:
-```{r}
-cov(survey$handspan, survey$height, use = "complete.obs")
+If you look carefully, you'll notice that the correlation between `height` and `handspan` is slightly different when calculated at the same time as all the other correlations. This is because of the way that `use = "complete.obs"` drops rows. In this case, it indicates that there is at least one observation in our dataset for which we have `height` and `handspan` but not `handedness`.
+
+For practice, we can find this with judicious use of `is.na` and logical operators:
+
+```{r find_missing}
+survey[is.na(handedness) & !is.na(height) & !is.na(handspan)]
+```
+
+### Covariance: `cov`
+
+This command works just like `cor` but returns covariances rather than correlations:
+
+```{r cov}
+survey[ , cov(handspan, height, use = "complete.obs")]
 cov(survey, use = "complete.obs")
+cov(na.omit(survey))
 ```
 
+### Regression: `lm` and `abline`
 
-### ``lm`` and ``abline``
-This command stands for "linear model" and is R's general purpose regression command. Its syntax is similar to that of ``boxplot`` from R Tutorial #2 in that we use a tilde to indicate a functional relationship. Here the variable to the left of the tilde is the "y" variable while the variable to the right is the "x" variable
-```{r}
-lm(height ~ handspan, data = survey)
-```
-Remember: unlike correlation and covariance, regression is *not symmetric*
-```{r}
-lm(handspan ~ height, data = survey)
-```
-It turns out that we can use the *same syntax* with the command ``plot``
-```{r}
-plot(handspan ~ height, data = survey)
+This command stands for "_l_inear _m_odel" and is R's general-purpose regression command. Its syntax is similar to that of `boxplot` from R Tutorial #2 in that we use a tilde (`~`) to indicate a functional relationship. Here the variable to the left of the tilde is the "y" variable, while the variable to the right is the "x" variable.
+
+```{r lm}
+survey[ , lm(height ~ handspan)]
 ```
 
-To add the regression line, we *follow* the plot command with the function ``abline``, using the function ``coefficients`` with the ``lm`` command to extract the regression slope and intercept
-```{r}
-plot(handspan ~ height, data = survey)
-abline(coefficients(lm(handspan ~ height, data = survey)))
+Remember: unlike correlation and covariance, regression is *not symmetric*:
+
+```{r lm_rev}
+survey[ , lm(handspan ~ height)]
 ```
 
-Note that ``abline`` can only be used *after* you've already made a plot. It ``adds`` a line to the existing plot rather than making a plot of its own.
+It turns out that we can use the *same syntax* with the command `plot`:
 
-You can also use ``abline`` to plot different kinds of lines. For example, we can show that the regression line goes through the means of the data as follows:
-```{r}
-plot(handspan ~ height, data = survey)
-abline(coefficients(lm(handspan ~ height, data = survey)))
-abline(v = mean(survey$height, na.rm = TRUE), col = "red", lty = 2)
-abline(h = mean(survey$handspan, na.rm = TRUE), col = "red", lty = 2)
+```{r plot_formula, results = 'hide'}
+survey[ , plot(handspan ~ height)]
 ```
 
-The argument ``v`` indicates that we want a *vertical* line, while ``h`` indicates that we want a *horizontal* line. Notice how I used the argument ``lty =2`` to get a dashed line. This stands for "line type". A standard line (the default) has ``lty = 1``. Try some other line types and see what happens.
+To add the regression line, we *follow* the `plot` command with the function `abline` like so:
 
-If you want to use ``abline`` to draw a line that is *neither* horizontal nor vertical, use the argument ``a`` for the intercept and ``b`` for the slope. For example:
-```{r}
-x <- seq(from = 0, to = 1, by = 0.1)
-y <- x^2
+```{r abline_lm, results = 'hide'}
+survey[ , plot(handspan ~ height)]
+survey[ , abline(lm(handspan ~ height))]
+```
+
+Note that `abline` can only be used *after* you've already made a plot. It _adds_ a line to the existing plot rather than making a plot of its own. 
+
+You can also use `abline` to plot different kinds of lines. For example, we can show that the regression line goes through the means of the data as follows:
+
+```{r abline_samplemean, results = 'hide'}
+survey[ , {
+  plot(handspan ~ height)
+  abline(lm(handspan ~ height))
+  abline(v = mean(height, na.rm = TRUE),
+         h = mean(handspan, na.rm = TRUE),
+         col = 'red', lty = 2)
+}]
+```
+
+We've introduced a new piece of syntax in the `j` argument -- `{}`. This syntax allows us to run multiple commands within one pair of square brackets -- here, we're running `plot` and then `lm` twice. We'll see `{}` again below when we learn about writing functions; for now, observe that it's convenient not to have to write `survey[]` repeatedly.
+
+As to the call to `abline`, we've supplied two new arguments. `v` indicates that we want a *vertical* line at the specified number(s), while `h` indicates that we want a *horizontal* line at the specified number(s).
+
+We've also introduced some new plotting commands -- `lty` stands for _l_ine _ty_pe. `lty = 2` makes a dashed line. A standard line (the default) has `lty = 1`. Try some other line types and see what happens; the full description is in `?par`. `lty` can be used with any plot that features lines.
+
+If you want to use `abline` to draw a line that is *neither* horizontal nor vertical, use the argument `a` for the intercept and `b` for the slope. For example:
+
+```{r abline_ab, results = 'hide'}
+x = seq(from = 0, to = 1, by = 0.1)
+y = x^2
 plot(y ~ x)
 abline(a = 0, b = 1)
 ```
 
 ### Exercise #1 - Regression
-Carry out a linear regression in which ``height`` is the y-variable and ``handedness`` is the x-variable. Plot the data and add the regression line. Add red dashed lines to show that the regression line goes through the means of the data. Interpret your results. Is there a relationship between handedness and height? 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Exercise #1 - Regression
-lm(height ~ handedness, data = survey)
-plot(height ~ handedness, data = survey)
-abline(coefficients(lm(height ~ handedness, data = survey)))
-abline(v = mean(survey$handedness, na.rm = TRUE), col = "red", lty = 2)
-abline(h = mean(survey$height, na.rm = TRUE), col = "red", lty = 2)
+
+Carry out a linear regression in which `height` is the y-variable and `handedness` is the x-variable. Plot the data and add the regression line. Add red dashed lines to show that the regression line goes through the means of the data. Interpret your results. Is there a relationship between handedness and height? 
+
+```{r exercise_1, echo=FALSE, results='hide', fig.show='hide'}
+survey[ , {
+  reg = lm(height ~ handedness)
+  plot(height ~ handedness)
+  abline(reg = reg)
+  abline(v = mean(handedness, na.rm = TRUE),
+         h = mean(height, na.rm = TRUE),
+         col = 'red', lty = 2)
+}]
 ```
 
+## Creating Your Own Functions {#part_two}
 
-
-
-
-## Creating Your Own Functions
-
-Functions take one or more inputs, called "arguments", and combine them in some way to produce an output. You've already met a great many of the built-in R functions. Now its time to make some of our own. Making functions is a great way to save time by automating repetitive tasks and extend the functionality of R to make it even more useful. 
+Functions take one or more inputs, called "arguments", and combine them in some way to produce an output. You've already met a great many of the built-in R functions, as well as several of the functions in the `data.table` package. Now it's time to make some of our own. Making functions is a great way to save time by automating repetitive tasks and extend the functionality of R to make it even more useful. 
 
 ### Simple Example
-R doesn't have a built-in function for computing z-scores, so we'll make one of our own. Among other things, this example will illustrate a key point about functions: you can build them out of *other functions* this means you don't have to re-invent the wheel each time you want to do something. To make our z-score function we'll use the built-in R functions ``mean`` and ``sd`` rather than writing our own mean and standard deviation functions from scratch:
-```{r}
-z.score <- function(x){
-  z <- (x - mean(x, na.rm = TRUE))/sd(x, na.rm = TRUE)
+
+Suppose R didn't have a built-in function for computing z-scores (it does -- see `?scale`); given how much they come up in class, it would be great to use in our code something like `z.score(some_variable)` instead of having to compute it more manually each time. Luckily it's straightforward to do just that and build our own function! Among other things, this example will illustrate a key point about functions: you can build them out of *other functions*, which means you don't have to re-invent the wheel each time you want to do something. To make our z-score function we'll use the built-in R functions `mean` and `sd` rather than writing our own mean and standard deviation functions from scratch:
+
+```{r function_write}
+z.score = function(x){
+  z = (x - mean(x, na.rm = TRUE))/sd(x, na.rm = TRUE)
   return(z)
 }
 ```
+
 Let's walk through the above code one step at a time:
 
-1. In R ``<-``, pronounced "gets" is the assignment operator, so ``z.score <-`` means that we're assigning something to ``z.score`` 
-2. The thing we are assigning is indicated next: ``function``. So far we have ``z.score <- function`` which means "R, I'm going to create a function and call it ``z.score``"
-3. There are some parentheses next to ``function``. These are used to enclose the function's *arguments*. Argument is just another word for input. Functions can take one argument, more than one argument or no arguments depending on the situation, but you always need the parentheses. Here, ``z.score <- function(x)`` means "R, I'm going to create a function called ``z.score`` that takes a single argument whose name is ``x``."
-4. The next thing we see is a curly bracket: ``{``. Essentially, a function is a set of *instructions* that tells R how to turn some arguments (inputs) into a desired output. These instructions are called the function *body* and they are always enclosed in curly brackets. If you look at the bottom of the function, you'll see the second curly bracket. A common mistake that people make is to forget the second bracket. *Always make sure to close any bracket that you open*.
-5. Now we'll look at the function body, the list of commands contained inside of the curly brackets. The first part should be familiar: it's made up entirely of R commands that you already know! It does the following
-  - Calculate the mean of the argument (input) ``x``. Ignore missing observations.
-  - Calculate the standard deviation the argument (input) ``x``. Ignore missing observations.
-  - Subtract the mean of ``x`` from the vector ``x`` and then divide by the standard deviation
-  - Store the answer in a vector called ``z``
-6. The last part of the function is the command ``return``. This indicates that our function should output or "return" the vector ``z``. In other words, ``z`` is the "answer".  
+1. In R `=`, pronounced "gets" is the assignment operator, so `z.score =` means that we're assigning something to `z.score`. This is just like assigning any other variable in R, except now this "variable" is a function named `z.score`.
+2. There are some parentheses next to `function`. These are used to enclose the function's *arguments*. Argument is just another word for input. Functions can take one argument, more than one argument or no arguments depending on the situation, but you always need the parentheses. Here, `z.score = function(x)` means "R, I'm going to create a function called `z.score` that takes a single argument that I'm going to call `x`."
+3. The next thing we see is a left curly bracket: `{`. Essentially, a function is a set of *instructions* that tells R how to turn some arguments (inputs) into a desired output. These instructions are called the function *body* and they are always enclosed in curly brackets. If you look at the bottom of the function, you'll see the second curly bracket. A common mistake that people make is to forget the second bracket. *Always make sure to close any bracket that you open*.
+4. Now we'll look at the function body, the list of commands contained inside of the curly brackets. The first part should be familiar: it's made up entirely of R commands that you already know! It does the following:
+  - Calculate the mean of the argument (input) `x`. Ignore missing observations.
+  - Calculate the standard deviation the argument (input) `x`. Ignore missing observations.
+  - Subtract the mean of `x` from the vector `x` and then divide by the standard deviation
+  - Store the answer in a vector called `z`
+5. The last part of the function is the command `return`. This indicates that our function should output or "return" the vector `z`. In other words, `z` is the "answer".  
 
-It was easy to create the ``z.score`` function because mathematical operations in R are *vectorized*. This means, for example, that if we want to add 3 to each element of a vector ``x``, we can just write ``x + 3``. In other words we don't have to *separately* add three to each element of ``x``. Similarly, if we want to add corresponding elements of ``x`` and ``y``, two vectors of the same length, we use ``x+y``. Try some simple examples of your own to make sure you understand how this works. See what happens if you try to add two vectors of *different* lengths. 
+Actually, step 5 is not strictly necessary -- R knows to return the output of whatever the last line of a function is. But it's safe to be explicit and let readers of your code know what your intended output of your function is.
+
+It was easy to create the `z.score` function because, as we explored in R Tutorial #1, mathematical operations in R are *vectorized*. This means, for example, that if we want to add 3 to each element of a vector `x`, we can just write `x + 3`. In other words we don't have to *separately* add three to each element of `x`. Similarly, if we want to add corresponding elements of `x` and `y`, two vectors of the same length, we use `x+y`. Try some simple examples of your own to make sure you understand how this works. See what happens if you try to add two vectors of *different* lengths. 
 
 ### Scope
-So what exactly is the status of ``z`` in the function ``z.score``? It looks like an ordinary R variable and in a certain sense it is. But there is something slightly subtle here: ``z`` is a variable "inside a function", namely a variable inside the function ``z.score``. This makes it different from the other variables that we've seen so far. To explain how, we'll need to introduce a programming concept called "scope."
+So what exactly is the status of `z` in the function `z.score`? It looks like an ordinary R variable and in a certain sense it is. But there is something slightly subtle here: `z` is a variable "inside a function", namely a variable inside the function `z.score`. This makes it different from the other variables that we've seen so far. To explain how, we'll need to introduce a programming concept called "scope."
 
 Scope refers to where the variable "lives," meaning how it can be accessed. We will focus on two types of scope, *global* and *local*. 
 
-If you type the command ls() into the R console, you will see a bunch of variables. These variables have "global scope". This means that they can be accessed from *anywhere* by *any function*. If you've run the code for the function ``z.score`` above, you'll see ``z.score`` when you type ``ls()`` into the console. This means that  ``z.score`` has global scope. Similarly if you type ``foo <- 3`` into the R console, ``foo`` will have global scope. You can see this by re-running ``ls()`` after you create ``foo``.
+If you type the command `ls()` into the R console, you will see a bunch of variables. These variables have "global scope". This means that they can be accessed from *anywhere* by *any function*. If you've run the code for the function `z.score` above, you'll see `z.score` when you type `ls()` into the console. This means that  `z.score` has global scope. Similarly if you type `foo = 3` into the R console, `foo` will have global scope. You can see this by re-running `ls()` after you create `foo`.
 
-Notice, however, that you did *not* see ``z`` when you typed ``ls()``. This is because ``z`` is a "variable inside a function." In other words, it has *local scope*. This means that ``z`` is *only accessible inside* the function ``z.score``.
+Notice, however, that you did *not* see `z` when you typed `ls()`. This is because `z` is a "variable inside a function." In other words, it has *local scope*. This means that `z` is only accessible *inside* the function `z.score`.
 
-Another example of a variable with local is the column of a dataframe, for example ``handspan`` in the dataframe ``survey``. We can only access ``handspan`` by extracting it from ``survey``, which has global scope, using ``$`` or ``[]``. 
 
-**Don't worry if you don't immediately understand this. It's a weird concept to grasp.** You can think of variables with global scope like books on a shelf. You can see each one and pick it out. In contrast, variables with local scope are like *chapters* in a book: you don't know what the chapter is called until you open a specific book and read it. 
+Another example of a variable with local is the column of a `data.table`, for example `handspan` in the dataframe `survey`. We can only access `handspan` by extracting it from `survey`, which has global scope, using `$` or `[]`. 
 
-### Missing Observations
-Before looking at more examples of functions, we need to learn a little more about missing values. As we've seen, many of the built-in R functions have optional arguments that you can use to direct R to ignore missing observations, for example ``na.rm = TRUE``. When you make your own functions from scratch, however, things are slightly trickier.
+**Don't worry if you don't immediately understand this. It's a weird concept to grasp.** You can think of variables with global scope like books on a shelf. You can see each one and pick it out. In contrast, variables with local scope are like *chapters* in a book: you don't know what the chapter is called until you open a specific book and read it.
 
-To handle this situation, we'll use a function called ``is.na`` that tests for missing observations:
-```{r}
-foo <- c(1, 3, NA, 3, 0, NA)
-is.na(foo)
-```
-As you can see from the output, ``is.na`` returns a vector of *logical* (aka Boolean) values. A value of ``TRUE`` indicates that the corresponding element of ``foo`` is missing. In this case, the 4th and 6th elements are ``NA``s. On it's own, this isn't very useful, but it turns out we can use vectors of logical values to *select* desired elements of a vector or dataframe. One way of selecting the first and second element of foo is
-```{r}
-foo[1:2]
-```
-but here's another:
-```{r}
-foo[c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE)]
-```
-When you select using a logical vector, it must have the *same length* as the vector you're selecting. Using this idea, we could select the *missing* observations of ``foo`` as follows:
-```{r}
-foo[is.na(foo)]
-```
-Now, what we'd really like to do is select all the observations that are *not* missing. It turns out that this is easy: the R symbol for NOT is the exclamation point (``!``) which is more commonly called "bang" by programmers. If you put this symbol in front of a vector of logical values, it turns ``TRUE`` into ``FALSE`` and ``FALSE`` into ``TRUE``:
-```{r}
-!is.na(foo)
-```
-Hence:  we can **select all non-missing values** of ``foo`` as follows:
-```{r}
-foo[!is.na(foo)]
-```
-and we can **remove all missing values from foo** by overwriting the original vector with the values selected in the previous command:
-```{r}
-foo <- foo[!is.na(foo)]
-```
+It's not at all required, but the [chapter on functions](http://adv-r.had.co.nz/Functions.html) from Hadley Wickham's free online advanced R textbook is the place to start looking for all the nitty-gritty details on how this works. _Caveat lector_ -- don't expect to understand much on your first pass through reading.
 
 ### Roll Your Own Mean
-Let's look at another example: making a function to compute the sample mean. R has a perfectly good function for calculating means, as we've seen, so this is purely for illustrative purposes. I'll call this function ``mymean`` to distinguish it from the built-in R function:
-```{r}
-mymean <- function(x){
-  x <- x[!is.na(x)]
-  x.bar <- sum(x)/length(x)
+
+Let's look at another example: making a function to compute the sample mean. R has a perfectly good function for calculating means, as we've seen, so this is mainly for illustrative purposes*. I'll call this function `mymean` to distinguish it from the built-in R function:
+
+*: Unnecessary aside: actually, the `mean` function in R will be _slower_ than this function for [subtle reasons explained here](http://stackoverflow.com/questions/18604406/why-is-mean-so-slow).
+
+```{r mymean}
+mymean = function(x){
+  x = x[!is.na(x)]
+  x.bar = sum(x)/length(x)
   return(x.bar)
 }
 ```
+
 Again, I'll walk you through this one step-by-step:
 
-1. ``mymean <- function(x)`` tells R to create a function that takes a single argument ``x`` and store it under the name ``mymean``
-2. The curly braces ``{``  and ``}`` enclose the function *body*.
-3. ``x <- x[!is.na(x)]`` *overwrites* ``x`` with a new vector containing all the elements of ``x`` that are *not* NAs. In other words, this removes missing observations. 
-4. ``sum(x)/length(x)`` calculates the sample mean: summing up the observations and dividing by the number of observations. Notice that I did *not* use ``na.rm = TRUE`` in the ``sum`` command. If I had used it, everything still would have worked but since I *already removed all the missing observations* in the line above, this wasn't necessary. 
+1. `mymean = function(x)` tells R to create a function that takes a single argument `x` and store it under the name `mymean`
+2. The curly braces `{}` enclose the function *body*.
+3. `x = x[!is.na(x)]` *overwrites* `x` with a new vector containing all the elements of `x` that are *not* `NA`s. In other words, this removes missing observations. (A subtle note about global/local scope here is that doing this _does not_ overwrite the _original_ vector that's passed to `mymean` as an argument -- it overwrites a _local copy_ called `x`)
+4. `sum(x)/length(x)` calculates the sample mean: summing up the observations and dividing by the number of observations. Notice that I did *not* use `na.rm = TRUE` in the `sum` command. If I had used it, everything still would have worked but since I *already removed all the missing observations* in the line above, this wasn't necessary. 
 
-Let's test out ``my.mean`` on some real data and make sure it works. First we'll use R's built-in ``mean`` function:
-```{r}
+Let's test out `my.mean` on some real data and make sure it works. First we'll use R's built-in `mean` function:
+
+```{r mean_builtin}
 mean(survey$height, na.rm = TRUE)
 ```
-and then we'll try ``mymean``
-```{r}
+
+and then we'll try `mymean`
+
+```{r mymean_test}
 mymean(survey$height)
 ```
-It works! Now I'm going to show you a slightly different version of ``mymean`` which I'll call ``mymean2``. This one will *not* give the correct answer:
-```{r}
-mymean2 <- function(x){
-  x.bar <- sum(x, na.rm = TRUE)/length(x)
+
+It works! Now I'm going to show you a slightly different version of `mymean` which I'll call `mymean2`. This one will *not* give the correct answer:
+
+```{r mymean2}
+mymean2 = function(x){
+  x.bar = sum(x, na.rm = TRUE)/length(x)
   return(x.bar)
 }
 mymean2(survey$height)
 ```
-The answer is too small! What's going on here? The problem has to do with how I handled missing observations. Rather than throwing them away, I told ``sum`` to ignore them. The problem is that ``length`` does *not* ignore them: it simply counts up the number of elements in a vector, regardless of whether they're ``NA``s. In effect we have divided by the *wrong* value of $n$: the sum is being taken over all *non-missing* observations while the length is being computed over *all* observations.
 
-It's worth comparing ``mymean2`` to ``z.score``, the first function I introduced above. In that example it was ok to use ``na.rm = TRUE`` to handle the missing observations since this argument was available for *both* the ``mean`` and ``sd`` functions. 
+The answer is too small! What's going on here? The problem has to do with how I handled missing observations. Rather than throwing them away, I told `sum` to ignore them. The problem is that `length` does *not* ignore them -- it simply counts up the number of elements in a vector, regardless of whether they're `NA`s. In effect we have divided by the *wrong* value of $n$: the sum is being taken over all *non-missing* observations while the length is being computed over *all* observations.
+
+It's worth comparing `mymean2` to `z.score`, the first function I introduced above. In that example it was ok to use `na.rm = TRUE` to handle the missing observations since this argument was available for *both* the `mean` and `sd` functions. 
 
 ### Roll Your Own Variance
-One more example before I set you loose to make your own function. Here's R code to create a function called ``myvar`` that calculates the sample variance. This function piggybacks on ``mymean`` from above. This is a **good thing**. We've already tested ``mymean`` and know that it works, so incorporating it into ``myvar`` is much better than starting from scratch. Again, note how we handle missing observations.
-```{r}
-myvar <- function(x){
-  x <- x[!is.na(x)]
-  s.squared <- sum((x-mymean(x))^2)/(length(x) - 1)
+
+One more example before I set you loose to make your own function. Here's R code to create a function called `myvar` that calculates the sample variance. This function piggybacks on `mymean` from above. This is a **good thing**. We've already tested `mymean` and know that it works, so incorporating it into `myvar` is much better than starting from scratch. Again, note how we handle missing observations.
+
+```{r myvar}
+myvar = function(x){
+  x = x[!is.na(x)]
+  s.squared = sum((x-mymean(x))^2)/(length(x) - 1)
   return(s.squared)
 }
 ```
-We can test this against ``var`` to make sure it works:
-```{r}
+
+We can test this against `var` to make sure it works:
+
+```{r myvar_test}
 var(survey$handspan, na.rm = TRUE)
 myvar(survey$handspan)
 ```
+
 Looks good!
 
-
 ### Exercise #2
-It turns out that R doesn't have a built-in function to calculate skewness. Your job is to write one. Remember the definition of skewness from lecture:
+It turns out that R doesn't have a built-in function to calculate skewness (there is one in the library `moments`). Your job is to write one. Remember the definition of skewness from lecture:
   $$\mbox{Skewness} = \frac{\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^3}{s^3}$$
-where $s$ is the sample standard deviation. Call your function ``skew``. It should take one argument, a vector ``x``, and return the sample skewness of ``x``. Make sure to handle missing values appropriately. Use the built-in R functions ``mean``, ``sum``, ``length`` and ``sd`` to construct your skewness function. Test your function out on the ``handedness`` data. You should get an answer of around -2.2.  
-```{r echo=FALSE,results='hide',fig.show='hide'}
+where $s$ is the sample standard deviation. Call your function `skew`. It should take one argument, a vector `x`, and return the sample skewness of `x`. Make sure to handle missing values appropriately. Use the built-in R functions `mean`, `sum`, `length` and `sd` to construct your skewness function. Test your function out on the `handedness` data. You should get an answer of around -2.2.  
+
+```{r exercise_2, echo=FALSE, results='hide', fig.show='hide'}
 #Exercise #2 - Write a Function to Calculate Skewness
-skew <- function(x){
-  
-  x <- x[!is.na(x)]
-  
-  numerator <- sum((x - mean(x))^3)/length(x)
-  denominator <- sd(x)^3
-    
+skew = function(x){
+  x = x[!is.na(x)]
+  numerator = sum((x - mean(x))^3)/length(x)
+  denominator = sd(x)^3
   return(numerator/denominator)  
-  
 }
 skew(survey$handedness)
 ```
 
+### Returning a `data.table`
 
+The examples we've seen so far have been very simple: functions that take one argument and return a single value. In fact, functions can take multiple values and return pretty much anything. First we'll look at an example of a function that returns a `data.table`. This is a very flexible way of returning multiple values in a way that makes them easy to access.
 
-
-### Returning a Dataframe
-The examples we've seen so far have been very simple: functions that take one argument and return a single value. In fact, functions can take multiple values and return pretty much anything. First we'll look at an example of a function that returns more than a *dataframe*. This is a very flexible way of returning multiple values in a way that makes them easy to access
-```{r}
-summary.stats <- function(x){
-  
-  x <- x[!is.na(x)]
-  sample.mean <- mean(x)
-  std.dev  <- sd(x)
-  
-  out <- data.frame(sample.mean, std.dev)
+```{r function_return_data.table}
+summary.stats = function(x){
+  x = x[!is.na(x)]
+  sample.mean = mean(x)
+  std.dev  = sd(x)
+  out = data.table(sample.mean, std.dev)
   return(out)
 }
-results <- summary.stats(survey$handedness)
+results = summary.stats(survey$handedness)
 results
 results$sample.mean
 results$std.dev
 ```
 
 ### Multiple Arguments
-Now we'll look at a function that takes multiple arguments: ``mycov``. This is essentially a stripped-down version of ``cov``, the built-in R equivalent. Unlike ``cov`` which can accept two vectors as arguments *or* a whole dataframe, our version will only accept two vectors as arguments: ``x`` and ``y``. Handling the missing observations is a bit more complicated in this situation: we need to drop any ``x`` for which there isn't a corresponding ``y`` and any ``y`` for which there isn't a corresponding ``x``. This is because covariance is a measure of the *relationship* between ``x`` and ``y``. Accordingly, it is calculated using *pairs* of observations rather than *individual* observations. First I'll give you the code, then I'll explain the part that's different from what we did above: 
-```{r}
-mycov <- function(x, y){
+
+Now we'll look at a function that takes multiple arguments: `mycov`. This is essentially a stripped-down version of `cov`, the built-in R equivalent. Unlike `cov`, which can accept two vectors as arguments *or* a whole `data.table`, our version will only accept two vectors as arguments: `x` and `y`. Handling the missing observations is a bit more complicated in this situation: we need to drop any `x` for which there isn't a corresponding `y` and any `y` for which there isn't a corresponding `x` -- We've seen some examples of how to do this in R Tutorial #2 using `!is.na` and `&`. This is because covariance is a measure of the *relationship* between `x` and `y`. Accordingly, it is calculated using *pairs* of observations rather than *individual* observations. First I'll give you the code, then I'll explain the part that's different from what we did above: 
+
+```{r mycov}
+mycov = function(x, y){
   
-  keep <- !is.na(x) & !is.na(y)
-  x <- x[keep]
-  y <- y[keep]
+  keep = !is.na(x) & !is.na(y)
+  x = x[keep]
+  y = y[keep]
   
-  n <- length(x)
+  n = length(x)
   
-  s.xy <- sum( (x - mean(x)) * (y - mean(y)) ) / (n-1)
+  s.xy = sum( (x - mean(x)) * (y - mean(y)) ) / (n-1)
   return(s.xy)
-  
 }
 ```
+
 Testing this, 
-```{r}
-cov(survey$handspan, survey$handedness, use = "complete.obs")
-mycov(survey$handspan, survey$handedness)
+
+```{r mycov_test}
+survey[ , cov(handspan, handedness, use = "complete.obs")]
+survey[ , mycov(handspan, handedness)]
 ```
+
 we see that it works. 
 
-The tricky part of the above code was the definition of the logical vector ``keep`` which has ``TRUE`` for every element of ``x`` and ``y`` that we'll use to calculate the covariance. The symbol ``&`` means *AND*, so the line ``!is.na(x) & !is.na(y)`` tells R to find all the indices (which correspond to pairs) for which *neither* ``x`` *nor* ``y`` is missing. This may be a little confusing so here's a toy example: 
-```{r}
-x <- c(1, 2, NA, 3)
-y <- c(5, NA, 6, 0)
-!is.na(x)
-!is.na(y)
-keep <- !is.na(x) & !is.na(y)
-keep
-x[keep]
-y[keep]
-```
-Once we've defined ``keep``, everything is similar to what we've already seen above. We simply select those elements of ``x`` and ``y`` that we want to keep and overwrite the original vectors ``x`` and ``y``. Then we implement the formula for covariance.
-
-
 ### Exercise #3
-Write a Function to Carry Out Linear Regression called ``myreg``. It should take two arguments: vectors ``x`` and ``y`` which you may assume have the same length. It should return a dataframe with columns ``a`` for the intercept and ``b`` for the slope. Make sure to handle missing values appropriately. Feel free to use any built-in R functions you like *except* ``lm``. Check your answer against the regression results for height and handspan that we calculated above. When creating this function, remember that regression is *not* symmetric.
-```{r echo=FALSE,results='hide',fig.show='hide'}
+
+Write a function to carry out linear regression called `myreg`. It should take two arguments: vectors `x` and `y` which you may assume have the same length. It should return a `data.table` with columns `a` for the intercept and `b` for the slope. Make sure to handle missing values appropriately. Feel free to use any built-in R functions you like *except* `lm`. Check your answer against the regression results for height and handspan that we calculated above. When creating this function, remember that regression is *not* symmetric.
+
+```{r exercise_3, echo=FALSE, results='hide', fig.show='hide'}
 #Exercise #3 - Write a Function to Carry Out Linear Regression
-myreg <- function(y, x){
+myreg = function(y, x){
+  keep = !is.na(x) & !is.na(y)
+  x = x[keep]
+  y = y[keep]
   
-  keep <- !is.na(x) & !is.na(y)
-  x <- x[keep]
-  y <- y[keep]
-  
-  b <- cov(x,y)/var(x)
-  a <- mean(y) - b * mean(x)
+  b = cov(x,y)/var(x)
+  a = mean(y) - b * mean(x)
     
-  out <- data.frame(a, b)
+  out = data.table(a, b)
   return(out)
-  
 }
-lm(height ~ handspan, data = survey)
-myreg(y = survey$height, x = survey$handspan)
+survey[ , lm(height ~ handspan)]
+survey[ , myreg(y = height, x = handspan)]
 ```
 
+## Stock Market Data {#part_three}
 
-
-
-
-## Stock Market Data
 Now that we know how to write our own functions, let's have a little fun playing the stock market. It's easy to download and play with stock price data using the R packages ``Quandl`` and ``zoo``. An R package is like an "expansion pack" that gives R new features. One of the great things about R is that there literally thousands of packages that expand the usefulness of R. 
 
 
@@ -346,7 +353,7 @@ Now we're ready to get started.
 #### Downloading Stock Prices
 To start off I'll download prices for Apple stock:
 ```{r,cache=TRUE}
-apple.prices <- Quandl('GOOG/NASDAQ_AAPL', start_date = '2012-01-01', end_date = '2012-12-31', type = 'zoo')
+apple.prices = Quandl('GOOG/NASDAQ_AAPL', start_date = '2012-01-01', end_date = '2012-12-31', type = 'zoo')
 ```
 Notice that I got a warning saying that my access to Quandl is limited. While the service is free, you have to sign up (also free), to get unlimited access. Otherwise you're only allowed a certain number of queries per day. For this exercise that won't be a problem.
 
@@ -395,12 +402,12 @@ As it happens, researchers in financial economics tend not to use the formula fo
 #### Log Returns for Apple
 Now we'll construct daily log returns for Apple based on the closing prices. Remember: we need successive differences of the natural log of prices. The comand for successive differences in R is ``diff``, for example:
 ```{r}
-foo <- c(1,2,4,7,11)
+foo = c(1,2,4,7,11)
 diff(foo)
 ```
 since $2-1 = 1$, $4-2 =2$, $7-4 = 3$ and $11 - 7 = 4$. We can combine this with the function ``log`` to compute log returns for Apple as follows:
 ```{r}
-apple.returns <- diff(log(apple.prices$Close))
+apple.returns = diff(log(apple.prices$Close))
 ```
 Plotting these, we have
 ```{r}
@@ -462,11 +469,11 @@ Download data for IBM (Quandl Code: GOOG/NYSE_IBM) and carry out the same analys
   
 ```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
 #Exercise #5 - Repeat the Above for IBM Returns
-ibm.prices <- Quandl("GOOG/NYSE_IBM", start_date = "2012-01-01", end_date = "2012-12-31", type = "zoo")
+ibm.prices = Quandl("GOOG/NYSE_IBM", start_date = "2012-01-01", end_date = "2012-12-31", type = "zoo")
 head(ibm.prices)
 plot(ibm.prices)
 plot(ibm.prices$Close, main = "Daily Closing Prices: IBM - 2012", xlab = "Date", ylab = "Price")
-ibm.returns <- diff(log(ibm.prices$Close))
+ibm.returns = diff(log(ibm.prices$Close))
 plot(ibm.returns, main = "IBM - 2012", xlab = "date", ylab = "Log Daily Returns", col = "Blue")
 mean(ibm.returns)
 sd(ibm.returns)
@@ -487,8 +494,8 @@ In this exercise you'll calculate the *correlations* between different sets of r
   4. Based on your answers to 1 and 3, which assets are most strongly correlated? Which are least strongly correlated? If wanted to "hedge your bets", which of these stocks would you choose to form a portfolio?
 ```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
 #Exercise #6 - Correlations between Returns
-boa.prices <- Quandl("GOOG/NYSE_BAC", start_date = "2012-01-01", end_date = "2012-12-31", type = "zoo")
-boa.returns <- diff(log(boa.prices$Close))
+boa.prices = Quandl("GOOG/NYSE_BAC", start_date = "2012-01-01", end_date = "2012-12-31", type = "zoo")
+boa.returns = diff(log(boa.prices$Close))
 cor(boa.returns, apple.returns)
 cor(apple.returns, ibm.returns)
 cor(boa.returns, ibm.returns)

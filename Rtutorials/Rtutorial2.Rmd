@@ -490,7 +490,7 @@ survey[!is.na(sex) & !is.na(credits),
 In class we talked about the idea of putting numerical data into "bins" to make a histogram. More generally, it's sometimes necessary to convert numerical data into categorical data. A classic example is converting scores from a course into letter grades. You can do this using the command `cut`. (In fact, this is the function I'll use to determine your grades at the end of the semester!) First I'll create some fake grade data for us to play with:
 
 ```{r cut_1}
-grades <- c(67, 93, 85, 82, 88, 86, 78, 97, 74, 77, 81)
+grades = c(67, 93, 85, 82, 88, 86, 78, 97, 74, 77, 81)
 ```
 
 The `cut` function is a little tricky, so it's worth opening the help file (`?cut`) to consult as you read this. Its first argument is a numeric vector: the vector we want to "cut". It's second argument gives the "cut points." Let's try this out with some simple grade boundaries:
