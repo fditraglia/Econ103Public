@@ -127,7 +127,7 @@ abline(a = 0, b = 1)
 
 Carry out a linear regression in which `height` is the y-variable and `handedness` is the x-variable. Plot the data and add the regression line. Add red dashed lines to show that the regression line goes through the means of the data. Interpret your results. Is there a relationship between handedness and height? 
 
-```{r exercise_1, echo=FALSE, results='hide', fig.show='hide'}
+```{r exercise_1, echo = FALSE, results = 'hide', fig.show = 'hide', purl = FALSE}
 survey[ , {
   reg = lm(height ~ handedness)
   plot(height ~ handedness)
@@ -258,7 +258,7 @@ It turns out that R doesn't have a built-in function to calculate skewness (ther
   $$\mbox{Skewness} = \frac{\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^3}{s^3}$$
 where $s$ is the sample standard deviation. Call your function `skew`. It should take one argument, a vector `x`, and return the sample skewness of `x`. Make sure to handle missing values appropriately. Use the built-in R functions `mean`, `sum`, `length` and `sd` to construct your skewness function. Test your function out on the `handedness` data. You should get an answer of around -2.2.  
 
-```{r exercise_2, echo=FALSE, results='hide', fig.show='hide'}
+```{r exercise_2, echo = FALSE, results = 'hide', fig.show = 'hide', purl = FALSE}
 #Exercise #2 - Write a Function to Calculate Skewness
 skew = function(x){
   x = x[!is.na(x)]
@@ -318,7 +318,7 @@ we see that it works.
 
 Write a function to carry out linear regression called `myreg`. It should take two arguments: vectors `x` and `y` which you may assume have the same length. It should return a `data.table` with columns `a` for the intercept and `b` for the slope. Make sure to handle missing values appropriately. Feel free to use any built-in R functions you like *except* `lm`. Check your answer against the regression results for height and handspan that we calculated above. When creating this function, remember that regression is *not* symmetric.
 
-```{r exercise_3, echo=FALSE, results='hide', fig.show='hide'}
+```{r exercise_3, echo = FALSE, results = 'hide', fig.show = 'hide', purl = FALSE}
 #Exercise #3 - Write a Function to Carry Out Linear Regression
 myreg = function(y, x){
   keep = !is.na(x) & !is.na(y)
@@ -337,144 +337,184 @@ survey[ , myreg(y = height, x = handspan)]
 
 ## Stock Market Data {#part_three}
 
-Now that we know how to write our own functions, let's have a little fun playing the stock market. It's easy to download and play with stock price data using the R packages ``Quandl`` and ``zoo``. An R package is like an "expansion pack" that gives R new features. One of the great things about R is that there literally thousands of packages that expand the usefulness of R. 
+Now that we know how to write our own functions, let's have a little fun playing the stock market. It's easy to download and play with stock price data using the R packages `Quandl` and `zoo`. 
 
+#### Installing `Quandl` and `zoo`
 
-#### Installing ``Quandl`` and ``zoo``
-First you'll need to install ``Quandl`` and ``zoo``. You only need to do this once: all subsequent times you can skip this part. In RStudio go to "Tools > Install Packages." The first time you do this, you may be asked to choose a "Repository." Don't worry about what this is, you can choose any of them. The package installation will just be slightly quicker if you choose a repository that's geographically close to Penn. (It's really just a question of which server you instruct R to download the packages from.) Make sure that the checkbox "install dependencies" is checked and then enter ``Quandl, zoo`` in the text box labeled "Packages". Lots of text will whiz past in the R console and once it finishes you'll have access to the desired packages.
+Much like we did with `data.table` (and perhaps `curl`, by now), you can install `Quandl` and `zoo` with `install.packages`. As a novelty, we can install both at the same time:
 
-Again, you don't need to repeat the proceeding steps each time you want to use ``zoo`` or ``Quandl``. You do, however, need to *load* the packages every time you want to use them. (In other words, if you close RStudio you'll need to reload ``zoo`` and ``Quandl`` to use them.) Packages are loaded using the ``library`` command.
-```{r}
+```{r install.packages_both, eval = FALSE}
+install.packages(c("Quandl", "zoo"))
+```
+
+Again, you don't need to repeat the proceeding steps each time you want to use `zoo` or `Quandl`. You do, however, need to *load* the packages using `library` every time you want to use them. (In other words, if you close RStudio you'll need to reload `zoo` and `Quandl` to use them.)
+
+```{r libray_quandl_zoo}
 library(Quandl)
 library(zoo)
 ```
+
 Now we're ready to get started.
 
-#### Downloading Stock Prices
+### Downloading Stock Prices
+
 To start off I'll download prices for Apple stock:
-```{r,cache=TRUE}
-apple.prices = Quandl('GOOG/NASDAQ_AAPL', start_date = '2012-01-01', end_date = '2012-12-31', type = 'zoo')
+
+```{r load_apple}
+apple.prices = Quandl('GOOG/NASDAQ_AAPL', start_date = '2016-01-01', end_date = '2016-12-31', type = 'zoo')
 ```
+
 Notice that I got a warning saying that my access to Quandl is limited. While the service is free, you have to sign up (also free), to get unlimited access. Otherwise you're only allowed a certain number of queries per day. For this exercise that won't be a problem.
 
-Now I'll walk you through the arguments of the function ``Quandl``
-  - The first argument is the *Quandl Code* for the data you want. In this case, it happens that the code for Apple is ``GOOG/NASDAQ_APPL``. The ``GOOG`` indicates that the data *source* is Google Finance and ``NASDAQ`` indicates that we're looking for a company that's traded on the NASDAQ stock exchange. Finally, ``APPL`` is the ticker symbol for Apple Computer.
-  - ``start_date`` and ``end_date`` mean exactly what you think they do.
-  - ``type = 'zoo'`` tells Quandl to set up our data in the right format for using the library ``zoo``. More on that below.
+Now I'll walk you through the arguments of the function `Quandl`
+  - The first argument is the *Quandl Code* for the data you want. In this case, it happens that the code for Apple is `GOOG/NASDAQ_APPL`. The `GOOG` indicates that the data *source* is Google Finance and `NASDAQ` indicates that we're looking for a company that's traded on the NASDAQ stock exchange. Finally, `APPL` is the ticker symbol for Apple Computer.
+  - `start_date` and `end_date` mean exactly what you think they do. Note that the format must be YYYY-MM-DD.
+  - `type = 'zoo'` tells Quandl to set up our data in the right format for using the library `zoo`. More on that below.
 
 You can look up the codes for various datasets on the Quandl website. Here are a few others for you to play with:
-  - Stock Prices for Google: ``GOOG/NASDAQ_GOOG``
-  - Stock Prices for Amazon: ``GOOG/NASDAQ_AMZN``
-  - Stock Prices for Netflix: ``GOOG/NASDAQ_NFLX``
-  - S&P 500 Index Prices: ``YAHOO/INDEX_GSPC``
+  - Stock Prices for Google: `GOOG/NASDAQ_GOOG`
+  - Stock Prices for Amazon: `GOOG/NASDAQ_AMZN`
+  - Stock Prices for Netflix: `GOOG/NASDAQ_NFLX`
+  - S&P 500 Index Prices: `YAHOO/INDEX_GSPC`
   
-All of these series are at the daily frequency.
+All of these series are at daily frequency.
 
-#### Plotting Daily Stock Prices for Apple
-Now let's take a look at what's contained in ``apple.prices``
-```{r}
+### Plotting Daily Stock Prices for Apple
+
+Now let's take a look at what's contained in `apple.prices`
+
+```{r head_apple}
 head(apple.prices)
 ```
-As you can see, there's quite a lot of information here: for each day we have the opening price, the high price, the low price and the closing price. ``Volume`` records how many shares were traded on that particular day.
 
-The reason we loaded ``zoo`` is because it allows us to make some really nice plots with essentially no work. Since we instructed ``Quandl`` to store the Apple Computer price data in a format that ``zoo`` understands, the plot command now works almost like magic:
-```{r}
+As you can see, there's quite a lot of information here: for each day we have the opening price, the high price, the low price and the closing price. `Volume` records how many shares were traded on that particular day.
+
+The reason we loaded `zoo` is because it allows us to make some really nice plots with essentially no work. Since we instructed `Quandl` to store the Apple Computer price data in a format that `zoo` understands, the plot command now works almost like magic:
+
+```{r plot_apple}
 plot(apple.prices)
 ```
 
 We're mainly going to be interested in the closing prices, which we can plot by themselves as follows:
-```{r}
-plot(apple.prices$Close, main = 'Daily Closing Prices: Apple Computer - 2012', xlab = 'Date', ylab = 'Price')
+
+```{r plot_closing}
+plot(apple.prices$Close, main = 'Daily Closing Prices: Apple Computer - 2016',
+     xlab = 'Date', ylab = 'Price', lwd = 3)
 ```
 
+We've introduced a new plotting argument, `lwd`, which controls the _line width_. This makes the line plotted easier to understand.
+
 ### From Prices to Returns
+
 In financial economics, we're usually more interested in stock *returns* than stock *prices*. Returns measure the *percentage change* in a stock's price, so they tell us how much the value of our investment has grown (or declined). If $p_t$ is today's stock price and $p_{t-1}$ is yesterday's stock price, then
+
 $$r_t = \frac{p_t - p_{t-1}}{p_{t-1}}$$
+
 is today's stock *return*. This is just the percentage change in price from yesterday to today *expressed as a decimal*. For example a return of $0.5$ corresponds to a 50% *increase* in the stock price and a return of $-0.05$ corresponds to a 5% *decrease* in the stock price.
 
 #### Log Returns
-As it happens, researchers in financial economics tend not to use the formula for *geometric returns* $r_t$ given in the previous section. Instead they work with something called *log returns* which is more convenient mathematically and very similar to geometric returns provided that $r_t$ isn't too large. The precise approximation is: $r_t \approx log(p_t) - log(p_{t-1})$ when $r_t$ is close to zero. In other words, we can approximate geometric returns by taking the *difference of the natural log of successive prices* rather than computing the ratio that defines $r_t$. The interpretation remains the same: a percentage change expressed as a decimal. 
 
+As it happens, researchers in financial economics tend not to use the formula for *geometric returns* $r_t$ given in the previous section. Instead they work with something called *log returns* which is more convenient mathematically and very similar to geometric returns provided that $r_t$ isn't too large. The precise approximation is: $r_t \approx log(p_t) - log(p_{t-1})$ when $r_t$ is close to zero. In other words, we can approximate geometric returns by taking the *difference of the natural log of successive prices* rather than computing the ratio that defines $r_t$. The interpretation remains the same: a percentage change expressed as a decimal. 
 
 **If you want to know more about log returns, there's an optional section at the end of this document explaining them in more detail.**
 
-
 #### Log Returns for Apple
-Now we'll construct daily log returns for Apple based on the closing prices. Remember: we need successive differences of the natural log of prices. The comand for successive differences in R is ``diff``, for example:
-```{r}
+
+Now we'll construct daily log returns for Apple based on the closing prices. Remember: we need successive differences of the natural log of prices. The comand for successive differences in R is `diff`, for example:
+
+```{r diff}
 foo = c(1,2,4,7,11)
 diff(foo)
 ```
-since $2-1 = 1$, $4-2 =2$, $7-4 = 3$ and $11 - 7 = 4$. We can combine this with the function ``log`` to compute log returns for Apple as follows:
-```{r}
+
+since $2-1 = 1$, $4-2 =2$, $7-4 = 3$ and $11 - 7 = 4$.
+
+We can combine this with the function `log` to compute log returns for Apple as follows:
+
+```{r log_returns}
 apple.returns = diff(log(apple.prices$Close))
 ```
+
 Plotting these, we have
-```{r}
-plot(apple.returns, main = 'Apple Computer - 2012', xlab = 'Date', ylab = 'Log Daily Returns', col = 'blue')
+
+```{r plot_log_returns}
+plot(apple.returns, main = 'Apple Computer - 2016',
+     xlab = 'Date', ylab = 'Log Daily Returns', 
+     col = 'blue', lwd = 3)
 ```
 
-Notice how different everything looks now! While the prices show a clear trend, the returns do not share this trend. They're much "spikier."" For those of you who know something about finance, this is often described by saying that prices follow a "random walk" while returns are "stationary." If you want to learn more about this, you should take Frank Diebold's undergrad course on forecasting.
+Notice how different everything looks now! While the prices show a clear trend, the returns do not share this trend. They're much "spikier."" For those of you who know something about finance, this is often described by saying that prices follow a "random walk" while returns are "stationary." If you want to learn more about this, you should take [Frank Diebold's undergrad course on forecasting](http://economics.sas.upenn.edu/undergraduate-program/courses/econ-221-econometric-forecasting).
 
-#### Summary Statistics for Apple Returns
-So what are the Apple's returns like? Could I make a fortune by owning this stock? The sample mean is a measure of *average* returns, which you can think of as the average "reward" for holding the stock
-```{r}
+### Summary Statistics for Apple Returns
+
+So what are Apple's returns like? Could I make a fortune by owning this stock? The sample mean is a measure of *average* returns, which you can think of as the average "reward" for holding the stock
+
+```{r average_return}
 mean(apple.returns)
 ```
+
 While the sample standard deviation is a measure of the *variability* or *volatility* in returns 
-```{r}
+
+```{r sd_return}
 sd(apple.returns)
 ```
+
 which you can think of as the "risk" of holding the stock. All things equal, you'd prefer a stock with high average returns and a low standard deviation.
 
 Note that the preceding values are percentages *expressed as decimals*. To convert them into ordinary percents, we multiply by 100
-```{r}
+
+```{r as_pct}
 mean(apple.returns) * 100
 sd(apple.returns) * 100
 ```
-So, the average daily (log) return for Apple is 0.1% with a standard deviation of 1.8%. 
 
-The nice thing about log returns is that to calculate cumulative returns over a period of time, you simply add up the daily log returns. For example, to get the cumulative log return for 2012 do the following:
-```{r}
+So, the average daily (log) return for Apple is 0.04% with a standard deviation of 1.5%. 
+
+The nice thing about log returns is that to calculate cumulative returns over a period of time, you simply add up the daily log returns. For example, to get the cumulative log return for 2016 do the following:
+
+```{r cum_return}
 sum(apple.returns)
 ```
-This means that if you'd started out holding $1 of Apple stock in January 2012, the value of your investment would have grown to about $1.26 by the end of the year.
 
-#### Are Apple Returns Skewed? 
+This means that if you'd started out holding \$1 of Apple stock in January 2016, the value of your investment would have grown to about \$1.09 by the end of the year.
+
+### Are Apple Returns Skewed? 
+
 A classic question in financial economics is whether stock returns are skewed. Let's have a look at Apple:
-```{r}
+
+```{r skewed_returns}
 hist(apple.returns) 
 mean(apple.returns)
 median(apple.returns)
 ```
 
-
-
-
 ### Exercise #4
-Are Apple Returns Skewed? Test out your function for calculating skewness on ``apple.returns`` and interpret your results. 
-```{r echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
+
+Are Apple Returns Skewed? Test out your function for calculating skewness on `apple.returns` and interpret your results. 
+
+```{r exercise_4, echo = FALSE, results = 'hide', fig.show = 'hide', warning = FALSE, purl = FALSE}
 #Exercise #4 - Are Apple Returns Skewed?
 skew(apple.returns)
 ```
 
-
-
 ### Exercise #5
-Download data for IBM (Quandl Code: GOOG/NYSE_IBM) and carry out the same analysis that we did for Apple Computer above. Use your results to answer the following questions:
+
+Download data for IBM (Quandl Code: GOOG/NYSE_IBM) and carry out the same analysis that we did for Apple Computer above for the year 2016. Use your results to answer the following questions:
   1. Which has higher average returns over the period studied: Apple or IBM?
   2. Which are more "volatile" or "risky": IBM's returns or Apple's?
-  3. If you had invested a dollar in IBM at the start of 2012, how much would your investment have been worth at the end of the year?
+  3. If you had invested a dollar in IBM at the start of 2016, how much would your investment have been worth at the end of the year?
   4. Are IBM returns skewed? How do they compare to Apple's returns in this sense?
   
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
+```{r exercise_5, echo = FALSE, results = 'hide', fig.show = 'hide', warning = FALSE, purl = FALSE}
 #Exercise #5 - Repeat the Above for IBM Returns
-ibm.prices = Quandl("GOOG/NYSE_IBM", start_date = "2012-01-01", end_date = "2012-12-31", type = "zoo")
+ibm.prices = Quandl("GOOG/NYSE_IBM", start_date = "2016-01-01", end_date = "2016-12-31", type = "zoo")
 head(ibm.prices)
 plot(ibm.prices)
-plot(ibm.prices$Close, main = "Daily Closing Prices: IBM - 2012", xlab = "Date", ylab = "Price")
+plot(ibm.prices$Close, main = "Daily Closing Prices: IBM - 2016",
+     xlab = "Date", ylab = "Price", lwd = 3)
 ibm.returns = diff(log(ibm.prices$Close))
-plot(ibm.returns, main = "IBM - 2012", xlab = "date", ylab = "Log Daily Returns", col = "Blue")
+plot(ibm.returns, main = "IBM - 2016", xlab = "date", 
+     ylab = "Log Daily Returns", col = "blue", lwd = 3)
 mean(ibm.returns)
 sd(ibm.returns)
 sum(ibm.returns)
@@ -484,27 +524,48 @@ median(ibm.returns)
 skew(ibm.returns)
 ```
 
-
-
 ### Exercise #6
+
 In this exercise you'll calculate the *correlations* between different sets of returns.
   1. Calculate the sample correlation between Apple returns and IBM returns. Intepret your result.
   2. Download price data for Bank of America stock (Quandl Code: GOOG/NYSE_BAC) over the same period used for Apple and IBM and construct daily log returns using closing prices.
   3. Calculate the correlation between Apple and Bank of American returns, and Bank of America and IBM returns.
   4. Based on your answers to 1 and 3, which assets are most strongly correlated? Which are least strongly correlated? If wanted to "hedge your bets", which of these stocks would you choose to form a portfolio?
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
+  
+```{r exercise_6, echo = FALSE, results = 'hide', fig.show = 'hide', warning = FALSE, purl = FALSE}
 #Exercise #6 - Correlations between Returns
-boa.prices = Quandl("GOOG/NYSE_BAC", start_date = "2012-01-01", end_date = "2012-12-31", type = "zoo")
+boa.prices = Quandl("GOOG/NYSE_BAC", start_date = "2016-01-01", end_date = "2016-12-31", type = "zoo")
 boa.returns = diff(log(boa.prices$Close))
 cor(boa.returns, apple.returns)
 cor(apple.returns, ibm.returns)
 cor(boa.returns, ibm.returns)
 ```
 
-
-
 ### An Explanation of Log Returns (Optional)
+
 You don't have to read this if you don't want to, and I'm not going to test you on it, but I suspect some of you may be curious about why log returns provide a good approximation of geometric returns and why summing log returns gives us cumulative returns. This section explains.
+
+The key can be summarized in the following graphs:
+
+```{r log_vs_x}
+x = seq(-.9, .9, length.out = 100)
+plot(x, log(1 + x), lwd = 3L, type = 'l', col = "blue",
+     xlab = "x", ylab = "y", main = "Comparing x and log(1+x)")
+abline(v = 0, h = 0)
+lines(x, x, lwd = 2L, lty = 2L, col = "red")
+```
+
+$log(1+x)$ and $x$ are very close to one another for $x$ near 0. They become almost indistinguishable if we zoom in:
+
+```{r log_vs_x_zoom}
+x = seq(-.05, .05, length.out = 100)
+plot(x, log(1 + x), lwd = 3L, type = 'l', col = "blue",
+     xlab = "x", ylab = "y", main = "Comparing x and log(1+x)")
+abline(v = 0, h = 0)
+lines(x, x, lwd = 2L, lty = 2L, col = "red")
+```
+
+Practically, this means that 5% -- in decimal form, .05 -- is about the same as $log(1.05)$. The math works as follows:
 
 Recall the first-order Taylor Approximation from Calculus:
 
@@ -526,7 +587,7 @@ and the approximation is good when $x$ is close to $x_0$. We're free to choose a
 
   $$log(1+x) \approx x$$
   
-since $log(1)=0$. In other words, provided that $x$ is close to zero, $log(1+x)\approx x$. This is the approximation we'll use to motivate log returns. Now recall our definition of geometric returns from above:
+since $log(1)=0$. In other words, provided that $x$ is close to zero, $log(1+x)\approx x$, proving what we observed visually above. This is the approximation we'll use to motivate log returns. Now recall our definition of geometric returns from above:
 
 $$r_t = \frac{p_{t}-p_{t-1}}{p_{t-1}}$$ 
 
