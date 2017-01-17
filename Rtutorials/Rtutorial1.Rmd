@@ -12,9 +12,10 @@ output:
 
 This is a long tutorial, but the material is fairly straightforward. If you run into any trouble feel free to post on Piazza. 
 
+The most crucial piece of advice for learning a programming language is to recognize it requires the same approach as learning a foreign language -- you'll benefit most from being _actively engaged_ in learning. That means not just reading along with these tutorials, but _actively processing_ what it says and _running the code_ yourself.
 
-
-## Part 1: Installing R
+Part 1: Installing R
+--------------------------------------------------------
 
 Carry out the following two steps *in order*
 
@@ -23,8 +24,8 @@ Carry out the following two steps *in order*
 2. Go to http://rstudio.org/download/desktop and click the link listed under "Recommended for Your System". Follow the instructions to install RStudio.
 
 To make sure this worked, open the program RStudio and go to File > New > R Script. This will open a blank text document. In the document, type the text given in the box below and then click and drag to highlight both lines of code and click the button marked "Run." If everything is working correctly, the console should display ``TRUE``.
-```{r results='hide'}
-x <- 5
+```{r initial_test, results='hide'}
+x = 5
 x == 5
 ```
 
@@ -32,503 +33,695 @@ Congratulations: you've just written your first R script! To save it, go to File
 
 Note that you can run one line of your script at a time by moving your cursor to that line and pressing CONTROL-ENTER or COMMAND-RETURN depending on whether you're running Mac OSX, Linux or Windows. Another helpful shortcut is CONTROL-A  (COMMAND-A on Mac) which highlights all of the lines of code in the text editor.
 
-
-
-Part 2: TryR
+Part 2: The Absolute Basics
 --------------------------------------------------------
 
-In this section, you'll be completing levels 1-6 on Try R, an online tutorial for learning R.
+Here are some of the most fundamental things you can do with R.
 
-1. Go to http://www.codeschool.com/courses/try-r
+### Arithmetic
 
-2. Hit "START COURSE FOR FREE." NOTE: You will have to make an account to do this, but your penn email and whatever password you want will be fine. 
+```{r arithmetic}
+#add numbers
+1 + 1
+#subtract them
+8 - 4
+#divide
+13/2
+#multiply
+4*pi
+#exponentiate
+2^10
+```
 
-3. Complete levels 1-6. After you complete each level, go back to RStudio and solve the corresponding exercises given in Part 4 below to test your understanding. Save your work in an R script. 
+### Logical Comparison
 
-For your reference, I have posted a complete transcript of the commands introduced in TryR on the course webpage.
+```{r logicals}
+3 < 4
+3 > 4
+#contrast with 3 = 4; see section about variables below
+3 == 4
+#!= means "not equal to"
+3 != 4
+4 >= 5
+4 <= 5
+2 + 2 == 5
+10 - 6 == 4
+```
 
+### Strings (text)
 
+Numbers are bread and butter for computers, but text is what will facilitate understanding for us mere mortals.
 
-Part 3: More Commands
---------------------------------------------------------
-TryR gives a good foundation for starting out with R, but there are some important commands it doesn't mention. Once you've finished TryR, work through this material. Corresponding exercises are given in Part 4 below. You may also want to read this part before attempting the exercises for TryR Section 6.
+```{r strings}
+'Econometrics is awesome'
+#R delimits strings with EITHER double or single quotes.
+#  There is only a very minimal difference
+"Econometrics is still awesome"
+```
 
-### Variable Names
-You can use nearly anything as a variable name in R. The only rules are:
-  1. Your variable name must not start with a number
-  2. and must not include any characters that have a "special meaning" such as ``*`` ``+`` and so on
+### Variables
 
-In practical terms, this means you should only use letters, numbers, the underscore ``_`` and periods ``.`` in your variable names. It's also good practice not to give variables the same names as existing R commands. For example ``mean`` would not be a good choice for a variable name but ``my.mean`` is fine.
+Just like in algebra, variables are a great form of shorthand. Instead of writing 3.1415926... all the time, we can just write `pi`.
+
+Assignment to a variable happens from right to left -- the value on the right side gets assigned to the _name_ on the left side. You can use nearly anything as a variable name in R. The only rules are:
+
+  1. `.` and `_` are OK, but no other symbols. 
+  2. Your variable name must not start with a number or `_` (`2squared` and `_one` are illegal).
 
 [A note for those of you who have programming experience: while R supports object-oriented programming, periods ``.`` do *not* have a special meaning in the language. For historical reasons, R programmers often use periods in place of underscores in variable names, but either works. Just be consistent to keep your code readable.]
 
-Here are some examples:
-```{r}
-foo <- 3
-bar <- 5
-foo.bar <- foo + bar
-foo.bar2 <- 2 * foo.bar
-foo_bar <- foo - bar
+```{r variables}
+x = 42
+x / 2
+#if we assign something else to x,
+#  the old value is deleted
+x = "Melody to Funkytown!"
+x
+x = 5
+x == 5
+foo = 3
+bar = 5
+foo.bar = foo + bar
+foo.bar
+foo.bar2 = 2 * foo.bar
+foo.bar2
+foo_bar = foo - bar
+foo_bar
 ```
 
+Note: In programmer speak, `=` here is an "assignment operator" -- it's the thing used to assign values to a variable name. R also has a second assignment operator that you're bound to see sooner or later, `<-`. So `x <- 42` and `x = 42` are _identical_, and both accomplish the task of assigning the value of `42` to the name `x`. We'll try to stick with using `=` since it's easier to type and in some ways more intuitive. See [this](http://stackoverflow.com/questions/1741820/assignment-operators-in-r-and) wonderful post for some more history and a very subtle difference between the two operators that you needn't concern yourself with for now.
 
+### Vectors & Types
 
-### ``prod``
-Just like you can use the command sum to add up the elements of a numeric vector, you can use prod to take their product:
-```{r}
-foo <- 1:5
-sum(foo)
-prod(foo)
+In R, a vector is just a (ordered) set of related things. You should basically think of it like a column in Excel.
+
+```{r vectors_1}
+x = c(4, 7, 9)
+x
+y = c('a', 'b', 'c')
+y
 ```
 
-### ``length``
-This command tells us how many elements a vector contains. This will frequently come in handy:
-```{r}
-length(foo)
-length(1:100)
+`4`, `7`, and `9` are "related" because they're all numbers; `a`, `b` and `c` are all letters. Having variables is becoming more convenient -- instead of having to write `c(4, 7, 9)` all the time, we can just write `x`.
+
+What happens when we try and combine things that aren't so obviously related?
+
+```{r vectors_2}
+x = c(1, TRUE, "three")
+x
 ```
 
-### ``exp`` and ``log``
-In R, the the function ``exp`` gives $e^x$ while ``log`` takes the natural logarithm:
-```{r}
-exp(1)
-log(1)
-exp(log(1))
+Note the quotation marks. R has converted `1` and `TRUE` into text representations. That's because `1` and `TRUE` are different _type_s than `"three"`. There are four basic types of variables your likely to encounter in this class, listed here in heirarchical order:
+
+  1. `logical`: `TRUE` or `FALSE`
+  2. `integer`: `0L`, `-1L`, `1L`, etc. A (real) number without a decimal part. Technical note: they take up less space in the computer than numbers with decimals.
+  3. `numeric`: `pi`, `0.34`, `1.4043`, etc. A real number.
+  4. `character`: `"some words"`, `"more words"`, etc.
+
+Vectors are converted to the highest number on this list present -- `x` above has `"three"` so the whole vector becomes a `character`.
+
+### Vector Arithmetic and Functions
+
+Vectors make it easy to do many computations all at once -- adding one to a list of numbers, dividing all of them by 3, etc. And as long as two vectors are the same length, we can combine them in natural ways:
+
+```{r vector_arithmetic}
+x = c(1, 2, 3)
+x + 4
+x/3
+-x
+x^3
+y = c(3, 2, 1)
+x - y
+x * y
+x/y
+x > 2
+x >= 2
 ```
 
+Just like in math, a function is a way of mapping input to output, and just like in most math classes, you can spot functions since they use parentheses: `()`. We've already seen the _c_oncatenate function `c` used (for example) to create vectors.
 
-### ``abs``
-The R function ``abs`` calculates the absolute value of a number or vector:
-```{r}
-abs(-1)
-abs(1)
-abs(-3:3)
+We can also apply any number of ubiquitous functions to our vector input.  Just a small taste:
+
+```{r functions}
+x = c(1, 2, 3)
+#sum: add up the elements of a vector
+sum(x)
+#Just like you can use the command sum to add up the
+#  elements of a numeric vector, you can use
+#  prod to take their product:
+prod(x)
+sqrt(x)
+y = c(-1, 2, 4)
+#abs: absolute value
+abs(y)
+#exp: exponential. exp(x) is e^x
+exp(y)
+#log: _natural_ logarithm (base e)
+log(x)
+#Note that these functions interpret their input 
+#  as *radians* rather than degrees.
+sin(x) + cos(y)
+max(y)
+min(y)
+range(y)
+mean(x)
+median(x)
 ```
 
+Another thing that we will do all the time is use regularly-spaced sequences of numbers. These are created in R with `:` or `seq`:
 
-### Trigonometry
-R also knows $\pi$ and performs basic trig functions. These work pretty much how you'd expect:
-```{r}
-pi
-sin(0)
-cos(pi)
-```
-Note that these functions are specified in *radians* rather than degrees.
-
-### ``cbind`` and ``rbind``
-These commands allow us to build up a matrix from several vectors (or other matrices) by pasting them together as columns or rows. The function ``cbind`` is short for "column bind"
-```{r}
-x <- 1:5
-y <- 2*x
-z <- cbind(x,y)
+```{r sequences}
+x = 1:10
+x
+y = 10:1
+y
+#some times the gap is not 1
+z = seq(0, 1, by = .02)
 z
-```
-and ``rbind`` is short for "row bind"
-```{r}
-z <- rbind(x,y)
-z
-```
-We can use these commands in more complicated ways as well:
-```{r}
-rbind(z,x)
-cbind(1:5, 2 * 1:5, 3 * 1:5)
+#other times we care less about the gap and more
+#  more about how many points we get out
+w = seq(0, 1, length.out = 20)
 ```
 
-### ``data.frame``
-This command lets you build up a dataframe from several vectors of the same length:
-```{r}
-foo <- 1:5
-bar <- 2 * foo
-foo.bar <- data.frame(foo, bar)
+In addition to math/arithmetic functions, there is a litany of basic programming functions that you're likely to use all of the time:
+
+```{r programming_functions}
+x = 99:32
+#length: how many elements (items) are there in x?
+length(x)
+y = c("hey you!", "out there in the cold")
+#what TYPE of variable does R think this is?
+class(y)
+#rep: repeat/reproduce
+rep(y, 4)
+#head/tail: display only the beginning/end
+#  of an object -- very useful for very
+#  large objects
+x = 1:100000
+head(x)
+tail(x)
+```
+
+### Subsetting Vectors: `[`
+
+Often we want to examine only part of a vector, most commonly the part of a vector that satisfies some condition, but also looking at the first or last few elements. To do this we _extract_ or subset those elements by using `[`:
+
+```{r vector_extraction_1}
+x = c(5, 4, 1)
+x[1]
+x[3]
+x[1:2]
+x[2:3]
+```
+
+In the syntax `x[something]`, note that _`something` is itself a vector_! So the above is all short-hand for the more complicated types of subsets:
+
+```{r vector_extraction_2}
+x = 20:30
+x
+x[c(1, 3, 5)]
+x[c(5, 9)]
+x[seq(1, 10, by = 2)]
+```
+
+Besides being an `integer`, `something` can be a _logical vector_ of the same length as the vector itself:
+
+```{r vector_extraction_3}
+x = c(5, 6, 7)
+x[c(TRUE, TRUE, FALSE)]
+x[c(FALSE, TRUE, FALSE)]
+x[c(FALSE, FALSE, TRUE)]
+```
+
+Most commonly we'll do something that's identical to the above but reads more naturally:
+
+```{r vector_extraction_4}
+x = c(-1, 0, 1)
+x > 0
+x[x > 0]
+x[x <= 0]
+```
+
+We can also _replace_ parts of a vector by subsetting:
+
+```{r vector_replacement}
+x = c(-1, 5, 10)
+x[3] = 4
+x
+x[x < 0] = 0
+```
+
+### Named Vectors
+
+It's also often useful to _name_ our vectors to help organize the information. Suppose we were keeping track of the ages of the Trumps:
+
+```{r vector_names_1}
+trump_ages = c(70, 46, 38, 34, 32, 22, 9)
+```
+
+This is nice, but much more useful if we keep track of who each element represents:
+
+```{r vector_names_2}
+trump_ages = c(Donald = 70, Melania = 46, Donald_Jr = 38, Ivanka = 34,
+               Eric = 32, Tiffany = 22, Barron = 9)
+trump_ages
+```
+
+We can also use the `names` function to assign names; this is sometimes easier, e.g., if the names have spaces:
+
+```{r vector_names_3}
+names(trump_ages) = c("Donald", "Melania", "Donald, Jr.", "Ivanka", "Eric", "Tiffany", "Barron")
+trump_ages
+```
+
+This also makes code for subsetting much easier to read, since we can subset by the names:
+
+```{r vector_names_4}
+trump_ages["Donald"]
+trump_ages[c("Donald", "Barron")]
+```
+
+### Getting Help: Documentation
+
+If you're unsure of how something works in R -- what the arguments are to a function, how it works, etc. -- your first step is to check the documentation:
+
+```{r documentation}
+?sum
+?cos
+?"="
+```
+
+### Lists
+
+We saw above that R doesn't like vectors to have different types: `c(TRUE, 1, "Frank")` becomes `c("TRUE", "1", "Frank")`. But storing objects with different types is absolutely fundamental to data analysis.
+
+R has a different type of object besides a vector used to store data of different types side-by-side: a `list`:
+
+```{r lists_1}
+x = list(TRUE, 1, "Frank")
+x
+```
+
+Note how different the output looks, as compared to using `c`!! The quotation marks are gone except for the last component. You can ignore the mess of `[[` and `[` for now, but as an intimation, consider some more complicated lists:
+
+```{r lists_2}
+x = list(c(1, 2), c("a", "b"), c(TRUE, FALSE), c(5L, 6L))
+x
+y = list(list(1, 2, 3), list(4:5), 6)
+y
+```
+
+`x` is a list which has 4 components, each of which is a vector with 2 components. This gives the first hint at how R treats a dataset with many variables of different types – at core, R stores a data set in a list!
+
+`y` is a nested list – it’s a list that has lists for some of its components. This is very useful for more advanced operations, but probably won’t come up for quite some time, so don’t worry if you haven’t wrapped your head around this yet.
+
+### Packages
+
+One of the things that makes R truly exceptional is its vast library of user-contributed packages.
+
+R comes pre-loaded with a boat-load of the most common functions / methods of analysis. But in no way is this congenital library complete.
+
+Complementing this core of the most common operations are external _packages_, which are basically sets of functions designed to accomplish specific tasks.
+
+Best of all, unlike some super-expensive programming languages, all of the thousands of packages available to R users (most importantly through CRAN, the **C**omprehensive **R** **A**rchive **N**etwork) are _completely free of charge_. 
+
+The two most important things to know about packages for now is where to find them, how to install them, and how to load them.
+
+We'll work extensively with the `data.table` package, which was built for working with huge data sets.
+
+#### Where to find packages
+
+Long story short: Google. Got a particular statistical technique in mind? The best R package for this is almost always the top Google result if asked correctly.
+
+#### How to install packages
+
+Just use `install.packages`! 
+
+```{r packages_1, eval = FALSE}
+install.packages("data.table")
+```
+
+This will download the code from the package to your computer to a place that R understands.
+
+We do _not_ yet have access to the functions in the package. We have to load it first.
+
+#### How to load packages
+
+Just add it to your library!
+
+```{r packages_2}
+library(data.table)
+```
+
+_Et voila_! You'll now have access to all of the awesome functions in the `data.table` package. You can also Google "tutorial data.table" (or in general "tutorial [package name]") and you're very likely to find a trove of sites trying to help you learn the package.
+
+### `data.table`s
+
+Data sets are the lifeblood of a data lover!
+
+As mentioned above, data sets in R basically `list`s where every element has the same length. In basic R, this is done with a `data.frame`, but it'll be easier for a beginner to understand the syntax of a `data.table`, so you can forget about `data.frame`s for now.
+
+We can build a `data.table` from scratch with the `data.table` command. This command lets you build up a `data.table` from several vectors of the same length:
+
+```{r data.table_1}
+foo = 1:5
+bar = 2 * foo
+foo.bar = data.table(foo, bar)
 foo.bar
 ```
-In the preceding example I built a dataframe with only two columns, but you can add as many as you like. Just separate them by commas:
-```{r}
-y <- -4:0
-data.frame(foo, bar, y)
+
+In the preceding example I built a `data.table` with only two columns, but you can add as many as you like. Just separate them by commas:
+
+```{r data.table_2}
+y = -4:0
+data.table(foo, bar, y)
 ```
 
-### ``subset``
-When you're working with a dataframe, you'll often want to look at subsets that satisfy a particular condition. First we'll set up a simple dataframe:
-```{r}
-location <- c("New York", "Chicago", "Boston", "Boston", "New York")
-salary <- c(70000, 80000, 60000, 50000, 45000)
-title <- c("Office Manager", "Research Assistant", "Analyst", "Office Manager", "Analyst")
-hours <- c(50, 56, 65, 40, 50)
-jobsearch <- data.frame(location, salary, title, hours)
+### Subsetting data
+
+When you're working with data, you'll often want to look at subsets that satisfy a particular condition. First we'll set up a simple `data.table`:
+
+```{r subsetting_1}
+location = c("New York", "Chicago", "Boston", "Boston", "New York")
+salary = c(70000, 80000, 60000, 50000, 45000)
+title = c("Office Manager", "Research Assistant", "Analyst", "Office Manager", "Analyst")
+hours = c(50, 56, 65, 40, 50)
+jobsearch = data.table(location, salary, title, hours)
 jobsearch
 ```
+
 Now, suppose you wanted to see only the jobs in New York. You could select them as follows:
-```{r}
-subset(jobsearch, location == 'New York')
+
+```{r subsetting_2}
+jobsearch[location == 'New York']
 ```
-Notice the use of the *double equal sign*. This command is *testing a logical condition*. If you use a single equals sign, this won't work since ``=`` is a synonym for ``<-`` in R. The preceding command looks at the dataframe jobsearch and then the column location and checks which entries satisfy the condition that the location is New York. Finally, the function returns *only these rows* of the dataframe.
+
+Notice the use of the *double equal sign*. This command is *testing a logical condition*. If you use a single equals sign, this won't work since `=` is what is used to name the arguments to a function in R. The preceding command looks at the `data.table` `jobsearch` and then the column `location` and checks which entries satisfy the condition that the `location` is `"New York"`. Finally, the function returns *only these rows* of the `data.table`.
 
 Now suppose you wanted to extract only those jobs that pay more than $50,000. The command for this is as follows:
-```{r}
-subset(jobsearch, salary > 50000)
+
+```{r subsetting_3}
+jobsearch[salary > 50000]
 ```
+
 Finally, suppose the most you're willing to work per week is 50 hours. Here are the jobs you should consider:
-```{r}
-subset(jobsearch, hours <= 50)
+
+```{r subsetting_4}
+jobsearch[hours <= 50]
 ```
 
-### ``head`` and ``tail``
-Some dataframes are too large to display all at once on the screen. One such example is the built-in dataset EuStockMarkets which gives daily closing prices for various European Stock markets. To view the first few rows of a dataframe, we use the command ``head``
-```{r}
-head(EuStockMarkets)
-```
-To view the last few rows, we use the command ``tail``
-```{r}
-tail(EuStockMarkets)
-```
+### Loading External Data & Data Summary
 
-### More on Matrix and Dataframe Access
-One of the most fundamental R skills you'll need to learn is how to access parts of a dataframe, matrix, or vector. This can be a little confusing at first since there are usually *several different ways to accomplish the same thing*. This section is intended to clarify some of the material on dataframes and matrices from the TryR tutorial. The best way to learn this is to play around with different commands and see what happens. If you don't get the result you were expecting, try to think about why.
+The vast majority of the time, you won't be using data that you type in by hand -- you'll be importing data from external sources. One of the most common ways to find such data is in comma-separated format -- such files are structured such that each row represents a row of data, and columns are separated by a comma (actually, any separating character is possible), e.g., like this:
 
-First I'll build a simple matrix and dataframe from the following vectors:
-```{r}
-person <- c("Linus", "Snoopy", "Lucy", "Woodstock")
-age <- c(5, 8, 6, 2)
-weight <- c(40, 25, 50, 1)
-my.dataframe <- data.frame(person, age, weight)
-my.matrix <- cbind(age, weight)
 ```
-and display them
-```{r}
-my.dataframe
-my.matrix
+name,age,company
+Mike,24,BCG
+Rodrigo,25,Uber
+Frank,28,FMC
+Ethan,22,AirBnB
 ```
 
-#### Fact #1: You can use the same principles to select subsets of vectors, matrices and dataframes *by position*
+It's very easy to read files like this into R very quickly using `fread`. The weather site Weather Underground offers lots of historical data in such tabular format. E.g., the data on [this](https://www.wunderground.com/history/airport/KPHL/2017/1/10/MonthlyHistory.html) page about the weather recorded at Philadelphia International Airport is available as a .csv online [here](https://www.wunderground.com/history/airport/KPHL/2017/1/10/MonthlyHistory.html?format=1).
 
-The only real difference here is that vectors are one-dimensional:
-```{r}
+We can read this into R like so:
+
+```{r data_import}
+weather = fread('http://michaelchirico.github.io/philly_weather_data.csv')
+weather
+summary(weather)
+names(weather)
+```
+
+NB: More typically, instead of a URL, you'll give `fread` the path to where a .csv file is stored on your computer.
+
+### More on `data.table` Access
+
+One of the most fundamental R skills you'll need to learn is how to access parts of a `data.table` or vector. This can be a little confusing at first since there are usually *several different ways to accomplish the same thing*. This section is intended to add more clarity to some of the material on `data.table`s from above. The _best way to learn this is to play around with different commands and see what happens_. There are some exercises at the end of the tutorial to do just that. If you don't get the result you were expecting, try to think about why.
+
+First I'll build a simple `data.table` from the following vectors:
+
+```{r data.table_extra_1}
+person = c("Linus", "Snoopy", "Lucy", "Woodstock")
+age = c(5, 8, 6, 2)
+weight = c(40, 25, 50, 1)
+my.data.table = data.table(person, age, weight)
+my.data.table
+```
+
+#### Fact #1: You can use the same principles to select subsets of vectors and `data.table`s *by position*
+
+The only real difference here is that vectors are one-dimensional
+```{r data.table_extra_2}
 age[1:2]
 age[c(1,3)]
 ```
-whereas matrices and dataframes are two-dimensional so we use a comma to denote ``[ROWS,COLUMNS]``
-```{r}
-my.matrix[1,2]
-my.dataframe[1,3]
-my.matrix[1:3,2]
-my.dataframe[1:3,3]
+
+whereas `data.table`s are two-dimensional; the first dimension is rows:
+```{r data.table_extra_3}
+my.data.table[1:2]
+my.data.table[c(1, 3)]
 ```
+
+The second dimension is columns; we can specify rows _and_ columns by giving two numbers inside `[]`:
+
+```{r data.table_extra_4}
+#what is the first row of the third column?
+my.data.table[1, 3]
+#what are the first three rows of the third column?
+my.data.table[1:3, 3]
+```
+
 If you leave the part *before* the comma blank, you get all the rows:
-```{r}
-my.matrix[,1:2]
-my.dataframe[,2:3]
-```
-If you leave the part *after* the comma blank, you get all the columns:
-```{r}
-my.matrix[c(1,3),]
-my.dataframe[c(1,3),]
+
+```{r data.table_extra_5}
+my.data.table[ , 2:3]
 ```
 
+If you leave the part *after* the comma blank (or don't include it at all), you get all the rows:
 
-#### Fact #2: All the columns of a matrix *must* contain the same kind of data.
+```{r data.table_extra_6}
+my.data.table[c(1,3), ]
+my.data.table[c(2,4)]
+```
 
-Watch what happens if I try to add ``person`` to ``my.matrix``
-```{r}
-cbind(my.matrix, person)
-```
-R has added quotation marks! Since ``person`` contains character data rather than numeric data, R changed all the *numbers* in ``my.matrix`` to be character data as well. This is called *coercion* and it's what R does when you give it incompatible data types. We can check this by attempting to subtract 1 from the ``weight`` column of this new matrix
-```{r,error=TRUE}
-cbind(my.matrix, person)[,2] - 1
-```
-It doesn't work.
+#### Fact #2: There are *three ways* to access the columns of a `data.table` *by name*. 
 
-#### Fact #3: The columns of a dataframe can store *different* kinds of data.
-In contrast, we *can* do math with the ``weight`` column of ``my.dataframe`` even though the column ``person`` contains character data
-```{r}
-my.dataframe[,3] - 1
-```
-This is basically what dataframes were designed for: to allow for columns that might contain different kinds of data.
+The first way is to use `[["COLUMN NAME GOES HERE"]]`
 
-#### Fact #4: There are *three ways* to access the columns of a dataframe *by name*. 
-The first way is to use ``[["COLUMN NAME GOES HERE"]]``
-```{r}
-my.dataframe[["weight"]]
+```{r data.table_extra_7}
+my.data.table[["weight"]]
 ```
-The second is to use ``$`` which is, in fact, just shorthand for ``[["COLUMN NAME GOES HERE"]]``
-```{r}
-my.dataframe$weight
+
+The second is to use `$`, which is often faster to type since it doesn't require the use of quotation marks:
+
+```{r data.table_extra_8}
+my.data.table$weight
 ```
+
 Both of the preceding methods are limited in that they only allow us to reference a single column. We can reference multiple columns as follows:
-```{r}
-my.dataframe[,c("person", "weight")]
+```{r data.table_extra_9}
+my.data.table[ , c("person", "weight")]
 ```
-Since we left the part before the comma blank, this gave us all the rows. We could get the same thing by accessing these columns *by position*
-```{r}
-my.dataframe[,2]
-my.dataframe[,c(1,2)]
-my.dataframe[,1:2]
+
+Since we left the part before the comma blank, this gave us all the rows. We could get the same thing by accessing these columns *by position* (though this is generally not recommended)
+```{r data.table_extra_10}
+my.data.table[ , 2]
+my.data.table[ , c(1,2)]
+my.data.table[ , 1:2]
 ```
-In some cases it's easier to access columns of a dataframe *by name* and in others it's easier to access them *by position*. 
+
+In some cases it's easier to access columns of a `data.table` *by name* and in others it's easier to access them *by position*. 
+
+```{r TOGGLE_SOLUTIONS, echo = FALSE, purl = FALSE}
+#use this to turn the display of answers on/off
+knitr::opts_chunk$set(echo = FALSE, results = 'hide')
+```
 
 
-Part 4: Exercises
+Part 3: Exercises
 --------------------------------------------------------
-### TryR Level 1
 
-1. Calculate how many minutes there are in a week. 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 1-1
-60 * 24 * 7
+**If you can't get R and RStudio to work on your computer, you can do the exercises on the R Fiddle website**
+
+<http://www.r-fiddle.org/#/>
+
+1. Calculate how many minutes there are in a January 
+
+```{r exercise_1}
+60 * 24 * 7 * 31
 ```
-2. Add up the numbers 1 8 4 2 9 4 8 5 *without using any plus signs* 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 1-2
-sum(1, 8, 4, 2, 9, 4, 8, 5)
+
+2. Add up the numbers 3 1 4 1 5 9 2 6 *without using any plus signs* 
+```{r exercise_2}
+sum(c(3,1,4,1,5,9,2,6))
 ```
-3. You've forgotten what the function ``rep`` does. Load the corresponding help file.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 1-3
-help(rep)
+
+3. Load the help file for the function `summary`, and use `summary` on an object.
+```{r exercise_3}
+?summary
+summary(iris)
 ```
-4. Suppose I ran the following R commands in order. What result would I get? *Do not* use R to answer this: think it through and then check your answer.
-  - ``x <- 5``
-  - ``y <- 7``
-  - ``z = x + y``
-  - ``z + 3 == 15``
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 1-4
-x <- 5
-y <- 7
+
+4. Suppose I ran the following R commands in order. What result would I get after the fourth command? *Do not* use R to answer this: think it through and then check your answer.
+  - `x = 5`
+  - `y = 7`
+  - `z = x + y`
+  - `z + 3 == 15`
+  
+```{r exercise_4}
+x = 5
+y = 7
 z = x + y 
 z + 3 == 15
 ```
-5. What command should I use to list all the files in the present directory? 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 1-5
-list.files()  
-```
-6. Suppose I saw a file named ``binomial_example.R`` when I typed in the command for question 5 above. What command would I use to load this script into R?
-```{r echo=FALSE,results='hide',fig.show='hide',error=FALSE, message=FALSE, eval=FALSE}
-#Ex. 1-6
-source("binomial_example.R")
-```
-7. How can I get R to print out "Go Penn!" thirty times without repeatedly typing this by hand?  
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 1-7
+
+5. How can I get R to print out `"Go Penn!"` thirty times without repeatedly typing this by hand?  
+```{r exercise_5}
 rep("Go Penn", times = 30)
 ```
 
-### TryR Level 2
+6. Create a vector called `x` containing the sequence -1, -0.9, ... 0, 0.1, ..., 0.9, 1 and then display the result
 
-1. Create a vector called ``x`` containing the sequence -1, -0.9, ... 0, 0.1, ..., 0.9, 1 and then display the result
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-1
-x <- seq(-1, 1, 0.1)
+```{r exercise_6}
+x = seq(-1, 1, 0.1)
 x
 ```
-2. Create two vectors: ``wizards`` and ``ranking``. The vector ``wizards`` should contain the following names: Harry, Ron, Fred, George, Sirius. The vector ``ranking`` should contain the following numbers: 4, 2, 5, 1, 3 in it. Make sure to put these in order. 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-2
-wizards <- c("Harry", "Ron", "Fred", "George", "Sirius")
-ranking <- c(4, 2, 5, 1, 3)
+
+7. Create two vectors: `wizards` and `ranking`. The vector `wizards` should contain the following names: Harry, Ron, Fred, George, Sirius. The vector `ranking` should contain the following numbers: 4, 2, 5, 1, 3 in it. Make sure to put these in order.
+
+```{r exercise_7}
 #Remember that the elements of character vectors need to be enclosed in quotation marks. Either single or double quotes will work.
+wizards = c("Harry", "Ron", "Fred", "George", "Sirius")
+ranking = c(4, 2, 5, 1, 3)
 ```
-3. Extract the second element of the vector ``wizards``.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-3
+
+8. Extract the second element of the vector `wizards`.
+```{r exercise_8}
 wizards[2]
 ```
-4. Replace the names Fred, George and Sirius in the vector wizards with Hermione, Ginny and Malfoy, respectively. 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-4
+
+9. Replace the names Fred, George and Sirius in the vector wizards with Hermione, Ginny and Malfoy, respectively. 
+```{r exercise_9}
 #There are several different ways to do this. Here are two possibilities.
-wizards[c(3, 4, 5)] <- c("Hermione", "Ginny", "Malfoy")
-wizards[3:5] <- c("Hermione", "Ginny", "Malfoy")
+wizards[c(3, 4, 5)] = c("Hermione", "Ginny", "Malfoy")
+wizards[3:5] = c("Hermione", "Ginny", "Malfoy")
 ```
-5. Someone who hasn't read Harry Potter needs labels to determine who these characters are. Assign names to the elements of the vector ``wizards``: Lead, Friend, Friend, Wife, Rival. Display the result.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-5
-names(wizards) <- c("Lead", "Friend", "Friend", "Wife", "Rival")
+
+10. Someone who hasn't read Harry Potter needs labels to determine who these characters are. Assign names to the elements of the vector `wizards`: Lead, Friend, Friend, Wife, Rival. Display the result.
+```{r exercise_10}
+names(wizards) = c("Lead", "Friend", "Friend", "Wife", "Rival")
 wizards
 ```
-6. An avid reader of Harry Potter argues that Malfoy is not Harry's rival by the end of the series. Change Rival to Ex-Rival. 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-6
-names(wizards)[5] <- "Ex-Rival"
+
+11. An avid reader of Harry Potter argues that Malfoy is not Harry's rival by the end of the series. Change Rival to Ex-Rival. 
+```{r exercise_11}
+names(wizards)[5] = "Ex-Rival"
 names(wizards)
 ```
-7. Make a barplot of the ranking ``vector``. Why can't you make a barplot of the vector ``wizards``?
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-7
-barplot(ranking) 
-#The wizards vector contains character data rather than numerical data so we can't plot it.
+
+12. In 2009 Steve's income was \$50,000 and his total expenses were \$35,000. In 2010 his income was \$52,000 and his expenses were \$34,000. In 2011, his income was \$52,500 and his expenses were \$38,000. Finally, in 2012 Steve's earnings were \$48,000 and his expenses were \$40,000. Create three vectors to store this information in parallel: `years`, `income` and `expenses`.
+
+```{r exercise_12}
+years = c(2009, 2010, 2011, 2012)
+income = c(50000, 52000, 52500, 48000)
+expenses = c(35000, 34000, 38000, 40000)
 ```
-8. Assign the elements of the vector ``wizards`` to be the names of the vector ``ranking``. Then re-do the barplot so we can see who's who.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-8
-names(ranking) <- wizards
-barplot(ranking)
+
+13. Following on from the previous question, calculate Steve's annual savings and store this in a vector called `savings`. 
+```{r exercise_13}
+savings = income - expenses
 ```
-9. In 2009 Steve's income was $50,000 and his total expenses were $35,000. In 2010 his income was $52,000 and his expenses were $34,000. In 2011, his income was $52,500 and his expenses were $38,000. Finally, in 2012
-Steve's earnings were $48,000 and his expenses were $40,000. Create three vectors to store this information in parallel: ``years``, ``income`` and ``expenses``.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-9
-years <- c(2009, 2010, 2011, 2012)
-income <- c(50000, 52000, 52500, 48000)
-expenses <- c(35000, 34000, 38000, 40000)
-```
-10. Following on from the previous question, calculate Steve's annual savings and store this in a vector called ``savings``. Make a scatterplot of ``years`` against ``savings``.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-10
-savings <- income - expenses
-plot(years, savings)
-```
-11. Assuming zero interest on bank deposits (roughly accurate at the moment), calculate the total amount that Steve has saved over all the years for which we have data.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-11
+
+14. Assuming zero interest on bank deposits (roughly accurate at the moment), calculate the total amount that Steve has saved over all the years for which we have data.
+```{r exercise_14}
 sum(savings)
 ```
-12. Redefine the vector ``years`` so that it runs from 2009-2013. Redefine ``income`` to match but record ``income`` for 2013 as ``NA`` (this is R's code for missing data). How can we compute the sum of the elements of this new ``income`` vector?
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 2-12
-years <- c(2009, 2010, 2011, 2012, 2013)
-income <- c(50000, 52000, 52500, 48000, NA)
-#If we just use sum, we'll get NA
-sum(income)
-#To avoid this, we use the following option to ignore the NA
-sum(income, na.rm = TRUE)
+
+15. Create a vector called `z` that lists the numbers from 12 to 23 in *descending order*. 
+```{r exercise_15}
+z = 23:12
+z
 ```
 
-### TryR Level 3 
-
-1. Create a vector called ``z`` that lists the numbers from 12 to 23 in *descending order*. Then create a 3x4 matrix from the elements of z and call it ``z.mat``. Finally, display the matrix.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 3-1
-z <- 23:12
-z.mat <- matrix(z, 3, 4)
-```
-2. What command should I use to access the element of ``z.mat`` that contains the number 13?
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 3-2
-z.mat[2,4]
-```
-3. Replace the number 13 with the number 7 in ``z.mat``.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 3-3
-z.mat[2,4] <- 7
-z.mat
+16. Replace the number 13 with the number 7 in `z`.
+```{r exercise_16}
+z[z == 13] = 7
+z
 ```
 
-
-### TryR Level 4
-
-1. Twenty-six students took the midterm. Here are their scores:
-18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87. Assign these values to a vector called ``scores``.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 4-1
-scores <- c(18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87)
+17. Twenty-six students took the midterm. Here are their scores:
+18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87. Assign these values to a vector called `scores`.
+```{r exercise_17}
+scores = c(18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87)
 ```
-2. Calculate the mean, median and standard deviation of the scores.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 4-2
+
+18. Calculate the mean, median, and range of the scores.
+```{r exercise_18}
 mean(scores)
 median(scores)
-sd(scores)
+range(scores)
 ```
 
-### TryR Level 5
-
-No additional problems for this section. 
-
-### TryR Level 6
-#### Before attempting these seven exercises it's probably best to read Part 3 above. 
-
-1. Create three vectors. First store the numeric values 21, 26, 51, 22, 160, 160, 160 in a vector called ``age``. Next, store the names Achilles, Hector, Priam, Paris, Apollo, Athena, Aphrodite in a character vector called ``person``. Finally store the words Aggressive, Loyal, Regal, Cowardly, Proud, Wise, Conniving in a vector called ``description``
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 6-1
-age <- c(21, 26, 51, 22, 160, 160, 160)
-person <- c("Achilles", "Hector", "Priam", "Paris", "Apollo", "Athena", "Aphrodite")
-description <- c("Aggressive", "Loyal", "Regal", "Cowardly", "Proud", "Wise", "Conniving")
+19. Create three vectors. First store the numeric values 21, 26, 51, 22, 160, 160, 160 in a vector called `age`. Next, store the names Achilles, Hector, Priam, Paris, Apollo, Athena, Aphrodite in a character vector called `person`. Finally store the words Aggressive, Loyal, Regal, Cowardly, Proud, Wise, Conniving in a vector called `description`
+```{r exercise_19}
+age = c(21, 26, 51, 22, 160, 160, 160)
+person = c("Achilles", "Hector", "Priam", "Paris", "Apollo", "Athena", "Aphrodite")
+description = c("Aggressive", "Loyal", "Regal", "Cowardly", "Proud", "Wise", "Conniving")
 ```
-2. Create a dataframe called ``trojan.war`` whose columns contain the vectors from the previous question.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 6-2
-trojan.war <- data.frame(person, age, description)
+
+20. Create a `data.table` called `trojan.war` whose columns contain the vectors from the previous question.
+```{r exercise_20}
+trojan.war = data.table(person, age, description)
 ```
-3. Suppose you wanted to display only the column of ``trojan.war`` that contains each person's ``description``. What command would you use? 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 6-3
+
+21. Suppose you wanted to display only the column of `trojan.war` that contains each person's `description`. What command would you use? 
+```{r exercise_21}
 #There are many different ways to do this:
-trojan.war[,3] 
+trojan.war[, 3] 
 trojan.war$description 
-trojan.war["description"] 
+trojan.war[ , "description"]
+trojan.war[["description"]]
 ```
-4. What command would you use to show information for Achilles and Hector only?
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 6-4
+
+22. What command would you use to show information for Achilles and Hector only?
+```{r exercise_22}
 #There are several ways to do this. Here are a few:
-trojan.war[c(1,2),]
-trojan.war[1:2,]
+trojan.war[c(1,2)]
+trojan.war[1:2]
+#A more advanced way that doesn't require knowing the order of the rows:
+trojan.war[person %in% c("Achilles", "Hector")]
 ```
-5. What command would you use to display the ``person`` and ``description`` columns for Apollo, Athena and Aphrodite only? 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 6-5
+
+23. What command would you use to display the `person` and `description` columns for Apollo, Athena and Aphrodite only? 
+```{r exercise_23}
 #There are many ways to do this. Here are a few:
 trojan.war[c(5, 6, 7), c(1, 3)]
 trojan.war[5:7, c("person", "description")]
-```
-6. It turns out there was a mistake in the data: Priam's age should be 72 rather than 51. Make the appropriate change to ``trojan.war``
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 6-6
-#There are many different ways to do this. Here are a few:
-trojan.war[3, 2] <- 72
-trojan.war$age[3] <- 72
-trojan.war
-```
-7. By now you're probably tired of this data set. A passenger manifest for the Titanic is stored at http://www.ditraglia.com/econ103/titanic3.csv. Read this file and store it in a dataframe called ``titanic``.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. 6-7
-titanic <- read.csv("http://www.ditraglia.com/econ103/titanic3.csv")
+#advanced method
+trojan.war[person %in% c("Apollo", "Athena", "Aphrodite"),
+           c("person", "description")]
 ```
 
+24. By now you're probably tired of this data set. A passenger manifest for the Titanic is stored at http://www.ditraglia.com/econ103/titanic3.csv. Read this file and store it in a dataframe called `titanic`.
 
-### Exercises for the Additional R Commands
+```{r exercise_24}
+titanic = fread("http://www.ditraglia.com/econ103/titanic3.csv")
+```
 
-1. Calculate the product of all the even numbers between 2 and 18, inclusive.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. Additional-1
-x <- seq(2, 18, 2)
+25. Calculate the product of all the even numbers between 2 and 18, inclusive.
+```{r exercise_25}
+x = seq(2, 18, 2)
 x
 prod(x)
 ```
-2. Repeat the preceding exercise *without* prod. [Hint: use ``sum``, ``log`` and ``exp``.]
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. Additional-2
-exp(sum(log(x)))
+
+26. The column `survived` in the `titanic` data has a value of "1" to indicate that the passenger in that row survived the disaster. Display only the rows of `titanic` corresponding to passengers that survived.
+```{r exercise_26}
+titanic[survived == 1]
 ```
-3. Create a matrix in which the first column contains the numbers from 1 to 10 inclusive, and the second column contains the square roots of these numbers.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. Additional-3
-numbers <- 1:10
-square.roots <- sqrt(numbers)
-cbind(numbers, square.roots)
-```
-4. Repeat the preceding exercise, but arrange the numbers in rows rather than columns.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. Additional-4
-rbind(numbers, square.roots)
-```
-5. Make sure that you've loaded and stored the ``titanic`` data from Exercise 6-7. Display its first and last few rows.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. Additional-5
-head(titanic)
-tail(titanic)
-```
-6. The column ``survived`` in the dataframe ``titanic`` has a value of "1" to indicate that the passenger in that row survived the disaster. Create a dataframe called ``survivors`` containing only those passengers who survived and display its first few rows. 
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. Additional-6
-survivors <- subset(titanic, survived == 1)
-head(survivors)
-```
-7. The column ``sex`` in the dataframe titanic indicates each passenger's sex. Create a dataframe called ``men`` which contains only the male passengers and display its last few rows.
-```{r echo=FALSE,results='hide',fig.show='hide'}
-#Ex. Additional-7
-men <- subset(titanic, sex == 'male')
-tail(men)
+
+27. The column `sex` in the `titanic` data indicates each passenger's sex. Display only the rows of `titanic` corresponding to men.
+```{r exercise_27}
+titanic[sex == 'male']
 ```
