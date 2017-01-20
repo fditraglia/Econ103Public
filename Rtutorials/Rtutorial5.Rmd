@@ -12,209 +12,276 @@ output:
 
 This tutorial has two parts. In the first part you'll learn how to plot functions in R. In the second part you'll learn how we can use R to study the Binomial random variable.
 
-
 ## Plotting Curves in R
-You've already seen a number of examples of the ``plot`` function in R. So far we've mainly plotted *points* but we can actually use the same command to plot functions. The basic idea is to set up the ``x`` and ``y`` coordinates of some points that are close enough together that it *looks* like we've plotted a smooth curve. Everything on a computer is actually discrete: your eye is simply fooled into thinking that things look continuous.
+
+You've already seen a number of examples of the `plot` function in R. So far we've mainly plotted *points* but we can actually use the same command to plot functions. The basic idea is to set up the `x` and `y` coordinates of some points that are close enough together that it *looks* like we've plotted a smooth curve. Everything on a computer is actually discrete: your eye is simply fooled into thinking that things look continuous. All curves are actually many tiny line segments!
 
 ### Simple Example
+
 Let's start by plotting a few points on the curve $f(x) = x^2$
-```{r}
+
+```{r quadratic_plot}
 x <- seq(from = -1, to = 1, by = 0.5)
 y <- x^2
 plot(x, y)
 ```
 
 Those points aren't "dense" enough to approximate the whole curve. Let's try making a finer plot:
-```{r}
+
+```{r quadratic_plot_denser}
 x <- seq(from = -1, to = 1, by = 0.1)
 y <- x^2
 plot(x, y)
 ```
 
 This looks better, but how about even finer?
-```{r}
+
+```{r quadratic_plot_dense}
 x <- seq(from = -1, to = 1, by = 0.01)
 y <- x^2
 plot(x, y)
 ```
 
 This is more like what we're after, but we'd rather have a smooth curve rather than all those little "dots." We can do this as follows:
-```{r}
+
+```{r plot_type_line}
 plot(x, y, type = "l")
 ```
 
-
 ### Exercise #1
+
 Plot $f(x) = x^3$ on $[-2,2]$.
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #1
+```{r exercise_1, echo = FALSE, results = 'hide', fig.show = 'hide'}
 x <- seq(from = -2, to = 2, by = 0.01)
 y <- x^3
 plot(x, y, type = 'l')
 ```
-***
+
 ### Exercise #2
+
 Plot $f(x) = log(x)$ on $[0.5, 1.5]$.
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #2
+```{r exercise_2, echo = FALSE, results = 'hide', fig.show = 'hide'}
 x <- seq(from = 0.5, to = 1.5, by = 0.01)
 y <- log(x)
 plot(x, y, type = 'l')
 ```
-***
+
 ### Exercise #3
+
 Plot $f(x) = sin(x)$ on $[0, 6\pi]$.
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #3
+```{r exercise_3, echo = FALSE, results = 'hide', fig.show = 'hide'}
 x <- seq(from = 0, to = 6 * pi, by = 0.01)
 y <- sin(x)
 plot(x, y, type = 'l')
 ```
-***
+
 ### Multiple Curves
-The command ``plot`` creates a new plot. To add to the existing plot, we could use the command ``points``, which you already met in R Tutorial #3
-```{r}
+
+The command `plot` creates a new plot. To add to the existing plot, we could use the command `lines`:
+
+```{r points}
 x <- seq(from = 0, to = 1, by = 0.01)
 y1 <- x^2
 y2 <- x
 plot(x, y1, col = 'blue', type = 'l')
-points(x, y2, col = 'red', type = 'l')
+lines(x, y2, col = 'red')
 ```
 
-But using ``points`` can get tricky since the curve we add might not fit inside the plot we've already created
-```{r}
+But using `lines` can get tricky since the curve we add might not fit inside the plot we've already created:
+
+```{r lines_fail}
 x <- seq(from = 0, to = 1, by = 0.01)
 y1 <- x^2
 y2 <- x + 0.75
 plot(x, y1, col = 'blue', type = 'l')
-points(x, y2, col = 'red', type = 'l')
+lines(x, y2, col = 'red')
 ```
 
-The easiest way to avoid this is to use ``matplot`` rather than ``plot`` followed by ``points``. To use this command we bind the y-coordinates of our two (or more) curves into a matrix. We could redo the preceding example using ``matplot`` as follows:
-```{r}
+We could use the `xlim` and `ylim` arguments to the first call to `plot` to take care of this, but this can be a pain. The easiest way to avoid this is to use `matplot` rather than `plot` followed by `lines`, since `matplot` will figure out the overall x- and y-axis limits automatically. To use this command we _bind_ the y-coordinates of our two (or more) curves into a _matrix_. We could redo the preceding example using `matplot` as follows.
+
+The function to _bind_ vectors into a matrix is `cbind` -- it will "glue" its inputs together side-by-side vertically to create a matrix where each column is the vectors you input:
+
+```{r cbind_matplot}
 y <- cbind(y1, y2)
+y
 matplot(x, y, type = 'l')
 ```
 
-Notice that if you don't tell ``matplot`` which colors or line types to use, it will use some defaults that are designed to make it easy to tell the curves apart. You can override these as follows:
-```{r}
+Notice that if you don't tell `matplot` which colors or line types to use, it will use some defaults that are designed to make it easy to tell the curves apart. You can override these as follows:
+
+```{r matplot_options}
 y <- cbind(y1, y2)
-matplot(x, y, type = 'l', col = c("red", "blue"), lty = c(1, 1))
+matplot(x, y, type = 'l', col = c("red", "blue"), lty = 1)
 ```
 
 ### Exercise #4
+
 Plot $sin(x)$, $cos(x)$ and $2sin(x + \pi/4)$ on $[0,2\pi]$.
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #4
+
+```{r exercise_4, echo = FALSE, results = 'hide', fig.show = 'hide'}
 x <- seq(from = 0, to = 2 * pi, by = 0.01)
 y1 <- sin(x)
 y2 <- cos(x)
 y3 <- 2 * sin(x + pi/4)
 y <- cbind(y1, y2, y3)
-matplot(x, y, type = 'l', col = c("black", "red", "blue"), lty = c(1, 1, 1))
+matplot(x, y, type = 'l', col = c("black", "red", "blue"), lty = 1)
 ```
 
 ## The Binomal RV
-R has a collection of built-in functions for all of the random variables we'll study in this course. All of these functions follow a consistent naming convention: the prefix ``r`` ("random") is used for generating random draws, ``p`` ("probability") is for a CDF , ``d`` ("density") is for a pmf or pdf, and ``q`` is for quantiles (the inverse of a CDF). All you need to know to find the appropriate command for a given random variable is the necessary *suffix*. For the Binomial RV it's ``binom``, leading to the R commands ``rbinom`` (simulate draws from a binomial RV), ``pbinom`` (CDF of a binomial RV) and ``dbinom`` (pmf of a Binomial RV). We won't worry about ``qbinom``.
 
-### ``rbinom`` - Simulate Binomial Draws
-This function takes 3 arguments: ``n`` is the number of random draws we want, ``size`` is what we call n in class, namely the underlying number of Bernoulli trials (coin flips) that we're adding together to create the Binomial RV, and ``prob`` is $p$ from class. So, to get 20 draws from a Binomial$(n=10, p = 1/2)$ random variable, I would use the following command:
-```{r}
+R has a collection of built-in functions for all of the random variables we'll study in this course. All of these functions follow a consistent naming convention: the prefix `r` ("random") is used for generating random draws, `p` ("probability") is for a CDF , `d` ("density") is for a pmf or pdf, and `q` is for quantiles (the inverse of a CDF). All you need to know to find the appropriate command for a given random variable is the necessary *suffix*. For the Binomial RV it's `binom`, leading to the R commands `rbinom` (simulate draws from a binomial RV), `pbinom` (CDF of a binomial RV) and `dbinom` (pmf of a Binomial RV). We won't worry about `qbinom`.
+
+Here is a table of _all_ of the many distributions available to you in R. _This is just a reference_ -- we won't need all of these in this course.
+
+                   Distribution RNG          Other Parameters          Wikipedia
+ ------------------------------ ------------ ------------------------- ----------
+                           Beta `rbeta`      `shape1`, `shape2`, `ncp` https://en.wikipedia.org/wiki/Beta_distribution
+                       Binomial `rbinom`     `size`, `prob`            https://en.wikipedia.org/wiki/Binomial_distribution
+                         Cauchy `rcauchy`    `location`, `scale`       https://en.wikipedia.org/wiki/Cauchy_distribution
+                    Chi-Squared `rchisq`     `df`, `ncp`               https://en.wikipedia.org/wiki/Chi-squared_distribution
+                    Exponential `rexp`       `rate`                    https://en.wikipedia.org/wiki/Exponential_distribution
+                              F `rf`         `df1`, `df2`, `ncp`       https://en.wikipedia.org/wiki/F-distribution
+                          Gamma `rgamma`     `shape`, `rate`, `scale`  https://en.wikipedia.org/wiki/Gamma_distribution
+                      Geometric `rgeom`      `prob`                    https://en.wikipedia.org/wiki/Geometric_distribution
+                 Hypergeometric `rhyper`     `m`, `n`, `k`             https://en.wikipedia.org/wiki/Hypergeometric_distribution
+                     Log-Normal `rlnorm`     `meanlog`, `sdlog`        https://en.wikipedia.org/wiki/Log-normal_distribution
+                       Logistic `rlogis`     `location`, `scale`       https://en.wikipedia.org/wiki/Logistic_distribution
+                    Multinomial `rmultinom`  `size`, `prob`            https://en.wikipedia.org/wiki/Multinomial_distribution
+              Negative Binomial `rnbinom`    `size`, `prob`, `mu`      https://en.wikipedia.org/wiki/Negative_binomial_distribution
+                        Poisson `rpois`      `lambda`                  https://en.wikipedia.org/wiki/Poisson_distribution
+ Wilcoxon Sign Ranked Statistic `rsignrank`* `n`                       https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test
+                      Student t `rt`         `df`, `ncp`               https://en.wikipedia.org/wiki/Student%27s_t-distribution
+                        Weibull `rweibull`   `shape`, `scale`          https://en.wikipedia.org/wiki/Weibull_distribution
+ Wilcoxon Sign Ranked Statistic `rwilcox`*   `m`, `n`                  https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test
+                        Wishart `rWishart`   `df`, `Sigma`             https://en.wikipedia.org/wiki/Wishart_distribution
+
+Table: List of native distributions from built-in `stats` package
+
+### Simulate Binomial Draws: `rbinom`
+
+This function takes 3 arguments: `n` is the number of random draws we want, `size` is what we call $n$ in class, namely the underlying number of Bernoulli trials (coin flips) that we're adding together to create the Binomial RV, and `prob` is $p$ from class. So, to get 20 draws from a Binomial$(n=10, p = 1/2)$ random variable, I would use the following command:
+
+```{r rbinom}
 rbinom(20, size = 10, prob = 1/2)
 ```
-Remember, the support of this random variable is $\{0, 1, 2, ..., 10\}$ so each draw is a number between 0 and 10. In class we learned that the mean of a Binomial RV is $np$ while the variance is $np(1-p)$. We can check this for particular examples using Monte Carlo Simulation. For this example, we don't need ``replicate``
-***
-```{r}
+
+Remember, the support of this random variable is $\{0, 1, 2, ..., 10\}$ so each draw is a number between 0 and 10. In class we learned that the mean of a Binomial RV is $np$ while the variance is $np(1-p)$. We can check this for particular examples using Monte Carlo Simulation. For this example, we don't need `replicate`
+
+```{r rbinom_moments}
 sims <- rbinom(100000, size = 10, prob = 1/2)
 mean(sims) - (10 * 1/2)
 var(sims) - (10 * 1/2 * 1/2)
 ```
-***
+
 ### Exercise #5
+
 Generate 100000 draws from a Binomial$(n = 20, p = 0.9)$ random variable and use them to check the formula for the mean and variance from class.
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #5
+
+```{r exercise_5, echo = FALSE, results = 'hide'}
 sims <- rbinom(100000, size = 20, prob = 0.9)
 mean(sims) - (20 * 0.9)
 var(sims) - (20 * 0.1 * 0.9)
 ```
-***
-### ``dbinom`` - Binomial pmf
-Like ``rbinom``, the function ``dbinom`` takes arguments ``size`` and ``prob`` and they have the same meaning. Rather than taking ``n`` as its first argument, however, it takes ``x``, where ``x`` is the realization at which we want to evaluate the pmf. Specifically, ``dbinom(x, size, prob)`` calculates
-  $${n\choose x} p^x (1 - p)^{n-x}$$
-Remember: ``x` *must* be in the support. Here's an example:
-```{r}
+
+### Binomial pmf: `dbinom`
+
+Like `rbinom`, the function `dbinom` takes arguments `size` and `prob` and they have the same meaning. Rather than taking `n` as its first argument, however, it takes `x`, where `x` is the realization at which we want to evaluate the pmf. Specifically, `dbinom(x, size, prob)` calculates
+  $$ {n \choose x} p^x (1 - p)^{n-x} $$
+
+Remember: `x` *must* be in the support. Here's an example:
+
+```{r dbinom}
 dbinom(7, size = 10, prob = 0.8)
 choose(10, 7) * (0.8)^7 * (0.2)^3
 ```
-so we get exactly the same answer with much less typing by using ``dbinom``. Even better, ``dbinom`` can accept a *vector* for ``x``. For example, we can calculate the pmf of a Binomial$(n = 10, p = 0.5)$ random variable *instantly at every point in the support* as follows:
-```{r}
+
+so we get exactly the same answer with much less typing by using `dbinom`. Even better, `dbinom` can accept a *vector* for `x`. For example, we can calculate the pmf of a Binomial$(n = 10, p = 0.5)$ random variable *instantly at every point in the support* as follows:
+
+```{r dbinom_full_support}
 support <- 0:10
 p.x <- dbinom(support, size = 10, prob = 0.5)
 p.x
 ```
+
 This is how I made the plots of the Binomial pmf that I showed you in class: 
-```{r}
+
+```{r plot_binomial_density}
 plot(support, p.x)
 ```
 
-To get *bars* rather than points, set ``type = 'h'``
-```{r}
-plot(0:10, p.x, type = 'h', xlab = 'x', ylab = 'p(x)', main = 'pmf for a Bernoulli(n = 10, p = 0.5) RV')
+To get *bars* rather than points, set `type = 'h'`
+
+```{r plot_type_h}
+plot(0:10, p.x, type = 'h', xlab = 'x', ylab = 'p(x)',
+     main = 'pmf for a Bernoulli(n = 10, p = 0.5) RV')
 ```
 
 ### Exercise #6
+
 Plot the pmf of a Binomial$(n = 20, p = 0.65)$ Random Variable.
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #6
+
+```{r exercise_6, echo = FALSE, results = 'hide', fig.show = 'hide'}
 support <- 0:20
 p.x <- dbinom(support, size = 20, prob = 0.65)
-plot(support, p.x, type = 'h', xlab = 'x', ylab = 'p(x)', main = 'pmf for a Bernoulli(n = 20, p = 0.65) RV')
+plot(support, p.x, type = 'h', xlab = 'x',
+     ylab = 'p(x)', main = 'pmf for a Bernoulli(n = 20, p = 0.65) RV')
 ```
 
-### ``pbinom`` - Binomial CDF
+### Binomial CDF: `pbinom`
 
 Recall from class that the CDF of a Random Variable $X$ is defined as follows:
-  $$F(x_0) = P(X \leq x_0)$$
-where $x_0$ is *any* real number. We showed that for a discrete RV we can get the CDF from the pdf as follows:
-  $$F(x_0) = \sum_{x \leq x_0} p(x)$$
-where $x \leq x_0$ is shorthand to denote all realizations $x$ in the support of $X$ that are less than the threshold $x_0$. Plugging in the pmf for a Binomial RV, we have
-  $$F(x_0) =  \sum_{x \leq x_0} {n\choose x} p^x (1 - p)^{n-x}$$
-Fortunately we don't have to calculate this by hand since there's an R function called ``pbinom`` to do it for us. Like ``dbinom`` and ``rbinom`` it takes arguments ``size`` and ``prob`` and they mean the same thing. Its first argument, however, is the threshold which R calls ``q`` rather than $x_0$.
 
-Let's test it out for a Binomial$(n = 20, p = 0.3)$ random variable. We'll do this two ways: first the "hard way" using ``sum`` and ``dbinom`` and then the "easy way" using ``pbinom``
+  $$F(x_0) = P(X \leq x_0)$$
+  
+where $x_0$ is *any* real number. We showed that for a discrete RV we can get the CDF from the pdf as follows:
+
+  $$F(x_0) = \sum_{x \leq x_0} p(x)$$
+  
+where $x \leq x_0$ is shorthand to denote all realizations $x$ in the support of $X$ that are less than the threshold $x_0$. Plugging in the pmf for a Binomial RV, we have
+
+  $$F(x_0) =  \sum_{x \leq x_0} {n\choose x} p^x (1 - p)^{n-x}$$
+  
+Fortunately we don't have to calculate this by hand since there's an R function called `pbinom` to do it for us. Like `dbinom` and `rbinom` it takes arguments `size` and `prob` and they mean the same thing. Its first argument, however, is the threshold which R calls `q` rather than $x_0$.
+
+Let's test it out for a Binomial$(n = 20, p = 0.3)$ random variable. We'll do this two ways: first the "hard way" using `sum` and `dbinom` and then the "easy way" using `pbinom`
+
   $$F(7.4) = P(X \leq 7.4) = \sum_{x \leq 7.4} p(x) = \sum_{x = 0}^7  {n\choose x} p^x (1 - p)^{n-x}$$
-```{r}
+  
+```{r pbinom}
 sum(dbinom(0:7, size = 20, prob = 0.3))
 pbinom(7.4, size = 20, prob = 0.3)
 ```
+
 Notice that we get *exactly the same answer*. 
 
-
 ### Exercise #7 
-Evaluate the CDF of a Binomial$(n = 50, p = 0.5)$ at the threshold $x_0 = 24.5$ *two ways*: first using ``sum`` and ``dbinom`` and then using ``pbinom``. 
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #7
+
+Evaluate the CDF of a Binomial$(n = 50, p = 0.5)$ at the threshold $x_0 = 24.5$ *two ways*: first using `sum` and `dbinom` and then using `pbinom`. 
+
+```{r exercise_7, echo = FALSE, results = 'hide'}
 sum(dbinom(0:24, size = 50, prob = 0.5))
 pbinom(24.5, size = 50, prob = 0.5)
 ```
 
-It turns out that, like ``dbinom``, ``pbinom`` can accept a vector as its first argument. This is how we can make plots of the CDF of a Binomial RV. For example:
-```{r}
+It turns out that, like `dbinom`, `pbinom` can accept a vector as its first argument. This is how we can make plots of the CDF of a Binomial RV. For example:
+
+```{r plot_pbinom}
 x <- seq(from = -1, to = 10, by = 0.01)
 y <- pbinom(x, size = 10, prob = 0.5)
 plot(x, y, ylab = 'F(x)')
 ```
 
-Note how the function "jumps" at each realization. To make this plot look nicer, we can plot "stair-steps" rather than points by setting ``type = s``
-```{r}
+Note how the function "jumps" at each realization. To make this plot look nicer, we can plot "stair-steps" rather than points by setting `type = s`
+
+```{r plot_type_s}
 plot(x, y, ylab = 'F(x)', type = 's')
 ```
 
 ### Exercise #8
+
 Plot the CDFs of three Binomial RVs on the same graph, each with $n = 20$. For the first set $p = 0.2$, for the second the second set $p = 0.5$ and for the third set $p=0.8$. Explain how and why the CDFS differ.
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #8
+
+```{r exercise_8, echo = FALSE, results = 'hide', fig.show = 'hide'}
 x <- seq(from = -1, to = 21, by = 0.01)
 y1 <- pbinom(x, size = 20, prob = 0.2)
 y2 <- pbinom(x, size = 20, prob = 0.5)
@@ -223,18 +290,18 @@ y <- cbind(y1, y2, y3)
 matplot(x, y, col = c("black", "blue", "red"), type = 's', lty = 1, ylab = "F(x)")
 ```
 
-
 **Now that you know how to use R to make plots and calculate various probabilities for Binomial Random Variables, let's test our your skills on some more interesting examples**
 
 ### Exercise #9
+
 Dr. Horrible decided to give his Econ 1 students a pop quiz on Advanced Quantum Mechanics. Since he isn't *completely* unreasonable he made the quiz True-or-False. Since they don't know any Quantum Physics, Dr. Horrible's students guess randomly on each of the 20 questions.
 
   1. An individual student's score on this quiz can be modeled as the realization of random variable. What random variable? Plot its pmf.
   2. Suppose that a passing grade on the quiz is a 60%. What is the probablity that a given student passes?
   3. Suppose that anything over 90% is an A. What is the probability that an individual student gets an A?
   4. If the clas has 250 students, approximately how many will pass the quiz? Approximately how many will get an A?
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise 9 - Part 1
+```{r exercise_9, results = 'hide', echo = FALSE, fig.show = 'hide'}
+#Part 1
 plot(0:20, dbinom(0:20, size = 20, prob = 0.5), type = 'h', ylab = 'p(x)')
 #Part 2
 sum(dbinom(12:20, size = 20, prob = 0.5))
@@ -246,28 +313,30 @@ sum(dbinom(18:20, size = 20, prob = 0.5))
 ```
 
 ### Exercise #10
+
 Suppose you carry out a poll of 200 randomly selected Penn male undergraduates to find out the proportion who prefer boxers to briefs.
 
   1. The number of people in your sample who prefer boxers can be viewed as the realization of a random variable. What random variable? 
   2. Suppose that the true proportion who prefer boxers to briefs among all mall Penn undergraduates is 0.5. What is the probability that the proportion in your *sample* who prefer boxers will fall *outside* the range $(0.45, 0.65)$?
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise #10: Binomial(n = 200, p) random variable where p is the unknown proportion who prefer boxers.
+  
+```{r exercise_10, echo = FALSE, results = 'hide', fig.show = 'hide'}
+#Binomial(n = 200, p) random variable where p is the unknown proportion who prefer boxers.
 1-sum(dbinom((200*.45+1):(200*.65-1),size=200,p=.5))
 ```
-
 
 ### Exercise #11
 There is a discrete random variable that we did not cover in class called the Poisson. It has one parameter $\lambda$ which is sometimes called the "rate parameter". Essentially, the Poisson is what you get in the limit if you take a Binomial$(n,p)$ random variable and let $n \rightarrow \infty$ while holding $np$ fixed. 
 
-The R functions for the Poisson RV that correspond to ``rbinom``, ``dbinom`` and ``pbinom`` for the Binomial RV are ``rpois``, ``dpois`` and ``ppois``. In place of the parameters ``size`` and ``prob`` that we needed for the Binomial, these functions for the Poisson have the single parameter ``lambda``. Otherwise, they work in the same way.
+The R functions for the Poisson RV that correspond to `rbinom`, `dbinom` and `pbinom` for the Binomial RV are `rpois`, `dpois` and `ppois`. In place of the parameters `size` and `prob` that we needed for the Binomial, these functions for the Poisson have the single parameter `lambda`. Otherwise, they work in the same way.
 
-  1. Use ``rpois`` to simulate 10000 draws from each of the following Possion RVs and store the results: $\lambda = 1, \lambda = 5, \lambda = 10, \lambda = 15$.
+  1. Use `rpois` to simulate 10000 draws from each of the following Possion RVs and store the results: $\lambda = 1, \lambda = 5, \lambda = 10, \lambda = 15$.
   2. Using your simulations from 1, what do you think the mean of a Poisson RV is in terms of $\lambda$?
   3. Using your simulations from 1, what do you think the variance of a Poisson RV is in terms of $\lambda$?
   4. Based on my description above and your simulation draws, what do you think the support of a Poisson RV is?
   5. Plot the pmf and CDF of a Poisson$\lambda = 2$ random variable on the range $[-1, 15]$.
-```{r cache=TRUE,echo=FALSE,results='hide',fig.show='hide',warning=FALSE}
-#Exercise 11 - 1
+  
+```{r exercise_11, echo = FALSE, results = 'hide', fig.show = 'hide'}
+#Exercise 11-1
 n <- 10000
 sim1 <-  rpois(n, lambda = 1)
 sim5 <- rpois(n, lambda = 5)
@@ -300,6 +369,3 @@ x <- -1:15
 plot(x, dpois(x, lambda = 2), type = 'h', ylab = 'p(x)')
 plot(x, ppois(x, lambda = 2), type = 's', ylab = 'F(x)')
 ```
-
-  
-
