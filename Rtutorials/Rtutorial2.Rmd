@@ -531,6 +531,10 @@ Now it's your turn: using what you've learned above, you'll take a closer look a
 
 2. Download the data, store it in a `data.table` called `titanic`, and display the first few rows.
 
+The URL where the data is stored is:
+
+http://www.ditraglia.com/econ103/titanic3.csv
+
 ```{r exercise_2_ti}
 library(data.table)
 titanic = fread("http://www.ditraglia.com/econ103/titanic3.csv")
