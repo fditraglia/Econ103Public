@@ -247,11 +247,13 @@ Note that the column \texttt{Species} is a categorical variable, aka factor, tha
 		\end{solution}
 	\part[5] What R command would you use to extract data for only flowers of the species \emph{Iris setosa} and store it in a dataframe called \texttt{setosa}?
 		\begin{solution}[0.75in]
+			\texttt{setosa = iris[species == 'setosa']}
+			If your data is not a \texttt{data.table} but a \texttt{data.frame}, use:  
 			\texttt{setosa <- subset(iris, Species == ``setosa'')}
 		\end{solution}
 	\part[5] What R command would you use to separately calculate the sample mean \texttt{Sepal.Length} for \emph{each species} of iris? Be sure to allow for the possibility of missing values.
 		\begin{solution}[0.75in]
-			\texttt{by(iris\$Sepal.Length, iris\$Species, mean, na.rm = TRUE)}
+			\texttt{iris[ , mean(Sepal.Length, na.rm = TRUE), by = Species]}
 		\end{solution}
 \end{parts}
 

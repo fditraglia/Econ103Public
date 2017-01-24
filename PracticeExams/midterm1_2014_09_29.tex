@@ -180,12 +180,22 @@ lm(earn ~ height, data = height.data)
   \end{solution}
   \part[8] Write R code to create two dataframes: \texttt{males} contains only the observations from \texttt{height.data} for which \texttt{sex} is \texttt{male}, and \texttt{females}  contains only the observations from \texttt{height.data} for which \texttt{sex} is \texttt{female}. Then use these dataframes to calculate the average height and average earnings \emph{separately} for each group. 
     \begin{solution}[1.75in]
+    \begin{verbatim}
+    males = height.data[sex == 'male']
+    females = height.data[sex == 'female']
+    males[ , .(mean(height), mean(earn))]
+    females[ , .(mean(height), mean(earn))]
+    \end{verbatim}
+    Or, in one line:
+    \texttt{height.data[ , .(mean(height), mean(earn)), by = sex]}
+    If your data is not a \texttt{data.table} but a \texttt{data.frame}, you would use:
   \begin{verbatim}
 males <- subset(height.data, sex == "male")
 females <- subset(height.data, sex == "female")
 mean(males$height)
 mean(females$height)
 mean(males$earn)
+mean(females$earn)
   \end{verbatim}
      \end{solution} 
   \part[8] The results of the commands from the preceding part are as follows:

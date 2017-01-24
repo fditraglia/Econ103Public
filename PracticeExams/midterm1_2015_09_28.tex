@@ -306,14 +306,15 @@ The entire dataframe is printed below.
   \part[4]  
  Create a new dataframe called `highpay' by taking a subset of the `jobsearch' dataframe to include only jobs which pay more than \$55,000.
   \begin{solution}[1.5in]
-    \texttt{highpay <- subset(jobsearch, salary > 55000)}
+    \texttt{highpay = jobsearch[salary > 55000]}
+    If \texttt{jobsearch} is not a \texttt{data.table} but a \texttt{data.frame}, we must instead use:
+    \texttt{highpay = subset(jobsearch, salary > 50000)}
   \end{solution}
 
   
   \part[4]  Write code to calculate the number of observations in your new dataframe, \texttt{highpay}, and call this number \texttt{n}.
     \begin{solution}[1.5in]
-    To do this, you must calculate the length of one of the columns in the dataframe, as \texttt{length(highpay)} gives the number of variables. For example:
-    \\ \texttt{n <- length(highpay\$salary)}
+    \texttt{n = nrow(highpay)}
     \end{solution}
 % % % % % %
     \uplevel{The next four parts of this question concerns the dataframe \texttt{survey} from R Tutorial 2.
@@ -369,6 +370,13 @@ myIQR <- function(x){
   out <- Q75 - Q25
   return(out)
 }
+\end{verbatim}
+    In fact, this is very close to exactly what the built-in \texttt{IQR} function in R does:
+\begin{verbatim}
+IQR = function (x, na.rm = FALSE, type = 7) {
+diff(quantile(as.numeric(x), c(0.25, 0.75),
+              na.rm = na.rm, names = FALSE, type = type))
+    }
 \end{verbatim}
   \end{solution}
 \end{parts}
