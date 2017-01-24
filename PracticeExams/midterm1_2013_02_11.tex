@@ -281,7 +281,7 @@ In your answer you may use any of the rules we learned in class except for the o
 		\end{solution}
 		\part[4] Suppose I wanted to display only those rows from \texttt{survey} corresponding to students whose height is greater than 60 inches. What command would I use?
 		\begin{solution}[0.75in]
-			\texttt{subset(survey, height > 60)}
+			\texttt{survey[height > 60]}
 		\end{solution}
 		\part[4] Suppose I wanted to display only the 2nd and 9th rows of \texttt{survey}. What command would I use?
 		\begin{solution}[0.75in]
@@ -293,6 +293,9 @@ In your answer you may use any of the rules we learned in class except for the o
 		\end{solution}
 		\part[4] Suppose that, for some strange reason, I wanted to rename the column \texttt{height} to \texttt{altitude} but leave the name of \texttt{handspan} unchanged. What command would I use?
 		\begin{solution}[0.75in]
+			This isn't covered in the current tutorials, but the proper way to do so for a \texttt{data.table} is:
+			\texttt{setnames(survey, 'height', 'altitude')}
+			The traditional way to do it with \texttt{data.frame}s is:
 			 \texttt{names(survey) <-c(`altitude', `handspan')} is one possibility, and  \texttt{names(survey)[1] <- `altitude'} is another.
 		\end{solution}
 	\end{parts}

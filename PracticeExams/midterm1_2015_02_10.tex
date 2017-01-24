@@ -300,11 +300,13 @@ In spite of Rossa's cheating, the individual coin flips remain independent.
   \end{solution}
   \part[3] Write a line of R code that will create a new dataframe called \texttt{smokers} containing only those rows of \texttt{tips} corresponding to tables with smokers.
   \begin{solution}[1.6in]
-    \texttt{smokers <- subset(tips, smoker == "Yes")}
+    \texttt{smokers = tips[smoker == 'Yes']}
+    If smokers is not a \texttt{data.table} but a \texttt{data.frame}, you would use:
+    \texttt{smokers = subset(tips, smoker == "Yes")}
   \end{solution}
   \part[3] Write a line of R code to carry out a linear regression where \texttt{tip} is the $y$-variable and \texttt{total\_bill} is the $x$-variable.
   \begin{solution}[1.6in]
-    \texttt{lm(tip \~{} total\_bill, tips)}
+    \texttt{lm(tip \~{} total\_bill, data = tips)}
   \end{solution}
   \part[5] The results of the preceding regression are given below. Explain them.
   \begin{verbatim}
@@ -319,7 +321,9 @@ Coefficients:
   \end{solution}
   \part[5] Write R code to calculate the mean of \texttt{percent} broken down by \texttt{sex} and \texttt{smoker}. You can do this in one command or several: either is fine.
   \begin{solution}[3in]
-    \texttt{as.table(by(percent, tips[,c("sex", "smoker")], mean))}
+    \texttt{tips[ , mean(percent), by = .(sex, smoker)]}
+    The output in the following sub-question resulted from different syntax that was not covered in the tutorials:
+    \texttt{as.table(by(percent, tips[ , c("sex", "worker")], mean))}
   \end{solution}
   \part[5] The results of running the command from the preceding part are given below. Explain these results in no more than three sentences.
   \begin{verbatim}

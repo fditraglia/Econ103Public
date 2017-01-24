@@ -268,30 +268,11 @@ Calculating the denominator by the Law of Total Probability, we have
 	\begin{parts}
 		\part[6] The first thing Helen does is calculate the admissions rates for men and women separately. Write R code to accomplish this. You may assume there are no missing observations.
 		\begin{solution}[1.75in]
-		Perhaps the simplest way is as follows:
-			\begin{verbatim}
-			men <- subset(admissions, Sex == 'Male')
-women <- subset(admissions, Sex == 'Female')
-mean(men$Admitted)
-mean(women$Admitted)
-			\end{verbatim}
-			A more compact way is to use \texttt{by}
-			\begin{verbatim}
-				by(admissions$Admitted, admissions$Sex, mean)
-			\end{verbatim}
+			\texttt{admissions[ , mean(Admitted), by = Sex]}
 		\end{solution}
 		\part[8] Next Helen calculates the admission rates for men and women broken down by field of study. Write R code to accomplish this. Again, you may assume that there are no missing observations.
-			\begin{solution}[2.5in]
-			The quickest way is 
-		\begin{verbatim}
-		by(admissions$Admitted, admissions[,c("Sex", "Field")], mean)
-		\end{verbatim}
-		To make this into a nice, clean table we can simply store the result and use \texttt{as.table}. It's also possible to solve this using subset to break the data into four blocks. For example, to calculate the admissions rate for men who applied to study Arts, we could use, 
-		\begin{verbatim}
-			men.arts <- subset(admissions,  Sex == "Male" & Field == "Arts")
-			mean(men.arts$Admitted)
-		\end{verbatim}
-		The other four categories are similar.
+		\begin{solution}[2.5in]
+			\texttt{admissions[ , mean(Admitted), by = .(Sex, Field)]}	
 		\end{solution}
 		\part[6] Finally, Helen arranges her results from part (a) into the following table
 		

@@ -135,6 +135,9 @@ I created these results with a single line of R code. What was it?
 \normalsize
 Write a single line of R code to compute \texttt{SATc} and add it to \texttt{Austin}.
 \begin{solution}[0.75in]
+  If \texttt{Austin} is a \texttt{data.table}, we add the column with:
+  \texttt{Austin[ , SATc := SATv + SATq]}
+  If \texttt{Austin} is a \texttt{data.frame}, we do:
   \texttt{Austin\$SATc <- Austin\$SATv + Austin\$SATq}
 \end{solution}
 \part[3] The next thing I did was to create histograms of GPA and combined SAT scores:
@@ -181,6 +184,9 @@ Explain briefly.
 \normalsize
 What command did I use?
 \begin{solution}[0.75in]
+  The syntax to get the equivalent output is:
+  \texttt{Austin[ , mean(SATc), by = School]}
+  The output found on this exam was produced by the \texttt{by} command (which is no longer covered):
   \texttt{by(Austin\$SATc, Austin\$School, mean)}
 \end{solution}
 \uplevel{\emph{\textbf{Use these statistics to answer the remaining parts:}}
