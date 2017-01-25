@@ -157,17 +157,17 @@ Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
       \begin{solution}[0.5in]
   			-1
   		\end{solution}
-  		\part[3] Given a dataframe called \texttt{grades} with columns \texttt{exam1} and \texttt{exam2}, write out the full R command to run a regression predicting \texttt{exam2} from \texttt{exam1}.
+  		\part[3] Given a data table called \texttt{grades} with columns \texttt{exam1} and \texttt{exam2}, write out the full R command to run a regression predicting \texttt{exam2} from \texttt{exam1}.
       \begin{solution}[0.55in]
   			\texttt{lm(exam2 \~{} exam1, data = grades)}
   		\end{solution}
-  		\part[3] Write a single line of R code to display the 4th row of a dataframe called \texttt{studentdata}.
+  		\part[3] Write a single line of R code to display the 4th row of a data table called \texttt{studentdata}.
       \begin{solution}[0.55in]
   		 	\texttt{studentdata[4,]}
   		 \end{solution} 
-       \part[5] Given a dataframe called \texttt{studentdata} with a column called \texttt{exam1}, write a single line of R code to display data for all students who scored above 70 on \texttt{exam1}.
+       \part[5] Given a data table called \texttt{studentdata} with a column called \texttt{exam1}, write a single line of R code to display data for all students who scored above 70 on \texttt{exam1}.
        \begin{solution}[0.55in]
-  		 	\texttt{subset(studentdata, midterm1 > 70)}
+  		 	\texttt{studentdata[midterm1 > 70]}
   		 \end{solution}
  		 \part[5] Write a single R command to draw three numbers at random from the digits 0--9 \emph{with replacement}.
      \begin{solution}[0.55in]
@@ -280,7 +280,7 @@ Rossa then opens the envelope and reads the predictions: Rodrigo has successfull
   \end{solution}
 \end{parts}
 
-   \question This question concerns a dataframe called \texttt{earnings} containing data on the height in inches (\texttt{height}), sex (\texttt{female} = 1 denotes female), and annual earnings in US dollars (\texttt{earn}) of a random sample of 1379 individuals.
+   \question This question concerns a data table called \texttt{earnings} containing data on the height in inches (\texttt{height}), sex (\texttt{female} = 1 denotes female), and annual earnings in US dollars (\texttt{earn}) of a random sample of 1379 individuals.
    Here are the first few rows:
 \begin{verbatim}
     earn height female
