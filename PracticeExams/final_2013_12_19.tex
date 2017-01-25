@@ -172,7 +172,7 @@ sum(sims > 0)/length(sims)
 	 	\end{solution}
 	\end{parts}
 
-\question This question is based on a dataset containing the results of the tae kwon do event in the 2004 Athens Olympics. (In case this event is unfamiliar to you, my dictionary defines tae kwon do as ``a modern Korean martial art similar to karate.'') The competition is a tournament consisting of a number of bouts. In each bout, a pair of competitors fight each other, points are awarded, and a winner is declared by the judges. In accordance with Olympic regulations, one of the competitors in each bout is \emph{randomly chosen} to wear blue body protectors. The other wears red body protectors. This question investigates whether wearing one color or the other gives an advantage in the competition. The data are stored in an R dataframe called \texttt{taekwondo}. Each row corresponds to a \emph{single bout} in the competition. The columns are as follows:
+\question This question is based on a dataset containing the results of the tae kwon do event in the 2004 Athens Olympics. (In case this event is unfamiliar to you, my dictionary defines tae kwon do as ``a modern Korean martial art similar to karate.'') The competition is a tournament consisting of a number of bouts. In each bout, a pair of competitors fight each other, points are awarded, and a winner is declared by the judges. In accordance with Olympic regulations, one of the competitors in each bout is \emph{randomly chosen} to wear blue body protectors. The other wears red body protectors. This question investigates whether wearing one color or the other gives an advantage in the competition. The data are stored in an R data table called \texttt{taekwondo}. Each row corresponds to a \emph{single bout} in the competition. The columns are as follows:
 
 \vspace{1em}
 \fbox{
@@ -209,10 +209,10 @@ Here are the first few rows of the dataset:
 \vspace{3em}
 
 	\begin{parts}
-		\part[4] For the rest of the question we'll restrict attention to the ``last 16'' round of the competition. This ensures that each row contains a \emph{unique} pair of fighters. Write R code to extract only those rows of \texttt{taekwondo} for which the value in the column \texttt{round} is ``last 16'' and store the result in a dataframe called \texttt{last16}.
+		\part[4] For the rest of the question we'll restrict attention to the ``last 16'' round of the competition. This ensures that each row contains a \emph{unique} pair of fighters. Write R code to extract only those rows of \texttt{taekwondo} for which the value in the column \texttt{round} is ``last 16'' and store the result in a data table called \texttt{last16}.
 			\begin{solution}[1in]
 				\begin{verbatim}
-				last16 <- subset(taekwondo, round == "last 16")
+				last16 <- taekwondo[round == "last 16"]
 				\end{verbatim}
 			\end{solution}
 		\part[6] To begin, we'll analyze the \emph{proportion} of bouts won by the blue fighter. Write R code to: (i) count the number of elements in the column \texttt{winner} of \texttt{last16} and store the result in a variable called \texttt{n}, and (ii) count the number of bouts won by the blue fighter and store the result in a variable called \texttt{n.blue}.
@@ -237,10 +237,10 @@ Here are the first few rows of the dataset:
 				$$T = \frac{\widehat{p} - 0.5}{\sqrt{0.5^2/n}} = \frac{19/32 - 0.5}{\sqrt{0.25/32}} \approx 1.06$$
 				If the test statistic were \emph{exactly} one, the p-value for a two-sided test would be \texttt{2 * (1 - pnorm(1))}$\approx 2 \times 0.16 = 0.32$. The test statistic here is slightly larger than one, so the p-value should be slighly smaller than 0.32. This is a very large p-value: we would \emph{fail} to reject the null at any of the standard significance levels (i.e.\ 10\%, 5\%, 1\%). We have not found convincing evidence that wearing either color conveys a competitive advantage.
 			\end{solution}
-		\part[6] For the remainder of the question, we will examine the relative difference in the number of \emph{points} scored by the blue and red fighters in each bout. Write R code accomplish the following: (i) select only those rows of \texttt{last16} for which the value in the column \texttt{method} is \texttt{Points} and store the result in a dataframe called \texttt{last16.points}, (ii) create a vector called \texttt{D} whose entries contain the \emph{difference} in the number of points scored by blue versus red (Blue - Red) in each bout.
+		\part[6] For the remainder of the question, we will examine the relative difference in the number of \emph{points} scored by the blue and red fighters in each bout. Write R code accomplish the following: (i) select only those rows of \texttt{last16} for which the value in the column \texttt{method} is \texttt{Points} and store the result in a data table called \texttt{last16.points}, (ii) create a vector called \texttt{D} whose entries contain the \emph{difference} in the number of points scored by blue versus red (Blue - Red) in each bout.
 			\begin{solution}[1.25in]
 				\begin{verbatim}
-					last16.points <- subset(last16, method == 'Points')
+					last16.points <- last16[method == 'Points']
 					D <- last16.points$blue.points - last16.points$red.points
 				\end{verbatim}
 			\end{solution}
@@ -248,7 +248,7 @@ Here are the first few rows of the dataset:
 		\begin{solution}[1.2in]
 			$11.7 - 10.1 = 1.6$
 		\end{solution}
-		\part[10] I entered the command \texttt{var(D)} at the R console and got 25. Next I entered \texttt{var(last16.points\$red.points)} and \texttt{var(last16.points\$blue.points)} and got 17 and 31, respectively. Calculate the sample correlation between the columns \texttt{red.points} and \texttt{blue.points} of the dataframe \texttt{last16.points}.
+		\part[10] I entered the command \texttt{var(D)} at the R console and got 25. Next I entered \texttt{var(last16.points\$red.points)} and \texttt{var(last16.points\$blue.points)} and got 17 and 31, respectively. Calculate the sample correlation between the columns \texttt{red.points} and \texttt{blue.points} of the data table \texttt{last16.points}.
 			\begin{solution}[3.25in]
 			Rearranging the formula from class and substituting values from the question statement:
 				\begin{eqnarray*}
@@ -258,7 +258,7 @@ Here are the first few rows of the dataset:
 				&=& \frac{17 + 31 - 25}{2\sqrt{17 \times 31}} = \frac{23}{2 \times \sqrt{527}} \approx 0.5
 				\end{eqnarray*}				
 			\end{solution}
-		\part[10] To test the null hypothesis that red and blue fighters are awarded, on average, the same number of points against the two-sided alternative, should we use a test for independent samples or matched pairs data? Explain briefly and then carry out the appropriate test at the 5\% level based on the CLT. To answer, you will need the fact that there are 29 rows in the dataframe \texttt{last16.points}. Be sure to report: (i) the test statistic, (ii) the decision rule, and (iii) the result of the test.
+		\part[10] To test the null hypothesis that red and blue fighters are awarded, on average, the same number of points against the two-sided alternative, should we use a test for independent samples or matched pairs data? Explain briefly and then carry out the appropriate test at the 5\% level based on the CLT. To answer, you will need the fact that there are 29 rows in the data table \texttt{last16.points}. Be sure to report: (i) the test statistic, (ii) the decision rule, and (iii) the result of the test.
 			\begin{solution}[3.25in]
 				This is matched pairs data: the score earned by the red fighter in a given bout cannot possibly be independent of the score earned by the blue fighter \emph{in the same bout}. The test statistic is
 					$$T = \frac{\bar{D}}{s_d/\sqrt{n}} = 1.6 / (5/\sqrt{29}) \approx 1.7$$
