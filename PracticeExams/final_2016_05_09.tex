@@ -243,7 +243,7 @@ The following cross-tab contains the results of Grace's poll:
   \end{solution}
 \end{parts}
 
-\question This question concerns an R dataframe called \texttt{trump} that contains data for all 227 precincts in the 2016 New Hampshire Republican presidential primary.
+\question This question concerns an R data table called \texttt{trump} that contains data for all 227 precincts in the 2016 New Hampshire Republican presidential primary.
 Here are the first few rows of the data:
 \begin{verbatim}
 > head(trump)
@@ -288,7 +288,11 @@ boxplot(hhinc ~ pvi, data = trump)
   You do not need to include the titles
   \begin{solution}[1.25in]
 \begin{verbatim}
-reps <- subset(trump, pvi == "Rep")
+trump[pvi == "Rep", hist(hhinc)]
+\end{verbatim}
+Alternatively,
+\begin{verbatim}
+reps <- trump[pvi == "Rep"]
 hist(reps$hhinc)
 \end{verbatim}
   \end{solution}
