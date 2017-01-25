@@ -187,7 +187,7 @@ Since $X_1, X_2, X_3$ are iid Bernoulli$(p)$, each row of the preceding table is
 
 
 
-\question This question is based on a dataframe called \texttt{profs} containing the salaries of a random sample of 397 professors at US universities in 2008. Here are the first few rows:
+\question This question is based on a data table called \texttt{profs} containing the salaries of a random sample of 397 professors at US universities in 2008. Here are the first few rows:
 \begin{verbatim}
 > head(profs)
        rank  sex salary
@@ -204,11 +204,11 @@ Each row contains data for a single professor. The column \texttt{rank} is a cat
 	\begin{solution}[11cm]
 		There are many ways to do this. Here's one:
 		\begin{verbatim}
-			male <- subset(profs, sex == "Male")$salary
+			male <- profs[sex == "Male", salary]
 			mean(male)
 			var(male)
 			length(male)
-			female <- subset(profs, sex == "Female")$salary
+			female <- profs[sex == "Female", salary]
 			mean(female)
 			var(female)
 			length(female)
@@ -315,7 +315,7 @@ Each row contains data for a single professor. The column \texttt{rank} is a cat
 
 
  
-\question Garth is concerned that students registered for Monday recitation sections of Econ 103 may have an unfair advantage on quizzes because they have additional days to study compared to students in Friday sections. To decide whether he should adjust the course curve to compensate, he fits a number of linear regression models, the results of which appear in Table \ref{tab:regression}. Each regression is calculated using a dataframe called \texttt{gradebook}:
+\question Garth is concerned that students registered for Monday recitation sections of Econ 103 may have an unfair advantage on quizzes because they have additional days to study compared to students in Friday sections. To decide whether he should adjust the course curve to compensate, he fits a number of linear regression models, the results of which appear in Table \ref{tab:regression}. Each regression is calculated using a data table called \texttt{gradebook}:
 \begin{verbatim}
   quiz.avg midterm.avg Monday
 1       71        85.8      1
