@@ -117,11 +117,11 @@ Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
 
  \question For each of the following, provide R code to generate the specified result. 
   \begin{parts} 
-    \part[4] Suppose I have a dataframe called \texttt{gradebook} with a column called \texttt{midterm1}.
+    \part[4] Suppose I have a data table called \texttt{gradebook} with a column called \texttt{midterm1}.
   Write down R code to display only those rows of \texttt{gradebook} for which the entry in \texttt{midterm1} is at least 80.
   \begin{solution}[1in]
     \begin{verbatim}
-subset(gradebook, midterm1 >= 80)
+    gradebook[midterm1 >= 80]
     \end{verbatim}
   \end{solution}
   	\part[6] Write code to plot the CDF of a $\chi^2(5)$ RV from 0 to 10 over a grid of 1001 values.
@@ -319,8 +319,8 @@ For simplicity you may treat this approximation as though it were exact.
 \end{parts}
 
 
-\question An R dataframe called \texttt{houses} contains the sale price and characteristics of a random sample of 128 houses sold in Kansas City in a single year. 
-The first few rows of the dataframe are as follows:
+\question An R data table called \texttt{houses} contains the sale price and characteristics of a random sample of 128 houses sold in Kansas City in a single year. 
+The first few rows of the data table are as follows:
 \begin{verbatim}
 > head(houses)
   neighborhood offers sqft brick bedrooms bathrooms  price
