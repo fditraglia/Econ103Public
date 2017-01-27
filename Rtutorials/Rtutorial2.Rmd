@@ -374,7 +374,7 @@ R has a somewhat peculiar way of handling categorical variables. It does so by u
 school = c("SAS", "Wharton", "Wharton", "SEAS", "SAS", "Nursing", "SAS")
 school_factor = factor(school)
 class(school)
-class(factor)
+class(school_factor)
 school
 school_factor
 ```
@@ -626,7 +626,7 @@ titanic[ , age.group := cut(titanic$age, c(0, 15, 25, 65, 200),
                             right = FALSE)]
 ```
 
-13. Create two tables: one for men and one for women. Each table should show break down survival proportions by `pclass` and `age.group`. [Hint: `by = .()` can accept more than two arguments] What do your results suggest? Is there any thing wrong with the way we defined the `"Senior"` age group in the previous part? 
+13. Create two tables: one for men and one for women. Each table should break down survival proportions by `pclass` and `age.group`. [Hint: `by = .()` can accept more than two arguments] What do your results suggest? Is there any thing wrong with the way we defined the `"Senior"` age group in the previous part? 
 
 ```{r exercise_13_ti}
 titanic[!is.na(age), mean(survived), keyby = .(sex, pclass, age.group)]
