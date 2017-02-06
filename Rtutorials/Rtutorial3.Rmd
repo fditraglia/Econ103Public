@@ -367,7 +367,7 @@ apple.prices = Quandl('GOOG/NASDAQ_AAPL', start_date = '2016-01-01', end_date = 
 Notice that I got a warning saying that my access to Quandl is limited. While the service is free, you have to sign up (also free), to get unlimited access. Otherwise you're only allowed a certain number of queries per day. For this exercise that won't be a problem.
 
 Now I'll walk you through the arguments of the function `Quandl`
-  - The first argument is the *Quandl Code* for the data you want. In this case, it happens that the code for Apple is `GOOG/NASDAQ_APPL`. The `GOOG` indicates that the data *source* is Google Finance and `NASDAQ` indicates that we're looking for a company that's traded on the NASDAQ stock exchange. Finally, `APPL` is the ticker symbol for Apple Computer.
+  - The first argument is the *Quandl Code* for the data you want. In this case, it happens that the code for Apple is `GOOG/NASDAQ_AAPL`. The `GOOG` indicates that the data *source* is Google Finance and `NASDAQ` indicates that we're looking for a company that's traded on the NASDAQ stock exchange. Finally, `AAPL` is the ticker symbol for Apple Computer.
   - `start_date` and `end_date` mean exactly what you think they do. Note that the format must be YYYY-MM-DD.
   - `type = 'zoo'` tells Quandl to set up our data in the right format for using the library `zoo`. More on that below.
 
