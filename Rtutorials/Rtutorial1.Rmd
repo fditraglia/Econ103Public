@@ -535,7 +535,7 @@ In some cases it's easier to access columns of a `data.table` *by name* and in o
 
 ```{r TOGGLE_SOLUTIONS, echo = FALSE, purl = FALSE}
 #use this to turn the display of answers on/off
-knitr::opts_chunk$set(echo = FALSE, results = 'hide')
+#knitr::opts_chunk$set(echo = FALSE, results = 'hide')
 ```
 
 
