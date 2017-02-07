@@ -66,7 +66,7 @@ h6 {
 }
 </style>
 
-<link href="data:text/css;charset=utf-8,%23TOC%20%7B%0Aposition%3A%20fixed%3B%0Aleft%3A%200%3B%0Atop%3A%200%3B%0Awidth%3A%20200px%3B%0Aheight%3A%20100%25%3B%0Aoverflow%3Aauto%3B%0A%7D%0Abody%20%7B%0Amax%2Dwidth%3A%20800px%3B%0Amargin%3A%20auto%3B%0Amargin%2Dleft%3A210px%3B%0Aline%2Dheight%3A%2020px%3B%0A%7D%0A" rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,%23TOC%20%7B%0Aposition%3A%20fixed%3B%0Aleft%3A%200%3B%0Atop%3A%200%3B%0Awidth%3A%20200px%3B%0Aheight%3A%20100%25%3B%0Aoverflow%3Aauto%3B%0A%7D%0Abody%20%7B%0Amax%2Dwidth%3A%20800px%3B%0Amargin%3A%20auto%3B%0Amargin%2Dleft%3A210px%3B%0Aline%2Dheight%3A%2020px%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20%22Andale%20Mono%22%2C%20AndaleMono%2C%20monospace%3B%0A%7D" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -451,13 +451,13 @@ matplot(x, y, type = 'l', col = c(&quot;red&quot;, &quot;blue&quot;), lty = 1)</
 <h3>Simulate Binomial Draws: <code>rbinom</code></h3>
 <p>This function takes 3 arguments: <code>n</code> is the number of random draws we want, <code>size</code> is what we call <span class="math inline">\(n\)</span> in class, namely the underlying number of Bernoulli trials (coin flips) that we’re adding together to create the Binomial RV, and <code>prob</code> is <span class="math inline">\(p\)</span> from class. So, to get 20 draws from a Binomial<span class="math inline">\((n=10, p = 1/2)\)</span> random variable, I would use the following command:</p>
 <pre class="r"><code>rbinom(20, size = 10, prob = 1/2)</code></pre>
-<pre><code>##  [1] 3 5 2 5 6 7 5 6 4 5 5 5 3 4 6 5 7 5 4 8</code></pre>
+<pre><code>##  [1] 8 4 8 6 7 4 6 3 5 4 6 6 4 4 5 6 6 6 2 6</code></pre>
 <p>Remember, the support of this random variable is <span class="math inline">\(\{0, 1, 2, ..., 10\}\)</span> so each draw is a number between 0 and 10. In class we learned that the mean of a Binomial RV is <span class="math inline">\(np\)</span> while the variance is <span class="math inline">\(np(1-p)\)</span>. We can check this for particular examples using Monte Carlo Simulation. For this example, we don’t need <code>replicate</code></p>
 <pre class="r"><code>sims &lt;- rbinom(100000, size = 10, prob = 1/2)
 mean(sims) - (10 * 1/2)</code></pre>
-<pre><code>## [1] -0.00191</code></pre>
+<pre><code>## [1] -0.00478</code></pre>
 <pre class="r"><code>var(sims) - (10 * 1/2 * 1/2)</code></pre>
-<pre><code>## [1] 0.03673172</code></pre>
+<pre><code>## [1] 0.01414229</code></pre>
 </div>
 <div id="exercise-5" class="section level3">
 <h3>Exercise #5</h3>
