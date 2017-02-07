@@ -223,7 +223,7 @@ jobsearch[salary > 50000]
 jobsearch[hours <= 50]
 
 ## ----data_import---------------------------------------------------------
-weather = fread('https://www.wunderground.com/history/airport/KPHL/2017/1/10/MonthlyHistory.html?format=1')
+weather = fread('http://michaelchirico.github.io/philly_weather_data.csv')
 weather
 summary(weather)
 names(weather)
@@ -269,3 +269,119 @@ my.data.table[ , c("person", "weight")]
 my.data.table[ , 2]
 my.data.table[ , c(1,2)]
 my.data.table[ , 1:2]
+
+## ----exercise_1----------------------------------------------------------
+60 * 24 * 7 * 31
+
+## ----exercise_2----------------------------------------------------------
+sum(c(3,1,4,1,5,9,2,6))
+
+## ----exercise_3----------------------------------------------------------
+?summary
+summary(iris)
+
+## ----exercise_4----------------------------------------------------------
+x = 5
+y = 7
+z = x + y 
+z + 3 == 15
+
+## ----exercise_5----------------------------------------------------------
+rep("Go Penn", times = 30)
+
+## ----exercise_6----------------------------------------------------------
+x = seq(-1, 1, 0.1)
+x
+
+## ----exercise_7----------------------------------------------------------
+#Remember that the elements of character vectors need to be enclosed in quotation marks. Either single or double quotes will work.
+wizards = c("Harry", "Ron", "Fred", "George", "Sirius")
+ranking = c(4, 2, 5, 1, 3)
+
+## ----exercise_8----------------------------------------------------------
+wizards[2]
+
+## ----exercise_9----------------------------------------------------------
+#There are several different ways to do this. Here are two possibilities.
+wizards[c(3, 4, 5)] = c("Hermione", "Ginny", "Malfoy")
+wizards[3:5] = c("Hermione", "Ginny", "Malfoy")
+
+## ----exercise_10---------------------------------------------------------
+names(wizards) = c("Lead", "Friend", "Friend", "Wife", "Rival")
+wizards
+
+## ----exercise_11---------------------------------------------------------
+names(wizards)[5] = "Ex-Rival"
+names(wizards)
+
+## ----exercise_12---------------------------------------------------------
+years = c(2009, 2010, 2011, 2012)
+income = c(50000, 52000, 52500, 48000)
+expenses = c(35000, 34000, 38000, 40000)
+
+## ----exercise_13---------------------------------------------------------
+savings = income - expenses
+
+## ----exercise_14---------------------------------------------------------
+sum(savings)
+
+## ----exercise_15---------------------------------------------------------
+z = 23:12
+z
+
+## ----exercise_16---------------------------------------------------------
+z[z == 13] = 7
+z
+
+## ----exercise_17---------------------------------------------------------
+scores = c(18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87)
+
+## ----exercise_18---------------------------------------------------------
+mean(scores)
+median(scores)
+range(scores)
+
+## ----exercise_19---------------------------------------------------------
+age = c(21, 26, 51, 22, 160, 160, 160)
+person = c("Achilles", "Hector", "Priam", "Paris", "Apollo", "Athena", "Aphrodite")
+description = c("Aggressive", "Loyal", "Regal", "Cowardly", "Proud", "Wise", "Conniving")
+
+## ----exercise_20---------------------------------------------------------
+trojan.war = data.table(person, age, description)
+
+## ----exercise_21---------------------------------------------------------
+#There are many different ways to do this:
+trojan.war[, 3] 
+trojan.war$description 
+trojan.war[ , "description"]
+trojan.war[["description"]]
+
+## ----exercise_22---------------------------------------------------------
+#There are several ways to do this. Here are a few:
+trojan.war[c(1,2)]
+trojan.war[1:2]
+#A more advanced way that doesn't require knowing the order of the rows:
+trojan.war[person %in% c("Achilles", "Hector")]
+
+## ----exercise_23---------------------------------------------------------
+#There are many ways to do this. Here are a few:
+trojan.war[c(5, 6, 7), c(1, 3)]
+trojan.war[5:7, c("person", "description")]
+#advanced method
+trojan.war[person %in% c("Apollo", "Athena", "Aphrodite"),
+           c("person", "description")]
+
+## ----exercise_24---------------------------------------------------------
+titanic = fread("http://www.ditraglia.com/econ103/titanic3.csv")
+
+## ----exercise_25---------------------------------------------------------
+x = seq(2, 18, 2)
+x
+prod(x)
+
+## ----exercise_26---------------------------------------------------------
+titanic[survived == 1]
+
+## ----exercise_27---------------------------------------------------------
+titanic[sex == 'male']
+

@@ -518,7 +518,7 @@ Notice that if you used $n$ breakpoints, you need $n-1$ labels since they corres
 
 ```{r TOGGLE_SOLUTIONS, echo = FALSE, purl = FALSE}
 #use this to turn the display of answers on/off
-knitr::opts_chunk$set(echo = FALSE, results = 'hide', fig.show = 'hide')
+#knitr::opts_chunk$set(echo = FALSE, results = 'hide', fig.show = 'hide')
 ```
 
 # Exploring the Titanic {#part_two}

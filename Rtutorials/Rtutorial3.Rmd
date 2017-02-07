@@ -127,7 +127,7 @@ abline(a = 0, b = 1)
 
 Carry out a linear regression in which `height` is the y-variable and `handedness` is the x-variable. Plot the data and add the regression line. Add red dashed lines to show that the regression line goes through the means of the data. Interpret your results. Is there a relationship between handedness and height? 
 
-```{r exercise_1, echo = FALSE, results = 'hide', fig.show = 'hide', purl = FALSE}
+```{r exercise_1, results = 'hide'}
 survey[ , {
   reg = lm(height ~ handedness)
   plot(height ~ handedness)
@@ -258,7 +258,7 @@ It turns out that R doesn't have a built-in function to calculate skewness (ther
   $$\mbox{Skewness} = \frac{\frac{1}{n}\sum_{i=1}^n(x_i - \bar{x})^3}{s^3}$$
 where $s$ is the sample standard deviation. Call your function `skew`. It should take one argument, a vector `x`, and return the sample skewness of `x`. Make sure to handle missing values appropriately. Use the built-in R functions `mean`, `sum`, `length` and `sd` to construct your skewness function. Test your function out on the `handedness` data. You should get an answer of around -2.2.  
 
-```{r exercise_2, echo = FALSE, results = 'hide', fig.show = 'hide', purl = FALSE}
+```{r exercise_2}
 #Exercise #2 - Write a Function to Calculate Skewness
 skew = function(x){
   x = x[!is.na(x)]
@@ -318,7 +318,7 @@ we see that it works.
 
 Write a function to carry out linear regression called `myreg`. It should take two arguments: vectors `x` and `y` which you may assume have the same length. It should return a `data.table` with columns `a` for the intercept and `b` for the slope. Make sure to handle missing values appropriately. Feel free to use any built-in R functions you like *except* `lm`. Check your answer against the regression results for height and handspan that we calculated above. When creating this function, remember that regression is *not* symmetric.
 
-```{r exercise_3, echo = FALSE, results = 'hide', fig.show = 'hide', purl = FALSE}
+```{r exercise_3}
 #Exercise #3 - Write a Function to Carry Out Linear Regression
 myreg = function(y, x){
   keep = !is.na(x) & !is.na(y)
@@ -492,7 +492,7 @@ median(apple.returns)
 
 Are Apple Returns Skewed? Test out your function for calculating skewness on `apple.returns` and interpret your results. 
 
-```{r exercise_4, echo = FALSE, results = 'hide', fig.show = 'hide', warning = FALSE, purl = FALSE}
+```{r exercise_4}
 #Exercise #4 - Are Apple Returns Skewed?
 skew(apple.returns)
 ```
@@ -505,7 +505,7 @@ Download data for IBM (Quandl Code: GOOG/NYSE_IBM) and carry out the same analys
   3. If you had invested a dollar in IBM at the start of 2016, how much would your investment have been worth at the end of the year?
   4. Are IBM returns skewed? How do they compare to Apple's returns in this sense?
   
-```{r exercise_5, echo = FALSE, results = 'hide', fig.show = 'hide', warning = FALSE, purl = FALSE}
+```{r exercise_5}
 #Exercise #5 - Repeat the Above for IBM Returns
 ibm.prices = Quandl("GOOG/NYSE_IBM", start_date = "2016-01-01", end_date = "2016-12-31", type = "zoo")
 head(ibm.prices)
@@ -532,7 +532,7 @@ In this exercise you'll calculate the *correlations* between different sets of r
   3. Calculate the correlation between Apple and Bank of American returns, and Bank of America and IBM returns.
   4. Based on your answers to 1 and 3, which assets are most strongly correlated? Which are least strongly correlated? If wanted to "hedge your bets", which of these stocks would you choose to form a portfolio?
   
-```{r exercise_6, echo = FALSE, results = 'hide', fig.show = 'hide', warning = FALSE, purl = FALSE}
+```{r exercise_6}
 #Exercise #6 - Correlations between Returns
 boa.prices = Quandl("GOOG/NYSE_BAC", start_date = "2016-01-01", end_date = "2016-12-31", type = "zoo")
 boa.returns = diff(log(boa.prices$Close))

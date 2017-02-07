@@ -66,7 +66,7 @@ h6 {
 }
 </style>
 
-<link href="data:text/css;charset=utf-8,%23TOC%20%7B%0Aposition%3A%20fixed%3B%0Aleft%3A%200%3B%0Atop%3A%200%3B%0Awidth%3A%20200px%3B%0Aheight%3A%20100%25%3B%0Aoverflow%3Aauto%3B%0A%7D%0Abody%20%7B%0Amax%2Dwidth%3A%20800px%3B%0Amargin%3A%20auto%3B%0Amargin%2Dleft%3A210px%3B%0Aline%2Dheight%3A%2020px%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20%22Andale%20Mono%22%2C%20AndaleMono%2C%20monospace%3B%0A%7D" rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,%23TOC%20%7B%0Aposition%3A%20fixed%3B%0Aleft%3A%200%3B%0Atop%3A%200%3B%0Awidth%3A%20200px%3B%0Aheight%3A%20100%25%3B%0Aoverflow%3Aauto%3B%0A%7D%0Abody%20%7B%0Amax%2Dwidth%3A%20800px%3B%0Amargin%3A%20auto%3B%0Amargin%2Dleft%3A210px%3B%0Aline%2Dheight%3A%2020px%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20%27Source%20Code%20Pro%27%2C%20monospace%3B%0A%7D" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -855,9 +855,35 @@ my.data.table[1:3, 3]</code></pre>
 <p><strong>If you can’t get R and RStudio to work on your computer, you can do the exercises on the R Fiddle website</strong></p>
 <p><a href="http://www.r-fiddle.org/#/" class="uri">http://www.r-fiddle.org/#/</a></p>
 <ol style="list-style-type: decimal">
-<li><p>Calculate how many minutes there are in a January</p></li>
-<li><p>Add up the numbers 3 1 4 1 5 9 2 6 <em>without using any plus signs</em></p></li>
-<li><p>Load the help file for the function <code>summary</code>, and use <code>summary</code> on an object.</p></li>
+<li>Calculate how many minutes there are in a January</li>
+</ol>
+<pre class="r"><code>60 * 24 * 7 * 31</code></pre>
+<pre><code>## [1] 312480</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Add up the numbers 3 1 4 1 5 9 2 6 <em>without using any plus signs</em></li>
+</ol>
+<pre class="r"><code>sum(c(3,1,4,1,5,9,2,6))</code></pre>
+<pre><code>## [1] 31</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Load the help file for the function <code>summary</code>, and use <code>summary</code> on an object.</li>
+</ol>
+<pre class="r"><code>?summary
+summary(iris)</code></pre>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<ol start="4" style="list-style-type: decimal">
 <li>Suppose I ran the following R commands in order. What result would I get after the fourth command? <em>Do not</em> use R to answer this: think it through and then check your answer.</li>
 </ol>
 <ul>
@@ -866,31 +892,265 @@ my.data.table[1:3, 3]</code></pre>
 <li><code>z = x + y</code></li>
 <li><code>z + 3 == 15</code></li>
 </ul>
+<pre class="r"><code>x = 5
+y = 7
+z = x + y 
+z + 3 == 15</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>How can I get R to print out <code>&quot;Go Penn!&quot;</code> thirty times without repeatedly typing this by hand?</p></li>
-<li><p>Create a vector called <code>x</code> containing the sequence -1, -0.9, … 0, 0.1, …, 0.9, 1 and then display the result</p></li>
-<li><p>Create two vectors: <code>wizards</code> and <code>ranking</code>. The vector <code>wizards</code> should contain the following names: Harry, Ron, Fred, George, Sirius. The vector <code>ranking</code> should contain the following numbers: 4, 2, 5, 1, 3 in it. Make sure to put these in order.</p></li>
-<li><p>Extract the second element of the vector <code>wizards</code>.</p></li>
-<li><p>Replace the names Fred, George and Sirius in the vector wizards with Hermione, Ginny and Malfoy, respectively.</p></li>
-<li><p>Someone who hasn’t read Harry Potter needs labels to determine who these characters are. Assign names to the elements of the vector <code>wizards</code>: Lead, Friend, Friend, Wife, Rival. Display the result.</p></li>
-<li><p>An avid reader of Harry Potter argues that Malfoy is not Harry’s rival by the end of the series. Change Rival to Ex-Rival.</p></li>
-<li><p>In 2009 Steve’s income was $50,000 and his total expenses were $35,000. In 2010 his income was $52,000 and his expenses were $34,000. In 2011, his income was $52,500 and his expenses were $38,000. Finally, in 2012 Steve’s earnings were $48,000 and his expenses were $40,000. Create three vectors to store this information in parallel: <code>years</code>, <code>income</code> and <code>expenses</code>.</p></li>
-<li><p>Following on from the previous question, calculate Steve’s annual savings and store this in a vector called <code>savings</code>.</p></li>
-<li><p>Assuming zero interest on bank deposits (roughly accurate at the moment), calculate the total amount that Steve has saved over all the years for which we have data.</p></li>
-<li><p>Create a vector called <code>z</code> that lists the numbers from 12 to 23 in <em>descending order</em>.</p></li>
-<li><p>Replace the number 13 with the number 7 in <code>z</code>.</p></li>
-<li><p>Twenty-six students took the midterm. Here are their scores: 18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87. Assign these values to a vector called <code>scores</code>.</p></li>
-<li><p>Calculate the mean, median, and range of the scores.</p></li>
-<li><p>Create three vectors. First store the numeric values 21, 26, 51, 22, 160, 160, 160 in a vector called <code>age</code>. Next, store the names Achilles, Hector, Priam, Paris, Apollo, Athena, Aphrodite in a character vector called <code>person</code>. Finally store the words Aggressive, Loyal, Regal, Cowardly, Proud, Wise, Conniving in a vector called <code>description</code></p></li>
-<li><p>Create a <code>data.table</code> called <code>trojan.war</code> whose columns contain the vectors from the previous question.</p></li>
-<li><p>Suppose you wanted to display only the column of <code>trojan.war</code> that contains each person’s <code>description</code>. What command would you use?</p></li>
-<li><p>What command would you use to show information for Achilles and Hector only?</p></li>
-<li><p>What command would you use to display the <code>person</code> and <code>description</code> columns for Apollo, Athena and Aphrodite only?</p></li>
-<li><p>By now you’re probably tired of this data set. A passenger manifest for the Titanic is stored at <a href="http://www.ditraglia.com/econ103/titanic3.csv" class="uri">http://www.ditraglia.com/econ103/titanic3.csv</a>. Read this file and store it in a dataframe called <code>titanic</code>.</p></li>
-<li><p>Calculate the product of all the even numbers between 2 and 18, inclusive.</p></li>
-<li><p>The column <code>survived</code> in the <code>titanic</code> data has a value of “1” to indicate that the passenger in that row survived the disaster. Display only the rows of <code>titanic</code> corresponding to passengers that survived.</p></li>
-<li><p>The column <code>sex</code> in the <code>titanic</code> data indicates each passenger’s sex. Display only the rows of <code>titanic</code> corresponding to men.</p></li>
+<li>How can I get R to print out <code>&quot;Go Penn!&quot;</code> thirty times without repeatedly typing this by hand?</li>
 </ol>
+<pre class="r"><code>rep(&quot;Go Penn&quot;, times = 30)</code></pre>
+<pre><code>##  [1] &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot;
+##  [8] &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot;
+## [15] &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot;
+## [22] &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot; &quot;Go Penn&quot;
+## [29] &quot;Go Penn&quot; &quot;Go Penn&quot;</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Create a vector called <code>x</code> containing the sequence -1, -0.9, … 0, 0.1, …, 0.9, 1 and then display the result</li>
+</ol>
+<pre class="r"><code>x = seq(-1, 1, 0.1)
+x</code></pre>
+<pre><code>##  [1] -1.0 -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1  0.0  0.1  0.2  0.3
+## [15]  0.4  0.5  0.6  0.7  0.8  0.9  1.0</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Create two vectors: <code>wizards</code> and <code>ranking</code>. The vector <code>wizards</code> should contain the following names: Harry, Ron, Fred, George, Sirius. The vector <code>ranking</code> should contain the following numbers: 4, 2, 5, 1, 3 in it. Make sure to put these in order.</li>
+</ol>
+<pre class="r"><code>#Remember that the elements of character vectors need to be enclosed in quotation marks. Either single or double quotes will work.
+wizards = c(&quot;Harry&quot;, &quot;Ron&quot;, &quot;Fred&quot;, &quot;George&quot;, &quot;Sirius&quot;)
+ranking = c(4, 2, 5, 1, 3)</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Extract the second element of the vector <code>wizards</code>.</li>
+</ol>
+<pre class="r"><code>wizards[2]</code></pre>
+<pre><code>## [1] &quot;Ron&quot;</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Replace the names Fred, George and Sirius in the vector wizards with Hermione, Ginny and Malfoy, respectively.</li>
+</ol>
+<pre class="r"><code>#There are several different ways to do this. Here are two possibilities.
+wizards[c(3, 4, 5)] = c(&quot;Hermione&quot;, &quot;Ginny&quot;, &quot;Malfoy&quot;)
+wizards[3:5] = c(&quot;Hermione&quot;, &quot;Ginny&quot;, &quot;Malfoy&quot;)</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>Someone who hasn’t read Harry Potter needs labels to determine who these characters are. Assign names to the elements of the vector <code>wizards</code>: Lead, Friend, Friend, Wife, Rival. Display the result.</li>
+</ol>
+<pre class="r"><code>names(wizards) = c(&quot;Lead&quot;, &quot;Friend&quot;, &quot;Friend&quot;, &quot;Wife&quot;, &quot;Rival&quot;)
+wizards</code></pre>
+<pre><code>##       Lead     Friend     Friend       Wife      Rival 
+##    &quot;Harry&quot;      &quot;Ron&quot; &quot;Hermione&quot;    &quot;Ginny&quot;   &quot;Malfoy&quot;</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>An avid reader of Harry Potter argues that Malfoy is not Harry’s rival by the end of the series. Change Rival to Ex-Rival.</li>
+</ol>
+<pre class="r"><code>names(wizards)[5] = &quot;Ex-Rival&quot;
+names(wizards)</code></pre>
+<pre><code>## [1] &quot;Lead&quot;     &quot;Friend&quot;   &quot;Friend&quot;   &quot;Wife&quot;     &quot;Ex-Rival&quot;</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>In 2009 Steve’s income was $50,000 and his total expenses were $35,000. In 2010 his income was $52,000 and his expenses were $34,000. In 2011, his income was $52,500 and his expenses were $38,000. Finally, in 2012 Steve’s earnings were $48,000 and his expenses were $40,000. Create three vectors to store this information in parallel: <code>years</code>, <code>income</code> and <code>expenses</code>.</li>
+</ol>
+<pre class="r"><code>years = c(2009, 2010, 2011, 2012)
+income = c(50000, 52000, 52500, 48000)
+expenses = c(35000, 34000, 38000, 40000)</code></pre>
+<ol start="13" style="list-style-type: decimal">
+<li>Following on from the previous question, calculate Steve’s annual savings and store this in a vector called <code>savings</code>.</li>
+</ol>
+<pre class="r"><code>savings = income - expenses</code></pre>
+<ol start="14" style="list-style-type: decimal">
+<li>Assuming zero interest on bank deposits (roughly accurate at the moment), calculate the total amount that Steve has saved over all the years for which we have data.</li>
+</ol>
+<pre class="r"><code>sum(savings)</code></pre>
+<pre><code>## [1] 55500</code></pre>
+<ol start="15" style="list-style-type: decimal">
+<li>Create a vector called <code>z</code> that lists the numbers from 12 to 23 in <em>descending order</em>.</li>
+</ol>
+<pre class="r"><code>z = 23:12
+z</code></pre>
+<pre><code>##  [1] 23 22 21 20 19 18 17 16 15 14 13 12</code></pre>
+<ol start="16" style="list-style-type: decimal">
+<li>Replace the number 13 with the number 7 in <code>z</code>.</li>
+</ol>
+<pre class="r"><code>z[z == 13] = 7
+z</code></pre>
+<pre><code>##  [1] 23 22 21 20 19 18 17 16 15 14  7 12</code></pre>
+<ol start="17" style="list-style-type: decimal">
+<li>Twenty-six students took the midterm. Here are their scores: 18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87. Assign these values to a vector called <code>scores</code>.</li>
+</ol>
+<pre class="r"><code>scores = c(18, 95, 76, 90, 84, 83, 80, 79, 63, 76, 55, 78, 90, 81, 88, 89, 92, 73, 83, 72, 85, 66, 77, 82, 99, 87)</code></pre>
+<ol start="18" style="list-style-type: decimal">
+<li>Calculate the mean, median, and range of the scores.</li>
+</ol>
+<pre class="r"><code>mean(scores)</code></pre>
+<pre><code>## [1] 78.5</code></pre>
+<pre class="r"><code>median(scores)</code></pre>
+<pre><code>## [1] 81.5</code></pre>
+<pre class="r"><code>range(scores)</code></pre>
+<pre><code>## [1] 18 99</code></pre>
+<ol start="19" style="list-style-type: decimal">
+<li>Create three vectors. First store the numeric values 21, 26, 51, 22, 160, 160, 160 in a vector called <code>age</code>. Next, store the names Achilles, Hector, Priam, Paris, Apollo, Athena, Aphrodite in a character vector called <code>person</code>. Finally store the words Aggressive, Loyal, Regal, Cowardly, Proud, Wise, Conniving in a vector called <code>description</code></li>
+</ol>
+<pre class="r"><code>age = c(21, 26, 51, 22, 160, 160, 160)
+person = c(&quot;Achilles&quot;, &quot;Hector&quot;, &quot;Priam&quot;, &quot;Paris&quot;, &quot;Apollo&quot;, &quot;Athena&quot;, &quot;Aphrodite&quot;)
+description = c(&quot;Aggressive&quot;, &quot;Loyal&quot;, &quot;Regal&quot;, &quot;Cowardly&quot;, &quot;Proud&quot;, &quot;Wise&quot;, &quot;Conniving&quot;)</code></pre>
+<ol start="20" style="list-style-type: decimal">
+<li>Create a <code>data.table</code> called <code>trojan.war</code> whose columns contain the vectors from the previous question.</li>
+</ol>
+<pre class="r"><code>trojan.war = data.table(person, age, description)</code></pre>
+<ol start="21" style="list-style-type: decimal">
+<li>Suppose you wanted to display only the column of <code>trojan.war</code> that contains each person’s <code>description</code>. What command would you use?</li>
+</ol>
+<pre class="r"><code>#There are many different ways to do this:
+trojan.war[, 3] </code></pre>
+<pre><code>##    description
+## 1:  Aggressive
+## 2:       Loyal
+## 3:       Regal
+## 4:    Cowardly
+## 5:       Proud
+## 6:        Wise
+## 7:   Conniving</code></pre>
+<pre class="r"><code>trojan.war$description </code></pre>
+<pre><code>## [1] &quot;Aggressive&quot; &quot;Loyal&quot;      &quot;Regal&quot;      &quot;Cowardly&quot;   &quot;Proud&quot;     
+## [6] &quot;Wise&quot;       &quot;Conniving&quot;</code></pre>
+<pre class="r"><code>trojan.war[ , &quot;description&quot;]</code></pre>
+<pre><code>##    description
+## 1:  Aggressive
+## 2:       Loyal
+## 3:       Regal
+## 4:    Cowardly
+## 5:       Proud
+## 6:        Wise
+## 7:   Conniving</code></pre>
+<pre class="r"><code>trojan.war[[&quot;description&quot;]]</code></pre>
+<pre><code>## [1] &quot;Aggressive&quot; &quot;Loyal&quot;      &quot;Regal&quot;      &quot;Cowardly&quot;   &quot;Proud&quot;     
+## [6] &quot;Wise&quot;       &quot;Conniving&quot;</code></pre>
+<ol start="22" style="list-style-type: decimal">
+<li>What command would you use to show information for Achilles and Hector only?</li>
+</ol>
+<pre class="r"><code>#There are several ways to do this. Here are a few:
+trojan.war[c(1,2)]</code></pre>
+<pre><code>##      person age description
+## 1: Achilles  21  Aggressive
+## 2:   Hector  26       Loyal</code></pre>
+<pre class="r"><code>trojan.war[1:2]</code></pre>
+<pre><code>##      person age description
+## 1: Achilles  21  Aggressive
+## 2:   Hector  26       Loyal</code></pre>
+<pre class="r"><code>#A more advanced way that doesn't require knowing the order of the rows:
+trojan.war[person %in% c(&quot;Achilles&quot;, &quot;Hector&quot;)]</code></pre>
+<pre><code>##      person age description
+## 1: Achilles  21  Aggressive
+## 2:   Hector  26       Loyal</code></pre>
+<ol start="23" style="list-style-type: decimal">
+<li>What command would you use to display the <code>person</code> and <code>description</code> columns for Apollo, Athena and Aphrodite only?</li>
+</ol>
+<pre class="r"><code>#There are many ways to do this. Here are a few:
+trojan.war[c(5, 6, 7), c(1, 3)]</code></pre>
+<pre><code>##       person description
+## 1:    Apollo       Proud
+## 2:    Athena        Wise
+## 3: Aphrodite   Conniving</code></pre>
+<pre class="r"><code>trojan.war[5:7, c(&quot;person&quot;, &quot;description&quot;)]</code></pre>
+<pre><code>##       person description
+## 1:    Apollo       Proud
+## 2:    Athena        Wise
+## 3: Aphrodite   Conniving</code></pre>
+<pre class="r"><code>#advanced method
+trojan.war[person %in% c(&quot;Apollo&quot;, &quot;Athena&quot;, &quot;Aphrodite&quot;),
+           c(&quot;person&quot;, &quot;description&quot;)]</code></pre>
+<pre><code>##       person description
+## 1:    Apollo       Proud
+## 2:    Athena        Wise
+## 3: Aphrodite   Conniving</code></pre>
+<ol start="24" style="list-style-type: decimal">
+<li>By now you’re probably tired of this data set. A passenger manifest for the Titanic is stored at <a href="http://www.ditraglia.com/econ103/titanic3.csv" class="uri">http://www.ditraglia.com/econ103/titanic3.csv</a>. Read this file and store it in a dataframe called <code>titanic</code>.</li>
+</ol>
+<pre class="r"><code>titanic = fread(&quot;http://www.ditraglia.com/econ103/titanic3.csv&quot;)</code></pre>
+<ol start="25" style="list-style-type: decimal">
+<li>Calculate the product of all the even numbers between 2 and 18, inclusive.</li>
+</ol>
+<pre class="r"><code>x = seq(2, 18, 2)
+x</code></pre>
+<pre><code>## [1]  2  4  6  8 10 12 14 16 18</code></pre>
+<pre class="r"><code>prod(x)</code></pre>
+<pre><code>## [1] 185794560</code></pre>
+<ol start="26" style="list-style-type: decimal">
+<li>The column <code>survived</code> in the <code>titanic</code> data has a value of “1” to indicate that the passenger in that row survived the disaster. Display only the rows of <code>titanic</code> corresponding to passengers that survived.</li>
+</ol>
+<pre class="r"><code>titanic[survived == 1]</code></pre>
+<pre><code>##      pclass survived                                            name
+##   1:      1        1                   Allen, Miss. Elisabeth Walton
+##   2:      1        1                  Allison, Master. Hudson Trevor
+##   3:      1        1                             Anderson, Mr. Harry
+##   4:      1        1               Andrews, Miss. Kornelia Theodosia
+##   5:      1        1   Appleton, Mrs. Edward Dale (Charlotte Lamson)
+##  ---                                                                
+## 496:      3        1                          Turkula, Mrs. (Hedwig)
+## 497:      3        1                            Vartanian, Mr. David
+## 498:      3        1 Whabee, Mrs. George Joseph (Shawneene Abi-Saab)
+## 499:      3        1                Wilkes, Mrs. James (Ellen Needs)
+## 500:      3        1         Yasbeck, Mrs. Antoni (Selini Alexander)
+##         sex   age sibsp parch ticket     fare   cabin embarked  boat body
+##   1: female 29.00     0     0  24160 211.3375      B5        S     2     
+##   2:   male  0.92     1     2 113781 151.5500 C22 C26        S    11     
+##   3:   male 48.00     0     0  19952  26.5500     E12        S     3     
+##   4: female 63.00     1     0  13502  77.9583      D7        S    10     
+##   5: female 53.00     2     0  11769  51.4792    C101        S     D     
+##  ---                                                                     
+## 496: female 63.00     0     0   4134   9.5875                S    15     
+## 497:   male 22.00     0     0   2658   7.2250                C 13 15     
+## 498: female 38.00     0     0   2688   7.2292                C     C     
+## 499: female 47.00     1     0 363272   7.0000                S           
+## 500: female 15.00     1     0   2659  14.4542                C           
+##                            home.dest
+##   1:                    St Louis, MO
+##   2: Montreal, PQ / Chesterville, ON
+##   3:                    New York, NY
+##   4:                      Hudson, NY
+##   5:             Bayside, Queens, NY
+##  ---                                
+## 496:                                
+## 497:                                
+## 498:                                
+## 499:                                
+## 500:</code></pre>
+<ol start="27" style="list-style-type: decimal">
+<li>The column <code>sex</code> in the <code>titanic</code> data indicates each passenger’s sex. Display only the rows of <code>titanic</code> corresponding to men.</li>
+</ol>
+<pre class="r"><code>titanic[sex == 'male']</code></pre>
+<pre><code>##      pclass survived                                 name  sex   age sibsp
+##   1:      1        1       Allison, Master. Hudson Trevor male  0.92     1
+##   2:      1        0 Allison, Mr. Hudson Joshua Creighton male 30.00     1
+##   3:      1        1                  Anderson, Mr. Harry male 48.00     0
+##   4:      1        0               Andrews, Mr. Thomas Jr male 39.00     0
+##   5:      1        0              Artagaveytia, Mr. Ramon male 71.00     0
+##  ---                                                                      
+## 839:      3        0                    Yousif, Mr. Wazli male    NA     0
+## 840:      3        0                Yousseff, Mr. Gerious male    NA     0
+## 841:      3        0            Zakarian, Mr. Mapriededer male 26.50     0
+## 842:      3        0                  Zakarian, Mr. Ortin male 27.00     0
+## 843:      3        0                   Zimmerman, Mr. Leo male 29.00     0
+##      parch   ticket     fare   cabin embarked boat body
+##   1:     2   113781 151.5500 C22 C26        S   11     
+##   2:     2   113781 151.5500 C22 C26        S       135
+##   3:     0    19952  26.5500     E12        S    3     
+##   4:     0   112050   0.0000     A36        S          
+##   5:     0 PC 17609  49.5042                C        22
+##  ---                                                   
+## 839:     0     2647   7.2250                C          
+## 840:     0     2627  14.4583                C          
+## 841:     0     2656   7.2250                C       304
+## 842:     0     2670   7.2250                C          
+## 843:     0   315082   7.8750                S          
+##                            home.dest
+##   1: Montreal, PQ / Chesterville, ON
+##   2: Montreal, PQ / Chesterville, ON
+##   3:                    New York, NY
+##   4:                     Belfast, NI
+##   5:             Montevideo, Uruguay
+##  ---                                
+## 839:                                
+## 840:                                
+## 841:                                
+## 842:                                
+## 843:</code></pre>
 </div>
 
 
