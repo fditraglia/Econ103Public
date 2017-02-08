@@ -2,6 +2,9 @@
 
 \usepackage{amsfonts}
 
+\usepackage{xcolor}
+\newenvironment{solution}{\color{red}}{\color{black}}
+
 \begin{document}
 
 \title{Recitation 3}
@@ -18,12 +21,50 @@ Lastly, the United States has admitted about 895,055 refugees in the past 15 yea
 
 \begin{enumerate}
 \item Given these rough estimates, what is the probability that a randomly selected person in the world is a terrorist?
+
+\begin{solution}
+$$ \frac{200,000}{7,000,000,000} $$
+\end{solution}
+
 \item Given that someone is a terrorist, what is the probability that they are Syrian?
+
+\begin{solution}
+$$ \frac{30,000}{200,000} $$
+\end{solution}
+
 \item You're screening refugees and hoping to weed out any terrorist posing as a refugee. Given that you know the refugee is Syrian, what is the probability they are a terrorist? That is, what is $\mathbb{P}[terrorist|Syrian]$?
+
+\begin{solution}
+$$ \frac{30,000}{23,000,000} $$
+\end{solution}
+
 \item By what order of magnitude does knowing a person is Syrian increase the likelihood that they're a terrorist?
+
+\begin{solution}
+This is 3) / 1):
+$$ \frac{\left( \frac{30,000}{23,000,000} \right)}{\left( \frac{200,000}{7,000,000,000} \right)} = \frac{1,050}{23} \approx 50 $$
+\end{solution}
+
 \item What is the probability that, given someone is a refugee in the US, they are a terrorist?
+
+\begin{solution}
+$$\frac{3}{895,055}$$
+\end{solution}
+
 \item What is the probability that, given someone is \textit{not} a refugee in the US, they are a terrorist?
+
+\begin{solution}
+This question was poorly phrased -- implicit is an obviously false dichotomy between refugeeship and citizenship.
+$$ \frac{70}{130,000,000} $$
+\end{solution}
+
 \item By what order of magnitude does knowing a person is a refugee increase the likelihood that they're a terrorist?
+
+\begin{solution}
+This should have been more clearly stated as "...refugee in the US... a terrorist relative to a non-refugee in the US" -- i.e., it should be 5) / 6); approximating 895,055 by 900,000:
+$$ \frac{\left( \frac{3}{900,000} \right)}{\left( \frac{70}{130,000,000} \right)} = \frac{390}{63} \approx 6 $$
+\end{solution}
+
 \item \textit{(open-ended)} This is of course a simplistic interpretation of the problem of refugee screening. Why does the simplistic analysis break down? What are other important considerations? What assumptions are violated?
 \end{enumerate}
 
