@@ -2,12 +2,14 @@
 title: "R Tutorial #5 -- Econ 103"
 output:
   html_document:
-    toc: true
-    theme: readable
+    includes:
+      in_header: "google-font.html"
     css: custom.css
+    theme: readable
+    toc: yes
   pdf_document:
-    toc: true
     highlight: zenburn
+    toc: yes
 ---
 
 This tutorial has two parts. In the first part you'll learn how to plot functions in R. In the second part you'll learn how we can use R to study the Binomial random variable.

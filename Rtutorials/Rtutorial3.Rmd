@@ -2,12 +2,14 @@
 title: "R Tutorial #3 -- Econ 103"
 output:
   html_document:
-    toc: true
-    theme: readable
+    includes:
+      in_header: "google-font.html"
     css: custom.css
+    theme: readable
+    toc: yes
   pdf_document:
-    toc: true
     highlight: zenburn
+    toc: yes
 ---
 
 This tutorial is a bit of a grab-bag. The [first part](#part_one) shows you how to calculate the remaining summary statistics from the lectures and introduces a few new plotting commands. The [second part](#part_two) describes one of the most fundamental parts of R: creating your own functions. Finally, the [third part](#part_three) shows you how to import stock return data in R and introduces some related concepts and tools. Rather than appearing at the end, six exercises are scattered throughout the parts of this tutorial.

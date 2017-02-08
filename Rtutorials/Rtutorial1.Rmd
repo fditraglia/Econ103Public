@@ -2,6 +2,8 @@
 title: 'R Tutorial #1 -- Econ 103'
 output:
   html_document:
+    includes:
+      in_header: "google-font.html"
     css: custom.css
     theme: readable
     toc: yes
