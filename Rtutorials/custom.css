@@ -1,16 +1,16 @@
 #TOC {
-position: fixed;
-left: 0;
-top: 0;
-width: 200px;
-height: 100%;
-overflow:auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  overflow:auto;
 }
 body {
-max-width: 800px;
-margin: auto;
-margin-left:210px;
-line-height: 20px;
+  max-width: 800px;
+  margin: auto;
+  margin-left:210px;
+  line-height: 20px;
 }
 code {
   font-family: 'Source Code Pro', monospace;

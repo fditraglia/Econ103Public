@@ -2,12 +2,14 @@
 title: "R Tutorial #4 -- Econ 103"
 output:
   html_document:
-    toc: true
-    theme: readable
+    includes:
+      in_header: "google-font.html"
     css: custom.css
+    theme: readable
+    toc: yes
   pdf_document:
-    toc: true
     highlight: zenburn
+    toc: yes
 ---
 
 In this tutorial you'll learn about a powerful technique called Monte Carlo Simulation that allows us to use R to calculate probabilities rather than using the various rules and formulas from class. Eight exercises are scattered throughout this tutorial.
