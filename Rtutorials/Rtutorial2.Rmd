@@ -2,12 +2,14 @@
 title: "R Tutorial #2 -- Econ 103"
 output:
   html_document:
-    toc: true
-    theme: readable
+    includes:
+      in_header: "google-font.html"
     css: custom.css
+    theme: readable
+    toc: yes
   pdf_document:
-    toc: true
     highlight: zenburn
+    toc: yes
 ---
 This tutorial has three parts. In the [first part](#part_one), you'll learn how to implement the summary statistics and graphics from class using R. In the [second part](#part_two), you'll use what you've learned to explore a real-world dataset: the passenger manifest from the Titanic. In the third (and shortest) part, you'll explore some data relevant to the city you live in -- wage data for all Philadelphia government employees.
 
@@ -518,7 +520,7 @@ Notice that if you used $n$ breakpoints, you need $n-1$ labels since they corres
 
 ```{r TOGGLE_SOLUTIONS, echo = FALSE, purl = FALSE}
 #use this to turn the display of answers on/off
-knitr::opts_chunk$set(echo = FALSE, results = 'hide', fig.show = 'hide')
+#knitr::opts_chunk$set(echo = FALSE, results = 'hide', fig.show = 'hide')
 ```
 
 # Exploring the Titanic {#part_two}

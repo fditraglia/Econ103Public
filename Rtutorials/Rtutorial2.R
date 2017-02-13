@@ -149,7 +149,7 @@ survey[which.min(height)]
 school = c("SAS", "Wharton", "Wharton", "SEAS", "SAS", "Nursing", "SAS")
 school_factor = factor(school)
 class(school)
-class(factor)
+class(school_factor)
 school
 school_factor
 
@@ -203,7 +203,7 @@ survey[!is.na(sex) & !is.na(credits),
        keyby = .(sex, credits)]
 
 ## ----cut_1---------------------------------------------------------------
-grades <- c(67, 93, 85, 82, 88, 86, 78, 97, 74, 77, 81)
+grades = c(67, 93, 85, 82, 88, 86, 78, 97, 74, 77, 81)
 
 ## ----cut_2---------------------------------------------------------------
 cut(grades, c(60, 70, 80, 90, 100))
@@ -214,3 +214,64 @@ cut(grades, c(60, 70, 80, 90, 100), right = FALSE)
 ## ----cut_labels----------------------------------------------------------
 cut(grades, c(60, 70, 80, 90, 100), 
     labels = c("D", "C", "B", "A"), right = FALSE)
+
+## ----exercise_2_ti-------------------------------------------------------
+library(data.table)
+titanic = fread("http://www.ditraglia.com/econ103/titanic3.csv")
+head(titanic)
+
+## ----exercise_3_ti-------------------------------------------------------
+titanic[ , c("name", "sibsp", "parch", "ticket", "cabin",
+             "embarked", "boat", "body", "home.dest") := NULL]
+head(titanic)
+
+## ----exercise_4_ti-------------------------------------------------------
+titanic[ , sex := factor(sex)]
+titanic[ , pclass := factor(pclass)]
+
+## ----exercise_5_ti-------------------------------------------------------
+summary(titanic)
+
+## ----exercise_6_ti-------------------------------------------------------
+titanic[ , sd(fare, na.rm = TRUE)]
+titanic[ , quantile(fare, .9, na.rm = TRUE)]
+titanic[ , hist(fare, col = 'red')]
+
+## ----exercise_7_ti-------------------------------------------------------
+boxplot(fare ~ pclass, data = titanic, horizontal = TRUE, las = 1L,
+        main = "Boxplots of Fare by Passenger Class")
+
+## ----exercise_8_ti-------------------------------------------------------
+summary(titanic[survived == 1])
+
+## ----exercise_9_ti-------------------------------------------------------
+titanic[ , mean(fare, na.rm = TRUE), by = sex]
+
+## ----exercise_10_ti------------------------------------------------------
+titanic[ , mean(fare, na.rm = TRUE), keyby = .(sex, pclass)]
+
+## ----exercise_11_ti------------------------------------------------------
+titanic[ , mean(survived), keyby = .(sex, pclass)]
+
+## ----exercise_12_ti------------------------------------------------------
+titanic[ , age.group := cut(titanic$age, c(0, 15, 25, 65, 200), 
+                            c("Child", "Youth", "Adult", "Senior"), 
+                            right = FALSE)]
+
+## ----exercise_13_ti------------------------------------------------------
+titanic[!is.na(age), mean(survived), keyby = .(sex, pclass, age.group)]
+
+## ----exercise_1_ph-------------------------------------------------------
+wages = fread('https://data.phila.gov/api/views/ihvw-4zq5/rows.csv')
+wages
+
+## ----exercise_2_ph-------------------------------------------------------
+wages[ , salary := as.numeric(gsub("$", "", `Annual Salary`, fixed = TRUE))]
+summary(wages$salary)
+
+## ----exercise_3_ph-------------------------------------------------------
+wages[which.max(salary)]
+
+## ----exercise_4_ph-------------------------------------------------------
+wages[order(-salary)]
+

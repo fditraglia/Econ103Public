@@ -51,6 +51,16 @@ y = x^2
 plot(y ~ x)
 abline(a = 0, b = 1)
 
+## ----exercise_1, results = 'hide'----------------------------------------
+survey[ , {
+  reg = lm(height ~ handedness)
+  plot(height ~ handedness)
+  abline(reg = reg)
+  abline(v = mean(handedness, na.rm = TRUE),
+         h = mean(height, na.rm = TRUE),
+         col = 'red', lty = 2)
+}]
+
 ## ----function_write------------------------------------------------------
 z.score = function(x){
   z = (x - mean(x, na.rm = TRUE))/sd(x, na.rm = TRUE)
@@ -88,6 +98,16 @@ myvar = function(x){
 var(survey$handspan, na.rm = TRUE)
 myvar(survey$handspan)
 
+## ----exercise_2----------------------------------------------------------
+#Exercise #2 - Write a Function to Calculate Skewness
+skew = function(x){
+  x = x[!is.na(x)]
+  numerator = sum((x - mean(x))^3)/length(x)
+  denominator = sd(x)^3
+  return(numerator/denominator)  
+}
+skew(survey$handedness)
+
 ## ----function_return_data.table------------------------------------------
 summary.stats = function(x){
   x = x[!is.na(x)]
@@ -117,6 +137,22 @@ mycov = function(x, y){
 ## ----mycov_test----------------------------------------------------------
 survey[ , cov(handspan, handedness, use = "complete.obs")]
 survey[ , mycov(handspan, handedness)]
+
+## ----exercise_3----------------------------------------------------------
+#Exercise #3 - Write a Function to Carry Out Linear Regression
+myreg = function(y, x){
+  keep = !is.na(x) & !is.na(y)
+  x = x[keep]
+  y = y[keep]
+  
+  b = cov(x,y)/var(x)
+  a = mean(y) - b * mean(x)
+    
+  out = data.table(a, b)
+  return(out)
+}
+survey[ , lm(height ~ handspan)]
+survey[ , myreg(y = height, x = handspan)]
 
 ## ----install.packages_both, eval = FALSE---------------------------------
 ## install.packages(c("Quandl", "zoo"))
@@ -167,6 +203,36 @@ sum(apple.returns)
 hist(apple.returns) 
 mean(apple.returns)
 median(apple.returns)
+
+## ----exercise_4----------------------------------------------------------
+#Exercise #4 - Are Apple Returns Skewed?
+skew(apple.returns)
+
+## ----exercise_5----------------------------------------------------------
+#Exercise #5 - Repeat the Above for IBM Returns
+ibm.prices = Quandl("GOOG/NYSE_IBM", start_date = "2016-01-01", end_date = "2016-12-31", type = "zoo")
+head(ibm.prices)
+plot(ibm.prices)
+plot(ibm.prices$Close, main = "Daily Closing Prices: IBM - 2016",
+     xlab = "Date", ylab = "Price", lwd = 3)
+ibm.returns = diff(log(ibm.prices$Close))
+plot(ibm.returns, main = "IBM - 2016", xlab = "date", 
+     ylab = "Log Daily Returns", col = "blue", lwd = 3)
+mean(ibm.returns)
+sd(ibm.returns)
+sum(ibm.returns)
+hist(ibm.returns)
+mean(ibm.returns)
+median(ibm.returns)
+skew(ibm.returns)
+
+## ----exercise_6----------------------------------------------------------
+#Exercise #6 - Correlations between Returns
+boa.prices = Quandl("GOOG/NYSE_BAC", start_date = "2016-01-01", end_date = "2016-12-31", type = "zoo")
+boa.returns = diff(log(boa.prices$Close))
+cor(boa.returns, apple.returns)
+cor(apple.returns, ibm.returns)
+cor(boa.returns, ibm.returns)
 
 ## ----log_vs_x------------------------------------------------------------
 x = seq(-.9, .9, length.out = 100)
