@@ -1,0 +1,303 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+%\boxedpoints
+%\pointsinmargin
+
+
+
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\cov}{Cov}
+\newcommand{\cprob}{\rightarrow_{p}}
+\newcommand{\cas}{\rightarrow_{as}}
+\newcommand{\clp}{\rightarrow_{L^p}}
+\newcommand{\clone}{\rightarrow_{L^1}}
+\newcommand{\cltwo}{\rightarrow_{L^2}}
+\newcommand{\cd}{\rightarrow_{d}}
+\newcommand{\cv}{\Rightarrow_{v}}
+\newcommand{\dec}{\downarrow}
+\newcommand{\inc}{\uparrow}
+\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
+\newcommand{\limn}{\lim_{n \rightarrow \infty}}
+\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
+\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
+\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
+\newcommand{\slfrac}[2]{\left.#1\right/#2}
+
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm I, Page \thepage\ of \numpages}
+              {February 11, 2013}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Midterm Examination I\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} February 11, 2013}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{1em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, fifteen points will be deducted from your final score. In addition, one point will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+\question[10] A study conducted at the University of Missouri-Columbia (``Mizzou'') found that students who had a fake ID were more likely to engage in underage drinking while at college. Suppose we were to give fake IDs to a randomly selected group of Mizzou freshmen. Based only on the evidence given in this question, do you think this would substantially increase the fraction of these students who drink underage? Explain why or why not.
+	\begin{solution}[3.5in]
+		There are many possible correct answers: the point is to use what we've learned in this course about observational data and confounding to construct an argument. Here is one possibility:
+		\begin{quote}
+		No -- the causality probably runs in reverse: students who plan to do a lot of underage drinking obtain fake IDs \emph{expressly for this purpose}. In contrast, students who do not plan to engage in underage drinking have no need of a fake ID and hence wouldn't bother to obtain them. If we gave fake IDs to teetotalers, they'd never use them. If we gave them to hardened alcoholics, they'd already have one. The only students whom this experiment might impact are those who are constrained in their underage drinking by an inability to obtain a fake ID. Given the many opportunities to drink underage on or near a college campus that \emph{do not} require a fake ID, it is very unlikely that this constraint binds for many students.\end{quote}
+	\end{solution}
+
+
+\question[10] Let $A$ and $B$ be two mutually exclusive events, where both $P(A)$ and $P(B)$ are strictly greater than zero. Are $A$ and $B$ independent? Explain your answer and provide a proof. You may use any results we derived in class without proving them but be sure to name the results you use for full credit.
+			\begin{solution}[3in]
+				For any two events, the Addition Rule gives,
+					$$P(A\cup B) = P(A) + P(B) - P(A\cap B)$$
+				but for mutually exclusive events,
+					$$P(A \cup B) = P(A) + P(B)$$
+				by the third Axiom of Probability. Combining these, $P(A \cap B) = 0$. Two events $A$ and $B$ are independent if and only if $P(A\cap B) = P(A)P(B)$. But we know that $P(A)>0$ and $P(B)>0$ so, $P(A)P(B)>0$. Since $P(A\cap B)=0$ it follows that $A$ and $B$ cannot be independent. The intuition is as follows.  If $A$ and $B$ are mutually exclusive, then the fact that one of them has occurred \emph{completely rules out} the possibility that the other has occurred. In contrast, if two events are independent, knowing that one has occurred gives us \emph{no} information about whether the other will. Thus $A$ and $B$ can't be independent (except in the trivial case where one or both of them has zero probability, which was ruled out in the question statement).
+			\end{solution}
+
+
+\question
+	Suppose that we want to predict $y$ from $x$ using the linear regression model $\widehat{y} = a + bx$.
+		\begin{parts}
+			\part[5] Write down (but do not solve) the optimization problem needed to calculate $a$ and $b$ from a dataset $(x_1, y_1), (x_2, y_2), \hdots, (x_n, y_n)$.
+				\begin{solution}[1in]
+					$$\min_{a,b} \sum_{i=1}^n (y_i - a - bx_i)^2$$
+				\end{solution}
+			\part[10] Using your answer to part (a), prove that the regression line goes through the means of the data, that is $\bar{y} = a + b \bar{x}$.
+			\begin{solution}[3in]
+				Differentiating the above expression with respect to $a$ gives the first order condition:
+				$$-2\sum_{i=1}^n(y_i - a - bx_i) = 0$$
+				Rearranging and dividing both sides by $n$,
+					\begin{eqnarray*}
+						\sum_{i=1}^n(y_i - a - bx_i) &=& 0\\
+						\sum_{i=1}^n y_i - \sum_{i=1}^n a - b \sum_{i=1}^n &=& 0\\
+						\sum_{i=1}^n y_i - na - b \sum_{i=1}^n x_i &=&0\\
+						\bar{y} - a - b \bar{x} &=&0
+					\end{eqnarray*}
+				Therefore, $\bar{y} = a + b \bar{x}$.
+			\end{solution}
+		\end{parts}
+
+
+
+\question
+	This question refers to the following dataset, containing 13 observations:
+		$$\begin{array}{ccccccccccccc} -3 \quad& -3\quad & -2\quad & -1\quad & -1 \quad& -1 \quad& -1\quad & 0 \quad& 0\quad& 1 \quad& 4 \quad& 7 \quad& 13 \end{array}$$
+			\begin{parts}
+				\part[5] Calculate the median of this dataset.
+					\begin{solution}[1in]
+						Since this dataset contains an odd number of observations, the median is simply the middle observation when the data are listed in rank order (as they are here). Thus, the median is $-1$.
+					\end{solution}
+				\part[5] Calculate the mean of this dataset.
+					\begin{solution}[1in]
+						The sum of the observations is $\sum_{i=1}^n x_i = 13$ so the sample mean is $\frac{1}{n} \sum_{i=1}^n x_i  = 13/13 = 1$.
+					\end{solution}
+				\part[5] Suppose that it turned out there was a mistake recording the dataset: the observation listed as $13$ should actually be $130$. How would the mean and median change?
+					\begin{solution}[1.65in]
+						The median is unchanged since $-1$ is still the middle observation. The sum of the observations, however, has changed from $13$ to $130$, so the new mean is $130/13 = 10$.
+					\end{solution}
+				\part[5] Let $f$ be a strictly increasing function, that is $x_1 < x_2 \Rightarrow f(x_1) < f(x_2)$. Suppose I apply $f$ to the \emph{original dataset} so that instead of $-3, -3, \hdots, 7, 13$ the data become $f(-3), f(-3), \hdots, f(7), f(13)$. What is the median of the transformed data? Explain your answer.
+					\begin{solution}[1.65in]
+					The key point here is that the function $f$ \emph{preserves rank orderings}. Thus, 
+					$$f(-3) < f(-2) < f(-1) < f(0) < f(1) < f(4) < f(7) < f(13)$$
+					After the transformation, the order of the observations stays the same: only the \emph{values} change. It follows that, since the median of the un-transformed data was $-1$, the median of the transformed data is $f(-1)$.
+					\end{solution}
+			\end{parts}
+
+
+\question Consider a dataset with $n$ observations on a variable $x$: $x_1, \hdots, x_n$. Define a new variable, $y$, as follows: for each $x_i$ set $y_i = c + d x_i$ where $c$ and $d$ are constants and $d \neq 0$. 
+	\begin{parts}
+	\part[5] How is $s_y^2$ related to $s_x^2$? Prove your answer.
+		\begin{solution}[3in]
+			\begin{eqnarray*}
+			s_y^2 &=& \frac{1}{n-1} \sum_{i=1}^n (y_i - \bar{y})^2 = \frac{1}{n-1} \sum_{i=1}^n \left(c  + dx_i - (c+ d\bar{x})\right)^2\\
+			&=& \frac{d^2}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 = d^2 s_x^2 
+			\end{eqnarray*}
+		\end{solution}
+	\part[5] How is $s_{xy}$ related to $s_x^2$? Prove your answer.
+		\begin{solution}[3in]
+			\begin{eqnarray*}
+				s_{xy}&=&\frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})\\
+				 &=&  \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})\left(c + dx_i - \left(c + d\bar{x}\right)\right)\\
+				 &=&   \frac{d}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 =d s_x^2
+			\end{eqnarray*}
+		\end{solution}
+	 \part[5] What is the sample correlation between $x$ and $y$? Prove your answer.
+	\begin{solution}[2in]
+		The correlation is exactly one because $y$ is simply a linear transformation of $x$. From above, we know that the covariance between $x$ and $y$ is $ds_x^2$ and the variance of $y$ is $d^2 s_x^2$. Therefore, 
+			\begin{eqnarray*}
+				r_{xy} = \frac{s_{xy}}{s_x s_y} = \frac{d s_x^2}{s_x \sqrt{d^2 s_x^2}} = \frac{d s_x^2}{|d| s_x^2} = \pm 1
+			\end{eqnarray*}
+	\end{solution}
+	\part[5] Suppose we were to carry out linear regression to predict $y$ from $x$, namely $\hat{y} = a + bx$. What values would we find for $a$ and $b$? Prove your answer. (You may use the regression formulas from class without proving them.)
+		\begin{solution}[2.5in]
+			\begin{eqnarray*}
+			b &=& \frac{s_{xy}}{s_x^2} = \frac{d s_x^2}{s_x^2} = d\\
+			a &=& \bar{y} - b \bar{x} = (c + d\bar{x}) - d\bar{x} = c
+			\end{eqnarray*}
+		\end{solution}	
+	\end{parts}
+
+\question[10] Let $A$ and $B$ be two events where $P(B)>0$. Prove that $$P(A) = P(A|B)P(B) + P(A|B^c)P(B^c)$$
+In your answer you may use any of the rules we learned in class except for the one you are being asked to prove. For full credit, provide the name of each rule that you use. 
+	\begin{solution}[2.5in]
+		First, note that $A\cap B$ and $A \cap B^c$ are mutually exclusive and 
+			$$A = (A\cap B) \cup (A \cap B^c)$$
+	Therefore, by the third axiom of probability,
+			$$P(A) = P(A\cap B) + P(A \cap B^c)$$
+	Finally, by the multiplication rule,
+		$$P(A\cap B) = P(A|B)P(B)$$
+	and 
+		$$P(A \cap B^c) = P(A|B^c)P(B^c)$$
+		Combining these,
+		$$P(A) = P(A|B)P(B) + P(A|B^c)P(B^c)$$
+	\end{solution}
+
+\question The Triangle is a neighborhood that once housed a chemical plant but has become a residential area. Two percent of the children in the city live in the Triangle, and fourteen percent of these children test positive for excessive presence of toxic metals in the tissue. For children in the city who do not live in the Triangle, the rate of positive tests is only one percent. Let $T$ be the event that a child lives in the Triangle and $M$ be the event that a child tests positive for excessive presence of toxic metals.
+	\begin{parts}
+		\part[5] If we randomly select a child who lives in the city, what is the probability that she both lives in the Triangle and tests positive?
+		\begin{solution}[1in]
+		By the multiplication rule:
+		$$P(T\cap M) = P(M|T)P(T) = 0.14 \times 0.02 = 0.0028$$
+		\end{solution}
+		\part[5] If we randomly select a child who lives in the city, what is the probability that she tests positive?
+		\begin{solution}[1.75in]
+		By the law of total probability
+		\begin{eqnarray*}
+		P(M) &=& P(M|T)P(T) + P(M|T^c)P(T^c)\\
+			&=& 0.14 \times 0.02 +  0.01 \times 0.98\\
+			&=& 0.0028 + 0.0098 \\
+			&=& 0.0126
+		\end{eqnarray*}
+		\end{solution}
+		\part[5] If we randomly select a child who lives in the city and she tests positive, what is the probability that she lives in the Triangle?
+			\begin{solution}[1.5in]
+			By Bayes' Rule:
+				\begin{eqnarray*}
+				P(T|M) &=& \frac{P(M|T)P(T)}{P(M)}\\
+					&=& \frac{0.0028}{0.0126} = 2/9 \approx 0.22
+				\end{eqnarray*}
+			\end{solution}
+	\end{parts}
+
+
+\question Let $X$ be a random variable that takes on the values 1, 2, and 3 with equal probability.
+	\begin{parts}
+		\part[4] Define the term \emph{random variable}.
+			\begin{solution}[1in]
+				A random variable is a deterministic function that assigns a real number to every basic outcome in the sample space of a random experiment.
+			\end{solution}
+		\part[4] What is the support set of $X$?
+			\begin{solution}[1in]
+				$\{1,2,3\}$
+			\end{solution}
+		\part[4] What is the pmf of $X$? Write it out as a piecewise function.
+			\begin{solution}[1in]
+				$$p(x) = \left\{\begin{array}{rl} 1/3, & x = 1\\ 1/3,& x = 2\\ 1/3,& x = 3 \\ 0,& \mbox{otherwise} \end{array}\right.$$
+			\end{solution}
+		\part[4] What is the CDF of $X$? Write it out as a piecewise function.
+			\begin{solution}[1in]
+				$$F(x_0) = \left\{\begin{array}{rr} 0,& x_0 < 1\\ 1/3,& 1 \leq x_0 < 2\\ 2/3,& 2 \leq x_0 < 3\\ 1,& x_0\geq 3 \end{array}\right.$$
+			\end{solution}
+		\part[4] Calculate the expected value of $X$.
+			\begin{solution}[1in]
+				$$E[X] = 1 \cdot 1/3 + 2 \cdot 1/3 + 3 \cdot 1/3 = 1/3 + 2/3 + 1 = 2$$
+			\end{solution}
+	\end{parts}
+
+\question This question refers to commands from the R statistical package that you have studied in recitation. Suppose I have a dataframe called \texttt{survey} with two columns. The first column is \texttt{height} and the second is \texttt{handspan}. Both contain numeric data. Here are the first few lines of the dataset:
+	\begin{verbatim}
+  height handspan
+1     67     20.0
+2     63     19.5
+3     62     19.0
+4     65     19.5
+5     62     18.5
+6     68     18.5
+	\end{verbatim}
+	\begin{solution}
+	Note that there are many possible correct answers to this question since there's more than one way to do things in R. Any set of commands that accomplishes what was asked will be counted as correct. 
+	\end{solution}
+	\begin{parts}
+		\part[4]  What command would I use to display the column \texttt{handspan} only?
+		\begin{solution}[0.75in]
+			\texttt{survey\$handspan} would work, as would \texttt{survey[,2]}
+		\end{solution}
+		\part[4] Suppose I wanted to display only those rows from \texttt{survey} corresponding to students whose height is greater than 60 inches. What command would I use?
+		\begin{solution}[0.75in]
+			\texttt{survey[height > 60]}
+		\end{solution}
+		\part[4] Suppose I wanted to display only the 2nd and 9th rows of \texttt{survey}. What command would I use?
+		\begin{solution}[0.75in]
+			\texttt{survey[c(2,9),]}
+		\end{solution}
+		\part[4] When looking at my data, I see that one of the values for handspan is \texttt{NA}. What does this mean?
+		\begin{solution}[0.75in]
+			\texttt{NA} is R's way of indicating an missing observation. There is a missing observation for \texttt{handspan}.
+		\end{solution}
+		\part[4] Suppose that, for some strange reason, I wanted to rename the column \texttt{height} to \texttt{altitude} but leave the name of \texttt{handspan} unchanged. What command would I use?
+		\begin{solution}[0.75in]
+			This isn't covered in the current tutorials, but the proper way to do so for a \texttt{data.table} is:
+			\texttt{setnames(survey, 'height', 'altitude')}
+			The traditional way to do it with \texttt{data.frame}s is:
+			 \texttt{names(survey) <-c(`altitude', `handspan')} is one possibility, and  \texttt{names(survey)[1] <- `altitude'} is another.
+		\end{solution}
+	\end{parts}
+
+\end{questions}
+
+\end{document}

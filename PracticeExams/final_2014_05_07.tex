@@ -1,0 +1,427 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+%\printanswers
+%\noprintanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Final Examination, Page \thepage\ of \numpages}
+              {May 7th, 2014}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Final Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} May 7th, 2014}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 120 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+%120 minutes and 200 points works out to 0.6 minutes per point (i.e. 36 seconds per point). Thus, the following are the expected number of minutes per question by point total:
+% 5 points = 3 minutes
+%15 points = 9 minutes
+%20 points = 12 minutes
+%30 points = 18 minutes
+%35 points = 21 minutes
+%40 points = 24 minutes
+%45 points = 27 minutes
+
+
+
+\question Let $X_1, X_2, X_3 \overset{iid}{\sim} \mbox{Bernoulli}(1/2)$ and define $Y = X_1 + X_2$ and $Z = X_2 \cdot X_3$. 
+ 	\begin{parts} 
+ 		\part[5] What is the support of $Y$? What is its pmf? Is it a ``named'' random variable? If so, which one and what are its parameters? Explain briefly.
+ 		\begin{solution}[3cm]
+ 		Since it is the sum of two independent Bernoulli$(1/2)$ RVs we know from class that $Y \sim \mbox{Binomial}(n=2, p=1/2)$. Its support is $\{0, 1, 2\}$ and its pmf is $p_Y(y) = {2 \choose y} (1/4)^2$. That is:  $p_Y(0) = 1/4,\; p_Y(1) = 1/2,\; p_Y(2) = 1/4$.
+ 		\end{solution}
+ 		\part[5] Calculate $E[(Y-1)^2]$.
+ 		\begin{solution}[4cm]
+ 		\begin{eqnarray*}
+ 			E[(Y-1)^2] &=& \sum_{\mbox{all }y} (y-1)^2 p_Y(y)\\
+ 			&=&(0-1)^2 p_Y(0) + (1-1)^2 p_Y(1) + (2-1)^2 p_Y(2)\\
+ 			&=&p_Y(0) + p_Y(2) = 1/4 + 1/4 = 1/2
+ 		\end{eqnarray*}
+ 		\end{solution}
+ 		\part[5] What is the support of $Z$? What is its pmf? Is it a ``named'' random variable? If so, which one and what are its parameters? Explain briefly.
+ 		\begin{solution}[3cm]
+ 		The support of $Z$ is $\{0,1\}$. Since $Z=1$ precisely when $X_2 = X_3 = 1$ and $X_2,X_3$ are independent Bernoulli$(1/2)$, it follows that $p_Z(1) = 1/4$. By the Complement Rule $p_Z(0) = 1-1/4 = 3/4$. Thus $Z$ is a $\mbox{Bernoulli}(1/4)$ RV.
+ 		\end{solution}
+ 		\part[15] Express the joint pmf of $Y$ and $Z$ in tabular form. Place the realizations for $Y$ in the \emph{rows} of the table and the realizations for $Z$ in the \emph{columns}.
+ 		\begin{solution}[7cm]
+First make a table of all possible realizations for $X_1, X_2, X_2$ and use it to calculate the corresponding realizations for $Y$ and $Z$:
+\begin{center}
+	\begin{tabular}
+		{ccc|cc}
+		$X_1$ & $X_2$ & $X_3$ & $Y$ & $Z$ \\
+		\hline
+		0 & 0 & 0 & 0 & 0 \\
+		1 & 0 & 0 & 1 & 0 \\
+		0 & 1 & 0 & 1 & 0 \\
+		0 & 0 & 1 & 0 & 0 \\
+		1 & 1 & 0 & 2 & 0 \\
+		1 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 1 & 1 & 1 \\
+		1 & 1 & 1 & 2 & 1
+	\end{tabular}
+\end{center}
+Since $X_1, X_2, X_3$ are iid Bernoulli$(p)$, each row of the preceding table is \emph{equally likely} to occur. Thus, we simply need to count up the number of times that each pair of realizations $(y,z)$ occurs and divide by eight to get the joint pmf:
+ 		\begin{center}
+\begin{tabular}{|cc|cc|}
+\hline
+&&\multicolumn{2}{c|}{$Z$}\\
+&&0 & 1\\
+\hline
+\multirow{3}{*}{$Y$}
+&0& \multicolumn{1}{|c}{2/8} & 0\\
+&1& \multicolumn{1}{|c}{3/8} & 1/8\\
+&2& \multicolumn{1}{|c}{1/8} & 1/8\\
+\hline
+\end{tabular}
+\end{center}
+ 		\end{solution}
+ 		% \part[6] Calculate the conditional pmf of $Y$ given that $Z=1$.  
+ 		% \begin{solution}
+ 		% By the definition of conditional probability and the definition of joint and marginal pmfs:
+ 		% $$p_{Y|Z}(y|z) = P(Y=y|Z=z) = \frac{P(Y=y,Z=z)}{P(Z=z)} = \frac{p_{YZ}(y,z)}{p_Z(z)}$$
+ 		% From above, we know that $p_Z(1) = 1/4 = 2/8$. Thus,
+ 		% \begin{eqnarray*}
+ 		% 	p_{Y|Z}(0|Z=1) &=& \frac{0}{2/8} = 0\\
+ 		% 	p_{Y|Z}(0|Z=1) &=& \frac{1/8}{2/8} = 1/2\\
+ 		% 	p_{Y|Z}(0|Z=1) &=& \frac{1/8}{2/8} = 1/2\\
+ 		% \end{eqnarray*}
+ 		% \end{solution}
+ 		% \part[8] Calculate $Cov(Y,Z)$.
+ 		% \begin{solution}
+ 		% By the shortcut rule, $Cov(Y,Z) = E[YZ] - E[Y]E[Z]$. Since $Y$ is a Binomial RV, its mean is $np = 2 \times 1/2 = 1$. Since $Z$ is a Bernoulli RV, its mean is $p = 1/4$. Thus $E[Y]E[Z] = 1/4$. To calculate $E[YZ]$ we need to visit each entry in the joint pmf, calculate $y \times z \times p(y,z)$ and sum up the result. We can ignore entries in the first column and the first row of the table since they correspond to either $y=0, z=0$, or both. Thus,
+ 		% $$E[YZ] = 1 \times 1 \times 1/8 + 2 \times 1 \times 1/8 = 3/8$$ 
+ 		% Therefore, $Cov(Y,Z) = 3/8 - 1/4 = 1/8$.
+ 		% \end{solution}
+ 	\end{parts}
+
+
+
+\question For each statement, indicate whether it is TRUE or FALSE and briefly explain why.
+\begin{parts}
+	% \part[4] The sample standard deviation is easier to interpret than the sample variance because it is unitless.
+	% \begin{solution}
+	% 	FALSE. The sample standard deviation is not unitless: it has the same units as the data. This is why it is easier to interpret than the sample variance, which has the units of the data squared.
+	% \end{solution}
+	\part[4] For any two RVs $X$ and $Y$, $E[XY] = Cov(X,Y) - E[X]E[Y]$.
+	\begin{solution}[3cm]
+		FALSE. The shortcut rule for covariance is $Cov(X,Y) = E[XY] - E[X]E[Y]$. Rearranging gives $E[XY] = Cov(X,Y) + E[X]E[Y]$. The expression in the problem statement has the wrong sign on $E[X]E[Y]$.
+	\end{solution}
+	\part[4] If $Z \sim N(0,1)$ then $P(Z=0) > P(Z =5)$. 
+	\begin{solution}[3cm]
+		FALSE. The probability that a continuous random variable takes on \emph{any particular value} is always zero. Thus $P(Z=0) = P(Z = 5) = 0$.
+	\end{solution}
+	\part[4] If I run the command \texttt{x <- rnorm(1)} at the R console followed by \texttt{replicate(100, x)} the result will be 100 iid $N(0,1)$ random draws.
+	\begin{solution}[3cm]
+		FALSE. This sequence of commands makes a \emph{single} standard normal draw and then prints it out 100 times!
+	\end{solution}
+	% \part[4] No matter what value I choose for \texttt{a}, if I enter the command\\
+	%  $\texttt{pnorm(-a) + pnorm(a)}$\\
+	%   at the R console, I'll always get the same result.
+	%   \begin{solution}
+	%   	TRUE. Since the standard normal distribution is symmetric about zero, $\texttt{pnorm(-a) = 1 - pnorm(a)}$ so $\texttt{pnorm(-a) + pnorm(a)} = 1$ regardless of the value of \texttt{a}.
+	%   \end{solution}
+	\part[4] I rejected the null hypothesis $H_0 \colon \mu =5$ against the two-sided alternative $H_1\colon \mu \neq 5$ with $\alpha = 0.05$. Based on this result, I know that if I were to construct a 95\% confidence interval for $\mu$ it would not contain zero.
+	\begin{solution}[3cm]
+	 	FALSE. The result of the test tells us that the CI cannot include 5, but tells us nothing about the value zero.
+	 \end{solution} 
+	\part[4] The p-value for my test was 0.03. This means that if I had set $\alpha = 0.05$ I would have rejected the null hypothesis.
+	\begin{solution}[4cm]
+		TRUE. The p-value is the \emph{minimum} significance level at which we would reject the null. Since $0.05 > 0.03$ we would have rejected at the 5\% level.
+	\end{solution}
+\end{parts}
+
+
+
+\question This question is based on a data table called \texttt{profs} containing the salaries of a random sample of 397 professors at US universities in 2008. Here are the first few rows:
+\begin{verbatim}
+> head(profs)
+       rank  sex salary
+1      Prof Male    140
+2      Prof Male    173
+3  AsstProf Male     80
+4      Prof Male    115
+5      Prof Male    142
+6 AssocProf Male     97
+\end{verbatim}
+Each row contains data for a single professor. The column \texttt{rank} is a categorical variable indicating a professor's rank: \texttt{Prof} stands for ``Full Professor,'' while \texttt{AssocProf}  and \texttt{AsstProf} stand for ``Associate'' and ``Assistant'' Professor, respectively. The column \texttt{sex} indicates a professor's sex, \texttt{Male} or \texttt{Female}, while \texttt{salary} gives her salary measured in thousands of US dollars. There are no missing observations.
+\begin{parts}
+	\part[10] Write R code to carry out the following operations \emph{separately} for each sex: count the number of professors, calculate the sample mean of \texttt{salary}, and calculate the sample variance of \texttt{salary}.
+	\begin{solution}[11cm]
+		There are many ways to do this. Here's one:
+		\begin{verbatim}
+			male <- profs[sex == "Male", salary]
+			mean(male)
+			var(male)
+			length(male)
+			female <- profs[sex == "Female", salary]
+			mean(female)
+			var(female)
+			length(female)
+		\end{verbatim}
+	\end{solution}
+	\part[10] The results of the preceding part are summarized in the following table
+
+\vspace{1em}
+	\begin{tabular}[h]
+	 	{r|cc}
+	 	& \texttt{Female} & \texttt{Male} \\
+	 	\hline
+	 	Sample Size & 39 & 358 \\
+	 	Sample Mean & 101 & 115\\
+	 	Sample Variance & 676 & 926
+	 \end{tabular} 
+	 \vspace{1em}
+
+	 Use this information to construct an approximate 95\% confidence interval for the difference of population mean salaries for male and female professors in the US. 
+	 \begin{solution}[7cm]
+	 	The difference of means is $115 - 101 = 14$ and the standard error is
+	 	$$SE = \sqrt{926/358 + 676/39} \approx 4.5$$
+	 	so the approximate 95\% CI is given by $14 \pm 9$ or equivalently $(5,23)$.
+	 \end{solution}
+	 \part[10] Suppose that, rather than constructing a confidence interval, we wanted to carry out a two-sided test of the null hypothesis that the population mean salary is equal across male and female professors. What is the value of your test statistic? What R command would you use to calculate the p-value? Approximately what value would you get if you ran this command?
+	 \begin{solution}[7.5cm]
+	 The test statistic is the difference of means divided by the standard error: $14/4.5 \approx 3.1$. To calculate the two-sided p-value, we'd use the R command \texttt{2 * (1 - pnorm(3.1))}. Since this is the same thing as calculating the area outside of $(-3.1, 3.1)$ under a standard normal distribution, the p-value is very small: less than 0.01. We know this because the probability that a normal RV takes on a value more than 3 std.\ devs.\ from its mean is less than 1\%.  
+	 \end{solution}
+	 \part[15] The following table \emph{breaks down} the results of part (b) by \texttt{rank}. It also provides approximate 95\% CIs for the difference of means \texttt{(Male - Female)}:
+
+\vspace{1em}
+\begin{tabular}
+	 	{r|cc|cc|cc|c}
+	 	&\multicolumn{2}{c|}{Sample Size} & \multicolumn{2}{c|}{Sample Mean} & \multicolumn{2}{c|}{Sample Var.}& Approx.\ 95\% CI\\
+	 	& \texttt{Female} & \texttt{Male} & \texttt{Female} & \texttt{Male} & \texttt{Female} & \texttt{Male}&\texttt{(Male - Female)}\\
+	 	\hline
+	 	\texttt{AsstProf}&11&56		&78&81&88&63& $3\pm 6$\\
+	 	\texttt{AssocProf}&10&54	&89&95&327&165& $6\pm  12$\\
+	 	\texttt{Prof}&18&248		&122&127&388&796& $5\pm  10$
+	 \end{tabular}
+
+\vspace{1em}
+	 Explain these results. How to they compare to your confidence interval and p-value from parts (b) and (c)? If you find differences, can you propose an explanation? What overall conclusions, if any, can we draw from this dataset?
+	 \begin{solution}[15.5cm]
+	 	When comparing male and female professor salaries across \emph{all} ranks, we found a large and statistically significant difference. In particular, our CI was $(\$9000, \$23000)$ per year. Breaking the comparison down by \texttt{rank} we still find that women earn less, on average, in each rank but the differences are not even close to statistically significant. Two things are going on here. First, we see from the table given above that women are disproportionately represented among the two lower-paying professor ranks: Assistant and Associate. Thus, \texttt{rank} was a \emph{confounded} in our initial comparison. However, there's a second effect. Even though the sample mean is lower for women in each \texttt{rank}, there are so few women in each of the three categories that we can't get a very precise estimate for the difference of means: the standard errors are large which widens the intervals. It certainly appears that female professors earn less, which could potentially be evidence of discrimination, but we simply don't have enough women in our dataset to get a definitive answer. Ironically, the fact that there are few women in academia, \emph{itself} potential evidence of discrimination, makes it harder to detect if women face salary discrimination!
+	 \end{solution}
+\end{parts}
+
+
+
+\question In the basement of the McNeil building I have a storeroom containing thousands of digital scales. I know from past experience that some scales from this manufacturer are defective: they give \emph{biased} readings. All of the scales, both \emph{biased} and \emph{unbiased}, are imperfect in that they make small, independent, normally distributed errors with a standard deviation of two grams. This means that if you weigh the same object repeatedly, you will get a slightly different result each time and the average deviation from the mean will be about two grams. For \emph{unbiased} scales, the errors have zero mean: if you weigh the same object a very large number of times on an \emph{unbiased} scale, the average weight will equal the true weight. For \emph{biased} scales, on the other hand, the errors have mean one gram: if you weigh the same object a very large number of times on a a \emph{biased} scale, the average weight will be \emph{one gram higher} than the true weight. For each scale in my storeroom, I carry out the following procedure. First I weigh the same 10 gram mass \emph{repeatedly} and record the results. In total, I make 16 measurements. These constitute a random sample from the following population:
+ $$X_1, \hdots, X_{16} \overset{iid}{\sim} N( \mu, \sigma^2 = 4)$$ 
+ If the scale I'm testing is \emph{unbiased}, then $\mu = 10$, the true weight. If the scale is \emph{biased} then $\mu =11$, one gram \emph{higher} than the true weight. I then carry out an \emph{exact} test of the null hypothesis $H_0 \colon \mu = 10$ against the \emph{one-sided} alternative $H_1\colon \mu > 10$ with $\alpha =0.025$. If I reject the null, I decide that the scale is defective and throw it away. Otherwise I keep it for use in the candy weighing experiment in Econ 103.
+\begin{parts} 
+	\part[10] What formula should I use for my test statistic? Approximately what is my critical value? What is my decision rule?
+	\begin{solution}[4cm]
+		$$T_n = \frac{\bar{X} - \mu_0}{SE(\bar{X})} = \frac{\bar{X} - 10}{2/\sqrt{16}} = 2(\bar{X} - 10)$$
+		The critical value is $\texttt{qnorm(0.975)}\approx 2$ and my decision rule is to reject the null when $T_n > 2$. Another way of putting this is that we reject the null if $\bar{X} > 11$.
+	\end{solution}
+	\part[5] Suppose I'm testing one of the scales and, unbeknownst to me, it happens to be one of the \emph{unbiased} ones. What is the probability that I will reject the null? Explain your answer.
+	\begin{solution}[3cm]
+		It is simply $0.025$. If the scale is unbiased, then the null is true. By construction, the probability of rejecting a true null is $\alpha$.
+	\end{solution}
+	\part[15] Suppose I'm testing one of the scales and, unbeknownst to me, it happens to be one of the \emph{biased} ones. What is the probability that I will reject the null? Explain your answer.
+	\begin{solution}[12cm]
+		If the scale is defective, then $\mu = 11$ so $X_1, \hdots, X_{16} \overset{iid}{\sim}N(11,\sigma^2 = 4)$ and hence  $\bar{X} \sim N(11, \sigma^2 = 1/4)$. Since $T_n = 2(\bar{X} - 10) = 2\bar{X} - 20$, using the fact that linear combinations of normals are normal we find that $T_n \sim N(2,1)$. We reject the null whenever $T_n > 2$. Since the $N(2,1)$ RV is symmetric around 2, the probability that this will occur if the scale is in fact biased is exactly 1/2.
+	\end{solution}
+	\part[5] If I wanted to increase the probability that I will succesfully detect biased scales, how should I change my testing procedure? Explain.
+	\begin{solution}[7cm]
+		This question is equivalent to asking ``how can I increase the power of my test?'' In general, three things affect the power of a test: sample size, population standard deviation, and $\alpha$. In this example, the population standard deviation is the measurement error which is outside my control, so I can only adjust $\alpha$ and sample size. If I take \emph{more} than 16 measurements, the power of my test will increase. Similarly, if I increase $\alpha$, I will use a less stringent critical value and this will also increase the power of my test.
+	\end{solution}
+	\part[5] From past experience, I know that roughly 10\% of scales produced by this manufacturer are \emph{biased}. If I test a large number of scales, approximately what percentage of them will I end up throwing away? Explain.
+	\begin{solution}[4cm]
+		By the Law of Total Probability,
+		\begin{eqnarray*}
+			P(\mbox{Reject}) &=& P(\mbox{Reject}|\mbox{Biased})P(\mbox{Biased}) + P(\mbox{Reject}|\mbox{Unbiased})P(\mbox{Unbiased})\\
+			&=& 1/2 \times 1/10 + 25/1000 \times 9/10\\
+			&=& 725/10000 = 7.25\%
+		\end{eqnarray*}
+	\end{solution}
+	\part[5] Continuing from the previous part, among the scales that I end up throwing away, approximately what percentage of them will \emph{actually} be biased? Explain.
+	\begin{solution}[4cm]
+		By Bayes' Rule,
+		\begin{eqnarray*}
+		P(\mbox{Biased}|\mbox{Reject}) &=& \frac{P(\mbox{Reject}|\mbox{Biased})P(\mbox{Biased})}{P(\mbox{Reject})}	\\
+			&=&\frac{1/20}{725/10000} = 100/145 \approx 69\%
+		\end{eqnarray*}
+	\end{solution}
+\end{parts}
+
+
+\question[20] Suppose that $X_1, \hdots, X_n \overset{iid}{\sim} \mbox{Bernoulli}(p)$, and that $n$ is sufficiently large that the sampling distribution of $\widehat{p}$ is approximately normal by the CLT. Write an R function called \texttt{prop.test} that returns the p-value for the \emph{refined test} of $H_0\colon p = p_0$ against $H_1 \colon p \neq p_0$. Your function should take two arguments. The first, \texttt{x}, is the sample data: a vector of zeros and ones corresponding to the realizations $x_1, \hdots, x_n$ of $X_1, \hdots, X_n$. The second is \texttt{p.0}, a value between zero and one that indicates \emph{which} null hypothesis the user wishes to test. For example if \texttt{p.0 = 0.5} then we are testing $H_0\colon p = 0.5$. You may assume that there are no missing values in \texttt{x}.
+\begin{solution}[6cm]
+	\begin{verbatim}
+		prop.test <- function(x, p.0){
+		  p.hat <- mean(x)
+		  SE.0 <- sqrt(p.0 * (1 - p.0) / length(x))
+		  test.stat <- abs((p.hat - p.0) / SE.0)
+		  p.value <- 2 * (1 - pnorm(test.stat))
+		  return(p.value)
+		}
+	\end{verbatim}
+\end{solution}
+
+
+ 
+\question Garth is concerned that students registered for Monday recitation sections of Econ 103 may have an unfair advantage on quizzes because they have additional days to study compared to students in Friday sections. To decide whether he should adjust the course curve to compensate, he fits a number of linear regression models, the results of which appear in Table \ref{tab:regression}. Each regression is calculated using a data table called \texttt{gradebook}:
+\begin{verbatim}
+  quiz.avg midterm.avg Monday
+1       71        85.8      1
+2       80        74.6      1
+.        .          .       .
+.        .          .       .
+.        .          .       .
+82      58        66.3      0
+83      73        96.1      1
+\end{verbatim}
+(\emph{To preserve privacy the preceding values are fake but the regression results given below are based on the real course gradebook.}) Each row of \texttt{gradebook} corresponds to a student in Econ 103. The column \texttt{quiz.avg} contains that student's overall quiz average in percentage points, while \texttt{midterm.avg} contains the average of her scores on the two midterms, also in percentage points. Finally, \texttt{Monday} is a dummy variable that takes on the value one for students in Monday recitation sections, zero otherwise.
+	\begin{parts}
+		\part[5] Which set of regression results allows us to determine the sample mean of \texttt{quiz.avg} for Monday and Friday students students separately? What is the sample mean of each group? What is the difference of means?
+		\begin{solution}[3cm]
+			Based on the results of Regression 2, the sample mean of \texttt{quiz.avg} is approximately 63.8\% for students registered for Friday recitations and 68.6\% for students registered for Monday recitations. On average, Monday students do a little under 5 percentage points better.
+		\end{solution}
+		\part[5] Continuing from the previous part, construct a 95\% confidence interval for the difference of means between Monday and Friday students. Is the difference statistically significant at the 5\% level? Explain briefly.
+		\begin{solution}[4cm]
+			From the results for Regression 2, the difference of sample means is approximately 4.9 with a standard error of about 2.7. Thus, an approximate 95\% confidence interval for the difference of population means is $4.9 \pm 5.4$, in other words $(-0.5, 10.3)$. This confidence interval includes zero, but just barely: although the observed difference is not quite statistically significant at the 5\% level, it is very nearly so. 
+		\end{solution}
+		\part[5] What is the sample correlation between \texttt{quiz.avg} and \texttt{midterm.avg}? Approximately how accurately does a simple linear regression model with the predictor \texttt{midterm.avg} \emph{alone} predict \texttt{quiz.avg}? 
+		\begin{solution}[5cm]
+			The R-squared for Regression 3 is 0.21. Taking the square root, we find that the sample correlation is approximately 0.46. The residual standard deviation is just over 10, so this model predicts \texttt{quiz.avg} to an accuracy of approximately 10 percentage points.
+		\end{solution}
+		\part[10] Garth fears that confounders could be responsible for the difference in average quiz scores between Monday and Friday recitation sections. For example, if Differential Equations meets on Friday from 10-11:30am, then students taking this course will be \emph{forced} to register for a Monday recitation section of Econ 103. Since taking difficult math courses is likely correlated with greater mathematical ability and hence grades in Econ 103, this could bias the comparison. Accordingly, Garth decides to \emph{control} for differences in students' ability using \texttt{midterm.avg},  fitting a regression in which \texttt{quiz.avg} is linearly related to \texttt{midterm.avg} but the intercept is allowed to \emph{differ} for Monday and Friday students. The slope is \emph{not} allowed to vary across groups. Which of the four regression models given below contains the results? Explain the fitted relationships given by the model and briefly discuss the results in light of Garth's concerns.
+			\begin{solution}[8.5cm]
+			The results appear in Regression 4. For students registered for a Friday recitation, the fitted linear relationship is approximately
+			$$\texttt{quiz.avg} = 39.75 + 0.35 \times \texttt{midterm.avg}$$
+			whereas for students registered for a Monday recitation it is
+			$$\texttt{quiz.avg} = 43.42 + 0.35 \times \texttt{midterm.avg}$$
+			Thus, for two students with the \emph{same} value for \texttt{midterm.avg} we would predict that the student in the Monday recitation will have a \texttt{quiz.avg} that is approximately 3.7 points \emph{higher}. We see that controlling for ability via \texttt{midterm.avg} results in a \emph{smaller} predicted difference between Monday and Friday recitation sections: 3.7 versus 4.9 points. Constructing a 95\% confidence interval for the difference of intercepts, we have $3.67 \pm 4.8$ or equivalently $(-1.13, 8.47)$. There is still some tenuous evidence suggesting that Monday recitations perform better, but it is much weaker after controlling for \texttt{midterm.avg}. 
+			\end{solution}
+		\part[15] Before making a final decision about whether to adjust the recitation quiz scores, Garth decides to try one more thing. Rather than comparing Monday recitations to Friday recitations, he calculates the sample mean of \texttt{quiz.avg} and the associated standard error for \emph{each} recitation section:
+
+		\vspace{1em}
+		\begin{verbatim}
+		FridayA  MondayA  MondayB  FridayB  MondayC
+		60.25    66.33    67.73    68.50    71.17
+		(2.4)    (2.6)    (2.3)    (4.3)    (2.2)
+		\end{verbatim}
+
+		\vspace{1em}
+		The standard errors appear in parentheses. (\emph{The letter designations are arbitrary: for privacy reasons I don't want to reveal precisely which recitation section is which.}) Based on this new information, the full set of regression results, and your answers to the preceding parts, do you think Garth should adjust \texttt{quiz.avg} upwards for students registered for Friday recitation sections? If so, by how much? Use what you've learned in Econ 103 to make your case.
+		\begin{solution}
+		 	It doesn't matter whether students come down \emph{pro} or \emph{con}: the point is to make sure that they say something reasonable, indicating that they understand the statistical results presented in the question. At a minimum however, they should note that the difference of means between Monday and Friday recitations is being driven almost entirely by \texttt{FridayA}. Indeed, \texttt{FridayB} had the second highest average overall. Ideally, they should note that the differences in means between recitation sections are small compared to the standard errors, although I haven't given enough information to construct CIs for the differences.
+		 \end{solution} 
+	\end{parts}
+\end{questions}
+
+\begin{table}
+\footnotesize
+\caption{Regression Results}
+\label{tab:regression}
+
+\paragraph{Regression 1:}
+\begin{verbatim}
+lm(formula = quiz.avg ~ Monday + midterm.avg + Monday:midterm.avg, 
+    data = gradebook)
+                   coef.est coef.se
+(Intercept)        39.19    10.39  
+Monday              4.46    12.48  
+midterm.avg         0.36     0.15  
+Monday:midterm.avg -0.01     0.18  
+---
+n = 83, k = 4
+residual sd = 10.15, R-Squared = 0.23
+\end{verbatim}
+
+\paragraph{Regression 2:}
+\begin{verbatim}
+lm(formula = quiz.avg ~ Monday, data = gradebook)
+            coef.est coef.se
+(Intercept) 63.77     2.19  
+Monday       4.86     2.65  
+---
+n = 83, k = 2
+residual sd = 11.19, R-Squared = 0.04
+
+\end{verbatim}
+
+\paragraph{Regression 3:}
+\begin{verbatim}
+lm(formula = quiz.avg ~ midterm.avg, data = gradebook)
+            coef.est coef.se
+(Intercept) 41.31     5.72  
+midterm.avg  0.37     0.08  
+---
+n = 83, k = 2
+residual sd = 10.17, R-Squared = 0.21
+\end{verbatim}
+
+\paragraph{Regression 4:}
+\begin{verbatim}
+lm(formula = quiz.avg ~ Monday + midterm.avg, data = gradebook)
+            coef.est coef.se
+(Intercept) 39.75     5.77  
+Monday       3.67     2.40  
+midterm.avg  0.35     0.08  
+---
+n = 83, k = 3
+residual sd = 10.09, R-Squared = 0.23
+\end{verbatim}
+
+\end{table}
+
+
+
+
+\end{document}

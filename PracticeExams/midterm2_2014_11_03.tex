@@ -1,0 +1,259 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+%\boxedpoints
+%\pointsinmargin
+
+%\printanswers
+\noprintanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm Examination \#2, Page \thepage\ of \numpages}
+              {November 3rd, 2014}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Midterm Examination \#2\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} November 3rd, 2014}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+\question Mark each statement as True or False. If you mark a statement as False, provide a brief explanation. If you mark a statement as True, no explanation is needed.
+	\begin{parts}
+		\part[4] If $Cov(X,Y) = 0$ then $E[XY] = E[X]E[Y]$
+			\begin{solution}[1in]
+				TRUE
+			\end{solution}
+		\part[4] Unlike a probability mass function, a probability density function \emph{can} take on values greater than one.
+			\begin{solution}[1in]
+				TRUE
+			\end{solution}
+		\part[4] If $X$ and $Y$ are uncorrelated then $Var(X-Y) = Var(X) - Var(Y)$
+			\begin{solution}[1in]
+				FALSE: the variance of the difference equals $Var(X) + Var(Y)$ since the minus one is squared when brought in front of the variance operator.
+			\end{solution}
+		\part[4] The pdf $f(x)$ of a continuous random variable $X$ gives $P(X=x)$.
+			\begin{solution}[1in]
+				FALSE: the probability that a continuous random variable takes on \emph{any particular value} is zero. Only regions with positive area have positive probability.
+			\end{solution}
+		\part[4] For any random variable $X$ and any function $g$, $E[g(X)]=g\left( E[X] \right)$.
+			\begin{solution}[1in]
+				FALSE: this does not hold in general although it is true for linear functions.
+			\end{solution}
+		\part[4] Even if $\widehat{\theta}$ is a biased estimator of $\theta_0$, it can \emph{still} be consistent for $\theta_0$.
+			\begin{solution}[1.3in]
+				TRUE
+			\end{solution}
+	\end{parts}
+
+
+\question Unless otherwise specified, answer each part with a \emph{single line} of R code.
+\begin{parts}
+	\part[4] Calculate the median of an $F$ random variable with numerator degrees of freedom 3 and denominator degrees of freedom 8.
+			\begin{solution}[0.5in]
+				\texttt{qf(0.5, df1 = 3, df2 = 8)}
+			\end{solution}	
+	\part[4] Calculate the probability that a Binomial $n=20$, $p = 2/3$ random variable takes on a value strictly greater than 15.
+			\begin{solution}[0.5in]
+				\texttt{1 - pbinom(15, size = 20, prob = 2/3)}
+			\end{solution}
+	\part[4] Make 100 iid draws from a $t$ distribution with 5 degrees of freedom.
+		\begin{solution}[0.5in]
+			\texttt{rt(100, df = 5)}
+		\end{solution}
+	\part[4] Write code to plot the pdf of a standard normal random variable between -3 and 3. You may use more than one line of code in your answer to this part.
+		\begin{solution}[1in]
+		Many possible solutions, but the general idea is as follows
+\begin{verbatim}
+x <- seq(-3, 3, 0.01)	
+y <- dnorm(x)
+plot(x,y, type = `l')
+\end{verbatim}
+		\end{solution}
+\end{parts}
+
+% \question Let $Z \sim$ Bernoulli$(1/2)$ and construct a second random variable, $X$, as follows: if $Z$ takes on the value one then $X \sim \mbox{Bernoulli}(2/3)$; otherwise $X \sim \mbox{Bernoulli}(1/4)$.
+% 	\begin{parts}
+% 		\part[3] What is the support set of $X$?
+% 			\begin{solution}[0.5in]
+% 				$\{0,1\}$
+% 			\end{solution}
+% 		\part[3] What is the conditional pmf of $X$ given that $Z = 0$?
+% 		\begin{solution}[1.1in]
+% 			Bernoulli(1/4), i.e.\ $p_{X|Z}(0|0) = 3/4, \; p_{X|Z}(1|0) = 1/4$.
+% 		\end{solution}
+% 		\part[3] What is the conditional pmf of $X$ given that $Z = 1$?
+% 		\begin{solution}[1.1in]
+% 			Bernoulli(2/3), i.e.\ $p_{X|Z}(0|1) = 1/3, \; p_{X|Z}(1|1) = 2/3$.
+% 		\end{solution}
+% 		\part[12] Write out the joint pmf of $X$ and $Z$ in a table.
+% 		\begin{solution}[3.5in]
+% 		The probability calculations for the table are as follows:
+% 			\begin{eqnarray*}
+% 				P(X = 0, Z = 0) &=& P(X=0|Z=0)P(Z=0)= 3/4\times 1/2 = 3/8\\
+% 				P(X = 0, Z = 1) &=& P(X=0|Z=1)P(Z=1)= 1/3\times 1/2 = 1/6\\
+% 				P(X = 1, Z = 0) &=& P(X=1|Z=0)P(Z=0)= 1/4 \times 1/2 = 1/8 \\
+% 				P(X = 1, Z = 1) &=& P(X=1|Z=1)P(Z=1)= 2/3\times 1/2 = 1/3\\
+% 			\end{eqnarray*}
+% 		\end{solution}
+% 	\end{parts}
+
+
+\question[20] Write an R function called \texttt{CI.normal.mean} that constructs a 90\% confidence interval for the mean of a normal population with \emph{known} population variance. Your function should take two arguments: \texttt{x} is a vector of sample data, assumed to be a sequence of iid draws from a normal population, and \texttt{s} is the population standard deviation, assumed known. Your function should return a vector with two elements: the first is the lower confidence limit and the second is the upper confidence limit.
+	\begin{solution}[2.75in]
+	Various possibilities, but the basic idea is as follows:
+\begin{verbatim}
+CI.normal.mean <- function(x, s){
+	n <- length(x)
+	ME <- qnorm(0.95) * s / sqrt(n)
+	LCL <- mean(x) - ME
+	UCL <- mean(x) + ME
+	return(c(LCL, UCL))
+}		
+\end{verbatim}	
+	\end{solution}
+
+\question Rodrigo has a bowl containing 10 balls: five of them are red and the rest are blue. Rossa wants to know the fraction of red balls in the bowl so he draws four balls at random with replacement from the bowl.
+\begin{parts}
+	\part[5] Let $X$ be the number of red balls that Rossa draws. What kind of random variable is $X$? Write down its support set, its pmf, and the values of its parameters.
+	\begin{solution}[1.1in]
+		Binomial$(4,1/2)$ with support set $\{0,1,2,3,4\}$ and pmf
+			$$p(x) = {4 \choose x} (1/2)^4$$
+	\end{solution}
+	\part[5] To estimate the fraction of red balls in the bowl, Rossa divides $X$, from the preceding part, by four. Is this estimator unbiased? What is its variance?
+	\begin{solution}[1.3in]
+		We use the fact that the expected value of a Binomial RV is $np$ while the variance is $n p(1-p)$. In this case, $n=4$ and $p=1/2$ so the expected value of $X$ is $2$ while the variance is $1$. Hence,
+		$$E[X/4] = 2/4 = 1/2$$
+		so this estimator is unbiased and its variance is
+		$$Var(X/4) = (1/16) \times 1 = 1/16$$
+	\end{solution}
+	\part[5] What is the probability that Rossa's estimator from the preceding part will \emph{exactly equal} the true fraction of red balls in the bowl?
+		\begin{solution}[1.3in]
+			We simply need to evaluate $P(X=2)$ since $X=2$ if and only if $X/4 = 0.5$. Using the pmf from above, $p(2) = {4 \choose 2} (1/2)^4 = 6/16 = 0.375$.
+		\end{solution}
+	\part[5] Now suppose that Rossa decides to make his random draws \emph{without} replacement. Will your answer to the preceding part change? If so, how?
+	\begin{solution}[2in]
+		Again, we need to calculate the probability that $X=2$. Because the draws are made with replacement, however, we cannot use the Binomial pdf for the calculations since the draws are no longer independent, nor identically distributed. Since Rossa is still choosing at random, every possible \emph{group} of four balls is equally likely to be drawn. The total number of groups of 4 objects drawn from a set of 10 is ${10 \choose 4}=210$. This is the denominator of our desired probability. For the numerator, we need to count the total number of ways to choose exactly two red balls and two blue balls. There are ${5 \choose 2}=10$ ways to choose \emph{which} two red balls are in the group and the same number of ways to choose which two blue balls are in the group. Thus, 
+		$$P(X=2) = \frac{{5 \choose 2}{5 \choose 2}}{{10 \choose 4}} = 100/210 \approx 0.48$$
+		So the probability has increased substantially.
+	\end{solution}
+\end{parts}
+
+
+\question Let $X$ and $Y$ be independent, normally distributed random variables representing the returns of two stocks such that $\mu_x = \mu_y = 1$ and $\sigma_x^2 = \sigma_y^2 = 2$. A portfolio $\Pi(\omega)$ is a linear combination of the form $\omega X + (1- \omega) Y$ where $\omega \in [0,1]$ is the fraction of your total funds that are invested in $X$. 
+	\begin{parts}
+		\part[10] If you wish to construct the portfolio with the lowest possible variance, what value of $\omega$ should you choose? Prove your answer.
+		\begin{solution}[2.2in]
+		 	Since the asset returns are uncorrelated, the portfolio variance is simply $\omega^2 \sigma^2_x + (1- \omega)^2 \sigma^2_y = 2\omega^2 + 2 (1- \omega)^2 = 4 \omega^2 - 4 \omega +2 $. This is a globally convex function so it has a unique minimum. The first order condition is $8 \omega - 4 = 0$ so the minimizer is $\omega^* = 1/2$. The minimum variance portfolio is 50\% asset $X$ and 50\% asset $Y$.
+		 \end{solution}
+		\part[5] Calculate the expected value and the variance of the portfolio from the preceding part.
+			\begin{solution}[2in]
+				The expected value is $1/2 \times \mu_x + 1/2 \times \mu_y = 1$	and the variance is $(1/2)^2 \times \sigma^2_x + (1/2)^2 \sigma^2_y = 1$.
+			\end{solution}
+		\part[5] Approximately what is the probability that the minimum variance portfolio will make a \emph{negative} return?
+			\begin{solution}[2in]
+			 	Since the individual assets are normally distributed and the portfolio is a linear combination of them, it too is normally distributed. We already worked out its mean and variance in the preceding part: both are one. The probability that a normal random variable takes on a value within one standard deviation of its mean is approximately 0.68. By symmetry, the probability that it takes on a value more than one standard deviation \emph{below} its mean is approximately 0.16. Therefore, the minimum variance portfolio has approximately a 16\% chance of earning a negative return.
+			 \end{solution} 
+		% \part[4] Would any of your answers to the preceding parts change if I removed the assumption that $X$ and $Y$ are normally distributed but left the rest of the problem unchanged? Why or why not? To be clear, you do not need to describe \emph{how} the answers would change, merely \emph{whether} they would change and why.
+		% \begin{solution}
+		% 	The calculations in parts (a) and (b) do \emph{not} depend on the assumption of normality. They hold for any random variables with the specified means, variances and correlation. Only part (c) would change since it explicity depends on the \emph{distribution} of the portfolio returns being normal.
+		% \end{solution}
+	\end{parts}
+
+\question Let $X$ be a continuous RV with CDF $F(x_0) = (x_0^3 + 1)/2$ and support set $[-1,1]$. 
+\begin{parts}
+	\part[5] Calculate the probability that $X$ takes on a value \emph{outside} $(-0.5, 0.5)$.
+	\begin{solution}[2in]
+	 First calculate the probability that $X$ takes on a value \emph{inside} the range, namely:
+	 	$$F(1/2) - F(-1/2) = (1/8 + 1)/2 - (-1/8 + 1)/2 = 9/16 - 7/16 = 1/8$$
+	 Hence, by the complement rule, the desired probability is $7/8$.
+	\end{solution}
+ 	\part[5] Calculate the pdf of $X$.
+ 	\begin{solution}[1.5in]
+ 		$$F'(x) = 3x^2/2$$
+ 	\end{solution}
+ 	\part[5] Calculate the expected value of $X$.
+ 	\begin{solution}[2in]
+ 	By symmetry, the expected value is zero. By brute-force integration:
+ 		$$E[X] = \frac{3}{2}\int_{-1}^1 x^3 \; dx = \frac{3}{2} \left. \left(\frac{x^4}{4}\right)\right|_{-1}^1 = 0$$
+ 	\end{solution}
+ 	\part[5] Calculate the quantile function of $X$.
+ 	\begin{solution}[2in]
+ 		This is simply the inverse of the CDF:
+ 		$$Q(p) = F^{-1}(p) = (2p - 1)^{1/3}$$
+ 	\end{solution}
+  \end{parts} 
+
+
+\question Let $Y_1, \hdots, Y_9 \sim \mbox{iid N}(\mu = 1, \sigma^2 = 4)$, $X=\frac{1}{9}\sum_{i =1}^9 Y_i$ and $Z = \frac{1}{8}\sum_{i=1}^{9} (Y_i - X)^2$. Specify the \emph{precise} distribution of each of the random variables listed below, including the values of any and all relevant parameters. 
+\begin{parts}
+	\part[5] $X$
+	\begin{solution}[1.7in]
+	Since $X$ is the sample mean of the $Y_i$, it follows a normal distribution with mean $\mu = 1$ variance $\sigma^2/n = 4/9$. 
+	\end{solution}
+	\part[5] $\displaystyle\frac{3}{2}(X-1)$
+	\begin{solution}[1.7in]
+		Since $X$ is normally distributed with mean one and standard deviation $2/3$ this random variable, which simply subtracts the mean and divides by the standard deviation, is $N(0,1)$.
+	\end{solution}
+	\part[5] $2Z$
+	\begin{solution}[1.7in]
+		$Z$ is simply the sample variance of the $Y_i$. Hence $\frac{n-1}{\sigma^2} Z \sim \chi^2(n-1)$. Here, $n-1 = 8$ and $\sigma^2=4$ so $2Z \sim \chi^2(8)$.
+	\end{solution}
+	\part[5] $\displaystyle\frac{3(X-1)}{\sqrt{Z}}$
+	\begin{solution}[1.7in]
+		This is simply $\sqrt{n}(\bar{Y} - \mu)/S$ which we know from class follows a $t(n-1)$ distribution. Here $n-1 = 8$ so it is a $t$ distribution with 8 degrees of freedom. 
+	\end{solution}
+\end{parts}
+
+\end{questions}
+
+\end{document}

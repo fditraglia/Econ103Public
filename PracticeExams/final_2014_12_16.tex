@@ -1,0 +1,488 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage{multirow}
+%\boxedpoints
+%\pointsinmargin
+
+%\printanswers
+\noprintanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Final Examination, Page \thepage\ of \numpages}
+              {December 16th, 2014}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Final Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} December 16th, 2014}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 120 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+
+% \question Mark each of the following statements as TRUE or FALSE. If you mark a statement as FALSE, provide a one sentence explanation. If you mark a statement as TRUE, no explanation is needed.
+% \begin{parts}
+% 	\part[3] If the p-value in a hypothesis test is greater than 0.05 this means that we would reject the null hypothesis at the 5\% significance level.
+% 	\begin{solution}
+% 	FALSE: we would reject if the p-value is \emph{less} than 0.05.
+% 	\end{solution}	
+% 	\part[3] A Type I error is when we fail to reject a false null hypothesis. 
+% 	\begin{solution}
+% 	FALSE: it is when we reject a \emph{true} null hypothesis.	
+% 	\end{solution}
+% 	\part[3] A Type II error is when we reject a true null hypothesis. 
+% 	\begin{solution}
+% 		TRUE	
+% 	\end{solution}
+% 		\part[3] For any two events $A$ and $B$, $P(A|B)=P(B|A)$.
+% 	\begin{solution}
+% 		FALSE: $P(A|B) = P(A\cap B)/P(B)$ while $P(B|A) = P(A\cap B)/P(A)$.
+% 	\end{solution}	
+% 	\part[3] If $X$ is a continuous RV then its pdf $f(x)$ gives $P(X \leq x)$.
+% 	\begin{solution}
+% 		FALSE: It is the CDF that gives $P(X \leq x)$.	
+% 	\end{solution}
+% \end{parts}
+
+% \question For each part, write your answer in the space provided. No explanation is needed.
+%  	\begin{parts} 
+%  		\part[3] What result will I get if I run \texttt{pnorm(10, mean = 10, sd = 5)} in R?
+%  		\begin{solution}
+%  			0.5
+%  		\end{solution}
+ 		% \part[3] What is the name of the R command that gives the CDF of a $\chi^2$ random variable?
+ 		% \begin{solution}
+ 			% \texttt{qchisq}
+ 		% \end{solution}
+%  		\part[3] Given a dataframe called \texttt{grades} with columns \texttt{exam1} and \texttt{exam2}, write out the full R command to run a linear regression predicting \texttt{exam2} from \texttt{exam1}.
+%  		\begin{solution}
+%  			\texttt{lm(exam2 \~{} exam1, data = grades)}
+%  		\end{solution}
+%  		\part[3] Write a single line of R code to display the fourth row of a dataframe called \texttt{studentdata}.
+%  		\begin{solution}
+%  		 	\texttt{studentdata[4,]}
+%  		 \end{solution} 
+%  		 \part[3] Given a dataframe called \texttt{studentdata} with a column called \texttt{midterm1}, write a single line of R code to display data for all student who scored above 70 on the first midterm.
+%  		 \begin{solution}
+%  		 	\texttt{subset(studentdata, midterm1 > 70)}
+%  		 \end{solution}
+%  		\part[3] Approximately what result will I get if I run \texttt{qnorm(0.16)} in R?
+%  		\begin{solution}
+%  			-1
+%  		\end{solution}
+%  		\part[5] Write an R function called \texttt{zscores} that takes a vector \texttt{x} as its input and outputs the z-scores of \texttt{x}. You may assume that there are no missing values.
+%  		\begin{solution}
+%  			\begin{verbatim}
+% zscores <- function(x){
+% 	return((x - mean(x))/sd(x))
+% }
+%  			\end{verbatim}
+ 		% \end{solution}
+ 		% \part[3] Write a single R command to draw three numbers at random from the digits 0--9 \emph{with replacement}.
+ 		% \begin{solution}
+ 		% 	\texttt{sample(0:9, size = 3, replace = TRUE)}
+ 		% \end{solution}
+%  		\part[5] Write R code to plot $x^3$ between 0 and 1 using a grid of 101 $x$-values.
+%  		\begin{solution}
+%  			\begin{verbatim}
+% x <- seq(from = 0, to = 1, by = 0.01)
+% plot(x, x^3, type = 'l')
+%  			\end{verbatim}
+%  		\end{solution}
+ 	% \end{parts}
+
+\question Consider the following simple dataset with nine observations of two variables:
+\begin{center}
+\begin{tabular}
+	{cc}
+	$x$ & $y$ \\
+	\hline
+	1&1\\
+	2&1\\
+	3&1\\
+	1&2\\
+	2&2\\
+	3&2\\
+	1&3\\
+	2&3\\
+	3&3
+\end{tabular}
+\end{center}
+\begin{parts}
+	\part[4] Calculate $\bar{x}$ and $\bar{y}$.
+	\begin{solution}[1.5in]
+	The sample mean is 2 for both $x$ and $y$ since	$ 3 \times (1 + 2 + 3)/9 = 2$.
+	\end{solution}
+	\part[4] Calculate $s^2_{x}$ and $s^2_{y}$.
+	\begin{solution}[1.5in]
+		The calculation is the same for both:
+		$$3 \times \left[ (1 - 2)^2 + (2 - 2)^2 + (3 - 2)^2 \right]/8 =  3/4$$
+	\end{solution}
+	\part[6] Calculate $s_{xy}$.
+	\begin{solution}[2.5in]
+		\begin{center}
+			\begin{tabular}
+				{r|r|r}
+				 $x_i - \bar{x}$ & $y_i - \bar{y}$ & $(x_i - \bar{x})(y_i - \bar{y})$\\
+				 \hline
+				 -1 & -1 & 1\\
+				 0 & -1 & 0 \\
+				 1 & -1 & -1\\ 
+				 -1 & 0 & 0\\
+				 0 & 0 & 0\\
+				 1 & 0 & 0\\ 
+				 -1 & 1 & -1\\
+				 0 & 1 & 0\\
+				 1 & 1 & 1\\ 
+			\end{tabular}
+		\end{center}
+		Summing the third column and dividing by $n-1$ gives the covariance. Since the sum is zero, so is the covariance.
+	\end{solution}
+	\part[6] Calculate the slope and intercept of a linear regression model that uses this dataset to predict $y$ from $x$.
+	\begin{solution}[2.5in]
+		The regression slope is $s_{xy}/s_x^2$. Since the covariance is zero, so is the regression slope. Since the regression line goes through the means of the data, $\bar{y} = a + b \bar{x}$ but since $b = 0$, we have $a = \bar{y}$.
+	\end{solution}
+\end{parts}
+
+\question[20] Let $Y\sim \mbox{Bernoulli}(1/3)$ and define $X$ \emph{conditional} on $Y$ as follows: if $Y = 0$ then $X \sim \mbox{Bernoulli}(3/4)$, otherwise $X\sim \mbox{Bernoulli}(4/5)$. %Let $V = X - Y$.
+	%\begin{parts}
+		% \part[20]
+Write the joint pmf of $X$ and $Y$ in a $2\times 2$ table. Put the $X$-values in the \emph{rows} and the $Y$-values in the \emph{columns}. 		
+	\begin{solution}[5in]
+	\begin{eqnarray*}
+		P(X=0,Y=0) &=& P(X=0|Y=0)P(Y=0) = 1/4 \times 2/3 = 1/6\\
+		P(X=0,Y=1) &=& P(X=0|Y=1)P(Y=1) = 1/5 \times 1/3 = 1/15\\
+		P(X=1,Y=0) &=& P(X=1|Y=0)P(Y=0) = 3/4 \times 2/3 = 1/2\\
+		P(X=1,Y=1) &=& P(X=1|Y=1)P(Y=1) = 4/5 \times 1/3 = 4/15
+	\end{eqnarray*}
+	So we have:
+		\begin{center}
+		\begin{tabular}{|cc|cc|}
+			\hline
+			&&\multicolumn{2}{c|}{$Y$}\\
+			&&0 & 1\\
+			\hline
+			\multirow{2}{*}{$X$}
+			&0& \multicolumn{1}{|c}{1/6} & 1/15\\
+			&1& \multicolumn{1}{|c}{1/2} & 4/15\\
+			\hline
+		\end{tabular}
+		\end{center}
+	\end{solution}
+	
+		% \part[6] Write out the joint pmf of $V$ and $Y$ in a table. Please put the values for $V$ in the \emph{rows} and the values for $Y$ in the \emph{columns}.
+		% \begin{solution}
+		% 	\begin{center}
+		% 		\begin{tabular}
+		% 			{cccc}
+		% 			$X$ & $Y$ & $V$ & Prob.\\
+		% 			\hline
+		% 			0 & 0 & 0 & 1/6\\
+		% 			0 & 1 & -1 & 1/15\\
+		% 			1 & 0 & 1 & 1/2\\
+		% 			1 & 1 & 0 & 4/15\\
+		% 		\end{tabular}
+		% 	\end{center}		
+		% So we have,
+		% \begin{center}
+		% \begin{tabular}{|cc|cc|}
+		% 	\hline
+		% 	&&\multicolumn{2}{c|}{$Y$}\\
+		% 	&&0 & 1\\
+		% 	\hline
+		% 	\multirow{3}{*}{$V$}
+		% 	&-1& \multicolumn{1}{|c}{0} & 1/15\\
+		% 	&0& \multicolumn{1}{|c}{1/6} & 4/15\\
+		% 	&1& \multicolumn{1}{|c}{1/2} & 0\\
+		% 	\hline
+		% \end{tabular}
+		% \end{center}
+		% \end{solution}
+		% \part[8] Calculate $Cov(Y,V)$.
+	% \end{parts}
+
+\question Suppose I take a meter stick and break it into two pieces. The exact point at which I break it, $S$, is random and follows a Uniform distribution. Thus, the length of the first piece is simply $S$ while the length of the second piece is $1-S$.
+	\begin{parts}
+	\part[10] Let $A$ be the \emph{area} of a rectangle with sides $S$ and $1-S$. Calculate the expected value of $A$. 
+	% Does your answer equal $E[S]E[1-S]$? Why or why not?	
+	\begin{solution}[3.4in]
+	Here $S$ is a uniform random variable and we are asked to calculated the expected value of $A =  S (1 - S) = S - S^2$. Since the pdf of $S$ is one,  
+	$$E[A] = \int_0^1 (S - S^2) \; dx = \left. \frac{S^2}{2} - \frac{S^3}{3} \right|_0^1 = 1/2 - 1/3 = 1/6$$
+	which is just under $0.17$ squared meters. 
+	%Now, since the Uniform RV is symmetric about 1/2, we know that $E[S]=1/2$. Using the linearity of expectation, $E[1-S]= 1-E[S] = 1/2$ so $E[S]E[1-S]=1/4$. This is \emph{larger} than the expected area. In general, the expected value of a function does \emph{not} equal the function of the expected value.
+	\end{solution}
+	\part[10] The R command \texttt{runif(n)} draws \texttt{n} independent, Uniform$(0,1)$ random variables. Using this command, write R code to verify your solution to the preceding part via Monte Carlo simulation using 1000 draws.
+	\begin{solution}[3.4in]
+		Many correct answers. Here's the simplest:
+\begin{verbatim}
+S <- runif(1000)
+A <- S * (1 - S)
+mean(A)
+\end{verbatim}
+	\end{solution}
+	\end{parts}
+
+\question To pay off his gambling debts to Rodrigo, Rossa has taken a part-time job as a plumber and needs to measure the length of two pipes.
+When he uses his measuring tape, Rossa makes normally distributed errors with variance $\sigma^2$ and mean zero:
+if an object's true length is $\ell$, his  measurement is $L \sim  N(\ell, \sigma^2)$.
+Suppose that each measurement error is independent of the others and let $\ell_A, \ell_B$ denote the true lengths of pipes A and B.
+\begin{parts}
+	\part[4] Rossa decides to start with pipe A. Following the adage ``measure twice, cut once,'' his instinct is to make \emph{two} measurements of the pipe and use the \emph{average} to estimate $\ell_A$. Calculate the bias and variance of this estimator.
+	\begin{solution}[2.75in]
+		This is just the sample mean of two independent $N(\ell, \sigma^2)$ random variables so it is an unbiased estimator of $\ell$ with variance $\sigma^2/2$.
+	\end{solution}
+	\part[4] Rossa notices that pipe A is clearly longer than pipe B and comes up with an idea: rather than measuring each pipe twice, he'll lay the pipes end to end and measure the sum and difference of their lengths.
+	Let $D$ be Rossa's measurement of the \emph{difference} of lengths, and $S$ be his measurement of the \emph{sum} of lengths.
+	Assume that Rossa lines up the pipes perfectly: when he measures {any length} (of a single pipe, a sum or a difference) his measurement equals the true length plus a $N(0,\sigma^2)$ error, as above. What is the distribution of $D$? What is the distribution of $S$? 
+	\begin{solution}[2.5in]
+		The true difference of lengths is $\ell_A - \ell_B$ so $D$ is a $N(\ell_A - \ell_B, \sigma^2)$ RV. The true sum of lengths is $\ell_A + \ell_B$ so $S$ is a $N(\ell_A + \ell_B, \sigma^2)$ RV.
+	\end{solution}
+	\part[6] Rossa decides to estimate $\ell_A$ using $(S + D)/2$ and $\ell_B$ using $(S - D)/2$. Are these estimators unbiased? If so, prove it. If not, calculate the bias of each.
+	\begin{solution}[4in] By the Linearity of Expectation both are unbiased:
+		$$E[(S+D)/2] = \left(E[S] + E[D]\right)/2 = \left[(\ell_A + \ell_B) + (\ell_A - \ell_B)\right]/2 = \ell_A$$	
+		$$E[(S-D)/2] = \left(E[S] - E[D]\right)/2 = \left[(\ell_A + \ell_B) - (\ell_A - \ell_B)\right]/2 = \ell_B$$	
+	\end{solution}
+	\part[6] Calculate the variance of the two estimators from the preceding part. 
+	\begin{solution}[4in] Using the fact that $S$ and $D$ are independent:
+	$$Var[(S+D)/2] = [Var(S) + Var(D)]/4 = \sigma^2/2$$		
+	$$Var[(S-D)/2] = [Var(S) + Var(D)]/4 = \sigma^2/2$$		
+	So the variance is \emph{the same} as if Rossa had measured each pipe twice! 
+	\end{solution}
+\end{parts}
+
+
+\question Petra has a dataframe called \texttt{reaction} containing measurements of the reaction times of 19 students given in seconds. Although 19 observations is a relatively small sample size, you may assume for the purposes of this question that the approximation based on the Central Limit Theorem applies. Each row of \texttt{reaction} corresponds to an individual: the value in the column \texttt{dom} gives that individual's reaction time using her \emph{dominant} hand while the value in the column \texttt{nondom} gives her reaction time using her \emph{non-dominant} hand. For example, I am left-handed so my value for \texttt{dom} would be my reaction time with my \emph{left hand}. Here are the first six rows of the dataframe and some summary statistics:
+\begin{verbatim}
+    dom nondom
+1 0.159  0.188
+2 0.176  0.194
+3 0.180  0.171
+4 0.130  0.195
+5 0.180  0.199
+6 0.121  0.179
+\end{verbatim}
+\begin{tabular}
+	{l|cc}
+	&\texttt{dom}&\texttt{nondom}\\
+	\hline
+	Sample Mean & $0.180$ & $0.202$\\
+	Sample S.D. & $0.045$ & $0.048$ \\
+	Correlation & \multicolumn{2}{c}{$0.83$} 
+\end{tabular}
+
+\vspace{2em}
+
+\begin{parts}
+	\part[5] Give the units of each of the summary statistics from the above table.
+	\begin{solution}[1.5in]
+	The sample means are measured in seconds as are the sample standard deviations. The sample correlation is unitless.	
+	\end{solution}
+	\part[5] All of the measurements in \texttt{reaction} are smaller than a second so Petra runs the R command \texttt{reaction <- 1000 * reaction} to convert the dataset to \emph{milliseconds}. Give the updated values for each of the above summary statistics. 
+	\begin{solution}[1.5in]
+		Correlation is unchanged, and everything else is multiplied by 1000: \\
+	\begin{tabular}
+	{l|cc}
+	&\texttt{dom}&\texttt{nondom}\\
+	\hline
+	Sample Mean & $180$ & $202$\\
+	Sample S.D. & $45$ & $48$ \\
+	Correlation & \multicolumn{2}{c}{$0.83$} \\
+\end{tabular}
+	\end{solution}
+	\part[5] Petra wants to use the data contained in \texttt{reaction} to determine whether people's reaction times differ when they use their dominant versus non-dominant hand. Is this a problem based on two independent samples or matched pairs? Explain briefly.
+	\begin{solution}[2.5in]
+	This is a matched pairs problem. We have \emph{two} measurements of each individual: one in which she uses her dominant hand and another when she uses her non-dominant hand. Thus the two columns \emph{cannot} be independent.
+	\end{solution}
+	\part[15] Write R code that computes a 90\% confidence interval for the difference of population mean reaction times: \emph{non-dominant} minus \emph{dominant}.
+	\begin{solution}[4.75in]
+		Many possibilities. Here's one:
+		\begin{verbatim}
+react.diff <- reaction$nondom - reaction$dom
+SE <- sd(react.diff) / sqrt(length(react.diff))
+ME <- qnorm(0.95) * SE
+mean(react.diff) + c(-ME, ME)
+		\end{verbatim}
+	\end{solution}
+	\part[15] Now suppose that, instead of calculating a confidence interval, Petra wanted to test the null hypothesis that reaction times are \emph{the same} regardless of whether one uses one's dominant or non-dominant hand against the two-sided alternative. Calculate the value of the appropriate test statistic.
+	\begin{solution}[4.75in]
+	It doesn't matter whether we do the calculation in seconds or milliseconds: the test statistic will take the same value. For simplicity, I'll use milliseconds. The numerator of the test statistic is $\bar{D} = 202 -180 = 22$ milliseconds. To calculate the denominator, we first need the sample variance of the differences $D_i$, which we calculate as follows:
+	$$s^2_D = s^2_X + s^2_Y - 2 s_X s_Y r_{XY} = 45^2 + 48^2 - 2 \times 45 \times 48 \times 0.83 = 743.4$$
+	Thus, we have
+	$$SE(\bar{D}) = \sqrt{743.4/19} \approx 6.3$$
+	so the test statistic is $22/6.3 \approx 3.5$.
+	\end{solution}
+	\part[5] Approximately what is the p-value for Petra's test from the preceding part? What should she conclude?
+	\begin{solution}[2.5in]
+	The test statistic is about 3.5 which is \emph{very large}: the p-value is definitely smaller than 0.01 so Petra has found strong evidence that people's reaction times are \emph{slower} when they use their non-dominant hand.
+	\end{solution}
+\end{parts}
+
+
+\question This question concerns a dataframe called \texttt{birthdata} containing observational data on 1000 mothers and their first-born children: \texttt{birthweight} is a given child's birth weight in grams, \texttt{weeksgest} is the number of weeks between that child's conception and his or her birth (i.e.\ weeks of gestation), and \texttt{smoker} is a dummy variable that takes on the value one if that child's mother smoked during pregnancy. Here are the first few rows:
+\begin{verbatim}
+  birthweight weeksgest smoker
+1        4252        38      1
+2        4229        42      0
+3        4338        41      0
+4        3850        39      0
+5        3430        41      0
+6        3260        39      0
+\end{verbatim}
+To answer this question, refer to the regression results on final page of the exam.
+\begin{parts}
+	\part[6] What is the sample mean birth weight for children whose mother smoked during pregnancy? How does this compare to the sample mean birth weight for children whose mothers did \emph{not} smoke during pregnancy? 
+	\begin{solution}[1.75in]
+		To answer this part, we use the results of Regression \#1. The sample mean birth weight for children whose mothers smoked during pregnancy is about $3472 - 293 = 3179$ grams compared to about 3472 grams for children whose mothers did not smoke during pregnancy. 
+	\end{solution}
+	\part[6] Construct an approximate 95\% confidence interval for the population mean difference of birth weights between children whose mothers smoked during pregnancy and those whose mothers did not. 
+	\begin{solution}[2.25in]
+	The standard error for the difference of means is approximately 51 grams, so $-293 \pm 102$ or equivalently $(-395,-191)$ is an approximate 95\% CI. 
+	\end{solution}
+	\part[6] Suppose you wanted to carry out a two-sided test of the null hypothesis that the children of smokers and non-smokers weigh the same, on average, at birth. What is the value of your test statistic? Write out the full R command needed to calculate the p-value for this test. Approximately what would be your result?
+	\begin{solution}[2.5in]
+		Again, using the results of Regression \#1, the test statistic is approximately $|-293/51|\approx 5.7$. The R command to calculate the two-sided p-value is \texttt{2 * (1 - pnorm(5.7))} which is essentially zero: a standard normal RV \emph{practically never} takes on a value more than 3 std.\ devs.\ from its mean.
+	\end{solution}
+	\part[6] Interpret your results from the preceding two parts. Do they provide evidence of a causal relationship between smoking and birth weight?
+	\begin{solution}[2.5in]
+		We have found very strong evidence that children born to mothers who smoked during pregnancy weight less at birth. The difference appears to be considerable: on the order of several hundred grams. We need to be cautious about saying more than this, however: we have not proven that smoking \emph{causes} lower birth weight since this data comes from an observational study. It could be that mothers who smoke are also unhealthy in other ways that are more important in influencing birth weight than smoking behavior.
+	\end{solution}
+	\part[5] What is the sample correlation between \texttt{birthweight} and \texttt{weeksgest}?
+	\begin{solution}[2in]
+		To answer this, we use the results of Regression \#2. The R-squared is 0.2 so the correlation is $\sqrt{0.2} \approx 0.45$.
+	\end{solution}
+	\part[6] Suppose we wanted to use \texttt{weeksgest} \emph{alone} to predict \texttt{birthweight}. For two newborns who differ by one week in gestation time, by how much would we predict that their birth weights differ? 
+	\begin{solution}[2in]
+		Again using the results of Regression \#2, we see that the regression slope is about 113. For each additional week of gestation, we would predict a birth weight that is 113 grams higher.
+	\end{solution}
+	\part[5] What are the units of the slope in Regression \#2?
+	\begin{solution}[1in]
+		Grams per week (of gestation).
+	\end{solution}
+	\part[6] What is the meaning of the intercept in Regression \#2?.
+	\begin{solution}[1.75in]
+		Taken literally, the intercept tells us that we would predict a birth weight of about -1 kilogram for a child born after zero weeks of gestation. Clearly this is not a meaningful quantity! 
+	\end{solution}
+	\part[6] If you were given the task of predicting birthweight as accurately as possible \emph{either} using \texttt{smoker} \emph{or} using \texttt{weeksgest} but not both, which would you use? How much more accurate is your preferred model? Explain briefly.
+	\begin{solution}[2in]
+		We should use \texttt{weeksgest} rather than \texttt{smoker}. The regression using only \texttt{smoker} predicts to an accuracy of about 540 grams on average while the regression using only \texttt{weeksgest} predicts to an accuracy of about 491 grams on average. The better model is, on average, about 49 grams more accurate.
+	\end{solution}
+	
+	\part[6] Suppose you wanted to predict \texttt{birthweight} using \emph{both} \texttt{smoker} and \texttt{weeksgest}. Two of the four regressions are relevant for this task, although they differ in the \emph{way} in which they use the information from the two variables. Which models are they, and how do they differ in the relationship they fit between \texttt{birthweight} and \texttt{weeksgest} depending on the value of \texttt{smoker}? In your answer, discuss only the regression \emph{models}, not the \emph{results} of fitting these models to \texttt{birthdata}. 
+	\begin{solution}[3in]
+	The relevant regressions are \#3 and \#4.
+	Regression \#3 fits a linear relationship between \texttt{weeksgest} and \texttt{birthweight} in which the intercept is allowed to vary depending on whether the mother is a smoker. 
+	Regression \#4 expands upon Regression \#3 by allowing for a different intercept \emph{and} slope for the relationship between \texttt{weeksgest} and \texttt{birthweight} depending on whether the mother is a smoker. 
+	\end{solution}	
+	\part[12] For each of the models you listed in your answer to the preceding part, use the appropriate regression results to write out the \emph{rule} we would use to predict \texttt{birthweight} from \texttt{weeksgest} for a child whose mother smoked during pregnancy. Repeat for a child whose mother did \emph{not} smoke during pregnancy.
+	\begin{solution}
+		Under Regression \#3 we predict a birthweight of about $-940 + 112\times \texttt{weeksgest}$ grams for the child of a mother who did \emph{not} smoke. For the child of a mother who \emph{did} smoke, we predict $-1219 + 112 \times \texttt{weeksgest}$ grams. 
+		% In other words, for any length of gestation, we predict that a child whose mother smoked during pregnancy will be about 279 grams lighter at birth. We have strong evidence that this difference is \emph{not} merely an artifact of sampling variability: an approximate 95\% confidence interval for the difference of intercepts is $-279 \pm 91$ grams or equivalently $(-370,-188)$
+		Under Regression \#4, we predict a birthweight of around $-1069 + 115 \times \texttt{weeksgest}$ grams for the children whose mothers did \emph{not} smoke compared to $-607 + 96 \times \texttt{weeksgest}$ grams for those children whose mothers \emph{did} smoke. 
+		%In other words, the relationship between \texttt{weeksgest} and \texttt{birthweight} appears to be \emph{less steep} for children whose mothers smoked: they gain about 19 grams \emph{less} per additional week of gestation compared with children whose mothers do not smoke. Our approximate 95\% confidence interval for the difference of slopes, however, is $-19 \pm 37$ grams per week, or equivalently $(-56,18)$ so we're much less sure that there is really a difference of slopes in the population than we were that there is a difference of intercepts under Regression \#3.
+		% In terms of predictive accuracy, Regressions \#3 and 4 and practically identical: they both predict to an accuracy of about 482 grams. Viewed from this perspective, there is no clear winner although taking their comparable predictive accuracy along with the confidence intervals described above, it doesn't look as though the interaction term provides much useful information here. 
+	\end{solution}
+\end{parts}
+
+\newpage
+\small
+\paragraph{Regression \#1}
+\begin{verbatim}
+lm(formula = birthweight ~ smoker, data = birthdata)
+            coef.est coef.se
+(Intercept) 3472.48    18.30
+smoker      -292.91    50.96
+---
+n = 1000, k = 2
+residual sd = 540.20, R-Squared = 0.03
+\end{verbatim}
+
+\paragraph{Regression \#2}
+\begin{verbatim}
+lm(formula = birthweight ~ weeksgest, data = birthdata)
+            coef.est coef.se 
+(Intercept) -1009.00   281.10
+weeksgest     112.82     7.13
+---
+n = 1000, k = 2
+residual sd = 490.87, R-Squared = 0.20
+\end{verbatim}
+
+\paragraph{Regression \#3}
+\begin{verbatim}
+lm(formula = birthweight ~ smoker + weeksgest, data = birthdata)
+            coef.est coef.se
+(Intercept) -940.49   276.31
+smoker      -278.90    45.49
+weeksgest    111.99     7.00
+---
+n = 1000, k = 3
+residual sd = 482.11, R-Squared = 0.23
+\end{verbatim}
+
+\paragraph{Regression \#4}
+\begin{verbatim}
+lm(formula = birthweight ~ smoker + weeksgest + smoker:weeksgest, 
+    data = birthdata)
+                 coef.est coef.se 
+(Intercept)      -1069.20   303.79
+smoker             461.93   728.26
+weeksgest          115.26     7.70
+smoker:weeksgest   -18.85    18.49
+---
+n = 1000, k = 4
+residual sd = 482.10, R-Squared = 0.23
+\end{verbatim}
+
+\end{questions}
+
+
+\end{document}

@@ -1,0 +1,275 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+%\boxedpoints
+%\pointsinmargin
+
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm Examination I, Page \thepage\ of \numpages}
+              {February 11th, 2014}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Midterm Examination I\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} February 11th, 2014}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+
+
+
+% \question[20] The following is an extract from ``BSN Prepared Nurses Connected to Fewer Patient Deaths,'' a press release that appeared under \emph{Science in Action}  then Penn Nursing School website on  March 4th, 2013:
+% 	\begin{quote}
+% When hospitals hire more nurses with four-year degrees, patient deaths following common surgeries decrease, according to new research by the University of Pennsylvania School of Nursing's Center for Health Outcomes and Policy Research ... Less than half the nation's nurses (45\%) have baccalaureate degrees, according to the most recent data available (2008). If all 134 Pennsylvania hospitals involved in the study had increased the percentage of their nurses with four-year degrees by 10 percentage points,  the lives of about 500 patients who had undergone general, vascular, or orthopedic surgery might have been saved, the researchers found. Specifically, a ten percentage point increase, say from 30 to 40 percent, in the overall percentage of BSN-prepared nurses in the hospitals studied between 1999 to 2006 saved about 2 lives for each 1,000 patients treated on average ... The researchers surveyed 42,000 registered nurses (RN) in Pennsylvania in 1999 and 25,000 in 2006.
+% 	\end{quote}
+% Comment on the above study using what you know about observational data and confounding. In particular, do you agree that ``If all 134 Pennsylvania hospitals involved in the study had increased the percentage of their nurses with four-year degrees by 10 percentage points,  the lives of about 500 patients ... might have been saved?'' Explain.
+% \begin{solution}
+% It is extremely unlikely that ``500 patients might have been saved'' -- this article confuses correlation with causation by making a comparison that implicitly assumes there are no variables that confound both patient outcomes and changes in nurse education levels. Since nurses with a four-year degree command a higher salary, hospitals that increased the proportion of such nurses that they hired from 1999--2006 are hospitals that were in a good financial situation during this time period. But such hospitals are also more likely to be able to invest in improved medical equipment, more doctors, etc.\ in a way that also has a direct effect on patient outcomes. Indeed, it could be that the \emph{reason} why a given hospital did well financially over this period is that patients selected it \emph{because} this hospital had better patient outcomes, leading to a better financial situation and ultimately the hiring of more and more qualified nurses. In other words, causation could run in \emph{reverse}. There are many other possible explanations.
+% \end{solution}
+
+
+\question Consider a dataset of $n$ observations $x_1, x_2, \hdots, x_n$ with sample mean $\bar{x}$ and sample variance $s_x^2$. Let $z_i$ denote the sample z-score corresponding to the observation $x_i$.
+	\begin{parts}
+		\part[2] Write down the formula for $\bar{x}$.
+			\begin{solution}[1.25in]
+				$\bar{x} = \displaystyle\frac{1}{n} \sum_{i=1}^n x_i$
+			\end{solution}
+		\part[2] Write down the formula for $s_x^2$.
+			\begin{solution}[1.25in]
+				$s_x^2 = \displaystyle\frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$
+			\end{solution}
+		\part[3] Write down the formula for $z_i$.
+			\begin{solution}[1.25in]
+				$z_i = \displaystyle\frac{x_i - \bar{x}}{s_x}$
+			\end{solution}
+		\part[8] Prove that the sample mean of the z-scores is zero.
+			\begin{solution}[3.5in]
+				\begin{eqnarray*}
+					\frac{1}{n}\sum_{i-1}^n z_i &=& \frac{1}{n}\sum_{i=1}^n \left( \frac{x_i - \bar{x}}{s_x}\right) = \frac{1}{s_x} \left( \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})\right)\\
+						&=& \frac{1}{s_x} \left( \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})\right) = \frac{1}{s_x} \left( \frac{1}{n} \sum_{i=1}^n x_i - \frac{1}{n} \sum_{i=1}^n \bar{x}\right) \\
+						&=& \frac{1}{s_x} \left(\bar{x} - \frac{1}{n}\;n\bar{x}\right) = 0
+				\end{eqnarray*}
+			\end{solution}
+	\end{parts}
+
+\question In this question you will analyze a dataset containing \emph{last semester's} final exam scores and math diagnostic test scores. Both scores are given in points out of 100. To answer the questions given below, you will need to consult the following table of sample statistics for the dataset:
+	\begin{center}
+	\begin{tabular}
+		{|l|c|c|}
+		\hline
+		& Diagnostic & Final Exam \\
+		\hline
+		1st Quartile & 58 & 51\\
+		Median & 68 & 66\\
+		Mean &  68 & 65\\
+		3rd Quartile & 80 & 78\\
+		Std.\ Dev.\ & 16 & 17\\
+		\hline
+		Covariance & \multicolumn{2}{c|}{124}\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\begin{parts}
+		\part[5] As you can see from the table, the first quartile for the diagnostic test was 58. Briefly explain what this means in terms that someone who has never taken Econ 103 would understand.
+			\begin{solution}[1in]
+				It means that roughly 25\% of the students got a score equal to or less than 58 percentage points on the math diagnostic. Another way of putting this is that 75\% of the students scored more than 58 percent on the math diagnostic.
+			\end{solution}
+		\part[5] Is there any evidence of skewness in the math diagnostic or final exam scores? Explain briefly.
+			\begin{solution}[1in]
+				Not really. Using our rule of thumb from class we see that the mean and median are exactly equal on the Diagnostic and only differ slighly on the Final: 65 versus 66. The mean on the final is \emph{slightly} below the median which suggests the possibility of a small amount of left-skewness.
+			\end{solution}
+		\part[5] Were scores more variable on the final or the math diagnostic? Briefly discuss in terms of both the standard deviation and interquartile range. 
+			\begin{solution}[1in]
+				The standard deviation on the final was slightly higher than on the diagnostic: 17 versus 16 points. Thus, the results on the final were slightly more variable than those on the diagnostic. Further, IQR for the final was 27 points compared to 22 points for the diagnostic. There seems to have been a little more variability on the final than on the diagnostic.
+			\end{solution}
+		\part[5] Calculate the sample correlation between scores on the math diagnostic test and those on the final exam.
+			\begin{solution}[1in]
+				$r = s_{xy}/(s_x s_y) = 124/(16 \times 17) \approx 0.46$
+			\end{solution}
+		\part[5] Suppose you wanted to carry out a regression to predict a student's final exam score using her math pre-test score. Calculate the slope and intercept of the regression line.
+			\begin{solution}[1.5in]
+				Here the $y$-variable is Final Exam and the $x$-variable is Diagnostic. Thus,
+					\begin{eqnarray*}
+						b &=& s_{xy}/s_x^2 = 124 / (16^2) \approx 0.48\\
+						a &=& \bar{y} - b \bar{x} = 65 - 0.48 \times 68 \approx 32
+					\end{eqnarray*}
+			\end{solution}
+		\part[5] Lucy scored 80 on the math pre-test while Linus only scored 60 on the pre-test. Using your answer to the previous part, how much higher would we predict Lucy's score on the final exam will be than Linus' score on the final?
+			\begin{solution}[1.5in]
+				Since Lucy scored 20 percentage points higher on the pre-test, we would predict that she will score $b \times 20 \approx 9.6$ points higher on the final.
+			\end{solution}
+	\end{parts}
+
+
+\question Let $A$ be the event that it rains this Saturday, $B$ be the event that it rains this Sunday and $C$ be the event that it rains this weekend. In her weather forecast Molly, the local meteorologist, tells us that $P(A) = 0.5$ and $P(B) = 0.5$.
+	\begin{parts}
+		\part[2] Express the event $C$ in terms of the events $A$ and $B$ using set operations.
+			\begin{solution}[0.5in]
+				Rain on the weekend means rain on Saturday \emph{or} rain on Sunday. In set notation, this is: $C = A \cup B$.
+			\end{solution}
+		\part[2] In this example, what is the meaning of the event $A\cap B$? Phrase it in a way that someone who has never taken Econ 103 would understand.
+			\begin{solution}[1in]
+				This is the event that it rains on Saturday \emph{and} on Sunday.
+			\end{solution}
+		\part[3] Express $P(C)$ in terms of $P(A\cap B)$ using the addition rule.
+			\begin{solution}[1in]
+				By the Addition Rule: $P(C) = P(A) + P(B) - P(A\cap B) = 1 - P(A \cap B)$.  
+			\end{solution}
+		\part[8] Adam, an anchorman for the local news, sees Molly's forecast and summarizes it as follows: ``According to Molly we're in for a wet weekend. There's a 100\% chance of rain this weekend: 50\% on Saturday and 50\% on Sunday.'' Is Adam correct? If so, briefly explain why; if not, point out the flaw in his reasoning.
+			\begin{solution}[2.5in]
+				Adam is incorrect. In order to add probabilities as he has done, the corresponding events must be \emph{mutually exclusive}. From the previous part, we know that $P(C) = P(A) + P(B) - P(A\cap B) = 1 - P(A \cap B)$. Adam has incorrectly assumed that $P(A\cap B) = 0$, in other words that rain on Saturday \emph{rules out} rain on Sunday and vice-versa. We haven't been given the value of $P(A\cap B)$ from the problem statement, but we know from real-world experience that it's definitely not zero. Hence $P(C) < 1$. 
+			\end{solution}
+	\end{parts}
+
+\question On my desk I have 10 cups: $N_B$ of them are \emph{Blue Cups} and the remaining $10 - N_B$ are \emph{Red Cups}. Each cup contains five balls: \emph{Blue Cups} contain 4 blue balls and 1 red ball while \emph{Red Cups} contain 4 red balls and 1 blue ball. I chose a cup at random so that each cup was equally likely to be selected. I then drew three balls at random \emph{with replacement} from the chosen cup. In order, the balls I drew were: red, red, blue. Let $C_B$ be the event that I chose a \emph{Blue Cup} and let $RRB$ be the event that represents my three draws: a red ball, followed by another red ball, followed by a blue ball.
+	\begin{parts}
+		\part[15] Suppose $N_B$ is 5. Calculate $P(C_B|RRB)$. 
+		\begin{solution}[3.3in]
+			By the Law of Total Probability,
+				\begin{eqnarray*}
+					P(RRB) &=& P(RRB|C_B)P(C_B) + P(RRB|C_R)P(C_R)\\
+						&=& (1/5 \times 1/5 \times 4/5) \times 1/2 + (4/5 \times 4/5 \times 1/5) \times 1/2\\
+						&=& 2/125 + 8/125 = 10/125
+				\end{eqnarray*}
+			Hence, by Bayes' Rule,
+				\begin{eqnarray*}
+					P(C_B|RRB) &=& \frac{P(RRB|C_B)P(C_B)}{P(RRB)}= \frac{2/125}{10/125} = 1/5
+				\end{eqnarray*}
+		\end{solution}
+		\part[15] Now suppose that we do \emph{not} know the value of $N_B$. How large would $N_B$ have to be for it to be more likely that I drew from a blue cup given that the event $RRB$ has occured? Prove your answer.
+			\begin{solution}[5in]
+				This is identical to the previous part with one change: now we have $P(C_B) = N_B/10$ and $P(C_R) = 1 - N_B/10$ rather than 1/2. Hence, the calculation for the Law of Total Probability becomes
+					\begin{eqnarray*}
+						P(RRB) &=& (4/125) \times (N_B/10)+ (16/125) \times(10 - N_B)/10\\
+							&=& \left[4N_B + 16(10 - N_B) \right]/(1250)\\
+							&=& (160 - 12N_B)/1250
+					\end{eqnarray*}
+					and similarly for Bayes' Rule
+						\begin{eqnarray*}
+							P(C_B|RRB) &=& \frac{4N_B/1250}{(160 - 12N_B)/1250} = \frac{4N_B}{160 - 12N_B} = \frac{N_B}{40 - 3N_B}
+						\end{eqnarray*}
+					We need the smallest $N_B$ such that this quantity is greater than 1/2:
+					\begin{eqnarray*}
+						N_B/(40 - 3N_B) &>& 1/2\\
+						2 N_B &>& 40 - 3N_B\\
+						N_B &>& 8
+					\end{eqnarray*}
+					Therefore $N_B$ would have to be at least 9.
+			\end{solution}
+		\part[5] Suppose that I made my draws \emph{without} replacement. What is $P(C_B|RRB)$ in this case? Briefly explain your answer.
+			\begin{solution}[2.5in]
+				If we draw \emph{without replacement}, then getting two red balls makes it \emph{impossible} that we're drawing from a Blue Cup, since Blue Cups only have one red ball. Hence $P(C_B|RRB) = 0$.
+			\end{solution}
+	\end{parts}
+
+
+
+\question The so-called ``Iris Dataset'' comes pre-loaded in R in the dataframe \texttt{iris}. Here's a description from the R documentation:
+	\begin{quote}
+		This famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are \emph{Iris setosa}, \emph{versicolor}, and \emph{virginica}.
+	\end{quote}
+A \emph{sepal} is a part of a flower, specifically one of the small leaves found behind the petals. Here are the first few rows of the dataset:
+\begin{verbatim}
+> head(iris)
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+\end{verbatim}
+Note that the column \texttt{Species} is a categorical variable, aka factor, that takes on three different values: \texttt{setosa}, \texttt{versicolor}, and \texttt{virginica}.
+\begin{parts}
+	% \part[2] Suppose that you wanted to display \emph{only} the column \texttt{Species} of the dataframe \texttt{iris}. What R command would you use?
+	% 	\begin{solution}[0.4in]
+	% 		Many answers. The simplest are \texttt{iris\$Species} or \texttt{iris[,5]}
+	% 	\end{solution}
+	% \part[2] Suppose that you wanted to display all columns of the 75th row of the dataframe \texttt{iris}. What R command would you use?
+	% 	\begin{solution}[0.4in]
+	% 		\texttt{iris[75,]}
+	% 	\end{solution}
+	\part[5] Suppose you wanted to display only the columns \texttt{Sepal.Length}  and \texttt{Petal.Width} of \texttt{iris}. What R command would you use?
+		\begin{solution}[0.75in]
+			Many solutions, such as \texttt{iris[,c(1,4)]} or \\ \texttt{iris[,c(``Sepal.Length'', ``Petal.Width'')]} 
+		\end{solution}
+	\part[5] What R command would you use to extract data for only flowers of the species \emph{Iris setosa} and store it in a dataframe called \texttt{setosa}?
+		\begin{solution}[0.75in]
+			\texttt{setosa = iris[species == 'setosa']}
+			If your data is not a \texttt{data.table} but a \texttt{data.frame}, use:  
+			\texttt{setosa <- subset(iris, Species == ``setosa'')}
+		\end{solution}
+	\part[5] What R command would you use to separately calculate the sample mean \texttt{Sepal.Length} for \emph{each species} of iris? Be sure to allow for the possibility of missing values.
+		\begin{solution}[0.75in]
+			\texttt{iris[ , mean(Sepal.Length, na.rm = TRUE), by = Species]}
+		\end{solution}
+\end{parts}
+
+\question[30] Write an R function called \texttt{reg.predict} that uses linear regression to predict missing $y$-values from their $x$-values. In your answer you may use any R functions you like \emph{except} \texttt{lm}. The function should take three arguments: \texttt{x}, \texttt{y} and \texttt{x.new}. The vectors \texttt{x} and \texttt{y} contain the data for which we observe both the $x$ and $y$-values, while \texttt{x.new} is a collection of $x$-values for which we do not know the corresponding $y$-values (e.g.\ the midterm grades example from lecture). Your function should carry out the following steps. First, use \texttt{x} and \texttt{y} to calculate the intercept $a$ and the slope $b$ of the regression line $\widehat{y} = a + bx$. Second, calculate \texttt{y.pred}, a vector containing the $y$-values that we would \emph{predict} for the $x$-values contained in \texttt{x.new}, using the regression slope and intercept from the first step. Finally, return \texttt{y.pred}. In your answer you may assume that \texttt{x} and \texttt{y} are of the same length and that there are no missing values. Again, you may use any R functions you like in your answer \emph{other than} \texttt{lm}.
+\begin{solution}
+	\begin{verbatim}
+reg.predict <- function(x, y, x.new){
+  b <- cov(x,y) / var(x)
+  a <- mean(y) - b * mean(x)
+  y.pred <- a + b * x.new
+  return(y.pred)
+}
+	\end{verbatim}
+\end{solution}
+	
+
+
+\end{questions}
+
+\end{document}

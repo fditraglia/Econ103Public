@@ -1,0 +1,385 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+%\boxedpoints
+%\pointsinmargin
+
+
+
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\cov}{Cov}
+\newcommand{\cprob}{\rightarrow_{p}}
+\newcommand{\cas}{\rightarrow_{as}}
+\newcommand{\clp}{\rightarrow_{L^p}}
+\newcommand{\clone}{\rightarrow_{L^1}}
+\newcommand{\cltwo}{\rightarrow_{L^2}}
+\newcommand{\cd}{\rightarrow_{d}}
+\newcommand{\cv}{\Rightarrow_{v}}
+\newcommand{\dec}{\downarrow}
+\newcommand{\inc}{\uparrow}
+\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
+\newcommand{\limn}{\lim_{n \rightarrow \infty}}
+\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
+\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
+\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
+\newcommand{\slfrac}[2]{\left.#1\right/#2}
+
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm I, Page \thepage\ of \numpages}
+              {September 30, 2013}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Midterm Examination I\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} September 30, 2013}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, two points will be deducted for each page on which you do not write your name and student ID. \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+
+
+\question[10] Saleem has gathered a large dataset comprising a random sample from the population of all US deaths between 2008 and 2012. For each death, Saleem's dataset contains detailed survey information listing the deceased's habits, lifestyle and age at death. Shortly after beginning his data analysis, Saleem uncovers a startling pattern: among those who died under the age of 25, a large majority were regular users of \emph{Twitter}. In contrast, hardly anyone who died over the age of 75 was a regular \emph{Twitter} user. Saleem concludes that \emph{Twitter} use is an important cause of early death in the US. Do you agree with his analysis? Explain.
+	\begin{solution}[2.75in]
+		There are many correct answers. Here is one possibility: ``Saleem is mistaken. In order to die under the age of 25 during the years studied, you must have been born \emph{after} 1983. In contrast, to die over the age of 75, you must have been born \emph{before} 1938. People who were born before 1938 did not grow up with computers and the internet, and are hence much less likely to become users of Twitter. In contrast, people born after 1983 came of age just as the internet and personal computing became commonplace. These people are correspondingly much more likely to become users of Twitter. Hence \emph{year of birth} is a confounder in this example: you have to be born after 1983 to ``die young'' and if you were born recently, you're also much more likely to be a Twitter user.''
+	\end{solution}
+
+
+\question The \emph{quartile deviation} is a measure of dispersion that we did not cover in class. Let $Q_3$ be the 75th percentile and $Q_1$ be the 25th percentile of the sample. Then the quartile deviation is given by the expression $(Q_3 - Q_1)/2$.
+	\begin{parts}
+		\part[5] The quartile deviation is related to another measure of dispersion that we did study in class. Which one and how?
+			\begin{solution}[0.5in]
+			It equals the interquartile range (IQR) divided by two.
+			\end{solution}
+		\part[5] What are the units of the quartile deviation relative to those of the data?
+			\begin{solution}[0.5in]
+			It has the same units as the IQR, namely those of the data themselves.
+			\end{solution}
+		\part[5] Would you expect the quartile deviation to be more or less sensitive to outliers than the standard deviation? Explain briefly.
+			\begin{solution}[1in]
+			Like the IQR, the quartile deviation will be less sensitive to outliers than the standard deviation. This is because, unlike the standard deviation, the quartile deviation discards the most extreme 50\% of the data before calculating the spread.
+			\end{solution}
+	\end{parts}
+	
+
+
+
+
+\question Consider an R dataframe called \texttt{measurements} with two columns: \texttt{height} measures a student's height in inches while \texttt{handspan} measures her handspan in centimeters. The first few rows are as follows:
+	\begin{verbatim}
+	 height handspan
+1     67     20.0
+2     63     19.5
+3     62     19.0
+4     65     19.5
+5     62     18.5
+6     68     18.5
+	\end{verbatim}
+	Running a linear regression with $y =$ \texttt{height} and $x =$ \texttt{handspan} gives:
+			\begin{verbatim}
+		Coefficients:
+(Intercept)     handspan  
+         42          1.2
+		\end{verbatim}
+\begin{parts}
+	\part[4] What R command produces the regression results given above?
+	\begin{solution}[0.5in]
+		\begin{verbatim}lm(height ~ handspan, data = measurements)\end{verbatim}
+	\end{solution}
+	\part[4]  What are the units of the slope and intercept from this regression?
+		\begin{solution}[0.5in]
+			The intercept is measured in inches, and the slope is measured in inches per centimeter.
+		\end{solution}
+	\part[4] What height would we predict for someone with a handspan of 10 cm?
+		\begin{solution}[0.5in]
+			We predict using $\widehat{y} = a + bx$. Plugging in $x = 10$ cm along with the regression coefficients from above, we have $\widehat{y} = 54$ inches.
+		\end{solution}
+	\part[4] The sample mean of \texttt{height} for this dataset is 68 inches. What is the sample mean of \texttt{handspan}? Feel free to round to the nearest centimeter.
+		\begin{solution}[0.85in]
+		We use the fact that the regression line goes through the means of the data: $\bar{y} = a + b \bar{x}$. Rearranging, $\bar{x} = (\bar{y} - a)/b = (68 - 42)/(1.2) \approx 22$ cm.
+		\end{solution}
+		\part[4] The sample standard deviation of \texttt{height} is approximately twice that of \texttt{handspan}. What is the correlation between \texttt{height} and \texttt{handspan}? 
+		\begin{solution}[0.85in]
+			We use the fact that $r = b (s_x/s_y)$. The correlation is $1.2/2 = 0.6$.
+		\end{solution}
+\end{parts}
+
+
+
+\question Suppose we want to carry out a linear regression with $a$ set equal to zero, that is we want to predict $y$ from $x$ according to $\widehat{y} =  b x$.
+	\begin{parts}
+		\part[5] Write down the optimization problem we need to solve and explain it.
+			\begin{solution}[2in]
+				We choose $b$ to minimize the sum of squared vertical deviations:
+					$$\min_b \sum_{i=1}^n (y_i - bx_i)^2$$
+			\end{solution}
+		\part[10] Solve the optimization problem you wrote down for part (a) to find the formula for $b$.
+			\begin{solution}[3in]
+			Differentiating with respect to $b$ gives the first order condition:
+				$$-2\sum_{i=1}^n (y_i - bx_i)x_i = 0$$
+			Rearranging:
+				\begin{eqnarray*}
+					\sum_{i=1}^n y_ix_i &=& \sum_{i=1}^n  b x_i^2\\\\
+					b&=&\frac{\sum_{i=1}^n y_i x_i}{\sum_{i=1}^n x_i^2}
+				\end{eqnarray*}
+			\end{solution}
+		\part[5] Suppose that we wanted to predict $y$ from $x$ using a \emph{quadratic} relationship, namely $\widehat{y} = bx^2$. How would your answers to parts (a) and (b) change?
+			\begin{solution}[2in]
+			Just replace $x_i$ with $x_i^2$ in both the optimization problem statement and the first order condition:
+				$$b=\frac{\sum_{i=1}^n y_i x_i^2}{\sum_{i=1}^n x_i^4}$$
+				We can do this because $x$ and $y$ are \emph{constants} in the optimization problem rather than variables.
+			\end{solution}
+	\end{parts}
+
+
+
+\question[10] What is the probability of getting \emph{at least} one six when rolling a fair, six-sided die three times? Explain your answer.
+		\begin{solution}[1.5in]
+			Using the complement rule:
+				$$P(\mbox{At Least One Six}) = 1 - P(\mbox{No Sixes})$$
+			And by independence:
+				$$P(\mbox{No Sixes}) = 5/6 \times 5/6 \times 5/6 = 125/216$$
+			Hence, 
+			$$P(\mbox{At Least One Six}) = 1 - 125/216 = 91/216 \approx 0.42$$
+		\end{solution}
+	
+
+\question Suppose I throw two fair, six-sided dice once. Define the following events:
+	\begin{eqnarray*}
+		E &=& \mbox{The first die shows 5}\\
+		F &=& \mbox{The sum of the two dice equals 7}\\
+		G &=& \mbox{The sum of the two dice equals 10}
+	\end{eqnarray*}
+	\begin{parts}
+		\part[2] What is $P(F)$?
+			\begin{solution}[0.5in]
+				Of the 36 basic outcomes of the experiment, the pairs (1,6), (6,1), (2,5), (5,2), (3,4), and (4,3) sum to 7. Hence the probability is 1/6.
+			\end{solution}
+		\part[2] What is $P(G)$?
+			\begin{solution}[0.5in]
+				Of the 36 basic outcomes of this experiment, the pairs (5,5), (4,6), and (6,4) sum to 10. Hence the probability is $3/36 = 1/12$.
+			\end{solution}
+		\part[3] Calculate $P(F|E)$.
+			\begin{solution}[0.75in]
+			By the definition of conditional probability,
+			 $$P(F|E) = \frac{P(F\cap E)}{P(E)}$$
+			 We know that $P(E) = 1/6$. The only way that $F\cap E$ can occur is if we roll (5,7). Hence $P(F\cap E) = 1/36$. Thus, $P(F|E) = (1/36)/(1/6) = 6/36 = 1/6$.
+			\end{solution}
+		\part[3] Calculate $P(G|E)$.
+			\begin{solution}[0.75in]
+				Again, by the definition of conditional probability,
+					$$P(G|E) = \frac{P(G\cap E)}{P(E)}$$
+				As before, $P(E) = 1/6$. The only way for $G\cap E$ to occur is if we roll (5,5). Hence $P(G|E) = (1/36)/(1/6) = 6/36 = 1/6$.
+			\end{solution}
+			\part[5] Suppose you wanted to bet on the outcome of this random experiment. If I revealed whether or not the first die was a 5, would this give you any relevant information for betting on $F$? What about for betting on $G$? Explain briefly.
+				\begin{solution}[1in]
+				Using the results of the preceding parts, we see that $P(F|E) =P(F)$, hence$F$ and $E$ are statistically independent. This means that knowing whether or not $E$ has occurred gives us no additional information about the probability of $F$. In contrast $P(G|E)\neq P(G)$, so $G$ and $E$ are \emph{not} statistically independent. Indeed, if we know that $E$ has occurred, this \emph{doubles} the chance that $G$ has occurred. 
+				\end{solution}
+	\end{parts}
+
+
+\question[10] I have two six-sided dice in my pocket: one fair die and one loaded die. The fair die has the usual probabilities, but the probability of getting a 6 when rolling the loaded die is 1/2. Suppose I reach into my pocket and draw one of the two dice at random (both are equally likely to be drawn). I roll this randomly chosen die and get a 6. What is the probability that I drew the loaded die? 
+	\begin{solution}[2.25in]
+		Let $L$ be the event that I draw the loaded die, $F$ be the event that I draw the fair die and $6$ be the event that I roll a six. By Bayes' rule, we have
+			$$P(L|6) = \frac{P(6|L)P(L)}{P(6)}$$
+Calculating the denominator by the Law of Total Probability, we have
+		\begin{eqnarray*}			
+			P(6) &=& P(6|L)P(L) + P(6|F)P(F) \\
+			&=& 1/2 \times 1/2 + 1/6\times 1/2\\
+			&=&	1/4 + 1/12 \\
+			&=& 1/3		
+			\end{eqnarray*}
+		Hence,
+			$$P(L|6) = \frac{1/4}{1/3} = 3/4 = 0.75$$
+	\end{solution}
+	
+	
+
+
+
+\question Helen wants to know whether Penn graduate admissions are biased against women. She has obtained data on 12,600 recent applicants indicating: sex (Male or Female), the field to which she applied (Arts or Sciences) and whether or not she was admitted (1 = Admitted, 0 = Rejected). Helen stores her data in an R dataframe called \texttt{admissions} with columns \texttt{Sex}, \texttt{Field} and \texttt{Admitted}. The first few rows are as follows:
+			\begin{verbatim}
+					     Sex    Field Admitted
+		1   Male Sciences        1
+		2 Female Sciences        0
+		3 Female     Arts        0
+		4   Male     Arts        1
+		5   Male     Arts        0
+		6 Female     Arts        0
+			\end{verbatim}
+	\begin{parts}
+		\part[6] The first thing Helen does is calculate the admissions rates for men and women separately. Write R code to accomplish this. You may assume there are no missing observations.
+		\begin{solution}[1.75in]
+			\texttt{admissions[ , mean(Admitted), by = Sex]}
+		\end{solution}
+		\part[8] Next Helen calculates the admission rates for men and women broken down by field of study. Write R code to accomplish this. Again, you may assume that there are no missing observations.
+		\begin{solution}[2.5in]
+			\texttt{admissions[ , mean(Admitted), by = .(Sex, Field)]}	
+		\end{solution}
+		\part[6] Finally, Helen arranges her results from part (a) into the following table
+		
+		\vspace{1em}
+		
+		\begin{verbatim}
+		   Female      Male 
+0.3488372 0.4457831 
+		\end{verbatim}
+		
+		\vspace{1em}
+		
+		and does the same for results from part (b)
+		
+		\vspace{1em}
+		\begin{verbatim}
+		       Field
+Sex           Arts  Sciences
+  Female 0.2812500 0.5454545
+  Male   0.3043478 0.5000000
+		\end{verbatim}
+		
+		\vspace{1em}
+		
+			Interpret Helen's findings. How do her results from part (a) compare to those from part (b)? Has Helen found evidence of discrimination against women in Penn graduate admissions? 
+				\begin{solution}[2.25in]
+					From part (a) it appears that women are admitted at a lower rate than men. However, once we break down by field of study in part (b), we see that women are admitted at comparable rates to men in Arts and higher rates than men in Sciences. The difference is explained by the fact that the admissions rate is lower for \emph{both} men and women in Arts than it is in Science. Hence it must be the case that most women have applied to Arts while most Men have applied to Sciences. While this evidence doesn't rule out the possibility of bias against women in individual instances, there is no overall evidence of discrimination against women.
+				\end{solution}
+	\end{parts}
+
+\question
+	\begin{parts}
+		\part[10] Write an R function called \texttt{wavg} that calculates a \emph{weighted average}:
+	$$\sum_{i = 1}^n w_i x_i$$
+where $x_1, x_2, \hdots, x_n$ is a dataset, and $w_1, w_2, \hdots, w_n$ is a corresponding set of \emph{weights} between zero and one that sum to one. Your function should take two arguments: \texttt{x} is a numeric vector containing the data to be averaged and \texttt{w} is a numeric vector containing the corresponding weights. You may assume that there are no missing values in either \texttt{x} or \texttt{w} and that both vectors have the same length. The output of your function should be a single number: the average of \texttt{x} computed using the weights \texttt{w}. 
+	\begin{solution}[2.5in]
+	There are many correct answers. Here is one:
+		\begin{verbatim}
+			wavg <- function(x, w){
+				answer <- sum(w * x)
+				return(answer)
+			}
+		\end{verbatim}
+	\end{solution}
+	\part [10] Write another R function called \texttt{mymean} that takes a single argument \texttt{x} and calculates the usual sample mean by calling the function \texttt{wavg} with appropriate weights.
+		\begin{solution}
+		Again, there are many correct answers. The key is to realize what weights to use and how to compute them.
+		\begin{verbatim}
+			mymean <- function(x){
+				n <- length(x)
+				weights <- rep(1/n, n)
+				answer <- wavg(x, weights)
+				return(answer)
+			}
+		\end{verbatim}
+		\end{solution}
+	\end{parts}
+
+
+
+
+\end{questions}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

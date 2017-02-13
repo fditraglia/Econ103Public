@@ -1,0 +1,378 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\usepackage{multirow}
+\linespread{1.1}
+%\boxedpoints
+%\pointsinmargin
+
+
+
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\var}{\mathbb{V}}
+\newcommand{\cov}{Cov}
+\newcommand{\cprob}{\rightarrow_{p}}
+\newcommand{\cas}{\rightarrow_{as}}
+\newcommand{\clp}{\rightarrow_{L^p}}
+\newcommand{\clone}{\rightarrow_{L^1}}
+\newcommand{\cltwo}{\rightarrow_{L^2}}
+\newcommand{\cd}{\rightarrow_{d}}
+\newcommand{\cv}{\Rightarrow_{v}}
+\newcommand{\dec}{\downarrow}
+\newcommand{\inc}{\uparrow}
+\newcommand{\plim}{\hbox{plim}_{n\rightarrow \infty}}
+\newcommand{\limn}{\lim_{n \rightarrow \infty}}
+\newcommand{\fil}{(\mathcal{F}_n)_{n=0}^{\infty}}
+\newcommand{\xn}{(X_n)_{n=0}^{\infty}}
+\newcommand{\hn}{(H_n)_{n=0}^{\infty}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\inprod}[1]{\left\langle#1\right\rangle}
+\newcommand{\slfrac}[2]{\left.#1\right/#2}
+
+%\printanswers
+%\noprintanswers
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm II, Page \thepage\ of \numpages}
+              {November 7, 2012}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\large
+\sc{Second Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} November 7, 2012}
+
+\vspace{1em}
+
+\normalsize
+\fbox{\begin{minipage}{0.5\textwidth}
+\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+\noindent \makebox[\textwidth]{Student ID \#:\enspace\hrulefill}
+
+\vspace{0.3in}
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+%\rule{1cm}{0.4pt}
+\vspace{3em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{3em}
+
+\paragraph{Instructions:} Answer all questions in the space provided. Should you run out of space, continue on the back of the page. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+\question Suppose that $X$ is a random variable with support $\{1,2\}$ and $Y$ is a random variable with support $\{0,1\}$ where $X$ and $Y$ have the following joint distribution:
+			\begin{eqnarray*}
+				p_{XY}(1,0) &=& 0.30\\
+				p_{XY}(1,1) &=&0.25\\
+				p_{XY}(2,0) &=&0.20\\
+				p_{XY}(2,1) &=&0.25
+			\end{eqnarray*}
+	\begin{parts}
+		\part[2] Express the joint probability mass function (pmf) in a $2\times 2$ table.
+			\begin{solution}[5cm]
+			\begin{center}
+\begin{tabular}{|cc|cc|}
+\hline
+&&\multicolumn{2}{c|}{$X$}\\
+&&1 & 2\\
+\hline
+\multirow{2}{*}{$Y$}
+&0& \multicolumn{1}{|c}{0.30} & 0.20\\
+&1& \multicolumn{1}{|c}{0.25} & 0.25\\
+\hline
+\end{tabular}
+\end{center}
+			\end{solution}
+		\part[3] Using the table, calculate the marginal pmfs of $X$ and $Y$.
+			\begin{solution}[5cm]
+				\begin{eqnarray*}
+					p_X(1) &=&p_{XY}(1,0) + p_{XY}(1,1)=0.30 + 0.25 = 0.55 \\
+					p_X(2) &=&p_{XY}(2,0) + p_{XY}(2,1)= 0.20 + 0.25 = 0.45\\
+					p_Y(0) &=&p_{XY}(1,0) + p_{XY}(2,0) = 0.30 + 0.20 = 0.50\\
+					p_Y(1) &=& p_{XY}(1,1) + p_{XY}(2,1) = 0.25 + 0.25 = 0.50
+				\end{eqnarray*}
+			\end{solution}
+		\part[5] Calculate the conditional pmfs of $Y|X=1$ and $Y|X=2$.
+			\begin{solution}[6cm]
+			The distribution of $Y|X = 1$ is
+				\begin{eqnarray*}
+					P(Y = 0|X = 1) &=&\frac{p_{XY}(1,0)}{p_X(1)} = \frac{0.30}{0.55}=\frac{6}{11}\\\\
+					P(Y = 1|X= 1) &=&\frac{p_{XY}(1,1)}{p_X(1)} = \frac{0.25}{0.55}=\frac{5}{11}
+				\end{eqnarray*}
+				while the distribution of $Y|X = 2$ is
+				\begin{eqnarray*}
+					P(Y = 0|X = 2) &=&\frac{p_{XY}(2,0)}{p_X(2)} =\frac{0.20}{0.45}=\frac{4}{9} \\\\
+					P(Y = 1|X= 2) &=&\frac{p_{XY}(2,1)}{p_X(2)} = \frac{0.25}{0.45}=\frac{5}{9}
+				\end{eqnarray*}
+			\end{solution}
+		\part[3] Calculate $\expect[Y|X=1]$ and $\expect[Y|X=2]$.
+			\begin{solution}[3cm]
+			\begin{eqnarray*}
+				\expect[Y | X =1 ] &=& 0 \cdot 6/11 + 1 \cdot 5/11 = 5/11 \\
+				\expect[Y | X =2 ] &=& 0 \cdot 4/9  + 1 \cdot 5/9 = 5/9
+			\end{eqnarray*}
+			\end{solution}
+		\part[7] Calculate the covariance between $X$ and $Y$.
+		\begin{solution}[5cm]
+		First, from the marginal distributions, $\expect[Y]=0.5$ and $E[X] =1\cdot 0.55 + 2\cdot 0.45 =1.45$. Hence $\expect[X]\expect[Y] = 0.725$. Second,
+			\begin{eqnarray*}
+				\expect[XY] &=& (0\cdot 1) \cdot 0.3 + (0\cdot 2)\cdot 0.2+ (1\cdot 1) \cdot 0.25 + (1\cdot 2) 0.25\\
+						&=& 0.25 + 0.50 = 0.75
+			\end{eqnarray*}
+			Finally $Cov(X,Y) = \expect[XY] - \expect[X]\expect[Y] = 0.750 - 0.725 = 0.025$
+		\end{solution}
+	\end{parts}
+
+
+
+\question The random variables $X_1$ and $X_2$ correspond to the annual returns of Stock 1 and Stock 2. Suppose that $\expect[X_1]=0.1$, $\expect[X_2]=0.3$, $Var(X_1) = Var(X_2) = 1$, and $\rho=Corr(X_1, X_2)$.  A portfolio $\Pi(\omega)$ is defined by the proportion $\omega$ of Stock \# 1 that it contains. That is, $\Pi(\omega) = \omega X_1 + (1-\omega) X_2$ where $0\leq \omega \leq 1$.
+	\begin{parts}
+		\part[3] What value of $\omega$ gives a portfolio with expected return $0.15$? 
+			\begin{solution}[4cm]
+				\begin{eqnarray*}
+					\expect[\Pi(\omega)] = \omega \expect[X_1] + (1-\omega) \expect[X_2]  &=& 0.15\\
+					\omega/10 +  3(1-\omega)/10 &=& 0.15\\
+					\omega + 3 - 3\omega &=& 3/2\\
+					-4\omega + 6 &=& 3\\
+					\omega &=& 3/4
+				\end{eqnarray*}
+			\end{solution}
+		\part[6] Suppose that $\omega = 1/4$. In terms of $\rho$, what is the portfolio variance?
+			\begin{solution}[4.5cm]
+			First, we have
+			$$Var\left[ \Pi(\omega) \right] = \omega^2 Var(X_1) + (1-\omega)^2 Var(X_2) + 2\omega (1-\omega) Cov(X_1,X_2)$$
+			but since $Var(X_1)=Var(X_2)=1$ and $\rho = Corr(X_1, X_2))$,
+			\begin{eqnarray*}
+				Var\left[ \Pi(\omega) \right] &=& \omega^2 + (1-\omega)^2  + 2\omega (1-\omega) \rho
+			\end{eqnarray*}
+			Substituting $\omega = 1/4$,
+				\begin{eqnarray*}
+					Var\left[ \Pi(1/4) \right] &=& 1/16 + 9/16  + 2(1/4) (3/4) \rho\\
+						&=& 10/16 + 6\rho/16\\
+						&=& (3\rho + 5)/8
+				\end{eqnarray*}
+			\end{solution}
+		\part[3] Again, suppose that $\omega = 1/4$. What are the maximum and minimum values of the portfolio variance? What are the corresponding values of $\rho$? 
+		\begin{solution}[4cm]
+			From the previous part, $Var[\Pi(\omega)]= (3\rho + 5)/8$. By inspection this variance takes on a maximum value of $1$ when $\rho=1$. It takes on a minimum value of $0.25$ when $\rho = -1$. 
+		\end{solution}
+		\part[3] If we assume that variance is a reasonable measure of risk, what does your answer to part (c) suggest about the benefits of constructing a portfolio rather than holding only one stock? Explain briefly.
+			\begin{solution}[4cm]
+			We see that the variance of this portfolio cannot exceed the variance of the individual assets that make it up. Unless $\rho = 1$, the portfolio is less risky than either of the individual stocks.
+			\end{solution}
+	\end{parts}
+
+
+
+
+
+\question Suppose that $X$ is a continuous random variable with probability density function
+		$$f(x) = \left\{ \begin{array}{ll} 2x & \mbox{for } 0 \leq x \leq 1\\ 0 & \mbox{elsewhere} \end{array}\right.$$
+		\begin{parts}
+			\part[5] Calculate the cumulative distribution function, $F(x_0)$, of $X$.
+				\begin{solution}[4cm]
+					$\int_{-\infty}^{x_0} f(x)\; dx = \int_0^{x_0} 2x\; dx = \left. x^2 \right|_{0}^{x_0} = x_0^2$. Hence,
+					$$F(x_0) = \left\{ \begin{array}{ll} 0 & \mbox{for } x_0 < 0\\ x_0^2& \mbox{for } 0\leq x_0 \leq 1 \\ 1 & \mbox{for }  x_0 > 1\end{array} \right.$$
+				\end{solution}
+			\part[3] Calculate the median of $X$ using your answer to part (a).	
+				\begin{solution}[4cm]
+				We want $x\in [0,1]$ such that $F(x)=0.5$. From part (a), $F(x)=x^2$ for $x\in [0,1]$. Hence,
+					$$x = \sqrt{0.5} = \sqrt{1/2} = 1/\sqrt{2}\approx 0.71$$
+				  (We take the positive square root since this lies on the support of $X$.)
+				\end{solution}
+			\part[5] Calculate $\expect[X]$.
+				\begin{solution}[4cm]
+					$$\expect[X] = \int_{-\infty}^{\infty}xf(x)\; dx = \int_0^1 2x^2\; dx=\left. \frac{2}{3}x^3 \right|_0^1= 2/3$$
+				\end{solution}
+			\part[5] Calculate $\expect[X^2]$
+			\begin{solution}[4cm]
+					$$\expect[X^2] = \int_{-\infty}^{\infty}x^2f(x)\; dx = \int_0^1 2x^3\; dx=\left. \frac{1}{2}x^4 \right|_0^1= 1/2$$
+				\end{solution}
+			\part[2] Using your answers to (c) and (d) along with the shortcut formula for variance, calculate $Var(X)$.
+				\begin{solution}[4cm]
+					$Var(X) = \expect[X^2] - (\expect[X])^2 = 1/2 - (2/3)^2 = 1/2 - 4/9 = 1/18$
+				\end{solution}
+		\end{parts}
+
+
+
+
+\question Suppose that $X_1, X_2, \hdots, X_{n} \sim \mbox{ iid Bernoulli}(p)$. Define $S_n =\sum_{i=1}^n X_i$.
+	\begin{parts}
+		\part[3] Write down the pmf and support of $X_1$. 
+			\begin{solution}[3cm]
+			The support of a Bernoulli random variable is $\{0,1\}$. Since 1 is defined as ``success'' and $p$ defined as the probability of success, the pmf is $p_X(1) = p$, $p_X(0) = 1-p$.
+			\end{solution}
+		\part[2] Calculate $\expect[X_1]$.
+			\begin{solution}[2cm]
+			$\expect[X_1] = 0 \cdot (1-p) + 1 \cdot p = p$
+			\end{solution}
+		\part[2] Calculate $\expect[X_1^2]$.
+			\begin{solution}[3cm]
+			$\expect[X_1^2] = 0^2 \cdot (1-p) + 1^2 \cdot p = p$
+			\end{solution}
+		\part[3] Calculate $Var(X_1)$ using the shortcut formula.
+		\begin{solution}[3cm]
+			$Var(X_1) = \expect[X_1^2] - (\expect[X_1])^2 = p - p^2 = p(1-p)$.
+		\end{solution}
+		\part[5] What kind of random variable is $S_n$? Write down its pmf and support.
+			\begin{solution}[3.5cm]
+			Since it is the sum of $n$ independent, identically distribution Bernoulli random variables, each with probability of success $p$, $S_n\sim \mbox{Binomial}(n,p)$. The support of this random variable is $\{0, 1, \hdots, n\}$ and its pmf is
+				$$p(x) = {n\choose x}p^x (1-p)^{n-x}$$
+			\end{solution}
+		\end{parts}
+		
+
+
+
+\question Suppose that $X_1, X_2, \hdots, X_{n} \sim \mbox{ iid Bernoulli}(p)$ and define $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$.
+	\begin{parts}
+		\part[3] Calculate $\expect[\bar{X}_n]$. 
+			\begin{solution}[4.5cm]
+			By the linearity of expectation, and identical distribution:
+				$$\expect[\bar{X}_n] = \expect\left[ \frac{1}{n}\sum_{i=1}^n X_i \right] = \frac{1}{n} \sum_{i=1}^n \expect[X_i] =  \frac{1}{n} \sum_{i=1}^n p = (np)/n = p$$
+			\end{solution}
+		\part[5] Calculate $Var(\bar{X}_n)$.
+			\begin{solution}[4cm]
+			By independence, identical distribution, and the fact that the variance of a Bernoulli random variable is $p(1-p)$,
+			\begin{eqnarray*}
+			Var[\bar{X}_n] &=& Var\left[ \frac{1}{n}\sum_{i=1}^n X_i \right] = \frac{1}{n^2} \sum_{i=1}^n Var[X_i] \\
+			&=&  \frac{1}{n^2} \sum_{i=1}^n p(1-p) = np(1-p)/n^2 = p(1-p)/n
+			\end{eqnarray*}
+			\end{solution}
+		\part[4] Is $\bar{X}_n$ an unbiased estimator of $p$? What about $\widehat{p} = \frac{3}{4}X_1 + \frac{1}{4}X_2$?
+			\begin{solution}[4cm]
+				\begin{eqnarray*}
+				\expect[\widehat{p}] &=& \expect[3X_1/4 + X_2/4] = 3p/4 + p/4 = p
+				\end{eqnarray*}
+				Therefore, $\widehat{p}$ is unbiased. We know that $\bar{X}_n$ is unbiased from part (a).
+			\end{solution}
+		\part[5] Suppose that $n = 2$. Which estimator has a lower variance: $\widehat{p}$ or $\bar{X}_2$? Prove your answer.
+			\begin{solution}[5cm]
+				We showed above that $Var(\bar{X}_n)=p(1-p)/n$. Hence, $Var(\bar{X}_2)=p(1-p)/2$. We calculate the variance of $\widehat{p}$ as follows, using independence and identical distribution
+				\begin{eqnarray*}
+					Var(\widehat{p}) &=& Var\left(\frac{3}{4}X_1 + \frac{1}{4}X_2\right)\\\\
+					&=& \frac{9}{16}p(1-p) + \frac{1}{16}p(1-p)\\\\
+					&=& \frac{10}{16}p(1-p) = \frac{5}{8}p(1-p)
+				\end{eqnarray*}
+				We see that $\bar{X}_2$ has a lower variance than $\widehat{p}$ since $1/2 < 5/8$.
+			\end{solution}
+			\part[3] Provide some intuition for your answers to parts (c) and (d).
+				\begin{solution}[4cm]
+				The sample mean gives each observation equal weight. We see from part (c) that this is not necessary for unbiasedness: all we need is that the weights sum to one. However, unequal weighting increases the variance of our estimator. 
+				\end{solution}
+	\end{parts}
+
+
+
+\question Suppose we carry out a sequence of independent Bernoulli trials, each with probability of success $p$, and stop as soon as we get the first success.
+	\begin{parts}
+		\part[2] What is the probability that we get a success on our first trial?
+			\begin{solution}[1.5cm] $p$ \end{solution}
+		\part[3] What is the probability that we get our first success on the \emph{second} trial? (That is, what is the probability of a Failure followed by a Success?)
+		\begin{solution}[2cm]
+			$p(1-p)$
+		\end{solution}
+		\part[5] What is the probability that we get our first success on the $n$th trial?
+		\begin{solution}[2cm]
+			$p(1-p)^{n-1}$
+		\end{solution}
+		\part[5] Suppose that we define a random variable $X$ that equals the trial number of the first success in a sequence of independent Bernoulli trials, each with probability $p$ of success. This is the definition of a Geometric$(p)$ random variable. What is the probability mass function $p(x)=\p(X=x)$ of $X$? What is the support of this random variable?
+			\begin{solution}[3cm]
+				The support of $X$ is $\mathbf{N}$, i.e. $\{1, 2, 3, \hdots\}$ and the pmf is
+					$$p(x) = \left\{  \begin{array}{ll} p(1-p)^{x-1} & \mbox{for } x \in \mathbb{N} \\ 0 & \mbox{elsewhere} \end{array} \right.$$
+			\end{solution}
+	\end{parts}
+
+
+		
+
+
+\question Let $X$ and $Z$ be independent random variables with $\expect[X] = \expect[Z] =0$,  $Var(X) = \sigma_X^2$, and $Var(Z) = \sigma^2_Z$. Define $Y = aX + Z$ where $a$ is a constant. 
+	\begin{parts}
+		\part[2] What is $\expect[Y]$?
+			\begin{solution}[3cm]
+				$\expect[Y] = a\expect[X] + \expect[Z] = 0$
+			\end{solution}
+		\part[3] What is $Var(Y)$?
+			\begin{solution}[3cm]
+				$Var(Y) = a^2 Var(X) + Var(Z) = a^2 \sigma_X^2 + \sigma_Z^2$ since $X$ and $Z$ are independent.
+			\end{solution}
+		\part[5] What is $Cov(X,Z)$? 
+			\begin{solution}[4cm]
+				Since $X$ and $Z$ are independent, their covariance is zero.
+			\end{solution}
+		\part[5] What is $Cov(X,Y)$?
+			\begin{solution}[5cm]
+			Since $\mu_X = \mu_Z = \mu_Y = 0$,
+				\begin{eqnarray*}
+					Cov(X,Y) &=& \expect[(X-\mu_X)(Y-\mu_Y)] = \expect[XY] = \expect[X(aX + Z)]\\
+					&=& \expect[aX^2 + XZ] =a \expect[X^2] + \expect[XZ] \\
+					&=& a \expect[(X-\mu_X)^2] + \expect[(X - \mu_X)(Z- \mu_Z)]\\
+					&=& a Var(X) + Cov(X,Z)\\
+					&=& a\sigma^2_X 
+				\end{eqnarray*}
+			\end{solution}
+	\end{parts}
+
+\question Let $X,Y$ and $Z$ be independent normal random variables where $\expect[X] = \expect[Z] = 0$, $\expect[Y]=3$, $Var(X) = 9$, $Var(Y)=4$ and $Var(Z)= 1$. For each of the following, unless I specifically ask you to provide an R command, please give a \emph{numeric} answer.
+	\begin{parts}
+		\part[5] What is the approximate value of $\p(-1\leq X/3 \leq 1)$? 
+			\begin{solution}[2.5cm]
+			 This is simply the probability that a standard normal takes a value in the interval $[-1,1]$ which we know is 0.68.
+			\end{solution}
+		\part[5] What value of $k$ ensures that $\p(3-k\leq Y \leq 3 + k)\approx 0.95$?
+			\begin{solution}[2.5cm]
+			Rearranging, we need to find $k$ such that
+			\begin{eqnarray*}
+				\p(3-k \leq Y \leq 3+k) &=& \p(-k\leq Y-3 \leq k) \\
+				&=&\p\left(-k/2 \leq \frac{Y-3}{2}\leq k/2\right) \approx 0.95
+			\end{eqnarray*}
+			Since $(Y-3)/2$ is a standard normal, we need $k/2 = 2$, hence $k=4$.
+			\end{solution}
+		\part[5]  Suppose I want to find the value of $d$ such that $\p(-d \leq Z \leq d) = 0.5$. What R command should I use?
+			\begin{solution}[2.5cm]
+			The command \texttt{qnorm(0.25, mean = 0, sd = 1)}, or equivalently \texttt{qnorm(0.25)}, gives $-d$. The command \texttt{qnorm(0.75, mean = 0, sd = 1)}, or equivalently \texttt{qnorm(0.75)}, gives $d$.
+			\end{solution}
+		\part[5] What R command should I use to calculate the probability that the random variable $Z^2$ is greater than or equal to 5?
+	\begin{solution}[2.5cm]
+		Since $Z^2 \sim \chi^2(1)$, the command is $1-\mbox{\texttt{pchisq(5, df = 1)}}$.
+	\end{solution}
+	\end{parts}
+
+
+\end{questions}
+
+\end{document}
