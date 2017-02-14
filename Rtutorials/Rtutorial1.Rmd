@@ -500,7 +500,7 @@ If you leave the part *before* the comma blank, you get all the rows:
 my.data.table[ , 2:3]
 ```
 
-If you leave the part *after* the comma blank (or don't include it at all), you get all the rows:
+If you leave the part *after* the comma blank (or don't include it at all), you get all the columns:
 
 ```{r data.table_extra_6}
 my.data.table[c(1,3), ]
