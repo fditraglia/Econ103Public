@@ -1,0 +1,384 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction: Probability as Area}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Continuous RVs -- What Changes?}
+	\begin{enumerate}
+\item Probability Density Functions replace Probability Mass Functions (aka Probability Distributions)
+\item Integrals Replace Sums
+\end{enumerate}
+\begin{alertblock}{Everything Else is Essentially Unchanged!}\end{alertblock}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{What is the probability of ``Yellow?''\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\centering
+	\includegraphics[scale = 0.6]{./images/twister}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%\begin{frame}
+%\frametitle{What is the probability of ``Right Hand Blue?'' \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/twister}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is the probability that the spinner lands in any \emph{particular} place?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+\begin{center}
+	\includegraphics[scale = 0.6]{./images/twister}
+\end{center}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{From Twister to Density -- Probability as \emph{Area}}
+
+\centering
+	\includegraphics[scale = 0.6]{./images/twister_density}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Continuous Random Variables}
+
+For continuous RVs, probability is a matter of finding the area of \emph{intervals}. Individual \emph{points} have \emph{zero} probability.
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability Density Function (PDF)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Probability Density Function (PDF)}
+For a continuous random variable $X$, 
+	$$P(a \leq X \leq b) = \int_a^b f(x) \; dx$$
+where $f(x)$ is the \emph{probability density function} for $X$. 
+\vspace{2em}
+
+\begin{alertblock}{Extremely Important}
+For any realization $x$, $P(X=x) = 0 \neq f(x)$!
+\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Properties of PDFs}
+\begin{enumerate}
+\item $\int_{-\infty}^\infty f(x) \; dx = 1$ 
+\item $f(x) \geq 0$ for all $x$
+\item $f(x)$ is \emph{not} a probability and can be greater than one!
+\item $P(X\leq x_0) = F(x_0) = \int_{-\infty}^{x_0} f(x) \; dx $
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Simplest Possible Continuous RV: Uniform$(0,1)$}
+\framesubtitle{You'll look at a generalization, Uniform$(a,b)$ for homework.}
+
+\begin{block}{$X \sim \mbox{Uniform}(0,1)$}
+A Uniform(0,1) RV is equally likely to take on \emph{any value} in the range $[0,1]$ and never takes on a value outside this range.
+\end{block}
+
+\begin{block}{Uniform PDF}
+$f(x) = 1$ for $0\leq x \leq 1$, zero elsewhere.
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Uniform$(0,1)$ PDF}
+\centering
+	\includegraphics[scale = 0.6]{./images/uniform_density}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is the area of the shaded region? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+\centering
+	\includegraphics[scale = 0.6]{./images/uniform_density_shaded}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{What is the area of the shaded region?}
+
+\centering
+	\includegraphics[scale = 0.4]{./images/uniform_density_shaded}
+\begin{eqnarray*}
+	\int_{-\infty}^{\infty} f(x) \; dx = \int_{0}^1 1 \; dx = \left. x \right|_0^1 = 1 - 0 = 1
+\end{eqnarray*}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+\frametitle{What is the area of the shaded region? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\centering
+	\includegraphics[scale = 0.6]{./images/uniform_density_cdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{$F(0.4) = P(X\leq 0.4) = 0.4$}
+\centering
+	\includegraphics[scale = 0.6]{./images/uniform_density_cdf}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Relating the PDF to the CDF}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Relationship between PDF and CDF}
+
+Integrate pdf $\rightarrow$ CDF
+	$$F(x_0) = P(X\leq x_0) = \int_{-\infty}^{x_0} f(x)\; dx$$
+Differentiate CDF $\rightarrow$ pdf
+ 	$$f(x) =\frac{d}{dx}F(x)$$
+\alert{This is just the First Fundamental Theorem of Calculus.}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Uniform$(0,1)$ RV}
+
+Integrate the pdf, $f(x) = 1$, to get the CDF
+\begin{eqnarray*}
+	F(x_0) =\int_{-\infty}^{x_0} f(x)\; dx = \int_{0}^{x_0} 1\; dx =  \left. x \right|_0^{x_0} =  x_0 - 0 = x_0
+\end{eqnarray*}
+
+\vspace{1em}
+$$ F(x_0) = \left\{ \begin{array}{c} 0, x_0 < 0\\ x_0, 0\leq x_0 \leq 1\\ 1, x_0 > 1   \end{array}\right.$$
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Calculating the Probability of an Interval}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Uniform$(0,1)$ CDF}
+\centering
+	\includegraphics[scale = 0.6]{./images/uniform_CDF}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Uniform$(0,1)$ RV}
+Differentiate the CDF, $F(x_0) = x_0$, to get the pdf
+ \begin{eqnarray*}
+	\frac{d}{dx}F(x) =  1 = f(x)
+ \end{eqnarray*}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is $P(0.4 \leq X \leq 0.8)$ if $X\sim \mbox{Uniform}(0,1)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\centering
+	\includegraphics[scale = 0.6]{./images/uniform_density_interval}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$F(0.8) = P(X \leq 0.8)$}
+
+\centering
+	\includegraphics[scale = 0.6]{./images/density_interval_cdf1}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$F(0.8) - F(0.4) = $ ?}
+\centering
+	\includegraphics[scale = 0.6]{./images/density_interval_cdf2}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$F(0.8) - F(0.4) = P(0.4 \leq X \leq 0.8) = 0.4$}
+\centering
+	\includegraphics[scale = 0.6]{./images/uniform_density_interval}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Key Idea: Probability of Interval for Continuous RV}
+
+$$\boxed{P(a\leq X \leq b) = \int_a^b f(x) \; dx = F(b) - F(a)}$$
+
+\vspace{2em}
+\alert{This is just the Second Fundamental Theorem of Calculus.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Calculating Expected Value for Continuous RVs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Expected Value for Continuous RVs}
+$$\boxed{\int_{-\infty}^\infty x f(x) \; dx  }$$
+
+\vspace{2em}
+\alert{Remember: Integrals Replace Sums!}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Uniform(0,1) Random Variable \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\begin{eqnarray*}
+	E[X] &=&  \int_{-\infty}^\infty x f(x) \; dx =\pause  \int_{0}^1 x \cdot 1 \; dx \\ \\
+		&=&  \left.\frac{x^2}{2}\right|_0^1 = 1/2  - 0 = 1/2
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Expected Value of a Function of a Continuous RV}
+	$$\boxed{E[g(X)] = \int_{-\infty}^\infty g(x) f(x) \; dx}$$
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Example: Uniform(0,1) Random Variable \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+	\begin{eqnarray*}
+	E[X^2] &=& \int_{-\infty}^\infty x^2 f(x) \; dx \pause = \int_0^1 x^2 \cdot 1 \; dx\\ \\
+		&=& \left. \frac{x^3}{3}\right|_0^1 = 1/3
+	\end{eqnarray*}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What about all those rules for expected value?}
+\begin{itemize}
+  \item The only difference between expectation for continuous versus discrete is how we do the \emph{calculation}.
+  \item Sum for discrete; integral for continuous.
+  \item All \emph{properties} of expected value \alert{continue to hold!}
+  \item Includes linearity, shortcut for variance, etc.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Variance of Continuous RV}
+
+$$\boxed{Var(X) = \int_{-\infty}^{\infty} (x - \mu)^2 f(x) \; dx}$$
+
+\vspace{2em}
+where
+$$\mu = E[X]=\int_{-\infty}^\infty x f(x) \; dx $$
+
+\vspace{2em}
+\alert{Shortcut formula still holds for continuous RVs!}
+	$$Var(X) = E[X^2] - \left(E[X]\right)^2$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Example: Uniform$(0,1)$ RV}
+\begin{eqnarray*}
+ Var(X) &=& E\left[ \left( X - E[X] \right)^2\right] = E[X^2] - \left(E[X]\right)^2\\
+ 	&=& 1/3  - (1/2)^2\\ 
+ 	&=& 1/12 \\
+ 	&\approx& 0.083
+\end{eqnarray*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Much More Complicated Without the Shortcut Formula!}
+\begin{eqnarray*}
+ Var(X) &=& E\left[ \left( X - E[X] \right)^2\right] = \int_{-\infty}^{\infty} (x - \mu)^2 f(x) \; dx\\ \\
+ 	&=&\int_{0}^{1} (x -1/2)^2 \cdot 1 \; dx = \int_{0}^{1} (x^2  - x + 1/4) \; dx \\ \\
+ 		&=& \left. \left(\frac{x^3}{3} - \frac{x^2}{2} + \frac{x}{4}  \right)\right|_0^1 = 1/3 - 1/2 + 1/4\\ \\ 
+ 			&=& 4/12 - 6/12 + 3/12 = 1/12
+\end{eqnarray*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{We're Won't Say More About These, But Just So You're Aware of Them...}
+
+\begin{block}{Joint Density}
+$ \displaystyle P(a\leq X \leq b \cap c\leq Y \leq d) = \int_c^d \int_a^b f(x,y) \; dxdy$
+\end{block}
+\begin{block}{Marginal Densities}
+$f_X(x) = \int_{-\infty}^\infty f(x,y)\; dy$, $\;\;\;\;\;\;\; f_Y(y) = \int_{-\infty}^\infty f(x,y)\; dx$
+\end{block}
+\begin{block}{Independence in Terms of Joint and Marginal Densities}
+$f_{XY}(x,y) = f_X(x)f_Y(y)$
+\end{block}
+\begin{block}{Conditional Density}
+$f_{Y|X} = f_{XY}(x,y)/f_X(x)$
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{So where does that leave us?}
+
+  \begin{block}{What We've Accomplished}
+    We've covered all the basic properties of RVs on this \href{http://ditraglia.com/Econ103Public/RandomVariablesHandout.pdf}{\textcolor{blue}{\fbox{Handout}}}.
+  \end{block}
+
+  \begin{block}{Where are we headed next?}
+   Next up is the most important RV of all: the normal RV. 
+   After that it's time to do some statistics!
+  \end{block}
+
+  \begin{alertblock}{How should you be studying?}
+    If you \emph{master} the material on RVs (both continuous and discrete) and in particular the normal RV the rest of the semester will seem easy. 
+    If you don't, you're in for a rough time\dots
+  \end{alertblock}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
