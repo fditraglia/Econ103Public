@@ -237,7 +237,7 @@ Now suppose I enter `sim` again:
 sim
 ```
 
-Notice that I got the *same result*. This is because `sim` is *not* random: it's just an ordinary vector. As it happens, the way we *got* `sim` was to perform a random experiment using the function `sample`, but `sim` itself is just an ordinary vector. In contrast if we were to re-run `sampl`` we would *indeed* generally get a different result: 
+Notice that I got the *same result*. This is because `sim` is *not* random: it's just an ordinary vector. As it happens, the way we *got* `sim` was to perform a random experiment using the function `sample`, but `sim` itself is just an ordinary vector. In contrast if we were to re-run `sample` we would *indeed* generally get a different result: 
 
 ```{r rerun_sample}
 sample(1:10, 10, FALSE)
