@@ -207,7 +207,7 @@ replicate(50, dice.sum(3))
 
 ### Exercise #4
 
-Write an *even more general* version of the function `two.dice` called `my.dice.sum` that takes two arguments: `n.sides` tells how many sides each die has and `n.dice` tells how many dice we roll. For example if `n.sides = 4` and `n.dice = 3`, we're rolling three four-sided dice, i.e., dice with sides numbered 1-4. Use `repilcate` to simulate the sum of five four-sided dice a total of 100 times.
+Write an *even more general* version of the function `two.dice` called `my.dice.sum` that takes two arguments: `n.sides` tells how many sides each die has and `n.dice` tells how many dice we roll. For example if `n.sides = 4` and `n.dice = 3`, we're rolling three four-sided dice, i.e., dice with sides numbered 1-4. Use `replicate` to simulate the sum of five four-sided dice a total of 100 times.
 
 ```{r exercise_4, echo = FALSE, results = 'hide'}
 my.dice.sum <- function(n.dice, n.sides){
