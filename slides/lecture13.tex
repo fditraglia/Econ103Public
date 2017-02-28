@@ -1,0 +1,535 @@
+\section{Candy Weighing Experiment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weighing a Random Sample}
+\begin{block}{Bag Contains 100 Candies}
+Estimate total weight of candies by weighing a random sample of size 5 and multiplying the result by 20.
+\end{block}
+\begin{block}{Your Chance to Win}
+The bag of candies and a digital scale will make their way around the room \alert{during the lecture}. Each student gets a chance to draw 5 candies and weigh them.
+\end{block}
+\begin{alertblock}{Student with closest estimate wins the bag of candy!}
+\end{alertblock}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Weighing a Random Sample}
+\begin{block}{Procedure}
+When the bag and scale reach your team, do the following:
+\end{block}
+\begin{enumerate}
+\item Fold the top of the bag over and shake to randomize.
+\item Randomly draw 5 candies \alert{without replacement}.
+\item Weigh your sample and record the result \alert{in grams}.
+\item Rodrigo will enter your result into his spreadsheet and multiply it by 20 to estimate the weight of the bag.
+\item Replace your sample and shake again to re-randomize.
+\item Pass bag and scale to next team.
+\end{enumerate}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Random Sampling Redux}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Sampling and Estimation}
+  \begin{block}{Questions to Answer}
+  \begin{enumerate}
+    \item How accurately do sample statistics estimate population parameters?
+    \item How can we quantify the uncertainty in our estimates?
+    \item What's so good about random sampling?
+  \end{enumerate}
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Random Sample}
+
+\begin{block}{In Words}
+Select sample of $n$ objects from  population so that:
+	\begin{enumerate}
+\item Each member of the population has the same probability of being selected 
+\item The fact that one individual is selected does not affect the chance that any other individual is selected
+\item Each sample of size $n$ is equally likely to be selected
+
+\end{enumerate}
+\end{block}
+
+\begin{alertblock}{In Math}
+	$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$ if continuous\\
+  $X_1, X_2, \hdots, X_n \sim \mbox{iid } p(x)$ if discrete
+\end{alertblock}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Random Sample Means \emph{Sample With Replacement}}
+
+
+\begin{itemize}
+  \item Without replacement $\Rightarrow$ dependence between samples
+  \item Sample small relative to popn.\ $\Rightarrow$ dependence negligible.
+  \item This means our candy experiment (in progress) isn't bogus.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Example: Sampling from Econ 103 Class List}
+\begin{center}
+\includegraphics[scale = 0.4]{./images/height_hist}
+\end{center}
+\alert{Use R to illustrate the in an example where we \emph{know} the population.  
+Can't do this in the real applications, but simulate it on the computer\dots}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Sampling Distribution of $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$}
+
+\begin{center}
+\setlength{\unitlength}{1cm}
+\begin{picture}(5,7)
+\put(-2,6){\framebox(9,1){Choose 5 Students from Class List with Replacement}}
+
+
+\put(0.5,6){\vector(-1,-1){1.5}}
+\put(-2.3,3.7){\framebox(2.5,0.65){Sample 1}}
+
+
+\put(-1,3.5){\vector(0,-1){1}}
+\put(-1.1,1.9){\makebox{\small $\bar{x}_1$}}
+
+\pause
+
+\put(2,6){\vector(0,-1){1.5}}
+\put(0.7,3.7){\framebox(2.5,0.65){Sample 2}}
+
+
+\put(2,3.5){\vector(0,-1){1}}
+\put(1.9,1.9){\makebox{\small $\bar{x}_2$}}
+
+\pause
+
+\put(3.8,4){\makebox{...}}
+\put(3.8,2){\makebox{...}}
+
+\pause
+
+\put(4.5,6){\vector(1,-1){1.5}}
+\put(4.8,3.7){\framebox(2.5,0.65){Sample M}}
+
+
+\put(6,3.5){\vector(0,-1){1}}
+\put(5.9,1.9){\makebox{\small $\bar{x}_M$}}
+
+
+\put(-1,1){\makebox{\small Repeat $M$ times $\rightarrow$  get $M$ different sample means}}
+
+\pause
+
+\put(-1.1,0.4){\makebox{\small \alert{Sampling Dist: relative frequencies of the $\bar{x}_i$ when $M = \infty$}}}
+
+\end{picture}
+\end{center}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Height of Econ 103 Students}
+\begin{figure}
+\includegraphics[scale = 0.4]{./images/height_hist}
+\includegraphics[scale = 0.4]{./images/height_mean_n_5}
+\caption{Left: Population, Right: Sampling distribution of $\bar{X}_5$}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Histograms of sampling distribution of sample mean $\bar{X}_n$}
+\alert{Random Sampling With Replacement, 10000 Reps. Each}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/height_samples}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Population Distribution vs.\ Sampling Distribution of $\bar{X}_n$}
+
+\begin{columns} 
+\begin{column}[c]{6cm} 
+
+ %FIRST COLUMN HERE 
+\begin{figure}
+\centering
+\includegraphics[scale = 0.35]{./images/height_hist}
+\end{figure}
+\end{column} 
+\begin{column}[c]{6cm} 
+
+ %SECOND COLUMN HERE 
+ \small
+\begin{table}
+\begin{tabular}{|rrr|}
+\hline
+&\multicolumn{2}{c|}{Sampling Dist.\ of $\bar{X}_n$}\\
+$n$&Mean&Variance\\
+\hline
+5&67.6&3.6\\
+10&67.5&1.8\\
+20&67.5&0.8\\
+50&67.5&0.2\\
+\hline
+\end{tabular}
+\end{table}
+
+\end{column} 
+\end{columns} 
+\begin{alertblock}{Things to Notice:}
+\begin{enumerate}
+	\item Sampling dist.\ ``correct on average'' 
+	\item Sampling variability decreases with $n$
+  \item Sampling dist.\ bell-shaped even though population isn't!
+\end{enumerate}
+\end{alertblock}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sampling Distributions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Step 1: Population as RV rather than List of Objects}
+\small
+  \begin{tabular}[h]{cc}
+    \hline
+    \begin{minipage}[t]{0.6\textwidth}
+      \begin{block}{Old Way}
+       In the 2016 election, 65,853,625 out of 137,100,229 voters voted for Hillary Clinton\\
+      \end{block}
+    \end{minipage}
+    &
+    \begin{minipage}[t]{0.4\textwidth}
+      \begin{alertblock}{New Way}
+       Bernoulli$(p = 0.48)$ RV 
+      \end{alertblock}
+    \end{minipage} \\
+    \hline
+    \begin{minipage}[t]{0.6\textwidth}
+      \begin{block}{Old Way}
+        List of heights for 97 million US adult males with mean 69 in and std.\  dev.\ 6 in \\
+      \end{block}
+    \end{minipage}
+    &
+    \begin{minipage}[t]{0.4\textwidth}
+      \begin{alertblock}{New Way}
+        $N(\mu=69, \sigma^2 = 36)$ RV 
+      \end{alertblock}
+    \end{minipage} \\
+    \hline
+  \end{tabular}
+
+  \vspace{1em}
+  \alert{Second example assumes distribution of height is bell-shaped.}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Step 2: iid RVs Represent Random Sampling from Popn.}
+  \begin{block}{Hillary Voters Example}
+   Poll random sample of 1000 people who voted in 2016:
+   $$X_1, \hdots, X_{1000} \sim \mbox{ iid Bernoulli}(p = 0.48)$$
+  \end{block}
+  \begin{block}{Height Example}
+   Measure the heights of random sample of 50 US males:
+   $$Y_1, \hdots, Y_{50}  \sim \mbox{ iid } N(\mu = 69, \sigma^2 = 36)$$
+  \end{block}
+
+  \begin{block}{Key Question}
+   What do the properties of the population imply about the properties of the sample? 
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{What does the population imply about the sample? \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+Suppose that exactly half of US voters chose Hillary Clinton in the 2016 election.
+If you poll a random sample of 4 voters, what is the probability that \emph{exactly half} were Hillary supporters? 
+
+\pause
+
+\alert{$${4 \choose 2} \left( 1/2 \right)^2 \left( 1/2 \right)^2 = 3/8 = 0.375$$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{The rest of the probabilities\dots}
+  Suppose that exactly half of US voters plan to vote for Hillary Clinton and we poll a random sample of 4 voters.
+  \begin{eqnarray*}
+    P\left( \mbox{Exactly 0 Hillary Voters in the Sample} \right) &=& 0.0625\\
+    P\left( \mbox{Exactly 1 Hillary Voters in the Sample} \right) &=& 0.25\\
+    P\left( \mbox{Exactly 2 Hillary Voters in the Sample} \right) &=& 0.375\\
+    P\left( \mbox{Exactly 3 Hillary Voters in the Sample} \right) &=& 0.25\\
+    P\left( \mbox{Exactly 4 Hillary Voters in the Sample} \right) &=& 0.0625 
+  \end{eqnarray*}
+
+  \vspace{1em}
+  \alert{You should be able to work these out yourself. If not, review the lecture slides on the Binomial RV.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Population Size is Irrelevant Under Random Sampling}
+
+  \begin{block}{Crucial Point}
+    \emph{None} of the preceding calculations involved the population size: I didn't even tell you what it was!
+    We'll never talk about population size again in this course.
+  \end{block}
+
+  \begin{block}{Why?}
+    Draw with replacement $\implies$ only the sample size and the \emph{proportion} of Hillary supporters in the population matter.
+  \end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{(Sample) Statistic}
+
+  Any function of the data \emph{alone}, e.g.\ sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$. Typically used to estimate an unknown population parameter: e.g.\ $\bar{x}$ is an estimate of $\mu$.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Step 3: Random Sampling $\Rightarrow$ \emph{Sample Statistics} are RVs} 
+
+  \alert{This is \emph{the crucial point of the course}: if we draw a random sample, the dataset we get is random. Since a statistic is a function of the data, it is a random variable!} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{A Sample Statistic in the Polling Example \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+  Suppose that exactly half of voters in the population support Hillary Clinton and we poll a random sample of 4 voters. If we code Hillary supporters as ``1'' and everyone else as ``0'' then what are the possible values of the sample mean in our dataset?
+
+  \vspace{1em}
+  \begin{enumerate}[(a)]
+    \item $(0,1)$
+    \item $\left\{ 0, 0.25, 0.5, 0.75, 1 \right\}$
+    \item $\left\{ 0,1,2,3,4 \right\}$
+    \item $(-\infty, \infty)$
+    \item Not enough information to determine.
+  \end{enumerate}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Sampling Distribution}
+  Under random sampling, a statistic is a RV so it has a PDF if continuous of PMF if discrete: this is its \alert{sampling distribution}. 
+
+  \begin{block}{Sampling Dist.\ of Sample Mean in Polling Example}
+   \begin{eqnarray*}
+   p(0) &=&  0.0625\\
+   p(0.25) &=&  0.25\\ 
+   p(0.5) &=&  0.375\\
+   p(0.75)&=& 0.25\\ 
+   p(1) &=&  0.0625
+   \end{eqnarray*}
+
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estimator versus Estimate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Contradiction? No, but we need better terminology\dots}
+  \begin{itemize}
+    \item Under random sampling, a statistic is a RV
+    \item Given dataset is \emph{fixed} so statistic is a \emph{constant number}
+    \item Distinguish between: \alert{Estimator} vs.\ \alert{Estimate}
+  \end{itemize}
+
+  \begin{alertblock}{Estimator}
+   Description of a general procedure. 
+  \end{alertblock}
+  \begin{alertblock}{Estimate}
+    Particular result obtained from applying the procedure.
+  \end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{block}{$\bar{X}_n$ is an Estimator = Procedure = Random Variable}
+\begin{enumerate}
+\item Take a random sample: $X_1, \hdots, X_n \quad$ 
+\item Average what you get: $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i\quad$ 
+\end{enumerate}
+\end{block}
+
+\pause
+\begin{block}{$\bar{x}$ is an Estimate = Result of Procedure = Constant}
+ \begin{itemize}
+\item Result of taking a random sample was the dataset: $x_1, \hdots, x_n$ 
+\item Result of averaging the observed data was $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ 
+\end{itemize}
+\end{block}
+
+\pause
+\begin{block}{Sampling Distribution of $\bar{X}_n$}
+  \alert{Thought experiment:} suppose I were to repeat the procedure of taking the mean of a random sample over and over \alert{forever}. What \alert{relative frequencies} would I get for the sample means?
+\end{block}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Unbiasedness of Sample Mean}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$X_1,\hdots, X_{9} \sim \mbox{ iid }$ with $\mu=5$, $\sigma^2 =36$. \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+
+\large Calculate:
+	 $$E(\bar{X}) = E\left[\frac{1}{9}(X_1 + X_2 + \hdots + X_{9})\right]$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Mean of Sampling Distribution of $\bar{X}_n$}
+\alert{$X_1, \hdots, X_n \sim \mbox{iid with mean }\mu$}
+\begin{eqnarray*}
+E[\bar{X_n}] = E\left[ \frac{1}{n}\sum_{i=1}^n X_i \right]\pause = \frac{1}{n} \sum_{i=1}^n E[X_i] = \pause\frac{1}{n} \sum_{i=1}^n \mu = \pause \frac{n\mu}{n} = \mu
+\end{eqnarray*}
+\alert{Hence, sample mean is ``correct on average.'' The formal term for this is \emph{unbiased}.}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Standard Error of the Mean}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{$X_1,\hdots, X_{9} \sim \mbox{ iid }$ with $\mu=5$, $\sigma^2 = 36$. \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+
+\large Calculate:
+	 $$Var(\bar{X}) = Var\left[\frac{1}{9}(X_1 + X_2 + \hdots + X_{9})\right]$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Variance of Sampling Distribution of $\bar{X}_n$}
+\alert{$X_1, \hdots, X_n \sim \mbox{iid with mean }\mu \mbox{ and variance } \sigma^2$}
+\begin{eqnarray*}
+Var[\bar{X_n}] &=& Var\left[ \frac{1}{n}\sum_{i=1}^n X_i \right] \pause= \frac{1}{n^2} \sum_{i=1}^n Var(X_i) \\
+&=& \pause \frac{1}{n^2} \sum_{i=1}^n \sigma^2 = \pause \frac{n\sigma^2}{n^2} =  \frac{\sigma^2}{n}
+\end{eqnarray*}
+
+\alert{Hence the variance of the sample mean \emph{decreases linearly with sample size}.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Standard Error}
+Std. Dev.\ of estimator's sampling dist.\ is called \alert{standard error}.
+\begin{block}{Standard Error of the Sample Mean}
+$SE(\bar{X}_n)= \sqrt{Var\left(\bar{X}_n\right)}= \sqrt{\sigma^2/n}=\sigma/\sqrt{n}$
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{More Generally and More Formally:}
+%\framesubtitle{Sample mean isn't the only thing with a sampling distribution!}
+%\begin{block}{Estimator}
+%  A function $T(X_1, \hdots, X_n)$ of the RVs that represent the \emph{procedure} of drawing a random sample, hence a RV itself.
+%\end{block}
+%
+%\begin{block}{Sampling Distribution}
+%The probability distribution (PMF of PDF) of an Estimator. 
+%\end{block}
+%
+%\begin{block}{Estimate}
+%A function $T(x_1, \hdots, x_n)$ of the \emph{observed data}, i.e.\ the \emph{realizations} of the random variables we use to represent random sampling. 
+%Since its a function of constants, an estimate is itself a constant.
+%\end{block}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%
+%\begin{center}
+%\setlength{\unitlength}{1cm}
+%\begin{picture}(5,7)
+%\put(1,6){\framebox(3,1){Population: $f(x)$}}
+%
+%\put(4.5,6.5){\makebox{\small \alert{\emph{Probability Distribution}}}}
+%\put(2.5,6){\vector(0,-1){1}}
+%\put(0,3){\framebox(5,1){$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$}}
+%\put(0.5,4.5){\makebox{\small Random Sample of Size $n$}}
+%
+%\put(-3,3.4){\makebox{\small \alert{\emph{Random Variables}}}}
+%
+%\put(0.5,3){\vector(-1,-1){1.5}}
+%\put(-2.3,0.7){\framebox(2.5,0.65){$x_1^{(1)}, \hdots, x_n^{(1)}$}}
+%
+%\put(2,3){\vector(0,-1){1.5}}
+%\put(0.7,0.7){\framebox(2.5,0.65){$x_1^{(2)}, \hdots, x_n^{(2)}$}}
+%
+%
+%\put(3.5,2){\makebox{...}}
+%
+%
+%\put(4.5,3){\vector(1,-1){1.5}}
+%\put(4.8,0.7){\framebox(2.5,0.65){$x_1^{(M)}, \hdots, x_n^{(M)}$}}
+%
+%\put(-1,-0.2){\makebox{\small $M$ Replications, each containing $n$ Observations}}
+%
+%\put(5.6,2.6){\makebox{\small \alert{\emph{Realizations}}}}
+%\put(5.6,2.2){\makebox{\small \alert{\emph{(Constants)}}}}
+%
+%\end{picture}
+%\end{center}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%
+%\begin{center}
+%\setlength{\unitlength}{1cm}
+%\begin{picture}(5,7)
+%\put(-1,5){\framebox(4.5,0.6){$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$}}
+%\put(-0.7,6){\makebox{\small Random Sample of Size $n$}}
+%
+%
+%\put(-2.7,5.6){\makebox{\small \alert{\emph{Random}}}}
+%\put(-2.7,5.2){\makebox{\small \alert{\emph{Variables}}}}
+%
+%
+%\put(3.8,5.3){\vector(1,0){1}}
+%\put(5.5,6){\makebox{\small Estimator}}
+%\put(5,5){\framebox(2.5,0.6){$T(X_1,\hdots, X_n)$}}
+%
+%
+%
+%\put(5,4){\makebox{\small \alert{$\displaystyle\bar{X}_n= \frac{1}{n} \sum_{i=1}^n X_i$}}}
+%
+%
+%
+%
+%
+%\put(1.2,4.7){\vector(0,-1){2.3}}
+%\put(-0.2,1.7){\makebox{\small Observations (Data)}}
+%\put(0,0.7){\framebox(2.5,0.6){$x_1, \hdots, x_n$}}
+%\put(-2.7,0.9){\makebox{\small \alert{\emph{Constants}}}}
+%
+%
+%\put(4.5,1.7){\makebox{\small Estimate}}
+%\put(4,0.7){\framebox(2.5,0.6){$T(x_1, \hdots, x_n)$}}
+%\put(2.8,1){\vector(1,0){1}}
+%\put(4,-0.2){\makebox{\small \alert{$\displaystyle\bar{x}= \frac{1}{n} \sum_{i=1}^n x_i$}}}
+%
+%\end{picture}
+%\end{center}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
