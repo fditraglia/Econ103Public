@@ -1,5 +1,5 @@
+\section{Bias of an Estimator}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
 \frametitle{Unbiased means ``Right on Average''}
 
@@ -14,6 +14,8 @@ A sample estimator $\widehat{\theta}_n$ of a population parameter $\theta_0$ is 
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Why divide by $n-1$ in sample variance?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -104,6 +106,8 @@ E[\widehat{\sigma}^2 ] = E\left[\frac{1}{n}\sum_{i=1}^n \left(X_i - \bar{X}\righ
 $\displaystyle E[\widehat{\sigma}^2 ] - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n}  - \sigma^2 = \frac{(n-1)\sigma^2}{n}  - \frac{n\sigma^2}{n} = -\sigma^2/n$
 \end{block}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Biased Sampling and the Candy-Weighing Experiment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -206,6 +210,8 @@ $$\widehat{\theta} = 20 \times (X_1 + \hdots + X_5)$$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Efficiency: Choosing between Unbiased Estimators}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
 Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$ and define $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$. True or False:
@@ -263,6 +269,8 @@ Var(X_1) &=& \alert{\sigma^2}
 Let $\widehat{\theta}_1$ and $\widehat{\theta}_2$ be unbiased estimators of $\theta_0$. We say that $\widehat{\theta}_1$ is \alert{\emph{more efficient}} than $\widehat{\theta}_2$ if $Var(\widehat{\theta}_1)<Var(\widehat{\theta}_2)$.
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mean-Squared Error: Choosing Between Biased Estimators}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Mean-Squared Error}
@@ -330,6 +338,8 @@ $$ MSE(\widehat{\theta}) = \mbox{Bias}(\widehat{\theta})^2 + Var(\widehat{\theta
 
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Consistency and the Law of Large Numbers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Finite Sample versus Asymptotic Properties of Estimators}
