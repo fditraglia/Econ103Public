@@ -136,7 +136,7 @@ Biased Sample!
 
 
 
-\frametitle{Candy Weighing: 78 Estimates, Each With $n=5$}
+\frametitle{Candy Weighing: 49 Estimates, Each With $n=5$}
 
 \begin{columns} 
 \begin{column}[c]{5cm} 
@@ -150,12 +150,12 @@ $$\widehat{\theta} = 20 \times (X_1 + \hdots + X_5)$$
    \hline \hline
    \multicolumn{2}{l}{Summary of Sampling Dist.} \\
    \hline
-   Overestimates& 68\\
+   Overestimates& 45\\
    Exactly Correct& 0\\
-   Underestimates& 10\\
+   Underestimates& 4\\
    \hline
-   $E[\hat{\theta}]$& 1157 grams\\
-   SD$(\widehat{\theta})$& 202 grams\\
+   $E[\hat{\theta}]$& 1164 grams\\
+   SD$(\widehat{\theta})$& 189 grams\\
    \hline
    \end{tabular}
    
@@ -309,20 +309,20 @@ $$ MSE(\widehat{\theta}) = \mbox{Bias}(\widehat{\theta})^2 + Var(\widehat{\theta
    \begin{tabular}{lr}
    \hline
    \hline
-   $E[\hat{\theta}]$& 1157 grams\\
+   $E[\hat{\theta}]$& 1164 grams\\
    $\theta_0$& 932 grams\\
-   $SD(\widehat{\theta})$& 202 grams\\
+   $SD(\widehat{\theta})$& 189 grams\\
    \hline
    \end{tabular}
 \vspace{2em}
 
 \begin{eqnarray*}
-	\mbox{Bias} &=& \pause 1157 \mbox{ grams} - 932 \mbox{ grams}\\
-		&=& \alert{225 \mbox{ grams}}\\
+	\mbox{Bias} &=& \pause 1164 \mbox{ grams} - 932 \mbox{ grams}\\
+		&=& \alert{232 \mbox{ grams}}\\
 		\mbox{MSE} &=&\pause  \mbox{Bias}^2 + \mbox{Variance}\\
-			&=& (225^2 + 202^2)\mbox{ grams}^2\\
-				&=&\pause \ensuremath{9.1429\times 10^{4}} \mbox{ grams}^2\\ \pause
-				\mbox{RMSE} &=& \sqrt{\mbox{MSE}} =  302 \mbox{ grams}
+			&=& (232^2 + 189^2)\mbox{ grams}^2\\
+				&=&\pause \ensuremath{8.9545\times 10^{4}} \mbox{ grams}^2\\ \pause
+				\mbox{RMSE} &=& \sqrt{\mbox{MSE}} =  299 \mbox{ grams}
 \end{eqnarray*}
 \end{column} 
 
