@@ -1,0 +1,509 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Am I Taller Than The Average American Male? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+\framesubtitle{\href{http://www.cdc.gov/nchs/data/series/sr_11/sr11_252.pdf}{\fbox{Source: Centers for Disease Control (pg.\ 16)}}}
+
+My height is 73 inches. Based on a sample of US males aged 20 and over, the Centers for Disease Control (CDC) reported a mean height of about 69 inches in a recent report.
+
+\vspace{2em}
+
+
+
+\alert{Clearly I'm taller than the average American male!}\\
+Do you agree or disagree?
+\begin{enumerate}[(a)]
+	\item Agree
+	\item Disagree
+	\item Not Sure
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quick Review: Sampling Distribution of $\bar{X}_n$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{What affects the accuracy of the sample mean?} 
+
+    If $X_1, \dots, X_n \sim \mbox{iid}$ with population mean $\mu$ and variance $\sigma^2$, then
+    \[ Var(\bar{X}_n) = Var\left( \frac{1}{n} \sum_{i=1}^n X_i \right)= \frac{\sigma^2}{n}\]
+
+\pause
+
+\begin{block}{Sample Size}
+  Smaller $n \implies$  easier to get an unrepresentative sample.
+\end{block}
+
+\pause
+
+\begin{block}{Population Variance}
+ If everyone is very similar in height, we don't need a very large sample to estimate the population mean height accurately.
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Am I Taller Than The Average American Male?}
+\framesubtitle{\href{http://www.cdc.gov/nchs/data/series/sr_11/sr11_252.pdf}{\fbox{Source: Centers for Disease Control (pg.\ 16)}}}
+
+	
+	\begin{table}[h]
+	\caption{Height in inches for Males aged 20 and over (approximate)}
+		\begin{tabular}{|lr|}
+		\hline
+			Sample Mean & 69 inches\\
+			Sample Std.\ Dev.\ & 6 inches\\
+			Sample Size & 5647 \\
+			\hline
+			My Height & 73 inches\\
+			\hline
+		\end{tabular}
+	\end{table}
+
+\vspace{2em}
+\alert{We'll return to this example later.}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Today -- Simplest Example of a Confidence Interval}
+
+
+\begin{itemize}
+  \item Suppose the population is $N(\mu, \sigma^2)$
+  \item We know $\sigma^2$ but not $\mu$
+  \item Draw random sample $X_1, X_2, \hdots, X_n\sim \mbox{iid } N(\mu,\sigma^2)$ \pause
+  \item Observe value of sample mean $\bar{x}_n$ (e.g.\ 69 inches) \pause
+  \item What is a plausible range for $\mu$?\pause
+  \item How confident are we? Can we make this precise?
+\end{itemize}
+
+\alert{Next time we'll look at more realistic and interesting examples\dots}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the sampling distribution of $\sqrt{n}(\bar{X}_n - \mu)/\sigma$?
+
+
+\begin{enumerate}[(a)]
+\item $N(\mu, \sigma^2)$
+\item $N(0,1)$
+\item $N(0,\sigma)$
+\item $N(\mu, 1)$
+\item Not enough information to determine.
+\end{enumerate}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{$X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$}
+
+	$$\sqrt{n}(\bar{X}_n - \mu)/\sigma =  \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} =  \frac{\bar{X}_n - E[\bar{X}_n]}{SD(\bar{X}_n)}  \sim N(0,1)$$
+
+  \vspace{1em}
+Remember that we call the standard deviation of a sampling distribution the \alert{standard error}, written $SE$, so $$\frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \sim N(0,1)$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+%Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the approximate value of the following?
+%$$P\left(-2 \leq \frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \leq 2 \right)\pause \alert{\approx 0.95}$$
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What happens if I rearrange?}
+	\begin{eqnarray*}
+		P\left(-2 \leq \frac{\bar{X}_n - \mu}{SE(\bar{X}_n)} \leq 2 \right) &=& 0.95\\ \\ \pause
+			P\left(-2\cdot SE\leq \bar{X}_n - \mu \leq 2 \cdot SE\right) &=& 0.95\\ \\ \pause
+			P\left(-2\cdot SE - \bar{X}_n \leq - \mu \leq 2 \cdot SE - \bar{X}_n \right) &=& 0.95\\ \\ \pause
+			\alert{P\left( \bar{X}_n - 2\cdot SE \leq \mu \leq \bar{X}_n + 2\cdot SE \right)}&\alert{=}& \alert{0.95}
+	\end{eqnarray*}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Confidence Intervals}
+
+\begin{block}{Confidence Interval (CI)}
+Range $(A,B)$ constructed from the \alert{sample data} with specified probability of containing a \alert{population parameter}:
+	$$P(A \leq \theta_0 \leq B) = 1-\alpha$$
+\end{block} 
+
+\pause
+
+\begin{block}{Confidence Level}
+The \alert{specified probability}, typically denoted $1-\alpha$, is called the confidence level. For example, if $\alpha = 0.05$ then the confidence level is 0.95 or 95\%.
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Confidence Interval for Mean of Normal Population ($\sigma^2$ Known)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Confidence Interval for Mean of Normal Population}
+\framesubtitle{Population Variance Known}
+
+
+	The interval \alert{$\boxed{\bar{X}_n \pm 2 \sigma/\sqrt{n}}$} has approximately 95\% probability of containing the population mean $\mu$, provided that:
+		$$\boxed{X_1, X_2, \hdots, X_n\sim \mbox{iid } N(\mu,\sigma^2)}$$
+
+
+\alert{But how are we supposed to interpret this?}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Interpreting a Confidence Interval}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Which quantities are random?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+Suppose $X_1, X_2, \hdots, X_n\sim \mbox{iid } N(\mu,\sigma^2)$.
+Which quantities are random variables?
+	\begin{enumerate}[(a)]
+\item $\mu$ only
+\item $\sigma$ and $\mu$
+\item $\sigma$ only
+\item $\sigma, \mu$ and $\bar{X}_n$
+\item $\bar{X}_n$ only
+\end{enumerate}
+
+\vspace{1em}
+\pause
+\alert{\large $\bar{X}_n$ only.}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Confidence Interval is a Random Variable!}
+\begin{enumerate}
+	\item $X_1, \hdots, X_n$ are RVs $\Rightarrow \bar{X}_n$ is a RV (repeated sampling) \pause
+	\item $\mu$, $\sigma$ and $n$ are constants \pause
+	\item Confidence Interval $\bar{X_n}\pm 2 \sigma/\sqrt{n}$ is also a RV!
+\end{enumerate}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Meaning of Confidence Interval}
+\begin{block}{Meaning of Confidence Interval}
+If we sampled many times we'd get many different sample means, each leading to a \alert{different} confidence interval. Approximately 95\% of these intervals will contain $\mu$.
+\end{block}
+ 
+
+\begin{block}{Rough Intuition}
+What values of $\mu$ are consistent with the data?
+\end{block}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{CI for Population Mean: Repeated Sampling}
+
+\begin{center}
+\setlength{\unitlength}{1cm}
+\begin{picture}(5,7)
+\put(-0.5,6){\framebox(6,1){$X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu, \sigma^2)$}}
+
+\pause
+
+\put(0.5,6){\vector(-1,-1){1.5}}
+\put(-2.3,3.7){\framebox(2.5,0.65){Sample 1}}
+
+\pause
+
+\put(-1,3.5){\vector(0,-1){0.75}}
+\put(-1.25,2.1){\framebox(0.5,0.5){\small $\bar{x}_1$}}
+
+\pause
+
+\put(-1,2){\vector(0,-1){0.5}}
+\put(-1.7,1){{\small $\bar{x}_1 \pm 2\sigma/\sqrt{n}$}}
+
+\pause
+
+\put(2,6){\vector(0,-1){1.5}}
+\put(0.7,3.7){\framebox(2.5,0.65){Sample 2}}
+
+\pause
+
+\put(2,3.5){\vector(0,-1){0.75}}
+\put(1.75,2.1){\framebox(0.5,0.5){\small $\bar{x}_2$}}
+
+\pause
+
+\put(2,2){\vector(0,-1){0.5}}
+\put(1.35,1){{\small $\bar{x}_2 \pm 2\sigma/\sqrt{n}$}}
+
+\pause
+
+\put(3.8,4){\makebox{...}}
+\put(3.8,2.3){\makebox{...}}
+
+\pause
+
+\put(4.5,6){\vector(1,-1){1.5}}
+\put(4.8,3.7){\framebox(2.5,0.65){Sample M}}
+
+\pause
+
+\put(6,3.5){\vector(0,-1){0.75}}
+\put(5.75,2.1){\framebox(0.5,0.5){\small $\bar{x}_M$}}
+
+\pause
+
+\put(6,2){\vector(0,-1){0.5}}
+\put(5.35,1){{\small $\bar{x}_M \pm 2\sigma/\sqrt{n}$}}
+
+\pause
+
+\put(-1,0.2){\makebox{\small Repeat $M$ times $\rightarrow$  get $M$ different intervals}}
+
+\pause
+
+\put(-1,-0.3){\makebox{\small \alert{Large M $\Rightarrow$ Approx.\ 95\% of these Intervals Contain $\mu$}}}
+
+\end{picture}
+\end{center}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Simulation Example: $X_1, \hdots, X_5 \sim \mbox{iid } N(0,1)$, $M = 20$}
+
+\begin{figure}
+\centering
+\includegraphics[scale = 0.5]{./images/CIs1}
+\caption{Twenty confidence intervals of the form $\bar{X}_n \pm 2 \sigma/\sqrt{n}$ where $n=5$, $\sigma^2 = 1$ and the true population mean is $0$.}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Meaning of Confidence Interval for $\theta_0$}
+	$$\boxed{P(A\leq \theta_0 \leq B) = 1-\alpha}$$
+Each time we sample we'll get a different confidence interval, corresponding to different realizations of the random variables $A$ and $B$. If we sample many times, approximately $100\times(1-\alpha)$\% of these intervals will contain the population parameter $\theta_0$.
+
+\end{frame}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{True or False? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%Suppose 
+%	$$\boxed{X_1, X_2, \hdots, X_n\sim \mbox{iid } N(\mu,\sigma^2)}$$
+%Then the population mean $\mu$ has approximately a 95\% chance of falling in the interval $\bar{X}_n \pm 2 \sigma/\sqrt{n}$.
+%
+%\vspace{1em}
+%
+%\begin{enumerate}[(a)]
+%\item True
+%\item False
+%\end{enumerate}
+%
+%
+%\pause
+%\vspace{1em}
+%\alert{\huge FALSE! -- $\mu$  is a constant!}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Margin of Error and Width}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Confidence Intervals: Some Terminology}
+\begin{block}{Margin of Error}
+When a CI takes the form $\widehat{\theta}\pm ME$, $ME$ is the Margin of Error. 
+\end{block}
+\pause
+\begin{block}{Lower and Upper Confidence Limits}
+The lower endpoint of a CI is the \alert{lower confidence limit (LCL)}, while the upper endpoint is the \alert{upper confidence limit (UCL)}.
+\end{block}
+\pause
+\begin{block}{Width of a Confidence Interval}
+The distance $\alert{|\mbox{UCL} - \mbox{LCL}|}$ is called the \alert{width} of a CI. This means exactly what it says. 
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is the Margin of Error\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+In the preceding example of a  95\% confidence interval for the mean of a normal population when the population variance is known, which of these is the margin of error?
+	\begin{enumerate}[(a)]
+		\item $\sigma/\sqrt{n}$
+		\item $\bar{X}_n$
+		\item $\sigma$
+		\item $2\sigma/\sqrt{n}$
+		\item $1/\sqrt{n}$
+	\end{enumerate}
+\pause
+\vspace{1em}
+\alert{\large $2\sigma/\sqrt{n}$, since the CI is $\bar{X}_n \pm 2\sigma/\sqrt{n}$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is the Width?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+In the preceding example of a  95\% confidence interval for the mean of a normal population when the population variance is known, which of these is the width of the interval?
+	\begin{enumerate}[(a)]
+		\item $\sigma/\sqrt{n}$
+		\item $2\sigma/\sqrt{n}$
+		\item $3\sigma/\sqrt{n}$
+		\item $4\sigma/\sqrt{n}$
+		\item $5\sigma/\sqrt{n}$
+	\end{enumerate}
+\pause
+\vspace{1em}
+\alert{\large $4\sigma/\sqrt{n}$, since the CI is $\bar{X}_n \pm 2\sigma/\sqrt{n}$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Calculate the Margin of Error \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+\begin{center}\fbox{\begin{minipage}{0.75\textwidth}
+$X_1, \hdots, X_{100} \sim \mbox{iid } N(\mu, 1)$ but we don't know $\mu$. Want to create a 95\% confidence interval for $\mu$.
+\end{minipage}}
+\end{center}
+What is the margin of error?
+\pause
+
+\vspace{2em}
+
+The confidence interval is $\bar{X}_n \pm 2\sigma/\sqrt{n}$ so 
+	$$\alert{ME = 2\sigma/\sqrt{n} = 2 \cdot 1/\sqrt{100} = 2/10 = 0.2}$$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: Calculate the Lower Confidence Limit \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+
+\begin{center}\fbox{\begin{minipage}{0.75\textwidth}
+$X_1, \hdots, X_{100} \sim N(\mu, 1)$ but we don't know $\mu$. Want to create a 95\% confidence interval for $\mu$.
+\end{minipage}}
+\end{center}
+
+We found that $ME=0.2$. The sample mean $\bar{x} = 4.9$. What is the lower confidence limit?
+\pause
+
+\vspace{2em}
+
+	$$\alert{\mbox{LCL} = \bar{x} - ME= 4.9 - 0.2 = 4.7}$$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Example: Similarly for the Upper Confidence Limit\dots}
+
+
+\begin{center}\fbox{\begin{minipage}{0.75\textwidth}
+$X_1, \hdots, X_{100} \sim N(\mu, 1)$ but we don't know $\mu$. Want to create a 95\% confidence interval for $\mu$.
+\end{minipage}}
+\end{center}
+
+We found that $ME=0.2$. The sample mean $\bar{x} = 4.9$. What is the upper confidence limit?
+\pause
+
+\vspace{2em}
+
+	$$\alert{\mbox{UCL} = \bar{x} + ME= 4.9 + 0.2 = 5.1}$$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example: 95\% CI for Normal Mean, Popn.\ Var.\ Known}
+
+\begin{center}\fbox{\begin{minipage}{0.75\textwidth}
+$X_1, \hdots, X_{100} \sim N(\mu, 1)$ but we don't know $\mu$.
+\end{minipage}}
+\end{center}
+
+	$$\alert{\mbox{95\% CI for } \mu = [4.7, 5.1]}$$
+
+What values of $\mu$ are plausible?
+
+\pause
+\vspace{1em}
+
+\alert{The data actually came from a $N(5,1)$ Distribution.}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Want to be more certain? Use higher confidence level.}
+What value of $c$ should we use to get a 100$\times(1-\alpha)$\% CI for $\mu$?
+	\begin{eqnarray*}
+		P\left(-c \leq \frac{\bar{X}_n-\mu}{\sigma/\sqrt{n}} \leq c \right) &=& 1-\alpha \\ \\ \pause
+		P\left(\bar{X}_n - c \sigma/\sqrt{n} \leq \mu\leq \bar{X}_n + c \sigma/\sqrt{n} \right) &=& 1-\alpha 
+	\end{eqnarray*}
+ \pause
+
+\alert{Take $c =$ \texttt{qnorm}$(1-\alpha/2)$} \pause
+	$$\bar{X}_n \pm \texttt{qnorm}(1-\alpha/2) \times \sigma/\sqrt{n}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[scale = 0.6]{./images/normal_tails}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Confidence Interval for a Normal Mean, $\sigma$ Known}
+%\Large
+%$$\boxed{\bar{X}_n \pm \texttt{qnorm}(1-\alpha/2) \times \sigma/\sqrt{n}}$$
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What Affects the Margin of Error?}
+
+	$$\boxed{\bar{X}_n \pm \texttt{qnorm}(1-\alpha/2) \times \sigma/\sqrt{n}}$$
+ 
+  \small
+
+	
+\begin{block}{Sample Size $n$}
+ME decreases with $n$: bigger sample $\implies$ tighter interval
+\end{block}
+
+
+\begin{block}{Population Std.\ Dev.\ $\sigma$}
+ME increases with $\sigma$: more variable population $\implies$ wider interval
+\end{block}
+
+
+
+\begin{block}{Confidence Level $1-\alpha$}
+ME increases with $1-\alpha$: higher conf.\ level $\implies$ wider interval
+
+\pause
+
+\vspace{1em}
+	\begin{tabular}{r|lll}
+	\hline
+	Conf.\ Level & 90\% & 95\% & 99\% \\
+	$\alpha$ & 0.1 & 0.05 & 0.01\\
+	\texttt{qnorm}$(1-\alpha/2)$&1.64 & 1.96 & 2.56\\
+	\hline
+	\end{tabular}
+\end{block}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
