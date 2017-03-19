@@ -69,7 +69,7 @@ sample(x = numbers, size = 20, replace = TRUE)
 
 I'm running a prize drawing and need to select two *different students* from Econ 103 at random. Suppose for simplicity that I only have five students and they're named Alice, Bob, Charlotte, Dan, and Emily. How can I use `sample` to make my drawing?
 
-```{r exercise_1, echo = FALSE, results = 'hide'}
+```{r exercise_1}
 students = c("Alice", "Bob", "Charlotte", "Dan", "Emily")
 sample(x = students, size = 2, replace = FALSE) 
 ```
@@ -78,7 +78,7 @@ sample(x = students, size = 2, replace = FALSE)
 
 Jim is bored and loves to solve math problems for fun. (He's a strange guy.) To pass the time, he labels ten cards with the numbers 1 through 10 and puts them in a bowl. He then draws five of these cards *with replacement* and calculates their sum. Use R to replicate one of Jim's "random sums."
 
-```{r exercise_2, echo = FALSE, results = 'hide'}
+```{r exercise_2}
 random.numbers = sample(x = 1:10, size = 5, replace = TRUE)
 sum(random.numbers)
 ```
@@ -87,7 +87,7 @@ sum(random.numbers)
 
 Probability theory was initially developed in the 16th and 17th centuries to solve problems involving gambling games. Many of these problems involved rolling some number of fair, six-sided dice. We can simulate one such die roll in R as follows:
 
-```{r, dice_roll}
+```{r dice_roll}
 sample(1:6, size = 1, replace = TRUE)
 ```
 
@@ -123,7 +123,7 @@ In each case, what we've done is to draw *two* numbers from the range 1 through 
 
 Write R code to roll ten fair, six-sided dice and calculate their sum
 
-```{r exercise_3, echo = FALSE, results = 'hide'}
+```{r exercise_3}
 sum(sample(x = 1:6, size = 10, replace = TRUE))
 ```
 
@@ -209,7 +209,7 @@ replicate(50, dice.sum(3))
 
 Write an *even more general* version of the function `two.dice` called `my.dice.sum` that takes two arguments: `n.sides` tells how many sides each die has and `n.dice` tells how many dice we roll. For example if `n.sides = 4` and `n.dice = 3`, we're rolling three four-sided dice, i.e., dice with sides numbered 1-4. Use `replicate` to simulate the sum of five four-sided dice a total of 100 times.
 
-```{r exercise_4, echo = FALSE, results = 'hide'}
+```{r exercise_4}
 my.dice.sum <- function(n.dice, n.sides){
   dice <- sample(1:n.sides, size = n.dice, replace = TRUE)
   return(sum(dice))
@@ -348,7 +348,7 @@ Using similar commands, calculate:
   1. The proportion of elements in `z` that equal 3.
   2. The proportion of elements in `z` that are less than 7.
   
-```{r exercise_5, echo = FALSE, results = 'hide'}
+```{r exercise_5}
 sum(z == 3)/length(z)
 sum(z < 7)/length(z)
 ```
@@ -368,7 +368,7 @@ sum(even.more.sims >= 9)/length(even.more.sims)
 ### Exercise #6 
 
 Use the same idea to calculate the probability of getting at most 4 when rolling two fair, six-sided dice.
-```{r exercise_6, echo = FALSE, results = 'hide'}
+```{r exercise_6}
 sum(even.more.sims <= 4)/length(even.more.sims)
 ```
 
@@ -436,7 +436,7 @@ There is an old Italian gambling game called _Passadieci_, in which the goal is 
   3. What is the probability of getting a sum no greater than 7 *or* no less then 15 when throwing three dice?
   4. Make a plot of the simulated probabilities of each possible sum when throwing three fair, six-sided dice.
   
-```{r exercise_7, echo = FALSE, results = 'hide'}
+```{r exercise_7}
 passadieci <- replicate(100000, my.dice.sum(n.dice = 3, n.sides = 6))
 sum(passadieci >= 11)/length(passadieci)
 sum(passadieci == 11)/length(passadieci)
@@ -456,7 +456,7 @@ This problem was initially posed by the famous 17th century gambler Antoine Gomb
   
 **Hint:** For each of (A) and (B) begin by writing a function that both carries out the experiment *once* and checks whether the relevant condition is satisfied. Your function should return `TRUE` or `FALSE`. The key will be to come up with a way to write the desired condition using logical operations and the `sum` function, bearing in mind that R treats `TRUE` like 1 and `FALSE` like 0 when doing arithmetic. Finally, use `replicate` to get the answer.
 
-```{r exercise_8, echo = FALSE, results = 'hide'}
+```{r exercise_8}
 experimentA <- function(){
   rolls <- sample(1:6, size = 4, replace = TRUE)
   condition <- sum(rolls == 6) > 0
