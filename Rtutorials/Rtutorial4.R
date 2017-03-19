@@ -13,7 +13,15 @@ sample(x = numbers, size = 20, replace = TRUE)
 sample(x = numbers, size = 20, replace = TRUE)
 sample(x = numbers, size = 20, replace = TRUE)
 
-## ---- dice_roll----------------------------------------------------------
+## ----exercise_1----------------------------------------------------------
+students = c("Alice", "Bob", "Charlotte", "Dan", "Emily")
+sample(x = students, size = 2, replace = FALSE) 
+
+## ----exercise_2----------------------------------------------------------
+random.numbers = sample(x = 1:10, size = 5, replace = TRUE)
+sum(random.numbers)
+
+## ----dice_roll-----------------------------------------------------------
 sample(1:6, size = 1, replace = TRUE)
 
 ## ----two_dice_long-------------------------------------------------------
@@ -26,6 +34,9 @@ sum(dice.roll)
 
 ## ----two_dice_short------------------------------------------------------
 sum(sample(1:6, size = 2, replace = TRUE))
+
+## ----exercise_3----------------------------------------------------------
+sum(sample(x = 1:6, size = 10, replace = TRUE))
 
 ## ----sample_20-----------------------------------------------------------
 die.rolls <- sample(x = 1:6, size = 20, replace = TRUE)
@@ -61,6 +72,13 @@ dice.sum <- function(n.dice){
 
 ## ----replicate_dice_roll-------------------------------------------------
 replicate(50, dice.sum(3))
+
+## ----exercise_4----------------------------------------------------------
+my.dice.sum <- function(n.dice, n.sides){
+  dice <- sample(1:n.sides, size = n.dice, replace = TRUE)
+  return(sum(dice))
+}
+replicate(100, my.dice.sum(5,4))
 
 ## ----storing_random------------------------------------------------------
 sim <- sample(1:10, 10, FALSE)
@@ -122,11 +140,18 @@ sum(z >= 9)
 ## ----logical_proportion--------------------------------------------------
 sum(z >= 9)/length(z)
 
+## ----exercise_5----------------------------------------------------------
+sum(z == 3)/length(z)
+sum(z < 7)/length(z)
+
 ## ----many_rolls_head-----------------------------------------------------
 head(even.more.sims)
 
 ## ----many_rolls_proportion-----------------------------------------------
 sum(even.more.sims >= 9)/length(even.more.sims)
+
+## ----exercise_6----------------------------------------------------------
+sum(even.more.sims <= 4)/length(even.more.sims)
 
 ## ----compound_condition--------------------------------------------------
 (7 <= z) & (z <= 10)
@@ -148,3 +173,32 @@ sum((even.more.sims < 6) | (even.more.sims > 8))/length(even.more.sims)
 mean(abs(even.more.sims - 7) <= 1)
 #same as below 6 or above 8 -- the logical opposite of between 6 & 8 inclusive:
 mean(!abs(even.more.sims - 7) <= 1)
+
+## ----exercise_7----------------------------------------------------------
+passadieci <- replicate(100000, my.dice.sum(n.dice = 3, n.sides = 6))
+sum(passadieci >= 11)/length(passadieci)
+sum(passadieci == 11)/length(passadieci)
+sum(passadieci == 12)/length(passadieci)
+sum((passadieci <= 7) | (passadieci >= 15))/length(passadieci)
+plot(table(passadieci)/length(passadieci), xlab = 'Sum', 
+     ylab = 'Relative Frequency', main = 'Passadieci Simulation: 100000 Throws')
+
+## ----exercise_8----------------------------------------------------------
+experimentA <- function(){
+  rolls <- sample(1:6, size = 4, replace = TRUE)
+  condition <- sum(rolls == 6) > 0
+  return(condition)
+}
+
+experimentB <- function(){
+  first.die <- sample(1:6, size = 24, replace = TRUE)
+  second.die <- sample(1:6, size = 24, replace = TRUE)
+  condition <- sum((first.die == second.die) & (first.die == 6)) > 0
+  return(condition)
+}
+
+simsA <- replicate(100000, experimentA())
+sum(simsA)/length(simsA)
+simsB <- replicate(100000, experimentB())
+sum(simsB)/length(simsB) 
+

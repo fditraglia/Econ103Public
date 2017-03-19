@@ -16,17 +16,17 @@ plot(x, y)
 ## ----plot_type_line------------------------------------------------------
 plot(x, y, type = "l")
 
-## ----exercise_1, echo = FALSE, results = 'hide', fig.show = 'hide'-------
+## ----exercise_1----------------------------------------------------------
 x <- seq(from = -2, to = 2, by = 0.01)
 y <- x^3
 plot(x, y, type = 'l')
 
-## ----exercise_2, echo = FALSE, results = 'hide', fig.show = 'hide'-------
+## ----exercise_2----------------------------------------------------------
 x <- seq(from = 0.5, to = 1.5, by = 0.01)
 y <- log(x)
 plot(x, y, type = 'l')
 
-## ----exercise_3, echo = FALSE, results = 'hide', fig.show = 'hide'-------
+## ----exercise_3----------------------------------------------------------
 x <- seq(from = 0, to = 6 * pi, by = 0.01)
 y <- sin(x)
 plot(x, y, type = 'l')
@@ -54,7 +54,7 @@ matplot(x, y, type = 'l')
 y <- cbind(y1, y2)
 matplot(x, y, type = 'l', col = c("red", "blue"), lty = 1)
 
-## ----exercise_4, echo = FALSE, results = 'hide', fig.show = 'hide'-------
+## ----exercise_4----------------------------------------------------------
 x <- seq(from = 0, to = 2 * pi, by = 0.01)
 y1 <- sin(x)
 y2 <- cos(x)
@@ -70,7 +70,7 @@ sims <- rbinom(100000, size = 10, prob = 1/2)
 mean(sims) - (10 * 1/2)
 var(sims) - (10 * 1/2 * 1/2)
 
-## ----exercise_5, echo = FALSE, results = 'hide'--------------------------
+## ----exercise_5----------------------------------------------------------
 sims <- rbinom(100000, size = 20, prob = 0.9)
 mean(sims) - (20 * 0.9)
 var(sims) - (20 * 0.1 * 0.9)
@@ -91,7 +91,7 @@ plot(support, p.x)
 plot(0:10, p.x, type = 'h', xlab = 'x', ylab = 'p(x)',
      main = 'pmf for a Bernoulli(n = 10, p = 0.5) RV')
 
-## ----exercise_6, echo = FALSE, results = 'hide', fig.show = 'hide'-------
+## ----exercise_6----------------------------------------------------------
 support <- 0:20
 p.x <- dbinom(support, size = 20, prob = 0.65)
 plot(support, p.x, type = 'h', xlab = 'x',
@@ -101,7 +101,7 @@ plot(support, p.x, type = 'h', xlab = 'x',
 sum(dbinom(0:7, size = 20, prob = 0.3))
 pbinom(7.4, size = 20, prob = 0.3)
 
-## ----exercise_7, echo = FALSE, results = 'hide'--------------------------
+## ----exercise_7----------------------------------------------------------
 sum(dbinom(0:24, size = 50, prob = 0.5))
 pbinom(24.5, size = 50, prob = 0.5)
 
@@ -113,7 +113,7 @@ plot(x, y, ylab = 'F(x)')
 ## ----plot_type_s---------------------------------------------------------
 plot(x, y, ylab = 'F(x)', type = 's')
 
-## ----exercise_8, echo = FALSE, results = 'hide', fig.show = 'hide'-------
+## ----exercise_8----------------------------------------------------------
 x <- seq(from = -1, to = 21, by = 0.01)
 y1 <- pbinom(x, size = 20, prob = 0.2)
 y2 <- pbinom(x, size = 20, prob = 0.5)
@@ -121,7 +121,7 @@ y3 <- pbinom(x, size = 20, prob = 0.8)
 y <- cbind(y1, y2, y3)
 matplot(x, y, col = c("black", "blue", "red"), type = 's', lty = 1, ylab = "F(x)")
 
-## ----exercise_9, results = 'hide', echo = FALSE, fig.show = 'hide'-------
+## ----exercise_9----------------------------------------------------------
 #Part 1
 plot(0:20, dbinom(0:20, size = 20, prob = 0.5), type = 'h', ylab = 'p(x)')
 #Part 2
@@ -132,11 +132,11 @@ sum(dbinom(18:20, size = 20, prob = 0.5))
 250 * sum(dbinom(12:20, size = 20, prob = 0.5))
 250 * sum(dbinom(18:20, size = 20, prob = 0.5))
 
-## ----exercise_10, echo = FALSE, results = 'hide', fig.show = 'hide'------
+## ----exercise_10---------------------------------------------------------
 #Binomial(n = 200, p) random variable where p is the unknown proportion who prefer boxers.
 1-sum(dbinom((200*.45+1):(200*.65-1),size=200,p=.5))
 
-## ----exercise_11, echo = FALSE, results = 'hide', fig.show = 'hide'------
+## ----exercise_11---------------------------------------------------------
 #Exercise 11-1
 n <- 10000
 sim1 <-  rpois(n, lambda = 1)
