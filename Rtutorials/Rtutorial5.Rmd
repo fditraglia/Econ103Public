@@ -53,7 +53,7 @@ plot(x, y, type = "l")
 ### Exercise #1
 
 Plot $f(x) = x^3$ on $[-2,2]$.
-```{r exercise_1, echo = FALSE, results = 'hide', fig.show = 'hide'}
+```{r exercise_1}
 x <- seq(from = -2, to = 2, by = 0.01)
 y <- x^3
 plot(x, y, type = 'l')
@@ -61,8 +61,8 @@ plot(x, y, type = 'l')
 
 ### Exercise #2
 
-Plot $f(x) = log(x)$ on $[0.5, 1.5]$.
-```{r exercise_2, echo = FALSE, results = 'hide', fig.show = 'hide'}
+Plot $f(x) = \log(x)$ on $[0.5, 1.5]$.
+```{r exercise_2}
 x <- seq(from = 0.5, to = 1.5, by = 0.01)
 y <- log(x)
 plot(x, y, type = 'l')
@@ -70,8 +70,8 @@ plot(x, y, type = 'l')
 
 ### Exercise #3
 
-Plot $f(x) = sin(x)$ on $[0, 6\pi]$.
-```{r exercise_3, echo = FALSE, results = 'hide', fig.show = 'hide'}
+Plot $f(x) = \sin(x)$ on $[0, 6\pi]$.
+```{r exercise_3}
 x <- seq(from = 0, to = 6 * pi, by = 0.01)
 y <- sin(x)
 plot(x, y, type = 'l')
@@ -120,7 +120,7 @@ matplot(x, y, type = 'l', col = c("red", "blue"), lty = 1)
 
 Plot $sin(x)$, $cos(x)$ and $2sin(x + \pi/4)$ on $[0,2\pi]$.
 
-```{r exercise_4, echo = FALSE, results = 'hide', fig.show = 'hide'}
+```{r exercise_4}
 x <- seq(from = 0, to = 2 * pi, by = 0.01)
 y1 <- sin(x)
 y2 <- cos(x)
@@ -179,7 +179,7 @@ var(sims) - (10 * 1/2 * 1/2)
 
 Generate 100000 draws from a Binomial$(n = 20, p = 0.9)$ random variable and use them to check the formula for the mean and variance from class.
 
-```{r exercise_5, echo = FALSE, results = 'hide'}
+```{r exercise_5}
 sims <- rbinom(100000, size = 20, prob = 0.9)
 mean(sims) - (20 * 0.9)
 var(sims) - (20 * 0.1 * 0.9)
@@ -222,7 +222,7 @@ plot(0:10, p.x, type = 'h', xlab = 'x', ylab = 'p(x)',
 
 Plot the pmf of a Binomial$(n = 20, p = 0.65)$ Random Variable.
 
-```{r exercise_6, echo = FALSE, results = 'hide', fig.show = 'hide'}
+```{r exercise_6}
 support <- 0:20
 p.x <- dbinom(support, size = 20, prob = 0.65)
 plot(support, p.x, type = 'h', xlab = 'x',
@@ -260,7 +260,7 @@ Notice that we get *exactly the same answer*.
 
 Evaluate the CDF of a Binomial$(n = 50, p = 0.5)$ at the threshold $x_0 = 24.5$ *two ways*: first using `sum` and `dbinom` and then using `pbinom`. 
 
-```{r exercise_7, echo = FALSE, results = 'hide'}
+```{r exercise_7}
 sum(dbinom(0:24, size = 50, prob = 0.5))
 pbinom(24.5, size = 50, prob = 0.5)
 ```
@@ -283,7 +283,7 @@ plot(x, y, ylab = 'F(x)', type = 's')
 
 Plot the CDFs of three Binomial RVs on the same graph, each with $n = 20$. For the first set $p = 0.2$, for the second the second set $p = 0.5$ and for the third set $p=0.8$. Explain how and why the CDFS differ.
 
-```{r exercise_8, echo = FALSE, results = 'hide', fig.show = 'hide'}
+```{r exercise_8}
 x <- seq(from = -1, to = 21, by = 0.01)
 y1 <- pbinom(x, size = 20, prob = 0.2)
 y2 <- pbinom(x, size = 20, prob = 0.5)
@@ -302,7 +302,7 @@ Dr. Horrible decided to give his Econ 1 students a pop quiz on Advanced Quantum 
   2. Suppose that a passing grade on the quiz is a 60%. What is the probablity that a given student passes?
   3. Suppose that anything over 90% is an A. What is the probability that an individual student gets an A?
   4. If the clas has 250 students, approximately how many will pass the quiz? Approximately how many will get an A?
-```{r exercise_9, results = 'hide', echo = FALSE, fig.show = 'hide'}
+```{r exercise_9}
 #Part 1
 plot(0:20, dbinom(0:20, size = 20, prob = 0.5), type = 'h', ylab = 'p(x)')
 #Part 2
@@ -321,7 +321,7 @@ Suppose you carry out a poll of 200 randomly selected Penn male undergraduates t
   1. The number of people in your sample who prefer boxers can be viewed as the realization of a random variable. What random variable? 
   2. Suppose that the true proportion who prefer boxers to briefs among all mall Penn undergraduates is 0.5. What is the probability that the proportion in your *sample* who prefer boxers will fall *outside* the range $(0.45, 0.65)$?
   
-```{r exercise_10, echo = FALSE, results = 'hide', fig.show = 'hide'}
+```{r exercise_10}
 #Binomial(n = 200, p) random variable where p is the unknown proportion who prefer boxers.
 1-sum(dbinom((200*.45+1):(200*.65-1),size=200,p=.5))
 ```
@@ -337,7 +337,7 @@ The R functions for the Poisson RV that correspond to `rbinom`, `dbinom` and `pb
   4. Based on my description above and your simulation draws, what do you think the support of a Poisson RV is?
   5. Plot the pmf and CDF of a Poisson$\lambda = 2$ random variable on the range $[-1, 15]$.
   
-```{r exercise_11, echo = FALSE, results = 'hide', fig.show = 'hide'}
+```{r exercise_11}
 #Exercise 11-1
 n <- 10000
 sim1 <-  rpois(n, lambda = 1)
