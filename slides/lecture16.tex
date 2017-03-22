@@ -61,16 +61,28 @@ $$}
 \section{What if the population is normal but $\sigma$ is unknown?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{We Don't know $\sigma$. What to use instead?}
-$$\boxed{\bar{X}_n \pm \texttt{qnorm}(1-\alpha/2) \times \sigma/\sqrt{n}}$$
+  \frametitle{Assume that: $X_1, \dots, X_n \sim \text{iid N}(\mu, \sigma^2)$}
 
-\begin{block}{What about Sample Standard Deviation $S$?}
-	$$P\left(-2 \leq \frac{\bar{X}_n-\mu}{S/\sqrt{n}} \leq 2 \right) = 0.95 \mbox{ ???}$$
+\begin{block}{$\sigma$ Known}
+  \[P\left[ -\texttt{qnorm}(1 - \alpha/2) \leq \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}}\leq \texttt{qnorm}(1 - \alpha/2) \right] = 1 - \alpha\]
+
+  \pause
+
+  \vspace{1em}
+  $\implies$ Confidence Interval: $\alert{\bar{X}_n \pm \texttt{qnorm}(1 - \alpha/2) \times \sigma/ \sqrt{n}}$
 \end{block}
 
-\begin{block}{Not Quite!}
-Although $(\bar{X}_n-\mu)/(\sigma/\sqrt{n})\sim N(0,1)$, $S \neq \sigma$. In fact, $S$ is an \alert{estimator} of $\sigma$ so it is a \alert{random variable!}
+\pause
+
+\begin{block}{$\sigma$ Unknown}
+  Idea: estimate $\sigma$ with $S$. Unfortunately: 
+
+  \[
+    \alert{\frac{\bar{X}_n - \mu}{S/\sqrt{n}} \quad \text{ IS NOT A NORMAL RV! }}
+  \]
+
 \end{block}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -86,11 +98,35 @@ Although $(\bar{X}_n-\mu)/(\sigma/\sqrt{n})\sim N(0,1)$, $S \neq \sigma$. In fac
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
-\frametitle{Punchline: Sampling Distribution of $\sqrt{n}(\bar{X}_n-\mu)/S$}
+  \frametitle{Student-t Random Variable}
 If $X_1, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$, then
 	$$\alert{\boxed{\frac{\bar{X}_n - \mu}{S/\sqrt{n}} \sim t(n-1)}}$$
+
+\pause
+
+\begin{itemize}
+  \item Parameter: $\nu = n-1$ ``degrees of freedom'' 
+	\item Support = $(-\infty, \infty)$
+	\item Symmetric around zero, but mean and variance may not exist!
+	\item Degrees of freedom $\nu$ control ``thickness of tails''
+	\item As $\nu \rightarrow \infty$, $t \rightarrow$ Standard Normal.
+\end{itemize}
+\vspace{1em}
+
+
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Student-t PDFs}
+
+\begin{figure}
+\includegraphics[scale = 0.58]{./images/tpdf}
+\end{figure}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Who was ``Student?''}
@@ -100,15 +136,15 @@ If $X_1, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$, then
 
 \column{0.3\textwidth}
 \begin{figure}
-\fbox{\includegraphics[scale = 0.05]{./images/gosset}}
+\fbox{\includegraphics[scale = 0.045]{./images/gosset}}
 \vspace{0.75em}
 
-\includegraphics[scale = 0.17]{./images/guinness}
+\includegraphics[scale = 0.15]{./images/guinness}
 \end{figure}
 
 
 \column{0.7\textwidth}
-\footnotesize
+\scriptsize
 \begin{quote}
 ``Student'' is the pseudonym used in 19 of 21 published articles by William Sealy
 Gosset, who was a chemist, brewer, inventor, and self-trained statistician, agronomer, and designer of experiments ... [Gosset] worked his entire adult life ... as an experimental brewer for one employer: Arthur Guinness, Son \& Company, Ltd., Dublin, St.\ James’s Gate. Gosset was a master brewer and rose in fact to the top of the top of the brewing industry: Head Brewer of Guinness.
@@ -150,35 +186,6 @@ $$\boxed{X_1, \hdots, X_n \sim \mbox{iid } N(\mu, \sigma^2)}$$
 $$\bar{X}_n \pm \; \texttt{qt}(1-\alpha/2, \texttt{df} = n-1) \; \frac{S}{\sqrt{n}}$$
 \end{block}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{Standard Error vs.\ Estimator of Standard Error}
-%\begin{block}{Standard Error}
-%Recall that the standard deviation of  the sampling distribution of an estimator is called the \emph{\alert{standard error} (SE)} of that estimator.
-%\end{block}
-%\begin{block}{Example: Standard Error of the Mean}
-%$SE(\bar{X}_n) = \sqrt{Var\left(\bar{X_n}\right)} = \sigma/\sqrt{n}$
-%\end{block}
-%
-%
-%
-%\begin{alertblock}{Estimator of Standard Error of the Mean} Whereas $\sigma/\sqrt{n}$ \alert{\emph{is}} the standard error of the mean, $S/\sqrt{n}$ is an \alert{\emph{estimator}} of this quantity: $\widehat{SE}(\bar{X_n}) = S/\sqrt{n}$
-%\end{alertblock}
-%\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{Writing the CIs in terms of Actual and Estimated SE}
-%\framesubtitle{$100\times(1-\alpha)\%$ Confidence Level}
-%$$\boxed{X_1, \hdots, X_n \sim \mbox{iid } N(\mu, \sigma^2)}$$
-%
-%\begin{block}{Known Population Std.\ Dev.\ ($\sigma$)}
-%	$$\bar{X}_n \pm \; \texttt{qnorm}(1-\alpha/2) \; \alert{SE(\bar{X}_n)}$$
-%\end{block}
-%
-%\begin{block}{Unknown Population Std.\ Dev.\ ($\sigma$)}
-%$$\bar{X}_n \pm \; \texttt{qt}(1-\alpha/2, \texttt{df} = n-1) \; \alert{\widehat{SE}(\bar{X}_n)}$$
-%\end{block}
-%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Comparison of Normal and $t$ CIs}
@@ -194,7 +201,7 @@ $\alpha = 0.01$ & 63.66& 4.03 & 3.17 & 2.75  & 2.63 &2.58\\
 \hline
 \end{tabular}
 \end{table}
-\alert{Recall that as $n\rightarrow \infty$, $t(n-1) \rightarrow N(0,1)$}
+\alert{As $n\rightarrow \infty$, $t(n-1) \rightarrow N(0,1)$}
 \vspace{1em}
 
 
@@ -255,18 +262,11 @@ For large $n$, $t(n-1) \approx N(0,1)$, so the answer is approximately 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{The Central Limit Theorem}
-Suppose that $X_1, \hdots, X_n$ are a random sample from a population with unknown mean $\mu$. Then, provided that $n$ is \alert{\emph{sufficiently large}}, the sampling distribution of $\bar{X}_n$ is approximately $N\left(\mu, \widehat{SE}(\bar{X}_n)^2\right)$, even if the even if the underlying population is \alert{non-normal}.
+Suppose that $X_1, \hdots, X_n$ are a random sample from a some population with unknown mean $\mu$ that is \alert{not necessarily normal}. 
+Then, provided that $n$ is \alert{\emph{sufficiently large}}, 
+$$\frac{\bar{X}_n -\mu}{S/\sqrt{n}} \approx N(0,1)$$
 
-\begin{block}{In Other Words...}
-	$$\frac{\bar{X}_n -\mu}{\widehat{SE}(\bar{X}_n)} \approx N(0,1)$$
-\end{block}
-
-\begin{alertblock}{Use this to create \emph{approximate} CIs for population mean!}
-\end{alertblock}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{center}\Huge You should be amazed by this.\end{center}
+We will use this fact to create \emph{approximate} CIs for population mean even if we know \emph{nothing} about the population.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -376,7 +376,7 @@ Sample means are approximately normally distributed provided the sample size is 
 
 \column{0.5\textwidth}
 \begin{block}{CLT For Sample Mean}
-$$\frac{\bar{X}_n -\mu}{\widehat{SE}(\bar{X}_n)} \approx N(0,1)$$
+  $$\frac{\bar{X}_n -\mu}{S / \sqrt{n}} \approx N(0,1)$$
 \end{block}
 
 \column{0.5\textwidth}
@@ -441,7 +441,10 @@ $X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$
 
 $$ME \approx 2 \times \widehat{SE}(\bar{X}_n) \approx 0.04$$ \pause
 
+\vspace{-1em}
+
 What can we conclude?
+\vspace{-1em}
 $$\alert{\boxed{\mbox{Approximate 95\% CI: } \; (0.35, 0.43)}}$$
 
 \end{frame}
