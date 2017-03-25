@@ -1,0 +1,290 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Pepsi Challenge}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{The Pepsi Challenge}
+Our expert claims to be able to tell the difference between Coke and Pepsi. Let's put this to the test! 
+\begin{itemize}
+\item Eight cups of soda 
+	\begin{itemize}
+\item Four contain Coke 
+\item Four contain Pepsi 
+\end{itemize}
+	\item The cups are randomly arranged 
+	\item How can we use this experiment to tell if our expert can \emph{\alert{really}} tell the difference?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{The Results:}
+	\# of Cokes Correctly Identified: \\ \vspace{2em}
+	\alert{What do you think? Can our expert really tell the difference? \includegraphics[scale = 0.05]{./images/clicker}}
+		\begin{enumerate}[(a)]
+\item Yes
+\item No
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+If you just guess randomly, what is the probability of identifying \emph{all four cups of Coke correctly}?
+\pause
+\begin{itemize}
+\item ${8\choose 4}=70$ ways to choose four of the eight cups. \pause
+\item If guessing randomly, each of these is \emph{\alert{equally likely}} \pause
+\item Only \emph{\alert{one}} of the 70 possibilities corresponds to correctly \pause identifying all four cups of Coke. \pause
+\item Thus, the probability is $1/70 \approx 0.014$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+If you just guess randomly, what is the probability of identifying \emph{all but one cup of Coke correctly}?
+\pause
+\begin{itemize}
+\item ${8\choose 4}=70$ ways to choose four of the eight cups. \pause
+\item If guessing randomly, each of these is \emph{\alert{equally likely}} \pause
+\item There are 16 ways to mis-identify one Coke: 
+	\begin{itemize}
+		\item $4$ choices of \emph{which} Coke you call a Pepsi 
+		\item $4$ choices of \emph{which} Pepsi you call a Coke 
+		\item Total of $4\times 4 = 16$ possibilities \pause
+	\end{itemize}	
+\item Thus, the probability is $16/70 \approx 0.23$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Probabilities if Guessing Randomly}
+	\begin{center}
+		\begin{tabular}{rccccc}
+		\hline
+		\# Correct & 0 & 1 & 2 & 3 & 4\\
+		Prob.&1/70 & 16/70 & 36/70 & 16/70 &1/70\\
+		\hline
+		\end{tabular}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+	\begin{center}
+		\begin{tabular}{rccccc}
+		\hline
+		\# Correct & 0 & 1 & 2 & 3 & 4\\
+		Prob.&1/70 & 16/70 & 36/70 & 16/70 &1/70\\
+		\hline
+		\end{tabular}
+	\end{center}
+	If you're just guessing, what is the probability of identifying \alert{\emph{at least}} three Cokes correctly?
+	\pause
+	\begin{itemize}
+\item Probabilities of mutually exclusive events sum. 
+\item $P$(all four correct) = 1/70 
+\item $P$(exactly 3 correct )= 16/70 
+\item $P$(at least three correct) $ = 17/70 \approx 0.24$
+
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{The Pepsi Challenge}
+	\begin{itemize}
+\item Even if you're just guessing randomly, the probability of correctly identifying three or more Cokes is around 24\% 
+\item In contrast, the probability of identifying \emph{\alert{all four}} Cokes correctly is only around 1.4\% if you're guessing randomly. 
+\item We should probably require the expert to get them all right. 
+\item What if the expert gets them all wrong? This also has probability $1.4\%$ if you're guessing randomly...
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+	\huge That was a Hypothesis Test!\\
+	\normalsize We'll go through the details in a moment, but first an analogy...
+	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+	\begin{center}
+	\huge Hypothesis Testing is Similar to a Criminal Trial
+	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+%\frametitle{Hypothesis Testing -- Analogy to Criminal Trial}
+\footnotesize
+\begin{columns}
+\begin{column}{6cm} 
+ %FIRST COLUMN HERE
+   	\begin{block}{Criminal Trial}
+	\begin{itemize}
+		\item<1-> The person on trial is either innocent or guilty (but not both!)
+		\item<2-> ``Innocent Until Proven Guilty''
+		\item<3-> Only convict if evidence is ``beyond a reasonable doubt''
+		\item<4-> \emph{Not Guilty} rather than Innocent
+			\begin{itemize}\footnotesize
+				\item<5-> Acquit $\neq$ Innocent
+			\end{itemize}
+		\item<6-> Two Kinds of Errors:
+			\begin{itemize} \footnotesize
+				\item<6-> Convict the innocent
+				\item<6->  Acquit the guilty
+			\end{itemize}
+		\item<7-> Convicting the innocent is a worse error. Want this to be rare even if it means acquitting the guilty.	\end{itemize}
+\end{block}
+   
+   
+\end{column} 
+\begin{column}{6cm} 
+
+ %SECOND COLUMN HERE 
+
+\begin{block}{Hypothesis Testing}
+		\begin{itemize}
+		\item<1-> Either the null hypothesis $H_0$ or the alternative $H_1$  hypothesis is true.
+		\item<2-> Assume $H_0$ to start
+		\item<3-> Only reject $H_0$ in favor of $H_1$ if there is strong evidence.
+		\item<4-> \emph{Fail to reject} rather than Accept $H_0$	
+		\begin{itemize} \footnotesize
+			\item<5-> (Fail to reject $H_0) \neq (H_0$ True) 
+		\end{itemize}
+				\item<6-> Two Kinds of Errors:
+			\begin{itemize} \footnotesize
+				\item<6-> Reject true $H_0$ (Type I)
+				\item<6-> Don't reject false $H_0$ (Type II)
+			\end{itemize}
+			\item<7-> Type I errors (reject true $H_0$) are worse: make them rare even if that means more Type II errors.
+	\end{itemize}
+\end{block}
+
+\end{column} 
+\end{columns} 
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{How is the Pepsi Challenge a Hypothesis Test?}
+	\begin{block}{Null Hypothesis $H_0$}
+		Can't tell the difference between Coke and Pepsi: just guessing. \pause
+\end{block}
+	\begin{block}{Alternative Hypothesis $H_1$}
+	Able to distinguish Coke from Pepsi.\pause
+\end{block}
+	\begin{block}{Type I Error -- Reject $H_0$ even though it's true} 
+	Decide expert can tell the difference when she's really just guessing. \pause
+\end{block}
+	\begin{block}{Type II Error -- Fail to reject $H_0$ even though it's false}
+	Decide expert just guessing when she really can tell the difference. 
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{How do we carry out a hypothesis test?}
+
+  \begin{block}{Step 1 -- Specify $H_0$}
+   \begin{itemize}
+     \item To carry out our test we need to define the null hypothesis $H_0$ 
+     \item Pepsi Challenge: $H_0$ is that our ``expert'' is guessing randomly
+   \end{itemize}
+  \end{block}
+
+  \pause
+
+  \begin{block}{Step 2 -- Choose a Test Statistic $T_n$}
+    \begin{itemize}
+      \item $T_n$ uses sample data to measure the plausibility of $H_0$
+      \item Pepsi Challenge: $T_n =$ Number of Cokes correctly identified
+      \item Lots of Cokes correct $\Rightarrow$ implausible that you're just guessing
+    \end{itemize}
+  \end{block}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+  \frametitle{Step 3 -- Calculate Distribution of $T_n$ under $H_0$}
+
+    \begin{itemize}
+      \item \alert{Under the null = Under $H_0$ = Assuming $H_0$ is true}
+      \item To carry out our test, need sampling dist.\ of $T_n$ under $H_0$ 
+      \item $H_0$ must be ``specific enough'' that we can do the calculation. 
+      \item Pepsi Challenge:
+        \vspace{1em}
+            \begin{center}
+              \begin{tabular}{rccccc}
+                \hline
+                \# Correct & 0 & 1 & 2 & 3 & 4\\
+                Prob.&1/70 & 16/70 & 36/70 & 16/70 &1/70\\
+                \hline
+              \end{tabular}
+            \end{center}
+    \end{itemize}
+    
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Step 4 -- Choose a Critical Value $c$}
+
+    \small
+            \begin{center}
+              \begin{tabular}{rccccc}
+                \hline
+                \# Correct & 0 & 1 & 2 & 3 & 4\\
+                Prob.&1/70 & 16/70 & 36/70 & 16/70 &1/70\\
+                \hline
+              \end{tabular}
+            \end{center}
+
+      \begin{itemize}
+      \item Pepsi Challenge: correctly identify many cokes $\Rightarrow$ implausible you're guessing at random. \pause
+        \item Decision Rule: reject $H_0$ if $T_n > c$, where \alert{$c$ is the critical value}. \pause
+        \item Choose $c$ to ensure $P(\text{Type I Error})$ is small. But how small? \pause
+        \item \alert{Significance level $\alpha$} = max.\ prob.\ of Type I error we will allow \pause
+      \item Choose $c$ so that if $H_0$ is true $P(T_n > c) \leq \alpha$ \pause 
+    \item Pepsi Challenge: if you are guessing randomly, then
+        \begin{itemize}
+          \item $P(T_n > 3) = 1/70 \approx 0.014$
+          \item $P(T_n > 2) = 16/70 + 1/70 \approx 0.23$
+        \end{itemize}
+      \end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{How do we carry out a hypothesis test?}
+            \begin{center}
+              \begin{tabular}{rccccc}
+                \hline
+                \# Correct & 0 & 1 & 2 & 3 & 4\\
+                Prob.&1/70 & 16/70 & 36/70 & 16/70 &1/70\\
+                \hline
+              \end{tabular}
+            \end{center}
+  \begin{enumerate}
+    \item[Step 1] -- Specify Null Hypothesis $H_0$
+    \item[Step 2] -- Choose Test Statistic $T_n$ 
+    \item[Step 3] -- Calculate sampling dist of $T_n$ under $H_0$
+    \item[Step 4] -- Choose Critical Value $c$
+    \item[Step 5] -- Look at the data: if $T_n >c$, reject $H_0$.
+  \end{enumerate}
+
+  \begin{alertblock}{Pepsi Challenge}
+    If $\alpha = 0.05$ we need $c = 3$ so that $P(T_n >3) \leq \alpha$ under $H_0$.
+    Based on the results for our expert, would we reject $H_0$?
+  \end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
