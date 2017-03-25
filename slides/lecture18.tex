@@ -147,7 +147,7 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 		Can't tell the difference between Coke and Pepsi: just guessing. \pause
 \end{block}
 	\begin{block}{Alternative Hypothesis $H_1$}
-	Able to distinguish Coke from Pepsi.\pause
+	Able to tell which ones are Coke and which are Pepsi.\pause
 \end{block}
 	\begin{block}{Type I Error -- Reject $H_0$ even though it's true} 
 	Decide expert can tell the difference when she's really just guessing. \pause
@@ -162,10 +162,10 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 \begin{frame}
   \frametitle{How do we carry out a hypothesis test?}
 
-  \begin{block}{Step 1 -- Specify $H_0$}
+  \begin{block}{Step 1 -- Specify $H_0$ and $H_1$}
    \begin{itemize}
-     \item To carry out our test we need to define the null hypothesis $H_0$ \pause 
-     \item Pepsi Challenge: $H_0$ is that our ``expert'' is guessing randomly \pause
+     \item Pepsi Challenge: $H_0$ -- our ``expert'' is guessing randomly \pause
+     \item Pepsi Challenge: $H_1$ -- our ``expert'' can tell which is Coke
    \end{itemize}
   \end{block}
 
@@ -173,7 +173,7 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 
   \begin{block}{Step 2 -- Choose a Test Statistic $T_n$}
     \begin{itemize}
-      \item $T_n$ uses sample data to measure the plausibility of $H_0$ \pause
+      \item $T_n$ uses sample data to measure the plausibility of $H_0$ vs.\ $H_1$ \pause
       \item Pepsi Challenge: $T_n =$ Number of Cokes correctly identified \pause
       \item Lots of Cokes correct $\Rightarrow$ implausible that you're just guessing
     \end{itemize}
@@ -245,7 +245,7 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
               \end{tabular}
             \end{center}
   \begin{enumerate}
-    \item[Step 1] -- Specify Null Hypothesis $H_0$
+    \item[Step 1] -- Specify Null Hypothesis $H_0$ and alternative Hypothesis $H_1$
     \item[Step 2] -- Choose Test Statistic $T_n$ 
     \item[Step 3] -- Calculate sampling dist of $T_n$ under $H_0$
     \item[Step 4] -- Choose Critical Value $c$
@@ -261,8 +261,60 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 \section{Hypothesis test for the mean of a normal population}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{blah blah}
+  \frametitle{Another Simple Example}
   
+  Suppose $X_1, \dots, X_{100} \sim \mbox{ iid N}(\mu, \sigma^2 = 9)$ and we want to test
+  \[
+    \begin{array}{c}
+      H_0\colon \mu = 2\\
+      H_1\colon \mu \neq 2\\
+    \end{array}
+  \]
+
+  \pause
+
+  \begin{enumerate}
+    \item[Step 1] -- Specify Null Hypothesis $H_0$ and alternative Hypothesis $H_1$ $\textcolor{blue}{\checkmark}$\pause
+    \item[Step 2] -- Choose Test Statistic $T_n$ 
+  \end{enumerate}
+
+  \pause
+
+  \alert{If $\bar{X}$ is far from 2 then $\mu=2$ is implausible. Why?}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{If $\bar{X}_n$ is far from 2, then $\mu = 2$ is implausible}
+
+  Since $X_1, \dots, X_{100} \sim \mbox{ iid N}(\mu, 9)$, \alert{if $\mu = 2$ then $\bar{X} \sim N(2, 0.09)$}
+  \begin{eqnarray*}
+     P(a \leq \bar{X} \leq b) &=& \pause P\left(\frac{a - 2}{3/10} \leq \frac{\bar{X}-2}{3/10} \leq \frac{b - 2}{3/10} \right)\\ \pause
+     &=& P\left( \frac{a-2}{0.3} \leq Z \leq \frac{b-2}{0.3} \right)
+  \end{eqnarray*}
+  where $Z \sim N(0,1)$ so we see that if $H_0$ is true: \pause
+  \begin{eqnarray*}
+    P(1.7 \leq \bar{X} \leq 2.3) &=& P(-1 \leq Z \leq 1) \approx 0.68\\ \pause
+    P(1.4 \leq \bar{X} \leq 2.6) &=& P(-2 \leq Z \leq 2) \approx 0.95 \\ \pause
+    P(1.1 \leq \bar{X} \leq 2.9) &=& P(-3 \leq Z \leq 3) > 0.99 \pause
+  \end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Step 2 -- Choose Test Statistic $T_n$}
+  \begin{itemize}
+    \item We want to reject $H_0\colon \mu = 2$ if the sample mean is far from $2$. \pause
+    \item $\Rightarrow T_n$ should depend on the \alert{distance} from $\bar{X}$ to 2, i.e.\ $|\bar{X} - 2|$.\pause
+    \item We can make our subsequent calculations much easier if we choose a \alert{scale for $T_n$ that is convenient under $H_0$\dots}
+  \end{itemize}
+  \begin{eqnarray*}
+    \mu=2 \Rightarrow \quad \bar{X} - 2 &\sim& N(0, 0.09) \\ \\ \pause
+    \frac{\bar{X} - 2}{0.3} &\sim& N(0,1)
+  \end{eqnarray*}
+
+  \alert{So we will set $\displaystyle T_n = \left|\frac{\bar{X} - 2}{0.3}\right|$}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
