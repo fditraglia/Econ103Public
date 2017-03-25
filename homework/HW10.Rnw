@@ -28,14 +28,7 @@ options(width = 60)
 @
 %-------------------DON'T CHANGE---------------------%
 
-
-%To include the answers use:
-%  pdflatex "\def\showanswers{1} \input{thisfile.tex}"
-\ifdefined\showanswers
-  \printanswers
-\else
-  \noprintanswers
-\fi
+%\printanswers
 
 \title{Problem Set \# 10}
 \author{Econ 103}
@@ -115,7 +108,9 @@ CI * 10^5
 
 \begin{questions}
 
-\question Write R code to carry out the simulation experiments presented on slides 17--19 of Lecture 18 illustrating the central limit theorem. The R command for drawing from a Uniform$(0,1)$ distribution is \texttt{runif} and the corresponding density is \texttt{dunif}. In each case, plot the density or mass function of the population and compare it to the histograms of the sample mean computed for random samples drawn from that population. In each simulation, use 10000 replications.
+\question Write R code to carry out the simulation experiments presented on slides 14--16 of Lecture 16 illustrating the central limit theorem. The R command for drawing from a Uniform$(0,1)$ distribution is \texttt{runif} and the corresponding density is \texttt{dunif}. 
+The R command for making $n$ draws from a $\chi^2(5)$ distribution is \texttt{rchisq(n, df = 5)} and the corresponding density is \texttt{dchisq(x, df = 5)}.
+In each case, plot the density or mass function of the population and compare it to the histograms of the sample mean computed for random samples drawn from that population. In each simulation, use 10000 replications.
 	\begin{solution}
 		First the Uniform$(0,1)$
 <<uniform_clt>>=
@@ -202,7 +197,7 @@ c(LCL, UCL)
 			\end{solution}
 	\end{parts}
 
-\question Construct an approximate 95\% confidence interval for the Anchoring Experiment based on the CLT using \emph{this semester's} data, following the details in Lecture 19. Be sure to properly account for missing values. How does it compare to the interval based on the data from lecture?
+\question Construct an approximate 95\% confidence interval for the Anchoring Experiment based on the CLT using \emph{this semester's} data, following the details in Lecture 17. Be sure to properly account for missing values. How does it compare to the interval based on the data from lecture?
 	\begin{solution} 
 <<anchoring_experiment>>=
 data.url <- "http://www.ditraglia.com/econ103/survey_clean.csv"

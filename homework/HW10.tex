@@ -21,6 +21,7 @@
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
 \newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
 
 
 \makeatletter
@@ -69,14 +70,7 @@
 
 %-------------------DON'T CHANGE---------------------%
 
-
-%To include the answers use:
-%  pdflatex "\def\showanswers{1} \input{thisfile.tex}"
-\ifdefined\showanswers
-  \printanswers
-\else
-  \noprintanswers
-\fi
+%\printanswers
 
 \title{Problem Set \# 10}
 \author{Econ 103}
@@ -102,7 +96,7 @@
 \hlkwd{pbinom}\hlstd{(}\hlnum{5}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{50}\hlstd{,} \hlkwc{prob} \hlstd{=} \hlnum{0.2}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.04803
+## [1] 0.04802722
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -118,7 +112,7 @@ In this example the standard error is: $\sqrt{p(1-p)/n}$ where $n$ is the sample
 \hlkwd{pnorm}\hlstd{((}\hlnum{0.1} \hlopt{-} \hlnum{0.2}\hlstd{)}\hlopt{/}\hlstd{SE)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.03855
+## [1] 0.03854994
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -139,10 +133,10 @@ which agrees with the answer in the back of the book. Notice that this is \emph{
 \hlstd{polio.data}
 \end{alltt}
 \begin{verbatim}
-##       group n.children n.polio      rate
-## 1 treatment     200000      57 0.0002850
-## 2   control     200000     142 0.0007100
-## 3   refused     340000     157 0.0004618
+##       group n.children n.polio         rate
+## 1 treatment     200000      57 0.0002850000
+## 2   control     200000     142 0.0007100000
+## 3   refused     340000     157 0.0004617647
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -178,13 +172,13 @@ which agrees with the answer in the back of the book. Notice that this is \emph{
 \hlstd{ME} \hlopt{*} \hlnum{10}\hlopt{^}\hlnum{5}
 \end{alltt}
 \begin{verbatim}
-## [1] 13.82
+## [1] 13.82028
 \end{verbatim}
 \begin{alltt}
 \hlstd{CI} \hlopt{*} \hlnum{10}\hlopt{^}\hlnum{5}
 \end{alltt}
 \begin{verbatim}
-## [1] 28.68 56.32
+## [1] 28.67972 56.32028
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -200,7 +194,9 @@ which agrees with the answer in the back of the book. Notice that this is \emph{
 
 \begin{questions}
 
-\question Write R code to carry out the simulation experiments presented on slides 17--19 of Lecture 18 illustrating the central limit theorem. The R command for drawing from a Uniform$(0,1)$ distribution is \texttt{runif} and the corresponding density is \texttt{dunif}. In each case, plot the density or mass function of the population and compare it to the histograms of the sample mean computed for random samples drawn from that population. In each simulation, use 10000 replications.
+\question Write R code to carry out the simulation experiments presented on slides 14--16 of Lecture 16 illustrating the central limit theorem. The R command for drawing from a Uniform$(0,1)$ distribution is \texttt{runif} and the corresponding density is \texttt{dunif}. 
+The R command for making $n$ draws from a $\chi^2(5)$ distribution is \texttt{rchisq(n, df = 5)} and the corresponding density is \texttt{dchisq(x, df = 5)}.
+In each case, plot the density or mass function of the population and compare it to the histograms of the sample mean computed for random samples drawn from that population. In each simulation, use 10000 replications.
 	\begin{solution}
 		First the Uniform$(0,1)$
 \begin{knitrout}
@@ -212,7 +208,7 @@ which agrees with the answer in the back of the book. Notice that this is \emph{
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/uniform_clt1} 
+{\centering \includegraphics[width=\maxwidth]{figure/uniform_clt-1} 
 
 }
 
@@ -223,7 +219,7 @@ which agrees with the answer in the back of the book. Notice that this is \emph{
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/uniform_clt2} 
+{\centering \includegraphics[width=\maxwidth]{figure/uniform_clt-2} 
 
 }
 
@@ -240,7 +236,7 @@ Next, the $\chi^2(5)$
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/chisq_clt1} 
+{\centering \includegraphics[width=\maxwidth]{figure/chisq_clt-1} 
 
 }
 
@@ -251,7 +247,7 @@ Next, the $\chi^2(5)$
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/chisq_clt2} 
+{\centering \includegraphics[width=\maxwidth]{figure/chisq_clt-2} 
 
 }
 
@@ -268,7 +264,7 @@ Finally, the Bernoulli$(0.3)$
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/bernoulli_clt1} 
+{\centering \includegraphics[width=\maxwidth]{figure/bernoulli_clt-1} 
 
 }
 
@@ -279,7 +275,7 @@ Finally, the Bernoulli$(0.3)$
 \end{alltt}
 \end{kframe}
 
-{\centering \includegraphics[width=\maxwidth]{figure/bernoulli_clt2} 
+{\centering \includegraphics[width=\maxwidth]{figure/bernoulli_clt-2} 
 
 }
 
@@ -306,7 +302,7 @@ Finally, the Bernoulli$(0.3)$
 \hlkwd{c}\hlstd{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.1803 0.2397
+## [1] 0.1802897 0.2397103
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -330,7 +326,7 @@ Finally, the Bernoulli$(0.3)$
 \hlkwd{c}\hlstd{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
-## [1] -0.009846  0.109846
+## [1] -0.009846188  0.109846188
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -356,7 +352,7 @@ Finally, the Bernoulli$(0.3)$
 \hlkwd{c}\hlstd{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.04818 0.17182
+## [1] 0.04817691 0.17182309
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -368,7 +364,7 @@ Finally, the Bernoulli$(0.3)$
 			\end{solution}
 	\end{parts}
 
-\question Construct an approximate 95\% confidence interval for the Anchoring Experiment based on the CLT using \emph{this semester's} data, following the details in Lecture 19. Be sure to properly account for missing values. How does it compare to the interval based on the data from lecture?
+\question Construct an approximate 95\% confidence interval for the Anchoring Experiment based on the CLT using \emph{this semester's} data, following the details in Lecture 17. Be sure to properly account for missing values. How does it compare to the interval based on the data from lecture?
 	\begin{solution} 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -390,7 +386,7 @@ Finally, the Bernoulli$(0.3)$
 \hlkwd{c}\hlstd{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
-## [1] -3.821  4.625
+## [1] -3.820790  4.624669
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -587,7 +583,7 @@ while the textbook CI is based on $\widehat{p}=(\sum_{i=1}^n X_i)/n$.
 \hlkwd{rbinom}\hlstd{(}\hlnum{1}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{50}\hlstd{,} \hlkwc{prob} \hlstd{=} \hlnum{0.5}\hlstd{)}\hlopt{/}\hlnum{50}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.58
+## [1] 0.46
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -638,7 +634,7 @@ Note that you may get a different answer from me since this is \emph{random}. In
 \hlstd{Coverage}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.6399
+## [1] 0.6511
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -659,7 +655,7 @@ Note that you may get a different answer from me since this is \emph{random}. In
 \hlstd{Cover.tilde}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9352
+## [1] 0.93
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
