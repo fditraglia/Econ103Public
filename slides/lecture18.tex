@@ -39,23 +39,6 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
-If you just guess randomly, what is the probability of identifying \emph{all but one cup of Coke correctly}?
-\pause
-\begin{itemize}
-\item ${8\choose 4}=70$ ways to choose four of the eight cups. \pause
-\item If guessing randomly, each of these is \emph{\alert{equally likely}} \pause
-\item There are 16 ways to mis-identify one Coke: 
-	\begin{itemize}
-		\item $4$ choices of \emph{which} Coke you call a Pepsi 
-		\item $4$ choices of \emph{which} Pepsi you call a Coke 
-		\item Total of $4\times 4 = 16$ possibilities \pause
-	\end{itemize}	
-\item Thus, the probability is $16/70 \approx 0.23$
-\end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 \frametitle{Probabilities if Guessing Randomly}
 	\begin{center}
 		\begin{tabular}{rccccc}
@@ -92,32 +75,18 @@ If you just guess randomly, what is the probability of identifying \emph{all but
 \begin{frame}
 \frametitle{The Pepsi Challenge}
 	\begin{itemize}
-\item Even if you're just guessing randomly, the probability of correctly identifying three or more Cokes is around 24\% 
-\item In contrast, the probability of identifying \emph{\alert{all four}} Cokes correctly is only around 1.4\% if you're guessing randomly. 
-\item We should probably require the expert to get them all right. 
-\item What if the expert gets them all wrong? This also has probability $1.4\%$ if you're guessing randomly...
+\item Even if you're just guessing randomly, the probability of correctly identifying three or more Cokes is around 24\%  \pause
+\item In contrast, the probability of identifying \emph{\alert{all four}} Cokes correctly is only around 1.4\% if you're guessing randomly.  \pause
+\item We should probably require the expert to get them all right\dots \pause 
+\item What if the expert gets them all wrong? This also has probability $1.4\%$ if you're guessing randomly\dots \pause
 \end{itemize}
+
+
+\alert{That was a hypothesis test! We'll go through the details in a moment, but first an analogy\dots}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-	\begin{center}
-	\huge That was a Hypothesis Test!\\
-	\normalsize We'll go through the details in a moment, but first an analogy...
-	\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\begin{frame}
-	\begin{center}
-	\huge Hypothesis Testing is Similar to a Criminal Trial
-	\end{center}
-\end{frame}
-
+\section{Analogy between Hypothesis Testing and a Criminal Trial}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -188,13 +157,15 @@ If you just guess randomly, what is the probability of identifying \emph{all but
 \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Steps in a Hypothesis Test}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{How do we carry out a hypothesis test?}
 
   \begin{block}{Step 1 -- Specify $H_0$}
    \begin{itemize}
-     \item To carry out our test we need to define the null hypothesis $H_0$ 
-     \item Pepsi Challenge: $H_0$ is that our ``expert'' is guessing randomly
+     \item To carry out our test we need to define the null hypothesis $H_0$ \pause 
+     \item Pepsi Challenge: $H_0$ is that our ``expert'' is guessing randomly \pause
    \end{itemize}
   \end{block}
 
@@ -202,8 +173,8 @@ If you just guess randomly, what is the probability of identifying \emph{all but
 
   \begin{block}{Step 2 -- Choose a Test Statistic $T_n$}
     \begin{itemize}
-      \item $T_n$ uses sample data to measure the plausibility of $H_0$
-      \item Pepsi Challenge: $T_n =$ Number of Cokes correctly identified
+      \item $T_n$ uses sample data to measure the plausibility of $H_0$ \pause
+      \item Pepsi Challenge: $T_n =$ Number of Cokes correctly identified \pause
       \item Lots of Cokes correct $\Rightarrow$ implausible that you're just guessing
     \end{itemize}
   \end{block}
@@ -217,8 +188,8 @@ If you just guess randomly, what is the probability of identifying \emph{all but
   \frametitle{Step 3 -- Calculate Distribution of $T_n$ under $H_0$}
 
     \begin{itemize}
-      \item \alert{Under the null = Under $H_0$ = Assuming $H_0$ is true}
-      \item To carry out our test, need sampling dist.\ of $T_n$ under $H_0$ 
+      \item \alert{Under the null = Under $H_0$ = Assuming $H_0$ is true} \pause
+      \item To carry out our test, need sampling dist.\ of $T_n$ under $H_0$ \pause
       \item $H_0$ must be ``specific enough'' that we can do the calculation. 
       \item Pepsi Challenge:
         \vspace{1em}
@@ -285,6 +256,13 @@ If you just guess randomly, what is the probability of identifying \emph{all but
     If $\alpha = 0.05$ we need $c = 3$ so that $P(T_n >3) \leq \alpha$ under $H_0$.
     Based on the results for our expert, would we reject $H_0$?
   \end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hypothesis test for the mean of a normal population}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{blah blah}
+  
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
