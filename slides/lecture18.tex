@@ -33,7 +33,7 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 \begin{itemize}
 \item ${8\choose 4}=70$ ways to choose four of the eight cups. \pause
 \item If guessing randomly, each of these is \emph{\alert{equally likely}} \pause
-\item Only \emph{\alert{one}} of the 70 possibilities corresponds to correctly \pause identifying all four cups of Coke. \pause
+\item Only \emph{\alert{one}} of the 70 possibilities corresponds to correctly identifying all four cups of Coke. \pause
 \item Thus, the probability is $1/70 \approx 0.014$
 \end{itemize}
 \end{frame}
@@ -292,11 +292,11 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
      P(a \leq \bar{X} \leq b) &=& \pause P\left(\frac{a - 2}{3/10} \leq \frac{\bar{X}-2}{3/10} \leq \frac{b - 2}{3/10} \right)\\ \pause
      &=& P\left( \frac{a-2}{0.3} \leq Z \leq \frac{b-2}{0.3} \right)
   \end{eqnarray*}
-  where $Z \sim N(0,1)$ so we see that if $H_0$ is true: \pause
+  where $Z \sim N(0,1)$ so we see that if $H_0\colon \mu = 2$ is true then \pause
   \begin{eqnarray*}
     P(1.7 \leq \bar{X} \leq 2.3) &=& P(-1 \leq Z \leq 1) \approx 0.68\\ \pause
     P(1.4 \leq \bar{X} \leq 2.6) &=& P(-2 \leq Z \leq 2) \approx 0.95 \\ \pause
-    P(1.1 \leq \bar{X} \leq 2.9) &=& P(-3 \leq Z \leq 3) > 0.99 \pause
+    P(1.1 \leq \bar{X} \leq 2.9) &=& P(-3 \leq Z \leq 3) > 0.99 
   \end{eqnarray*}
 
 \end{frame}
@@ -304,7 +304,7 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 \begin{frame}
   \frametitle{Step 2 -- Choose Test Statistic $T_n$}
   \begin{itemize}
-    \item We want to reject $H_0\colon \mu = 2$ if the sample mean is far from $2$. \pause
+    \item Reject $H_0\colon \mu = 2$ if the sample mean is far from $2$. \pause
     \item $\Rightarrow T_n$ should depend on the \alert{distance} from $\bar{X}$ to 2, i.e.\ $|\bar{X} - 2|$.\pause
     \item We can make our subsequent calculations much easier if we choose a \alert{scale for $T_n$ that is convenient under $H_0$\dots}
   \end{itemize}
@@ -353,8 +353,118 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
     \item[Step 2] -- $T_n = \displaystyle \left|\frac{\bar{X} - 2}{0.3} \right|$ $\textcolor{blue}{\checkmark}$
     \item[Step 3] -- If $\mu = 2$ then $\displaystyle \left(\frac{\bar{X} - 2}{0.3}\right) \sim N(0,1)$ $\textcolor{blue}{\checkmark}$
     \item[Step 4] -- $c = \texttt{qnorm}(1 - \alpha /2)$ $ \textcolor{blue}{\checkmark}$
-    \item[Step 5] -- \alert{Look at the data: if $T_n >c$, reject $H_0$}
+    \item[Step 5] -- \alert{Look at the data: if $T_n >c$, reject $H_0$}\pause
+      \begin{itemize}
+        \item Suppose I choose $\alpha = 0.05$. Then $c \approx 2$.\pause
+        \item I observe a sample of 100 observations. Suppose $\bar{x} = 1.34$
+          \[T_n = \displaystyle\left|\frac{\bar{x} - 2}{0.3}\right| =\left|\frac{1.34 - 2}{0.3}\right| = 2.2  \]\pause
+          \vspace{-2em}
+        \item Since $T_n > c$, I reject $H_0\colon \mu=2$.
+      \end{itemize}
   \end{enumerate}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{General Version of Preceding Example}
+
+ $X_1, \dots, X_n \sim \mbox{iid N}(\mu, \sigma^2)$ with $\sigma^2$ known and we want to test:
+  \[
+    \begin{array}{c}
+      H_0\colon \mu = \mu_0\\
+      H_1\colon \mu \neq \mu_0\\
+    \end{array}
+  \]
+  where $\mu_0$ is some specified value for the population mean.
+
+  \pause
+  
+  \begin{itemize}
+    \item $|\bar{X}_n - \mu_0|$ tells how far sample mean is from $\mu_0$. \pause
+    \item Reject $H_0\colon \mu=\mu_0$ if sample mean is far from $\mu_0$. \pause
+    \item Under $H_0\colon \mu = \mu_0$, $\displaystyle\frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}} \sim N(0,1)$. \pause
+    \item Test statistic $T_n = \displaystyle\left|\frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}}\right|$ \pause
+    \item Reject $H_0\colon \mu = \mu_0$ if $T_n > \texttt{qnorm}(1 - \alpha/2)$
+  \end{itemize}
+
+  
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Relationship Between Confidence Intervals and Hypothesis Tests}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{This looks suspiciously similar to a confidence interval\dots}
+
+  \small 
+  \[
+    \boxed{X_1, \dots, X_n \sim \mbox{iid N}(\mu, \sigma^2) \mbox{ where }\sigma^2 \mbox{ is known}}
+  \]
+  \[
+    \boxed{T_n = \displaystyle\left|\frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}}\right|, \; c = \texttt{qnorm}(1 - \alpha/2), \; \mbox{Reject } H_0\colon \mu = \mu_0 \mbox{ if } T_n > c}
+  \]
+
+  \vspace{1em}
+  Another way of saying this is don't reject $H_0$ if:
+  \begin{eqnarray*}
+    \left(T_n \leq c\right) \pause &\iff&
+    \left(\left|\frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}}\right| \leq c \right) \pause
+    \iff \left(-c \leq \frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}}\leq c\right)\\ \pause
+    &\iff& \left(\bar{X}_n - c \times \frac{\sigma}{\sqrt{n}} \leq \mu_0 \leq \bar{X}_n + c\times\frac{\sigma}{\sqrt{n}}  \right)
+  \end{eqnarray*}
+
+  \pause
+
+  \alert{In other words, don't reject $H_0\colon \mu = \mu_0$ at significance level $\alpha$ if $\mu_0$ lies inside the $100 \times (1 - \alpha)\%$ confidence interval for $\mu$.}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{CIs and Hypothesis Tests are Intimately Related}
+
+  \begin{block}{Our Simple Example}
+    $X_1, \dots, X_{100} \sim \mbox{iid N}(\mu, \sigma^2 = 9)$ and observe $\bar{x} = 1.34$ 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Test $H_0\colon \mu = 2$ vs.\ $H_1\colon \mu \neq 2$ with $\alpha = 0.05$}
+    $T_n = 2.2$, $c = \texttt{qnorm}(1 - 0.05/2) \approx 2$. Since $T_n>c$ we reject.
+    
+  \end{block}
+
+  \pause
+
+  \begin{block}{95\% Confidence Interval for $\mu$} 
+    $1.34 \pm 2 \times 3 / 10$ i.e.\ $1.34 \pm 0.6$ or equivalently $(0.74, 1.94)$
+  \end{block}
+
+  \pause
+
+  \begin{block}{Another way to carry out the test\dots}
+   Since 2 lies outside the 95\% confidence interval for $\mu$, if our significance level is $\alpha = 0.05$ we reject $H_0\colon \mu = 2$.
+  \end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Roadmap}
+
+  \begin{block}{Next Time}
+    More examples of hypothesis testing, using relationship with confidence intervals to help us.
+  \end{block}
+
+
+  \pause
+
+  \begin{block}{Building Intuition}
+   Now that you know a simple example of a hypothesis test and its relationship to a CI, think about the following:
+   \begin{itemize}
+     \item If we reject $H_0$ does that mean that $H_0$ is false?
+     \item How does testing relate to random sampling?
+      \item How does critical value of a test relate to width of a CI?
+   \end{itemize}
+  \end{block}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

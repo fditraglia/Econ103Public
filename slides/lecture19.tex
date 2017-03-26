@@ -1,3 +1,145 @@
+
+\section{More Examples of Hypothesis Testing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{More Examples}
+  Re-do all the CI examples \emph{except} those for proportions as tests. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{P-values}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{P-values}
+  Motivate by showing two test statistics: both lead to rejection but one is ``close'' and the other is ``no contest.''
+  Explain that simply reporting the result of the test is quite crude and we want more information.
+  Also, different people may want a different threshold $\alpha$ so they want to carry out ``their own test'' based on your data.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{What if I have chosen a different significance level $\alpha$?}
+
+  \vspace{-2em}
+
+  \[\boxed{T_n = 2.2, \quad c = \texttt{qnorm}(1 -\alpha/2), \quad \mbox{Reject } H_0\colon \mu = 2 \mbox{ if } T_n > c}\]
+
+  \vspace{-2em}
+
+  \pause
+
+  \begin{eqnarray*}
+    \alpha = 0.32 &\Rightarrow& c = \texttt{qnorm}(1 - 0.32/2) \approx 0.99 \quad \mbox{\textcolor{blue}{Reject}}\\ \pause
+    \alpha = 0.10 &\Rightarrow& c = \texttt{qnorm}(1 - 0.10/2) \approx 1.64\quad \mbox{\textcolor{blue}{Reject}}\\  \pause
+    \alpha = 0.05 &\Rightarrow& c = \texttt{qnorm}(1 - 0.05/2) \approx 1.96 \quad \mbox{\textcolor{blue}{Reject}}\\ \pause
+    \alpha = 0.04 &\Rightarrow& c = \texttt{qnorm}(1 - 0.04/2) \approx 2.05\quad \mbox{\textcolor{blue}{Reject}}\\  \pause
+    \alpha = 0.03 &\Rightarrow& c = \texttt{qnorm}(1 - 0.03/2) \approx 2.17\quad \mbox{\textcolor{blue}{Reject}}\\  \pause
+    \alpha = 0.02 &\Rightarrow& c = \texttt{qnorm}(1 - 0.02/2) \approx 2.33 \quad \mbox{\textcolor{red}{Fail to Reject}}\\
+    \alpha = 0.01 &\Rightarrow& c = \texttt{qnorm}(1 - 0.01/2) \approx 2.58 \quad \mbox{\textcolor{red}{Fail to Reject}}
+  \end{eqnarray*}
+
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Result of Test Depends on Choice of $\alpha$!}
+
+  \begin{columns}
+    \column{0.3\textwidth}
+    \footnotesize
+  \begin{eqnarray*}
+    \alpha = 0.32 &\Rightarrow& \mbox{\textcolor{blue}{Reject}}\\ 
+    \alpha = 0.10 &\Rightarrow& \mbox{\textcolor{blue}{Reject}}\\
+    \alpha = 0.05 &\Rightarrow& \mbox{\textcolor{blue}{Reject}}\\ 
+    \alpha = 0.04 &\Rightarrow& \mbox{\textcolor{blue}{Reject}}\\
+    \alpha = 0.03 &\Rightarrow& \mbox{\textcolor{blue}{Reject}}\\
+    \alpha = 0.02 &\Rightarrow& \mbox{\textcolor{red}{Fail to Reject}}\\
+    \alpha = 0.01 &\Rightarrow& \mbox{\textcolor{red}{Fail to Reject}}
+  \end{eqnarray*}
+    
+    \column{0.6\textwidth}
+
+    \begin{itemize}
+      \item If you reject $H_0$ at a given choice of $\alpha$, you would also have rejected at any \alert{larger} choice of $\alpha$.\pause
+      \item If you fail to reject $H_0$ at a given choice of $\alpha$, you would also have failed to reject at any \alert{smaller} choice of $\alpha$.
+    \end{itemize}
+    
+  \end{columns}
+
+  \vspace{1em}
+
+  \pause
+
+  \begin{block}{Question}
+   If $\alpha$ is large enough we will reject; if $\alpha$ is small enough, we won't.
+   Where is the \alert{dividing line} between reject and fail to reject?
+  \end{block}
+
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{P-Value: Dividing Line Between Reject and Fail to Reject}
+
+  \vspace{-2em}
+
+  \[\boxed{T_n = 2.2, \quad c = \texttt{qnorm}(1 -\alpha/2), \quad \mbox{Reject } H_0\colon \mu = 2 \mbox{ if } T_n > c}\]
+
+  \begin{block}{Question}
+    Given that we observed a test statistic of $2.2$, what choice of $\alpha$ would put us \alert{just at the cusp} of rejecting $H_0$? 
+  \end{block}
+
+  \pause
+
+  \begin{alertblock}{Answer}
+    Whichever $\alpha$ makes $c = 2.2$!
+    At this $\alpha$ we just \alert{barely} fail to reject.
+  \end{alertblock}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Calculating the P-value}
+
+  \begin{block}{Definition of a P-value}
+    The significance level $\alpha$ such that the critical value $c$ for the test is \alert{exactly equal} to the observed value of the test statistic. 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Our Example}
+    The observed value of the test statistic is $2.2$ and the critical value is $\texttt{qnorm}(1 - \alpha/2)$, so we need to solve:
+
+    \vspace{-1em}
+
+    \small
+    \begin{eqnarray*}
+      2.2 &=&  \texttt{qnorm}(1 - \alpha/2)\\ \pause
+      \texttt{pnorm}(2.2) &=&  \texttt{pnorm}\left( \texttt{qnorm}\left( 1 - \alpha/2 \right) \right) \\ \pause
+      \texttt{pnorm}(2.2) &=&  1 - \alpha/2\\ \pause
+      \alpha &=& 2 \times \left[ 1 - \texttt{pnorm}(2.2) \right] \approx
+    \end{eqnarray*}
+  \end{block}
+
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{How to use a p-value?}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{One-Sided Tests}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{One-sided Tests} 
+  These are stranger since the analogy with a confidence interval breaks down.
+  Explain that the default should be a two-sided test.
+  Then explain why and when you might want to do a one-sided test.
+  It's about \emph{power} which we'll cover in more detail in the next lecture. 
+  But the basic idea is that you're more likely to reject if the null is false.
+  Show an example.
+  Then explain about a one-sided p-value.
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \begin{block}{Last Time}
