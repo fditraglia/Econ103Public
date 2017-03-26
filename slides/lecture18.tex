@@ -275,12 +275,12 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 
   \begin{enumerate}
     \item[Step 1] -- Specify Null Hypothesis $H_0$ and alternative Hypothesis $H_1$ $\textcolor{blue}{\checkmark}$\pause
-    \item[Step 2] -- Choose Test Statistic $T_n$ 
+    \item[Step 2] -- \alert{Choose Test Statistic $T_n$}
   \end{enumerate}
 
   \pause
 
-  \alert{If $\bar{X}$ is far from 2 then $\mu=2$ is implausible. Why?}
+  If $\bar{X}$ is far from 2 then $\mu=2$ is implausible. Why?
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -317,4 +317,44 @@ If you just guess randomly, what is the probability of identifying \emph{all fou
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Another Simple Example: $X_1, \dots, X_{100}\sim \mbox{iid N}(\mu, \sigma^2 = 9)$}
+  \begin{enumerate}
+    \item[Step 1] -- $H_0\colon \mu = 2, \; H_1\colon \mu \neq 2$ $\textcolor{blue}{\checkmark}$
+    \item[Step 2] -- $T_n = \displaystyle \left|\frac{\bar{X} - 2}{0.3} \right|$ $\textcolor{blue}{\checkmark}$
+    \item[Step 3] -- If $\mu = 2$ then $\displaystyle \left(\frac{\bar{X} - 2}{0.3}\right) \sim N(0,1)$ $\textcolor{blue}{\checkmark}$
+    \item[Step 4] -- \alert{Choose Critical Value $c$}
+      \begin{enumerate}[(i)]
+        \item Specify significance level $\alpha$.
+        \item Choose $c$ so that $P(T_n > c)=\alpha$ under $H_0\colon \mu = 2$.
+      \end{enumerate}
+  \end{enumerate}
+\end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Choose $c$ so that $P(T_n >c) = \alpha$ under $H_0$}
+  $T_n = \displaystyle \left|\frac{\bar{X}-2}{0.3}\right|$ and $\mu=2 \implies \displaystyle \frac{\bar{X}-2}{0.3} \sim N(0,1)$ \pause
+
+  \begin{eqnarray*}
+    P\left( \left|\frac{\bar{X}-2}{0.3}\right| > c \right) &=& \alpha\\ \pause
+    1 - P\left( \left|\frac{\bar{X}-2}{0.3}\right| \leq c \right) &=& \alpha\\ \pause
+    P\left( \left|\frac{\bar{X}-2}{0.3}\right| \leq c \right) &=& 1 - \alpha\\ \pause
+    P\left(-c \leq \frac{\bar{X}-2}{0.3} \leq c \right) &=& 1 - \alpha
+  \end{eqnarray*}
+
+  \alert{Hence: $c = \texttt{qnorm}(1 - \alpha/2)$ which should look familiar!}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Another Simple Example: $X_1, \dots, X_{100}\sim \mbox{iid N}(\mu, \sigma^2 = 9)$}
+  \begin{enumerate}
+    \item[Step 1] -- $H_0\colon \mu = 2, \; H_1\colon \mu \neq 2$ $\textcolor{blue}{\checkmark}$
+    \item[Step 2] -- $T_n = \displaystyle \left|\frac{\bar{X} - 2}{0.3} \right|$ $\textcolor{blue}{\checkmark}$
+    \item[Step 3] -- If $\mu = 2$ then $\displaystyle \left(\frac{\bar{X} - 2}{0.3}\right) \sim N(0,1)$ $\textcolor{blue}{\checkmark}$
+    \item[Step 4] -- $c = \texttt{qnorm}(1 - \alpha /2)$ $ \textcolor{blue}{\checkmark}$
+    \item[Step 5] -- \alert{Look at the data: if $T_n >c$, reject $H_0$}
+  \end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
