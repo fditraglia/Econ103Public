@@ -398,7 +398,7 @@
   \begin{block}{Strength of Evidence Against $H_0$}
     P-value measures \alert{strength of evidence against the null}.
     Smaller p-value = stronger evidence against $H_0$.
-    P-value does \alert{doesn't} measure \alert{size} of effect.
+    \alert{P-value does not measure size of effect}.
   \end{block}
 
 \end{frame}
@@ -435,8 +435,8 @@
 \begin{block}{Three corresponding decision rules:}
   \begin{itemize}
     \item Two-sided: reject $\mu = 2$ whenever $|\bar{X}_n - 2|$ is too large.
-    \item One-sided $(<)$: only reject $\mu = 2$ if $X_n$ is far \alert{below} 2.
-    \item One-sided $(>)$: only reject $\mu = 2$ if $X_n$ is far \alert{above} 2.
+    \item One-sided $(<)$: only reject $\mu = 2$ if $\bar{X}_n$ is far \alert{below} 2.
+    \item One-sided $(>)$: only reject $\mu = 2$ if $\bar{X}_n$ is far \alert{above} 2.
   \end{itemize}
 \end{block}
   %These are stranger since the analogy with a confidence interval breaks down.
@@ -446,6 +446,136 @@
   %But the basic idea is that you're more likely to reject if the null is false.
   %Show an example.
   %Then explain about a one-sided p-value.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{One-sided $(>)$ Example: $X_1, \dots, X_{100} \sim \mbox{iid N}(\mu,1)$}
+  \begin{block}{Null and Alternative}
+  Test $H_0\colon \mu =2$ against $H_0\colon \mu >2$ with $\alpha = 0.05$. 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Test Statistic}
+    Drop absolute value for one-sided test: $\displaystyle T_n = \frac{\bar{X}_n - 2}{0.3}$ 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Decision Rule}
+    Reject $H_0\colon \mu =2$ if test statistic is \alert{large and positive}: $T_n > c$ 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Critical Value}
+    Choose $c$ so that $P(\mbox{type I error}) = P(T_n > c|\mu =2) = 0.05$ 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Under $H_0$, $T_n \sim N(0,1)$}
+   If $Z\sim N(0,1)$ what value of $c$ ensures $P(Z>c) = 0.05$? 
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{One-sided $(<)$ Example: $X_1, \dots, X_{100} \sim \mbox{iid N}(\mu,1)$}
+  \begin{block}{Null and Alternative}
+  Test $H_0\colon \mu =2$ against $H_0\colon \mu <2$ with $\alpha = 0.05$. 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Test Statistic}
+    Drop absolute value for one-sided test: $\displaystyle T_n = \frac{\bar{X}_n - 2}{0.3}$ 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Decision Rule}
+    Reject $H_0\colon \mu =2$ if test statistic is \alert{large and negative}: $T_n < c$ 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Critical Value}
+    Choose $c$ so that $P(\mbox{type I error}) = P(T_n < c|\mu =2) = 0.05$ 
+  \end{block}
+
+  \pause
+
+  \begin{block}{Under $H_0$, $T_n \sim N(0,1)$}
+   If $Z\sim N(0,1)$ what value of $c$ ensures $P(Z<c) = 0.05$? 
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Critical Values -- Two-sided vs.\ One-sided Tests: $\alpha = 0.05$}
+
+  \small
+
+  \vspace{-1em}
+
+  \begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{./images/onesided_vs_twosided.pdf}
+  \end{figure}
+
+  \vspace{-2em}
+
+  \begin{block}{Two-Sided}
+    Splits $\alpha=0.05$ between two tails: $c = \texttt{qnorm}(1 - 0.05/2) \approx 1.96$ 
+  \end{block}
+
+  \begin{block}{One-Sided}
+    One tail: $c = \texttt{qnorm}(0.05)\approx  -1.64$ for ($<$); $\texttt{qnorm}(0.95) \approx 1.64$ for ($>$) 
+  \end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Example: $X_1, \dots, X_{100} \sim \mbox{iid N}(\mu,1), \alpha = 0.05$}
+
+  \small
+
+  \[\boxed{\mbox{Suppose } \bar{x} = 1.5 \implies (\bar{x} - 2)/0.3 \approx -1.67}\]
+
+
+  \pause
+
+  \begin{columns}
+    \column{0.32\textwidth}
+    \begin{block}{Two-sided}
+      $H_1\colon \mu \neq 2$\\
+      Reject if $T_n > 1.96$\\
+      $T_n = 1.67$\\
+      \alert{Fail to reject}
+    \end{block}
+    \column{0.32\textwidth}
+    \begin{block}{One-sided $(<)$}
+      $H_1\colon \mu < 2$\\
+      Reject if $T_n < -1.64$\\
+      $T_n = -1.67$\\
+      \textcolor{blue}{Reject}
+    \end{block}
+    \column{0.32\textwidth}
+    \begin{block}{One-sided $(>)$}
+      $H_1\colon \mu > 2$\\
+      Reject if $T_n > 1.64$\\
+      $T_n = -1.67$\\
+      \alert{Fail to reject}
+    \end{block}
+  \end{columns}
+
+  \pause
+
+  \vspace{2em}
+  \begin{itemize}
+    \item If One-sided $(<)$ rejects, then one-sided $(>)$ doesn't and vice-versa. \pause
+    \item Two-sided and one-sided sometimes agree but sometimes disagree. \pause
+    \item One-sided test is ``less stringent.''
+  \end{itemize}
+  
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -463,25 +593,51 @@
     Reject $H_0$ whenever $\displaystyle \frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}} > \texttt{qnorm}(1 - \alpha)$ 
   \end{block}
 
-  \vspace{1em}
-  \alert{Why are the critical values different?}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{Why are the critical values different?}
-  Make a picture with three rejection regions: one for each test.
-  The key is controlling type one error.
-  Type one error depends on decision rule which depends on choice of alternative.
-  Explain why and when we might want to do a one-sided test.
-  Do an example with the test statistic 2.2 -- less stringent.
-  But have to specify the alternative in advance!
-  Also relationship with confidence interval breaks down.
-  Also p-value calculation is different.
+  \frametitle{One-sided P-value}
+
+  \small
+
+  \begin{itemize}
+    \item Only makes sense to calculate one-sided p-value when sign of test stat.\ agrees with alternative: \pause
+      \begin{itemize}
+        \item Preceding example: $T_n = -1.67$  \pause
+        \item Calculate p-value for test vs.\ $H_1\colon \mu < 2$ but \alert{not $H_1\colon \mu >2$} \pause
+      \end{itemize}
+    \item Just as in two-sided test, p-value equals value of $\alpha$ for which $c$ exactly equals the observed test statistic: \pause
+      \begin{itemize}
+        \item $c = \texttt{qnorm}(\alpha)$ for $(<)$ \pause
+        \item $c = \texttt{qnorm}(1 - \alpha)$ for $(>)$ \pause
+        \item Example: $-1.67 = \texttt{qnorm}(\alpha) \iff \alpha = 0.047$ \pause
+      \end{itemize}
+    \item Use and report  one-sided p-value in same way as two-sided p-value
+  \end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Final Notes on One-sided vs.\ Two-sided Tests}
+
+  \begin{itemize}
+    \item Two-sided test is the default. \pause
+    \item Don't use one-sided unless you have a good reason! \pause
+    \item Relationship between CI and test \alert{only holds for two-sided}.
+    \item Why and when should we consider a one-sided test?\pause
+      \begin{itemize}
+        \item Suppose we know \emph{a priori} that $\mu < 2$ is crazy/uninteresting\pause
+        \item Test of $H_0\colon \mu=2$ against $H_1\colon \mu>2$ with significance level $\alpha$ has \alert{lower type II error rate} than test against $H_1\colon \mu\neq 2$. \pause
+      \end{itemize}
+    \item If you use a one-sided test you \alert{must choose $(>)$ or $(<)$ \emph{before looking at the data}}. Otherwise the results are invalid.
+  \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Roadmap}
+  \small
 
   \begin{block}{Next Time}
     More examples of hypothesis testing using relationship to CIs to help us avoid re-inventing the wheel.
@@ -496,6 +652,7 @@
      \item If we reject $H_0$ does that mean that $H_0$ is false?
      \item How does testing relate to random sampling?
       \item How does critical value of two-sided test relate to width of CI?
+      \item In a given test, which is larger: the one-sided or two-sided p-value?
    \end{itemize}
   \end{block}
 
