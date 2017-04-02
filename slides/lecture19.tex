@@ -346,7 +346,8 @@
   \frametitle{Calculating the P-value}
 
   \begin{block}{Definition of a P-value}
-    The significance level $\alpha$ such that the critical value $c$ for the test is \alert{exactly equal} to the observed value of the test statistic. 
+    Significance level $\alpha$ such that the critical value $c$ \alert{exactly equals} the observed value of the test statistic. 
+    Equivalently: $\alpha$ that lies exactly on boundary between Reject and Fail to Reject.
   \end{block}
 
   \pause
@@ -354,7 +355,7 @@
   \begin{block}{Our Example}
     The observed value of the test statistic is $2.2$ and the critical value is $\texttt{qnorm}(1 - \alpha/2)$, so we need to solve:
 
-    \vspace{-1em}
+    \vspace{-2em}
 
     \small
     \begin{eqnarray*}
@@ -405,7 +406,7 @@
 \section{One-Sided Tests}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{One-sided Test: Restricted Alternative Hypothesis} 
+  \frametitle{One-sided Test: Different Decision Rule} 
 
   \begin{block}{Same Example as Above}
   $X_1, \dots, X_{100}\sim \mbox{iid N}(\mu, 1)$ and $H_0\colon \mu=2$. 
@@ -429,13 +430,15 @@
   \end{columns}
 \end{alertblock}
 
-  \vspace{1em}
+\vspace{1em}
 
+\begin{block}{Three corresponding decision rules:}
   \begin{itemize}
     \item Two-sided: reject $\mu = 2$ whenever $|\bar{X}_n - 2|$ is too large.
     \item One-sided $(<)$: only reject $\mu = 2$ if $X_n$ is far \alert{below} 2.
     \item One-sided $(>)$: only reject $\mu = 2$ if $X_n$ is far \alert{above} 2.
   \end{itemize}
+\end{block}
   %These are stranger since the analogy with a confidence interval breaks down.
   %Explain that the default should be a two-sided test.
   %Then explain why and when you might want to do a one-sided test.
@@ -469,20 +472,19 @@
   \frametitle{Why are the critical values different?}
   Make a picture with three rejection regions: one for each test.
   The key is controlling type one error.
-  Type one error depends on rejection rule which depends on choice of alternative.
-  Explain why we might want to do a one-sided test.
+  Type one error depends on decision rule which depends on choice of alternative.
+  Explain why and when we might want to do a one-sided test.
   Do an example with the test statistic 2.2 -- less stringent.
   But have to specify the alternative in advance!
   Also relationship with confidence interval breaks down.
   Also p-value calculation is different.
-  Maybe push this off until the end?
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Roadmap}
 
   \begin{block}{Next Time}
-    More examples of hypothesis testing, using relationship with confidence intervals to help us.
+    More examples of hypothesis testing using relationship to CIs to help us avoid re-inventing the wheel.
   \end{block}
 
 
@@ -493,7 +495,7 @@
    \begin{itemize}
      \item If we reject $H_0$ does that mean that $H_0$ is false?
      \item How does testing relate to random sampling?
-      \item How does critical value of a test relate to width of a CI?
+      \item How does critical value of two-sided test relate to width of CI?
    \end{itemize}
   \end{block}
 
