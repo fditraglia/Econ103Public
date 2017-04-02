@@ -371,21 +371,111 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{How to use a p-value?}
-  How to report results based on p-value. 
-  How p-value can be used to carry out a test with given $\alpha$
+
+  \small
+
+  \begin{block}{Alternative to Steps 4--5}
+   Rather than choosing $\alpha$, computing critical value $c$ and reporting ``Reject'' or ``Fail to Reject'' at $100\times \alpha\%$ level, just report p-value.
+  \end{block}
+
+  \pause
+
+  \begin{alertblock}{Example From Previous Slide}
+    P-value for our test of $H_0\colon \mu = 2$ against $H_1\colon \mu \neq 2$ was $\approx 0.028$
+  \end{alertblock}
+
+  \pause
+
+  \begin{block}{Using P-value to Test $H_0$}
+    Using the p-value we can test $H_0$ for \alert{any} $\alpha$ without doing any new calculations!
+    For $\mbox{p-value} < \alpha$ reject; for $\mbox{p-value} \geq \alpha$ fail to reject.
+
+  \end{block}
+
+  \pause
+
+  \begin{block}{Strength of Evidence Against $H_0$}
+    P-value measures \alert{strength of evidence against the null}.
+    Smaller p-value = stronger evidence against $H_0$.
+    P-value does \alert{doesn't} measure \alert{size} of effect.
+  \end{block}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{One-Sided Tests}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{One-sided Tests} 
-  These are stranger since the analogy with a confidence interval breaks down.
-  Explain that the default should be a two-sided test.
-  Then explain why and when you might want to do a one-sided test.
-  It's about \emph{power} which we'll cover in more detail in the next lecture. 
-  But the basic idea is that you're more likely to reject if the null is false.
-  Show an example.
-  Then explain about a one-sided p-value.
+  \frametitle{One-sided Test: Restricted Alternative Hypothesis} 
+
+  \begin{block}{Same Example as Above}
+  $X_1, \dots, X_{100}\sim \mbox{iid N}(\mu, 1)$ and $H_0\colon \mu=2$. 
+\end{block}
+
+\begin{alertblock}{Three possible alternatives:}
+
+  \begin{columns}
+    \column{0.23\textwidth}
+    \begin{block}{Two-sided}
+      $H_1\colon \mu \neq 2$
+    \end{block}
+    \column{0.23\textwidth}
+    \begin{block}{One-sided $(<)$}
+      $H_1\colon \mu < 2$
+    \end{block}
+    \column{0.23\textwidth}
+    \begin{block}{One-sided $(>)$}
+      $H_1\colon \mu > 2$
+    \end{block}
+  \end{columns}
+\end{alertblock}
+
+  \vspace{1em}
+
+  \begin{itemize}
+    \item Two-sided: reject $\mu = 2$ whenever $|\bar{X}_n - 2|$ is too large.
+    \item One-sided $(<)$: only reject $\mu = 2$ if $X_n$ is far \alert{below} 2.
+    \item One-sided $(>)$: only reject $\mu = 2$ if $X_n$ is far \alert{above} 2.
+  \end{itemize}
+  %These are stranger since the analogy with a confidence interval breaks down.
+  %Explain that the default should be a two-sided test.
+  %Then explain why and when you might want to do a one-sided test.
+  %It's about \emph{power} which we'll cover in more detail in the next lecture. 
+  %But the basic idea is that you're more likely to reject if the null is false.
+  %Show an example.
+  %Then explain about a one-sided p-value.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Testing $H_0\colon \mu = \mu_0$ when $X_1, \dots, X_n \sim \mbox{iid N}(\mu, \sigma^2)$}
+
+  \begin{block}{Two-Sided}
+    Reject $H_0$ whenever $\displaystyle \left|\frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}}\right|> \texttt{qnorm}(1 - \alpha/2)$ 
+  \end{block}
+
+  \begin{block}{One-Sided $(<)$}
+    Reject $H_0$ whenever $\displaystyle \frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}} < \texttt{qnorm}(\alpha)$ 
+  \end{block}
+
+  \begin{block}{One-Sided $(>)$}
+    Reject $H_0$ whenever $\displaystyle \frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}} > \texttt{qnorm}(1 - \alpha)$ 
+  \end{block}
+
+  \vspace{1em}
+  \alert{Why are the critical values different?}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Why are the critical values different?}
+  Make a picture with three rejection regions: one for each test.
+  The key is controlling type one error.
+  Type one error depends on rejection rule which depends on choice of alternative.
+  Explain why we might want to do a one-sided test.
+  Do an example with the test statistic 2.2 -- less stringent.
+  But have to specify the alternative in advance!
+  Also relationship with confidence interval breaks down.
+  Also p-value calculation is different.
+  Maybe push this off until the end?
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
