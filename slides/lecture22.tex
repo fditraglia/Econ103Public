@@ -22,20 +22,20 @@
 %
 %\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Population Regression Model}
+%\begin{frame}
+%\frametitle{Recall: Regression as a Data Summary}
+%	\begin{block}{Problem}
+%	$$\min_{a,b}  \sum_{i=1}^n (y_i - a - b x_i)^2$$
+%\end{block}
+%\begin{block}{Solution}
+%	\begin{eqnarray*}
+%		b &=& \frac{\sum_{i=1}^n \left(y_i - \bar{y}\right)\left(x_i - \bar{x} \right)}{\sum_{i=1}^n \left(x_i - \bar{x}\right)^2} = \frac{s_{xy}}{s_x^2} =  r\frac{s_y}{s_x}\\ \\
+%		a &=& \bar{y} - b\bar{x}
+%	\end{eqnarray*}
+%\end{block}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Recall: Regression as a Data Summary}
-	\begin{block}{Problem}
-	$$\min_{a,b}  \sum_{i=1}^n (y_i - a - b x_i)^2$$
-\end{block}
-\begin{block}{Solution}
-	\begin{eqnarray*}
-		b &=& \frac{\sum_{i=1}^n \left(y_i - \bar{y}\right)\left(x_i - \bar{x} \right)}{\sum_{i=1}^n \left(x_i - \bar{x}\right)^2} = \frac{s_{xy}}{s_x^2} =  r\frac{s_y}{s_x}\\ \\
-		a &=& \bar{y} - b\bar{x}
-	\end{eqnarray*}
-\end{block}
-\end{frame}
+\section{The Population Regression Model}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Beyond Regression as a Data Summary}
@@ -221,17 +221,17 @@ Suppose we observe an iid sample $(Y_1, X_1), \hdots, (Y_n, X_n)$ from the popul
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{Intuition for What Effects $SE(\widehat{\beta}_1)$ for Simple Regression}
-%
-%	$$SE(\widehat{\beta}_1) \approx \frac{\sigma}{\sqrt{n}} \cdot \frac{1}{s_X}$$
-%	\begin{itemize}
-%	\item $\sigma = SD(\epsilon)$ -- inherent variability of the $Y$, even after controlling for $X$
-%	\item $n$ is the sample size
-%	\item $s_X$ is the sampling variability of the $X$ observations.
-%	\end{itemize}
-%\end{frame}
-%
+\begin{frame}
+\frametitle{Intuition for What Effects $SE(\widehat{\beta}_1)$ for Simple Regression}
+
+	$$SE(\widehat{\beta}_1) \approx \frac{\sigma}{\sqrt{n}} \cdot \frac{1}{s_X}$$
+	\begin{itemize}
+	\item $\sigma = SD(\epsilon)$ -- inherent variability of the $Y$, even after controlling for $X$
+	\item $n$ is the sample size
+	\item $s_X$ is the sampling variability of the $X$ observations.
+	\end{itemize}
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
