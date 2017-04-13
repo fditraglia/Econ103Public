@@ -1,32 +1,28 @@
+%\section{Review of Linear Regression as a Data Summary}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Recall: ``Best Fitting'' Line Through Cloud of Points}
+%\begin{figure}
+%	\includegraphics[scale = 0.48]{./images/midterms5}
+%\end{figure}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Recall: Regression as a Data Summary}
+%\begin{block}{Linear Model}
+%$\hat{y} = a + b x$
+%\end{block}
+%\begin{block}{Choose $a,b$ to Minimize Sum of Squared Vertical Deviations}
+%$\displaystyle\sum_{i = 1}^n d_i^2 = \sum_{i=1}^n (y_i - a - b x_i)^2$
+%\end{block}
+%
+%\begin{block}{The Prediction}
+%Predict score $\hat{y} = a + b x$ on second midterm for someone with score $x$ on first.
+%\end{block}
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\begin{center}
-	\huge Regression -- Part II
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Recall: ``Best Fitting'' Line Through Cloud of Points}
-\begin{figure}
-	\includegraphics[scale = 0.48]{./images/midterms5}
-\end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Recall: Regression as a Data Summary}
-\begin{block}{Linear Model}
-$\hat{y} = a + b x$
-\end{block}
-\begin{block}{Choose $a,b$ to Minimize Sum of Squared Vertical Deviations}
-$\displaystyle\sum_{i = 1}^n d_i^2 = \sum_{i=1}^n (y_i - a - b x_i)^2$
-\end{block}
-
-\begin{block}{The Prediction}
-Predict score $\hat{y} = a + b x$ on second midterm for someone with score $x$ on first.
-\end{block}
-
-\end{frame}
+\section{The Population Regression Model}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Recall: Regression as a Data Summary}
@@ -96,6 +92,8 @@ Suppose we observe an iid sample $(Y_1, X_1), \hdots, (Y_n, X_n)$ from the popul
 	\alert{Once we have estimators, we can think about sampling uncertainty...}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Inference for Regression}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -223,17 +221,17 @@ Suppose we observe an iid sample $(Y_1, X_1), \hdots, (Y_n, X_n)$ from the popul
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Intuition for What Effects $SE(\widehat{\beta}_1)$ for Simple Regression}
-
-	$$SE(\widehat{\beta}_1) \approx \frac{\sigma}{\sqrt{n}} \cdot \frac{1}{s_X}$$
-	\begin{itemize}
-	\item $\sigma = SD(\epsilon)$ -- inherent variability of the $Y$, even after controlling for $X$
-	\item $n$ is the sample size
-	\item $s_X$ is the sampling variability of the $X$ observations.
-	\end{itemize}
-\end{frame}
-
+%\begin{frame}
+%\frametitle{Intuition for What Effects $SE(\widehat{\beta}_1)$ for Simple Regression}
+%
+%	$$SE(\widehat{\beta}_1) \approx \frac{\sigma}{\sqrt{n}} \cdot \frac{1}{s_X}$$
+%	\begin{itemize}
+%	\item $\sigma = SD(\epsilon)$ -- inherent variability of the $Y$, even after controlling for $X$
+%	\item $n$ is the sample size
+%	\item $s_X$ is the sampling variability of the $X$ observations.
+%	\end{itemize}
+%\end{frame}
+%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -243,6 +241,8 @@ I treated the class as our population for the purposes of the simulation experim
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example: Height and Handspan}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{Height = $\beta_0 +  \epsilon$}
@@ -360,6 +360,8 @@ residual sd = 3.56, R-Squared = 0.40
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multiple Regression}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Simple vs.\ Multiple Regression}
 \begin{block}{Terminology}
@@ -422,6 +424,8 @@ n = 80, k = 2
 residual sd = 3.56, R-Squared = 0.40
 \end{verbatim}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Residual Standard Deviation and $R^2$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
