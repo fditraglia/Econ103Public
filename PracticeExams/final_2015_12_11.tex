@@ -229,7 +229,7 @@ Briefly explain why.
 \begin{parts}
   \part[5] Apply the ``textbook'' procedure for constructing an approximate 95\% CI for a population proportion based on the CLT to the data given in the problem statement.
   \begin{solution}[2.3in]
-    Since $\widehat{p}=0$, the textbook interval $\widehat{p} \pm \texttt{pnorm}(1 - \alpha/2)\sqrt{\widehat{p}(1-\widehat{p})/n}$ simply gives $(0,0)$.
+    Since $\widehat{p}=0$, the textbook interval $\widehat{p} \pm \texttt{qnorm}(1 - \alpha/2)\sqrt{\widehat{p}(1-\widehat{p})/n}$ simply gives $(0,0)$.
   \end{solution}
   \part[5] Repeat the preceding part using the \emph{refined} interval.
   \begin{solution}[2.3in]
