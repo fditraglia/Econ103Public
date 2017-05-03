@@ -7,7 +7,7 @@
 %\pointsinmargin
 
 %\printanswers
-%\noprintanswers
+\noprintanswers
 
 \pagestyle{headandfoot}
 \runningheadrule
@@ -251,9 +251,9 @@ Each row contains data for a single professor. The column \texttt{rank} is a cat
 	 \end{tabular}
 
 \vspace{1em}
-	 Explain these results. How to they compare to your confidence interval and p-value from parts (b) and (c)? If you find differences, can you propose an explanation? What overall conclusions, if any, can we draw from this dataset?
+	 Explain these results. How do they compare to your confidence interval and p-value from parts (b) and (c)? If you find differences, can you propose an explanation? What overall conclusions, if any, can we draw from this dataset?
 	 \begin{solution}[15.5cm]
-	 	When comparing male and female professor salaries across \emph{all} ranks, we found a large and statistically significant difference. In particular, our CI was $(\$9000, \$23000)$ per year. Breaking the comparison down by \texttt{rank} we still find that women earn less, on average, in each rank but the differences are not even close to statistically significant. Two things are going on here. First, we see from the table given above that women are disproportionately represented among the two lower-paying professor ranks: Assistant and Associate. Thus, \texttt{rank} was a \emph{confounded} in our initial comparison. However, there's a second effect. Even though the sample mean is lower for women in each \texttt{rank}, there are so few women in each of the three categories that we can't get a very precise estimate for the difference of means: the standard errors are large which widens the intervals. It certainly appears that female professors earn less, which could potentially be evidence of discrimination, but we simply don't have enough women in our dataset to get a definitive answer. Ironically, the fact that there are few women in academia, \emph{itself} potential evidence of discrimination, makes it harder to detect if women face salary discrimination!
+	 	When comparing male and female professor salaries across \emph{all} ranks, we found a large and statistically significant difference. In particular, our CI was $(\$5000, \$23000)$ per year. Breaking the comparison down by \texttt{rank} we still find that women earn less, on average, in each rank but the differences are not even close to statistically significant. Two things are going on here. First, we see from the table given above that women are disproportionately represented among the two lower-paying professor ranks: Assistant and Associate. Thus, \texttt{rank} was a \emph{confounded} in our initial comparison. However, there's a second effect. Even though the sample mean is lower for women in each \texttt{rank}, there are so few women in each of the three categories that we can't get a very precise estimate for the difference of means: the standard errors are large which widens the intervals. It certainly appears that female professors earn less, which could potentially be evidence of discrimination, but we simply don't have enough women in our dataset to get a definitive answer. Ironically, the fact that there are few women in academia, \emph{itself} potential evidence of discrimination, makes it harder to detect if women face salary discrimination!
 	 \end{solution}
 \end{parts}
 
