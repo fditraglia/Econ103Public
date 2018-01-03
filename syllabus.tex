@@ -4,21 +4,41 @@
 \usepackage{setspace}
 \linespread{1}
 \usepackage{hyperref}
+\usepackage{totcount}
+\usepackage{termcal}
 \usepackage{enumerate}
 \usepackage{fancybox}
 \usepackage{amsmath, amssymb}
 
+%%%%%%%%%%%%% A Command to create an automatically numbered Quiz Icon in the course calendar.
+\newtotcounter{quizcounter}
+\newcommand{\quiz}{\addtocounter{quizcounter}{1}\fbox{\textbf{Quiz \#\arabic{quizcounter}}}}
 
 
+% Some useful commands (our classes always meet either on Monday and Wednesday 
+% or on Tuesday and Thursday)
+\newcommand{\MWClass}{%
+\calday[Monday]{\classday} % Monday
+\skipday % Tuesday (no class)
+\calday[Wednesday]{\classday} % Wednesday
+\skipday % Thursday (no class)
+\skipday % Friday 
+\skipday\skipday % weekend (no class)
+}
 
-%%% HEADERS & FOOTERS
-\usepackage{fancyhdr} 
-\pagestyle{fancy} % options: empty , plain , fancy
-\renewcommand{\headrulewidth}{0.4pt} % customise the layout...
-\rhead{\footnotesize DiTraglia -- Spring 2016}
-\lhead{\footnotesize Econ 103 Syllabus}
-\renewcommand\footrulewidth{0pt}
+\newcommand{\TRClass}{%
+\skipday % Monday (no class)
+\calday[Tuesday]{\classday} % Tuesday
+\skipday % Wednesday (no class)
+\calday[Thursday]{\classday} % Thursday
+\skipday % Friday 
+\skipday\skipday % weekend (no class)
+}
 
+\newcommand{\Holiday}[2]{%
+\options{#1}{\noclassday}
+\caltext{#1}{#2}
+}
 
 \begin{document}
 
@@ -36,26 +56,81 @@ Spring 2017
 \end{center}
 
 
+
 \normalsize
-\bigskip
-\noindent \textbf{Course Instructor:} Francis DiTraglia 
+
+\noindent \textbf{Course Instructor:} Francis DiTraglia \\
+Office: MCNB 535\\
+Office Hours: ??? 
 
 \medskip
 
 
 \noindent \textbf{Recitation Instructors:}
-  Michael Chirico,
-  Ethan (Mallick) Hossain,
-  Rodrigo Azuero-Melo
+
+\medskip
+\noindent
+
+\begin{tabular}{llll}
+  & Assa Cohen & Philippe Goulet Coulombe & Gabrielle Vasey\\
+Office:& MCNB ??? & MCNB ??? & MCNB ??? \\ 
+Office Hours:& ??? & ??? & ??? 
+\end{tabular}
+
+\medskip
+ 
+\noindent \textbf{Lecture Time and Location:} TR 9-10:30AM ANNS 110 
+
 \medskip
 
+\noindent \textbf{Recitations Times and Locations:}
+\medskip \noindent
 
-\noindent \textbf{Office Hours:} \emph{For times and locations, see the semester calendar on the \href{http://ditraglia.com/Econ103Public}{course website}.}
+\begin{tabular}{llllll}
+	Section 201 & Section 202 & Section 203 & Section 204 & Section 205 & Section 206\\ 
+  Philippe & Philippe & Gabrielle & Gabrielle & Assa & Assa\\
+	MCNB 285 & WILL 204 & MCNB 167-8 & WILL 204 & MCNB 285 & WILL 216 \\ 
+  M 10--11am & F 9--10am & M noon--1pm & F 10--11am & M 11am--noon & M 1--2pm
+\end{tabular}
+
+
+\medskip
+
+%ECON-103  STAT FOR ECONOMISTS               1 CU
+%     REGISTRATION REQUIRED FOR LEC, REC
+%     COLLEGE QUANTITATIVE DATA ANALYSIS REQ.
+% 001 LEC TR 9-10:30AM ANNS 110       DITRAGLIA F
+%     MAX: 144               
+%          RECITATION                        0 CU
+% 201 REC M 10-11AM MCNB 285      GOULET COULOMBE
+%     MAX: 24                
+% 202 REC F 9-10AM WILL 204       GOULET COULOMBE
+%     MAX: 24                
+% 203 REC M 12-1PM MCNB 167-8             VASEY G
+%     MAX: 24                
+% 204 REC F 10-11AM WILL 204              VASEY G
+%     MAX: 24                
+% 205 REC M 11-12NOON MCNB 285            COHEN A
+%     MAX: 24                
+% 206 REC M 1-2PM WILL 216                COHEN A
+%     MAX: 0                 
+%
+
+%\noindent \textbf{Recitation Instructors:}
+%Assa Cohen,
+%Philippe Goulet Coulombe,
+%Gabrielle Vasey
+%\medskip
+
+
+%\noindent \textbf{Office Hours:} \emph{For times and locations, see the semester calendar on the \href{http://ditraglia.com/Econ103Public}{course website}.}
 
 
 \medskip
  
-\noindent \textbf{Course Website:} \url{http://ditraglia.com/Econ103Public} At this url you can view the semester calendar and download all lecture slides, problem sets, etc.
+\noindent \textbf{Course Website:} \url{http://ditraglia.com/Econ103Public} At this url you can 
+%view the semester calendar and 
+download all lecture slides, problem sets, etc.
 You can view your grades and log-on to the course discussion forum, Piazza, at \url{https://canvas.upenn.edu}.
 
 \medskip
@@ -75,18 +150,18 @@ After completing this course you will be able to carry out simple statistical an
 
 \medskip
 
-\noindent \textbf{Lecture Recordings:} 
-Audio and screen captures of the lectures for this course will be recorded and posted on \href{http://upenn.instructure.com}{Canvas}. 
-This is a great way to get caught up if you miss a lecture.
-Be aware, however, that the lecture recording system is not 100\% reliable and the instructors have no direct control over it: in a typical semester one or two lectures will fail to be recorded due to technical problems.
-If you encounter any problems with the recordings, please contact \texttt{mms-help@sas.upenn.edu} directly.
-\medskip
+%\noindent \textbf{Lecture Recordings:} 
+%Audio and screen captures of the lectures for this course will be recorded and posted on \href{http://upenn.instructure.com}{Canvas}. 
+%This is a great way to get caught up if you miss a lecture.
+%Be aware, however, that the lecture recording system is not 100\% reliable and the instructors have no direct control over it: in a typical semester one or two lectures will fail to be recorded due to technical problems.
+%If you encounter any problems with the recordings, please contact \texttt{mms-help@sas.upenn.edu} directly.
+%\medskip
 
 \noindent \textbf{Prerequisites:} 
 The prerequisites for this course are Math 104 followed by 114 or 115. 
-To help you determine if this course is right for you we will administer a short math quiz early in the semester.
-Although it will not count towards your grade, you must pass this quiz to be allowed to take the first midterm.
-You may re-take the math quiz as many times as necessary until you pass.
+%To help you determine if this course is right for you we will administer a short math quiz early in the semester.
+%Although it will not count towards your grade, you must pass this quiz to be allowed to take the first midterm.
+%You may re-take the math quiz as many times as necessary until you pass.
 
 
 
@@ -244,5 +319,61 @@ Here are links to some additional free resources to help you learn R:
 		 	\item \url{http://cran.r-project.org/doc/contrib/Farnsworth-EconometricsInR.pdf}
  			\item \url{http://www.ats.ucla.edu/stat/R/}
 \end{itemize}
+
+
+\newpage
+
+
+%NOTE: don't use leading zeros in dates! In other words, use 1/1/2014 rather than 01/01/2014
+
+\begin{center}
+\small
+\begin{calendar}{1/8/2018}{16} %Date of Monday in first week of classes, NOT the date of the first class!
+\setlength{\calboxdepth}{.25in}
+\TRClass
+% schedule
+\caltexton{1}{Introduction \hfill \fbox{\emph{No Recitations 1/12 or 1/15}}}
+\caltextnext{Summary Statistics I} 
+\caltextnext{Summary Statistics II \hfill\quiz} 
+\caltextnext{Regression I}
+\caltextnext{Basic Probability I \hfill\quiz}
+\caltextnext{Basic Probability II}
+\caltextnext{Basic Probability III / Discrete RVs I \hfill\quiz}
+\caltextnext{Discrete RVs II}
+\caltextnext{Discrete RVs III}  
+\caltextnext{Discrete RVs IV} 
+\caltextnext{Continuous RVs I} 
+\caltextnext{Continuous RVs II \hfill\quiz} 
+\caltextnext{Sampling Dists.\ \& Estimation I}
+\caltextnext{Sampling Dists.\ \& Estimation II \hfill\quiz} 
+\caltextnext{Confidence Intervals I}
+\caltextnext{Confidence Intervals II \hfill\quiz} 
+\caltextnext{Confidence Intervals III}
+\caltextnext{Hypothesis Testing I}
+\caltextnext{Hypothesis Testing II\hfill\quiz} 
+\caltextnext{Hypothesis Testing III}
+\caltextnext{Statistical Power \hfill\quiz}
+\caltextnext{Regression II} 
+\caltextnext{Regression III \hfill\quiz}
+\caltextnext{Additional Topics TBA}
+% ... and so on
+
+% Holidays
+\Holiday{1/9/2018}{\textbf{Winter Break -- No Class}}
+\Holiday{1/18/2018}{\textbf{R/Rstudio Clinic instead of Lecture}} 
+\Holiday{3/6/2018}{\textbf{Spring Break -- No Class}}
+\Holiday{3/8/2018}{\textbf{Spring Break -- No Class}}
+
+\options{2/13/2018}{\noclassday} % first midterm exam
+\caltext{2/13/2018}{\shadowbox{\textbf{Midterm I} -- Material through Feb.\ 8th}}
+\options{3/27/2018}{\noclassday} %second midterm exam
+\caltext{3/27/2018}{\shadowbox{\textbf{Midterm II} -- Material through March\ 22nd}}
+\options{4/24/2018}{\noclassday} % finals
+\caltext{4/24/2018}{\textbf{Final Review Session instead of Lecture}}
+\options{4/26/2018}{\noclassday} % finals
+\caltext{4/26/2018}{\textbf{Reading Day -- No Class}}
+\end{calendar}
+\end{center}
+
 
 \end{document}
