@@ -45,13 +45,13 @@ How many credits are you taking this semester? Please respond using your remote.
   \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Numeric Entry -- How long did you sleep?} 
-  For how many hours did you sleep last night? 
-  \vspace{1em}
-
-  Please round to the nearest half hour, e.g.\ 7 hours 23 minutes becomes 7.5.
-\end{frame}
+%\begin{frame}
+%  \frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Numeric Entry -- How long did you sleep?} 
+%  For how many hours did you sleep last night? 
+%  \vspace{1em}
+%
+%  Please round to the nearest half hour, e.g.\ 7 hours 23 minutes becomes 7.5.
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -160,134 +160,155 @@ What is your best estimate of the \alert{percentage} of countries, among all tho
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}
-
-\Huge \centering 
-Types of Variables
-
-
-\end{frame}
+%\begin{frame}
+%
+%\Huge \centering 
+%Types of Variables
+%
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Types of Variables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{A Taxonomy of Variables}
-
-\begin{figure}[htbp]
-\begin{center}
-
-\synttree[Variables
-			[\begin{tabular}{c}Categorical\\(Qualitative)\end{tabular}
-				[Nominal]
-				[Ordinal]
-			]%END Categorical
-			[\begin{tabular}{c}Numerical\\(Quantitative)\end{tabular}
-				[Interval
-					[Continuous]
-					[Discrete]
-				]%END interval
-				[Ratio
-					[Continuous]
-					[Discrete]
-				]%END Ratio
-			]%END numerical
-]%END tree
-%\caption{Types of Data}
-%\label{fig:tree}
-\end{center}
-\end{figure}
-\end{frame}
+%\begin{frame}
+%\frametitle{A Taxonomy of Variables}
+%
+%\begin{figure}[htbp]
+%\begin{center}
+%
+%\synttree[Variables
+%			[\begin{tabular}{c}Categorical\\(Qualitative)\end{tabular}
+%				[Nominal]
+%				[Ordinal]
+%			]%END Categorical
+%			[\begin{tabular}{c}Numerical\\(Quantitative)\end{tabular}
+%				[Interval
+%					[Continuous]
+%					[Discrete]
+%				]%END interval
+%				[Ratio
+%					[Continuous]
+%					[Discrete]
+%				]%END Ratio
+%			]%END numerical
+%]%END tree
+%%\caption{Types of Data}
+%%\label{fig:tree}
+%\end{center}
+%\end{figure}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{From Weakest to Strongest}
+\frametitle{Types of Variables}
 \begin{block}{Categorical}
-Qualitative, assigns each unit to category, number either meaningless or indicates order only \pause
+Qualitative, assigns each unit to category, number either meaningless or indicates order only 
 		\begin{description}
-			\item[Nominal] no order to the categories  \pause
-			\item[Ordinal]  categories with natural order \pause
+			\item[Nominal] no order to the categories  
+			\item[Ordinal]  categories with natural order 
 		\end{description}
-\end{block}
-\begin{block}{Numerical}
-Quantitative, number meaningful \pause
-		\begin{description}
-			\item[Interval] only differences meaningful, no natural zero \pause
-			\item[Ratio] differences and ratios meaningful, natural zero 
-		\end{description}
-\end{block}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{And For Numerical Variables (interval or ratio)...}
-\begin{block}{Discrete}
-Takes value from discrete set of numbers, typically count data
 \end{block}
 \pause
-\begin{block}{Continuous}
-Value could be any real number within some range (even though \emph{measurements} are made with finite precision)
+\begin{block}{Numerical}
+Quantitative, number meaningful 
+		\begin{description}
+			\item[Discrete] Value from discrete set (often count data) 
+      \item[Continuous] Value could conceptually be any real number within some range (though \emph{measurements} have finite precision)
+		\end{description}
 \end{block}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
-\begin{center}
-\Huge
-Note that in R, categorical variables are called \emph{factors}
-\end{center}
+\frametitle{Types of Variables -- Examples}
+\begin{block}{Categorical (called \emph{Factor} in R)}
+		\begin{description}
+			\item[Nominal] eye color, sex
+			\item[Ordinal] course evaluations (0 = Poor, 1 = Fair, \dots)
+		\end{description}
+\end{block}
+
+\begin{block}{Numerical}
+		\begin{description}
+			\item[Discrete] credits you are taking this semester 
+      \item[Continuous] height, handspan, handedness (from survey) 
+		\end{description}
+\end{block}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill What kind of variable is...}
-...Handspan?
-	\begin{enumerate}[(a)]
-\item Nominal
-\item Ordinal
-\item Interval
-\item Ratio
-\end{enumerate}
-\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill What kind of variable is...}
-...Temperature?
-	\begin{enumerate}[(a)]
-\item Nominal
-\item Ordinal
-\item Interval
-\item Ratio
-\end{enumerate}
-\end{frame}
+%\begin{frame}
+%\frametitle{And For Numerical Variables (interval or ratio)...}
+%\begin{block}{Discrete}
+%Takes value from discrete set of numbers, typically count data
+%\end{block}
+%\pause
+%\begin{block}{Continuous}
+%Value could be any real number within some range (even though \emph{measurements} are made with finite precision)
+%\end{block}
+%
+%\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill What kind of variable is...}
-...Eye Color?
-	\begin{enumerate}[(a)]
-\item Nominal
-\item Ordinal
-\item Interval
-\item Ratio
-\end{enumerate}
-\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\begin{center}
+%\Huge
+%Note that in R, categorical variables are called \emph{factors}
+%\end{center}
+%\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill What kind of variable?}
-On course evaluations you can rate your professor as follows:\\ 0 = Poor, 1 = Fair, 2 = Good,  3 = Very Good, 4 = Excellent. What kind of data is your rating?
-	\begin{enumerate}[(a)]
-\item Nominal
-\item Ordinal
-\item Interval
-\item Ratio
-\end{enumerate}
-\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill What kind of variable is...}
+%...Handspan?
+%	\begin{enumerate}[(a)]
+%\item Nominal
+%\item Ordinal
+%\item Interval
+%\item Ratio
+%\end{enumerate}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill What kind of variable is...}
+%...Temperature?
+%	\begin{enumerate}[(a)]
+%\item Nominal
+%\item Ordinal
+%\item Interval
+%\item Ratio
+%\end{enumerate}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill What kind of variable is...}
+%...Eye Color?
+%	\begin{enumerate}[(a)]
+%\item Nominal
+%\item Ordinal
+%\item Interval
+%\item Ratio
+%\end{enumerate}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill What kind of variable?}
+%On course evaluations you can rate your professor as follows:\\ 0 = Poor, 1 = Fair, 2 = Good,  3 = Very Good, 4 = Excellent. What kind of data is your rating?
+%	\begin{enumerate}[(a)]
+%\item Nominal
+%\item Ordinal
+%\item Interval
+%\item Ratio
+%\end{enumerate}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Frequency, Relative Frequency, \& Histograms}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -422,15 +443,15 @@ Bins & Freq.\ & Rel.\ Freq.\ \\
 \begin{block}{Why Histogram?}
 Summarize numerical data, especially continuous (few repeats)
 \end{block}
-\pause
+
 \begin{block}{Too Many Bins -- Undersmoothing}
 No longer a summary (lose the shape of distribution)
 \end{block}
-\pause
+
 \begin{block}{Too Few Bins -- Oversmoothing}
 Miss important detail
 \end{block}
-\pause
+
 \begin{alertblock}{Don't confuse with barchart!}
 \end{alertblock}
 \end{frame}
@@ -445,18 +466,18 @@ Miss important detail
 	\begin{itemize}
 \item Mean
 \item Median
-\end{itemize}\pause
+\end{itemize}
 \item Measures of Spread
 	\begin{itemize}
 \item Variance
 \item Standard Deviation
 \item Range
 \item Interquartile Range (IQR)
-\end{itemize} \pause
+\end{itemize} 
 \item Measures of Symmetry
 	\begin{itemize}
 		\item Skewness
-	\end{itemize} \pause
+	\end{itemize} 
 \item Measures of relationship between variables 
 	\begin{itemize}
 \item Covariance
@@ -482,6 +503,15 @@ Miss important detail
 
 \section{Measures of Central Tendency}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What is an Outlier?}
+	\begin{block}{Outlier}
+	A very unusual observation relative to the other observations in the dataset (i.e.\ very small or very big).
+\end{block}
+\end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Measures of Central Tendency}
@@ -490,18 +520,34 @@ Suppose we have a dataset with observations $x_1, x_2, \hdots, x_n$
 		\begin{itemize}
 			\item $\displaystyle\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$
 			\item Only for numeric data
-			\item Works best when data are symmetric and there are no outliers
+			\item Sensitive to asymmetry and outliers
 		\end{itemize}
 	\end{block}\pause
 	\begin{block}{Sample Median}
 		\begin{itemize}
 		\item Middle observation if $n$ is odd, otherwise the mean of the two observations closest to the middle.
 		\item Applicable to numerical or ordinal data
-		\item Robust to outliers and skewness
+		\item Insensitive to outliers and skewness
 		\end{itemize}
 	\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Mean is Sensitive to Outliers, Median Isn't}
+
+\begin{block}{First Dataset: $\begin{array}{ccccc}1& 2& 3& 4& 5\end{array}$}
+Mean = 3, Median = 3
+\end{block}
+\pause
+
+\begin{block}{Second Dataset: $\begin{array}{ccccc}1& 2& 3& 4& 4990\end{array}$}
+Mean = 1000, Median = 3
+\end{block}
+\pause
+\begin{alertblock}{When Does the Median Change?}Ranks would have to change so that 3 is no longer in the middle.\end{alertblock}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Percentage of UN Countries that are in Africa}
 \begin{block}{You Were a Subject in a Randomized Experiment!}
@@ -540,31 +586,6 @@ High Group (shown 65) $\rightarrow$ median answer of 45
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{What is an Outlier?}
-	\begin{block}{Outlier}
-	A very unusual observation relative to the other observations in the dataset (i.e.\ very small or very big).
-\end{block}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Mean is Sensitive to Outliers, Median Isn't}
-
-\begin{block}{First Dataset: $\begin{array}{ccccc}1& 2& 3& 4& 5\end{array}$}
-Mean = 3, Median = 3
-\end{block}
-\pause
-
-\begin{block}{Second Dataset: $\begin{array}{ccccc}1& 2& 3& 4& 4990\end{array}$}
-Mean = 1000, Median = 3
-\end{block}
-\pause
-\begin{alertblock}{When Does the Median Change?}Ranks would have to change so that 3 is no longer in the middle.\end{alertblock}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 \frametitle{Percentiles (aka Quantiles) -- Generalization of Median}
 \begin{center}\fbox{Approx.\ $P\%$ of the data are at or below the $P^{th}$ percentile.} \end{center}
 \vspace{1.5em}
@@ -599,26 +620,26 @@ $$\begin{array}{cccccccccccc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Student Debt}
+%Guess the \alert{90th percentile} of student loan debt in the U.S. That is, guess the amount of money such that 10\% college students graduate with \emph{more} than this amount of debt and 90\% graduate with less than or equal to this amount of debt.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Student Debt}
+%
+%Would you guess that the median amount of student loan debt in the U.S.\ is above, below,  or equal to the mean amount?
+%\begin{enumerate}[(a)]
+%	\item Median $>$ Mean
+%	\item Median $=$ Mean
+%	\item Median $<$ Mean
+%\end{enumerate}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Student Debt}
-Guess the \alert{90th percentile} of student loan debt in the U.S. That is, guess the amount of money such that 10\% college students graduate with \emph{more} than this amount of debt and 90\% graduate with less than or equal to this amount of debt.
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Student Debt}
-
-Would you guess that the median amount of student loan debt in the U.S.\ is above, below,  or equal to the mean amount?
-\begin{enumerate}[(a)]
-	\item Median $>$ Mean
-	\item Median $=$ Mean
-	\item Median $<$ Mean
-\end{enumerate}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\footnotesize Source: \href{http://www.aeaweb.org/articles.php?doi=10.1257/jep.26.1.165}{\fbox{Avery \& Turner (2012)}}}
+  \frametitle{Quantiles of Student Debt \hfill \footnotesize Source: \href{http://www.aeaweb.org/articles.php?doi=10.1257/jep.26.1.165}{\fbox{Avery \& Turner (2012)}}}
 
 
 \centering \includegraphics[scale = 0.18]{./images/student_borrowing}
@@ -641,45 +662,45 @@ Minimum $<$ Q1 $<$ Median $<$ Q3 $<$ Maximum
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-\frametitle{Measures of Variability/Spread}
+\frametitle{Measures of Variability/Spread -- 1}
 
 \begin{block}{Range}
-Maximum Observation - Minimum Observation
+  \begin{itemize}
+    \item Range = Maximum Observation - Minimum Observation
+    \item \emph{Very} sensitive to outliers. 
+    \item Displayed in boxplot.
+  \end{itemize}
 \end{block}
-\pause
+
 \begin{block}{Interquartile Range (IQR)}
-IQR= $\mbox{Q}_3 - \mbox{Q}_1$
-\end{block}
-\pause
-\begin{block}{Variance}
-$\displaystyle s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$
-\end{block}
-\pause
- \begin{block}{Standard Deviation}
-	$s = \sqrt{s^2}$
+  \begin{itemize}
+    \item IQR= $\mbox{Q}_3 - \mbox{Q}_1$
+    \item IQR = Range of middle 50\% of the data. 
+    \item Insensitive to outliers.  
+    \item Displayed in boxplot.
+  \end{itemize}
 \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
+\frametitle{Measures of Variability/Spread -- 2}
 \begin{block}{Variance}
-Essentially the average squared distance from the mean. Sensitive to both skewness and outliers.
-\end{block}
-\pause
-\begin{block}{Standard Deviation}
-$\sqrt{\mbox{Variance}}$, but more convenient since \alert{same units as data}
-\end{block}
-\pause
-\begin{block}{Range}
-Difference between larges and smallest observations. \emph{Very} sensitive to outliers. Displayed in boxplot.
-\end{block}
-\pause
-\begin{block}{Interquartile Range}
-Range of middle 50\% of the data. Insensitive to outliers, skewness. Displayed in boxplot.
+  \begin{itemize}
+    \item $\displaystyle s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$
+    \item Essentially the average squared distance from the mean. 
+    \item (We'll talk about $n-1$ versus $n$ later in the semester)
+    \item Sensitive to both skewness and outliers.
+  \end{itemize}
 \end{block}
 
+ \begin{block}{Standard Deviation}
+   \begin{itemize}
+	    \item $s = \sqrt{s^2}$
+      \item Same information as variance but more convenient since it has the \alert{same units as the data}
+   \end{itemize}
+\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
