@@ -2,8 +2,6 @@
 title: "R Tutorial #2 -- Econ 103"
 output:
   html_document:
-    includes:
-      in_header: "google-font.html"
     css: custom.css
     theme: readable
     toc: yes
@@ -11,7 +9,7 @@ output:
     highlight: zenburn
     toc: yes
 ---
-This tutorial has three parts. In the [first part](#part_one), you'll learn how to implement the summary statistics and graphics from class using R. In the [second part](#part_two), you'll use what you've learned to explore a real-world dataset: the passenger manifest from the Titanic. In the third (and shortest) part, you'll explore some data relevant to the city you live in -- wage data for all Philadelphia government employees.
+This tutorial has three parts. In the [first part](#part_one), you'll learn how to implement the summary statistics and graphics from class using R. In the [second part](#part_two), you'll use what you've learned to explore a real-world dataset: the passenger manifest from the Titanic. 
 
 # Summary Stats and Graphics {#part_one}
 
@@ -520,7 +518,7 @@ Notice that if you used $n$ breakpoints, you need $n-1$ labels since they corres
 
 ```{r TOGGLE_SOLUTIONS, echo = FALSE, purl = FALSE}
 #use this to turn the display of answers on/off
-#knitr::opts_chunk$set(echo = FALSE, results = 'hide', fig.show = 'hide')
+knitr::opts_chunk$set(echo = FALSE, results = 'hide', fig.show = 'hide')
 ```
 
 # Exploring the Titanic {#part_two}
@@ -632,49 +630,5 @@ titanic[ , age.group := cut(titanic$age, c(0, 15, 25, 65, 200),
 
 ```{r exercise_13_ti}
 titanic[!is.na(age), mean(survived), keyby = .(sex, pclass, age.group)]
-```
-
-# Philadelphia Employee Wages {#part_three}
-
-For transparency purposes, the City of Philadelphia releases records detailing the pay of all of its roughly 32,000 employees.
-
-You can read the documentation for this data set [here](https://dev.socrata.com/foundry/data.phila.gov/n4fw-5bch). 
-
-The data can be accessed at the following link:
-
-https://data.phila.gov/api/views/ihvw-4zq5/rows.csv
-
-Since it's a secure URL, you'll either need to install the `curl` package (`install.packages("curl")`) or simply download the data set to your own computer and specify the file path to read in the data using `fread`.
-
-1. Load the data set into a `data.table` called `wages` and display it
-
-```{r exercise_1_ph}
-wages = fread('https://data.phila.gov/api/views/ihvw-4zq5/rows.csv')
-wages
-```
-
-Note that the dollar sign `$` is preventing the `Annual Salary` column from being understood as a numeric variable. Run this line of code to fix this (you don't need to bother understanding what's being done here; those interested should search for some examples of regular expressions):
-
-``wages[ , salary := as.numeric(gsub("$", "", `Annual Salary`, fixed = TRUE))]``
-
-2. Is there evidence of skew in the salaries of Philadelphia City employees?
-
-```{r exercise_2_ph}
-wages[ , salary := as.numeric(gsub("$", "", `Annual Salary`, fixed = TRUE))]
-summary(wages$salary)
-```
-
-3. Who is the highest-paid employee in the city?
-
-```{r exercise_3_ph}
-wages[which.max(salary)]
-```
-
-4. Who are the five highest-paid employees in the city?
-
-To answer this, you'll need a new function -- `order`. The code `DT[order(V1)]` would print the `data.table` `DT` sorted by the variable `V1` in _ascending order_. Similarly, `DT[order(-V1)]` will print it in _descending order_.
-
-```{r exercise_4_ph}
-wages[order(-salary)]
 ```
 
