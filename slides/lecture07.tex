@@ -223,49 +223,49 @@ $$P(T|F) = \frac{P(F|T)P(T)}{P(F)}$$ \pause
 $$P(T|F) = \frac{\alert{0.08}}{\alert{0.26}} = \pause \frac{8}{26} = \frac{4}{13} \approx 0.31$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\singlespacing
-\frametitle{``Odd'' Question \# 5}
-
-
-There are two kinds of taxis: green cabs and blue cabs. Of all the cabs on the road, \alert{85\% are green cabs}. On a misty winter night a taxi sideswiped another car and drove off. \alert{A witness says it was a blue cab.} The witness is tested under conditions like those on the night of the accident, and \alert{80\% of the time she correctly reports the color of the cab that is seen}. That is, regardless of whether she is shown a blue or a green cab in misty evening light, she gets the color right 80\% of the time. 
-
-\vspace{1em}
-\begin{center}
-\fbox{\begin{minipage}{0.85\textwidth}
-\textcolor{blue}{Given that the witness said she saw a blue cab, what is the probability that a blue cab was the sideswiper?}
-\end{minipage}}
-\end{center}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Solving The Taxi Problem}
-\footnotesize
-\fbox{
-\begin{minipage}{0.85\textwidth}
-$G = $ Taxi is Green, $P(G) = 0.85$\\
-$B = $ Taxi is Blue, $P(B) = 0.15$\\
-$W_B = $ Witness says Taxi is Blue, $P(W_B|B) = 0.8, P(W_B|G) = 0.2$
-\end{minipage}}
-\normalsize
-
-\vspace{1em}
-
-\pause
-$$P(B|W_B) = P(W_B|B)P(B)/P(W_B)$$
-\pause
-\begin{eqnarray*}
-	P(W_B) &=& P(W_B|B) P(B) + P(W_B|G) P(G)\\ \pause
-			&=& 0.8\times 0.15 + 0.2 \times 0.85 \\ \pause
-			&=& \alert{0.12} + 0.17 = \alert{0.29}\\ \\ \pause
-		P(B|W_B) &=& 0.12/0.29 = 12/29 \approx 0.41\\ \pause
-		P(G|W_B) &=& 1 - (12/19) \approx 0.59 
-	\end{eqnarray*}
-
-\end{frame}
-
+%\begin{frame}
+%\singlespacing
+%\frametitle{``Odd'' Question \# 5}
+%
+%
+%There are two kinds of taxis: green cabs and blue cabs. Of all the cabs on the road, \alert{85\% are green cabs}. On a misty winter night a taxi sideswiped another car and drove off. \alert{A witness says it was a blue cab.} The witness is tested under conditions like those on the night of the accident, and \alert{80\% of the time she correctly reports the color of the cab that is seen}. That is, regardless of whether she is shown a blue or a green cab in misty evening light, she gets the color right 80\% of the time. 
+%
+%\vspace{1em}
+%\begin{center}
+%\fbox{\begin{minipage}{0.85\textwidth}
+%\textcolor{blue}{Given that the witness said she saw a blue cab, what is the probability that a blue cab was the sideswiper?}
+%\end{minipage}}
+%\end{center}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Solving The Taxi Problem}
+%\footnotesize
+%\fbox{
+%\begin{minipage}{0.85\textwidth}
+%$G = $ Taxi is Green, $P(G) = 0.85$\\
+%$B = $ Taxi is Blue, $P(B) = 0.15$\\
+%$W_B = $ Witness says Taxi is Blue, $P(W_B|B) = 0.8, P(W_B|G) = 0.2$
+%\end{minipage}}
+%\normalsize
+%
+%\vspace{1em}
+%
+%\pause
+%$$P(B|W_B) = P(W_B|B)P(B)/P(W_B)$$
+%\pause
+%\begin{eqnarray*}
+%	P(W_B) &=& P(W_B|B) P(B) + P(W_B|G) P(G)\\ \pause
+%			&=& 0.8\times 0.15 + 0.2 \times 0.85 \\ \pause
+%			&=& \alert{0.12} + 0.17 = \alert{0.29}\\ \\ \pause
+%		P(B|W_B) &=& 0.12/0.29 = 12/29 \approx 0.41\\ \pause
+%		P(G|W_B) &=& 1 - (12/19) \approx 0.59 
+%	\end{eqnarray*}
+%
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
 %\frametitle{The Monty Hall Problem!}
