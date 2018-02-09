@@ -1,0 +1,313 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\boxedpoints
+\pointsinmargin
+
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm I, Page \thepage\ of \numpages}
+              {February 14th, 2017}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large First Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} February 14th, 2017}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, a point will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+  \uplevel{\emph{The following question appeared on the homework assignment to accompany Lecture \#4:}}
+  \question[20] What value of $a$ minimizes $\sum_{i=1}^n (y_i - a)^2$? Prove your answer.
+  \begin{solution}[3.25in]
+    Differentiating with respect to $a$, we find that the first-order condition is 
+    \[-2\sum_{i=1}^n (y_i-a) = 0\]
+    Rearranging and splitting up the sum, this is equivalent to
+    \[\sum_{i=1}^n y_i = \sum_{i=1}^n a\]
+    The sum on the right-hand side equals $n a$.
+    Dividing through by $n$ gives $a = \bar{y}$.
+\end{solution}
+
+\question[20] I have three boxes. The first contains two red balls, the second contains two blue balls, and the third contains one red ball and one blue ball.
+I choose a box at random so that each box is equally likely to be selected.
+I then reach inside and pull out a ball: it's red.
+Calculate the probability that the other ball in the box is also red.
+To help us grade your answer more easily, let $B_1$ be the event that I chose the first box, $B_2$ the second box, and $B_3$ the third box.
+Let $R$ be the event that I drew a red ball.
+\begin{solution}[3.5in]
+  The problem statement specifies $P(B_1) = P(B_2) = P(B_3) = 1/3$ along with $P(R|B_1) = 1$, $P(R|B_2) = 0$, and $P(R|B_3) = 1/2$.
+  We are asked to calculate the probability that the other ball is red given that the ball I drew is red.
+  This is equivalent to asking for the probability of $B_1$ given $R$.
+  By Bayes' Rule
+  \[P(B_1|R) = \frac{P(R|B_1)P(B_1)}{P(R)}\]
+  For the denominator,
+  \begin{align*}
+    P(R) &= P(R|B_1)P(B_1) + P(R|B_2) P(B_2) + P(R|B_3) P(B_3) \\ 
+    &= 1 \times 1/3 + 0 \times 1/3 + 1/2 \times 1/3\\
+    &= 1/2 
+  \end{align*}
+  Therefore, $P(B_1|R) = (1/3) / (1/2) = 2/3$.
+\end{solution}
+
+\question Suppose we have a dataset $(x_1, y_1), \dots, (x_n, y_n)$ of scores for $n$ students on two exams: $x$ denotes exam \#1 and $y$ denotes exam \#2.
+Let $s_{xy}$ denote the sample covariance between exam scores, $r$ denote the sample correlation, $s_x$ and $s_y$ the respective sample standard deviations, and $\bar{x}$ and $\bar{y}$ the respective sample means.
+Let $\widehat{y} = a + bx$ where $a$ is the intercept and $b$ the slope of a linear regression calculated from this dataset.
+\begin{parts}
+  \part[2] Write down the formula for $a$ in terms of $b$, $\bar{x}$, and $\bar{y}$. 
+  \begin{solution}[0.75in]
+    $a = \bar{y} - b \bar{x}$
+  \end{solution}
+  \part[2] Write down the formula for $b$ in terms of $s_{xy}$ and $s_x$. 
+  \begin{solution}[0.75in]
+    $b = s_{xy} / s_x^2$
+  \end{solution}
+  \part[2] Write down the formula for $r$ in terms of $s_{xy}$, $s_x$ and $s_y$
+  \begin{solution}[0.75in]
+    $r = s_{xy} / (s_x s_y)$
+  \end{solution}
+  \part[6] Suppose that $b > r$. Then which is larger: $s_x$ or $s_y$? Explain.
+  \begin{solution}[1.5in]
+    Taking the ratio of the formulas from (b) and (c) we have $b/r = s_y/s_x$ so if $b >r$ then $s_y > s_x$.
+  \end{solution}
+  \part[8] Suppose the sample mean score on the first exam, $\bar{x}$, was 75\% while the sample mean score on the second exam, $\bar{y}$, was 85\%.
+  Moreover, our regression model predicts that someone who got 50 on the first exam will get 70 on the second.
+  Calculate $b$.
+  \begin{solution}[2in]
+    When $x = 50$ we have $\widehat{y} = 70$.
+    Thus $70 = a + 50b$.
+    Using part (a), 
+    \[a = \bar{y} - b\bar{x} = 85 - 75b\]
+    and combining these:
+    \[ 70 = (85 - 75b) + 50b = 85 - 25b\]
+    Solving, $b = -15/(-25) = 3/5 = 0.6$.
+  \end{solution}
+\end{parts}
+
+\question[20] Veronica wants to know the fraction of undergraduates who drink underage.
+Because she worries that her subjects may be unwilling to admit to breaking the law, Veronica conducts her interviews as follows:
+\begin{quote}
+  \emph{Hi, I'm carrying out a survey on underage drinking.
+  In a moment I'm going to ask if you drink underage, but before I do I'd like you to flip this fair coin in secret.
+If you get heads, answer my question truthfully.
+If you get tails, answer YES regardless of whether you drink underage.
+Because I don't know the outcome of your coin flip, if you answer YES I'll never know whether you really drink underage of just flipped a tails.}
+\end{quote}
+Veronica interviews a large number of subjects who all follow her instructions exactly: 85\% answer YES.
+Calculate the fraction of undergraduates who drink underage.
+\begin{solution}[2.25in]
+  Let $Y$ be the event that someone answers YES, $D$ be the event that he drinks underage, and $T$ be the event that he flips a tails.
+  Since $Y = D \cup T$, by the addition rule we have
+  \[P(Y) = P(D) + P(T) - P(D\cap T)\]
+  Since the coin is fair, $P(T) = 0.5$.
+  Since the outcome of a coin toss doesn't depend on whether someone does or doesn't drink underage, $D$ and $T$ are independent which implies $P(D\cap T) = P(D)P(T)$.
+  Substituting this information along with $P(Y) = 0.85$,
+  \[0.85 = P(D) + 0.5 - 0.5 \times P(D) \]
+ and solving we see that $P(D) = 0.7$.
+
+ Alternatively, you could solve this using the Law of Total Probability:
+ \begin{align*}
+   P(Y) &= P(Y|T)P(T) + P(Y|T^c)P(T^c) \\
+   0.85 &= 1 \times 1/2 + P(Y|T^c)\times 1/2\\
+   0.7 &= P(Y|T^c) 
+ \end{align*}
+ using the fact that $P(Y|T^c) = P(D)$ since anyone who flips heads answers truthfully, and the outcome of the coin flip has no bearing on whether someone drinks underage.
+\end{solution}
+
+\newpage
+
+\question Let $X$ be a random variable with support set $\left\{ -1, 1 \right\}$, $p(1) = q$, and $p(-1) = 1-q$.
+\begin{parts}
+  \part[5] Write down the CDF of $X$.
+  \begin{solution}[1.75in]
+    \[
+      F(x_0) = \left\{
+        \begin{array}{lr}
+          0,& x_0 < -1\\
+          1-q,& -1\leq x_0 < 1\\
+          1,& x_0 \geq 1\\
+        \end{array}\right.
+    \]
+  \end{solution}
+  \part[3] Calculate $E[X]$.
+  \begin{solution}[1in]
+    $E[X] = -1 \times (1 - q) + 1 \times q = 2q - 1$
+  \end{solution}
+  \part[3] Calculate $E[X^2]$.
+  \begin{solution}[1in]
+    $E[X^2] = (1 - q)\times (-1)^2 + q \times 1^2 = (1 - q) + q = 1$
+  \end{solution}
+  \part[3] Calculate $Var(X)$.
+  \begin{solution}[1in]
+    By the shortcut rule: 
+    \begin{align*}
+    Var(X) &= E[X^2] - E[X]^2 = 1 - (2q - 1)^2 \\
+    &= 1 - (4q^2 - 4q + 1)\\
+    &= 4q(1-q)
+    \end{align*}
+    Another way to solve this is to notice that we can write $X$ as a linear transformation of a Bernoulli RV. 
+    In particular if $Z \sim \mbox{Bernoulli}(q)$ then $X = 2Z - 1$ and hence $Var(X) = 4 Var(Z) = 4q(1-q)$ as we calculated directly.
+  \end{solution}
+  \part[6] Let $X_1$ and  $X_2$ be independent RVs both of which have the same pmf as $X$, defined in the problem statement.
+  Write out the support set and pmf of $Y = X_1 + X_2$.
+  \begin{solution}[2.25in]
+    The support set is $\left\{ -2, 0, 2 \right\}$ and the pmf is
+    \begin{align*}
+      p(-2) &= P(X_1 = -1 \cap X_2 = -1) = (1-q)^2\\
+      p(0) &= P(X_1 = -1 \cap X_2 = 1) + P(X_1 = 1 \cap X_2 = -1) = 2q(1-q)\\
+      p(2) &= P(X_1 = 1 \cap X_2 = 1) = q^2
+    \end{align*}
+
+  \end{solution}
+\end{parts}
+
+
+  \question This question concerns a \texttt{data.table} called \texttt{star}.
+  Here are its first and last five rows:
+  \begin{verbatim}
+      race classtype yearssmall hsgrad g4math g4reading
+   1:    1         3          0     NA     NA        NA
+   2:    2         3          0     NA    706       661
+   3:    1         3          0      1    711       750
+   4:    2         1          4     NA    672       659
+   5:    1         2          0     NA     NA        NA
+  ---                                                  
+6321:    2         2          0     NA     NA        NA
+6322:    1         2          0     NA     NA        NA
+6323:    2         2          0      0     NA        NA
+6324:    1         1          1     NA     NA        NA
+6325:    1         1          1     NA     NA        NA
+  \end{verbatim}
+The data come from a randomized controlled experiment carried out in Tennessee in the 1980s.
+Students were randomly assigned to one of three class types, as indicated by the column \texttt{classtype}: 1 = small class, 2 = regular-sized class, 3 = regular-sized class with a teacher's aid.
+In the years that followed, researchers measured several outcomes: \texttt{hsgrad} is an indicator that takes the value 1 if a student graduated high school and 0 if not, \texttt{g4math} and \texttt{g4reading} are the student's scores on standardized 4\textsuperscript{th} grade reading and math tests.
+In this question we will not work with the columns \texttt{race} or \texttt{yearssmall}.
+\begin{parts}
+  \part[5] Say that the data are stored at \texttt{http://data.com/star.csv}.
+  Give the full set of commands needed to read \texttt{star.csv} into R as a \texttt{data.table} called \texttt{star}.
+  \begin{solution}[1.3in]
+    \begin{verbatim}
+library(data.table)
+star <- fread("http://data.com/star.csv")
+    \end{verbatim}
+  \end{solution}
+  \part[5] Give the R command needed to create a new \texttt{data.table} called \texttt{small} that only contains students who were randomly assigned to a small class. 
+  \begin{solution}[1.3in]
+    There are many possible answers, such as\\ 
+    \texttt{small <- star[classtype == 1]}\\
+    or \\
+    \texttt{small <- subset(star, classtype == 1)}
+  \end{solution}
+  \part[5] Write R code to carry out a linear regression that predicts a student's reading score from her math score.
+  Use the data for all students in the experiment.
+  \begin{solution}[2in]
+    \begin{verbatim}
+lm(g4reading ~ g4math, data = star)
+\end{verbatim}
+or
+\begin{verbatim}
+	star[ , lm(g4reading ~ g4math)]
+\end{verbatim}
+  \end{solution}
+  \part[5] Here are the results of running the command from the previous part:
+  \begin{verbatim}
+Coefficients:
+(Intercept)       g4math  
+   317.5765       0.5696  
+  \end{verbatim}
+  If Beatrice scored 10 points higher in math than Alejandro, how many points higher would we predict that Beatrice will score in reading?
+  \begin{solution}[2in]
+  10 times the coefficient on \texttt{g4math}, or about 5.7 points higher.
+\end{solution}
+\part[5] Write R code to calculate the average high school graduation rate separately for students assigned to each different kind of class.
+Be sure to properly account for missing values.
+\begin{solution}[2in]
+  There are many possible answers.
+  The one used to generate the output in the following section was:
+  \begin{verbatim}
+star[, .(grad_rate = mean(hsgrad, na.rm = TRUE)), keyby = classtype]
+  \end{verbatim}
+\end{solution}
+\part[5] The results of the preceding part were as follows:
+\begin{verbatim}
+   classtype grad_rate
+1:         1 0.8359202
+2:         2 0.8251619
+3:         3 0.8392857
+\end{verbatim}
+Based on these results, do smaller class sizes improve high school graduation rates relative to regular-sized classes? Explain in no more than three sentences. 
+\begin{solution}[1.5in]
+  Students randomly assigned to the small classes (\texttt{classtype  1}) have a slightly higher graduation rate than those assigned to the regular classes (\texttt{classtype 2}) namely 83.6\% versus 82.5\%.
+  On the other hand, students assigned to regular classes with a teacher's aid (\texttt{classtype 3}) have an even higher graduation rate: 83.9\%.
+  So it may not be the class size \textit{per se} that matters.
+  On the whole the differences are small.
+\end{solution}
+\part[10] Write an R function called \texttt{mycor} that takes two input arguments, a numeric vector \texttt{x} and another numeric vector \texttt{y}, and returns the sample correlation between then.
+In your answer you may use any R commands you like \emph{except} the built-in correlation command \texttt{cor}.
+For simplicity you may assume that neither \texttt{x} nor \texttt{y} contains any missing values.
+\begin{solution}
+  There are many possible answers. Here's one possibility:
+\begin{verbatim}
+mycor <- function(x, y){
+  s_xy <- cov(x, y)
+  s_x <- sd(x)
+  s_y <- sd(y)
+  return(s_xy / (s_x * s_y))
+}
+\end{verbatim}
+\end{solution}
+\end{parts}
+
+\end{questions}
+
+\end{document}

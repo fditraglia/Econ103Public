@@ -1,0 +1,271 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\usepackage{multirow}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\boxedpoints
+\pointsinmargin
+
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm II, Page \thepage\ of \numpages}
+              {March 21st, 2017}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large Second Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} March 21st, 2017}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, a point will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\begin{questions}
+
+  \question Let $Y$ and $Z$ be discrete RVs with the following joint pmf:
+			\begin{center}
+\begin{tabular}{|cc|ccc|}
+\hline
+&&\multicolumn{3}{c|}{$Z$}\\
+&&0 & 1 & 2\\
+\hline
+\multirow{2}{*}{$Y$}
+&0& \multicolumn{0}{|c}{$1/4$} & $3/8$ & $1/8$ \\
+&1& \multicolumn{1}{|c}{0} & $1/8$ & $1/8$\\
+\hline
+\end{tabular}
+\end{center}
+\begin{parts}
+  \part[5] Write down the support set and marginal pmf of $Y$.
+  \begin{solution}[1.5in]
+    $p_Y(0) = 3/4$, $p_Y(1) = 1/4$ with support set $\left\{ 0,1 \right\}$
+  \end{solution}
+  \part[5] Write down the support set and marginal pmf of $Z$.
+  \begin{solution}[1.5in]
+    $p_Z(0) = 1/4$, $p_Z(1)=1/2$, $p_Z(2) = 1/4$ with support set $\left\{ 0,1,2 \right\}$
+  \end{solution}
+  \part[5] Calculate $E[YZ]$.
+  \begin{solution}[1.5in]
+    $E[YZ] = 1 \times 1 \times 1/8 + 1 \times 2 \times 1/8 = 3/8$.
+  \end{solution}
+  \part[5] Write down the conditional pmf of $Y$ given that $Z=1$.
+  \begin{solution}[1.75in]
+    $p_{Y|Z}(0|1) = (3/8) / (4/8) = 3/4$ and $p_{Y|Z}(1|1)= (1/8) / (4/8) = 1/4$.
+  \end{solution}
+\end{parts}
+
+
+
+  \question Answer each part. No explanation is required.
+  \begin{parts}
+    \part[4] If $X$ and $Y$ are RVs with variance one and correlation 1/2  what is $Var(X - Y)$?
+    \begin{solution}[0.75in]
+      $Var(X-Y) = \sigma_X^2 + \sigma_Y^2 - 2 \sigma_X \sigma_Y \rho_{XY} = 1 + 1 - 2 \times 1/2 = 1$
+    \end{solution}
+    \part[4] Suppose $X_1, \dots, X_n \sim \mbox{iid}$ with mean $\mu$ and variance $\sigma^2$. Write down the formula for the standard error of $\bar{X}_n$.
+    \begin{solution}[0.75in]
+      $\text{SE}(\bar{X}_n) = \sigma / \sqrt{n}$
+    \end{solution}
+    \part[4] If $X \sim N(\mu = 3, \sigma^2 = 9)$ approximately what is the value of $P(0 \leq X \leq 6)$? 
+    \begin{solution}[0.75in]
+      $0.68$
+    \end{solution}
+    \part[4] Write R code to calculate the probability that a standard normal RV takes on a value between $-1$ and $3$. 
+    \begin{solution}[0.75in]
+      \texttt{pnorm(3) - pnorm(-1)}
+    \end{solution}
+    \part[4] Let $Z \sim N(0,1)$. Write R code to calculate $c$ such that $P(-c \leq Z \leq c) = 0.8$.  
+    \begin{solution}[0.75in]
+      We can calculate $-c$ using \texttt{qnorm(0.1)} or $c$ using \texttt{qnorm(0.9)}.
+    \end{solution}
+    \part[5] Suppose we observe a sample of $16$ iid observations from a $N(\mu, \sigma^2)$ population and we know that $\sigma^2 = 1$. Our sample mean $\bar{x}$ turns out to equal 3. Write down an approximate 95\% confidence interval for $\mu$.
+    \begin{solution}[2.1in]
+      $\bar{x} \pm 2 \times \sigma/\sqrt{n} = 3 \pm 2 \times 1/4 = 3 \pm 0.5$ or equivalently $(2.5, 3.5)$.
+    \end{solution}
+  \end{parts}
+
+
+
+%\question[10] Prove that $Cov(X, Y + Z) = Cov(X,Y) + Cov(X,Z)$ where $X, Y,$ and $Z$ are three RVs. 
+%You may use any properties of expectation, covariance etc.\ that we learned in class without proving them as long as you clearly state which properties you are using.
+%  \begin{solution}
+%    By the linearity of expectation and the shortcut formula:
+%    \begin{eqnarray*}
+%      Cov(X, Y + Z) &=& E[X(Y + Z)] - E(X) E(Y + Z)\\
+%      &=& [E(XY) + E(XZ)] - [E(X)E(Y) + E(X)E(Z)]\\
+%      &=& [E(XY) - E(X)E(Y)] + [E(XZ) - E(X)E(Z)]\\
+%      &=& Cov(X,Y) + Cov(Y,Z)
+%    \end{eqnarray*}
+%  \end{solution}
+
+  \question Let $X$ be a continuous RV with support set $[0, 1]$ and pdf $f(x) = a + b x^2$ where $a,b>0$. 
+  \begin{parts}
+    \part[6] Calculate the CDF of $X$, $F(x_0)$, in terms of $a$ and $b$. 
+    \begin{solution}[1.35in]
+      \[F(x_0) = \int_{-\infty}^{x_0} f(x) \; dx = \int_0^{x_0} (a + bx^2) \; dx = \left.\left( ax + \frac{bx^3}{3} \right)\right|_0^{x_0} = ax_0 + \frac{b x_0^3}{3}\]
+      for $x_0 \in [0,1]$.
+      For $x_0 < 0$ we have $F(x_0)=0$ and for $x_0>1$ we have $F(x_0) = 1$.
+    \end{solution}
+    \part[6] Calculate $E[X]$ in terms of $a$ and $b$.
+    \begin{solution}[1.35in] 
+      \[E[X] = \int_{-\infty}^{\infty} x f(x)\; dx = \int_{0}^{1} \left( ax + bx^3 \right)\; dx = \left. \left( \frac{ax^2}{2} + \frac{bx^4}{4}\right)\right|_{0}^{1} = \frac{a}{2} + \frac{b}{4}\]
+    \end{solution}
+    \part[8] Since $a$ and $b$ are positive, $f(x)\geq 0$.
+    This is one of the two conditions required to ensure that $f(x)$ is a valid pdf.
+    What is the other condition? 
+    What restriction must we place on $a$ and $b$ to ensure that the condition is satisfied?
+    \begin{solution}[1.35in]
+      To be a valid pdf $f(x)$ must be non-negative and integrate to one over $(-\infty, +\infty)$. 
+      We already know that $f(x)\geq 0$ so the condition we need is 
+        $\displaystyle \int_{0}^{1} f(x)\; dx = F(1) = a + \frac{b}{3} = 1 $ which holds so long as $b = 3(1 - a)$.
+    \end{solution}
+%    \part[4] Suppose $E[X] = 3/5$. Solve for $a$ and $b$. 
+%    \begin{solution}
+%      From part (b), $a/2 + b/4 = 3/5$ and from part (c), $b = 3(1 - a)$.
+%      These are two linear equations in two unknowns.
+%      Solving, $a = 3/5$ and $b = 6/5$.
+%    \end{solution}
+  \end{parts}
+
+  \question[20] Let $X_1, \dots, X_n \sim \mbox{ iid } N(\mu, \sigma^2 = 100)$ and define $\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$ as usual.
+Find the value of $n$ for which $P(\mu - 5 \leq \bar{X}_n \leq \mu + 5) \approx 0.95$.
+Your answer should give a specific numeric value for $n$ and should \emph{not} involve any R commands.
+\begin{solution}[2in]
+  Since the $X_i$ are iid $N(\mu,\sigma^2)$ it follows that $\bar{X}_{n} \sim N(\mu, \sigma^2/n)$ where $\sigma^2/n = 100/n$.
+  Thus the standard deviation of $\bar{X}_n$, aka the standard error of the mean, equals $10/\sqrt{n}$.
+  Hence
+  \begin{eqnarray*}
+    P\left( \mu - 5 \leq \bar{X}_n \leq \mu + 5 \right) &=& 
+    P\left( - 5 \leq \bar{X}_n - \mu \leq 5 \right) \\
+    &=& P\left( -\sqrt{n}/2 \leq (\bar{X}_n - \mu)/(10 / \sqrt{x}) \leq \sqrt{n}/2 \right) \\
+    &=& P\left( -\sqrt{n}/2 \leq Z \leq \sqrt{n}/2 \right) 
+  \end{eqnarray*}
+  where $Z \sim N(0,1)$.
+  So the problem reduces to finding the value of $n$ such that a standard normal has approximately a $95\%$ chance of taking on a value between $-\sqrt{n}/2$ and $\sqrt{n}/2$.
+  There is approximately a 95\% chance that a standard normal takes on a value between -2 and 2 so we solve $\sqrt{n}/2 = 2$ for $n$, yielding $n = 16$.
+\end{solution}
+
+\newpage
+  \uplevel{\emph{This problem was part of your homework for Lectures 13--14. 
+  I have reworded the problem slightly to make it clearer, but the details and solution are unchanged.}}
+  \question Let $S$ denote the total number of successes in $n$ iid Bernoulli trials, each with probability of success $\pi$.
+  Consider two estimators of $\pi$: the sample proportion $P = S/n$ and an alternative estimator $P^* = \frac{S + 1}{n + 1} = \left( \frac{n}{n+2} \right)P + \left( \frac{1}{n+2} \right)$.
+  \begin{parts}
+    \part[5] Calculate the bias of $P$.
+    \begin{solution}[1in]
+      Since $S$ is a Binomial$(n,\pi)$ RV, $E[S] = n\pi$ so by the linearity of expectation $E[P] = E[S]/n = \pi$. 
+      Thus $\text{Bias}(P) = E[P] - \pi  = 0$.
+    \end{solution}
+    \part[5] Calculate $Var(P)$.
+    \begin{solution}[1in]
+      Since $S$ is a Binomial$(n,\pi)$ RV, $Var(S) = n\pi(1 - \pi)$ and thus $Var(P) = Var(S/n) = Var(S)/n^2 = n\pi(1 - \pi)/n^2 = \pi(1 - \pi) / n$.
+    \end{solution}
+    \part[5] Is $P$ consistent for $\pi$? Explain briefly.
+    \begin{solution}[1in]
+      $\text{MSE}(P) = \text{Bias}(P)^2 + Var(P)^2 = 0 + \pi(1 - \pi)/n$.
+      Since $\text{MSE}(P)\rightarrow 0$ as $n\rightarrow \infty$, $P$ is consistent for $\pi$.
+    \end{solution}
+    \part[5] Calculate the bias of $P^*$. 
+    \begin{solution}[1in]
+      First,
+		$E[P^*] = E\left[ \left(\frac{n}{n+2}\right)P + \left(\frac{1}{n+2}\right)\right] =  \left(\frac{n \pi + 1}{n+2}\right)$ by the linearity of expectation.
+    Hence $\mbox{Bias}(P^*) = \frac{n\pi + 1}{n + 2} - \pi = \frac{1 - 2\pi}{n+2}$.
+    \end{solution}
+    \part[5] Calculate $Var(P^*)$.
+    \begin{solution}[1in]
+      $Var(P^*) = Var\left[  \left(\frac{n}{n+2}\right)P + \left(\frac{1}{n+2}\right)\right] = \left(\frac{n}{n+2}\right)^2 Var(P)= \frac{n\pi(1 - \pi)}{(n+2)^2}$
+    \end{solution}
+    \part[5] Is $P^*$ consistent for $\pi$? Explain briefly.
+    \begin{solution}[1in]
+      $\text{MSE}(P^*) = \mbox{Bias}(P^*)^2 + Var(P^*) = \left(\frac{1-2\pi}{n+2}\right)^2 + \frac{n\pi(1-\pi)}{(n+2)^2}$.
+    Now if we take $n\rightarrow \infty$, $\text{MSE}(P^*)\rightarrow 0$ so $P^*$ is consistent for $\pi$.
+    \end{solution}
+  \end{parts}
+
+
+\question At the time of this writing approximately 50\% of Americans disapprove of President Trump according to a weighted average of polls constructed by FiveThirtyEight.
+Assume for the purposes of this question that this estimate is \emph{exactly correct} so that precisely half of the US population disapproves of Trump. 
+This means that we can model a poll based on a random sample of $n$ Americans as an iid sequence of $n$ Bernoulli$(1/2)$ RVs where a $1$ indicates that a given individual in the poll \emph{disapproves} of Trump.
+
+\begin{parts}
+  \part[10] Write an R function called \texttt{disapprove\_prop} that simulates a poll asking a random sample of $n$ Americans if they disapprove of Trump.
+  Your function should take a single input argument \texttt{n} the sample size of the poll and then make $n$ iid simulation draws from the population described in the problem statement.
+  The output of \texttt{disapprove\_prop} should be the sample proportion of individuals who disapprove of Trump calculated from your \texttt{n} simulation draws. 
+  \begin{solution}[1.5in]
+    Various possible solutions. Here is one possibility:
+    \begin{verbatim}
+disapprove_prop <- function(n){
+  draws <- sample(0:1, size = n, replace = TRUE)
+  return(mean(draws))
+}
+    \end{verbatim}
+
+  \end{solution}
+  \part[5] Suppose that you wanted to learn about the accuracy of the sample proportion in the poll described in the problem statement when $n=10$. 
+  Write R code to approximate its sampling distribution based 10000 Monte Carlo simulations using your function \texttt{disapprove\_prop} from part (b).
+  Store your simulations in a vector called \texttt{poll\_sims}.
+  \begin{solution}[1in]
+    \texttt{poll\_sims <- replicate(10000, disapprove\_prop(10))}
+  \end{solution}
+  \part[10] Continuing from (b) suppose I entered \texttt{mean(poll\_sims)} and \texttt{var(poll\_sims)} at the R console. 
+  Approximately what result would I get for each?
+  Explain briefly.
+  \begin{solution}
+    The sample proportion is exactly the same thing as the sample mean in a sample that only contains zeros and ones, as we have in this question.
+    We know from class that, under random sampling, the sample mean is an unbiased estimator of the population mean and the variance of its sampling distribution equals $\sigma^2/n$ where $\sigma^2$ is the population variance.
+    In this example the population is Bernoulli$(1/2)$, so the population mean is $1/2$, so \texttt{mean(poll\_sims)} will be approximately 0.5.
+    Since the variance of a Bernoulli(1/2) RV is $1/4$ and $n = 10$, \texttt{var(poll\_sims)} will be approximately $0.25 / 10 = 0.025$.
+  \end{solution}
+\end{parts}
+
+\end{questions}
+
+\end{document}
