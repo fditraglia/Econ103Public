@@ -293,54 +293,46 @@ $$E[Y] = \sum_{\mbox{all } x} 2^x\cdot p(x) = \uncover<4->{1 + 1 + 1 + \hdots}\u
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-\frametitle{Example: Function of Bernoulli RV}
-\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
-\vspace{2em}
+  \frametitle{Example: $X\sim \mbox{Bernoulli}(p)$, $Y = (X+1)^2$}
 
-\begin{block}{Support of $Y$} \pause
-$\{e^0, e^1\} =\{1, e\}$
+\begin{block}{Support Set for $Y$} \pause
+$\{(0 + 1)^2, (1 + 1)^2\} =\{1, 4\}$
 \end{block}
 
 \begin{block}{Probability Mass Function for $Y$} \pause
-	$$p_Y(y) = \left\{\begin{array}{ll}p& y =e\\ 1-p& y = 1\\ 0& \mbox{otherwise}\end{array}\right.$$
+	$$p_Y(y) = \left\{\begin{array}{ll} 1-p& y = 1\\ p& y = 4\\ 0& \mbox{otherwise}\end{array}\right.$$
+\end{block}
+
+\pause
+\begin{block}{Expected Value of $Y$}
+  \[
+    \sum_{y\in \left\{ 1,4 \right\}} y \times p_Y(y) \pause = 1 \times (1 - p )  + 4 \times p \pause = 1 - 3p
+  \]
 \end{block}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Expectation: Function of Bernoulli RV}
-\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
-\vspace{2em}
+  \frametitle{Example: $X\sim \mbox{Bernoulli}(p)$, $Y = (X+1)^2$}
 
-\begin{block}{Probability Mass Function for $Y$} 
-	$$p_Y(y) = \left\{\begin{array}{ll}p& y =e\\ 1-p& y = 1\\ 0& \mbox{otherwise}\end{array}\right.$$
+
+  \begin{block}{$E[g(X)] = E[(X+1)^2$}
+  \[
+    \sum_{y\in \left\{ 1,4 \right\}} y \times p_Y(y)  = 1 \times (1 - p )  + 4 \times p  = 1 - 3p
+  \]
 \end{block}
 
-\begin{block}{Expectation of $Y = e^X$}\pause
-$$\sum_{y \in \{1, e\}} y \cdot p_Y(y) =\pause (1-p) \cdot 1 + p \cdot e = 1 + p(e - 1) \approx 1 + 1.72 p$$
+\pause
+
+\begin{block}{$g(E[X]) = (E[X] + 1)^2$}
+  \[\left(E[X] + 1\right)^2 = (p + 1)^2 = 1 + 2p + p^2\]
 \end{block}
 
+\pause
 
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Expectation: Function of Bernoulli RV}
-\fbox{Let $Y=e^X$ where $X \sim \mbox{Bernoulli}(p)$}
-\vspace{2em}
-
-
-
-\begin{block}{Expectation of the Function}
-$$\sum_{y \in \{1, e\}} y \cdot p_Y(y) = (1-p) \cdot 1 + p \cdot e = 1 + p(e - 1) \approx 1 + 1.72 p$$
-\end{block}
-
-\begin{block}{Function of the Expectation}
-$$e^{E[X]} = e^p \approx 2.72^p$$
-\end{block}
-
-
+\begin{alertblock}{In general: $1 - 3p \neq 1 + 2p + p^2$!}
+\end{alertblock}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -388,8 +380,10 @@ $X$ has support $\{-1, 0, 1\}$, $p(-1) = p(0) = p(1) = 1/3$.
 \framesubtitle{Holds for Continuous RVs as well, but proof is different.}
 Let $X$ be a RV and $a,b$ be constants. Then:
 	$$E[a + bX] = a + bE[X]$$
-\vspace{2em}
-\begin{alertblock}{This is one of the most important facts in the course: the special case in which $E[g(X)] = g(E[X])$ is $g = a+bX$.}
+
+  \begin{alertblock}{This is a Crucial Exception}
+    In general $E[g(X)]$ does not equal $g(E[X])$.
+    But in the special case where $g$ is a \alert{linear function}, $g(X) = a + bX$, the two \alert{are equal}.
 \end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
