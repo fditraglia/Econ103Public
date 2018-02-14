@@ -1,0 +1,329 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\boxedpoints
+\pointsinmargin
+
+\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm I, Page \thepage\ of \numpages}
+              {February 13th, 2018}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large First Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} February 13th, 2018}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, a point will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+  \question Write down the answer to each of the following. No explanation is needed.
+  \begin{parts}
+    \part[4] What is the formula for the sample variance of $x_1, \dots, x_n$?
+    \begin{solution}[0.5in]
+      $\displaystyle \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2$
+    \end{solution}
+    \part[4] What is the formula for the sample covariance between $x_1, \dots, x_n$ and $y_1, \dots, y_n$?
+    \begin{solution}[0.5in]
+      $\displaystyle \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})$
+    \end{solution}
+    \part[4] Using the rule of thumb for skewness, how would we expect the mean and median of a right-skewed dataset to compare to one another?
+    \begin{solution}[0.5in]
+      We would expect the mean to be \emph{larger} than the median.
+    \end{solution}
+    \part[4] If $x$ is measured in meters, what are the units of $s_x^2$?
+    \begin{solution}[0.5in]
+      Square meters
+    \end{solution}
+    \part[4] TRUE or FALSE: $s_{xy} \geq r_{xy}$.
+    \begin{solution}[0.5in]
+      FALSE: $s_{xy} = r_{xy} s_x s_y$ so if $s_x s_y<1$ we have $s_{xy} < r_{xy}$.
+    \end{solution}
+    \part[4] Let $A$ and $B$ be two events. Write down the expression for $P(A\cup B)$.
+    \begin{solution}[0.5in]
+      $P(A \cup B) = P(A) + P(B) - P(A\cap B)$
+    \end{solution}
+    \part[4] Let $A$ and $B$ be two events. What is the definition of $P(B|A)$?
+    \begin{solution}[0.5in]
+      $P(B|A) = P(B\cap A) / P(A)$.
+    \end{solution}
+    \part[4] Let $A$ and $B$ be two events. Write down Bayes' rule for calculating $P(B|A)$.
+    \begin{solution}[0.5in]
+      $P(B|A) = P(A|B)P(B)/ P(A)$
+    \end{solution}
+    \part[4] TRUE or FALSE: if events $A$ and $B$ are mutually exclusive they are independent.
+    \begin{solution}[0.5in]
+      FALSE: if $A$ and $B$ are mutually exclusive, the fact that one occurred implies that the other \emph{cannot have occurred}.
+    \end{solution}
+    \part[4] TRUE or FALSE: $P(A \cap B) \leq P(A\cup B)$. 
+    \begin{solution}[0.6in]
+      TRUE: $(A \cap B) \subseteq (A\cup B)$ so $P(A\cap B) \leq P(A\cup B)$ by the logical consequence rule.
+    \end{solution}
+  \end{parts}
+
+
+
+  \uplevel{\emph{The following question is based on a problem from your assigned homework. The reasoning and solutions to parts (a)--(d) are identical to the corresponding questions from your homework, although I have re-worded the question for clarity. Part (e) is new.}}
+  \question Let $x_1, \hdots, x_n$ be a sample of $n$ observations and define $y_i = c + dx_i$ where $c$ and $d$ are constants and $d \neq 0$.
+  Let $\bar{x}$ be the sample mean and $s_x^2$ be the sample variance of $x$.
+  Analogously, let $\bar{y}$ be the sample mean and $s_y^2$ be the sample variance of $y$.
+ Show your work in each of the following parts and note that your answers may involve $c$ and $d$.
+
+	\begin{parts}
+    \part[5] Express $\bar{y}$ in terms of $\bar{x}$.
+    \begin{solution}[1in]
+				\begin{eqnarray*}
+          \bar{y} = \frac{1}{n} \sum_{i=1}^n (c + dx_i)&=&\frac{1}{n} \sum_{i=1}^n c + d \left(\frac{1}{n} \sum_{i=1}^n x_i\right) = c + d\bar{x}
+				\end{eqnarray*}
+			\end{solution}
+      \part[5] Express $s_y^2$ in terms of $s_x^2$.
+    \begin{solution}[0.75in]
+      $$s_y^2 = \frac{1}{n-1} \sum_{i=1}^n [(c + dx_i) - (c + d\bar{x})]^2 = \frac{1}{n-1} \sum_{i=1}^n [d(x_i - \bar{x})]^2 = d^2 s_x^2$$
+		\end{solution}
+    \part[5] Express $s_y$ in terms of $s_x$.
+    \begin{solution}[0.75in]
+        $s_y = \sqrt{s_y^2} = |d| \times s_x$
+			\end{solution}
+      \part[5] Let $z^x_i$ be the sample z-score of $x_i$ and $z^y_i$ be the sample z-score of $y_i$. 
+    Briefly explain how $z^y_i$ is related to $z^x_i$.
+    Does the relationship depend on $c$ or $d$? 
+    If so, how?
+    \begin{solution}[1.2in]
+			They are identical as long as $d$ is positive, but the sign will flip if $d$ is negative:
+      $$z^y_i = \frac{y_i - \bar{y}}{s_y} = \frac{(c + d x_i) - (c + d \bar{x})}{|d|\times s_x}= \frac{d}{|d|} \left( \frac{x_i - \bar{x}}{s_x} \right) =  \mbox{sign}(d) \times z^x_i$$
+			\end{solution}
+      \part[10] Calculate the sample correlation $r_{xy}$ between $x$ and $y$. Does the answer depend on $c$ or $d$? If so, how?
+      \begin{solution}[1.75in]
+        The correlation equals $1$ if $d$ is positive and $-1$ if $d$ is negative:
+        \begin{align*}
+          r_{xy} &= \frac{1}{n-1}\sum_{i=1}^n \left( \frac{x_i - \bar{x}}{s_x} \right)\left( \frac{y_i - \bar{y}}{s_y} \right) = \frac{1}{n-1} \sum_{i=1}^n \left( \frac{x_i - \bar{x}}{s_x} \right) \frac{d}{|d|} \left( \frac{x_i - \bar{x}}{s_x} \right)\\
+          &=\frac{d}{|d|} \left[\frac{1}{n-1} \sum_{i=1}^n \left( \frac{x_i - \bar{x}}{s_x} \right)^2\right] = \frac{d}{|d|\times s_x^2} \left[\frac{1}{n-1} \sum_{i=1}^n \left(x_i - \bar{x} \right)^2\right]\\
+          &= \frac{d \times s_x^2}{|d| \times s_x^2} = \frac{d}{|d|}
+        \end{align*}
+      \end{solution}
+      %\part[8] Suppose that we wanted to predict $y$ using $x$ based on a linear regression.
+      %Calculate the values of the regression slope $b$ and intercept $a$.
+	\end{parts}
+
+
+
+  \question Suppose that 1 out of $N$ coins is defective and I chose my coin at random.
+  Whereas a regular coin is equally likely to come up heads or tails, a defective coin \emph{always} comes up heads.
+  I choose a coin at random and flip it ten times: I get ten heads.  
+  Let $D$ be the event that my coin is defective and $A$ be the event that I get ten heads in ten flips of my coin. 
+  Be sure to explain your reasoning in each of the following parts.
+  \begin{parts}
+    \part[4] What is $P(A|D)$?
+    \begin{solution}[0.75in]
+      $P(A|D) = 1$ since a defective coin always comes up heads.
+    \end{solution}
+    \part[4] What is $P(A|D^c)$?
+    \begin{solution}[0.75in]
+      $P(A|D^c) = 1/2^{10} = 1/1024$ since a regular coin is equally likely to come up heads or tails, and each flip is independent.
+    \end{solution}
+    \part[4] Expressed as a function of $N$, what is $P(D)$?
+    \begin{solution}[0.75in]
+     $P(D) = 1/N$ since 1 out of $N$ coins is defective and I chose a coin at random.
+    \end{solution}
+    \part[4] Expressed in terms of $N$, what is $P(D^c)$?
+    \begin{solution}[0.75in]
+      By the complement rule $P(D^c) = 1 - P(D) = 1 - 1/N = (N-1)/N$.
+    \end{solution}
+    \part[4] Expressed in terms of $N$, what is $P(A)$?
+    \begin{solution}[1.5in]
+      By the law of total probability:
+    \begin{align*}
+      P(A) &= P(A|D) \times P(D) + P(A|D^c) \times P(D^c)\\
+           &= 1/N \times 1 + (N-1)/N \times 1/1024 = (1024 + N - 1) / (N \times 1024)
+    \end{align*}
+    \end{solution}
+    \part[5] Expressed in terms of $N$, what is $P(D|A)$?
+    \begin{solution}[1.5in]
+    By Bayes' rule
+    \[
+      P(D|A) = \frac{P(A|D)P(D)}{P(A)} = \frac{1/N}{(1024 + N - 1)/(N \times 1024)} = \frac{1024}{1024 + N - 1}
+    \]
+  \end{solution}
+ % \part[5] Given that all ten of my flips came up heads, how would $N$ have to be for it to be \emph{more likely than not} that the coin I flipped was defective?
+ % \begin{solution}
+ %   From the expression in the preceding part, we see that $P(D|A)$ is \emph{decreasing} with $N$. 
+ %   Solving $P(D|A) = 1/2$, we obtain:
+ %   \begin{align*}
+ %     1024 / (1024 + N - 1) &= 1/2\\
+ %     1024 + N - 1 &= 2048\\
+ %     N &= 1025 
+ %   \end{align*}
+ %   Thus, for any $N < 1025$ it is more likely than not that my coin was defective.
+ % \end{solution}
+  \end{parts}
+
+  \question To answer this question, you will need the following fact: in R the function \texttt{factorial} is used instead of an exclamation point ``!'' to calculate a factorial.
+  For example, \texttt{factorial(3)} would return a result of \texttt{6}. 
+  \begin{parts}
+    \part[5] Write down the formula for ${n \choose k}$ in terms of factorials. 
+    To be clear: this part is \emph{not} asking you for any R code.
+    \begin{solution}[2in]
+      $\displaystyle{n \choose k} = \displaystyle\frac{n!}{k!(n-k)!}$
+    \end{solution}
+    \part[10] Using your formula from the preceding part, write an R function called \texttt{mycombn} that calculates combinations.
+    Your function should take two inputs, \texttt{n} and \texttt{k} and return a single output: ${n \choose k}$.
+    \begin{solution}[3in]
+\begin{verbatim}
+mycombn = function(n, k) {
+  numerator = factorial(n)
+  denominator = factorial(k) * factorial(n - k)
+  return(numerator / denominator)
+}
+\end{verbatim}
+    \end{solution}
+%    \part[5] Write down a formula for the probability of getting exactly $r$ heads when you flip a fair coin $N$ times.
+%    Your answer should be expressed in terms of $r$ and $N$.
+%    (Recall that for this calculation it does not matter in what order the heads appear.)
+%    \begin{solution}
+%      Each sequence of $N$ coin tosses is independent and equally likely, and hence has probability $(1/2)^N$.
+%      The total number of sequences with exactly $r$ heads is ${N \choose r}$ so the probability is
+%      \[
+%        {N \choose r} \times \left( \frac{1}{2} \right)^N
+%      \]
+%    \end{solution}
+%    \part[10] Using your calculation from the preceding part, write an R function called \texttt{pheads} that uses \texttt{mycombn} to calculate the probability of getting exactly $r$ heads when you flip a fair coin $N$ times.
+%    Your function should take two inputs, the number of heads $r$ and the total number of flips $N$, and return a single output: the desired probability.
+%    \begin{solution}
+%\begin{verbatim}
+%pheads = function(r, N) {
+%  term1 = mycombn(N, r)
+%  term2 = (0.5)^N 
+%  return(term1 * term2)
+%}
+%\end{verbatim}
+%    \end{solution}
+  \end{parts}
+
+
+  \newpage
+
+\question This question is based on a dataset called \texttt{pickup.csv} containing the model year, mileage, price (in US dollars), and make of 46 pickup trucks listed for sale on Craigslist in Austin Texas.
+Here are the first few rows of the dataset:
+\begin{verbatim}
+   year  miles price  make
+1: 2008  17638 14995   GMC
+2: 2003 174000  8500 Dodge
+3: 2001   1500  9998 Dodge
+4: 2007  22422 23950   GMC
+5: 2007  34815 19980   GMC
+6: 1997 167000  5000   GMC
+\end{verbatim}
+In any R code that you write to answer this question, you may assume that the \texttt{data.table} package has already be installed and loaded.
+\begin{parts}
+  \part[3] The data are stored at \texttt{http://jgscott.github.io/teaching/data/pickup.csv}.
+  Using this url, write out the line of R code you would use to download the file \texttt{pickup.csv} and store it in a data.table called \texttt{pickup}.
+  \begin{solution}[0.75in]
+\begin{verbatim}
+pickup = fread(`http://jgscott.github.io/teaching/data/pickup.csv')
+\end{verbatim}
+  \end{solution}
+  \part[3] Here is a table that contains average price for each make of truck:
+\begin{verbatim}
+    make avg_price
+1:   GMC  7996.208
+2: Dodge  6554.200
+3:  Ford  8867.917
+\end{verbatim}
+
+  Write down the line of R code you would use to generate these results.
+  \begin{solution}[0.75in]
+\begin{verbatim}
+pickup[, .(avg_price = mean(price)), by = make]
+\end{verbatim}
+  \end{solution}
+  \part[3] Here are the results of a linear regression that uses \texttt{miles} to predict \texttt{price}:
+\begin{verbatim}
+Coefficients:
+(Intercept)        miles  
+ 14419.3762      -0.0643  
+\end{verbatim}
+  Write down the line of R code you would use to generate these results.
+  \begin{solution}[0.75in]
+\begin{verbatim}
+pickup[, lm(price ~ miles)]
+\end{verbatim}
+  \end{solution}
+  \part[6] In the regression results from above, what are the units of the intercept?
+  What are the units of the slope?
+  \begin{solution}[1.25in]
+    The intercept is measured in dollars, and the slope is measured in dollars per mile.
+  \end{solution}
+  \part[5] Suppose a truck with zero miles were listed on Craigslist.
+  Based on the regression results from above, what price would we predict for this truck? 
+  \begin{solution}[1.25in]
+   Around 14,419 dollars. 
+  \end{solution}
+  \part[5] Consider two pickup trucks: truck A has 10,000 more miles than truck B.
+  Based on the regression results from above, which truck would we predict has the higher price?
+  How much higher?
+  \begin{solution}[1.25in]
+    We would predict truck A to have a \emph{lower} price than truck B by $0.0643 \times 10,000 = 643$ dollars.
+  \end{solution}
+  \part[5] The sample mean of \texttt{price} is approximately \texttt{7900} dollars.
+  Based on the regression results from above, approximately what is the sample mean of \texttt{miles}?
+  \begin{solution}
+    We know that $\bar{y} = a + b \bar{x}$, $\bar{y} = 7900$, $a = 14419$ and $b = -0.0643$.
+    Thus, $\bar{x} = (\bar{y} - a) / b \approx$ 101,400 miles.
+  \end{solution}
+\end{parts}
+
+
+\end{questions}
+
+\end{document}
