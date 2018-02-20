@@ -64,11 +64,17 @@ This is \emph{not} the definition, it's a shortcut for doing calculations:
 \begin{frame}
 \frametitle{Example: The Shortcut Formula \hfill \includegraphics[scale = 0.05]{./images/clicker}}
 Let $X\sim \mbox{Bernoulli}(1/2)$.
-\begin{enumerate}
-  \item What is $E[X]$? \hspace{1em} \pause \alert{$E[X] = 0 \times 1/2 + 1 \times 1/2 = 1/2$} \pause
-    \item What is $E[X^2]$? \pause \hspace{1em} \alert{$E[X^2] = 0^2 \times 1/2 + 1^2 \times 1/2 = 1/2$} \pause
-    \item What is $Var(X)$? \pause \hspace{1em} \alert{$E[X^2] - \left( E[X] \right)^2 = 1/2 - (1/2)^2 = 1/4$} 
-\end{enumerate}
+Calculate $Var(X)$.
+
+\pause
+\begin{eqnarray*}
+    E[X] &=&  0 \times 1/2 + 1 \times 1/2 = 1/2\\ 
+    E[X^2] &=&  0^2 \times 1/2 + 1^2 \times 1/2 = 1/2
+\end{eqnarray*}
+\pause
+\[
+  \alert{E[X^2] - \left( E[X] \right)^2 = 1/2 - (1/2)^2 =  1/4}
+\]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -97,36 +103,46 @@ $\mu = E[X] = \displaystyle \sum_{x \in \{0,1\}} p(x) \cdot x = (1-p) \cdot 0 + 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\begin{frame}
-\frametitle{Variance of Bernoulli RV -- Without Shortcut}
-
-\alert{You will fill in the missing steps on Problem Set 5.}
-
-\begin{eqnarray*}
-	\sigma^2 &=& Var(X) = \sum_{x \in \{0,1\}} (x - \mu)^2 p(x)\\
-	 &=& \sum_{x \in \{0,1\}} (x - p)^2 p(x)\\
-	 &\vdots &\\ 
-	 &=&p(1-p)
-\end{eqnarray*}
-
+%\begin{frame}
+%\frametitle{Variance of Bernoulli RV -- Without Shortcut}
+%
+%\alert{You will fill in the missing steps on Problem Set 5.}
+%
+%\begin{eqnarray*}
+%	\sigma^2 &=& Var(X) = \sum_{x \in \{0,1\}} (x - \mu)^2 p(x)\\
+%	 &=& \sum_{x \in \{0,1\}} (x - p)^2 p(x)\\
+%	 &\vdots &\\ 
+%	 &=&p(1-p)
+%\end{eqnarray*}
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\end{frame}
-
+%\begin{frame}
+%\frametitle{Variance of a Linear Function  \hfill \includegraphics[scale = 0.05]{./images/clicker} }
+%Suppose $X$ is a random variable with $Var(X) = \sigma^2$ and $a,b$ are constants. What is $Var(a + bX)$? 
+%\begin{enumerate}[(a)]
+%	\item $\sigma^2$
+%	\item $a + \sigma^2$
+%	\item $b \sigma^2$
+%	\item $a + b \sigma^2$
+%	\item $b^2 \sigma^2$
+%\end{enumerate}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Variance of a Linear Function  \hfill \includegraphics[scale = 0.05]{./images/clicker} }
-Suppose $X$ is a random variable with $Var(X) = \sigma^2$ and $a,b$ are constants. What is $Var(a + bX)$? 
-\begin{enumerate}[(a)]
-	\item $\sigma^2$
-	\item $a + \sigma^2$
-	\item $b \sigma^2$
-	\item $a + b \sigma^2$
-	\item $b^2 \sigma^2$
-\end{enumerate}
+\frametitle{Variance of a Linear Transformation}
+
+\begin{eqnarray*}
+ Var(a + bX) &=& E\left[\left\{(a+bX) - E(a+bX)\right\}^2 \right] \\ 
+ 	&=& E\left[\left\{(a+bX) - (a+bE[X])\right\}^2 \right] \\
+ 	&=&E\left[\left(bX - bE[X]\right)^2 \right] \\ 
+ 	&=&E[b^2 (X - E[X])^2]\\ 
+ 	&=& b^2 E[(X-E[X])^2]\\ 
+ 	&=& b^2 Var(X) = b^2 \sigma^2
+\end{eqnarray*}
+\alert{The key point here is that variance is defined in terms of expectation and expectation is linear.}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,21 +158,6 @@ Var(a + bX) &= &b^2 \sigma^2 \\\\
 \begin{block}{These should look familiar from the related results for sample variance and std.\ dev. that you worked out on an earlier problem set.}
 
 \end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Variance of a Linear Transformation}
-
-\begin{eqnarray*}
- Var(a + bX) &=& E\left[\left\{(a+bX) - E(a+bX)\right\}^2 \right] \\ 
- 	&=& E\left[\left\{(a+bX) - (a+bE[X])\right\}^2 \right] \\
- 	&=&E\left[\left(bX - bE[X]\right)^2 \right] \\ 
- 	&=&E[b^2 (X - E[X])^2]\\ 
- 	&=& b^2 E[(X-E[X])^2]\\ 
- 	&=& b^2 Var(X) = b^2 \sigma^2
-\end{eqnarray*}
-\alert{The key point here is that variance is defined in terms of expectation and expectation is linear.}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,34 +335,13 @@ Let $X$ and $Y$ be discrete random variables. The joint probability mass functio
 
 \pause
 
-
-
-$$p_{XY}(1,2) =   P(X=1 \cap Y =2) =  \alert{1/4}$$
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What is $p_{XY}(2,1)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{table}
-\begin{tabular}{|cc|ccc|}
-\hline
-&&\multicolumn{3}{c|}{$Y$}\\
-&&1 & 2&3\\
-\hline
-\multirow{4}{*}{$X$}
-&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
-&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
-\hline
-\end{tabular}
-\end{table}
+\begin{eqnarray*}
+p_{XY}(1,2) &=& P(X=1 \cap Y =2) = \alert{1/4}\\ \pause
+p_{XY}(2,1) &=& P(X=2 \cap Y =1) = 0
+\end{eqnarray*}
 
 \pause
 
-$$p_{XY}(2,1) =  P(X=2 \cap Y =1) = \alert{0}$$
 
 \end{frame}
 
@@ -378,34 +358,34 @@ $$p_{XY}(2,1) =  P(X=2 \cap Y =1) = \alert{0}$$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Does this satisfy the properties of a joint pmf? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\alert{(A = YES, B = NO)}
-\begin{table}
-\begin{tabular}{|cc|ccc|}
-\hline
-&&\multicolumn{3}{c|}{$Y$}\\
-&&1 & 2&3\\
-\hline
-\multirow{4}{*}{$X$}
-&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
-&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
-&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
-\hline
-\end{tabular}
-\end{table}
-
-\pause
-
-\begin{enumerate}
-	\item $p(x,y) \geq 0$ for all pairs $(x,y)$
-	\item $\sum_x\sum_{y} p(x,y) = 1/8 + 1/4 + 1/8 + 1/4 + 1/8 + 1/8 = 1$
-\end{enumerate}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Does this satisfy the properties of a joint pmf? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%\alert{(A = YES, B = NO)}
+%\begin{table}
+%\begin{tabular}{|cc|ccc|}
+%\hline
+%&&\multicolumn{3}{c|}{$Y$}\\
+%&&1 & 2&3\\
+%\hline
+%\multirow{4}{*}{$X$}
+%&0& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}& \alert{0}\\
+%&1& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+%&2& \multicolumn{1}{|c}{\alert{0}} & \alert{1/4}&\alert{1/8}\\
+%&3& \multicolumn{1}{|c}{\alert{1/8}} & \alert{0}&\alert{0}\\
+%\hline
+%\end{tabular}
+%\end{table}
+%
+%\pause
+%
+%\begin{enumerate}
+%	\item $p(x,y) \geq 0$ for all pairs $(x,y)$
+%	\item $\sum_x\sum_{y} p(x,y) = 1/8 + 1/4 + 1/8 + 1/4 + 1/8 + 1/8 = 1$
+%\end{enumerate}
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Joint versus Marginal Probability Mass Function}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
