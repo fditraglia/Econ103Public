@@ -36,6 +36,7 @@
 \end{tabular}
 \end{table}
 
+\small
 \begin{eqnarray*}
 	p_{Y|X}(1|2) &=& \frac{p_{XY}(2,1)}{p_X(2)} = \frac{0}{3/8} =\alert{0}\\ \\
 	p_{Y|X}(2|2) &=&\frac{p_{XY}(2,2)}{p_X(2)}= \frac{1/4}{3/8} =\alert{2/3} \\ \\ 
@@ -66,9 +67,9 @@
 \end{table}
 
 \pause
-\begin{equation}
+\begin{equation*}
 	p_{X|Y}(1|2) =\frac{p_{XY}(1,2)}{p_Y(2)}=\frac{1/4}{1/2}= \alert{1/2}
-\end{equation}
+\end{equation*}
 
   \pause
 
@@ -292,7 +293,7 @@ From above the marginal distribution of $X$ is:
 \frametitle{The Law of Iterated Expectations}
 \framesubtitle{$E[Y|X]$ is an RV so what is its expectation?}
 For any RVs $X$ and $Y$
-	$$\boxed{E\left[E\left[Y|X  \right]  \right] = E[Y]}$$
+	$$\alert{E\left[E\left[Y|X  \right]  \right] = E[Y]}$$
 Option proof \textcolor{blue}{\href{http://ditraglia.com/Econ103Public/OptionalProofs.pdf}{\fbox{HERE}}}.
 (Helpful for Econ 104\dots)
 
@@ -501,20 +502,10 @@ Each $X_i$ is the same kind of RV, with the same values for any parameters. (Hen
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Binomial$(n,p)$ Random Variable}
+\frametitle{Recall: Binomial$(n,p)$ Random Variable}
 
 \begin{block}{Definition}
 Sum of $n$ independent Bernoulli RVs, each with probability of ``success,'' i.e.\ 1, equal to $p$
-\end{block}
-
-
-\begin{block}{Parameters}
-$p =$ probability of ``success,'' $n=$ \# of trials
-\end{block}
-
-
-\begin{block}{Support} 
-$\{0, 1, 2, \hdots, n\}$
 \end{block}
 
 
@@ -524,25 +515,25 @@ Let $X_1, X_2, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$, $Y = X_1 + X_2 + \hdot
 
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Which of these is the PMF of a Binomial$(n,p)$ RV? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-\begin{enumerate}[(a)]
-	\item $p(x) = p^x (1-p)^{n-x}$
-	\item $p(x) = {n \choose x} p^x (1-p)^{n-x}$
-	\item $p(x) = {x \choose n} p^x$
-	\item $p(x) = {n \choose x} p^{n-x} (1-p)^{x}$
-	\item $p(x) = p^n (1-p)^{x}$
-\end{enumerate}
-
-\pause
- 
-$$\alert{p(x) = {n \choose x} p^x (1-p)^{n-x}}$$ 
-
-
-
-\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Which of these is the PMF of a Binomial$(n,p)$ RV? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%
+%\begin{enumerate}[(a)]
+%	\item $p(x) = p^x (1-p)^{n-x}$
+%	\item $p(x) = {n \choose x} p^x (1-p)^{n-x}$
+%	\item $p(x) = {x \choose n} p^x$
+%	\item $p(x) = {n \choose x} p^{n-x} (1-p)^{x}$
+%	\item $p(x) = p^n (1-p)^{x}$
+%\end{enumerate}
+%
+%\pause
+% 
+%$$\alert{p(x) = {n \choose x} p^x (1-p)^{n-x}}$$ 
+%
+%
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Expected Value of Binomial RV}
