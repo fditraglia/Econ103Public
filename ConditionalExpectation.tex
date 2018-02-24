@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\title{More on Conditional Expectation}
+\author{Francis J.\ DiTraglia}
+\date{Econ 103}
+
+\begin{document}
+
+\maketitle
+
+\noindent This handout contains some extra information on conditional expectation.
+I will not test you on anything that appears in this note but not in the lecture slides.
+However, if you want a deeper understanding of conditional expectation, reading through this material will be very helpful.
+Mathematically, the material that appears below is straightforward, using only tools and techniques that should be familiar from class.
+Conceptually, however, some of the discussion below goes beyond what we'll cover in class.
+
+\paragraph{Evaluating a Prediction of $Y$}
+Suppose that we are asked to submit a prediction $m$ of a random variable $Y$.
+What value of $m$ might we choose?
+A good prediction should be ``close'' to $Y$ on average, but we have to define what we mean by ``close.'' 
+One possibility is to choose $m$ to minimize \emph{expected squared error}, namely 
+\[
+  \mbox{choose } m \mbox{ to minimize }  E\left[ (Y - m)^2 \right]
+\]
+Expanding, and using the linearity of expectation and the shortcut formula,
+\begin{eqnarray*}
+  E\left[ (Y-m)^2 \right] &=& E\left[ Y^2 - 2mY + m^2 \right]\\
+  &=& E[Y^2] - 2m E[Y] + m^2\\
+  &=& \left(\sigma^2_Y + \mu_Y^2\right) - 2m \mu_Y + m^2
+\end{eqnarray*}
+Now, we need to minimize over $m$.
+Remember, $\sigma_Y^2$ and $\mu_Y$ are \emph{constants} with respect to this minimization problem.
+The first order condition is:
+\[
+  2m - 2\mu_Y = 0
+\]
+and hence our solution is $m = \mu_Y$, noting that the second order condition for a minimum is satsified.
+We have shown that the best forecast of $Y$ is $\mu_Y$, if our criterion of ``best'' is minimizing expected squared error.
+
+
+\paragraph{Using $X$ to Predict $Y$} Above we were asked to submit a \emph{fixed} prediction of $Y$. 
+Suppose now that we observe another random variable $X$ and are allowed to make our forecast for $Y$ depend on $X$.
+In this case we will choose a \emph{function} $m$ such that our prediction of $Y$ is $m(X)$.
+Again, the question is what to choose for $m$?
+Suppose that we once again decide to minimize expected squared error:
+\[
+  \mbox{choose } m \mbox{ to minimize } E\left[ \left\{ Y - m(X) \right\}^2 \right]
+\]
+So what function $m$ should we choose?
+To answer this, we re-write $\left\{ Y - m(X)\right\}^2$ by adding and subtracting $E[Y|X]$ and expanding:
+\small
+\begin{eqnarray*}
+  \left\{ Y - m(X) \right\}^2 &=& \left\{Y - E[Y|X] + E[Y|X] - m(X) \right\}^2\\
+  &=& \big[\left\{ Y - E[Y|X] \right\} - \left\{ m(X) - E[Y|X] \right\}\big]^2\\
+  &=& \left\{ Y - E[Y|X] \right\}^2 + \left\{ m(X) - E[Y|X] \right\}^2 - 2\left\{ Y - E[Y|X] \right\}\left\{ m(X) - E[Y|X] \right\}
+\end{eqnarray*}
+\normalsize
+Now, we want to choose $m$ to minimize the expected value of the preceding expression, namely
+\small
+\[
+E\left[\left\{ Y - E[Y|X] \right\}^2\right] + E\big[\left\{ m(X) - E[Y|X] \right\}^2\big] - 2E\big[\left\{ Y - E[Y|X] \right\}\left\{ m(X) - E[Y|X] \right\}\big]
+\]
+\normalsize
+Notice that the first of the three terms doesn't involve $m$, so we can treat it as a constant in our minimization problem and just ignore it.
+Thus it suffices to find the function $m$ that minimizes 
+\[
+E\big[\left\{ m(X) - E[Y|X] \right\}^2\big] - 2E\big[\left\{ Y - E[Y|X] \right\}\left\{ m(X) - E[Y|X] \right\}\big]
+\]
+The second term in this expression is quite complicated, but it turns out that one can show (using the law of iterated expectations) that it is always equal to zero.
+Thus, it suffices to find the function $m$ that minimizes $E\left[ \left\{ m(X) - E[Y|X] \right\}^2 \right]$ and the answer is clearly $m(X) = E[Y|X]$.
+Hence, we have shown that $E[Y|X]$ is the forecast of $Y$ that minimizes expected squared error.
+
+
+\paragraph{Deriving the Law of Iterated Expectations: Discrete RV}
+
+\begin{eqnarray*}
+	E_X\left[ E_{Y|X}\left[Y|X\right] \right] &=&E_X\left[ \sum_y y \; p_{Y|X}(y|x)\right] = \sum_x \left( \sum_y y \; p_{Y|X}(y|x)\right) p_X(x) \\
+		&=& \sum_x \sum_y y \; p_X(x) \; p_{Y|X}(y|x) = \sum_x \sum_y y \; p_{XY}(x,y)\\
+		&=& \sum_y y \sum_x p_{XY}(x,y) = \sum_y y \;p_Y(y) = E[Y]
+\end{eqnarray*}
+The second step is the tricky one. Here what we're doing is calculating the expected value of the function $g(X) = \sum_y p_{Y|X}(y|X)$ with respect to the \emph{marginal} pmf of $X$. 
+
+\paragraph{Deriving the Law of Iterated Expectations: Continuous RV}
+Same as above, but replace sums with itegrals.
+
+\end{document}
