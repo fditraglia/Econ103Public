@@ -7,34 +7,27 @@
 
 %-------------------DON'T CHANGE---------------------%
 %The following is needed to prevent a conflict between knitr and the exam class involving the package ``framed.''
-<<cache=FALSE,include=FALSE,purl=FALSE>>= 
-knit_hooks$set(document=function(x){ 
-  sub('\\usepackage{framed}', '', x, fixed=TRUE) 
-}) 
-@ 
+<<cache=FALSE,include=FALSE,purl=FALSE>>=
+knit_hooks$set(document=function(x){
+  sub('\\usepackage{framed}', '', x, fixed=TRUE)
+})
+@
 %-------------------DON'T CHANGE---------------------%
 
 
 
 %This keeps images from being too big, centers them, and makes sure we use pdf images
-<<cache=FALSE,include=FALSE,purl=FALSE>>= 
+<<cache=FALSE,include=FALSE,purl=FALSE>>=
 opts_chunk$set(fig.width=4, fig.height=4, fig.align='center',dev='pdf')
 @
 
 
 %Change the default width of the output to fit within the solution boxes
-<<cache=FALSE,include=FALSE,purl=FALSE>>= 
+<<cache=FALSE,include=FALSE,purl=FALSE>>=
 options(width = 60)
 @
 
-
-%To include the answers use:
-%  pdflatex "\def\showanswers{1} \input{thisfile.tex}"
-\ifdefined\showanswers
-  \printanswers
-\else
-  \noprintanswers
-\fi
+%\printanswers
 
 \title{Problem Set \#7}
 \author{Econ 103}
@@ -59,9 +52,9 @@ The point is that $S$, the number of successes in $n$ trials each with probabili
   $$P^* = \frac{nP + 1}{n+2} = \left(\frac{n}{n+2}\right)P + \left(\frac{1}{n+2}\right)$$
 The reason the book gives you the above expression is to give you a hint: namely that once you've solved for the MSE of $P$ you can use this to get the MSE of $P^*$ fairly easily by writing it as above.
   \begin{eqnarray*}
-		E[P] &=& E[S/n] = E[S]/n = n\pi/n = \pi\\ 
-		\mbox{Bias}(P) &=& E[P] - \pi = \pi - \pi = 0\\ 
-		Var(P) &=& Var(S/n) = Var(S)/n^2 = n\pi(1-\pi)/n^2 = \pi(1-\pi)/n \\ 
+		E[P] &=& E[S/n] = E[S]/n = n\pi/n = \pi\\
+		\mbox{Bias}(P) &=& E[P] - \pi = \pi - \pi = 0\\
+		Var(P) &=& Var(S/n) = Var(S)/n^2 = n\pi(1-\pi)/n^2 = \pi(1-\pi)/n \\
 		MSE(P) &=& \mbox{Bias}(P)^2 + Var(P) = 0^2 + \pi(1-\pi)/n = \pi(1-\pi)/n
 	\end{eqnarray*}
 where we have used our rules for manipulating expectation and variance, as well as the expressions for the mean and variance of a Binomial random variable. Now:
@@ -71,22 +64,22 @@ where we have used our rules for manipulating expectation and variance, as well 
 		\mbox{Bias}(P^*) &=& E[P^*] - \pi =  \left(\frac{n}{n+2}\right)\pi + \left(\frac{1}{n+2}\right) - \pi\\
 			&=&\left(\frac{n}{n+2} -1\right)\pi + \left(\frac{1}{n+2}\right) = \frac{1-2\pi}{n+2}\\\\
 		Var(P^*) &=& Var\left[  \left(\frac{n}{n+2}\right)P + \left(\frac{1}{n+2}\right)\right] = \left(\frac{n}{n+2}\right)^2 Var(P)\\
-		&=& \frac{n^2}{(n+2)^2} \frac{\pi(1-\pi)}{n} = \frac{n\pi(1-\pi)}{(n+2)^2}\\ \\ 
+		&=& \frac{n^2}{(n+2)^2} \frac{\pi(1-\pi)}{n} = \frac{n\pi(1-\pi)}{(n+2)^2}\\ \\
 		MSE(P^*) &=& \mbox{Bias}(P^*)^2 + Var(P^*) = \left(\frac{1-2\pi}{n+2}\right)^2 + \frac{n\pi(1-\pi)}{(n+2)^2}\\
 			&=& \frac{(1-2\pi)^2 + n\pi(1-\pi)}{(n+2)^2} = \frac{1 - 4\pi + 4\pi^2 + n\pi - n\pi^2}{(n+2)^2}\\
 			&=& \frac{1 + (n-4)\pi - (n-4)\pi^2 }{(n+2)^2} =\frac{1 + \pi(1-\pi)(n-4)}{(n+2)^2}
 	\end{eqnarray*}
 	If we take limits, we'll see that both $P$ and $P^*$ are consistent, since their mean-squared errors go to zero as $n\rightarrow  \infty$. For different values of $\pi$ and $n$, however, the two estimators will have different MSE. Parts (d) and (e) of this question simply ask you to plug in various values and compare.
 
-    
+
     \end{solution}
   \item[]
     \begin{solution}
     \textbf{7-18}\\
     The point of this question is non-response bias: the people who respond are not representative of the population as a whole. Note that $P$ and $P^*$ as defined in this question \emph{do not correspond} to question 7-13. Our goal is to estimate the population proportion who will buy a computer. Using the table, we calculate the total number of people who will buy a computer as:
-  $$0.2 \times 40 + 0.04\times 5 + 0.1\times 3 + 0.2\times 2 = 1.7 \mbox{ million}$$
+  $$0.02 \times 40 + 0.04\times 5 + 0.1\times 3 + 0.2\times 2 = 1.7 \mbox{ million}$$
 which corresponds to a fraction $\pi^* = 1.7/50 = 0.034$. Again using the table, the number of people who will buy a computer \emph{among the sub-population who would respond} can be calculated as:
-	$$0.2 \times 7 + 0.04\times 1 + 0.1\times 1 + 0.2\times 1 =  0.48 \mbox{ million}$$
+	$$0.02 \times 7 + 0.04\times 1 + 0.1\times 1 + 0.2\times 1 =  0.48 \mbox{ million}$$
 which corresponds to a fraction $\pi = 0.48/10 = 0.048$. The point is that $\pi \neq \pi^*$. In other words, the proportion of people who would buy a computer \emph{differs} across people who would and would not respond to the phone survey. The estimator $P$ is based on calling 1000 people chosen at random and recording responses for \emph{only those who reply}. The proportion of people who will reply is $10/50 = 1/5$. Thus, $P$ will end up with a sample size of approximately $n=200$ individuals. These individuals correspond to the sub-population for which the proportion who would buy a computer is $\pi^* = 0.048$. In contrast, the estimator $P^*$ is based on calling $n^* = 100$ people chosen at random and then following up with these people repeatedly until \emph{all of them respond}. Thus, $P^*$ draws from the \emph{full population}, in which a proportion $\pi^* = 0.034$ of people will buy a computer. The \emph{true parameter} is $\pi^*$ since we want to estimate the \emph{overall} fraction of people who will buy a computer, \emph{not} the fraction of people who would buy a computer among those who are likely to respond to a telephone survey. Hence bias is calculated \emph{relative to} $\pi^*$. Variance is calculated \emph{relative to the mean of each sampling distribution}. For $P$ this mean is $\pi$ while for $P^*$ it is $\pi^*$. That is:
 	\begin{eqnarray*}
 		MSE(P) &=& \mbox{Bias}(P)^2 + Var(P) = (E[P] - \pi^*)^2 + E[(P - \pi)^2]\\
@@ -99,7 +92,7 @@ The estimator $P^*$ does not have any bias because of the follow-ups to ensure t
     \end{solution}
   \item[]
     \begin{solution}
-    \textbf{7-19} \emph{THE ANSWER IN THE BOOK IS WRONG!} 
+    \textbf{7-19} \emph{THE ANSWER IN THE BOOK IS WRONG!}
 
 \noindent Specifically, they take $n=100$ rather than $n = 200$ when calculating the variance of $P$. The reason this is wrong is because 1000 is the number of people \emph{called} not the number of people who \emph{reply}. The question statement specifically states that $P$ should be calculated relative to  those who respond.
 
@@ -110,7 +103,7 @@ All we have to do in this question is take the square root of the answers from t
 
 \section*{Part II -- Additional Problems}
 \begin{questions}
-	
+
 \question In this question you will replicate some of the density plots from Lecture 13.
 \begin{parts}
 	\part Plot a standard normal pdf on the same graph as a $t(1)$ pdf on the interval $[-5, 5]$. How do the pdfs compare? Explain.
@@ -202,7 +195,7 @@ height <- height[!is.na(height)]
   \part Make a histogram of height and calculate the mean height for students in the class. For the purposes of this exercise, these correspond to the \emph{population}.
 \begin{solution}
 <<tidy = FALSE>>=
-hist(height, main = 'Population - All Econ 103 Students', 
+hist(height, main = 'Population - All Econ 103 Students',
      xlab = 'Height in Inches')
 mean(height)
 @
@@ -211,10 +204,10 @@ mean(height)
 \begin{solution}
 <<>>=
 x.bar.draw <- function(n){
-  
+
   sim <- sample(height, size = n, replace = TRUE)
   return(mean(sim))
-  
+
 }#END x.bar.draw
 @
 \end{solution}
