@@ -1,27 +1,27 @@
 \section{Comparing intervals with different confidence levels}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{How Much Narrower is a 68\% CI? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Suppose we're constructing a confidence interval for the mean of a normal population with $\sigma^2$ known:
-$$\bar{X}_n \pm \texttt{qnorm}(1 - \alpha /2) \times \sigma/\sqrt{n}$$
-Approximately what is the \emph{ratio} of the width of a 95\% interval divided by that of a 68\% interval? 
-
-
-\pause
-
-
-\alert{$$
-\boxed{\begin{array}{r}
-	\texttt{qnorm}(1 - 0.05/2) \approx 2  \\
-	\texttt{qnorm}(1 - 0.32/2)  \approx 1
-\end{array}} \implies 
-\frac{2 \times \texttt{qnorm}(1 - 0.05/2) \times \sigma/\sqrt{n}}{  2 \times \texttt{qnorm}(1 - 0.32/2) \times \sigma/\sqrt{n}}\approx 2
-$$}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%1\begin{frame}
+%1\frametitle{How Much Narrower is a 68\% CI? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%1
+%1Suppose we're constructing a confidence interval for the mean of a normal population with $\sigma^2$ known:
+%1$$\bar{X}_n \pm \texttt{qnorm}(1 - \alpha /2) \times \sigma/\sqrt{n}$$
+%1Approximately what is the \emph{ratio} of the width of a 95\% interval divided by that of a 68\% interval? 
+%1
+%1
+%1\pause
+%1
+%1
+%1\alert{$$
+%1\boxed{\begin{array}{r}
+%1	\texttt{qnorm}(1 - 0.05/2) \approx 2  \\
+%1	\texttt{qnorm}(1 - 0.32/2)  \approx 1
+%1\end{array}} \implies 
+%1\frac{2 \times \texttt{qnorm}(1 - 0.05/2) \times \sigma/\sqrt{n}}{  2 \times \texttt{qnorm}(1 - 0.32/2) \times \sigma/\sqrt{n}}\approx 2
+%1$$}
+%1
+%1\end{frame}
+%1
+%1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{frame}
@@ -66,8 +66,6 @@ $$}
 \begin{block}{$\sigma$ Known}
   \[P\left[ -\texttt{qnorm}(1 - \alpha/2) \leq \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}}\leq \texttt{qnorm}(1 - \alpha/2) \right] = 1 - \alpha\]
 
-  \pause
-
   \vspace{1em}
   $\implies$ Confidence Interval: $\alert{\bar{X}_n \pm \texttt{qnorm}(1 - \alpha/2) \times \sigma/ \sqrt{n}}$
 \end{block}
@@ -104,7 +102,6 @@ $$}
 If $X_1, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$, then
 	$$\alert{\boxed{\frac{\bar{X}_n - \mu}{S/\sqrt{n}} \sim t(n-1)}}$$
 
-\pause
 
 \begin{itemize}
   \item Parameter: $\nu = n-1$ ``degrees of freedom'' 
@@ -297,19 +294,19 @@ We will use this fact to create \emph{approximate} CIs for population mean even 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Who is the Chief Justice of the US Supreme Court?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-	\begin{enumerate}[(a)]
-	\item Harry Reid
-	\item John Roberts
-	\item William Rehnquist
-	\item Stephen Breyer
-\end{enumerate}
-
-% \vspace{1em}
-% \alert{58/65 $\approx 90\%$ of the students in the class got this right. }
-
-\end{frame}
+%\begin{frame}
+%\frametitle{Who is the Chief Justice of the US Supreme Court?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%	\begin{enumerate}[(a)]
+%	\item Harry Reid
+%	\item John Roberts
+%	\item William Rehnquist
+%	\item Stephen Breyer
+%\end{enumerate}
+%
+%% \vspace{1em}
+%% \alert{58/65 $\approx 90\%$ of the students in the class got this right. }
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Are US Voters Really That Ignorant?}
