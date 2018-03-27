@@ -1,0 +1,319 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[T1]{fontenc}
+\boxedpoints
+\pointsinmargin
+
+\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm II, Page \thepage\ of \numpages}
+              {March 27th, 2018}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large Second Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} March 27th, 2018}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, a point will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+  \question To answer this question you will need to refer to the following joint pmf: 
+			\begin{center}
+\begin{tabular}{|cc|ccc|}
+\hline
+&&\multicolumn{3}{c|}{$Y$}\\
+&&1 & 2 & 3\\
+\hline
+\multirow{2}{*}{$X$}
+&0& \multicolumn{1}{|c}{0} & 0.2 & 0.4\\
+&1& \multicolumn{1}{|c}{0.1} & 0.3 & 0\\
+\hline
+\end{tabular}
+\end{center}
+\begin{parts}
+  \part[5] Are $X$ and $Y$ independent? Briefly explain why or why not.
+  \begin{solution}[1in]
+    No: if $Y=1$ then $X$ must be 1.
+  \end{solution}
+  \part[5] Write down the support set and marginal pmf of $Y$ and use them to calculate $E[Y^3]$.
+  \begin{solution}[1.25in]
+    The support set of $Y$ is $\left\{ 1,2,3 \right\}$ and its marginal pmf is $p_Y(0) = 0.1, p_Y(2) = 0.5, p_Y(3) = 0.4$.
+    We know that $E[g(X)] = \sum_{\mbox{all } x} g(x) p(x)$. 
+    Hence,
+    \[
+      E[Y^3] = 1^3 \times 0.1 + 2^3 \times 0.5 + 3^3 \times 0.4 = 0.1 + 4 + 10.8 = 14.9
+    \]
+  \end{solution}
+  \part[5] Write out the CDF of $Y$.
+  \begin{solution}[1.25in]
+    \[
+      F_Y(y_0) = \left\{
+        \begin{array}{rr}
+          0 & y_0 < 1 \\
+          0.1 & 1\leq y_0 < 2  \\
+          0.6 & 2 \leq y_0 < 3 \\
+          1 & y_0 \geq 3 \\
+        \end{array}
+        \right.
+    \]
+  \end{solution}
+  \part[5] Derive the conditional pmf of $X$ given $Y=2$.
+  \begin{solution}[1in]
+    $p_{X|Y}(0|2) = 0.2/0.5 = 0.4$ and $p_{X|Y}(1|2) = 0.3/0.5 = 0.6$
+  \end{solution}
+  \part[5] Calculate the expected value of the \emph{ratio} of $X$ and $Y$, namely $E\left[\displaystyle\frac{X}{Y}\right]$.
+  \begin{solution}[1.5in]
+    We know that $E[g(X,Y)] = \sum_{\mbox{all }x,y} g(x,y) p_{XY}(x,y)$, hence
+    \begin{align*}
+      E[X/Y] = 0.1 \times (1/1) + 0.3 \times (1 / 2) = 0.25
+    \end{align*}
+  \end{solution}
+\end{parts}
+
+
+
+
+
+  \question Let $X$ be a random variable with support set $[-1,1]$ and probability density function $f(x) = c(1 - x^2)$ where $c$ is a constant.
+  \begin{parts}
+    \part[5] Calculate $E[X]$. 
+    If needed, your answer may depend on $c$.
+    \begin{solution}[1.7in]
+      \begin{align*}
+        E[X] &= \int_{-\infty}^{\infty} x f(x) \, dx = c\int_{-1}^{1}(x - x^3)\, dx = \left.c\left( \frac{x^2}{2} - \frac{x^4}{4} \right)\right|_{-1}^1\\
+        &= c\left[ \left(\frac{1}{2} - \frac{1}{4} \right) - \left( \frac{1}{2} - \frac{1}{4} \right)\right] = 0
+      \end{align*}
+    \end{solution}
+    \part[5] Calculate $\mbox{Var}(X)$. If needed, your answer may depend on $c$. 
+    \begin{solution}[1.7in]
+      Since $E[X]=0$, by the shortcut formula $\mbox{Var}(X) = E[X^2]$:
+      \begin{align*}
+        E[X^2] &= \int_{-\infty}^{\infty} x^2 f(x)\, dx = c\int_{-1}^{1} (x^2 - x^4)\, dx = \left. c\left( \frac{x^3}{3} - \frac{x^5}{5} \right)\right|_{-1}^{1}\\ 
+        &= c\left[ \left( \frac{1}{3} - \frac{1}{5} \right) - \left( -\frac{1}{3} + \frac{1}{5} \right) \right] = c\left[ \frac{2}{3} - \frac{2}{5} \right] = \frac{4}{15}c
+      \end{align*}
+    \end{solution}
+    \part[5] Calculate the CDF of $X$.
+    If needed, your answer may depend on $c$.
+    \begin{solution}[1.7in]
+      \begin{align*}
+        F(x_0) &= \int_{-\infty}^{\infty} f(x)\, dx = c\int_{-1}^{x_0} (1 - x^2)\, dx = \left. c\left( x - \frac{x^3}{3} \right)\right|_{-1}^{x_0}\\
+        &= c\left[\left( x_0 - \frac{x_0^3}{3} \right) - \left( -1 + \frac{1}{3} \right)\right] = c\left(\frac{2}{3} + x_0 - \frac{x_0^3}{3}\right)
+      \end{align*}
+      The preceding expression is valid for $x_0 \in [-1,1]$.
+      For $x_0 > 1$, $F(x_0) = 1$. For $x_0 <1$, $F(x_0) = 0$.
+    \end{solution}
+    \part[5] Calculate $c$.
+    \begin{solution}[2in]
+      We can solve for $c$ by setting $F(1) = 1$:
+      \begin{align*}
+        c\left(\frac{2}{3} + 1 - \frac{1}{3}\right) &=1\\
+        c\left( 4/3 \right) &= 1\\
+        c &= 3/4
+      \end{align*}
+    \end{solution}
+  \end{parts}
+
+  
+  \uplevel{This question is taken from your homework assignment for Lectures 13--14. I have re-worded the question slightly for clarity, but the substance and solutions remain unchanged.}
+
+  \question Let $X_1$ and $X_2$ be independent random variables with $E[X_1] = E[X_2] = \mu$, $\mbox{Var}(X_1) = \sigma^2$ and $\mbox{Var}(X_2) = 3\sigma^2$.
+  Define $\bar{X} = (X_1 + X_2)/2$.
+	\begin{parts}
+		\part[5] Calculate the variance of $\bar{X}$.
+    \begin{solution}[0.75in]
+				In this example,
+				 $$Var(\bar{X}) = Var\left(\frac{X_1 + X_2}{2}\right)=\frac{1}{4}\left[ Var(X_1) + Var(X_2)\right] = \frac{1}{4}\left(\sigma^2 + 3\sigma^2\right)=\sigma^2 $$
+			\end{solution}
+		\part[5] Let $\widetilde{\mu} = \omega X_1 + (1-\omega) X_2$ for $\omega \in [0,1]$. 
+    Is $\widetilde{\mu}$ an unbiased estimator of $\mu$? Justify your answer. 
+    \begin{solution}[1in]
+				This estimator is unbiased: 
+				$$E[\widetilde{\mu}] =E[\omega X_1 + (1-\omega) X_2]=\omega \mu + (1-\omega)\mu = \mu$$
+			\end{solution}
+		\part[5] Define $\widetilde{\mu}$ as in part (b). Calculate the variance of $\widetilde{\mu}$.
+    \begin{solution}[1in]
+				$$Var(\widetilde{\mu}) = Var[\omega X_1 + (1-\omega) X_2] = \omega^2 \sigma^2 + 3 (1-\omega)^2 \sigma^2$$
+			\end{solution}
+      \part[10] What value of $\omega$ minimizes $Var(\widetilde{\mu})$? What is the lowest possible variance? You do \emph{not} have to check the second order condition.
+      \begin{solution}[1.75in]
+				We choose $\omega$ to minimize $\omega^2 \sigma^2 + 3 (1-\omega)^2 \sigma^2$, yielding the FOC:
+				\begin{eqnarray*}
+					2\omega \sigma^2 - 6(1 - \omega)\sigma^2 &=& 0\\
+					2\sigma^2\left[ \omega - 3(1-\omega)\right] &=&0\\
+					\omega - 3 + 3\omega &=&0\\
+					4\omega &=&3\\
+					\omega&=& 3/4
+				\end{eqnarray*}
+				Thus, the minimum variance is:
+					\begin{eqnarray*}
+						Var\left( \frac{3}{4} X_1 + \frac{1}{4} X_2\right) = \frac{9}{16}\sigma^2 + \frac{1}{16}\times 3\sigma^2 = \frac{12}{16}\sigma^2 = \frac{3}{4}\sigma^2
+					\end{eqnarray*}
+			\end{solution}
+      \part[5] Which is the more efficient estimator of $\mu$: the sample mean, or $\widetilde{\mu}$ using the optimal choice of $\omega$ from the preceding part? Explain briefly.
+      \begin{solution}[1.25in]
+        In this example the sample mean is NOT efficient because there is another unbiased estimator with a lower variance, namely $ 3X_1/4 + X_2/4$. We know this because we showed in part (d) that
+				$$Var\left( \frac{3}{4} X_1 + \frac{1}{4} X_2\right) = \frac{3}{4}\sigma^2$$
+				whereas, from part (a)
+				$$Var(\bar{X}_n) = \sigma^2$$
+			\end{solution}
+	\end{parts}
+
+
+  \question Let $Z \sim N(0,1)$.
+  Answer each of the following parts. No explanations are needed.
+  \begin{parts}
+   \part[3] Provide a line of R code to make 10 iid standard normal draws.
+   \begin{solution}[0.75in]
+     \texttt{rnorm(10)}
+   \end{solution}
+   \part[3] Provide a line of R code that calculates $P(Z>1.5)$.
+   \begin{solution}[0.75in]
+     \texttt{1 - pnorm(1.5)}
+   \end{solution}
+   \part[3] Provide a line of R code to calculate the 90th percentile of $Z$.
+   \begin{solution}[0.75in]
+     \texttt{qnorm(0.9)}
+   \end{solution}
+   \part[3] Provide a line of R code to calculate the pdf of $Z$ evaluated at 1. 
+   \begin{solution}[0.75in]
+     \texttt{dnorm(1)}
+   \end{solution}
+   \part[3] Provide a line of R code to find $c>0$ such that $P(-c \leq Z \leq c) = 0.80$.
+   \begin{solution}[0.75in]
+     \texttt{qnorm(0.9)} or \texttt{-qnorm(0.1)} 
+   \end{solution}
+   \part[10] Let \texttt{handspan} be an R vector containing measurements of the handspan of a population of students.
+   Suppose we want to study the sampling distribution of the \emph{sample median} based on a random sample of size $n = 20$ drawn from this population.  
+   Write R code that uses 10,000 simulation replications to create a histogram that approximates this sampling distribution.
+   You may assume that \texttt{handspan} has no missing values.
+   \begin{solution}[2in]
+     \begin{verbatim}
+sim_draw <- function(){
+  median(sample(handspan, size = 20, replace = TRUE)
+}
+sample_medians <- replicate(10000, sim_draw())
+hist(sample_medians)
+     \end{verbatim}
+   \end{solution}
+  \end{parts}
+
+  \question Let $X_1,\dots, X_n \sim \mbox{iid } N(\mu, \sigma^2)$ where $\sigma^2$ is known and define $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$.
+  \begin{parts}
+    \part[5] What is the sampling distribution of $\bar{X}_n$? 
+    Be sure to specify the values of any and all relevant parameters. 
+    \begin{solution}[0.75in]
+      $\bar{X}_n \sim N(\mu, \sigma^2/n)$
+    \end{solution}
+    \part[5] What is the sampling distribution of $\sqrt{n}(\bar{X}_n - \mu)/\sigma$?  
+    Be sure to specify the values of any and all relevant parameters. 
+    \begin{solution}[0.75in]
+      $\sqrt{n}(\bar{X}_n - \mu)/\sigma \sim N(0,1)$
+    \end{solution}
+    \part[5] Let $\mu = 1$, $\sigma^2 = 4$, and $n = 16$.
+    Give the approximate value of $P(0 \leq \bar{X}_n \leq 1.5)$.
+    To be clear: your answer should be a specific numeric value, not an R command.  
+    \begin{solution}[1.5in]
+      \begin{align*}
+        P(0\leq \bar{X}_n \leq 1.5) &= P\left( \frac{0 - \mu}{\sigma/\sqrt{n}} \leq \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \leq \frac{1.5 - \mu}{\sigma/\sqrt{n}} \right)\\
+        &= P(-2 \leq Z \leq 1) = \texttt{pnorm}(1) - \texttt{pnorm}(-2)\\
+        &\approx 0.84 - 0.025 = 0.815 
+      \end{align*}
+    \end{solution}
+    \part[5] Suppose that $n = 100$, $\sigma^2 = 4$, and we observe $\bar{x} = 20$.
+    Construct a 95\% confidence interval for $\mu$. 
+    \begin{solution}[1.5in]
+      The margin of error is $2\sigma/\sqrt{n} = 2\times 2/10 = 0.4$ so the confidence interval is $20\pm 0.4$ or equivalently $(19.6, 20.4)$.
+    \end{solution}
+    \part[5] Suppose $\sigma^2 = 9$ and we we want to construct a 95\% confidence interval for $\mu$.
+    How large a sample size $n$ would we need to get a margin of error equal to $0.1$?
+    \begin{solution}[1.5in]
+      The margin of error is $2 \times \sigma/\sqrt{n} = 6/\sqrt{n}$. Setting this equal to $1/10$ and solving for $n$, we obtain
+      \begin{align*}
+        1/10 &= 6/\sqrt{n}\\
+        \sqrt{n} &= 60\\ 
+        n &= 3600
+      \end{align*}
+    \end{solution}
+    \part[5] Suppose we want to construct a $(1-\alpha)$\times 100\% confidence interval for $\mu$.
+    Write down the expression for the margin of error of this interval.
+    Your answer may involve $\sigma^2$, $n$, $\alpha$, and an R command if needed.
+    \begin{solution}[1.5in]
+      $\sigma/\sqrt{n} \times \texttt{qnorm}(1 - \alpha/2)$
+    \end{solution}
+    \part[10] Write an R function called \texttt{normalCI} that constructs a confidence interval for the mean $\mu$ of a normal population with known variance $\sigma^2$ and confidence level $1 - \alpha$.
+    Your function should take three input arguments: a vector of data \texttt{x}, a probability \texttt{alpha}, and the population variance \texttt{popvar}.
+    It should return a vector of two elements: the first should be the LCL and the second the UCL of a $100\times(1 - \texttt{alpha})\%$ confidence interval for $\mu$ constructed from the sample mean of \texttt{x}.
+    You may assume that \texttt{x} has no missing values.
+    \begin{solution}
+\begin{verbatim}
+normalCI <- function(x, alpha, popvar) {
+  xbar <- mean(x)
+  ME <- qnorm(1 - alpha/2) * sqrt(popvar / length(x))
+  LCL <- xbar - ME
+  UCL <- xbar + ME
+  return(c(LCL, UCL))
+}
+\end{verbatim}
+    \end{solution}
+  \end{parts}
+
+
+
+
+
+
+\end{questions}
+
+\end{document}
