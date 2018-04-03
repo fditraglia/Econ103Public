@@ -119,76 +119,34 @@ At the beginning of the semester you were each shown a ``random number.'' In fac
 
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]\frametitle{Load Data for Anchoring Experiment}
-\footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{data.url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/survey_2017_spring.csv"}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data.url)}
-\hlstd{anchoring} \hlkwb{<-} \hlstd{survey[,}\hlkwd{c}\hlstd{(}\hlstr{"rand.num"}\hlstd{,} \hlstr{"africa.percent"}\hlstd{)]}
-\hlkwd{head}\hlstd{(anchoring)}
-\end{alltt}
-\begin{verbatim}
-##   rand.num africa.percent
-## 1       65             22
-## 2       10             22
-## 3       NA             NA
-## 4       65             15
-## 5       65             20
-## 6       10              9
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
 
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[t,fragile]\frametitle{Boxplot of Anchoring Experiment}
-  \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{boxplot}\hlstd{(africa.percent} \hlopt{~} \hlstd{rand.num,} \hlkwc{data} \hlstd{= anchoring)}
-\end{alltt}
-\end{kframe}
-
-{\centering \includegraphics[width=\maxwidth]{figure/anchoring_boxplot-1} 
-
-}
-
-
-
-\end{knitrout}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Anchoring Experiment}
-\small
-\singlespacing
-\begin{block}{From what population is our sample drawn?} 
-US College Students? Penn Students? Penn Econ Majors? 
-\end{block}
-
-\begin{block}{Do We Have a Random Sample?} 
-Definitely not a random sample of US College Students. Possibly a random sample of Penn Econ Majors since Econ 103 is required. 
-\end{block}
-
-
-\begin{block}{Observational or Experimental Data?} 
-Randomized Experiment drew from a bag of ``random'' numbers 
-\end{block}
-
-\begin{block}{Are the two samples independent?}
-Yes: I told you not to show your number to any other students or consult with them in any way. 
-\end{block}
-
-\begin{block}{What is the Research Question?} 
-Does ``anchoring'' cause of bias in decision-making? 
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Anchoring Experiment}
+%\small
+%\singlespacing
+%\begin{block}{From what population is our sample drawn?} 
+%US College Students? Penn Students? Penn Econ Majors? 
+%\end{block}
+%
+%\begin{block}{Do We Have a Random Sample?} 
+%Definitely not a random sample of US College Students. Possibly a random sample of Penn Econ Majors since Econ 103 is required. 
+%\end{block}
+%
+%
+%\begin{block}{Observational or Experimental Data?} 
+%Randomized Experiment drew from a bag of ``random'' numbers 
+%\end{block}
+%
+%\begin{block}{Are the two samples independent?}
+%Yes: I told you not to show your number to any other students or consult with them in any way. 
+%\end{block}
+%
+%\begin{block}{What is the Research Question?} 
+%Does ``anchoring'' cause of bias in decision-making? 
+%\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]
 \frametitle{Past Semester's Anchoring Experiment}
 
