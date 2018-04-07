@@ -1,362 +1,204 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Statistical Power}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{block}
-	{Experiment}
-	\begin{itemize}
-		\item Weigh a known 10 gram mass 16 times on the same scale.
-		\item Scale makes normally distributed measurement errors:
-		$X_1, \hdots, X_{16} \sim \mbox{iid } N( \mu, \sigma^2 = 4)$
-	\end{itemize}
-\end{block}
-\begin{alertblock}
-			{Measurement Errors?}
-		 Weigh same object repeatedly $\Rightarrow$ slightly different result each time. Average deviation from mean $\approx 2$ grams.
-		\end{alertblock}
-\begin{block}{Two Kinds of Scales}
-	\begin{description}
-			\item[Unbiased] Correct on average: $\mu = 10$ grams
-			\item[Biased] \emph{Too high} on average: $\mu = 11$ grams
-		\end{description}	
-		
-\end{block}
-
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-	\frametitle{An Idea for Deciding if a Scale is Biased}
-
-\begin{enumerate}
-	\item Test $H_0 \colon \mu = 10$ against $H_1\colon \mu > 10$ with $\alpha =0.025$.
-	\item Decide based on the outcome of test:
-		\begin{itemize}
-	\item Reject $H_0 \Rightarrow$ decide scale is biased, throw it away.
-	\item Fail to reject $H_0 \Rightarrow$ decide scale is unbiased, keep it.
-			\end{itemize}	
-\end{enumerate}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[t]
-	\frametitle{Testing Whether a Scale is Biased \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-	\fbox{$X_1, \hdots, X_{16} \sim \mbox{iid } N( \mu, \sigma^2)$ where we \emph{know} $\sigma^2 = 4$}
-
-	\vspace{2em}
-
-	Suppose I want to test $H_0\colon \mu = 10$. What is my test statistic? 
-
-	\vspace{1em}
-
-	\begin{enumerate}[(a)]
-		\item $4\bar{X}/S$  
-		\item $4(\bar{X} - 10)/S$
-		\item $(\bar{X} - \mu)/(S/\sqrt{n})$
-		\item $2 \bar{X}$
-		\item $2(\bar{X} - 10)$ 
-	\end{enumerate}
-
-	\pause
-	\alert{$$T_n = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} = \frac{\bar{X} - 10}{2/\sqrt{16}} = 2(\bar{X} - 10)$$}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[t]
-
-	\frametitle{Testing Whether a Scale is Biased \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-	\fbox{$X_1, \hdots, X_{16} \sim \mbox{iid } N( \mu, \sigma^2)$ where we \emph{know} $\sigma^2 = 4$}
-
-	\vspace{2em}
-
-	What is the sampling distribution of $2(\bar{X}-10)$ under $H_0\colon \mu = 10$? 
-
-	\vspace{1em}
-
-	\begin{enumerate}[(a)]
-		\item $N(\mu, 4)$  
-		\item $N(0, 4)$  
-		\item $t(15)$  
-		\item $\chi^2(15)$  
-		\item $N(0,1)$  
-	\end{enumerate}
-
-	\pause
-	\alert{$H_0\colon \mu = 0 \implies \displaystyle T_n = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} =  2(\bar{X} - 10)\sim N(0,1)$}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[t]
-	\frametitle{Testing Whether a Scale is Biased \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-	\fbox{$X_1, \hdots, X_{16} \sim \mbox{iid } N( \mu, \sigma^2)$ where we \emph{know} $\sigma^2 = 4$}
-
-	\vspace{1em}
-
-	Suppose I want to test $H_0\colon \mu = 10$ against the \emph{one-sided} alternative $\mu > 10$ with $\alpha = 0.025$. What is my decision rule? 
-
-	\vspace{1em}
-
-	\begin{enumerate}[(a)]
-		\item Reject $H_0$ if $2(\bar{X} - 10) > 1$ 
-		\item Reject $H_0$ if $2(\bar{X} - 10) < 1$ 
-		\item Reject $H_0$ if $2(\bar{X} - 10) > 2$ 
-		\item Reject $H_0$ if $2(\bar{X} - 10) < 2$ 
-		\item Reject $H_0$ if $|2(\bar{X} - 10)| > 2$ 
-	\end{enumerate}
-
-	\pause
-	\alert{Reject $H_0$ if $T_n = 2(\bar{X} - 10) >$ \texttt{qnorm(1 - 0.025)} $\approx 2$}
-\end{frame}
+\section{One-sample Test for Proportion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Testing an \emph{Unbiased} Scale\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-	 Unbeknowst to me the scale I am testing is in fact \emph{unbiased}.
-	 What is the probability that I will decide, based on the outcome of my test, to throw it away?
-
-	 \vspace{2em}
-	\pause
-
-	\alert{This is simply a Type I Error! Hence the probability is $\alpha = 0.025$}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Testing a \emph{Biased} Scale\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-	 Unbeknowst to me the scale I am testing is in fact \emph{biased}.
-	 What is the probability that I will decide, based on the outcome of my test, to throw it away?
-
-\pause
-
-\vspace{1em}
-
-\alert{This is the \emph{opposite} of a Type II error...}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{What is the probability of throwing away a \em{biased} scale?}
-
+	\frametitle{Tests for Proportions}
 	\begin{block}
-		{Decision Rule}
-		Decide scale is biased if $2(\bar{X} - 10) > 2$ or \emph{equivalently} if \alert{$\bar{X} > 11$} 
+		{Basic Idea}
+		The population \emph{can't be} normal (it's Bernoulli) so we use the CLT to get approximate sampling distributions (c.f.\ Lecture 18).
 	\end{block}
 	\begin{block}
-		{Biased Scale}
-		$\mu = 11 \quad \implies \quad X_1, \hdots, X_{16} \sim \mbox{iid } N(11, \sigma^2 = 4)$
+		{But there's a small twist!}
+		Bernoulli RV only has a \emph{single} unknown parameter $\implies$  we know \emph{more} about the population under $H_0$ in a proportions problem than in the other testing examples we've examined...	
 	\end{block}
-	\begin{alertblock}
-		{Which implies...}
-	\end{alertblock}
+
+
 \end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Testing a \emph{Biased} Scale\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-	Suppose $X_1, \hdots, X_{16} \sim N(11, \sigma^2 = 4)$. What is the sampling distribution of $\bar{X}$?
-	
-	\vspace{1em}
-
-	\begin{enumerate}[(a)]
-		\item $N(11, 1)$
-		\item $N(0, 1)$ 
-		\item $t(15)$
-		\item $N(11, 1/4)$ 
-		\item $N(10, 1/4)$
-	\end{enumerate}
-\pause
-
-\vspace{1em}
-
-\alert{$$\bar{X}_n \sim N(\mu, \sigma^2/n) = N(11, 1/4)$$}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{What is the probability of throwing away a \em{biased} scale?}
-
+	\frametitle{Tests for Proportions: One-Sample Example}
 	\begin{block}
-		{Decision Rule}
-		Decide scale is biased if $2(\bar{X} - 10) > 2$ or \emph{equivalently} if \alert{$\bar{X} > 11$} 
+		{From Pew Polling Data}
+		54\% of a random sample of 771 registered voters correctly identified 2012 presidential candidate Mitt Romney as Pro-Life.
 	\end{block}
-	\begin{block}
-		{Biased Scale}
-		$\mu = 11 \quad \implies \quad X_1, \hdots, X_{16} \sim \mbox{iid } N(11, \sigma^2 = 4)$
-	\end{block}
-	\begin{alertblock}
-		{Which implies}
-		$\bar{X} \sim N(11, 1/4)\quad \implies \quad$  \alert{$P(\bar{X}>11) = 1/2$} 
-	\end{alertblock}
-
-\vspace{1em}
-
-	\alert{\fbox{The \emph{power} of this test is 50\%}}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[c]\frametitle{Recall:}
-
-\begin{block}
-	{Type I Error} Rejecting $H_0$ when it is true:  $P(\mbox{Type I Error}) = \alpha$
-\end{block}
-
-\begin{block}
-	{Type II Error} Failing to reject $H_0$ when it is false: \alert{$P(\mbox{Type II Error}) =\beta$}
-\end{block}
-
-\begin{alertblock}
-	{Statistical Power} The probability of rejecting $H_0$ when it is false: \alert{$\mbox{Power} = 1 -\beta $}\\ i.e.\ the probability of \emph{convicting} a guilty person.
-\end{alertblock}
-
-\vspace{1em}
-
-\begin{center}
-\alert{\boxed{
-\begin{minipage}
-	{0.95\textwidth}
-	Hypothesis tests designed to control Type I error rate ($\alpha$). But we also care about Type II errors. What can learn about these?
-\end{minipage}}}
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Recall: Normal Population Known Variance}
 	\begin{block}
 		{Sampling Model}
-		$X_1, \hdots, X_n \sim N(\mu, \sigma^2)$ where $\sigma^2$ is known
+		$X_1, \hdots, X_{n} \sim \mbox{iid Bernoulli}(p)$
 	\end{block}
 	\begin{block}
-		{Sampling Distribution}
-		$$\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$$
+		{Sample Statistic}
+		Sample Proportion: $\displaystyle\widehat{p} = \frac{1}{n}\sum_{i=1}^{n} X_i$
 	\end{block}
-	\begin{block}
-		{Under $H_0\colon \mu = 0$}
-		$$T_n = \frac{\bar{X}_n}{\sigma/\sqrt{n}} \sim N(0,1)$$
-	\end{block}
-\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{What happens if $\mu \neq 0$?}
-	\begin{alertblock}
-		{Key Point \#1}
-		\begin{itemize}
-			\item Test Statistic $T_n=\sqrt{n}(\bar{X}_n/\sigma)$
-			\item Unless $\mu = 0$, test statistic is \emph{not} standard normal!
-			\item When $\mu \neq 0$, distribution of $T_n$ \emph{depends on} $\mu$!	
-		\end{itemize}
-	\end{alertblock}
-	\begin{alertblock}
-		{Key Point \#2}
-		\emph{Regardless} of the value of $\mu$,
-			$$\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$$
-		since the population is normally distributed!
-	\end{alertblock}
+	\vspace{1em}
+
+	\hfill \alert{\fbox{Suppose I wanted to test $H_0\colon p = 0.5$}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Distribution of $T_n$ \emph{Under the Alternative}}
+	\frametitle{Tests for Proportions: One Sample Example}
+	Under $H_0\colon p = 0.5$ what is the standard error of $\widehat{p}$?
+
+	\begin{enumerate}[(a)]
+		\item $1$
+		\item $\sqrt{\widehat{p}(1-\widehat{p})/n}$
+		\item $\sigma/\sqrt{n}$
+		\item $1/(2\sqrt{n})$
+		\item $p(1-p)$ 
+	\end{enumerate}
+\pause
+ \alert{$p=0.5 \implies \sqrt{0.5(1-0.5)/n} = 1/(2\sqrt{n})$}
+
+ \vspace{1em}
+ \emph{Under the null we know the SE! Don't have to estimate it!}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{One-Sample Test for a Population Proportion}
+	\begin{block}
+		{Sampling Model}
+		$X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$
+	\end{block}
+	\begin{block}
+		{Null Hypothesis}
+		$H_0 \colon p = \mbox{Known Constant } p_0$
+	\end{block}
+	\begin{block}
+		{Test Statistic} 
+		$\displaystyle T_n = \frac{\widehat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \approx N(0,1)$ under $H_0$ provided $n$ is large
+	\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{One-Sample Example $H_0\colon p = 0.5$}
+	\fbox{\footnotesize 54\% of a random sample of 771 registered voters knew Mitt Romney is Pro-Life.}
+
+
+
 	\begin{eqnarray*}
-		T_n &=& \frac{\bar{X}_n}{\sigma/\sqrt{n}}\\\\ \pause
-		&=& \frac{\bar{X}_n}{\sigma/\sqrt{n}} \alert{- \frac{\mu}{\sigma/\sqrt{n}} + \frac{\mu}{\sigma/\sqrt{n}}} \\ \\ \pause
-		&=& \left( \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \right) + \frac{\mu}{\sigma/\sqrt{n}} \\ \\ \pause
-		&=& Z + \sqrt{n}(\mu/\sigma) \pause 
-		\sim \alert{N\left( \sqrt{n}(\mu/\sigma),1  \right)} 
+		T_n &=& \frac{\widehat{p} - p_0}{\sqrt{\displaystyle \frac{p_0(1 - p_0)}{n}}} = 2 \sqrt{771}(0.54 - 0.5)\\ \\
+		&=& 0.08 \times \sqrt{771} \approx 2.2
 	\end{eqnarray*}
-	Where $Z \sim N(0,1)$
+
+  \vspace{-1em}
+
+	\begin{block}
+		{One-Sided p-value}
+		\texttt{1 - pnorm(2.2)} $\approx 0.014$
+	\end{block}
+	\begin{block}
+		{Two-Sided p-value}
+		\texttt{2 * (1 - pnorm(2.2))} $\approx 0.028$
+	\end{block}
 \end{frame}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test for Difference of Proportions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Power of One-Sided Test}
-\small
+	\frametitle{Tests for Proportions: Two-Sample Example}
+	\begin{block}
+		{From Pew Polling Data}
+		53\% of a random sample of 238 Democrats correctly identified Mitt Romney as Pro-Life versus 61\% of 239 Republicans.
+	\end{block}
+	\begin{block}
+		{Sampling Model}
+		Republicans: $X_1, \hdots, X_{n} \sim \mbox{iid Bernoulli}(p)$ independent of\\
+		Democrats: $Y_1, \hdots,Y_{m} \sim \mbox{iid Bernoulli}(q)$ 
+	\end{block}
+	\begin{block}
+		{Sample Statistics}
+		Sample Proportions: $\displaystyle\widehat{p} = \frac{1}{n}\sum_{i=1}^{n} X_i, \quad\displaystyle\widehat{q} = \frac{1}{m}\sum_{i=1}^{m} Y_i$
+	\end{block}
+
+	\vspace{1em}
+
+	\hfill \alert{\fbox{Suppose I wanted to test $H_0\colon p = q$}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{A More Efficient Estimator of the SE Under $H_0$}
+	\begin{alertblock}
+		{Don't Forget!}
+		Standard Error (SE) means ``std.\ dev.\ of sampling distribution'' so you should know how to prove that that:
+	$$SE(\widehat{p} - \widehat{q}) = \sqrt{\frac{p(1-p)}{n} + \frac{q(1-q)}{m}}$$
+	\end{alertblock}
+
+	\begin{block}
+		{Under $H_0\colon p = q$}
+		\emph{Don't} know values of $p$ and $q$: only that they are equal.
+	\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{A More Efficient Estimator of the SE Under $H_0$}
+	\begin{block}
+		{One Possible Estimate}
+	$$\widehat{SE} = \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n} + \frac{\widehat{q}(1-\widehat{q})}{m}}$$
+	\end{block}
+
+  \vspace{-0.5em}
+	\begin{block}
+		{A \emph{Better} Estimate Under $H_0$}
+		$$\widehat{SE}_{Pooled} = \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( \frac{1}{n} + \frac{1}{m} \right) } \quad \mbox{where}\quad \widehat{\pi} = \displaystyle \frac{n \widehat{p} + m \widehat{q}}{n + m}$$
+	\end{block}
+  \vspace{-0.5em}
+	\begin{alertblock}
+		{Why Pool?}
+		If $p = q$, the two populations \emph{are the same}. This means we can get a \emph{more precise} estimate of the \emph{common} population proportion by pooling. More data = Lower Variance $\implies$ better estimated SE.
+	\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Two-Sample Test for Proportions}
+	\begin{block}
+		{Sampling Model}
+		\small
+		$X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$ indep.\  of $Y_1, \hdots, Y_m \sim \mbox{iid Bernoulli}(q)$
+	\end{block}
+	\begin{block}
+		{Sample Statistics}
+			Sample Proportions: $\displaystyle\widehat{p} = \frac{1}{n}\sum_{i=1}^{n} X_i, \quad\displaystyle\widehat{q} = \frac{1}{m}\sum_{i=1}^{m} Y_i$
+	\end{block}
+	\begin{block}
+		{Null Hypothesis}
+		$H_0\colon p = q \quad \Leftarrow \; $\fbox{ i.e.\ $p - q = 0$}
+	\end{block}
+	\begin{block}
+		{Pooled Estimator of SE under $H_0$}
+		$\widehat{\pi} = \displaystyle \frac{n \widehat{p} + m \widehat{q}}{n + m}, \quad \widehat{SE}_{Pooled} = \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( 1/n + 1/m \right) }$
+	\end{block}
+	\begin{block}
+		{Test Statistic}
+		$\displaystyle T_n = \frac{\widehat{p}- \widehat{q}}{\widehat{SE}_{Pooled}} \approx N(0,1)$ under $H_0$ provided $n$ and $m$ are large
+	\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Two-Sample Example $H_0\colon p = q$}
+	\fbox{\footnotesize 53\% of 238 Democrats knew Romney is Pro-Life vs.\ 61\% of 239 Republicans}
+	\small
+$$\widehat{\pi} = \frac{n\widehat{p}+ m\widehat{q}}{n + m} = \frac{239 \times 0.61 + 238 \times 0.53}{239 + 238}\approx 0.57$$
+	\begin{eqnarray*}
+	\widehat{SE}_{Pooled} &=&  \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( 1/n + 1/m \right) }= \sqrt{0.57 \times 0.43 (1/239 + 1/238)}\\
+		&\approx& 0.045
+	\end{eqnarray*}
+$$T_n = \frac{\widehat{p} - \widehat{q}}{\widehat{SE}_{Pooled}}= \frac{0.61 - 0.53}{0.045} \approx 1.78$$
+
+\vspace{-1em}
 \begin{block}
-	{Under the Alternative}
-	$T_n = \sqrt{n}(\bar{X}_n/\sigma) \sim N\left( \sqrt{n}(\mu/\sigma),1  \right)$
+	{One-Sided P-Value}
+	\texttt{1 - pnorm(1.78)}$\approx 0.04$
+\end{block}\begin{block}
+	{Two-Sided P-Value}
+	\texttt{2 * (1 - pnorm(1.78))}$\approx 0.08$
 \end{block}
-\begin{block}
-	{Decision Rule}
-	Reject $H_0\colon \mu = 0$ if $T_n> \texttt{qnorm}(1- \alpha)$  
-\end{block}
-\begin{eqnarray*}
-	1 - \beta &=& P(\mbox{Reject } H_0|H_0 \mbox{ false}) \pause = P(T_n >\texttt{qnorm}(1- \alpha))\\ \pause
-	&=& P \left( Z + \sqrt{n}(\mu/\sigma) > \texttt{qnorm}(1- \alpha)\right)\\ \pause
-	&=& P \left( Z >    \texttt{qnorm}(1- \alpha)-\sqrt{n}(\mu/\sigma)\right)\\ \pause 
-	&=& 1 - P \left( Z \leq  \texttt{qnorm}(1- \alpha)-\sqrt{n}(\mu/\sigma)\right) \\
-	&=& 1 - \texttt{pnorm}\left( \texttt{qnorm}(1 - \alpha) - \sqrt{n}(\mu/\sigma) \right) 
-\end{eqnarray*}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{\href{https://fditraglia.shinyapps.io/power_oneside}{https://fditraglia.shinyapps.io/power\_oneside}}
-
-\begin{figure}
-	\fbox{\includegraphics[scale = 0.3]{./images/power_oneside_screenshot}}
-\end{figure}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Power of Two-Sided Test}
-\footnotesize
-\begin{block}
-	{Under the Alternative}
-	$T_n = \sqrt{n}(\bar{X}_n/\sigma) \sim N\left( \sqrt{n}(\mu/\sigma),1  \right)$
-\end{block}
-\begin{block}
-	{Decision Rule}
-	Reject $H_0\colon \mu = 0$ if $|T_n|> \texttt{qnorm}(1- \alpha/2)$  
-\end{block}
-\begin{eqnarray*}
-	1 - \beta &=& P(\mbox{Reject } H_0|H_0 \mbox{ false}) \pause = P(|T_n| >\texttt{qnorm}(1- \alpha/2))\\ \pause
-		&=&\underbrace{P(T_n < -\texttt{qnorm}(1- \alpha/2)}_{\text{\alert{Lower}}} + \underbrace{P(T_n >\texttt{qnorm}(1- \alpha/2)}_{\text{\alert{Upper}}}\\ \\ \pause
-	\mbox{\alert{Upper}} &=& (\mbox{Power of One-Sided Test with } \alpha/2 \mbox{ instead of } \alpha)\\ \pause
-		&=& 1 - \texttt{pnorm}\left( \texttt{qnorm}(1 - \alpha/2) - \sqrt{n}(\mu/\sigma) \right) \\ \\ \pause
-	\mbox{\alert{Lower}} &=& \texttt{pnorm}\left(-\texttt{qnorm}(1 - \alpha/2) - \sqrt{n}(\mu/\sigma) \right) \\
-\end{eqnarray*}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{\href{https://fditraglia.shinyapps.io/power_twoside}{https://fditraglia.shinyapps.io/power\_twoside}}
-
-\begin{figure}
-	\fbox{\includegraphics[scale = 0.3]{./images/power_twoside_screenshot}}
-\end{figure}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What Determines Power?}
-	\begin{block}{Power $ = 1 -  P$(Type II Error)}
-Chance of detecting an effect given that one exists.
-\end{block}
-\begin{block}{Depends On:}
-	\begin{enumerate}
-\item Magnitude of Effect: \emph{true} value of $\mu$
-	\begin{itemize}
-		\item Easier to detect large deviations from $H_0\colon \mu = 0$
-	\end{itemize}
-\item Amount of variability in the population: $\sigma$
-	\begin{itemize}
-		\item Lower $\sigma \Rightarrow$ easier to detect effect of given magnitude
-	\end{itemize}
-\item Sample Size: $n$
-\begin{itemize}
-	\item Larger sample size $\Rightarrow$ easier to detect effect of given magnitude 
-\end{itemize}
-\item Significance Level: $\alpha$
-\begin{itemize}
-	\item Fewer Type I errors $\Rightarrow$ more Type II errors
-\end{itemize}
-\end{enumerate}
-\end{block}
-
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{center}
-	\huge Some Final Thoughts on Hypothesis Testing and Confidence Intervals
-\end{center}
-\end{frame}
+\section{Statistical vs.\ Practical Significance}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Terminology I Have Intentionally Avoided Until Now}
@@ -371,14 +213,12 @@ When people say ``statistically significant'' what they really mean is that they
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Statistical vs.\ Practical Significance}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Some Examples}
 
 	\begin{itemize}
 		\item We found a difference between the ``Hi'' and ``Lo'' groups in the anchoring experiment that was statistically significant at the 5\% level based on data from a past semester.
-		\item Our 95\% CI for the proportion of US voters who know who John Roberts is did not include 0.5. Viewed as a two-sided test, we found that the difference between the true population proportion and 0.5 was statistically significant at the 5\% level.
+		\item Our 95\% CI for the proportion of US voters who know who John Roberts did not include 0.5. Viewed as a two-sided test, we found that the difference between the true population proportion and 0.5 was statistically significant at the 5\% level.
 	\end{itemize}
 
 \end{frame}
@@ -553,7 +393,7 @@ Evaulate this statement in light of our hypothesis test:
 \framesubtitle{\href{http://xkcd.com/882/}{\fbox{xkcd \#882}}}
 \begin{figure}
 \centering
-	\includegraphics[scale=0.4]{./images/xkcd1}
+	\includegraphics[scale=0.35]{./images/xkcd1}
 	\caption{Go and read this comic strip: before today's lecture you wouldn't have gotten the joke!}
 \end{figure}
 \end{frame}
@@ -600,16 +440,17 @@ Evaulate this statement in light of our hypothesis test:
 % \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Some Final Thoughts}
-	\begin{itemize}
-		\item Failing to reject $H_0$ does not mean $H_0$ is true. 
-		\item Rejecting $H_0$ does not mean $H_1$ is true.
-		\item P-values are always more informative than simply reporting ``Reject'' vs.\ ``Fail To Reject'' at a given significance level. 
-		\item Confidence intervals are more informative that hypothesis tests, since they give an idea of the size of an effect. 
-		\item If $H_0$ is actually plausible a priori (this is rarer than you may think), reporting a p-value can be a good complement to a CI. 
-		\item To avoid data-dredging be honest about the tests you have carried out: report \emph{all of them}, not just the ones where you rejected the null.
-	\end{itemize}
+%\begin{frame}
+%\frametitle{Some Final Thoughts}
+%	\begin{itemize}
+%		\item Failing to reject $H_0$ does not mean $H_0$ is true. 
+%		\item Rejecting $H_0$ does not mean $H_1$ is true.
+%		\item P-values are always more informative than simply reporting ``Reject'' vs.\ ``Fail To Reject'' at a given significance level. 
+%		\item Confidence intervals are more informative that hypothesis tests, since they give an idea of the size of an effect. 
+%		\item If $H_0$ is actually plausible a priori (this is rarer than you may think), reporting a p-value can be a good complement to a CI. 
+%		\item To avoid data-dredging be honest about the tests you have carried out: report \emph{all of them}, not just the ones where you rejected the null.
+%	\end{itemize}
+%
+%\end{frame}
 
-\end{frame}
-
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

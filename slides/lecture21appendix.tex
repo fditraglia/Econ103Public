@@ -1,0 +1,354 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Statistical Power}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{block}
+	{Experiment}
+	\begin{itemize}
+		\item Weigh a known 10 gram mass 16 times on the same scale.
+		\item Scale makes normally distributed measurement errors:
+		$X_1, \hdots, X_{16} \sim \mbox{iid } N( \mu, \sigma^2 = 4)$
+	\end{itemize}
+\end{block}
+\begin{alertblock}
+			{Measurement Errors?}
+		 Weigh same object repeatedly $\Rightarrow$ slightly different result each time. Average deviation from mean $\approx 2$ grams.
+		\end{alertblock}
+\begin{block}{Two Kinds of Scales}
+	\begin{description}
+			\item[Unbiased] Correct on average: $\mu = 10$ grams
+			\item[Biased] \emph{Too high} on average: $\mu = 11$ grams
+		\end{description}	
+		
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{An Idea for Deciding if a Scale is Biased}
+
+\begin{enumerate}
+	\item Test $H_0 \colon \mu = 10$ against $H_1\colon \mu > 10$ with $\alpha =0.025$.
+	\item Decide based on the outcome of test:
+		\begin{itemize}
+	\item Reject $H_0 \Rightarrow$ decide scale is biased, throw it away.
+	\item Fail to reject $H_0 \Rightarrow$ decide scale is unbiased, keep it.
+			\end{itemize}	
+\end{enumerate}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	\frametitle{Testing Whether a Scale is Biased \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+	\fbox{$X_1, \hdots, X_{16} \sim \mbox{iid } N( \mu, \sigma^2)$ where we \emph{know} $\sigma^2 = 4$}
+
+	\vspace{2em}
+
+	Suppose I want to test $H_0\colon \mu = 10$. What is my test statistic? 
+
+	\vspace{1em}
+
+	\begin{enumerate}[(a)]
+		\item $4\bar{X}/S$  
+		\item $4(\bar{X} - 10)/S$
+		\item $(\bar{X} - \mu)/(S/\sqrt{n})$
+		\item $2 \bar{X}$
+		\item $2(\bar{X} - 10)$ 
+	\end{enumerate}
+
+	\pause
+	\alert{$$T_n = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} = \frac{\bar{X} - 10}{2/\sqrt{16}} = 2(\bar{X} - 10)$$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+
+	\frametitle{Testing Whether a Scale is Biased \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+	\fbox{$X_1, \hdots, X_{16} \sim \mbox{iid } N( \mu, \sigma^2)$ where we \emph{know} $\sigma^2 = 4$}
+
+	\vspace{2em}
+
+	What is the sampling distribution of $2(\bar{X}-10)$ under $H_0\colon \mu = 10$? 
+
+	\vspace{1em}
+
+	\begin{enumerate}[(a)]
+		\item $N(\mu, 4)$  
+		\item $N(0, 4)$  
+		\item $t(15)$  
+		\item $\chi^2(15)$  
+		\item $N(0,1)$  
+	\end{enumerate}
+
+	\pause
+	\alert{$H_0\colon \mu = 0 \implies \displaystyle T_n = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} =  2(\bar{X} - 10)\sim N(0,1)$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t]
+	\frametitle{Testing Whether a Scale is Biased \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+	\fbox{$X_1, \hdots, X_{16} \sim \mbox{iid } N( \mu, \sigma^2)$ where we \emph{know} $\sigma^2 = 4$}
+
+	\vspace{1em}
+
+	Suppose I want to test $H_0\colon \mu = 10$ against the \emph{one-sided} alternative $\mu > 10$ with $\alpha = 0.025$. What is my decision rule? 
+
+	\vspace{1em}
+
+	\begin{enumerate}[(a)]
+		\item Reject $H_0$ if $2(\bar{X} - 10) > 1$ 
+		\item Reject $H_0$ if $2(\bar{X} - 10) < 1$ 
+		\item Reject $H_0$ if $2(\bar{X} - 10) > 2$ 
+		\item Reject $H_0$ if $2(\bar{X} - 10) < 2$ 
+		\item Reject $H_0$ if $|2(\bar{X} - 10)| > 2$ 
+	\end{enumerate}
+
+	\pause
+	\alert{Reject $H_0$ if $T_n = 2(\bar{X} - 10) >$ \texttt{qnorm(1 - 0.025)} $\approx 2$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Testing an \emph{Unbiased} Scale\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+	 Unbeknowst to me the scale I am testing is in fact \emph{unbiased}.
+	 What is the probability that I will decide, based on the outcome of my test, to throw it away?
+
+	 \vspace{2em}
+	\pause
+
+	\alert{This is simply a Type I Error! Hence the probability is $\alpha = 0.025$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Testing a \emph{Biased} Scale\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+	 Unbeknowst to me the scale I am testing is in fact \emph{biased}.
+	 What is the probability that I will decide, based on the outcome of my test, to throw it away?
+
+\pause
+
+\vspace{1em}
+
+\alert{This is the \emph{opposite} of a Type II error...}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{What is the probability of throwing away a \em{biased} scale?}
+
+	\begin{block}
+		{Decision Rule}
+		Decide scale is biased if $2(\bar{X} - 10) > 2$ or \emph{equivalently} if \alert{$\bar{X} > 11$} 
+	\end{block}
+	\begin{block}
+		{Biased Scale}
+		$\mu = 11 \quad \implies \quad X_1, \hdots, X_{16} \sim \mbox{iid } N(11, \sigma^2 = 4)$
+	\end{block}
+	\begin{alertblock}
+		{Which implies...}
+	\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Testing a \emph{Biased} Scale\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+
+	Suppose $X_1, \hdots, X_{16} \sim N(11, \sigma^2 = 4)$. What is the sampling distribution of $\bar{X}$?
+	
+	\vspace{1em}
+
+	\begin{enumerate}[(a)]
+		\item $N(11, 1)$
+		\item $N(0, 1)$ 
+		\item $t(15)$
+		\item $N(11, 1/4)$ 
+		\item $N(10, 1/4)$
+	\end{enumerate}
+\pause
+
+\vspace{1em}
+
+\alert{$$\bar{X}_n \sim N(\mu, \sigma^2/n) = N(11, 1/4)$$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{What is the probability of throwing away a \em{biased} scale?}
+
+	\begin{block}
+		{Decision Rule}
+		Decide scale is biased if $2(\bar{X} - 10) > 2$ or \emph{equivalently} if \alert{$\bar{X} > 11$} 
+	\end{block}
+	\begin{block}
+		{Biased Scale}
+		$\mu = 11 \quad \implies \quad X_1, \hdots, X_{16} \sim \mbox{iid } N(11, \sigma^2 = 4)$
+	\end{block}
+	\begin{alertblock}
+		{Which implies}
+		$\bar{X} \sim N(11, 1/4)\quad \implies \quad$  \alert{$P(\bar{X}>11) = 1/2$} 
+	\end{alertblock}
+
+\vspace{1em}
+
+	\alert{\fbox{The \emph{power} of this test is 50\%}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[c]\frametitle{Recall:}
+
+\begin{block}
+	{Type I Error} Rejecting $H_0$ when it is true:  $P(\mbox{Type I Error}) = \alpha$
+\end{block}
+
+\begin{block}
+	{Type II Error} Failing to reject $H_0$ when it is false: \alert{$P(\mbox{Type II Error}) =\beta$}
+\end{block}
+
+\begin{alertblock}
+	{Statistical Power} The probability of rejecting $H_0$ when it is false: \alert{$\mbox{Power} = 1 -\beta $}\\ i.e.\ the probability of \emph{convicting} a guilty person.
+\end{alertblock}
+
+\vspace{1em}
+
+\begin{center}
+\alert{\boxed{
+\begin{minipage}
+	{0.95\textwidth}
+	Hypothesis tests designed to control Type I error rate ($\alpha$). But we also care about Type II errors. What can learn about these?
+\end{minipage}}}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Recall: Normal Population Known Variance}
+	\begin{block}
+		{Sampling Model}
+		$X_1, \hdots, X_n \sim N(\mu, \sigma^2)$ where $\sigma^2$ is known
+	\end{block}
+	\begin{block}
+		{Sampling Distribution}
+		$$\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$$
+	\end{block}
+	\begin{block}
+		{Under $H_0\colon \mu = 0$}
+		$$T_n = \frac{\bar{X}_n}{\sigma/\sqrt{n}} \sim N(0,1)$$
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{What happens if $\mu \neq 0$?}
+	\begin{alertblock}
+		{Key Point \#1}
+		\begin{itemize}
+			\item Test Statistic $T_n=\sqrt{n}(\bar{X}_n/\sigma)$
+			\item Unless $\mu = 0$, test statistic is \emph{not} standard normal!
+			\item When $\mu \neq 0$, distribution of $T_n$ \emph{depends on} $\mu$!	
+		\end{itemize}
+	\end{alertblock}
+	\begin{alertblock}
+		{Key Point \#2}
+		\emph{Regardless} of the value of $\mu$,
+			$$\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$$
+		since the population is normally distributed!
+	\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Distribution of $T_n$ \emph{Under the Alternative}}
+	\begin{eqnarray*}
+		T_n &=& \frac{\bar{X}_n}{\sigma/\sqrt{n}}\\\\ \pause
+		&=& \frac{\bar{X}_n}{\sigma/\sqrt{n}} \alert{- \frac{\mu}{\sigma/\sqrt{n}} + \frac{\mu}{\sigma/\sqrt{n}}} \\ \\ \pause
+		&=& \left( \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \right) + \frac{\mu}{\sigma/\sqrt{n}} \\ \\ \pause
+		&=& Z + \sqrt{n}(\mu/\sigma) \pause 
+		\sim \alert{N\left( \sqrt{n}(\mu/\sigma),1  \right)} 
+	\end{eqnarray*}
+	Where $Z \sim N(0,1)$
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Power of One-Sided Test}
+\small
+\begin{block}
+	{Under the Alternative}
+	$T_n = \sqrt{n}(\bar{X}_n/\sigma) \sim N\left( \sqrt{n}(\mu/\sigma),1  \right)$
+\end{block}
+\begin{block}
+	{Decision Rule}
+	Reject $H_0\colon \mu = 0$ if $T_n> \texttt{qnorm}(1- \alpha)$  
+\end{block}
+\begin{eqnarray*}
+	1 - \beta &=& P(\mbox{Reject } H_0|H_0 \mbox{ false}) \pause = P(T_n >\texttt{qnorm}(1- \alpha))\\ \pause
+	&=& P \left( Z + \sqrt{n}(\mu/\sigma) > \texttt{qnorm}(1- \alpha)\right)\\ \pause
+	&=& P \left( Z >    \texttt{qnorm}(1- \alpha)-\sqrt{n}(\mu/\sigma)\right)\\ \pause 
+	&=& 1 - P \left( Z \leq  \texttt{qnorm}(1- \alpha)-\sqrt{n}(\mu/\sigma)\right) \\
+	&=& 1 - \texttt{pnorm}\left( \texttt{qnorm}(1 - \alpha) - \sqrt{n}(\mu/\sigma) \right) 
+\end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{\href{https://fditraglia.shinyapps.io/power_oneside}{https://fditraglia.shinyapps.io/power\_oneside}}
+
+\begin{figure}
+	\fbox{\includegraphics[scale = 0.3]{./images/power_oneside_screenshot}}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Power of Two-Sided Test}
+\footnotesize
+\begin{block}
+	{Under the Alternative}
+	$T_n = \sqrt{n}(\bar{X}_n/\sigma) \sim N\left( \sqrt{n}(\mu/\sigma),1  \right)$
+\end{block}
+\begin{block}
+	{Decision Rule}
+	Reject $H_0\colon \mu = 0$ if $|T_n|> \texttt{qnorm}(1- \alpha/2)$  
+\end{block}
+\begin{eqnarray*}
+	1 - \beta &=& P(\mbox{Reject } H_0|H_0 \mbox{ false}) \pause = P(|T_n| >\texttt{qnorm}(1- \alpha/2))\\ \pause
+		&=&\underbrace{P(T_n < -\texttt{qnorm}(1- \alpha/2)}_{\text{\alert{Lower}}} + \underbrace{P(T_n >\texttt{qnorm}(1- \alpha/2)}_{\text{\alert{Upper}}}\\ \\ \pause
+	\mbox{\alert{Upper}} &=& (\mbox{Power of One-Sided Test with } \alpha/2 \mbox{ instead of } \alpha)\\ \pause
+		&=& 1 - \texttt{pnorm}\left( \texttt{qnorm}(1 - \alpha/2) - \sqrt{n}(\mu/\sigma) \right) \\ \\ \pause
+	\mbox{\alert{Lower}} &=& \texttt{pnorm}\left(-\texttt{qnorm}(1 - \alpha/2) - \sqrt{n}(\mu/\sigma) \right) \\
+\end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{\href{https://fditraglia.shinyapps.io/power_twoside}{https://fditraglia.shinyapps.io/power\_twoside}}
+
+\begin{figure}
+	\fbox{\includegraphics[scale = 0.3]{./images/power_twoside_screenshot}}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{What Determines Power?}
+	\begin{block}{Power $ = 1 -  P$(Type II Error)}
+Chance of detecting an effect given that one exists.
+\end{block}
+\begin{block}{Depends On:}
+	\begin{enumerate}
+\item Magnitude of Effect: \emph{true} value of $\mu$
+	\begin{itemize}
+		\item Easier to detect large deviations from $H_0\colon \mu = 0$
+	\end{itemize}
+\item Amount of variability in the population: $\sigma$
+	\begin{itemize}
+		\item Lower $\sigma \Rightarrow$ easier to detect effect of given magnitude
+	\end{itemize}
+\item Sample Size: $n$
+\begin{itemize}
+	\item Larger sample size $\Rightarrow$ easier to detect effect of given magnitude 
+\end{itemize}
+\item Significance Level: $\alpha$
+\begin{itemize}
+	\item Fewer Type I errors $\Rightarrow$ more Type II errors
+\end{itemize}
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
