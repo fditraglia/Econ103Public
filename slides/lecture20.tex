@@ -78,7 +78,7 @@
 \begin{frame}
   \frametitle{One-sided $(<)$ Example: $X_1, \dots, X_{100} \sim \mbox{iid N}(\mu,9)$}
   \begin{block}{Null and Alternative}
-  Test $H_0\colon \mu =2$ against $H_0\colon \mu <2$ with $\alpha = 0.05$. 
+  Test $H_0\colon \mu =2$ against $H_1\colon \mu <2$ with $\alpha = 0.05$. 
   \end{block}
 
   \pause
@@ -143,7 +143,7 @@
     \column{0.32\textwidth}
     \begin{block}{Two-sided}
       $H_1\colon \mu \neq 2$\\
-      Reject if $T_n > 1.96$\\
+      Reject if $|T_n| > 1.96$\\
       $T_n = 1.67$\\
       \alert{Fail to reject}
     \end{block}
