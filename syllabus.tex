@@ -14,6 +14,10 @@
 \newtotcounter{quizcounter}
 \newcommand{\quiz}{\addtocounter{quizcounter}{1}\fbox{\textbf{Quiz \#\arabic{quizcounter}}}}
 
+%%%%%%%%%%%%% A Command to create an automatically problem set icon in the course calendar.
+\newtotcounter{pscounter}
+\newcommand{\ps}{\addtocounter{pscounter}{1}\fbox{\textbf{PS \#\arabic{pscounter} Due}}}
+
 
 % Some useful commands (our classes always meet either on Monday and Wednesday 
 % or on Tuesday and Thursday)
@@ -52,7 +56,7 @@ Statistics for Economists\\
 \large
 Economics 103\\
 \large
-Spring 2018
+Spring 2019
 \end{center}
 
 
@@ -60,8 +64,8 @@ Spring 2018
 \normalsize
 
 \noindent \textbf{Course Instructor:} Francis DiTraglia \\
-Office: MCNB 535\\
-Office Hours: M 2--4pm 
+Office: PCPSE 630\\
+Office Hours: M 3--4pm, R 4--5pm
 
 \medskip
 
@@ -73,8 +77,8 @@ Office Hours: M 2--4pm
 
 \begin{tabular}{llll}
   & Assa Cohen & Philippe Goulet Coulombe & Gabrielle Vasey\\
-Office:& MCNB 421 & MCNB 342 & MCNB 420 \\ 
-Office Hours:& T 6:30--8:30pm & W 1--3pm & R 1--3pm  
+Office:& PCPSE 546 & PCPSE 546 & PCPSE 528 \\ 
+Office Hours:& TBA & TBA & TBA  
 \end{tabular}
 
 \medskip
@@ -88,7 +92,7 @@ Office Hours:& T 6:30--8:30pm & W 1--3pm & R 1--3pm
 
 \begin{tabular}{llllll}
 	Section 201 & Section 202 & Section 203 & Section 204 & Section 205 & Section 206\\ 
-  Philippe & Gabrielle & Assa & Gabrielle & Assa & Philippe\\
+  Philippe & Assa & Gabrielle & Assa & Gabrielle & Philippe \\
 	MCNB 285 & WILL 204 & MCNB 167-8 & WILL 204 & MCNB 285 & WILL 216 \\ 
   M 10--11am & F 9--10am & M noon--1pm & F 10--11am & M 11am--noon & M 1--2pm
 \end{tabular}
@@ -96,41 +100,9 @@ Office Hours:& T 6:30--8:30pm & W 1--3pm & R 1--3pm
 
 \medskip
 
-%ECON-103  STAT FOR ECONOMISTS               1 CU
-%     REGISTRATION REQUIRED FOR LEC, REC
-%     COLLEGE QUANTITATIVE DATA ANALYSIS REQ.
-% 001 LEC TR 9-10:30AM ANNS 110       DITRAGLIA F
-%     MAX: 144               
-%          RECITATION                        0 CU
-% 201 REC M 10-11AM MCNB 285      GOULET COULOMBE
-%     MAX: 24                
-% 202 REC F 9-10AM WILL 204       GOULET COULOMBE
-%     MAX: 24                
-% 203 REC M 12-1PM MCNB 167-8             VASEY G
-%     MAX: 24                
-% 204 REC F 10-11AM WILL 204              VASEY G
-%     MAX: 24                
-% 205 REC M 11-12NOON MCNB 285            COHEN A
-%     MAX: 24                
-% 206 REC M 1-2PM WILL 216                COHEN A
-%     MAX: 0                 
-%
-
-%\noindent \textbf{Recitation Instructors:}
-%Assa Cohen,
-%Philippe Goulet Coulombe,
-%Gabrielle Vasey
-%\medskip
-
-
-%\noindent \textbf{Office Hours:} \emph{For times and locations, see the semester calendar on the \href{http://ditraglia.com/Econ103Public}{course website}.}
-
-
 \medskip
  
-\noindent \textbf{Course Website:} \url{http://ditraglia.com/Econ103Public} At this url you can 
-%view the semester calendar and 
-download all lecture slides, problem sets, etc.
+\noindent \textbf{Course Website:} \url{http://ditraglia.com/Econ103Public} At this url you can download all lecture slides, problem sets, etc.
 You can view your grades and log-on to the course discussion forum, Piazza, at \url{https://canvas.upenn.edu}.
 
 \medskip
@@ -150,18 +122,9 @@ After completing this course you will be able to carry out simple statistical an
 
 \medskip
 
-%\noindent \textbf{Lecture Recordings:} 
-%Audio and screen captures of the lectures for this course will be recorded and posted on \href{http://upenn.instructure.com}{Canvas}. 
-%This is a great way to get caught up if you miss a lecture.
-%Be aware, however, that the lecture recording system is not 100\% reliable and the instructors have no direct control over it: in a typical semester one or two lectures will fail to be recorded due to technical problems.
-%If you encounter any problems with the recordings, please contact \texttt{mms-help@sas.upenn.edu} directly.
-%\medskip
 
 \noindent \textbf{Prerequisites:} 
 The prerequisites for this course are Math 104 followed by 114 or 115. 
-%To help you determine if this course is right for you we will administer a short math quiz early in the semester.
-%Although it will not count towards your grade, you must pass this quiz to be allowed to take the first midterm.
-%You may re-take the math quiz as many times as necessary until you pass.
 
 
 
@@ -175,19 +138,6 @@ Any readings that do not come from the text will be downloadable from Piazza.
 While I strongly encourage you to complete the reading assignments, my lecture slides are the final authority on course material.
 
 \medskip
-
-
-%\noindent \textbf{Required Technology: } 
-%We will be using the ``clickers'' for experiments and class participation exercises during the semester.
-%Both the ResponseCard NXT and the ResponseCard QT are fully compatible with the exercises we will complete this semester.
-%Other ResponseCard models will only work for some of the exercises so to make sure you get full participation credit (see below) make sure you have the right model.
-%You can buy or rent a clicker from the Penn Bookstore.
-%As clicker participation will make up 5\% of your course grade it is important that you bring your clicker to each lecture. 
-%I fully understand, however, that things can go wrong: your clicker might stop working or you might forget to bring it after pulling an all-nighter.
-%For this reason you will \emph{automatically} be excused from clicker participation for four lectures: there is no need to inform us in advance or after the fact. There will, however, be no further exceptions. 
-%I will begin keeping track of clicker participation in our second lecture. For more details, see ``Participation'' below. 
-%Because clickers will determine a portion of your grade, their use is subject to the code of academic integrity, as explained below under ``Academic Integrity.'' 
-%
 
 
 \noindent \textbf{Required Software:} 
@@ -332,50 +282,53 @@ Here are links to some additional free resources to help you learn R:
 
 \begin{center}
 \small
-\begin{calendar}{1/8/2018}{16} %Date of Monday in first week of classes, NOT the date of the first class!
+\begin{calendar}{1/14/2019}{16} %Date of Monday in first week of classes, NOT the date of the first class!
 \setlength{\calboxdepth}{.25in}
 \TRClass
 % schedule
-\caltexton{1}{Introduction \hfill \fbox{\emph{No Recitations 1/12 or 1/15}}}
+\caltexton{1}{Introduction \hfill \fbox{\emph{No Recitations 1/18 or 1/21}}}
 \caltextnext{Summary Statistics I} 
 \caltextnext{Summary Statistics II \hfill\quiz} 
 \caltextnext{Regression I}
 \caltextnext{Basic Probability I \hfill\quiz}
-\caltextnext{Basic Probability II}
+\caltextnext{Basic Probability II \hfill\ps}
 \caltextnext{Basic Probability III / Discrete RVs I \hfill\quiz}
 \caltextnext{Discrete RVs II}
-\caltextnext{Discrete RVs III}  
-\caltextnext{Discrete RVs IV \hfill\quiz} 
-\caltextnext{Continuous RVs I} 
+%\caltextnext{\emph{Reserve Lecture} \hfill\quiz}
+\caltextnext{Discrete RVs III \hfill\quiz} 
+\caltextnext{Discrete RVs IV} 
+\caltextnext{Continuous RVs I \hfill\ps} 
 \caltextnext{Continuous RVs II \hfill\quiz} 
 \caltextnext{Sampling Dists.\ \& Estimation I}
 \caltextnext{Sampling Dists.\ \& Estimation II \hfill\quiz} 
 \caltextnext{Confidence Intervals I}
 \caltextnext{Confidence Intervals II \hfill\quiz} 
-\caltextnext{Confidence Intervals III}
+\caltextnext{Confidence Intervals III \hfill\ps}
+\caltextnext{Confidence Intervals IV \hfill\quiz}
 \caltextnext{Hypothesis Testing I}
-\caltextnext{Hypothesis Testing II\hfill\quiz} 
-\caltextnext{Hypothesis Testing III}
-\caltextnext{Statistical Power \hfill\quiz}
-\caltextnext{Regression II} 
-\caltextnext{Regression III \hfill\quiz}
-\caltextnext{Additional Topics TBA}
+\caltextnext{Hypothesis Testing II \hfill\ps}
+\caltextnext{Hypothesis Testing III \hfill\quiz}
+\caltextnext{Hypothesis Testing IV} 
+\caltextnext{Regression II \hfill\quiz} 
+\caltextnext{Regression III} 
+\caltextnext{Reserve Lecture \hfill\quiz}
+\caltextnext{Reserve Lecture \hfill\ps} 
 % ... and so on
 
 % Holidays
-\Holiday{1/9/2018}{\textbf{Winter Break -- No Lecture}}
-\Holiday{1/18/2018}{\textbf{R/RStudio Clinic instead of Lecture}} 
-\Holiday{3/6/2018}{\textbf{Spring Break -- No Lecture}}
-\Holiday{3/8/2018}{\textbf{Spring Break -- No Lecture}}
+\Holiday{1/15/2019}{\textbf{Winter Break -- No Lecture}}
+%\Holiday{1/18/2018}{\textbf{R/RStudio Clinic instead of Lecture}} 
+\Holiday{3/5/2019}{\textbf{Spring Break -- No Lecture}}
+\Holiday{3/7/2019}{\textbf{Spring Break -- No Lecture}}
 
-\options{2/13/2018}{\noclassday} % first midterm exam
-\caltext{2/13/2018}{\shadowbox{\textbf{Midterm I} -- Material through Feb.\ 8th}}
-\options{3/27/2018}{\noclassday} %second midterm exam
-\caltext{3/27/2018}{\shadowbox{\textbf{Midterm II} -- Material through March\ 22nd}}
-\options{4/24/2018}{\noclassday} % finals
-\caltext{4/24/2018}{\textbf{Final Review Session instead of Lecture}}
-\options{4/26/2018}{\noclassday} % finals
-\caltext{4/26/2018}{\textbf{Reading Day -- No Lecture}}
+\options{2/19/2019}{\noclassday} % first midterm exam
+\caltext{2/19/2019}{\shadowbox{\textbf{Midterm I} -- Material through Feb.\ 14th}}
+\options{4/2/2019}{\noclassday} %second midterm exam
+\caltext{4/2/2019}{\shadowbox{\textbf{Midterm II} -- Material through March 28th}}
+%\options{4/24/2019}{\noclassday} % finals
+%\caltext{4/24/2019}{\textbf{Final Review Session instead of Lecture}}
+\options{5/2/2019}{\noclassday} % finals
+\caltext{5/2/2019}{\textbf{Reading Day -- No Lecture}}
 \end{calendar}
 \end{center}
 
