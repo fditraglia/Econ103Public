@@ -1,0 +1,183 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{hyperref}
+
+%\printanswers
+%\noprintanswers
+
+\title{Review Questions}
+\author{Econ 103}
+\date{Spring 2018}
+
+\begin{document}
+\maketitle
+
+\section*{About This Document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Lecture \#1 -- Introduction}
+\begin{questions}
+  \question Define the following terms and give a simple example: \emph{population}, \emph{sample}, \emph{sample size}.
+  \question Explain the distinction between a \emph{parameter} and a \emph{statistic}.
+  \question Briefly compare and contrast \emph{sampling} and \emph{non-sampling} error.
+  \question Define a \emph{simple random sample}. Does it help us to address sampling error, non-sampling error, both, or neither? 
+
+\question A drive-time radio show frequently holds call-in polls during the evening rush hour. Do you expect that results based on such a poll will be biased? Why? 
+	\begin{solution}
+    They will likely be biased.
+		People who are listening to the radio during rush hour are disproportionately likely to be commuters driving home from work. People who are employed and drive to work are not representative of the population at large.  
+	\end{solution}
+
+
+\question Dylan carried polled a random sample of 100 college students. In total 20 of them said that they approved of President Trump. Calculate the margin of error for this poll.
+\begin{solution}
+  $2 \sqrt{P(1-P)/n} = 2 \sqrt{0.2 \times 0.8 / 100} = 0.08$
+\end{solution}
+
+\question Define the term \emph{confounder} and give an example.
+
+\question What is a randomized, double-blind experiment? In what sense is it a ``gold standard?'' 
+
+	
+\question Indicate whether each of the following involves experimental or observational data.
+	\begin{parts}
+		\part A biologist examines fish in a river to determine the proportion that show signs of disease due to pollutants poured into the river upstream.
+		\begin{solution}
+		Observational
+		\end{solution}
+		\part In a pilot phase of a fund-raising campaign, a university randomly contacts half of a group of alumni by phone and the other half by a personal letter to determine which method results in higher contributions.
+				\begin{solution}
+				Experimental
+		\end{solution}
+		\part To analyze possible problems from the by-products of gas combustion, people with with respiratory problems are matched by age and sex to people without respiratory problems and then asked whether or not they cook on a gas stove.
+				\begin{solution}
+				Observational
+		\end{solution}
+		\part An industrial pump manufacturer monitors warranty claims and surveys customers to assess the failure rate of its pumps.
+				\begin{solution}
+				Observational
+		\end{solution}
+	\end{parts}
+
+
+  \question Based on information from an observational dataset, Amy finds that students who attend an SAT prep class score, on average, 100 points better on the exam than students who do not. In this example, what would be required for a variable to \emph{confound} the relationship between SAT prep classes and exam performance? What are some possible confounders?
+\begin{solution}
+\end{solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{Lecture \#2 -- Summary Statistics II}}
+
+\question For each variable indicate whether it is nominal, ordinal, or numeric.
+	\begin{parts}
+		\part Grade of meat: prime, choice, good.
+			\begin{solution}
+				ordinal
+			\end{solution}
+		\part Type of house: split-level, ranch, colonial, other.
+			\begin{solution}
+				nominal
+			\end{solution}
+		\part Income
+			\begin{solution}
+			 numeric
+			\end{solution}
+	\end{parts}
+	
+\question Explain the difference between a histogram and a barchart.
+
+\question Define \emph{oversmoothing} and \emph{undersmoothing}.
+
+\question What is an \emph{outlier}?
+
+\question Write down the formula for the sample mean. What does it measure? Compare and contrast it with the sample median. 
+
+\question Define the \emph{range} and \emph{interquartile range} of a dataset. What do they measure? How do they differ?
+
+\question What is a boxplot? What information does it depict?
+
+\question Write down the formula for variance and standard deviation. What do these measure? How do they differ?
+
+
+\question Suppose that $x_i$ is measured in inches. 
+What are the units of the following quantities? 
+	\begin{parts}
+    \part Sample mean of $x$ 
+    \part Range of $x$
+		\part Interquartile Range of $x$
+			\begin{solution}
+	 centimeters
+	\end{solution}
+		\part Variance of $x$
+		\begin{solution}
+		feet$^2$	
+		\end{solution}
+    \part Standard deviation of $x$
+	\end{parts}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{Lecture \#3 -- Summary Statistics III}}
+
+
+\question Suppose that $x_i$ is measured in centimeters and $y_i$ is measured in feet. What are the units of the following quantities? 
+	\begin{parts}
+		\part Covariance between $x$ and $y$			
+		\begin{solution}
+	 centimeters $\times$ feet
+	\end{solution}
+		\part Correlation between $x$ and $y$
+		\begin{solution}
+		unitless
+		\end{solution}
+		\part Skewness of $x$
+		\begin{solution}
+		unitless
+		\end{solution}
+	\end{parts}
+
+	
+\question The \emph{mean deviation} is a measure of dispersion that we did not cover in class. It is defined as follows:
+	$$MD = \frac{1}{n}\sum_{i=1}^n |x_i - \bar{x}|$$
+	\begin{parts}
+		\part Explain why this formula averages the absolute value of deviations from the mean rather than the deviations themselves.
+		\begin{solution}
+		As we showed in class, the average deviation from the sample mean is zero regardless of the dataset. Taking the absolute value is similar to squaring the deviations: it makes sure that the positive ones don't cancel out the negative ones.
+		\end{solution}
+		\part Which would you expect to be more sensitive to outliers: the mean deviation or the variance? Explain.
+		\begin{solution}
+		The variance is calculated from squared deviations. When $x$ is far from zero, $x^2$ is much larger than $|x|$ so large deviations ``count more'' when calculating the variance. Thus, the variance will be more sensitive to outliers. 
+		\end{solution}
+	\end{parts}
+	
+
+\question Consider a dataset $x_1, \hdots, x_n$. Suppose I multiply each observation by a constant $d$ and then add another constant $c$, so that $x_i$ is replaced by $c + dx_i$.
+	\begin{parts}
+		\part How does this change the sample mean? Prove your answer.
+			\begin{solution}
+				\begin{eqnarray*}
+					\frac{1}{n} \sum_{i=1}^n (c + dx_i)&=&\frac{1}{n} \sum_{i=1}^n c + d \left(\frac{1}{n} \sum_{i=1}^n x_i\right) = c + d\bar{x}
+				\end{eqnarray*}
+			\end{solution}
+		\part How does this change the sample variance? Prove your answer.
+		\begin{solution}
+			$$\frac{1}{n-1} \sum_{i=1}^n [(c + dx_i) - (c + d\bar{x})]^2 = \frac{1}{n-1} \sum_{i=1}^n [d(x_i - \bar{x})]^2 = d^2 s_x^2$$
+		\end{solution}
+		\part How does this change the sample standard deviation? Prove your answer.
+			\begin{solution}
+			The new standard deviation is $|d| s_x$, the positive square root of the variance.
+			\end{solution}
+		\part How does this change the sample z-scores? Prove your answer.
+			\begin{solution}
+			They are unchanged as long as $d$ is positive, but the sign will flip if $d$ is negative:
+				$$\frac{(c + d x_i) - (c + d\bar{x})}{d s_x} = \frac{d (x_i - \bar{x})}{d s_x} = \frac{x_i - \bar{x}}{s_x}$$
+			\end{solution}
+	\end{parts}
+
+	
+\end{questions}
+
+
+
+\end{document}
