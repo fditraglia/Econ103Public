@@ -65,9 +65,10 @@
 \begin{solution}
 \end{solution}
 
+\question WRITE SOME EXTENSIONS QUESTIONS ABOUT NON-RESPONSE BIAS, POST-STRATIFICATION, ETC
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fullwidth{\section*{Lecture \#2 -- Summary Statistics II}}
+\fullwidth{\section*{Lecture \#2 -- Summary Statistics I}}
 
 \question For each variable indicate whether it is nominal, ordinal, or numeric.
 	\begin{parts}
@@ -118,8 +119,51 @@ What are the units of the following quantities?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fullwidth{\section*{Lecture \#3 -- Summary Statistics III}}
+\fullwidth{\section*{Lecture \#3 -- Summary Statistics II}}
 
+\question Evaluate the following sums:
+\begin{parts}
+  \part $\displaystyle\sum_{n=1}^3 n^2$
+  \part $\displaystyle\sum_{n=1}^3 2^n$
+  \part $\displaystyle\sum_{n=1}^3 x^n$
+\end{parts}
+
+\question Evaluate the following sums:
+\begin{parts}
+  \part $\displaystyle\sum_{k=0}^2 (2k + 1)$
+  \part $\displaystyle\sum_{k=0}^3 (2k + 1)$
+  \part $\displaystyle\sum_{k=0}^4 (2k + 1)$
+\end{parts}
+
+\question Evaluate the following sums:
+\begin{parts}
+  \part $\displaystyle\sum_{i=1}^3 (i^2 + i)$
+  \part $\displaystyle\sum_{n =-2}^2 (n^2 - 4)$
+  \part $\displaystyle\sum_{n = 100}^{102} n$
+  \part $\displaystyle\sum_{n = 0}^2 (n + 100)$
+\end{parts}
+
+\question Prove that $\displaystyle \sum_{i = m}^n (a_i + b_i) = \sum_{i=m}^n a_i + \sum_{i=m}^n b_i$.
+
+\question Prove that if $c$ is a constant then $\displaystyle \sum_{i=m}^n c x_i = c \sum_{i=m}^n x_i$.
+
+\question Prove that if $c$ is a constant then $\displaystyle \sum_{i=1}^n c = cn$. 
+
+\question Express each of the following using $\Sigma$ notation:
+  \begin{parts}
+    \part $z_1 + z_2 + \cdots + z_{23}$
+    \part $x_1 y_1 + x_2 y_2 + \cdots + x_8 y_8$
+    \part $(x_1 - y_1) + (x_2 - y_2) + \cdots + (x_m - y_m)$
+    \part $x_1^3 f_1 + x_2^3 f_2 + \cdots + x_9^3 f_9$
+  \end{parts}
+
+  \question Prove that $\sum_{i=1}^n (x_i - \bar{x}) = 0$.
+
+\question Write down the formula for skewness. Why does this formula involve a cubic, and why do we divide by $s^2$? 
+
+\question How do we interpret the sign of skewness, and what is the ``rule of thumb'' that relates skewness to the mean and median?
+
+\question NEED TO WRITE MORE! Continue from slide 9.
 
 \question Suppose that $x_i$ is measured in centimeters and $y_i$ is measured in feet. What are the units of the following quantities? 
 	\begin{parts}
@@ -137,6 +181,8 @@ What are the units of the following quantities?
 		\end{solution}
 	\end{parts}
 
+
+\question THE QUESTIONS FROM HERE DOWN SHOULD BE ``EXTENSIONS''
 	
 \question The \emph{mean deviation} is a measure of dispersion that we did not cover in class. It is defined as follows:
 	$$MD = \frac{1}{n}\sum_{i=1}^n |x_i - \bar{x}|$$
@@ -150,7 +196,10 @@ What are the units of the following quantities?
 		The variance is calculated from squared deviations. When $x$ is far from zero, $x^2$ is much larger than $|x|$ so large deviations ``count more'' when calculating the variance. Thus, the variance will be more sensitive to outliers. 
 		\end{solution}
 	\end{parts}
-	
+
+
+\question Show that $\displaystyle \sum_{i=1}^n (x_i - m)^2 = \sum_{i=1}^n x_i^2 - 2m \sum_{i=1}^n x_i + nm^2$
+  \question Using the preceding with $m = \bar{x}$, show that $\sum_{i=1}^n (x_i - \bar{x})^2 = \sum_{i=1}^n x_i^2 - n\bar{x}^2$
 
 \question Consider a dataset $x_1, \hdots, x_n$. Suppose I multiply each observation by a constant $d$ and then add another constant $c$, so that $x_i$ is replaced by $c + dx_i$.
 	\begin{parts}
@@ -177,7 +226,6 @@ What are the units of the following quantities?
 
 	
 \end{questions}
-
 
 
 \end{document}
