@@ -15,10 +15,10 @@
 
 \section*{About This Document}
 These questions are the ``bread and butter'' of Econ 103: they cover the basic knowledge that you will need to acquire this semester to pass the course. 
-Questions are arranged by lecture.
+There are between 10 and 15 questions for each lecture.
 After a given lecture, and before the next one, you should solve all of the associated review questions.
 To give you an incentive to keep up with the course material, all quiz questions for the course will be randomly selected from this list.
-For example Quiz \#1, which covers lectures 1--2, will consist of one question drawn at random from questions 1--10 and another drawn at random from questions 12--20 below.
+For example Quiz \#1, which covers lectures 1--2, will consist of one question drawn at random from questions 1--10 and another drawn at random from questions 12--24 below.
 The review questions are straightforward. 
 Most are taken directly from the lecture slides and nearly all of the rest involve calculations similar if not identical to those from the lecture.
 As such, we will not circulate solutions to review questions.
@@ -44,7 +44,7 @@ Rote memorization will not suffice.
 	\end{solution}
 
 
-\question Dylan carried polled a random sample of 100 college students. In total 20 of them said that they approved of President Trump. Calculate the margin of error for this poll.
+\question Dylan polled a random sample of 100 college students. In total 20 of them said that they approved of President Trump. Calculate the margin of error for this poll.
 \begin{solution}
   $2 \sqrt{P(1-P)/n} = 2 \sqrt{0.2 \times 0.8 / 100} = 0.08$
 \end{solution}
@@ -79,7 +79,6 @@ Rote memorization will not suffice.
 \begin{solution}
 \end{solution}
 
-\question WRITE SOME EXTENSIONS QUESTIONS ABOUT NON-RESPONSE BIAS, POST-STRATIFICATION, ETC
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fullwidth{\section*{Lecture \#2 -- Summary Statistics I}}
@@ -131,10 +130,6 @@ What are the units of the following quantities?
     \part Standard deviation of $x$
 	\end{parts}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fullwidth{\section*{Lecture \#3 -- Summary Statistics II}}
-
 \question Evaluate the following sums:
 \begin{parts}
   \part $\displaystyle\sum_{n=1}^3 n^2$
@@ -157,25 +152,39 @@ What are the units of the following quantities?
   \part $\displaystyle\sum_{n = 0}^2 (n + 100)$
 \end{parts}
 
-\question Show that $\displaystyle \sum_{i = m}^n (a_i + b_i) = \sum_{i=m}^n a_i + \sum_{i=m}^n b_i$. Explain your reasoning.
-
-\question Show that if $c$ is a constant then $\displaystyle \sum_{i=m}^n c x_i = c \sum_{i=m}^n x_i$. Explain your reasoning.
-
-\question Show that if $c$ is a constant then $\displaystyle \sum_{i=1}^n c = cn$. Explain your reasoning.
-
 \question Express each of the following using $\Sigma$ notation:
   \begin{parts}
     \part $z_1 + z_2 + \cdots + z_{23}$
     \part $x_1 y_1 + x_2 y_2 + \cdots + x_8 y_8$
     \part $(x_1 - y_1) + (x_2 - y_2) + \cdots + (x_m - y_m)$
     \part $x_1^3 f_1 + x_2^3 f_2 + \cdots + x_9^3 f_9$
-  \end{parts}
+\end{parts}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{Lecture \#3 -- Summary Statistics II}}
+
+
+\question Show that $\displaystyle \sum_{i = m}^n (a_i + b_i) = \sum_{i=m}^n a_i + \sum_{i=m}^n b_i$. Explain your reasoning.
+
+\question Show that if $c$ is a constant then $\displaystyle \sum_{i=m}^n c x_i = c \sum_{i=m}^n x_i$. Explain your reasoning.
+
+\question Show that if $c$ is a constant then $\displaystyle \sum_{i=1}^n c = cn$. Explain your reasoning.
+
+\question Mark each of the following statements as True or False. You do not need to show your work if this question appears on a quiz, although you should make sure you understand the reasoning behind each of your answers.
+	\begin{parts}
+		\part $\displaystyle\sum_{i=1}^n (x_i/n) = \left(\sum_{i=1}^n x_i\right)/n$ 
+		\part $\displaystyle\sum_{k = 1}^n x_k z_k = z_k \sum_{k = 1}^n x_k$ 
+		\part $\displaystyle\sum_{k=1}^m x_k y_k = \left(\sum_{k=1}^m x_k\right) \left(\sum_{k=1}^m y_k\right)$ 
+		\part $\displaystyle\left(\sum_{i=1}^n x_i \right)\left(\sum_{j=1}^m y_j\right) = \sum_{i=1}^n \sum_{j=1}^m x_iy_j$ 
+		\part $\displaystyle\left(\sum_{i=1}^n x_i\right)/\left(\sum_{i=1}^n z_i\right)= \sum_{i=1}^n \left(x_i/z_i\right) $
+	\end{parts}
 
   \question Show that $\sum_{i=1}^n (x_i - \bar{x}) = 0$. Justify all of the steps you use.
 
 \question Write down the formula for skewness. Why does this formula involve a cubic, and why do we divide by $s^2$? 
 
-\question How do we interpret the sign of skewness, and what is the ``rule of thumb'' that relates skewness to the mean and median?
+\question How do we interpret the sign of skewness, and what is the ``rule of thumb'' that relates skewness, the mean, and median?
 
 \question What is the distinction between $\mu, \sigma^2, \sigma$ and $\bar{x}, s^2, s$? Which corresponds to which?
 
@@ -183,7 +192,19 @@ What are the units of the following quantities?
 
 \question Define \emph{centering}, \emph{standardizing}, and \emph{z-score}.
 
-\question NEED TO WRITE MORE! Continue from slide 9.
+\question What is the sample mean $\bar{z}$ of the z-scores $z_1, \dots, z_n$? Prove your answer.
+
+\question What is the sample variance $s_z^2$ of the z-scores $z_1, \dots, z_n$? Prove your answer.
+
+\question Suppose that $-c < (a - x)/b < c$ where $b>0$. Find a lower bound $L$ and an upper bound $U$ such that $L < x < U$.
+			\begin{solution}
+				Rearranging, 
+					$$-bc - a < -x < bc - a$$
+				and multiplying through by $-1$,
+					$$a - bc < x <a + bc$$
+        \end{solution}
+
+\question Compare and contrast \emph{covariance} and \emph{correlation}. Provide the formula for each, explain the units, the interpretation, etc.
 
 \question Suppose that $x_i$ is measured in centimeters and $y_i$ is measured in feet. What are the units of the following quantities? 
 	\begin{parts}
@@ -199,10 +220,59 @@ What are the units of the following quantities?
 		\begin{solution}
 		unitless
 		\end{solution}
+    \part $(x_i - \bar{x}) / s_x$
+    \begin{solution}
+      unitless
+    \end{solution}
 	\end{parts}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{Lecture \#4 -- Regression I}}
 
-\question THE QUESTIONS FROM HERE DOWN SHOULD BE ``EXTENSIONS''
+\question In a regression using height (measured in inches) to predict handspan (measured in centimeters) we obtained $a = 5$ and $b = 0.2$. 
+\begin{parts}
+  \part What are the units of $a$?
+  \part What are the units of $b$?
+  \part What handspan would we predict for someone who is 6 feet tall?
+\end{parts}
+
+\question Plot the following dataset and calculate the corresponding regression slope and intercept \emph{without} using the regression formulas.\\ 
+\begin{tabular}[h]{cc}
+  $x$ & $y$\\
+  \hline
+   0 & 2\\
+   1 & 1\\
+   1 & 2
+\end{tabular}
+
+\question Write down the optimization problem that linear regression solves.
+
+\question Prove that the regression line goes through the means of the data.
+
+\question By substituting $a = \bar{y} - b\bar{x}$ into the linear regression objective function, derive the formula for $b$.
+
+\question Consider the regression $\widehat{y} = a + bx$.
+\begin{parts}
+  \part Express $b$ in terms of the sample covariance between $x$ and $y$.
+  \part Express the sample correlation between $x$ and $y$ in terms of $b$.
+\end{parts}
+
+\question What value of $a$ minimizes $\displaystyle\sum_{i=1}^n (y_i - a)^2$? Prove your answer.
+
+\question Suppose that $s_{xy} = 30$, $s_x = 5$, $s_{y} = 3$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $a$ and $b$ in the regression $\widehat{y} = a + bx$.
+
+\question Suppose that $s_{xy} = 30$, $s_x = 5$, $s_{y} = 3$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $c$ and $d$ in the regression $\widehat{x} = c + dy$.
+
+\question A large number of students took two midterm exams. The standard deviation of scores on midterm \#1 was 16 points, while the standard deviation of scores midterm \#2 was 17 points. The covariance of the scores on the two exams was 124 points squared. Linus scored 60 points on midterm \#1 while Lucy scored 80 points. How much higher would we predict that Lucy's score on the midterm \#2 will be?
+
+\question Suppose that the correlation between scores on midterm \#1 and midterm \#2 in Econ 103 is approximately 0.5. If the regression slope when using scores on midterm \#1 to predict those on midterm \#2 is approximately 1.5, which exam had the larger \emph{spread} in scores? How much larger?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{Extensions}}
+
+\question Question about post-stratification, non-response bias, etc. 
+
+\question Treat regression to the mean in the extensions.
 	
 \question The \emph{mean deviation} is a measure of dispersion that we did not cover in class. It is defined as follows:
 	$$MD = \frac{1}{n}\sum_{i=1}^n |x_i - \bar{x}|$$
@@ -244,6 +314,64 @@ What are the units of the following quantities?
 			\end{solution}
 	\end{parts}
 
+  \question Assign them to read the chapter from ``Thinking Fast and Slow'' and write a one paragraph summary of \emph{regression to the mean}.
+
+  \question Let
+    $$z_{x_i} = \frac{x_i - \bar{x}}{s_x}, \;\;\mbox{and }\;\; z_{y_i} = \frac{y_i - \bar{y}}{s_y}.$$
+    Show that if we carry out a regression with $z_{y_i}$ in place of $y$ and $z_{x_i}$ in place of $x$, the intercept $a$ will equal zero while the slope $b$ will equal $r$, the sample correlation.
+    \begin{solution}
+     All we need to do is replace $x_i$ with $z_{x_i}$ and $y_i$ with $z_{y_i}$ in the formulas we already derived for the regression slope and intercept:
+     		$$\begin{array}{lr}a = \bar{y} - b\bar{x}, & b = \displaystyle \frac{s_{xy}}{s_x^2}\end{array}$$
+     		And use the properties of z-scores from class. Let $a*$ be the intercept for the regression with z-scores, and $b*$ be the corresponding slope. We have:
+     	 	$$a* = \bar{z_y} - b^* \bar{z_x} = 0$$
+     	 	since the mean of the z-scores is zero, as we showed in class. To find the slope, we need to know the covariance between the z-scores, and the variance of the z-scores for $x$:
+     	 		$$b^* = \frac{s_{z_x z_y}}{s_{z_x}^2}$$
+     	 		But since sample variance of z-scores is always one, $b^* = s_{z_x z_y}$. Now, by the definition of the sample covariance, the fact that the mean of z-scores is zero, and the definition of a z-score:
+     	 		\begin{eqnarray*}
+     	 		s_{z_x z_y} &=& \frac{1}{n-1} \sum_{i=1}^n (z_{x_i} - \bar{z_x})(z_{y_i} - \bar{z_y})\\
+     	 		&=& \frac{1}{n-1} \sum_{i=1}^n z_{x_i}z_{y_i}\\
+     	 		&=& \frac{1}{n-1} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s_x}\right)\left(\frac{y_i - \bar{y}}{s_y}\right)\\
+     	 		&=& r_{xy}
+     	 		\end{eqnarray*}
+    \end{solution}
+
+\question Let $\hat{y}$ denote our prediction of $y$ from a linear regression model: $\hat{y} = a + b x$ and let $r$ be the correlation coefficient between $x$ and $y$.
+	\begin{parts}
+		\part Express $b$ in terms of $s_{xy}$ and $s_x$.
+			\begin{solution}
+								$$b = \frac{s_{xy}}{s_x^2}= \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$$
+			\end{solution}
+		\part Express $a$ in terms of $b$ and the sample means of $x$ and $y$.
+			\begin{solution}
+				$$a = \bar{y} - b\bar{x}$$
+			\end{solution}
+		\part Express $r$ in terms of the $s_{xy}$, $s_x$ and $s_y$.
+			\begin{solution}
+				$$r = \frac{s_{xy}}{s_x s_y}$$
+			\end{solution}
+		\part Show that $$\frac{\hat{y} - \bar{y}}{s_y} = r \left( \frac{x - \bar{x}}{s_x}\right)$$
+			\begin{solution}
+				\begin{eqnarray*}
+					\hat{y} &=& a + bx \\
+					\hat{y}&=& (\bar{y} - b \bar{x}) + bx\\
+					\hat{y} - \bar{y} &=& b(x - \bar{x})\\
+					\hat{y} - \bar{y} &=& \frac{s_{xy}}{s_x^2}(x - \bar{x})\\
+					\hat{y} - \bar{y} &=& \frac{s_{xy}}{s_x}\left(\frac{x - \bar{x}}{s_x}\right)\\
+					\frac{\hat{y} - \bar{y}}{s_y} &=& \frac{s_{xy}}{s_x s_y}\left(\frac{x - \bar{x}}{s_x}\right)\\
+										\frac{\hat{y} - \bar{y}}{s_y} &=& r\left(\frac{x - \bar{x}}{s_x}\right)
+				\end{eqnarray*}
+			\end{solution}
+		\part[3] Using the equation derived in (d), briefly explain``regression to the mean.''
+			\begin{solution}
+			The formula shows that unless $r$ is one or negative one, perfect positive or negative correlation, our best linear prediction of $y$ based on knowledge given $x$ is closer to the mean of the $y$-observations (relative to the standard deviation of the $y$-observations) than $x$ is to mean of the $x$-observations (relative to the standard deviation of the $x$-observations). If $x$ is very large, for example, we would predict that $y$ will be large too, but not as large.
+			\end{solution}
+	\end{parts}
+
+
+\question Lothario, an unscrupulous economics major, runs the following scam. After the first midterm of Econ 103 he seeks out the students who did extremely poorly and offers to sell them ``statistics pills.'' He promises that if they take the pills before the second midterm, their scores will improve. The pills are, in fact, M\&Ms and don't actually improve one's performance on statistics exams. The overwhelming majority of Lothario's former customers, however, swear that the pills really work: their scores improved on the second midterm. What's your explanation?
+\begin{solution}
+This is an example of regression to the mean. The students Lothario seeks out were both unprepared for the midterm \emph{and} got unlucky: the correlation between exam scores is less than one. It is very unlikely that they will be unlucky twice in a row, so their performance on the second exam will almost certainly be higher. Our best guess of their second score is closer to the mean than their first score.
+\end{solution}
 	
 \end{questions}
 
