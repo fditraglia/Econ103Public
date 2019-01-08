@@ -4,8 +4,8 @@ title: Course Homepage
 ---
 
 ## Contact
-- *Discussion Board:* Please direct all written communication for Econ 103 to [Piazza](https://canvas.upenn.edu) rather than the instructors' personal email accounts. For personal issues, use Piazza's private messaging feature to communicate directly with the course instructor and your RI.
-- *Canvas:* We will only use [canvas](https://canvas.upenn.edu) to access Piazza and display course grades.
+- **Discussion Board:** Please direct all written communication for Econ 103 to [Piazza](https://canvas.upenn.edu) rather than the instructors' personal email accounts. For personal issues, use Piazza's private messaging feature to communicate directly with the course instructor and your RI.
+- **Canvas:** We will only use [canvas](https://canvas.upenn.edu) to access Piazza and display course grades.
 
 ## Semester Calendar
 For a semester calendar, including the dates of all quizzes and exams, please see the last page of the [course syllabus](./syllabus.pdf).
@@ -29,18 +29,6 @@ Please consult these documents before posting a question about course logistics 
 - [Power: Two-sided Test for a Normal Mean](https://fditraglia.shinyapps.io/power_twoside), [code](https://github.com/fditraglia/ShinyEcon103/tree/master/power_twoside)
 - [Power: Two-sided Test for a Sample Proportion](https://fditraglia.shinyapps.io/power_proptest), [code](https://github.com/fditraglia/ShinyEcon103/tree/master/power_proptest)
 
-## Videos / Extra Resources
-Below are some videos and extra resources I've created in past semesters.
-- [Lecture #2 Video](https://vimeo.com/117195343)
-- [Handout: Regression to the Mean](./RegressionToTheMean.pdf)
-- [Handout: Combinatorics & Classical Probability](./ClassicalProbability.pdf)
-- [Lecture #8 Video Addendum](https://vimeo.com/119586397)
-- [Lecture #9 Video](https://vimeo.com/119881985)
-- [Lecture #10 Video](https://vimeo.com/141473625)
-- [Lecture #13 Video](https://vimeo.com/120308354)
-- [Lecture #15 Video Addendum](https://vimeo.com/158654837)
-- [Lecture #22 Video](https://vimeo.com/161875090)
-- [Lecture #23 Video Addendum](https://vimeo.com/125340498)
 
 ## Practice Exams
 The following is a complete collection of all exams I have given in Econ 103. 
@@ -48,7 +36,7 @@ All of the questions provide useful practice, but more recent exams give a bette
 I will assign questions from some of the older exams as homework, but we will always leave those from the two most recent semesters untouched so you can practice taking them under realistic exam conditions if desired.
 
 ### Midterm I
-- Spring 2018: [exam](./PracticeExams/midterm1_2018_02_13.pdf)[solutions](./PracticeExams/midterm1_2018_02_13_solutions.pdf)
+- Spring 2018: [exam](./PracticeExams/midterm1_2018_02_13.pdf), [solutions](./PracticeExams/midterm1_2018_02_13_solutions.pdf)
 - Spring 2017 [exam](./PracticeExams/midterm1_2017_02_14.pdf), [solutions](./PracticeExams/midterm1_2017_02_14_solutions.pdf)
 - Spring 2016 [exam](./PracticeExams/midterm1_2016_02_16.pdf), [solutions](./PracticeExams/midterm1_2016_02_16_solutions.pdf)
 - Fall 2015 [exam](./PracticeExams/midterm1_2015_09_28.pdf), [solutions](./PracticeExams/midterm1_2015_09_28_solutions.pdf)
@@ -82,3 +70,16 @@ I will assign questions from some of the older exams as homework, but we will al
 - Fall 2013: [exam](./PracticeExams/final_2013_12_19.pdf), [solutions](./PracticeExams/final_2013_12_19_solutions.pdf)
 - Spring 2013: [exam](./PracticeExams/final_2013_05_01.pdf), [solutions](./PracticeExams/final_2013_05_01_solutions.pdf)
 - Fall 2012: [exam](./PracticeExams/final_2012_12_12.pdf), [solutions](./PracticeExams/final_2012_12_12_solutions.pdf)
+
+## Videos / Extra Resources
+Below are some videos and extra resources I've created in past semesters.
+- [Lecture #2 Video](https://vimeo.com/117195343)
+- [Handout: Regression to the Mean](./RegressionToTheMean.pdf)
+- [Handout: Combinatorics & Classical Probability](./ClassicalProbability.pdf)
+- [Lecture #8 Video Addendum](https://vimeo.com/119586397)
+- [Lecture #9 Video](https://vimeo.com/119881985)
+- [Lecture #10 Video](https://vimeo.com/141473625)
+- [Lecture #13 Video](https://vimeo.com/120308354)
+- [Lecture #15 Video Addendum](https://vimeo.com/158654837)
+- [Lecture #22 Video](https://vimeo.com/161875090)
+- [Lecture #23 Video Addendum](https://vimeo.com/125340498)
