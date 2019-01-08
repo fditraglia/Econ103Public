@@ -13,7 +13,7 @@ For a semester calendar, including the dates of all quizzes and exams, please se
 ## Course Documents
 Please consult these documents before posting a question about course logistics to Piazza: the syllabus in particular is positively brimming with answers to FAQs.
 - [Syllabus](./syllabus.pdf): This document is the final authority on all course policies.
-- [Lecture Slides](./lecture_slides.pdf): Many of the lectures for Econ 103 contain interactive in-class experiments and examples using PollEverywhere that would be spoiled if I were to distributed the slides in advance. 
+- [Lecture Slides](./lecture_slides.pdf): Many of the lectures for Econ 103 contain interactive in-class experiments and examples using PollEverywhere that would be spoiled if I were to distribute the slides in advance. 
 As such, slides will be posted *after* each lecture of the semester. 
 I strongly suggest that you refrain from taking detailed notes during lecture: my slides contain an almost perfect transcript of each lecture so you are in no danger of missing something.
 Instead, I suggest that you focus on paying close attention during the lecture and make only limited notes of things that you find confusing, questions you have, or calculations for in-class exercises.
