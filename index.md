@@ -19,6 +19,11 @@ Please consult these documents before posting a question about course logistics 
 - [How to do well in Econ 103](./HowToDoWell.pdf): Advice on the best way to study for this course.
 - [Random Variables Handout](./RandomVariablesHandout.pdf): handout summarizing the key properties of random variables that we will learn in the course.
 
+## R Tutorials
+As part of this course you will learn the basics of statistical programming in R.
+Every student in this course will receive a free premium subscription to [DataCamp](https://datacamp.com), courtesy of DataCamp for the Classroom. 
+I will assign interactive online tutorials from Datacamp as part of your homework, which will be completed by in-person R instruction in recitation.
+
 
 ## Apps
 - [Binomial CDF](https://fditraglia.shinyapps.io/binom_cdf), [code](https://github.com/fditraglia/ShinyEcon103/tree/master/binom_cdf)
