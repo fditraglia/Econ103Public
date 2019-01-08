@@ -268,6 +268,118 @@ What are the units of the following quantities?
 \question Suppose that the correlation between scores on midterm \#1 and midterm \#2 in Econ 103 is approximately 0.5. If the regression slope when using scores on midterm \#1 to predict those on midterm \#2 is approximately 1.5, which exam had the larger \emph{spread} in scores? How much larger?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{Lecture \#5 -- Basic Probability I}}
+
+\question What is the definition of probability that we will adopt in Econ 103?
+
+\question Define the following terms:
+\begin{parts}
+  \part \emph{random experiment}
+  \part \emph{basic outcomes}
+  \part \emph{sample space}
+  \part \emph{event}
+\end{parts}
+
+
+\question Define the following terms and give an example of each:
+\begin{parts}
+  \part \emph{mutually exclusive events}
+  \part \emph{collectively exhaustive events}
+\end{parts}
+
+\question Suppose that $S = \left\{1, 2, 3, 4, 5, 6 \right\}$, $A = \left\{2, 3 \right\}$, $B = \left\{ 3, 4, 6 \right\}$, and $C = \left\{ 1, 5 \right\}$.
+\begin{parts}
+  \part What is $A^c$? 
+  \part What is $A\cup B$?
+  \part What is $A \cap B$?
+  \part What is $A \cap C$?
+  \part Are $A,B,C$ mutually exclusive? Are they collectively exhaustive?
+\end{parts}
+
+\question A family has three children. Let $A$ be the event that they have less than two girls and $B$ be the event that they have exactly two girls. 
+\begin{parts}
+  \part List all of the basic outcomes in $A$.
+  \part List all of the basic outcomes in $B$.
+  \part List all of the basic outcomes in $A \cap B$
+  \part List all of the basic outcomes in $A \cup B$.
+  \part If male and female births are equally likely, what is the probability of $A$?
+\end{parts}
+
+\question Let $B = A^c$. Are $A$ and $B$ mutually exclusive? Are they collectively exhaustive? Why?
+
+\question State each of the three axioms of probability, aka the \emph{Kolmogorov Axioms}.
+
+\question Suppose we carry out a random experiment that consists of flipping a fair coin twice.
+	\begin{parts}
+		\part List all the basic outcomes in the sample space.
+		\begin{solution}
+			$S = \{HH, HT, TT, TH\}$
+		\end{solution}
+		\part Let $A$ be the event that you get at least one head. List all the basic outcomes in $A$.
+		\begin{solution}
+			$A = \{HH, HT, TH\}$
+		\end{solution}
+		\part List all the basic outcomes in $A^c$. 
+		\begin{solution}
+			$A^c = \{TT\}$
+		\end{solution}
+		\part What is the probability of $A$? What is the probability of $A^c$?
+		\begin{solution}
+			$P(A) = 3/4 = 0.75$ and $P(A^c) = 1/4$
+		\end{solution}
+	\end{parts}
+
+\question Calculate the following:
+\begin{parts}
+  \part $5!$
+  \begin{solution}
+    120
+  \end{solution}
+  \part $\displaystyle \frac{10!}{98!}$
+  \begin{solution}
+    9900
+  \end{solution}
+  \part $\displaystyle {5 \choose 3}$
+  \begin{solution}
+    10
+  \end{solution}
+\end{parts}
+
+
+\question 
+\begin{parts}
+  \part How many different ways can we choose a President and Secretary from a group of 4 people if the two offices must be held by different people?
+  \part How many different committees with two members can we form a group of 4 people, assuming that the order in which we choose people for the committee doesn't matter. 
+\end{parts}
+
+\question Suppose that I flip a fair coin 5 times.
+\begin{parts}
+  \part How many basic outcomes contain exactly two heads? 
+  \part How many basic outcomes contain exactly three tails?
+  \part How many basic outcomes contain exactly one heads?
+  \part How many basic outcomes contain exactly four tails?
+\end{parts}
+
+\question Explain why $\displaystyle{n \choose r} = {n \choose n-r}$.
+
+\question Suppose I deal two cards at random from a well-shuffled deck of 52 playing cards. What is the probability that I get a pair of aces? 
+	\begin{solution}
+	You can either solve this assuming that order doesn't matter:
+		$$\frac{\binom{4}{2}}{\binom{52}{2}} = \frac{4!/(2!\times 2!)}{52!/(50!  \times 2!)} = \frac{6}{(52\times 51)/2}= 6/1326 = 1/221$$
+		or that it does:
+		$$\frac{P^4_2}{P^{52}_2} = \frac{4!/2!}{52!/50!} =\frac{(4\times 3)}{(52\times 51)} = 12/2652 = 1/221$$
+		In either case, the answer is the same: $1/221  \approx 0.005$
+	\end{solution}
+
+  \question Suppose that I choose two numbers at random from the set $\left\{ 1, 2, 3, 4, 5, 6, 7, 8, 9 \right\}$. What is the probability that both are odd?
+  \begin{solution}
+    This solution assumes that order doesn't matter.
+    You could also assume that it does matter and get the same answer.
+    There are $\displaystyle {9 \choose 2} = 36$ equally likely ways to choose 2 items from a set of 9. Of these, there are $\displaystyle {5 \choose 2} = 10$ ways to choose 2 of the 5 odd numbers.
+    Hence the probability is $10/36 = 5/18$.
+  \end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fullwidth{\section*{Extensions}}
 
 \question Question about post-stratification, non-response bias, etc. 
