@@ -21,7 +21,7 @@ Please consult these documents before posting a question about course logistics 
 ## R Tutorials
 As part of this course you will learn the basics of statistical programming in R.
 Every student in this course will receive a free premium subscription to [DataCamp](https://datacamp.com), courtesy of DataCamp for the Classroom. 
-I will assign interactive online tutorials from Datacamp as part of your homework, which will be completed by in-person R instruction in recitation.
+I will assign interactive online tutorials from Datacamp as part of your homework, which will be complemented by in-person R instruction in recitations.
 
 
 ## Apps
