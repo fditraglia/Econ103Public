@@ -14,12 +14,10 @@ For a semester calendar, including the dates of all quizzes and exams, please se
 Please consult these documents before posting a question about course logistics to Piazza: the syllabus in particular is positively brimming with answers to FAQs.
 - [Syllabus](./syllabus.pdf): This document is the final authority on all course policies.
 - [Lecture Slides](./lecture_slides.pdf): This file will be updated during the semester to reflect any changes to the course content.
-- [Review Exercises](./review-exercises.pdf)
-- [Extensions](./extensions.pdf)
+- [Review Exercises](./review-exercises.pdf): Contains basic review questions that you should complete after each lecture. All questions that appear on in-class quizzes will be drawn from this document. 
+- [Extensions](./extensions.pdf): Contains more advanced questions that build on the lecture material. Each exam will contain at least one question taken verbatim from this document.
 - [How to do well in Econ 103](./HowToDoWell.pdf): Advice on the best way to study for this course.
 - [Random Variables Handout](./RandomVariablesHandout.pdf): handout summarizing the key properties of random variables that we will learn in the course.
-- [Optional Proofs for Discrete RVs](./OptionalProofs.pdf): additional proofs of some results from lecture. These are optional, but use only basic techniques that we cover in Econ 103. They're well worth a look if you want a deeper understanding of the course material.
-- [Optional Handout on Conditional Expectation](./ConditionalExpectation.pdf): extra information on conditional expectation that goes beyond what you're responsible for in Econ 103.
 
 
 ## Apps
@@ -72,7 +70,8 @@ I will assign questions from some of the older exams as homework, but we will al
 - Fall 2012: [exam](./PracticeExams/final_2012_12_12.pdf), [solutions](./PracticeExams/final_2012_12_12_solutions.pdf)
 
 ## Videos / Extra Resources
-Below are some videos and extra resources I've created in past semesters.
+- [Optional Proofs for Discrete RVs](./OptionalProofs.pdf): additional proofs of some results from lecture. These are optional, but use only basic techniques that we cover in Econ 103. They're well worth a look if you want a deeper understanding of the course material.
+- [Optional Handout on Conditional Expectation](./ConditionalExpectation.pdf): extra information on conditional expectation that goes beyond what you're responsible for in Econ 103.
 - [Lecture #2 Video](https://vimeo.com/117195343)
 - [Handout: Regression to the Mean](./RegressionToTheMean.pdf)
 - [Handout: Combinatorics & Classical Probability](./ClassicalProbability.pdf)
