@@ -13,7 +13,10 @@ For a semester calendar, including the dates of all quizzes and exams, please se
 ## Course Documents
 Please consult these documents before posting a question about course logistics to Piazza: the syllabus in particular is positively brimming with answers to FAQs.
 - [Syllabus](./syllabus.pdf): This document is the final authority on all course policies.
-- [Lecture Slides](./lecture_slides.pdf): This file will be updated during the semester to reflect any changes to the course content.
+- [Lecture Slides](./lecture_slides.pdf): Many of the lectures for Econ 103 contain interactive in-class experiments and examples using PollEverywhere that would be spoiled if I were to distributed the slides in advance. 
+As such, slides will be posted *after* each lecture of the semester. 
+I strongly suggest that you refrain from taking detailed notes during lecture: my slides contain an almost perfect transcript of each lecture so you are in no danger of missing something.
+Instead, I suggest that you focus on paying close attention during the lecture and make only limited notes of things that you find confusing, questions you have, or calculations for in-class exercises.
 - [Review Exercises](./review-exercises.pdf): Contains basic review questions that you should complete after each lecture. All questions that appear on in-class quizzes will be drawn from this document. 
 - [Extensions](./extensions.pdf): Contains more advanced questions that build on the lecture material. Each exam will contain at least one question taken verbatim from this document.
 - [Random Variables Handout](./RandomVariablesHandout.pdf): handout summarizing the key properties of random variables that we will learn in the course.
@@ -33,34 +36,34 @@ I will assign interactive online tutorials from Datacamp as part of your homewor
 
 
 ## Practice Exams
-The following is a complete collection of all exams I have given in Econ 103. 
+The following is a complete collection of the exams I have given in Econ 103 along with full solutions.
 All of the questions provide useful practice, but more recent exams give a better indication of what to expect on future exams.
 I will assign questions from some of the older exams as homework, but we will always leave those from the two most recent semesters untouched so you can practice taking them under realistic exam conditions if desired.
 Note that some of the material on past exams, in particular some of the R code, may differ slightly from what we cover this semester. 
 
 ### Midterm I
 - Spring 2018: [exam](./PracticeExams/midterm1_2018_02_13.pdf), [solutions](./PracticeExams/midterm1_2018_02_13_solutions.pdf)
-- Spring 2017 [exam](./PracticeExams/midterm1_2017_02_14.pdf), [solutions](./PracticeExams/midterm1_2017_02_14_solutions.pdf)
-- Spring 2016 [exam](./PracticeExams/midterm1_2016_02_16.pdf), [solutions](./PracticeExams/midterm1_2016_02_16_solutions.pdf)
-- Fall 2015 [exam](./PracticeExams/midterm1_2015_09_28.pdf), [solutions](./PracticeExams/midterm1_2015_09_28_solutions.pdf)
-- Spring 2015 [exam](./PracticeExams/midterm1_2015_02_10.pdf), [solutions](./PracticeExams/midterm1_2015_02_10_solutions.pdf)
-- Fall 2014 [exam](./PracticeExams/midterm1_2014_09_29.pdf), [solutions](./PracticeExams/midterm1_2014_09_29_solutions.pdf)
-- Spring 2014 [exam](./PracticeExams/midterm1_2014_02_11.pdf), [solutions](./PracticeExams/midterm1_2014_02_11_solutions.pdf)
-- Fall 2013 [exam](./PracticeExams/midterm1_2013_09_30.pdf), [solutions](./PracticeExams/midterm1_2013_09_30_solutions.pdf)
-- Spring 2013 [exam](./PracticeExams/midterm1_2013_02_11.pdf), [solutions](./PracticeExams/midterm1_2013_02_11_solutions.pdf)
-- Fall 2012 [exam](./PracticeExams/midterm1_2012_10_03.pdf), [solutions](./PracticeExams/midterm1_2012_10_03_solutions.pdf)
+- Spring 2017: [exam](./PracticeExams/midterm1_2017_02_14.pdf), [solutions](./PracticeExams/midterm1_2017_02_14_solutions.pdf)
+- Spring 2016: [exam](./PracticeExams/midterm1_2016_02_16.pdf), [solutions](./PracticeExams/midterm1_2016_02_16_solutions.pdf)
+- Fall 2015: [exam](./PracticeExams/midterm1_2015_09_28.pdf), [solutions](./PracticeExams/midterm1_2015_09_28_solutions.pdf)
+- Spring 2015: [exam](./PracticeExams/midterm1_2015_02_10.pdf), [solutions](./PracticeExams/midterm1_2015_02_10_solutions.pdf)
+- Fall 2014: [exam](./PracticeExams/midterm1_2014_09_29.pdf), [solutions](./PracticeExams/midterm1_2014_09_29_solutions.pdf)
+- Spring 2014: [exam](./PracticeExams/midterm1_2014_02_11.pdf), [solutions](./PracticeExams/midterm1_2014_02_11_solutions.pdf)
+- Fall 2013: [exam](./PracticeExams/midterm1_2013_09_30.pdf), [solutions](./PracticeExams/midterm1_2013_09_30_solutions.pdf)
+- Spring 2013: [exam](./PracticeExams/midterm1_2013_02_11.pdf), [solutions](./PracticeExams/midterm1_2013_02_11_solutions.pdf)
+- Fall 2012: [exam](./PracticeExams/midterm1_2012_10_03.pdf), [solutions](./PracticeExams/midterm1_2012_10_03_solutions.pdf)
 
 ### Midterm II
-- Spring 2018 [exam](./PracticeExams/midterm2_2018_03_27.pdf), [solutions](./PracticeExams/midterm2_2018_03_27_solutions.pdf)
-- Spring 2017 [exam](./PracticeExams/midterm2_2017_03_21.pdf), [solutions](./PracticeExams/midterm2_2017_03_21_solutions.pdf)
-- Spring 2016 [exam](./PracticeExams/midterm2_2016_03_22.pdf), [solutions](./PracticeExams/midterm2_2016_03_22_solutions.pdf)
-- Fall 2015 [exam](./PracticeExams/midterm2_2015_11_02.pdf), [solutions](./PracticeExams/midterm2_2015_11_02_solutions.pdf)
-- Spring 2015 [exam](./PracticeExams/midterm2_2015_03_24.pdf), [solutions](./PracticeExams/midterm2_2015_03_24_solutions.pdf)
-- Fall 2014 [exam](./PracticeExams/midterm2_2014_11_03.pdf), [solutions](./PracticeExams/midterm2_2014_11_03_solutions.pdf)
-- Spring 2014 [exam](./PracticeExams/midterm2_2014_03_25.pdf), [solutions](./PracticeExams/midterm2_2014_03_25_solutions.pdf)
-- Fall 2013 [exam](./PracticeExams/midterm2_2013_11_11.pdf), [solutions](./PracticeExams/midterm2_2013_11_11_solutions.pdf)
-- Spring 2013 [exam](./PracticeExams/midterm2_2013_03_25.pdf), [solutions](./PracticeExams/midterm2_2013_03_25_solutions.pdf)
-- Fall 2012 [exam](./PracticeExams/midterm2_2012_11_07.pdf), [solutions](./PracticeExams/midterm2_2012_11_07_solutions.pdf)
+- Spring 2018: [exam](./PracticeExams/midterm2_2018_03_27.pdf), [solutions](./PracticeExams/midterm2_2018_03_27_solutions.pdf)
+- Spring 2017: [exam](./PracticeExams/midterm2_2017_03_21.pdf), [solutions](./PracticeExams/midterm2_2017_03_21_solutions.pdf)
+- Spring 2016: [exam](./PracticeExams/midterm2_2016_03_22.pdf), [solutions](./PracticeExams/midterm2_2016_03_22_solutions.pdf)
+- Fall 2015: [exam](./PracticeExams/midterm2_2015_11_02.pdf), [solutions](./PracticeExams/midterm2_2015_11_02_solutions.pdf)
+- Spring 2015: [exam](./PracticeExams/midterm2_2015_03_24.pdf), [solutions](./PracticeExams/midterm2_2015_03_24_solutions.pdf)
+- Fall 2014: [exam](./PracticeExams/midterm2_2014_11_03.pdf), [solutions](./PracticeExams/midterm2_2014_11_03_solutions.pdf)
+- Spring 2014: [exam](./PracticeExams/midterm2_2014_03_25.pdf), [solutions](./PracticeExams/midterm2_2014_03_25_solutions.pdf)
+- Fall 2013: [exam](./PracticeExams/midterm2_2013_11_11.pdf), [solutions](./PracticeExams/midterm2_2013_11_11_solutions.pdf)
+- Spring 2013: [exam](./PracticeExams/midterm2_2013_03_25.pdf), [solutions](./PracticeExams/midterm2_2013_03_25_solutions.pdf)
+- Fall 2012: [exam](./PracticeExams/midterm2_2012_11_07.pdf), [solutions](./PracticeExams/midterm2_2012_11_07_solutions.pdf)
 
 ### Final
 - Spring 2018: [exam](./PracticeExams/final_2018_05_01.pdf), [solutions](./PracticeExams/final_2018_05_01_solutions.pdf)
@@ -85,7 +88,7 @@ Note that some of the material on past exams, in particular some of the R code, 
 
 ### R Tutorials from past semesters 
 These are the R tutorials that I used in past semesters.
-they do not correspond perfectly the R material that we will cover this semester, but there is a large amount of overlap. 
+They do not correspond exactly the R material that we will cover this semester, but there is a large amount of overlap. 
 For details of the R material we will cover this semester see Piazza and "R Tutorials" above.
 - [R Tutorial #1](./Rtutorials/Rtutorial1.html)
 - [R Tutorial #2](./Rtutorials/Rtutorial2.html)
