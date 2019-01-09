@@ -1,0 +1,189 @@
+\documentclass[12pt]{article}
+\usepackage[margin = 1.2in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{color}
+\usepackage{hyperref}
+
+\author{Econ 103 -- Lecture 25}
+\title{Empirical Example from Gelman \& Hill, Chapter 3}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Introduction}
+This is our final lecture!
+Today we're going to bring together all the skills you've learned over the course of the semester to work through a real-world example in which we try to predict which children are most at-risk of low test scores based on information about their mothers.
+Although this is a very simple example, regressions like these are frequently used to inform policy.
+For example, if we want to design an intervention to target disadvantaged children, it would be very valuable to be able to predict which children are most in need \emph{before} we see their test scores at age three since the interventions that make the greatest impact are those adminstered in early childhood.
+
+\section*{Getting Started}
+To make R's regression output easier to read, we'll use a function called \texttt{display} from the package \texttt{arm}.
+Since this is the only function from the package you'll need to follow along with this example, I've extracted the relevant code and posted it on my website.
+Rather than installing \texttt{arm}, which is a bit complicated, you can simply run the following command to get access to the \texttt{display} function:
+<<message=FALSE,eval=FALSE>>=
+source("http://www.ditraglia.com/econ103/display.R")
+@
+You'll need to re-run this if you restart R and want to continue using \texttt{display}.
+Since I already have \texttt{arm} installed on the machine I'm using to write this transcript, I'll follow a different course and simply load the library:
+<<results='hide',message=FALSE>>=
+library(arm)
+@
+
+To start, let's load the student test score data from my website.
+For convenience, we'll use a function called \texttt{attach} that allows us to access the columns of a specified dataframe \emph{without} using the \$ symbol.
+The \texttt{attach} command can be a little dangerous if you're working with more than one dataframe at a time, but today we're only going look at a single dataset so this will just save us a lot of typing.
+The basic idea is this: if \texttt{foo} is a dataframe and \texttt{bar} is a column in that dataframe, then if we first run \texttt{attach(foo)} we can access the column \texttt{bar} by simply typing \texttt{bar} rather than \texttt{foo\$bar}. 
+<<>>=
+data.url <- "http://www.ditraglia.com/econ103/child_test_data.csv"
+data <- read.csv(data.url)
+attach(data)
+@
+Now let's take a quick look at the dataset
+<<>>=
+head(data)
+@
+Here's a description of all of the columns in this dataframe:
+\begin{table}[h]
+\centering
+  \begin{tabular}{|ll|}
+  \hline
+		Variable Name & Description\\
+		\hline
+		\texttt{kid.score}& Child's Test Score at Age 3\\
+		\texttt{mom.age}&Age of Mother at Birth of Child\\
+		\texttt{mom.hs}& Mother Completed High School? (1 = Yes)\\
+		\texttt{mom.iq}& Mother's IQ Score\\
+    \hline
+	\end{tabular}
+\end{table}
+As you can see, we have a lot of information here! 
+For today, we'll only use the columns \texttt{kid.score}, \texttt{mom.hs} and \texttt{mom.iq}.
+On the final homework assignment you'll look at \texttt{mom.age},
+
+\section*{First Regression: \texttt{mom.hs}}
+This regression compares average test scores of children whose mother completed high school to those whose mother didn't.
+Here, \texttt{mom.hs} is a \emph{dummy variable}: it takes on the value 1 if that child's mother completed high school, 0 otherwise.
+<<>>=
+reg1 <- lm(kid.score ~ mom.hs)
+display(reg1)
+@
+Rounding, we can summarize these regression results as follows:
+  $$\mbox{\texttt{kid.score}} = \Sexpr{round(coef(reg1)[1],0)} + \Sexpr{round(coef(reg1)[2],0)} \cdot \mbox{\texttt{mom.hs}} + \mbox{error} $$
+Since \texttt{mom.hs} is a dummy variable, taking on the value 1 if a child's mother completed high school and 0 otherwise, this regression is the \emph{same thing} as comparing the mean test scores of two groups: those whose mother completed high school and those whose mother didn't! 
+    \begin{eqnarray*}
+      (\mbox{\texttt{mom.hs}} = 1) \Rightarrow \texttt{kid.score} &=&\Sexpr{round(coef(reg1)[1],0)} + \Sexpr{round(coef(reg1)[2],0)} \cdot 1 +\mbox{error}\\
+      &=& \Sexpr{round(coef(reg1)[1],0) + round(coef(reg1)[2],0)}+\mbox{error} \\\\
+    (\mbox{\texttt{mom.hs}} = 0) \Rightarrow\texttt{kid.score} &=& \Sexpr{round(coef(reg1)[1],0)} + \Sexpr{round(coef(reg1)[2],0)} \cdot 0 +\mbox{error}\\
+    &=& \Sexpr{round(coef(reg1)[1],0) } + \mbox{error}
+    \end{eqnarray*}
+The difference of means simply equals the coefficient on \texttt{mom.hs}, namely $\Sexpr{round(coef(reg1)[2],0)}$.
+Creating a confidence interval for this difference of means is easy, since R has already calculated the required standard error for us. Rounding, this value is approximately $\Sexpr{round(se.coef(reg1)[2], 1)}$, so our approximate 95\% confidence interval for the difference of means (the coefficient on \texttt{mom.hs}) is $\Sexpr{round(coef(reg1)[2],0)} \pm \Sexpr{2 * round(se.coef(reg1)[2], 1)}$, in other words $(\Sexpr{round(coef(reg1)[2],0) - 2 * round(se.coef(reg1)[2], 1)}, \Sexpr{round(coef(reg1)[2],0) + 2 * round(se.coef(reg1)[2], 1)})$. 
+Since this interval doesn't include zero, we would reject the null that children whose mothers completed high school have the same test scores on average as those whose mothers didn't against the two-sided alternative at the 5\% significance level. 
+It looks like children whose mothers completed high school do better on this test.
+
+\newpage
+\section*{Second Regression: \texttt{mom.iq}}
+Now let's try something different.
+We'll use mother IQ to predict child test scores.
+<<>>=
+reg2 <- lm(kid.score ~ mom.iq)
+display(reg2)
+@
+Rounding, we can summarize the results as follows:
+  $$\mbox{\texttt{kid.score}} = \Sexpr{round(coef(reg2)[1],0)} + \Sexpr{round(coef(reg2)[2],1)} \cdot \mbox{\texttt{mom.iq}} + \mbox{error} $$
+The intercept in this model is not interpretable: it is the predicted test score for a child whose mother has an IQ of zero! 
+The coefficient on \texttt{mom.iq} is meaningful, however. 
+If we compare two groups of students who differ by one point in mothers' IQ, we would predict that the group with higher mother IQ will score $\Sexpr{round(coef(reg2)[2],1)}$ points higher, on average.
+
+We can plot the data as follows
+<<tidy=FALSE>>=
+plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+     ylab = 'Child Test Score')
+@
+To add the regression line, we need to extract the slope and intercept from the fitted regression:
+<<tidy=FALSE>>=
+coef(reg1)
+intercept <- coef(reg2)[1]
+slope <- coef(reg2)[2]
+plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+     ylab = 'Child Test Score')
+abline(a = intercept, b = slope)
+@
+
+\newpage
+\section*{Third Regression: \texttt{mom.hs} and \texttt{mom.iq}}
+Now we'll fit a regression with both \texttt{mom.hs} and \texttt{mom.iq}.
+It turns out that this allows the regression line to have a different \emph{intercept} depending on whether a child's mother completed high school.
+<<>>=
+reg3 <- lm(kid.score ~ mom.hs + mom.iq)
+display(reg3)
+@
+Rounding, we can summarize the fitted model as follows:
+  $$\mbox{\texttt{kid.score}} = \Sexpr{round(coef(reg3)[1],0)} + \Sexpr{round(coef(reg3)[2],1)} \cdot \mbox{\texttt{mom.hs}} +\Sexpr{round(coef(reg3)[3],1)} \cdot \mbox{\texttt{mom.iq}} + \mbox{error} $$
+  Since \texttt{mom.hs} is binary, this is equivalent to letting each group have a regression line with a \emph{different intercept} but the same slope:
+  \begin{eqnarray*}
+    (\texttt{mom.hs = 1})\Rightarrow \texttt{kid.score} &=& \Sexpr{round(coef(reg3)[1],0)} + \Sexpr{round(coef(reg3)[2],0)} \cdot 1 + \Sexpr{round(coef(reg3)[3],1)}\cdot \texttt{mom.iq} + \mbox{error}\\
+      &=& \Sexpr{round(coef(reg3)[1],0) + round(coef(reg3)[2],0)} + \Sexpr{round(coef(reg3)[3],1)}\cdot \texttt{mom.iq} + \mbox{error}\\ \\
+    (\texttt{mom.hs = 0})\Rightarrow \texttt{kid.score} &=& \Sexpr{round(coef(reg3)[1],0)} + \Sexpr{round(coef(reg3)[2],0)} \cdot 0 + \Sexpr{round(coef(reg3)[3],1)}\cdot \texttt{mom.iq} + \mbox{error}\\
+      &=&\Sexpr{round(coef(reg3)[1],0)} + \Sexpr{round(coef(reg3)[3],1)}\cdot \texttt{mom.iq} + \mbox{error}
+  \end{eqnarray*}
+In this case the intercept is not interpretable: it corresponds to the average test score for children whose mother did not complete high school and have a zero IQ! The other two coefficients, however, are meaningful. The coefficient on \texttt{mom.hs} compares test scores for children whose mothers have the same IQ but differ in whether or not they completed high school. The coefficient on \texttt{mom.iq} compares children whose mothers have the same value of \texttt{mom.iq} but differ in IQ by one point. 
+
+We can plot the data and fitted models as follows. We'll plot the children whose mothers went to high school in \emph{gray} and those whose mothers didn't in \emph{black}.
+<<tidy=FALSE>>=
+colors <- ifelse (mom.hs == 0, "black", "gray")
+plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+     ylab = 'Child Test Score', col = colors)
+@
+To add the fitted regression lines we need to extract the common slope as well as the intercept for \emph{each group}
+<<>>=
+coef(reg3)
+slope <- coef(reg3)[3]
+intercept.hs <- coef(reg3)[1] + coef(reg3)[2]
+intercept.no.hs <- coef(reg3)[1] 
+@
+Now we plot the results alongside the two regression lines:
+<<tidy=FALSE>>=
+colors <- ifelse (mom.hs == 0, "black", "gray")
+plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+     ylab = 'Child Test Score', col = colors)
+abline(a = intercept.hs, b = slope, col = 'gray')
+abline(a = intercept.no.hs, b = slope, col = 'black')
+@
+\newpage
+\section*{Fourth Regression: \texttt{mom.hs}, \texttt{mom.iq}  and \texttt{mom.hs:mom.iq}}
+Now we'll add an interaction between \texttt{mom.hs} and \texttt{mom.iq}: that is, we'll include a predictor whose value equals the \emph{product} of these two variables. 
+The way to express this in R is \texttt{mom.hs:mom.iq}. Consider a child whose mother completed high school (\texttt{mom.hs}=1). For this child, $\texttt{mom.hs:mom.iq} = 1 \cdot \texttt{mom.iq} = \texttt{mom.iq}$. For a child whose mother did \emph{not} complete high school, $\texttt{mom.hs:mom.iq} = 0 \cdot \texttt{mom.iq} = 0$. 
+It turns out that adding this interaction allows the two groups (those whose mother completed high school and those whose mother did not) to have regression lines with different slopes.
+Since \texttt{mom.iq} is included as in its own right, we allow different intercepts as well.
+
+First we'll run the regression:
+<<>>=
+reg4 <- lm(kid.score ~ mom.hs + mom.iq + mom.hs:mom.iq)
+display(reg4)
+@
+Rounding, we can summarize the results as follows:
+  \begin{eqnarray*}
+    (\texttt{mom.hs = 1})\Rightarrow \texttt{kid.score} &=& \Sexpr{round(coef(reg4)[1],0)} + \Sexpr{round(coef(reg4)[2],0)} \cdot 1 + \Sexpr{round(coef(reg4)[3],1)}\cdot \texttt{mom.iq} \Sexpr{round(coef(reg4)[4],1)}\cdot 1 \cdot \texttt{mom.iq} +\mbox{error}\\
+      &=& \Sexpr{round(coef(reg4)[1],0) + round(coef(reg4)[2],0)} + \Sexpr{round(coef(reg4)[3],1) + round(coef(reg4)[4],1)}\cdot \texttt{mom.iq} + \mbox{error}\\ \\
+    (\texttt{mom.hs = 0})\Rightarrow \texttt{kid.score} &=& \Sexpr{round(coef(reg4)[1],0)} + \Sexpr{round(coef(reg4)[2],0)} \cdot 0 + \Sexpr{round(coef(reg4)[3],1)}\cdot \texttt{mom.iq} \Sexpr{round(coef(reg4)[4],1)}\cdot 0 \cdot \texttt{mom.iq} +\mbox{error}\\
+      &=&\Sexpr{round(coef(reg4)[1],0)} + \Sexpr{round(coef(reg4)[3],1)}\cdot \texttt{mom.iq} + \mbox{error}
+  \end{eqnarray*}
+
+
+
+We can plot the two regression lines as follows. This time we need to allow different slopes \emph{as well as intercepts}.
+<<tidy=FALSE>>=
+coef(reg4)
+slope.hs <- coef(reg4)[3] + coef(reg4)[4]
+slope.no.hs <- coef(reg4)[3]
+intercept.hs <- coef(reg4)[1] + coef(reg4)[2]
+intercept.no.hs <- coef(reg4)[1] 
+colors <- ifelse (mom.hs == 0, "black", "gray")
+plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+     ylab = 'Child Test Score at Age 3', col = colors)
+abline(a = intercept.hs, b = slope.hs, col = 'gray')
+abline(a = intercept.no.hs, b = slope.no.hs, col = 'black')
+@
+
+\end{document}
