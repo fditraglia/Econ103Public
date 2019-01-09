@@ -495,32 +495,20 @@ Miss important detail
 \begin{frame}[fragile]
   \footnotesize
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlstr{'http://ditraglia.com/econ103/old_survey.csv'}\hlstd{)}
-\hlkwd{plot}\hlstd{(}\hlkwd{table}\hlstd{(survey}\hlopt{$}\hlstd{height),} \hlkwc{main} \hlstd{=} \hlstr{'Barchart of Height'}\hlstd{,}
-     \hlkwc{xlab} \hlstd{=} \hlstr{'Height (in)'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'Count'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/height_barplot-1} 
-
-\end{knitrout}
+<<height_barplot, fig.height = 4>>=
+survey <- read.csv('http://ditraglia.com/econ103/old_survey.csv')
+plot(table(survey$height), main = 'Barchart of Height',
+     xlab = 'Height (in)', ylab = 'Count')
+@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{hist}\hlstd{(survey}\hlopt{$}\hlstd{height,} \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'Histogram of Height'}\hlstd{,}
-     \hlkwc{xlab} \hlstd{=} \hlstr{'Height (in)'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'Relative Frequency'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/height_hist-1} 
-
-\end{knitrout}
+<<height_hist, fig.height = 4>>=
+hist(survey$height, freq = FALSE, main = 'Histogram of Height',
+     xlab = 'Height (in)', ylab = 'Relative Frequency')
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -633,26 +621,12 @@ Mean = 1000, Median = 3
 \begin{frame}[fragile]
   \frametitle{Results from Anchoring Experiment (Previous Semester)}
   \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{low} \hlkwb{<-} \hlstd{survey}\hlopt{$}\hlstd{africa.percent[survey}\hlopt{$}\hlstd{rand.num} \hlopt{==} \hlnum{10}\hlstd{]}
-\hlstd{high} \hlkwb{<-} \hlstd{survey}\hlopt{$}\hlstd{africa.percent[survey}\hlopt{$}\hlstd{rand.num} \hlopt{==} \hlnum{65}\hlstd{]}
-\hlkwd{c}\hlstd{(}\hlkwc{low} \hlstd{=} \hlkwd{mean}\hlstd{(low),} \hlkwc{high} \hlstd{=} \hlkwd{mean}\hlstd{(high))}
-\end{alltt}
-\begin{verbatim}
-##      low     high 
-## 17.09302 30.71739
-\end{verbatim}
-\begin{alltt}
-\hlkwd{c}\hlstd{(}\hlkwc{low} \hlstd{=} \hlkwd{median}\hlstd{(low),} \hlkwc{high} \hlstd{=} \hlkwd{median}\hlstd{(high))}
-\end{alltt}
-\begin{verbatim}
-##  low high 
-##   17   30
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<anchoring_central_tendency>>=
+low <- survey$africa.percent[survey$rand.num == 10]
+high <- survey$africa.percent[survey$rand.num == 65]
+c(low = mean(low), high = mean(high))
+c(low = median(low), high = median(high))
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -684,31 +658,11 @@ Q3 = 75th Percentile
 
 \small
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{quantile}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlkwc{na.rm} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-##   0%  25%  50%  75% 100% 
-## 14.0 19.0 20.5 22.0 27.0
-\end{verbatim}
-\begin{alltt}
-\hlkwd{quantile}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlnum{0.3}\hlstd{,} \hlkwc{na.rm} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-##  30% 
-## 19.5
-\end{verbatim}
-\begin{alltt}
-\hlkwd{quantile}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlkwd{c}\hlstd{(}\hlnum{0.1}\hlstd{,} \hlnum{0.5}\hlstd{,} \hlnum{0.9}\hlstd{),} \hlkwc{na.rm} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-##  10%  50%  90% 
-## 18.0 20.5 23.0
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<survey_quantiles>>=
+quantile(survey$handspan, na.rm = TRUE)
+quantile(survey$handspan, 0.3, na.rm = TRUE)
+quantile(survey$handspan, c(0.1, 0.5, 0.9), na.rm = TRUE)
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -794,32 +748,20 @@ Q3 = 75th Percentile
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{boxplot}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlkwc{main} \hlstd{=} \hlstr{'Boxplot of Handspan'}\hlstd{,}
-        \hlkwc{ylab} \hlstd{=} \hlstr{'Handspan (cm)'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/handspan_boxplot-1} 
-
-\end{knitrout}
+<<handspan_boxplot, fig.height = 5>>=
+boxplot(survey$handspan, main = 'Boxplot of Handspan',
+        ylab = 'Handspan (cm)')
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{boxplot}\hlstd{(survey}\hlopt{$}\hlstd{africa.percent} \hlopt{~} \hlstd{survey}\hlopt{$}\hlstd{rand.num,}
-        \hlkwc{main} \hlstd{=} \hlstr{'Boxplot for Anchoring Experiment'}\hlstd{,}
-        \hlkwc{ylab} \hlstd{=} \hlstr{'Answer (% UN Countries from Africa)'}\hlstd{,}
-        \hlkwc{xlab} \hlstd{=} \hlstr{'Random Number'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/anchoring_boxplot-1} 
-
-\end{knitrout}
+<<anchoring_boxplot, fig.height = 5>>=
+boxplot(survey$africa.percent ~ survey$rand.num, 
+        main = 'Boxplot for Anchoring Experiment',
+        ylab = 'Answer (% UN Countries from Africa)',
+        xlab = 'Random Number')
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -884,34 +826,12 @@ Q3 = 75th Percentile
   \frametitle{Measures of Spread for Handspan}
 
   \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{diff}\hlstd{(}\hlkwd{range}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlkwc{na.rm} \hlstd{=} \hlnum{TRUE}\hlstd{))}
-\end{alltt}
-\begin{verbatim}
-## [1] 13
-\end{verbatim}
-\begin{alltt}
-\hlkwd{IQR}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlkwc{na.rm} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] 3
-\end{verbatim}
-\begin{alltt}
-\hlkwd{var}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlkwc{na.rm} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] 4.753788
-\end{verbatim}
-\begin{alltt}
-\hlkwd{sd}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlkwc{na.rm} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] 2.180318
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<spread_handspan>>=
+diff(range(survey$handspan, na.rm = TRUE))
+IQR(survey$handspan, na.rm = TRUE)
+var(survey$handspan, na.rm = TRUE)
+sd(survey$handspan, na.rm = TRUE)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
