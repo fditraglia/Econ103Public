@@ -1,4 +1,4 @@
-setwd('~/Dropbox/Econ103/Slides/R Scripts')
+setwd('~/Econ103Public/slides/Rcode/')
 midterms <- read.csv('midterms.csv')
 
 midterms <- round(midterms)
@@ -73,3 +73,4 @@ plot.ss(x = midterms[,1], y = midterms[,2], a = 80, b = 0)
 plot.ss(x = midterms[,1], y = midterms[,2], a = 58, b = 0.3)
 
 plot.ss(x = midterms[,1], y = midterms[,2], a = 32, b = 0.6)
+
