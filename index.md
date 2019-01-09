@@ -28,6 +28,8 @@ I will assign interactive online tutorials from Datacamp as part of your homewor
 
 
 ## Apps
+- [Histogram Bins](https://fditraglia.shinyapps.io/histogram), [code](https://github.com/fditraglia/ShinyEcon103/tree/master/histogram)
+- [Regression](https://fditraglia.shinyapps.io/regression), [code](https://github.com/fditraglia/ShinyEcon103/tree/master/regression)
 - [Binomial CDF](https://fditraglia.shinyapps.io/binom_cdf), [code](https://github.com/fditraglia/ShinyEcon103/tree/master/binom_cdf)
 - [Standard Normal CDF](https://fditraglia.shinyapps.io/normal_cdf), [code](https://github.com/fditraglia/ShinyEcon103/tree/master/normal_cdf)
 - [Power: One-sided Test for a Normal Mean](https://fditraglia.shinyapps.io/power_oneside), [code](https://github.com/fditraglia/ShinyEcon103/tree/master/power_oneside)
