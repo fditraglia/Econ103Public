@@ -72,23 +72,32 @@ Variance measures average squared distance from center, taking \alert{mean} as t
 \section{Sample versus Population, Empirical Rule}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Essential Distinction: Sample vs.\ Population}
-For now, you can think of the population as a list of $N$ objects:\\
-	\alert{$\mbox{Population: }x_1, x_2, \hdots, x_N$}\\
-from which we draw a sample of size $n<N$ objects:\\
-	\alert{$\mbox{Sample: } x_1, x_2, \hdots, x_n$}
-\pause
-\vspace{3em}
-\begin{alertblock}{Important Point:}
-Later in the course we'll be more formal by considering \alert{probability models} that represent the \alert{\emph{act of sampling}} from a population rather than thinking of a population as a list of objects. Once we do this we will no longer use the notation $N$ as the population will be \alert{\emph{conceptually infinite}}.
-\end{alertblock}
+%\frametitle{Essential Distinction: Sample vs.\ Population}
+%For now, you can think of the population as a list of $N$ objects:\\
+%\hspace{1em}\alert{$\mbox{Population: }x_1, x_2, \hdots, x_N$}\\
+%from which we draw a sample of size $n<N$ objects:\\
+%\hspace{1em}\alert{$\mbox{Sample: } x_1, x_2, \hdots, x_n$}
+%\pause
+%\vspace{3em}
+%\begin{alertblock}{Important Point:}
+%Later in the course we'll be more formal by considering \alert{probability models} that represent the \alert{\emph{act of sampling}} from a population rather than thinking of a population as a list of objects. Once we do this we will no longer use the notation $N$ as the population will be \alert{\emph{conceptually infinite}}.
+%\end{alertblock}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 
-\frametitle{Essential Distinction: Parameter vs.\ Statistic}
-$N$ individuals in the Population, $n$ individuals in the Sample:
+\frametitle{Sample vs.\ Population and Parameter vs.\ Statistic}
+%$N$ individuals in the Population, $n$ individuals in the Sample:
+
+\begin{block}{Sample vs.\ Population}
+  For now, think of the \alert{population} as a list of $N$ objects
+  $(x_1, x_2, \hdots, x_N)$ from which we draw a \alert{sample} of $n<N$ objects.
+\end{block}
+
+\begin{block}{Parameter vs.\ Statistic}
+  Use a sample to calculate \alert{statistics} (e.g.\ $\bar{x}$, $s^2$, $s$) that estimate the corresponding population \alert{parameters} (e.g.\ $\mu$, $\sigma^2$, $\sigma$).
+\end{block}
 
 \vspace{1em}
 \small
@@ -97,14 +106,9 @@ $N$ individuals in the Population, $n$ individuals in the Sample:
 	\hline
 	Mean&$\displaystyle\mu = \frac{1}{N} \sum_{i=1}^N x_i$& $\displaystyle\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ \\
 	Var.\ &$\displaystyle \sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$ &$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$\\
-	S.D.\ &$\sigma = \sqrt{\sigma^2}$ &$s = \sqrt{s^2}$ \\
-	&&
+	S.D.\ &$\sigma = \sqrt{\sigma^2}$ &$s = \sqrt{s^2}$
 \end{tabular}
 
-\vspace{2em}
-\begin{alertblock}{Key Point}
-We  use a \alert{sample} $x_1, \hdots, x_n$ to calculate \alert{statistics} (e.g.\ $\bar{x}$, $s^2$, $s$) that serve as \alert{estimates} of the corresponding population \alert{parameters} (e.g.\ $\mu$, $\sigma^2$, $\sigma$).
-\end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -118,7 +122,7 @@ Pop.\ S.D.\ &$\sigma = \sqrt{\sigma^2}$ &Sample S.D.\ &$s = \sqrt{s^2}$ \\
 \normalsize
 
 \vspace{3em}
-\alert{There is an important reason for this, but explaining it requires some concepts we haven't learned yet. }
+\alert{There is an important reason for this. Later in the course we'll be able to explain it.} 
 
 \end{frame}
 
@@ -343,14 +347,14 @@ Please respond with your remote.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{From The Economist --``Lexington,'' October 4th, 2001}
-\begin{quote}
- ``Back in the Vietnam days, the anti-war movement spread from the intelligentsia into the rest of the population, eventually paralyzing the country's will to fight.''
-\end{quote}
-
-\end{frame}
-
+%\begin{frame}
+%\frametitle{From The Economist --``Lexington,'' October 4th, 2001}
+%\begin{quote}
+% ``Back in the Vietnam days, the anti-war movement spread from the intelligentsia into the rest of the population, eventually paralyzing the country's will to fight.''
+%\end{quote}
+%
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -372,7 +376,7 @@ Please respond with your remote.
 \frametitle{Covariance and Correlation: Linear Dependence Measures}
 
 \begin{block}{Two Samples of Numeric Data}
-$x_1, \hdots, x_n$ and $y_1, \hdots, y_n$
+  $x_1, \hdots, x_n$ and $y_1, \hdots, y_n$ with means $(\bar{x}, \bar{y})$ and std.\ devs.\ $(s_x, s_y)$
 \end{block}
 
 \begin{block}{Dependence}
@@ -386,17 +390,17 @@ Use the idea of centering and standardizing to decide what ``big'' or ``small'' 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Notation}
-
-	\begin{eqnarray*}
-		\bar{x} &=& \frac{1}{n} \sum_{i=1}^n x_i\\
-		\bar{y} &=& \frac{1}{n} \sum_{i=1}^n y_i\\
-		s_x &=& \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x})^2}\\
-		s_y &=& \sqrt{\frac{1}{n-1} \sum_{i=1}^n (y_i-\bar{y})^2}
-	\end{eqnarray*}
-
-\end{frame}
+%\begin{frame}
+%\frametitle{Notation}
+%
+%	\begin{eqnarray*}
+%		\bar{x} &=& \frac{1}{n} \sum_{i=1}^n x_i\\
+%		\bar{y} &=& \frac{1}{n} \sum_{i=1}^n y_i\\
+%		s_x &=& \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x})^2}\\
+%		s_y &=& \sqrt{\frac{1}{n-1} \sum_{i=1}^n (y_i-\bar{y})^2}
+%	\end{eqnarray*}
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Covariance}
@@ -428,7 +432,10 @@ Use the idea of centering and standardizing to decide what ``big'' or ``small'' 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\Large \alert{We'll have more to say about correlation and covariance when we discuss linear regression.}
+
+Add a picture here. Maybe some R code as well to calculate the correlation and covariance between two things. Maybe four panels with different correlations?
+
+\alert{We'll have more to say about correlation and covariance when we discuss linear regression next time\dots}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

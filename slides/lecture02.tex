@@ -25,25 +25,25 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Numeric Entry -- How Many Credits?}
-
-How many credits are you taking this semester? Please respond using your remote.
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Multiple Choice -- Class Standing} 
-  What is your class standing at Penn?
-  \begin{enumerate}[(a)]
-    \item Freshman
-    \item Sophomore
-    \item Junior
-    \item Senior
-  \end{enumerate}
-\end{frame}
+%\begin{frame}
+%
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Numeric Entry -- How Many Credits?}
+%
+%How many credits are you taking this semester? Please respond using your remote.
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%  \frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Multiple Choice -- Class Standing} 
+%  What is your class standing at Penn?
+%  \begin{enumerate}[(a)]
+%    \item Freshman
+%    \item Sophomore
+%    \item Junior
+%    \item Senior
+%  \end{enumerate}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
 %  \frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill Numeric Entry -- How long did you sleep?} 
@@ -63,7 +63,6 @@ Please enter your eye color using your remote.
   \item Brown
   \item Green
   \item Gray
-  \item Green
   \item Hazel
   \item Other
 \end{enumerate}
@@ -202,19 +201,19 @@ What is your best estimate of the \alert{percentage} of countries, among all tho
 
 \begin{frame}
 \frametitle{Types of Variables}
-\begin{block}{Categorical}
-Qualitative, assigns each unit to category, number either meaningless or indicates order only 
+\begin{block}{Categorical = Qualitative}
+Numeric value either meaningless or indicates order only 
 		\begin{description}
 			\item[Nominal] no order to the categories  
 			\item[Ordinal]  categories with natural order 
 		\end{description}
 \end{block}
 \pause
-\begin{block}{Numerical}
-Quantitative, number meaningful 
+\begin{block}{Numerical = Quantitative}
+Numerical value is meaningful
 		\begin{description}
 			\item[Discrete] Value from discrete set (often count data) 
-      \item[Continuous] Value could conceptually be any real number within some range (though \emph{measurements} have finite precision)
+      \item[Continuous] Value could be any real number within some range (even though \emph{measurements} have finite precision)
 		\end{description}
 \end{block}
 
@@ -233,7 +232,7 @@ Quantitative, number meaningful
 
 \begin{block}{Numerical}
 		\begin{description}
-			\item[Discrete] credits you are taking this semester 
+			\item[Discrete] \# of credits you are taking this semester 
       \item[Continuous] height, handspan, handedness (from survey) 
 		\end{description}
 \end{block}
@@ -430,15 +429,28 @@ Bins & Freq.\ & Rel.\ Freq.\ \\
 \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Number of Bins Controls Degree of Smoothing}
-\begin{figure}
-\includegraphics[scale = 0.53]{./images/handspan_four_histograms}
-\end{figure}
-\end{frame}
+%\begin{frame}
+%\frametitle{Number of Bins Controls Degree of Smoothing}
+%\begin{figure}
+%\includegraphics[scale = 0.53]{./images/handspan_four_histograms}
+%\end{figure}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
-\frametitle{Histograms are \emph{Really} Important}
+	\frametitle{\href{https://fditraglia.shinyapps.io/histogram/}{https://fditraglia.shinyapps.io/histogram/}}
+
+\begin{figure}
+	\fbox{\includegraphics[scale = 0.2]{./images/histogram_screenshot}}
+\end{figure}
+
+\alert{The number of histogram bins controls the degree of \emph{smoothing}.}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Histogram - Density Estimate by Smoothing Barchart} 
 
 \begin{block}{Why Histogram?}
 Summarize numerical data, especially continuous (few repeats)
@@ -458,46 +470,26 @@ Miss important detail
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Summary Statistic =  Numerical Summary of Sample}
 
-\begin{frame}
-\frametitle{Summary Statistic: Numerical Summary of Sample}
-	\begin{enumerate}
-\item Measures of Central Tendency
-	\begin{itemize}
-\item Mean
-\item Median
-\end{itemize}
-\item Measures of Spread
-	\begin{itemize}
-\item Variance
-\item Standard Deviation
-\item Range
-\item Interquartile Range (IQR)
-\end{itemize} 
-\item Measures of Symmetry
-	\begin{itemize}
-		\item Skewness
-	\end{itemize} 
-\item Measures of relationship between variables 
-	\begin{itemize}
-\item Covariance
-\item Correlation
-\item Regression
-\end{itemize}
+\begin{block}{Categories of Summary Statistic}
+\begin{enumerate}
+\item Central Tendency: mean and median
+\item Spread: range, interquartile range, variance, and std.\ dev.\
+\item Symmetry: skewness 
+\item Linear Dependence: covariance, correlation, and regression
 \end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Questions to Ask Yourself about Each Summary Statistic}
+\end{block}
+
+\begin{block}{Questions ask yourself about each summary statistic}
 \begin{enumerate}
 \item What does it measure?
 \item What are its units compared to those of the data?
 \item (How) do its units change if those of the data change?
-\item What are the benefits and drawbacks of this statistic?
+%\item What are the benefits and drawbacks of this statistic?
 \end{enumerate}
-
-\vspace{2em}
-\alert{Some of the information regarding items 2 and 3 is on the homework rather than in the slides because working it out for yourself is a good way to check your understanding.}
+\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -587,10 +579,11 @@ High Group (shown 65) $\rightarrow$ median answer of 45
 
 \begin{frame}
 \frametitle{Percentiles (aka Quantiles) -- Generalization of Median}
-\begin{center}\fbox{Approx.\ $P\%$ of the data are at or below the $P^{th}$ percentile.} \end{center}
-\vspace{1.5em}
+%\begin{center}\fbox{Approx.\ $P\%$ of the data are at or below the $P^{th}$ percentile.} \end{center}
+%\vspace{1.5em}
 \begin{block}{Percentiles (aka Quantiles)}
-$P^{th}$ Percentile = Value in  $\left(P/100\right)\cdot (n+1)^{th}$ Ordered Position
+Approx.\ $P\%$ of the data are at or below the $P$\textsuperscript{th} percentile/quantile
+%$P^{th}$ Percentile = Value in  $\left(P/100\right)\cdot (n+1)^{th}$ Ordered Position
 \end{block}
 \pause
 \begin{block}{Quartiles}
@@ -601,24 +594,32 @@ Q2 =  Median (i.e.\ 50th Percentile)
 Q3 = 75th Percentile
 \end{block}
 
+
+\vspace{1em}
+\alert{There are some slightly tricky issues involved in actually \emph{calculating} quantiles, but these only make a difference for very small datasets. We'll always use R to calculate quantiles\dots}
+
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{An Example: n = 12}
-$$\begin{array}{cccccccccccc}
-60&63&\alert{65}&\alert{67}&70&72&75&75&80&82&84&85
-\end{array}$$
-
-\begin{eqnarray*}\mbox{Q}_1 &=& \mbox{value in the } 0.25(n+1)^{th}\mbox{ ordered position}\\\pause
-	&=& \mbox{value in the } 3.25^{th}\mbox{ ordered position}\\\pause
-	&=& 65 + 0.25 * (67 - 65)\\\pause
-	&=& 65.5
-\end{eqnarray*}
+Add a simple R example with code here!
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{An Example: n = 12}
+%$$\begin{array}{cccccccccccc}
+%60&63&\alert{65}&\alert{67}&70&72&75&75&80&82&84&85
+%\end{array}$$
+%
+%\begin{eqnarray*}\mbox{Q}_1 &=& \mbox{value in the } 0.25(n+1)^{th}\mbox{ ordered position}\\\pause
+%	&=& \mbox{value in the } 3.25^{th}\mbox{ ordered position}\\\pause
+%	&=& 65 + 0.25 * (67 - 65)\\\pause
+%	&=& 65.5
+%\end{eqnarray*}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\begin{frame}
 %\frametitle{\includegraphics[scale = 0.05]{./images/clicker} \hfill  Student Debt}
@@ -638,16 +639,16 @@ $$\begin{array}{cccccccccccc}
 %
 %\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Quantiles of Student Debt \hfill \footnotesize Source: \href{http://www.aeaweb.org/articles.php?doi=10.1257/jep.26.1.165}{\fbox{Avery \& Turner (2012)}}}
-
-
-\centering \includegraphics[scale = 0.18]{./images/student_borrowing}
-
-
-\end{frame}
-
-
+%\begin{frame}
+%  \frametitle{Quantiles of Student Debt \hfill \footnotesize Source: \href{http://www.aeaweb.org/articles.php?doi=10.1257/jep.26.1.165}{\fbox{Avery \& Turner (2012)}}}
+%
+%
+%\centering \includegraphics[scale = 0.18]{./images/student_borrowing}
+%
+%
+%\end{frame}
+%
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Measures of Variability / Spread}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
