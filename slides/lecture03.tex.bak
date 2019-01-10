@@ -14,25 +14,25 @@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Skewness \& Symmetry}
+\section{Outliers, Skewness, \& Symmetry}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\begin{frame}
-%\frametitle{Variance is Sensitive to Skewness and Outliers}
-%\framesubtitle{And so is Standard Deviation!}
-%\begin{center}\fbox{$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$}\end{center}
-%
-%
-%\begin{block}{Outliers}
-%Differentiate with respect to $(x_i-\bar{x})\Rightarrow$ the farther an observation is from the mean, the \emph{larger} its effect on the variance.
-%\end{block}
-%
-%
-%\begin{block}{Skewness}
-%Variance measures average squared distance from center, taking \alert{mean} as the center, but the mean is sensitive to skewness!
-%\end{block}
-%
-%\end{frame}
+\begin{frame}
+\frametitle{Variance is Sensitive to Skewness and Outliers}
+\framesubtitle{And so is Standard Deviation!}
+\begin{center}\fbox{$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$}\end{center}
+
+
+\begin{block}{Outliers}
+Differentiate with respect to $(x_i-\bar{x})\Rightarrow$ the farther an observation is from the mean, the \emph{larger} its effect on the variance.
+\end{block}
+
+
+\begin{block}{Skewness}
+Variance measures average squared distance from center, taking \alert{mean} as the center, but the mean is sensitive to skewness!
+\end{block}
+
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -111,21 +111,21 @@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{Why Do Sample Variance and Std.\ Dev.\ Divide by $n-1$? }
-%\footnotesize
-%\fbox{\begin{tabular}{ll|ll}
-%Pop.\ Var.\ &$\displaystyle \sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$&Sample Var.\ &$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$\\
-%\hline
-%Pop.\ S.D.\ &$\sigma = \sqrt{\sigma^2}$ &Sample S.D.\ &$s = \sqrt{s^2}$ \\
-%\end{tabular}}
-%\normalsize
-%
-%\vspace{3em}
-%\alert{There is an important reason for this. Later in the course we'll be able to explain it.} 
-%
-%\end{frame}
-%
+\begin{frame}
+\frametitle{Why Do Sample Variance and Std.\ Dev.\ Divide by $n-1$? }
+\footnotesize
+\fbox{\begin{tabular}{ll|ll}
+Pop.\ Var.\ &$\displaystyle \sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$&Sample Var.\ &$\displaystyle s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar{x})^2$\\
+\hline
+Pop.\ S.D.\ &$\sigma = \sqrt{\sigma^2}$ &Sample S.D.\ &$s = \sqrt{s^2}$ \\
+\end{tabular}}
+\normalsize
+
+\vspace{3em}
+\alert{There is an important reason for this. Later in the course we'll be able to explain it.} 
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Why Mean and Variance (and Std.\ Dev.\ )?}
@@ -139,7 +139,9 @@ For large populations that are approximately bell-shaped, std.\ dev.\ tells wher
 \end{alertblock}
 \pause
 
-\alert{This isa key reason why we will be interested in $\bar{x}$ as an estimate of $\mu$ and $s$ as an estimate of $\sigma$.}
+\begin{block}{Therefore}
+We will be interested in $\bar{x}$ as an estimate of $\mu$ and $s$ as an estimate of $\sigma$ since these population parameters are so informative.
+\end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Centering, Standardizing, \& Z-Scores}
@@ -219,15 +221,10 @@ Measures how ``extreme'' one observation is relative to the others.
 \begin{frame}
 \frametitle{What is the sample mean of the z-scores?}
 \begin{eqnarray*}
-\bar{z} &=& \frac{1}{n}\sum_{i=1}^n z_i = \frac{1}{n} \sum_{i=1}^n \frac{x_i - \bar{x}}{s}= \frac{1}{n\cdot s} \sum_{i=1}^n (x_i - \bar{x}) = 0
+ \bar{z} &=& \frac{1}{n}\sum_{i=1}^n z_i \pause= \frac{1}{n} \sum_{i=1}^n \frac{x_i - \bar{x}}{s}= \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i  - \sum_{i=1}^n \bar{x}  \right]\\ \\
+ &=& \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i  - n\bar{x}  \right] = \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i - n\cdot \frac{1}{n} \sum_{i=1}^n x_i  \right] \\ \\
+ 	&=&\pause \frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i -  \sum_{i=1}^n x_i  \right]  = \pause 0
 \end{eqnarray*}
-%\begin{eqnarray*}
-% \bar{z} &=& \frac{1}{n}\sum_{i=1}^n z_i \pause= \frac{1}{n} \sum_{i=1}^n \frac{x_i - \bar{x}}{s}= \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i  - \sum_{i=1}^n \bar{x}  \right]\\ \\
-% &=& \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i  - n\bar{x}  \right] = \pause\frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i - n\cdot \frac{1}{n} \sum_{i=1}^n x_i  \right] \\ \\
-% 	&=&\pause \frac{1}{n\cdot s} \left[\sum_{i=1}^n x_i -  \sum_{i=1}^n x_i  \right]  = \pause 0
-%\end{eqnarray*}
-
-\alert{\dots using the same argument as on Slide 2 of this lecture!}
 \end{frame}
 
 
@@ -251,14 +248,14 @@ Measures how ``extreme'' one observation is relative to the others.
 
 \begin{frame}
 \frametitle{Population Z-scores and the Empirical Rule: $\mu \pm 2\sigma$}
-If $\mu$ and $\sigma$ were known, we could create a \alert{\emph{population version}} of a z-score. This lets us re-write the Empirical Rule as follows:
+If we knew the population mean $\mu$ and standard deviation $\sigma$ we could create a \alert{\emph{population version}} of a z-score. This leads to an important way of rewriting the Empirical Rule:
 
 \pause
 \vspace{2em}
 \alert{Bell-shaped population $\Rightarrow$ approx.\ 95\% of observations $x_i$ satisfy}
 \begin{eqnarray*}
-\mu - 2\sigma \leq x_i \leq \mu + 2\sigma\\ \\
-%-2 \sigma \leq x_i -\mu \leq 2\sigma\\
+\mu - 2\sigma \leq x_i \leq \mu + 2\sigma\\\pause
+-2 \sigma \leq x_i -\mu \leq 2\sigma\\\pause
 -2 \leq \frac{x_i - \mu}{\sigma} \leq 2
 \end{eqnarray*}
 
