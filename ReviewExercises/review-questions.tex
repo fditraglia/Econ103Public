@@ -184,7 +184,13 @@ What are the units of the following quantities?
 
   \question Show that $\sum_{i=1}^n (x_i - \bar{x}) = 0$. Justify all of the steps you use.
 
-\question Write down the formula for skewness. Why does this formula involve a cubic, and why do we divide by $s^2$? 
+  \question Re-write the formula for skewness in terms of the z-scores $z_i = (x_i - \bar{x})/s$. Use this to explain the original formula: why does it involve a cubic and why does it divide by $s^3$?
+  \begin{solution}
+    \[
+      \frac{1}{n}\frac{\sum_{i=1}^n (x_i - \bar{x})^3}{s^3} = \frac{1}{n} \sum_{i=1}^n \left( \frac{x_i - \bar{x}}{s} \right)^3 = \frac{1}{n} \sum_{i=1}^n z_i^3
+    \]
+  \end{solution}
+
 
 \question How do we interpret the sign of skewness, and what is the ``rule of thumb'' that relates skewness, the mean, and median?
 
