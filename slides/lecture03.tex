@@ -50,24 +50,73 @@
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Load Survey Data}
+\hlstd{data_url} \hlkwb{<-} \hlstr{'http://ditraglia.com/econ103/old_survey.csv'}
+\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
 
+\hlcom{# A Function to Calculate Skewness}
+\hlstd{get_skewness} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{) \{}
+  \hlstd{x} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(x)}
+  \hlstd{n} \hlkwb{<-} \hlkwd{length}\hlstd{(x)}
+  \hlstd{xbar} \hlkwb{<-} \hlkwd{mean}\hlstd{(x)}
+  \hlstd{s} \hlkwb{<-} \hlkwd{sd}\hlstd{(x)}
+  \hlstd{skewness} \hlkwb{<-} \hlkwd{sum}\hlstd{((x} \hlopt{-} \hlstd{xbar)}\hlopt{^}\hlnum{3}\hlstd{)} \hlopt{/} \hlstd{(n} \hlopt{*} \hlstd{s}\hlopt{^}\hlnum{3}\hlstd{)}
+  \hlkwd{return}\hlstd{(skewness)}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \footnotesize
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Handedness is left-skewed, handspan is symmetric}
+\hlkwd{c}\hlstd{(}\hlkwd{get_skewness}\hlstd{(survey}\hlopt{$}\hlstd{handedness),} \hlkwd{get_skewness}\hlstd{(survey}\hlopt{$}\hlstd{handspan))}
+\end{alltt}
+\begin{verbatim}
+## [1] -2.21905550  0.04331997
+\end{verbatim}
+\begin{alltt}
+\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
+\hlkwd{hist}\hlstd{(survey}\hlopt{$}\hlstd{handedness,} \hlkwc{main} \hlstd{=} \hlstr{'Handedness'}\hlstd{,} \hlkwc{xlab} \hlstd{=} \hlstr{'Handedness Score'}\hlstd{)}
+\hlkwd{hist}\hlstd{(survey}\hlopt{$}\hlstd{handspan,} \hlkwc{main} \hlstd{=} \hlstr{'Handspan'}\hlstd{,} \hlkwc{xlab} \hlstd{=} \hlstr{'Handspan (cm)'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/skewness_comparison-1} 
+\begin{kframe}\begin{alltt}
+\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}
-\centering \includegraphics[scale = 0.75]{./images/handspan_skew}
-
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\centering \includegraphics[scale = 0.75]{./images/handedness_skew}
-
-
-\end{frame}
+%\begin{frame}
+%\centering \includegraphics[scale = 0.75]{./images/handspan_skew}
+%
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%\centering \includegraphics[scale = 0.75]{./images/handedness_skew}
+%
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sample versus Population, Empirical Rule}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -267,50 +316,75 @@ If $\mu$ and $\sigma$ were known, we could create a \alert{\emph{population vers
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Relating Two Variables: Cross-tabs, Covariance, \& Correlation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{center}
-	\Huge Relationships Between Variables
-\end{center}
-
-\end{frame}
-
+%\begin{frame}
+%\begin{center}
+%	\Huge Relationships Between Variables
+%\end{center}
+%
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
+%\begin{frame}
+%\frametitle{Crosstabs -- Show Relationship between Categorical Vars.}
+%\framesubtitle{(aka Contingency Tables)}
+%\begin{table}
+%\centering
+%\begin{tabular}{l|rr|r}
+%	\emph{Eye Color} & \multicolumn{2}{|c|}{\emph{Sex}}\\
+%	& Male & Female & Total\\
+%	\hline
+%	Black&5&2&7\\
+%	Blue&6&4&10\\
+%	Brown&26&31&57\\
+%	Copper&1&0&1\\
+%	Dark Brown&0&1&1\\
+%	Green&4&1&5\\
+%	Hazel&2&2&4\\
+%	Maroon&1&0&1\\
+%	\hline
+%	Total&45&41&86
+%\end{tabular}
+%\end{table}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
 \frametitle{Crosstabs -- Show Relationship between Categorical Vars.}
-\framesubtitle{(aka Contingency Tables)}
-\begin{table}
-\centering
-\begin{tabular}{l|rr|r}
-	\emph{Eye Color} & \multicolumn{2}{|c|}{\emph{Sex}}\\
-	& Male & Female & Total\\
-	\hline
-	Black&5&2&7\\
-	Blue&6&4&10\\
-	Brown&26&31&57\\
-	Copper&1&0&1\\
-	Dark Brown&0&1&1\\
-	Green&4&1&5\\
-	Hazel&2&2&4\\
-	Maroon&1&0&1\\
-	\hline
-	Total&45&41&86
-\end{tabular}
-\end{table}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
+\small
 
-\vspace{3em}
-\huge \centering Example with Crosstab in \emph{Percents}
-
-
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{table}\hlstd{(survey}\hlopt{$}\hlstd{eye.color, survey}\hlopt{$}\hlstd{sex)}
+\end{alltt}
+\begin{verbatim}
+##         
+##          Female Male
+##   Black       2    5
+##   Blue        4    6
+##   Brown      32   26
+##   Copper      0    1
+##   Green       1    4
+##   Hazel       2    2
+##   Maroon      0    1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 
 \end{frame}
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%
+%\vspace{3em}
+%\huge \centering Example with Crosstab in \emph{Percents}
+%
+%
+%
+%\end{frame}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Who Supported the Vietnam War?}
@@ -369,11 +443,11 @@ Please respond with your remote.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{center}
- \Huge What about numeric data?
-\end{center}
-\end{frame}
+%\begin{frame}
+%\begin{center}
+% \Huge What about numeric data?
+%\end{center}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Covariance and Correlation: Linear Dependence Measures}
@@ -434,13 +508,26 @@ Use the idea of centering and standardizing to decide what ``big'' or ``small'' 
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-Add a picture here. Maybe some R code as well to calculate the correlation and covariance between two things. Maybe four panels with different correlations?
-
-\alert{We'll have more to say about correlation and covariance when we discuss linear regression next time\dots}
+\begin{frame}[fragile]
+  \frametitle{Height and Handspan: Strongly Positively Associated}
+  \small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{cov}\hlstd{(survey}\hlopt{$}\hlstd{height, survey}\hlopt{$}\hlstd{handspan,} \hlkwc{use} \hlstd{=} \hlstr{'complete.obs'}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 5.910786
+\end{verbatim}
+\begin{alltt}
+\hlkwd{cor}\hlstd{(survey}\hlopt{$}\hlstd{height, survey}\hlopt{$}\hlstd{handspan,} \hlkwc{use} \hlstd{=} \hlstr{'complete.obs'}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.6042423
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 

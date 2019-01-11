@@ -50,24 +50,57 @@
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+<<skewness_function>>=
+# Load Survey Data
+data_url <- 'http://ditraglia.com/econ103/old_survey.csv'
+survey <- read.csv(data_url)
 
+# A Function to Calculate Skewness
+get_skewness <- function(x) {
+  x <- na.omit(x)
+  n <- length(x)
+  xbar <- mean(x)
+  s <- sd(x)
+  skewness <- sum((x - xbar)^3) / (n * s^3)
+  return(skewness)
+}
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \footnotesize
+
+<<skewness_comparison, fig.height = 3>>=
+# Handedness is left-skewed, handspan is symmetric
+c(get_skewness(survey$handedness), get_skewness(survey$handspan))
+
+par(mfrow = c(1, 2))
+hist(survey$handedness, main = 'Handedness', xlab = 'Handedness Score')
+hist(survey$handspan, main = 'Handspan', xlab = 'Handspan (cm)')
+par(mfrow = c(1, 1))
+@
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}
-\centering \includegraphics[scale = 0.75]{./images/handspan_skew}
-
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\centering \includegraphics[scale = 0.75]{./images/handedness_skew}
-
-
-\end{frame}
+%\begin{frame}
+%\centering \includegraphics[scale = 0.75]{./images/handspan_skew}
+%
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%\centering \includegraphics[scale = 0.75]{./images/handedness_skew}
+%
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sample versus Population, Empirical Rule}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -267,50 +300,60 @@ If $\mu$ and $\sigma$ were known, we could create a \alert{\emph{population vers
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Relating Two Variables: Cross-tabs, Covariance, \& Correlation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{center}
-	\Huge Relationships Between Variables
-\end{center}
-
-\end{frame}
-
+%\begin{frame}
+%\begin{center}
+%	\Huge Relationships Between Variables
+%\end{center}
+%
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
+%\begin{frame}
+%\frametitle{Crosstabs -- Show Relationship between Categorical Vars.}
+%\framesubtitle{(aka Contingency Tables)}
+%\begin{table}
+%\centering
+%\begin{tabular}{l|rr|r}
+%	\emph{Eye Color} & \multicolumn{2}{|c|}{\emph{Sex}}\\
+%	& Male & Female & Total\\
+%	\hline
+%	Black&5&2&7\\
+%	Blue&6&4&10\\
+%	Brown&26&31&57\\
+%	Copper&1&0&1\\
+%	Dark Brown&0&1&1\\
+%	Green&4&1&5\\
+%	Hazel&2&2&4\\
+%	Maroon&1&0&1\\
+%	\hline
+%	Total&45&41&86
+%\end{tabular}
+%\end{table}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
 \frametitle{Crosstabs -- Show Relationship between Categorical Vars.}
-\framesubtitle{(aka Contingency Tables)}
-\begin{table}
-\centering
-\begin{tabular}{l|rr|r}
-	\emph{Eye Color} & \multicolumn{2}{|c|}{\emph{Sex}}\\
-	& Male & Female & Total\\
-	\hline
-	Black&5&2&7\\
-	Blue&6&4&10\\
-	Brown&26&31&57\\
-	Copper&1&0&1\\
-	Dark Brown&0&1&1\\
-	Green&4&1&5\\
-	Hazel&2&2&4\\
-	Maroon&1&0&1\\
-	\hline
-	Total&45&41&86
-\end{tabular}
-\end{table}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
+\small
 
-\vspace{3em}
-\huge \centering Example with Crosstab in \emph{Percents}
-
-
+<<eyecolor_table>>=
+table(survey$eye.color, survey$sex)
+@
 
 \end{frame}
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%
+%\vspace{3em}
+%\huge \centering Example with Crosstab in \emph{Percents}
+%
+%
+%
+%\end{frame}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Who Supported the Vietnam War?}
@@ -369,11 +412,11 @@ Please respond with your remote.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{center}
- \Huge What about numeric data?
-\end{center}
-\end{frame}
+%\begin{frame}
+%\begin{center}
+% \Huge What about numeric data?
+%\end{center}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Covariance and Correlation: Linear Dependence Measures}
@@ -434,13 +477,14 @@ Use the idea of centering and standardizing to decide what ``big'' or ``small'' 
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-Add a picture here. Maybe some R code as well to calculate the correlation and covariance between two things. Maybe four panels with different correlations?
-
-\alert{We'll have more to say about correlation and covariance when we discuss linear regression next time\dots}
+\begin{frame}[fragile]
+  \frametitle{Height and Handspan: Strongly Positively Associated}
+  \small
+<<cor_cov, fig.height = 3, fig.width = 3>>=
+cov(survey$height, survey$handspan, use = 'complete.obs')
+cor(survey$height, survey$handspan, use = 'complete.obs')
+@
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 
