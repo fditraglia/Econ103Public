@@ -40,11 +40,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{Regression: ``Best Fitting'' Line Through Cloud of Points}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/plot_exams-1} 
-
-\end{knitrout}
+<<plot_exams, echo = FALSE, fig.height = 5>>=
+data_url <- 'http://ditraglia.com/econ103/midterms.csv'
+exams <- read.csv(data_url)
+exams <- na.omit(exams)
+plot(Midterm2 ~ Midterm1, data = exams, col = 'blue')
+abline(v = mean(exams$Midterm1), lty = 2)
+abline(h = mean(exams$Midterm2), lty = 2)
+reg <- lm(Midterm2 ~ Midterm1, data = exams)
+abline(reg, col = 'blue')
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
@@ -197,26 +202,18 @@ $\displaystyle\sum_{i = 1}^n d_i^2 = \sum_{i=1}^n (y_i - a - b x_i)^2$
   \frametitle{Running the Regression in R}
 
   \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Read data}
-\hlstd{data_url} \hlkwb{<-} \hlstr{'http://ditraglia.com/econ103/midterms.csv'}
-\hlstd{exams} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
+<<exam_regression>>=
+# Read data
+data_url <- 'http://ditraglia.com/econ103/midterms.csv'
+exams <- read.csv(data_url)
 
-\hlcom{# Drop students who missed an exam}
-\hlstd{exams} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(exams)}
+# Drop students who missed an exam
+exams <- na.omit(exams) 
 
-\hlcom{# Run the regression and display the slope and intercept}
-\hlstd{reg} \hlkwb{<-} \hlkwd{lm}\hlstd{(Midterm2} \hlopt{~} \hlstd{Midterm1,} \hlkwc{data} \hlstd{= exams)}
-\hlkwd{coef}\hlstd{(reg)}
-\end{alltt}
-\begin{verbatim}
-## (Intercept)    Midterm1 
-##  32.5745441   0.6130357
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+# Run the regression and display the slope and intercept
+reg <- lm(Midterm2 ~ Midterm1, data = exams)
+coef(reg)
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -224,26 +221,14 @@ $\displaystyle\sum_{i = 1}^n d_i^2 = \sum_{i=1}^n (y_i - a - b x_i)^2$
   \frametitle{Predicting Midterm 2 Given 89 on Midterm 1}
   \small
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# By hand}
-\hlnum{32.5745441} \hlopt{+} \hlnum{0.6130357} \hlopt{*} \hlnum{89}
-\end{alltt}
-\begin{verbatim}
-## [1] 87.13472
-\end{verbatim}
-\begin{alltt}
-\hlcom{# Using predict()}
-\hlstd{missing_student} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwc{Midterm1} \hlstd{=} \hlnum{89}\hlstd{)}
-\hlkwd{predict}\hlstd{(reg,} \hlkwc{newdata} \hlstd{= missing_student)}
-\end{alltt}
-\begin{verbatim}
-##        1 
-## 87.13472
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<predict_exam>>=
+# By hand
+32.5745441 + 0.6130357 * 89
+
+# Using predict()
+missing_student <- data.frame(Midterm1 = 89)
+predict(reg, newdata = missing_student)
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -426,23 +411,12 @@ where $x$ is height and $y$ is handspan? (prev.\ slide $b = 0.24$)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{x} \hlkwb{<-} \hlkwd{seq}\hlstd{(}\hlkwc{from} \hlstd{=} \hlopt{-}\hlnum{1}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{by} \hlstd{=} \hlnum{0.1}\hlstd{)}
-\hlstd{y} \hlkwb{<-} \hlstd{x}\hlopt{^}\hlnum{2}
-\hlkwd{cor}\hlstd{(x,y)}
-\end{alltt}
-\begin{verbatim}
-## [1] 1.216307e-16
-\end{verbatim}
-\begin{alltt}
-\hlkwd{plot}\hlstd{(x,y);} \hlkwd{abline}\hlstd{(}\hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x))}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/quadratic_plot-1} 
-
-\end{knitrout}
+<<quadratic_plot, fig.height = 3.5>>=
+x <- seq(from = -1, to = 1, by = 0.1)
+y <- x^2
+cor(x,y)
+plot(x,y); abline(lm(y ~ x))
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
