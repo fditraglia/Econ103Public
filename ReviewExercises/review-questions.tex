@@ -3,7 +3,7 @@
 \linespread{1.1}
 \usepackage{hyperref}
 
-%\printanswers
+\printanswers
 %\noprintanswers
 
 \title{Review Questions}
@@ -120,30 +120,57 @@ Rote memorization will not suffice.
 What are the units of the following quantities? 
 	\begin{parts}
     \part Sample mean of $x$ 
+    \begin{solution}
+      inches
+    \end{solution}
     \part Range of $x$
+    \begin{solution}
+      inches
+    \end{solution}
 		\part Interquartile Range of $x$
 			\begin{solution}
-	 centimeters
+        inches
 	\end{solution}
 		\part Variance of $x$
 		\begin{solution}
-		feet$^2$	
+		square inches 
 		\end{solution}
     \part Standard deviation of $x$
+    \begin{solution}
+      inches
+    \end{solution}
 	\end{parts}
 
 \question Evaluate the following sums:
 \begin{parts}
   \part $\displaystyle\sum_{n=1}^3 n^2$
+  \begin{solution}
+    $\displaystyle\sum_{n=1}^3 n^2 = 1^2 + 2^2 + 3^2 = 1 + 4 + 9 = 14$
+  \end{solution}
   \part $\displaystyle\sum_{n=1}^3 2^n$
+  \begin{solution}
+    $\displaystyle\sum_{n=1}^3 2^n = 2^1 + 2^2 + 2^3 = 2 + 4 + 8 = 14$
+  \end{solution}
   \part $\displaystyle\sum_{n=1}^3 x^n$
+  \begin{solution}
+    $\displaystyle\sum_{n=1}^3 x^n = x + x^2 + x^3$
+  \end{solution}
 \end{parts}
 
 \question Evaluate the following sums:
 \begin{parts}
   \part $\displaystyle\sum_{k=0}^2 (2k + 1)$
+  \begin{solution}
+    $\displaystyle\sum_{k=0}^2 (2k + 1) = (2 \times 0 + 1) + (2 \times 1 + 1) + (2 \times 2 + 1) = 9$
+  \end{solution}
   \part $\displaystyle\sum_{k=0}^3 (2k + 1)$
+  \begin{solution}
+    $\displaystyle\sum_{k=0}^3 (2k + 1) = \left[\sum_{k=0}^2 (2k + 1)\right] + (2 \times 3 + 1) = 9 + 7 = 16$
+  \end{solution}
   \part $\displaystyle\sum_{k=0}^4 (2k + 1)$
+  \begin{solution}
+    $\displaystyle\sum_{k=0}^4 (2k + 1) = \left[ \sum_{k=0}^3 (2k + 1)\right] + (2 \times 4 + 1) = 16 + 9 = 25$ 
+  \end{solution}
 \end{parts}
 
 \question Evaluate the following sums:
@@ -157,9 +184,21 @@ What are the units of the following quantities?
 \question Express each of the following using $\Sigma$ notation:
   \begin{parts}
     \part $z_1 + z_2 + \cdots + z_{23}$
+    \begin{solution}
+      $\displaystyle \sum_{i=1}^{23} z_i$ 
+    \end{solution}
     \part $x_1 y_1 + x_2 y_2 + \cdots + x_8 y_8$
+    \begin{solution}
+      $\displaystyle \sum_{i=1}^8 x_i y_i$
+    \end{solution}
     \part $(x_1 - y_1) + (x_2 - y_2) + \cdots + (x_m - y_m)$
+    \begin{solution}
+      $\displaystyle \sum_{i=1}^m (x_i - y_i)$
+    \end{solution}
     \part $x_1^3 f_1 + x_2^3 f_2 + \cdots + x_9^3 f_9$
+    \begin{solution}
+      $\displaystyle \sum_{i=1}^9 x_i^3 f_i$
+    \end{solution}
 \end{parts}
 
 
@@ -269,7 +308,7 @@ What are the units of the following quantities?
 
 \question Suppose that $s_{xy} = 30$, $s_x = 5$, $s_{y} = 3$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $a$ and $b$ in the regression $\widehat{y} = a + bx$.
 
-\question Suppose that $s_{xy} = 30$, $s_x = 5$, $s_{y} = 3$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $c$ and $d$ in the regression $\widehat{x} = c + dy$.
+\question Suppose that $s_{xy} = 30$, $s_x = 5$, $s_{y} = 3$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $c$ and $d$ in the regression $\widehat{x} = c + dy$. Note: we are using $y$ to predict $x$ in this regression!
 
 \question A large number of students took two midterm exams. The standard deviation of scores on midterm \#1 was 16 points, while the standard deviation of scores midterm \#2 was 17 points. The covariance of the scores on the two exams was 124 points squared. Linus scored 60 points on midterm \#1 while Lucy scored 80 points. How much higher would we predict that Lucy's score on the midterm \#2 will be?
 
@@ -407,9 +446,30 @@ What are the units of the following quantities?
 		\end{solution}
 	\end{parts}
 
-
-\question Show that $\displaystyle \sum_{i=1}^n (x_i - m)^2 = \sum_{i=1}^n x_i^2 - 2m \sum_{i=1}^n x_i + nm^2$
-  \question Using the preceding with $m = \bar{x}$, show that $\sum_{i=1}^n (x_i - \bar{x})^2 = \sum_{i=1}^n x_i^2 - n\bar{x}^2$
+\question Let $m$ be a constant and $x_1, \dots, x_n$ be an observed dataset.
+  \begin{parts} 
+    \part Show that $\displaystyle \sum_{i=1}^n (x_i - m)^2 = \sum_{i=1}^n x_i^2 - 2m \sum_{i=1}^n x_i + nm^2$.
+\begin{solution}
+  \begin{align*}
+    \displaystyle \sum_{i=1}^n (x_i - m)^2 &= \sum_{i=1}^n (x_i^2 - 2mx_i + m^2)\\
+    &= \sum_{i=1}^n x_i^2 - \sum_{i=1}^n 2mx_i + \sum_{i=1}^n m^2\\
+    &= \sum_{i=1}^n x_i^2 - 2m\sum_{i=1}^n x_i + nm^2
+\end{align*}
+\end{solution}
+  \part Using the preceding part, show that $\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2 = \sum_{i=1}^n x_i^2 - n\bar{x}^2$.
+  \begin{solution}
+    Solving this requires two observations.
+    First, note that $\bar{x}$ is a \emph{constant}, i.e.\ that it does not have an index of summation.
+    Second, note that $\sum_{i=1}^n x_i = n\bar{x}$.
+    Hence, taking $m = \bar{x}$ in the formula from the preceding part,
+    \begin{align*} 
+      \displaystyle\sum_{i=1}^n (x_i - \bar{x})^2 &= \sum_{i=1}^n x_i^2 - 2\bar{x} \sum_{i=1}^n x_i + n\bar{x}^2\\
+      &= \sum_{i=1}^n x_i^2 - 2\bar{x} (n\bar{x}) + n\bar{x}^2\\
+      &= \sum_{i=1}^n x_i^2 - 2n\bar{x}^2  + n\bar{x}^2\\
+      &= \sum_{i=1}^n x_i^2 - n\bar{x}^2\\
+\end{align*}
+  \end{solution}
+\end{parts}
 
 \question Consider a dataset $x_1, \hdots, x_n$. Suppose I multiply each observation by a constant $d$ and then add another constant $c$, so that $x_i$ is replaced by $c + dx_i$.
 	\begin{parts}
@@ -436,23 +496,22 @@ What are the units of the following quantities?
 
   \question Assign them to read the chapter from ``Thinking Fast and Slow'' and write a one paragraph summary of \emph{regression to the mean}.
 
-  \question Let
-    $$z_{x_i} = \frac{x_i - \bar{x}}{s_x}, \;\;\mbox{and }\;\; z_{y_i} = \frac{y_i - \bar{y}}{s_y}.$$
-    Show that if we carry out a regression with $z_{y_i}$ in place of $y$ and $z_{x_i}$ in place of $x$, the intercept $a$ will equal zero while the slope $b$ will equal $r$, the sample correlation.
+  \question Define the z-scores 
+  \[w_i = \frac{x_i - \bar{x}}{s_x}, \;\;\mbox{and }\;\; z_i = \frac{y_i - \bar{y}}{s_y}.\]
+  Show that if we carry out a regression with $z_i$ in place of $y_i$ and $w_i$ in place of $x_i$, the intercept $a^*$ will be zero while the slope $b^*$ will be $r_{xy}$, the correlation between $x$ and $y$.
     \begin{solution}
-     All we need to do is replace $x_i$ with $z_{x_i}$ and $y_i$ with $z_{y_i}$ in the formulas we already derived for the regression slope and intercept:
+     All we need to do is replace $x_i$ with $w_i$ and $y_i$ with $z_i$ in the formulas we already derived for the regression slope and intercept:
      		$$\begin{array}{lr}a = \bar{y} - b\bar{x}, & b = \displaystyle \frac{s_{xy}}{s_x^2}\end{array}$$
-     		And use the properties of z-scores from class. Let $a*$ be the intercept for the regression with z-scores, and $b*$ be the corresponding slope. We have:
-     	 	$$a* = \bar{z_y} - b^* \bar{z_x} = 0$$
-     	 	since the mean of the z-scores is zero, as we showed in class. To find the slope, we need to know the covariance between the z-scores, and the variance of the z-scores for $x$:
-     	 		$$b^* = \frac{s_{z_x z_y}}{s_{z_x}^2}$$
-     	 		But since sample variance of z-scores is always one, $b^* = s_{z_x z_y}$. Now, by the definition of the sample covariance, the fact that the mean of z-scores is zero, and the definition of a z-score:
-     	 		\begin{eqnarray*}
-     	 		s_{z_x z_y} &=& \frac{1}{n-1} \sum_{i=1}^n (z_{x_i} - \bar{z_x})(z_{y_i} - \bar{z_y})\\
-     	 		&=& \frac{1}{n-1} \sum_{i=1}^n z_{x_i}z_{y_i}\\
-     	 		&=& \frac{1}{n-1} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s_x}\right)\left(\frac{y_i - \bar{y}}{s_y}\right)\\
-     	 		&=& r_{xy}
-     	 		\end{eqnarray*}
+     		And use the properties of z-scores from class. Let $a^*$ be the intercept for the regression with z-scores, and $b^*$ be the corresponding slope. We have:
+        $$a^* = \bar{z} - b^* \bar{w} = 0$$
+     	 	since the mean of the z-scores is zero, as we showed in class. To find the slope, we need to covariance between the z-scores, and the variance of the z-scores for $x$:
+     	 		$$b^* = \frac{s_{wz}}{s_{w}^2}$$
+     	 		But since sample variance of z-scores is always one, $b^* = s_{wz}$. Now, by the definition of the sample covariance, the fact that the mean of z-scores is zero, and the definition of a z-score:
+     	 		\begin{align*}
+     	 		s_{wz} &= \frac{1}{n-1} \sum_{i=1}^n (w - \bar{w})(z - \bar{z}) = \frac{1}{n-1} \sum_{i=1}^n z_{x_i}z_{y_i}\\
+     	 		&= \frac{1}{n-1} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s_x}\right)\left(\frac{y_i - \bar{y}}{s_y}\right)\\
+     	 		&= r_{xy}
+     	 		\end{align*}
     \end{solution}
 
 \question Let $\hat{y}$ denote our prediction of $y$ from a linear regression model: $\hat{y} = a + b x$ and let $r$ be the correlation coefficient between $x$ and $y$.
