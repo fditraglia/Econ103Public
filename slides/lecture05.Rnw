@@ -172,71 +172,43 @@ Probability  = Long-run Relative Frequency
 \begin{frame}[fragile]
   \frametitle{Rolling a Fair, Six-Sided Die in R}
   \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Function to plot relative frequencies}
-\hlstd{plot_freq} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)\{}
-  \hlstd{n} \hlkwb{<-} \hlkwd{length}\hlstd{(x)}
-  \hlstd{rel_freq} \hlkwb{<-} \hlkwd{prop.table}\hlstd{(}\hlkwd{table}\hlstd{(x))}
-  \hlkwd{plot}\hlstd{(rel_freq,} \hlkwc{ylab} \hlstd{=} \hlstr{'Relative Frequency'}\hlstd{,}
-       \hlkwc{xlab} \hlstd{=} \hlkwd{bquote}\hlstd{(n} \hlopt{==} \hlkwd{.}\hlstd{(n)))}
-\hlstd{\}}
+<<roll_dice>>=
+# Function to plot relative frequencies
+plot_freq <- function(x){
+  n <- length(x)
+  rel_freq <- prop.table(table(x))
+  plot(rel_freq, ylab = 'Relative Frequency', 
+       xlab = bquote(n == .(n)))
+}
 
-\hlcom{# Roll a fair die 1 Million times}
-\hlkwd{set.seed}\hlstd{(}\hlnum{1234567890}\hlstd{)}
-\hlstd{dice} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{6}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{1e6}\hlstd{,} \hlkwc{replace} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+# Roll a fair die 1 Million times
+set.seed(1234567890)
+dice <- sample(1:6, size = 1e6, replace = TRUE)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{plot_freq}\hlstd{(dice[}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{])}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/dice_10-1} 
-
-\end{knitrout}
+<<dice_10, fig.height = 5>>=
+plot_freq(dice[1:10])
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{plot_freq}\hlstd{(dice[}\hlnum{1}\hlopt{:}\hlnum{50}\hlstd{])}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/dice_50-1} 
-
-\end{knitrout}
+<<dice_50, fig.height = 5>>=
+plot_freq(dice[1:50])
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{plot_freq}\hlstd{(dice[}\hlnum{1}\hlopt{:}\hlnum{1000}\hlstd{])}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/dice_1000-1} 
-
-\end{knitrout}
+<<dice_1000, fig.height = 5>>=
+plot_freq(dice[1:1000])
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{plot_freq}\hlstd{(dice)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/dice_1million-1} 
-
-\end{knitrout}
+<<dice_1million, fig.height = 5>>=
+plot_freq(dice)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
