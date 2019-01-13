@@ -17,8 +17,8 @@ Please consult these documents before posting a question about course logistics 
 As such, slides will be posted *after* each lecture of the semester. 
 I strongly suggest that you refrain from taking detailed notes during lecture: my slides contain an almost perfect transcript of each lecture so you are in no danger of missing something.
 Instead, I suggest that you focus on paying close attention during the lecture and make only limited notes of things that you find confusing, questions you have, or calculations for in-class exercises.
-- [Review Exercises](./review-exercises.pdf): Contains basic review questions that you should complete after each lecture. All questions that appear on in-class quizzes will be drawn from this document. 
-- [Extensions](./extensions.pdf): Contains more advanced questions that build on the lecture material. Each exam will contain at least one question taken verbatim from this document.
+- [Review Exercises](./ReviewExercises/review-questions.pdf): Contains basic review questions that you should complete after each lecture. All questions that appear on in-class quizzes will be drawn from this document. 
+- [Extensions](./Extensions/extensions.pdf): Contains more advanced questions that build on the lecture material. Each exam will contain at least one question taken verbatim from this document.
 - [Random Variables Handout](./RandomVariablesHandout.pdf): handout summarizing the key properties of random variables that we will learn in the course.
 
 ## R Tutorials
