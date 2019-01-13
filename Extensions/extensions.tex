@@ -3,7 +3,7 @@
 \linespread{1.1}
 \usepackage{hyperref}
 
-\printanswers
+%\printanswers
 %\noprintanswers
 
 \title{Extension Problems}
@@ -14,6 +14,12 @@
 \maketitle
 
 \section*{About This Document}
+Extension problems are designed to give you a deeper understanding of the lecture material and challenge you to apply what you have learned in new settings.
+Extension problems should only be attempted \emph{after} you have completed the corresponding review problems.
+As an extra incentive to keep up with the course material, each exam of the semester will contain at least one problem taken \emph{verbatim} from the extension problems. 
+We will circulate solutions to the relevant extension problems the weekend before each exam.
+You are also welcome to discuss them with the instructor, your RI, and your fellow students at any point.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,7 +30,7 @@
 \question A long time ago, the graduate school at a famous university admitted 4000 of their 8000 male applicants versus 1500 of their 4500 female applicants. 
 	\begin{parts}
 		\part Calculate the difference in admission rates between men and women. What does your calculation suggest?
-		\begin{solution}[1.5in]
+		\begin{solution}
 		The rate for men is $4000/8000 =50\%$ while that for women is $1500/4500 \approx 33\%$ so the difference is 17\%. It appears that women are less likely to be accepted to the graduate school.
 		\end{solution}
 		\part To get a better sense of the situation, some researchers broke these data down by area of study. Here is what they found:
@@ -41,7 +47,7 @@
 			\end{center}
 			
 			Calculate the difference in admissions rates for men and women studying Arts. Do the same for Sciences.
-			\begin{solution}[1.75in]
+			\begin{solution}
 			For Arts, the admission rate is $400/2000=20\%$ for men versus $900/3600 = 25\%$ for women. For Sciences $3600/6000 = 60\%$ for men versus $600/900  \approx 67\%$ for women. In summary:
 				\begin{center}
 				\begin{tabular}{l|ccc}
@@ -55,7 +61,7 @@
 				\end{center}
 			\end{solution}
 		\part Compare your results from part (a) to part (b). Explain the discrepancy using what you know about observational studies.
-			\begin{solution}[1.75in]
+			\begin{solution}
 				When we compare overall rates, women are less likely to be admitted than men. In each field of study, however, women are \emph{more} likely to be admitted. In this example, field of study is a \emph{confounder}: women are disproportionately applying to study Arts and Arts have much lower admissions rates than Sciences.
 			\end{solution}
 	\end{parts}
@@ -168,7 +174,7 @@ This is an example of regression to the mean. The students Lothario seeks out we
 										\frac{\hat{y} - \bar{y}}{s_y} &=& r\left(\frac{x - \bar{x}}{s_x}\right)
 				\end{eqnarray*}
 			\end{solution}
-		\part Using the equation derived in (d), briefly explain``regression to the mean.''
+		\part Using the equation derived in (b), briefly explain``regression to the mean.''
 			\begin{solution}
 			The formula shows that unless $r$ is one or negative one, perfect positive or negative correlation, our best linear prediction of $y$ based on knowledge given $x$ is closer to the mean of the $y$-observations (relative to the standard deviation of the $y$-observations) than $x$ is to mean of the $x$-observations (relative to the standard deviation of the $x$-observations). If $x$ is very large, for example, we would predict that $y$ will be large too, but not as large.
 			\end{solution}
