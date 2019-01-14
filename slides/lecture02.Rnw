@@ -496,9 +496,13 @@ Miss important detail
   \footnotesize
 
 <<height_barplot, fig.height = 4>>=
-survey <- read.csv('http://ditraglia.com/econ103/old_survey.csv')
-plot(table(survey$height), main = 'Barchart of Height',
-     xlab = 'Height (in)', ylab = 'Count')
+# Read data
+data_url <- 'http://ditraglia.com/econ103/old_survey.csv'
+survey <- read.csv(data_url)
+
+#Make plot
+plot(table(survey$height), main = 'Barchart of Height (inches)',
+     xlab = '', ylab = 'Count')
 @
 \end{frame}
 
@@ -622,8 +626,8 @@ Mean = 1000, Median = 3
   \frametitle{Results from Anchoring Experiment (Previous Semester)}
   \small
 <<anchoring_central_tendency>>=
-low <- survey$africa.percent[survey$rand.num == 10]
-high <- survey$africa.percent[survey$rand.num == 65]
+low <- subset(survey, rand.num == 10)$africa.percent
+high <- subset(survey, rand.num == 65)$africa.percent
 c(low = mean(low), high = mean(high))
 c(low = median(low), high = median(high))
 @

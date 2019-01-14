@@ -498,9 +498,13 @@ Miss important detail
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlstr{'http://ditraglia.com/econ103/old_survey.csv'}\hlstd{)}
-\hlkwd{plot}\hlstd{(}\hlkwd{table}\hlstd{(survey}\hlopt{$}\hlstd{height),} \hlkwc{main} \hlstd{=} \hlstr{'Barchart of Height'}\hlstd{,}
-     \hlkwc{xlab} \hlstd{=} \hlstr{'Height (in)'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'Count'}\hlstd{)}
+\hlcom{# Read data}
+\hlstd{data_url} \hlkwb{<-} \hlstr{'http://ditraglia.com/econ103/old_survey.csv'}
+\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
+
+\hlcom{#Make plot}
+\hlkwd{plot}\hlstd{(}\hlkwd{table}\hlstd{(survey}\hlopt{$}\hlstd{height),} \hlkwc{main} \hlstd{=} \hlstr{'Barchart of Height (inches)'}\hlstd{,}
+     \hlkwc{xlab} \hlstd{=} \hlstr{''}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'Count'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/height_barplot-1} 
@@ -636,8 +640,8 @@ Mean = 1000, Median = 3
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{low} \hlkwb{<-} \hlstd{survey}\hlopt{$}\hlstd{africa.percent[survey}\hlopt{$}\hlstd{rand.num} \hlopt{==} \hlnum{10}\hlstd{]}
-\hlstd{high} \hlkwb{<-} \hlstd{survey}\hlopt{$}\hlstd{africa.percent[survey}\hlopt{$}\hlstd{rand.num} \hlopt{==} \hlnum{65}\hlstd{]}
+\hlstd{low} \hlkwb{<-} \hlkwd{subset}\hlstd{(survey, rand.num} \hlopt{==} \hlnum{10}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
+\hlstd{high} \hlkwb{<-} \hlkwd{subset}\hlstd{(survey, rand.num} \hlopt{==} \hlnum{65}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
 \hlkwd{c}\hlstd{(}\hlkwc{low} \hlstd{=} \hlkwd{mean}\hlstd{(low),} \hlkwc{high} \hlstd{=} \hlkwd{mean}\hlstd{(high))}
 \end{alltt}
 \begin{verbatim}
