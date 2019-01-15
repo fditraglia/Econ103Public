@@ -373,26 +373,22 @@ Procedure
 \begin{frame}[fragile]
 
 \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{draw_simulation} \hlkwb{<-} \hlkwa{function}\hlstd{() \{}
-  \hlstd{cards} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{'GG'}\hlstd{,} \hlstr{'OG'}\hlstd{,} \hlstr{'OO'}\hlstd{)}
-  \hlstd{random_card} \hlkwb{<-} \hlkwd{sample}\hlstd{(cards,} \hlkwc{size} \hlstd{=} \hlnum{1}\hlstd{)}
-  \hlkwa{if}\hlstd{(random_card} \hlopt{==} \hlstr{'GG'}\hlstd{) \{}
-    \hlstd{faces} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{'G'}\hlstd{,} \hlstr{'G'}\hlstd{)}
-  \hlstd{\}} \hlkwa{else if} \hlstd{(random_card} \hlopt{==} \hlstr{'OO'}\hlstd{) \{}
-    \hlstd{faces} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{'O'}\hlstd{,} \hlstr{'O'}\hlstd{)}
-  \hlstd{\}} \hlkwa{else} \hlstd{\{}
-    \hlstd{faces} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{'O'}\hlstd{,} \hlstr{'G'}\hlstd{)}
-  \hlstd{\}}
-  \hlstd{out} \hlkwb{<-} \hlkwd{sample}\hlstd{(faces)}
-  \hlkwd{names}\hlstd{(out)} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{'front'}\hlstd{,} \hlstr{'back'}\hlstd{)}
-  \hlkwd{return}\hlstd{(out)}
-\hlstd{\}}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<obama_sim_function>>=
+draw_simulation <- function() {
+  cards <- c('GG', 'OG', 'OO')
+  random_card <- sample(cards, size = 1)
+  if(random_card == 'GG') {
+    faces <- c('G', 'G')
+  } else if (random_card == 'OO') {
+    faces <- c('O', 'O')
+  } else {
+    faces <- c('O', 'G')
+  }
+  out <- sample(faces)
+  names(out) <- c('front', 'back')
+  return(out)
+}
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -400,32 +396,14 @@ Procedure
 
 \footnotesize
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{set.seed}\hlstd{(}\hlnum{54321}\hlstd{)}
-\hlstd{simulations} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlkwc{n} \hlstd{=} \hlnum{1000}\hlstd{,} \hlkwd{draw_simulation}\hlstd{())}
-\hlstd{simulations} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{t}\hlstd{(simulations))}
-\hlkwd{head}\hlstd{(simulations)}
-\end{alltt}
-\begin{verbatim}
-##   front back
-## 1     O    G
-## 2     G    G
-## 3     G    G
-## 4     O    G
-## 5     G    G
-## 6     O    O
-\end{verbatim}
-\begin{alltt}
-\hlstd{Obama_on_front} \hlkwb{<-} \hlkwd{subset}\hlstd{(simulations, front} \hlopt{==} \hlstr{'O'}\hlstd{)}
-\hlkwd{mean}\hlstd{(Obama_on_front}\hlopt{$}\hlstd{back} \hlopt{==} \hlstr{'O'}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.6633065
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<obama_sim_results>>=
+set.seed(54321)
+simulations <- replicate(n = 1000, draw_simulation())
+simulations <- data.frame(t(simulations))
+head(simulations)
+Obama_on_front <- subset(simulations, front == 'O')
+mean(Obama_on_front$back == 'O')
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
