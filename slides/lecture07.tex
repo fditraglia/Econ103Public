@@ -367,8 +367,13 @@ Capital latin letters for RVs, e.g.\ $X,Y,Z$, and the corresponsing lowercase le
 \end{block}
 
 \begin{block}{Intuition}
-  You can think of an RV as a machine that spits out random numbers: although the machine is deterministic, its inputs, the outcomes of a random experiment, are not.
+  A RV is machine that spits out random numbers. The machine is deterministic: outputs are random because \emph{inputs} are random.
 \end{block}
+
+\begin{alertblock}{Why Random Variables?}
+Different random experiments can have the same structure: e.g.\ flipping a fair coin vs.\ drawing a ball from an urn with 5 red and 5 blue. 
+RVs abstract from coin vs.\ urn and let us study both at once.
+\end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}

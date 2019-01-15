@@ -646,7 +646,6 @@ If $E_1, E_2, \hdots, E_k$ are mutually exclusive, collectively exhaustive event
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Deriving the Law of Total Probability For $k=2$}
-\framesubtitle{Optional proof: You \alert{are not responsible} for this proof on quizzes and exams.}
 
 \begin{columns}
 
@@ -684,94 +683,94 @@ Combining, $\alert{P(A) = P(A|B)P(B) + P(A|B^c)P(B^c)}$}
 \end{columns}
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Prediction Markets, ``Dutch Book''}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\frametitle{How do prediction markets work?}
-\framesubtitle{To learn more, see \fbox{\href{http://www.aeaweb.org/articles.php?doi=10.1257/0895330041371321}{Wolfers \& Zitzewitz (2004)}}}
-\begin{center}
-\fbox{\fbox{\begin{minipage}{0.6\textwidth}
-  \textsc{This certificate entitles the bearer to \$1 if the Patriots win the 2016-2017 Superbowl.} 
-\end{minipage}}}
-\vspace{1em}
-
-\begin{block}{Buyers -- Purchase Right to Collect}
-Patriots very likely to win $\Rightarrow$ buy for close to \$1. \\ Patriots very unlikely to win $\Rightarrow$ buy for close to \$0.
-\end{block}
-
-\begin{block}{Sellers -- Sell Obligation to Pay} 
-Patriots very likely to win $\Rightarrow$ sell for close to \$1. \\Patriots very unlikely to win $\Rightarrow$ sell for close to \$0.
-\end{block}
-\end{center}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-  \begin{block}{Probabilities from Beliefs}
-    Market price of contract encodes market participants' beliefs in the form of probability:
-$$\mbox{Price}/\mbox{Payout}\approx \mbox{Subjective Probability}$$
-  \end{block} \pause
-
-	\begin{alertblock}{``Dutch Book''}
-    If the probabilities implied by prediction market prices violate \emph{any} of our probability rules there is a \emph{pure arbitrage opportunity}: a way make to make a guaranteed, risk-free profit.
-	\end{alertblock} \pause
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{A Real-world Dutch Book}
-\framesubtitle{Courtesy of  \fbox{\href{http://offsettingbehaviour.blogspot.co.nz/2012/11/barriers-to-arbitrage.html}{Eric Crampton}}}
-
-\begin{block}{November 5th, 2012}
-	\begin{itemize}
-		\item\$2.30 for contract paying \$10 if Romney wins on BetFair
-		\item \$6.58 for contract paying \$10 if Obama wins on InTrade
-	\end{itemize}
-\end{block}
-
-\begin{block}{Implied Probabilities}
-	\begin{itemize}
-	\item BetFair: $P(Romney) \approx 0.23$
-	\item InTrade: $P(Obama) \approx 0.66$
-	\end{itemize}
-\end{block}
-
-\begin{alertblock}{What's Wrong with This?}\pause
- Violates complement rule! $P(Obama) = 1 - P(Romney)$ but the implied probabilities here don't sum up to one!
-\end{alertblock}
-
-
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{A Real-world Dutch Book}
-\framesubtitle{Courtesy of  \fbox{\href{http://offsettingbehaviour.blogspot.co.nz/2012/11/barriers-to-arbitrage.html}{Eric Crampton}}}
-
-\begin{block}{November 5th, 2012}
-	\begin{itemize}
-		\item\$2.30 for contract paying \$10 if Romney wins on BetFair
-		\item \$6.58 for contract paying \$10 if Obama wins on InTrade
-	\end{itemize}
-\end{block}
-
-\begin{alertblock}{Arbitrage Strategy}
-Buy Equal Numbers of Each 
-	\begin{itemize}
-		\item Cost = \$2.30 + \$6.58 =\$8.88 per pair 
-		\item Payout if Romney Wins: \$10 
-		\item Payout if Obama Wins: \$10
-		\item Guaranteed Profit: \$10 - \$8.88 = \$1.12 per pair
-	\end{itemize} 
-
-\end{alertblock}
-
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Prediction Markets, ``Dutch Book''}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%
+%\frametitle{How do prediction markets work?}
+%\framesubtitle{To learn more, see \fbox{\href{http://www.aeaweb.org/articles.php?doi=10.1257/0895330041371321}{Wolfers \& Zitzewitz (2004)}}}
+%\begin{center}
+%\fbox{\fbox{\begin{minipage}{0.6\textwidth}
+%  \textsc{This certificate entitles the bearer to \$1 if the Patriots win the 2016-2017 Superbowl.} 
+%\end{minipage}}}
+%\vspace{1em}
+%
+%\begin{block}{Buyers -- Purchase Right to Collect}
+%Patriots very likely to win $\Rightarrow$ buy for close to \$1. \\ Patriots very unlikely to win $\Rightarrow$ buy for close to \$0.
+%\end{block}
+%
+%\begin{block}{Sellers -- Sell Obligation to Pay} 
+%Patriots very likely to win $\Rightarrow$ sell for close to \$1. \\Patriots very unlikely to win $\Rightarrow$ sell for close to \$0.
+%\end{block}
+%\end{center}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%
+%  \begin{block}{Probabilities from Beliefs}
+%    Market price of contract encodes market participants' beliefs in the form of probability:
+%$$\mbox{Price}/\mbox{Payout}\approx \mbox{Subjective Probability}$$
+%  \end{block} \pause
+%
+%	\begin{alertblock}{``Dutch Book''}
+%    If the probabilities implied by prediction market prices violate \emph{any} of our probability rules there is a \emph{pure arbitrage opportunity}: a way make to make a guaranteed, risk-free profit.
+%	\end{alertblock} \pause
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{A Real-world Dutch Book}
+%\framesubtitle{Courtesy of  \fbox{\href{http://offsettingbehaviour.blogspot.co.nz/2012/11/barriers-to-arbitrage.html}{Eric Crampton}}}
+%
+%\begin{block}{November 5th, 2012}
+%	\begin{itemize}
+%		\item\$2.30 for contract paying \$10 if Romney wins on BetFair
+%		\item \$6.58 for contract paying \$10 if Obama wins on InTrade
+%	\end{itemize}
+%\end{block}
+%
+%\begin{block}{Implied Probabilities}
+%	\begin{itemize}
+%	\item BetFair: $P(Romney) \approx 0.23$
+%	\item InTrade: $P(Obama) \approx 0.66$
+%	\end{itemize}
+%\end{block}
+%
+%\begin{alertblock}{What's Wrong with This?}\pause
+% Violates complement rule! $P(Obama) = 1 - P(Romney)$ but the implied probabilities here don't sum up to one!
+%\end{alertblock}
+%
+%
+%
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{A Real-world Dutch Book}
+%\framesubtitle{Courtesy of  \fbox{\href{http://offsettingbehaviour.blogspot.co.nz/2012/11/barriers-to-arbitrage.html}{Eric Crampton}}}
+%
+%\begin{block}{November 5th, 2012}
+%	\begin{itemize}
+%		\item\$2.30 for contract paying \$10 if Romney wins on BetFair
+%		\item \$6.58 for contract paying \$10 if Obama wins on InTrade
+%	\end{itemize}
+%\end{block}
+%
+%\begin{alertblock}{Arbitrage Strategy}
+%Buy Equal Numbers of Each 
+%	\begin{itemize}
+%		\item Cost = \$2.30 + \$6.58 =\$8.88 per pair 
+%		\item Payout if Romney Wins: \$10 
+%		\item Payout if Obama Wins: \$10
+%		\item Guaranteed Profit: \$10 - \$8.88 = \$1.12 per pair
+%	\end{itemize} 
+%
+%\end{alertblock}
+%
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
