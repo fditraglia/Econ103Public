@@ -3,6 +3,7 @@
 \linespread{1.1}
 \usepackage{hyperref}
 \usepackage{enumerate}
+\usepackage{multirow}
 
 %\printanswers
 \noprintanswers
@@ -439,7 +440,7 @@ What are the units of the following quantities?
   \end{solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fullwidth{\section*{Lecture \#6}}
+\fullwidth{\section*{Lecture \#6 -- Basic Probability II}}
 
 \question State and prove the \emph{complement rule}.
 
@@ -602,7 +603,7 @@ Adam the anchorman sees Molly's forecast and summarizes it as follows:  ``Accord
 	\end{parts}
 
 
-\fullwidth{\section*{Lecture \#7}}
+\fullwidth{\section*{Lecture \#7 -- Basic Probability III / Discrete RVs I}}
 
 \question What is the base rate fallacy? Give an example.
 
@@ -710,10 +711,10 @@ Adam the anchorman sees Molly's forecast and summarizes it as follows:  ``Accord
 
 %\question The \emph{Rademacher} RV is equally likely to take any value in the set $\left\{ -1,1 \right\}$ and never takes on any value outside this set. Write out and sketch its probability mass function.
 %
-\fullwidth{\section*{Lecture \#8}}
+\fullwidth{\section*{Lecture \#8 -- Discrete RVs II}}
 
 \question Define the term \emph{cumulative distribution function} (CDF).
-How is the CDF of a discrete random variable $X$ related to its pmf?
+How is the CDF of a discrete RV $X$ related to its pmf?
 
 \question Let $X$ be a RV with support set $\left\{-1, 1 \right\}$ and $p(-1) = 1/3$.
 Write down the CDF of $X$. 
@@ -731,7 +732,7 @@ $F(x_0) = \left\{\begin{array}{l} 0,\, x_0 < -1 \\ 1/3, \, -1 \leq x_0 < 1\\ 1,\
 \end{solution}
 
 
-\emph Let $X$ be a discrete random variable. Define the expected value $E[X]$ of $X$. Is $E[X]$ constant or random? Why?
+\emph Let $X$ be a discrete RV. Define the expected value $E[X]$ of $X$. Is $E[X]$ constant or random? Why?
 
 \question Suppose $X$ is a RV with support $\{-1, 0, 1\}$ where $p(-1)=q$ and $p(1) = p$. What relationship must hold between $p$ and $q$ to ensure that $E[X] = 0$?
 		\begin{solution}
@@ -743,7 +744,7 @@ $F(x_0) = \left\{\begin{array}{l} 0,\, x_0 < -1 \\ 1/3, \, -1 \leq x_0 < 1\\ 1,\
         so that $E[X] = 0$ if and only if $p = q$.
     \end{solution}
 
-\question Let $X$ be a discrete random variable and $a, b$ be constants. 
+\question Let $X$ be a discrete RV and $a, b$ be constants. 
 Prove that $E[a + bX] = a + bE[X]$.
 
 \question Suppose that $E[X]=8$ and $Y= 3 + X/2$. Calculate $E[Y]$.
@@ -758,7 +759,7 @@ $E(Y) = 3 + E(X)/2 = 7$
   $E[X^2] = (-1)^2 \times 1/3 + (1)^2 \times 2/3 = 1$
 \end{solution}
 
-\question Let $X$ be a random variable with support set $\left\{ 2,4 \right\}$, $p(2) = 1/2$ and $p(4) = 1/2$. Mark each of the following claims as TRUE or FALSE, either by appealing to a result from class, or by directly calculating both sides of the equality.
+\question Let $X$ be a RV with support set $\left\{ 2,4 \right\}$, $p(2) = 1/2$ and $p(4) = 1/2$. Mark each of the following claims as TRUE or FALSE, either by appealing to a result from class, or by directly calculating both sides of the equality.
 \begin{parts}
   \part $E[X+10] = E[X] + 10$
   \begin{solution}
@@ -791,22 +792,18 @@ $E(Y) = 3 + E(X)/2 = 7$
 \end{parts}
 
 
-\fullwidth{\section*{Lecture \#9}}
+\fullwidth{\section*{Lecture \#9 -- Discrete RVs III}}
 
-\question Define the \emph{variance} and \emph{standard deviation} of a random variable $X$.
+\question Define the \emph{variance} and \emph{standard deviation} of a RV $X$. Are these constant or random?
 
-\question Fill in the missing details from class to calculate the variance of a Bernoulli Random Variable \emph{directly}, that is \emph{without} using the shortcut formula.
-	\begin{solution} 
-	\begin{eqnarray*}
-	\sigma^2 &=& Var(X) = \sum_{x \in \{0,1\}} (x - \mu)^2 p(x)\\ 
-	&=& \sum_{x \in \{0,1\}} (x - p)^2 p(x)\\
-	 &=& (0 - p)^2 (1-p) + (1-p)^2 p \\
-	 &=& p^2(1-p) + (1-p)^2 p\\ 
-	 &=& p^2 - p^3 + p - 2p^2 +p^3 \\
-	 &=& p - p^2\\ 
-	 &=&p(1-p)
-\end{eqnarray*}
-	\end{solution}
+\question Explain how to use our formula for $E[g(X)]$ to calculate the variance of a discrete RV. 
+
+\question Write down the shortcut formula for variance, and use it to calculate $Var(X)$ where $X\sim\mbox{Bernoulli}(p)$. 
+
+\question Let $X$ be a random variable and $a,b$ be constants. 
+Prove that $Var(a + bX) = b^2 Var(X)$.
+
+\question Define the Bernoulli$(n,p)$ RV in terms of independent Bernoulli trials, and write down its support set and probability mass function.
 
 \question Substitute $n=1$ into the pmf of a Binomial$(n,p)$ RV and show that you obtain the pmf of a Bernoulli$(p)$ RV.
 	\begin{solution}
@@ -821,239 +818,52 @@ $E(Y) = 3 + E(X)/2 = 7$
 		which is exactly how we defined the Bernoulli Random Variable.
 	\end{solution}
 
-\question Let $X$ be a RV that takes on the values 1, 2, and 3 with equal probability and never takes on any other values.
-	\begin{parts}
-		\part What is the CDF of $X$? Write it out as a piecewise function.
-			\begin{solution}
-				$$F(x_0) = \left\{\begin{array}{rr} 0,& x_0 < 1\\ 1/3,& 1 \leq x_0 < 2\\ 2/3,& 2 \leq x_0 < 3\\ 1,& x_0\geq 3 \end{array}\right.$$
-			\end{solution}
-		\part Calculate the expected value of $X$.
-			\begin{solution}
-				$$E[X] = 1 \cdot 1/3 + 2 \cdot 1/3 + 3 \cdot 1/3 = 1/3 + 2/3 + 1 = 2$$
-			\end{solution}
-	\end{parts}
-
-\question Suppose that $X_1, X_2, \hdots, X_{n} \sim \mbox{ iid Bernoulli}(p)$. Define $S_n =\sum_{i=1}^n X_i$.
-	\begin{parts}
-		\part Write down the pmf and support of $X_1$. 
-			\begin{solution}
-			The support of a Bernoulli RV is $\{0,1\}$. Since 1 is defined as ``success'' and $p$ defined as the probability of success, the pmf is $p_X(1) = p$, $p_X(0) = 1-p$.
-			\end{solution}
-		\part Calculate $E[X_1]$.
-			\begin{solution}
-			$E[X_1] = 0 \cdot (1-p) + 1 \cdot p = p$
-			\end{solution}
-		\part Calculate $E[X_1^2]$.
-			\begin{solution}
-			$E[X_1^2] = 0^2 \cdot (1-p) + 1^2 \cdot p = p$
-			\end{solution}
-		\part Calculate $Var(X_1)$ using the shortcut formula.
-		\begin{solution}
-			$Var(X_1) = E[X_1^2] - (E[X_1])^2 = p - p^2 = p(1-p)$.
-		\end{solution}
-		\part What kind of RV is $S_n$? Write down its pmf and support.
-			\begin{solution}
-			Since it is the sum of $n$ independent, identically distribution Bernoulli RVs, each with probability of success $p$, $S_n\sim \mbox{Binomial}(n,p)$. The support of this random variable is $\{0, 1, \hdots, n\}$ and its pmf is
-				$$p(x) = {n\choose x}p^x (1-p)^{n-x}$$
-			\end{solution}
-		\end{parts}
-		
-
-\question Suppose we carry out a sequence of independent Bernoulli trials, each with probability of success $p$, and stop as soon as we get the first success.
-	\begin{parts}
-		\part What is the probability that we get a success on our first trial?
-			\begin{solution}
-        $p$ 
-      \end{solution}
-		\part What is the probability that we get our first success on the \emph{second} trial? (That is, what is the probability of a Failure followed by a Success?)
-		\begin{solution}
-			$p(1-p)$
-		\end{solution}
-		\part What is the probability that we get our first success on the $n$th trial?
-		\begin{solution}
-			$p(1-p)^{n-1}$
-		\end{solution}
-		\part Suppose that we define a random variable $X$ that equals the trial number of the first success in a sequence of independent Bernoulli trials, each with probability $p$ of success. This is the definition of a Geometric$(p)$ random variable. What is the probability mass function $p(x)=P(X=x)$ of $X$? What is the support of this random variable?
-			\begin{solution}
-				The support of $X$ is $\mathbf{N}$, i.e. $\{1, 2, 3, \hdots\}$ and the pmf is
-					$$p(x) = \left\{  \begin{array}{ll} p(1-p)^{x-1} & \mbox{for } x \in \mathbb{N} \\ 0 & \mbox{elsewhere} \end{array} \right.$$
-			\end{solution}
-	\end{parts}
-
-
-
-\fullwidth{\section*{These will be used as extension problems}}
-
-
-\question This question refers to the prediction market example from lecture. Imagine it is October 2012. Let $O$ be a contract paying \$10 if Obama wins the election, zero otherwise, and $R$ be a contract paying \$10 if Romney wins the election, zero otherwise. Let $\mbox{Price}(O)$ and $\mbox{Price}(R)$ be the respective prices of these contracts.
-	\begin{parts}
-	\part Suppose you \emph{buy} one of each contract. What is your profit?
-		\begin{solution}
-			Regardless of whether Romney or Obama wins, you get \$10. Thus, your profit is $$10 - \mbox{Price}(O) - \mbox{Price}(R)$$
-		\end{solution}
-	\part Suppose you \emph{sell} one of each contract. What is your profit?
-		\begin{solution}
-			Regardless of whether Romney or Obama wins, you have to pay out \$10. Thus, your profit is $$\mbox{Price}(O) + \mbox{Price}(R) - 10$$
-		\end{solution}
-	 \part What must be true about $\mbox{Price}(O)$ and $\mbox{Price}(R)$, to prevent an opportunity for statistical arbitrage? 
-	 \begin{solution}
-	  From (a) we see that you can earn a guaranteed, risk-free profit from \emph{buying} one of each contract whenever $10 > \mbox{Price}(O) +\mbox{Price}(R)$. From (b) we see that you can earn a guaranteeed, risk-free profit by \emph{selling} one of each contract whenever $ \mbox{Price}(O) +\mbox{Price}(R) > 10$. Therefore, the only way to prevent statistical arbitrage is to have $\mbox{Price}(O) +\mbox{Price}(R) = 10$.
-	 \end{solution}
-	 \part How is your answer to part (c) related to the Complement Rule?
-	 	\begin{solution}
-	 	In class we discussed how the market price of a prediction contract can be viewed as a subjective probability assessment. To find the implied probability we divide the price of the contract by the amount that is pays out, in this case \$10. Hence, dividing through by \$10, we see that the condition from part (b) when stated in probability terms is
-	 	$$P(O) = 1 - P(R)$$
-	 	This is precisely the Complement Rule because $R = O^c$.
-	 	\end{solution}
-	 \part What is the implicit assumption needed for your answers to parts (a)--(c) to be correct? How would your answers change if we were to relax this assumption?
-	 	\begin{solution}
-	 	The above discussion assumes that the only possible outcomes are Obama or Romney winning the election, that is $O \cup R = S$. This is equivalent to assuming that the probability of a third-party candidate winning the election is zero. If this assumption is not true, we need to redo the above with an extra contract. Let $I$ be a contract that pays out \$10 if a third-party (i.e.\ independent) candidate wins the election, zero otherwise. Then the answers to the above become:
-	 		\begin{enumerate}[(a)]
-	 			\item $10 - \mbox{Price}(O) - \mbox{Price}(R) -\mbox{Price}(I) $
-	 			\item  $\mbox{Price}(O) + \mbox{Price}(R) +\mbox{Price}(I) - 10$
-	 			\item $\mbox{Price}(O) + \mbox{Price}(R) +\mbox{Price}(I) = 10$
-	 			\item The Complement Rule becomes:
-	 				$$P(I) = 1 - P(O) - P(R)$$
-	 		\end{enumerate}
-	 	\end{solution}
-	 \end{parts}
-	 
-
-\question You have been entered into a very strange tennis tournament. To get the \$10,000 Grand Prize you must win at least two sets \emph{in a row} in a three-set series to be played against your Econ 103 professor and Venus Williams alternately: professor-Venus-professor or Venus-professor-Venus according to your choice. Let $p$ be the probability that you win a set against your professor and $v$ be the probability that you win a set against Venus. Naturally $p>v$ since Venus is much better than your professor! Assume that each set is independent.
-	\begin{parts}
-		\part Let W indicate win and L indicate lose, so that the sequence WWW means you win all three sets, WLW means you win the first and third set but lose the middle one, and so on. Which sequences of wins and losses land you the Grand Prize? 
-			\begin{solution}
-			To get the prize, you have to win the middle set. Thus, the only possibilities are WWW, WWL, and LWW.
-			\end{solution}
-		\part If you elect to play the middle set against Venus, what is the probability that you win the Grand Prize?
-		\begin{solution}
-		The probabilities of mutually exclusive events sum. Thus,
-				\begin{eqnarray*}
-		P(WWW) + P(LWW) + P(WWL) &=& pvp + (1-p)vp +pv(1-p)\\	
-		&=& p^2v + pv - p^2v + pv - p^2v\\
-		&=& 2pv - p^2v \\
-		&=& pv(2-p)
-		\end{eqnarray*}
-		\end{solution}
-		\part If you elect to play the middle set against your professor, what is the probability that you win the Grand prize? 
-				\begin{solution}
-		Again, the probabilities of mutually exclusive events sum. Thus,
-				\begin{eqnarray*}
-		P(WWW) + P(LWW) + P(WWL) &=& vpv + (1-v)pv +vp(1-v)\\	
-		&=&v^2 p + vp - v^2 p + vp - v^2 p\\
-		&=& 2pv -v^2p\\
-		&=& pv(2-v)
-		\end{eqnarray*}
-		\end{solution}
-	\part[5] To maximize your chance of winning the prize, should you choose to play the middle set against Venus or your professor?
-	\begin{solution}
-	Manipulating the inequality,
-		\begin{eqnarray*}
-			p &>& v\\
-			-p &<& -v\\
-			2-p &<& 2-v\\
-			pv(2-p) &<& pv(2-v)\\
-		\end{eqnarray*}
-		You can't get the prize without winning the middle set, so it turns out that it's better to face Venus twice rather than face her in the middle set. You should elect to play the middle set against your professor.
-	\end{solution}
-  	\end{parts}
-
-\question Rossa and Rodrigo are playing their favorite game: matching pennies.
-The game proceeds as follows.
-In each round, both players flip a penny.
-If the flips match (TT or HH) Rossa gets one point; if the flips do not match (TH or HT) Rodrigo gets one point.
-The game is best of three rounds: as soon as one of the players reaches two points, the game ends and that player is declared the winner.
-Since there's a lot of money on the line and graduate students aren't paid particularly well, Rossa secretly alters each of the pennies so that the probability of heads is 2/3 rather than 1/2.
-In spite of Rossa's cheating, the individual coin flips remain independent.
- 	\begin{parts} 
-    \part[6] Calculate the probability that Rossa will win the first round of this game.
-    \begin{solution}
-      Rossa wins a given round if either of the two mutually exclusive outcomes $HH$ or $TT$ occurs.
-      Thus:
-      $$P(\mbox{Rossa Wins}) = P(HH) + P(TT) = (2/3)^2 + (1/3)^2 = 5/9$$ 
-    \end{solution}
-    \part Calculate the probability that the game will last for a full three rounds.
-    \begin{solution}
-      We need to calculate the probability of a tie after two rounds.
-      There are two ways that a tie could occur: either Rossa wins the first round while Rodrigo wins the second, or Rodrigo wins the first round while Rossa wins the second.
-      These two events are mutually exclusive and the probability of each is $5/9 \times 4/9 = 20/81$ since successive coin flips are independent.
-      Thus, the desired probability is $40/81$.
-    \end{solution}
-    \part Calculate the probability that Rodrigo will win the game.
-    \begin{solution}
-      Rodrigo needs to win two rounds to win the game. 
-      There are three ways this can happen.
-      First, Rodrigo could win both rounds 1 and 2, in which case no third round is played.
-      The probability of this event is $4/9 \times 4/9 = 16/81$.
-      Second Rodrigo could lose round 1 but win rounds 2 and 3.
-      The probability of this event is $5/9 \times 4/9 \times 4/9 = 80/729$.
-      Finally, Rodrigo could lose round 2 but win rounds 1 and 3.
-      The probability of this event is $4/9 \times 5/9 \times 4/9 = 80/729$.
-      Summing these probabilities, since their corresponding events are mutually exclusive, the probability that Rodrigo wins the game is $304/729\approx 0.417$.
-    \end{solution}
-    \part Yiwen is walking down the hallway and sees Rodrigo doing his victory dance: clearly Rossa has lost in spite of rigging the game.
-    Given that Rodrigo won, calculate the probability that the game lasted for three rounds.
-    \begin{solution}
-      By the definition of conditional probability,
-      \begin{equation*}
-        P(\mbox{3 Rounds}|\mbox{Rodrigo Won}) = \frac{P(\mbox{3 Rounds} \cap \mbox{Rodrigo Won})}{P(\mbox{Rodrigo Won})}
-      \end{equation*}
-      We already calculated the denominator in the preceding part: it equals $304/729$.
-      To calculate the numerator we simply add up the probabilities of the two mutually exclusive ways in which Rodrigo could win in three rounds: (Win, Lose, Win) and (Lose, Win, Win).
-      We calculated these probabilities in the preceding part: both were $80/729$ so the numerator is $160/729$.
-      Taking the ratio of these gives $160/304 \approx 0.526$.
-      Given that Rodrigo won, it is slightly more likely than not that the game lasted for a full three rounds.
-    \end{solution}
- 	\end{parts}
-
-\question A plane has crashed in one of three possible locations: the mountains ($M$), the desert ($D$), or the sea ($S$).
-Based on its flight path, experts have calculated the following prior probabilities that the plane is in each location: $P(M) = 0.5$, $P(D) = 0.3$ and $P(S) = 0.2$.
-If we search the mountains then, given that the plane is actually there, we have a 30\% chance of \emph{failing} to find it.
-If we search the desert then, given that the plane is actually there, we have a 20\% chance of \emph{failing} to find it.
-Finally, if we search the sea then, given that the plane is actually there, we have a 90\% chance of \emph{failing} to find it. 
-Naturally if the plane is \emph{not} in a particular location but we search for it there, we will not find it.
-You may assume that searches in each location are independent.
-Let $F_M$ be the event that we \emph{fail} to find the plane in the mountains.
-Define $F_D$ and $F_S$ analogously.
+\question A multiple choice quiz has 12 questions, each of which has 5 choices. To pass you need to get at least 8 of them correct. Nina forgot to study, so she simply guesses at random.
 \begin{parts}
-  \part[10] We started by searching the mountains.
-  We did not find the plane.
-  What is the conditional probability that the plane is nevertheless in the mountains?
-  Explain.
-  \begin{solution}
-    By Bayes' Rule: $P(M|F_M) = P(F_M|M)P(M)/P(F_M)$.
-    We first calculate the denominator using the Law of Total Probability:
-    \begin{eqnarray*}
-      P(F_M) &=&  P(F_M|M)P(M) + P(F_M|M^C)P(M^C) \\
-      &=& 0.3 \times 0.5 + 1 \times 0.5 = 0.15 + 0.5 = 0.65
-    \end{eqnarray*}
-    Hence, the desired probability is $15/65 = 3/13 \approx 0.23$.
-  \end{solution}
-\part[20] After failing to find the plane in the mountains, we searched the desert, and the sea.
-  We did not find the plane in either location.
-  After this more exhaustive search what is the conditional probability that the plane is in the mountains?
-  Explain.
-  \begin{solution}
-    We are asked to calculate $P(M|F_M \cap F_D \cap F_S)$.
-    By Bayes' rule, 
-    $$P(M|F_M \cap F_D \cap F_S) = \frac{P(F_M \cap F_D \cap F_S|M)P(M)}{P(F_M \cap F_D \cap F_S)}$$
-    Define the shorthand $A = F_M \cap F_D \cap F_S$. 
-    By the Law of Total Probability
-    \begin{eqnarray*}
-      P(A) &=& P(A|M)P(M) + P(A|D)P(D) + P(A|S)P(S) \\
-      &=& (0.3 \times 1 \times 1) \times 0.5 + (1 \times 0.2 \times 1) \times 0.3 + (1 \times 1 \times 0.9 ) \times 0.2 \\
-      &=&  0.15 + 0.06 + 0.18 = 0.39
-    \end{eqnarray*}
-    using independence.
-    Hence, the desired probability is $15/39 \approx 0.38$.
-  \end{solution}
+  \item Let the random variable $X$ denote the number of questions that Nina gets correct on the quiz. What kind of random variable is $X$? Specify all parameter values.
+  \item Calculate the probability that Nina passes the quiz.
+\end{parts}
+
+		
+\question Define the \emph{joint probability mass function} $p_{XY}$ of two discrete RVs $X$ and $Y$ and list its two key properties.
+
+\question What is the difference between a joint pmf and a marginal pmf?
+
+\question Can you calculate a marginal pmf from a joint? How? Can you calculate a joint pmf from a marginal pmf?
+
+\question Suppose that $X$ is a random variable with support $\{1,2\}$ and $Y$ is a random variable with support $\{0,1\}$ where $X$ and $Y$ have the following joint pmf: 
+			\begin{eqnarray*}
+				p_{XY}(1,0) = 0.20, && p_{XY}(1,1) = 0.30 \\
+				p_{XY}(2,0) = 0.25, && p_{XY}(2,1) = 0.25
+			\end{eqnarray*}
+	\begin{parts}
+  \item Express the joint pmf in a table with $X$ in the \emph{rows}, as we did in class. 
+			\begin{solution}
+			\begin{center}
+\begin{tabular}{|cc|cc|}
+\hline
+&&\multicolumn{2}{c|}{$X$}\\
+&&1 & 2\\
+\hline
+\multirow{2}{*}{$Y$}
+&0& \multicolumn{1}{|c}{0.20} & 0.25\\
+&1& \multicolumn{1}{|c}{0.30} & 0.25\\
+\hline
+\end{tabular}
+\end{center}
+			\end{solution}
+		\item Using the table, calculate the marginal pmfs of $X$ and $Y$.
+			\begin{solution}
+				\begin{eqnarray*}
+					p_X(1) &=&p_{XY}(1,0) + p_{XY}(1,1)=0.20+0.30 = 0.50 \\
+					p_X(2) &=&p_{XY}(2,0) + p_{XY}(2,1)=0.25 + 0.25 = 0.50 \\
+					p_Y(0) &=&p_{XY}(1,0) + p_{XY}(2,0) = 0.20 + 0.25 = 0.45 \\
+					p_Y(1) &=& p_{XY}(1,1) + p_{XY}(2,1) = 0.30 + 0.25 = 0.55
+				\end{eqnarray*}
+			\end{solution}
 \end{parts}
 
 
-  \question I have an urn that contains two red balls and three blue balls.
-  I offer you the chance to play the following game. You draw one ball at a time from the urn. Draws are made at random and \emph{without replacement}. You win \$1 for each red ball that you draw, but lose \$1 for each blue ball that you draw. You are allowed to stop the game at any point. Find a strategy that ensures your expected value from playing this game is \emph{positive}. 
-
-  \question An ancient artifact worth \$100,000 fell out of Indiana Jones's airplane and landed in the Florida Everglades. Unless he finds it within a day, it will sink to the bottom and be lost forever. Dr.\ Jones can hire one or more helicopters to search the Everglades. Each helicopter charges \$1000 per day and has a probability of 0.9 of finding the artifact. If Dr.\ Jones wants to maximize his \emph{expected value}, how many helicopters should he hire?
 
 \end{questions}
 
