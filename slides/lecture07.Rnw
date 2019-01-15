@@ -69,56 +69,35 @@ $0,1 \Rightarrow$ Incorrect Test Result, $2-9$ Correct Test Result
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{draw_simulation} \hlkwb{<-} \hlkwa{function}\hlstd{() \{}
-  \hlstd{guilty} \hlkwb{<-} \hlnum{FALSE}
-  \hlstd{fail} \hlkwb{<-} \hlnum{FALSE}
-  \hlstd{die1} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{0}\hlopt{:}\hlnum{9}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{1}\hlstd{)}
-  \hlstd{die2} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlnum{0}\hlopt{:}\hlnum{9}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{1}\hlstd{)}
-  \hlkwa{if}\hlstd{(die1} \hlopt{==} \hlnum{0}\hlstd{)\{} \hlcom{# Thief}
-    \hlstd{guilty} \hlkwb{<-} \hlnum{TRUE}
-    \hlkwa{if}\hlstd{(die2} \hlopt{>=}\hlnum{2}\hlstd{) fail} \hlkwb{<-} \hlnum{TRUE}
-  \hlstd{\}} \hlkwa{else} \hlstd{\{} \hlcom{# Innocent}
-    \hlkwa{if}\hlstd{(die2} \hlopt{<} \hlnum{2}\hlstd{) fail} \hlkwb{<-} \hlnum{TRUE}
-  \hlstd{\}}
-  \hlkwd{return}\hlstd{(}\hlkwd{c}\hlstd{(}\hlkwc{guilty} \hlstd{= guilty,} \hlkwc{fail} \hlstd{= fail))}
-\hlstd{\}}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<lie_detector_sim_function>>=
+draw_simulation <- function() {
+  guilty <- FALSE
+  fail <- FALSE
+  die1 <- sample(0:9, size = 1)
+  die2 <- sample(0:9, size = 1)
+  if(die1 == 0){ # Thief
+    guilty <- TRUE
+    if(die2 >=2) fail <- TRUE
+  } else { # Innocent
+    if(die2 < 2) fail <- TRUE
+  }
+  return(c(guilty = guilty, fail = fail))
+}
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \footnotesize
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{set.seed}\hlstd{(}\hlnum{123456}\hlstd{)}
-\hlstd{simulations} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlkwc{n} \hlstd{=} \hlnum{1000}\hlstd{,} \hlkwd{draw_simulation}\hlstd{())}
-\hlstd{simulations} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwd{t}\hlstd{(simulations))}
-\hlkwd{head}\hlstd{(simulations)}
-\end{alltt}
-\begin{verbatim}
-##   guilty  fail
-## 1  FALSE FALSE
-## 2  FALSE FALSE
-## 3  FALSE  TRUE
-## 4  FALSE  TRUE
-## 5  FALSE  TRUE
-## 6  FALSE FALSE
-\end{verbatim}
-\begin{alltt}
-\hlstd{failed_test} \hlkwb{<-} \hlkwd{subset}\hlstd{(simulations, fail)}
-\hlkwd{mean}\hlstd{(failed_test}\hlopt{$}\hlstd{guilty)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.311828
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<lie_detector_sim_results>>=
+set.seed(123456)
+simulations <- replicate(n = 1000, draw_simulation())
+simulations <- data.frame(t(simulations))
+head(simulations)
+
+failed_test <- subset(simulations, fail)
+mean(failed_test$guilty)
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
