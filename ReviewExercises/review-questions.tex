@@ -319,9 +319,21 @@ What are the units of the following quantities?
 
 \question What value of $a$ minimizes $\displaystyle\sum_{i=1}^n (y_i - a)^2$? Prove your answer.
 
-\question Suppose that $s_{xy} = 30$, $s_x = 5$, $s_{y} = 3$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $a$ and $b$ in the regression $\widehat{y} = a + bx$.
+\question Suppose that $s_{xy} = 30$, $s_x = 10$, $s_{y} = 6$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $a$ and $b$ in the regression $\widehat{y} = a + bx$.
+\begin{solution}
+  \begin{align*}
+  b &= s_{xy}/s_x^2 = 30 / 10^2 = 30/100 = 0.3\\
+  a &= \bar{y} - b \bar{x} = 12 - 0.3 \times 4 = 12 - 1.2 = 10.8
+  \end{align*}
+\end{solution}
 
-\question Suppose that $s_{xy} = 30$, $s_x = 5$, $s_{y} = 3$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $c$ and $d$ in the regression $\widehat{x} = c + dy$. Note: we are using $y$ to predict $x$ in this regression!
+\question Suppose that $s_{xy} = 30$, $s_x = 10$, $s_{y} = 6$, $\bar{y} = 12$, and $\bar{x} = 4$. Calculate $c$ and $d$ in the regression $\widehat{x} = c + dy$. Note: we are using $y$ to predict $x$ in this regression!
+\begin{solution}
+  \begin{align*}
+  b &= s_{xy}/s_y^2 = 30 / 6^2 = 30/36 = 5/6 \approx 0.83\\ 
+  a &= \bar{y} - b \bar{x} = 12 - 5/6 \times 4 = 12 - 10/3 = 26/3 \approx 8.7
+  \end{align*}
+\end{solution}
 
 \question A large number of students took two midterm exams. The standard deviation of scores on midterm \#1 was 16 points, while the standard deviation of scores midterm \#2 was 17 points. The covariance of the scores on the two exams was 124 points squared. Linus scored 60 points on midterm \#1 while Lucy scored 80 points. How much higher would we predict that Lucy's score on the midterm \#2 will be?
 
