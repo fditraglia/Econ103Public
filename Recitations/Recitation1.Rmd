@@ -1,0 +1,134 @@
+---
+title: "Recitation #1"
+date: "January 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installing R and R Studio
+
+Carry out the following two steps in order:
+
+1. Go to http://cran.r-project.org/ and install the version of R for your operating system.
+
+2. Go to http://rstudio.org/download/desktop and click the link listed under “Recommended for Your System”. Follow the instructions to install RStudio.
+
+To make sure this worked, open the program RStudio and go to File > New > R Script. This will open a blank text document. In the document, type the text given in the box below and then click and drag to highlight both lines of code and click the button marked “Run.” If everything is working correctly, the console should display TRUE.
+
+```{r test, results='hide'}
+x = 5
+x == 5
+```
+
+Congratulations: you’ve just written your first R script! To save it, go to File > Save As, and choose a name. Writing and saving script files ensures that you do not have to repeat work that you have already done. NOTE: Always save your scripts as .R files so they’ll open in RStudio by default. \    
+
+\  
+
+
+**For the remainder of this PDF, create a script file that contains all of the following code and exercises. ** 
+
+
+## Loading External Data
+The vast majority of the time, you won’t be using data that you type in by hand – you’ll be importing data from external sources. One of the most common ways to find such data is in comma-separated format – such files are structured such that each row represents a row of data, and columns are separated by a comma. It’s very easy to read files like this into R very quickly using read.csv.
+
+Let's recreate the first section of code from Lecture 2, Slide 16. A csv file is loaded from a URL. 
+
+```{r read_data}
+data_url <- 'http://ditraglia.com/econ103/old_survey.csv'
+survey <- read.csv(data_url)
+```
+
+There should now be a variable called survey, which contains 89 observations of 10 variables. Lets look at the first 6 rows of the data frame. 
+
+```{r head_data}
+head(survey)
+```
+
+## Functions
+Just like in math, a function is a way of mapping input to output, and just like in most math classes, you can spot functions since they use parentheses: ()
+
+An example of a simple function in R is sqrt, which calculates the square root of a number:
+```{r sqrt}
+sqrt(4)
+```
+
+Below we will be introducing functions that calculate many of the summary statistics seen in lecture. 
+
+
+## Calculating Summary Statistics
+### Missing Data: NA
+Being a language for statistics, R handles this missing data with aplomb by handling it under the appelation  NA. However, any user must understand that trying to perform calculations with missing observations may lead to unexpected outcomes, e.g.:
+```{r NA_eg}
+sum(survey$height)
+```
+
+Any sum involving a missing observation is missing. There are multiple ways to remove missing data in R. One of them is using the function na.omit() to create a new vector with no missing values. 
+
+```{r NA_eg2}
+survey_height <- na.omit(survey$height)
+sum(survey_height)
+```
+
+To tell R to ignore missing observations inside a function, set the argument na.rm to TRUE. This will work with pretty much any of the commands you know for performing mathematical operations on a vector:
+```{r NA_eg3}
+sum(survey$height, na.rm = TRUE)
+```
+
+
+### Average: mean
+Calculates the sample mean of a numeric vector:
+```{r mean}
+mean(survey$height, na.rm = TRUE)
+```
+
+### Variance: var
+Calculates the sample variance of a numeric vector:
+```{r var}
+var(survey$height, na.rm = TRUE)
+```
+
+### Standard Deviation: sd
+Calculates the sample standard deviation of a numeric vector:
+```{r sd}
+sd(survey$height, na.rm = TRUE)
+```
+
+### Median: median
+Calculates the sample median of a numeric vector:
+```{r median}
+median(survey$height, na.rm = TRUE)
+```
+
+### Other Quantiles: quantile
+This function calculates sample quantiles, aka percentiles, of a numeric vector. If you simply pass it a numeric vector with no other arguments, it will give you the five-number summary:
+```{r quantiles}
+quantile(survey$height, na.rm = TRUE)
+```
+Now that the basic quantile function has been introduced, recreate the code from Lecture 2, Slide 25. 
+
+### Extrema: max, min, and range
+max and min do exactly what they say:
+```{r maxmin}
+max(survey$height, na.rm = TRUE)
+min(survey$height, na.rm = TRUE)
+```
+
+To get both the maximum and minimum at once, you can use the function range:
+```{r range}
+range(survey$height, na.rm = TRUE)
+```
+
+Calculate these summary statistics for another variable in the survey data frame, for example handspan. 
+
+
+## Histogram
+As seen in lecture, histograms are a nice way to summarize numerical data. The command for a histogram in R is hist. Its input has to be a vector, not a data.table. To practice, recreate the histogram from Lecture 2, Slide 17. The code is below, but the title and labels should be changed to be more informative.  
+
+```{r hist, message=FALSE}
+hist(survey$height, freq=FALSE, main='Title', xlab='X label', ylab='Y label')
+```
+
+Create a histogram of the handspan variable in survey. 

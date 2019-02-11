@@ -1,0 +1,151 @@
+---
+title: "Recitation #3"
+date: 'February 2019'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This recitation shows you how to calculate the remaining summary statistics from the lectures and how to calculate a regression in R. It also covers boxplots. At the end, there is an exercise. 
+
+To begin with, we will use the same data that was used throughout the last recitation. 
+```{r read_data}
+data_url <- 'http://ditraglia.com/econ103/old_survey.csv'
+survey <- read.csv(data_url)
+```
+
+## Summary Statistics (continued)
+
+### Correlation: `cor`
+This command calculates the sample correlation coefficients. If you pass it two vectors of the same length it returns the correlation between them. Unlike the univariate summary statistics, in which we used `na.rm = TRUE` to ignore missing observations, for `cor` we use the argument `use = "complete.obs"`. In this case there are actually many different ways of handling missing observations. For more details, see `?cor`. Setting `use = "complete.obs"` removes any rows with missing observations before proceeding.\ 
+
+\ 
+```{r cor}
+cor(survey$handspan, survey$height, use = "complete.obs")
+```
+
+
+
+### Covariance: `cov`
+This command works just like `cor` but returns covariances rather than correlations:
+
+\
+```{r cov}
+cov(survey$handspan, survey$height, use = "complete.obs")
+```
+
+## Regressions in R
+
+The concept of regressions was introduced in Lecture 4. This recitation we will be going over the commands found on slides 14 and 15 of Lecture 4. 
+
+R’s general-purpose regression command is `lm`, which is short for "linear model". The syntax uses "~" to indicates a functional relationship. Here the variable to the left of the tilde is the “y” variable, while the variable to the right is the “x” variable, and the linear model which is being estimated is $\text{y} = a + b \text{x}$.
+
+Using the data set `survey`, lets estimate the regression \[ \widehat{\text{height}} = a + b*\text{handspan} \] So "y" is now "height" and "x" is now "handspan". The results of the regression are stored in the variable `reg1`, and the estimated coeffients ($a$ an $b$) are displayed using the function `coef`.
+
+```{r lm}
+reg1 <- lm(height ~ handspan, data = survey)
+coef(reg1)
+```
+
+The estimated coefficient under "(Intercept)" is the value for "a", and the estimated coefficient under "handspan" is the value for "b". Therefore, our estimated regression equation can be written as: \[ \widehat{\text{height}} = 42.3 + 1.2 * \text{handspan} \]
+
+This equation can be used to predict a student's height, given their handspan. For example, consider two students, one with a handpsan of 18 and the other with a handspan of 25. To predict their height, we can plug these values in for the handspan variable in the equation above: \[ \widehat{\text{height}} = 42.3 + 1.2 * 18 = 63.9 \] \[ \widehat{\text{height}} = 42.3 + 1.2 * 25 = 72.3 \]
+
+However, in doing this calculation I rounded the estimated coefficients. Using the function `predict`, and the results from the regression `reg1`, we can predict the height of these two students with more precision.  
+
+```{r predict}
+missing_students <- data.frame(handspan = c(18,25))
+predict(reg1, newdata = missing_students)
+```
+
+The first number, 64.4, is the predicted height of a student with a handspan of 18, while the second number, 73.0, is the predicted height of a student with a handspan of 25. These numbers are very similar to the ones calculated by hand, but without the rounding error. 
+
+\ 
+
+One warning about using the `lm` command is that unlike correlation and covariance, regression is not symmetric:
+
+```{r lm_reverse}
+reg2 <- lm(handspan ~ height, data = survey)
+coef(reg2)
+```
+
+
+## Boxplots
+A boxplot is an alternative way to visualize the distribution of a dataset. The command in R is just what you’d expect, and you can use the same labels as the histogram in recitation 1. The first argument must be a vector. The following is the boxplot from slide 27 in lecture 2:
+
+```{r boxplot1}
+boxplot(survey$handspan, main = 'Boxplot of Handspan', ylab = 'Handspan (cm)')
+```
+
+One of the main advantages of boxplots over histograms is that they are simple enough to plot side-by-side. This lets us see how the distribution of a numerical variable is related to a categorical variable. For example, we could see how the distribution of handspan differs for men and women as follows (note that the syntax is the same as for `lm`):
+
+```{r boxplot2}
+boxplot(handspan ~ sex, data = survey, ylab= "Handspan (cm)", main = "Handspan by Sex")
+```
+
+
+## Exercise
+Load the following dataset:
+```{r house_data}
+data_url2 <- 'http://ditraglia.com/econ103/HousePriceData.csv'
+houses <- read.csv(data_url2)
+```
+
+This R data table called houses contains the sale price and characteristics of a random sample of 128 houses sold in Kansas City in a single year. 
+```{r head_house}
+head(houses)
+```
+
+In this exercise we will only work with the columns `sqft`, `price`, and `brick`: `sqft` gives the size of the house in square feet, `price` is the sale price of the house in US dollars, and `brick` is a categorical variable that indicates whether or not the house in question is made of brick.
+
+(1) Estimate the coefficients for the regression: $\text{price}=a+b*\text{sqft}$.
+
+```{r Q1, results = "hide", echo = FALSE}
+reg3 <- lm(price ~ sqft, data = houses)
+coef(reg3)
+```
+
+(2) In the slides, it was shown that $\text{b} = \frac{\text{s}_{xy}}{\text{s}_{x}^2}$. Calculate both $\text{s}_{xy}$ and $\text{s}_{x}^2$, and show that the quotient is the same as the estimated coefficient from (1). 
+
+```{r Q2, results = "hide", echo = FALSE}
+cov_xy <- cov(houses$price, houses$sqft, use = "complete.obs")
+var_x  <- var(houses$sqft, na.rm = TRUE)
+bhat <- cov_xy/var_x
+bhat
+```
+
+(3) In the slides, it was also shown that $a = \bar{y} - b\bar{x}$. Calculate $\bar{x}$ and $\bar{y}$, and show that the value of $a$ calculated from the equation above is the same as that calculated in question (1). 
+
+```{r Q3, results = "hide", echo = FALSE}
+mean_y <- mean(houses$price, na.rm = TRUE)
+mean_x <- mean(houses$sqft, na.rm = TRUE)
+ahat <- mean_y - mean_x*bhat
+ahat
+```
+
+(4) Assume that a friend has a house in Kansas which is 2200 square feet, and they are curious about what price it could sell for on the market. What would be the predicted price from the regression in (1) for a home of this size?
+
+```{r Q4, results = "hide", echo = FALSE}
+friend_home <- data.frame(sqft = 2200)
+predict(reg3, newdata = friend_home)
+```
+
+(5) To understand if having a brick house impacts the selling price, plot the box plot for price divided by if the house is made of brick or not. 
+
+```{r Q5, results = "hide", echo = FALSE}
+#boxplot(price ~ brick, data = houses, ylab= "Price", main = "Price depending on if the house is brick")
+```
+
+(6) Finally, calculate the mean price of a house if it is made of brick or not, using the command `subset`. 
+
+```{r Q6, results = "hide", echo = FALSE}
+brick <- subset(houses, brick == "Yes")
+not_brick <- subset(houses, brick == "No")
+mean(brick$price, na.rm = TRUE)
+mean(not_brick$price, na.rm = TRUE)
+```
+
+
+
