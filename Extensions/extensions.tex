@@ -4,7 +4,7 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 
-%\printanswers
+\printanswers
 %\noprintanswers
 
 \title{Extension Problems}
@@ -357,31 +357,55 @@ Define $F_D$ and $F_S$ analogously.
 
   \question I have an urn that contains two red balls and three blue balls.
   I offer you the chance to play the following game. You draw one ball at a time from the urn. Draws are made at random and \emph{without replacement}. You win \$1 for each red ball that you draw, but lose \$1 for each blue ball that you draw. You are allowed to stop the game at any point. Find a strategy that ensures your expected value from playing this game is \emph{positive}. 
+  \begin{solution}
+    WRITE SOLUTION!
+  \end{solution}
 
-  \question An ancient artifact worth \$100,000 fell out of Indiana Jones's airplane and landed in the Florida Everglades. Unless he finds it within a day, it will sink to the bottom and be lost forever. Dr.\ Jones can hire one or more helicopters to search the Everglades. Each helicopter charges \$1000 per day and has a probability of 0.9 of finding the artifact. If Dr.\ Jones wants to maximize his \emph{expected value}, how many helicopters should he hire?
+  \question An ancient artifact worth \$100,000 fell out of Indiana Jones's airplane and landed in the Florida Everglades. Unless he finds it within a day, it will sink to the bottom and be lost forever. Dr.\ Jones can hire one or more helicopters to search the Everglades. Each helicopter charges \$1,000 per day and has a probability of 0.9 of finding the artifact. If Dr.\ Jones wants to maximize his \emph{expected value}, how many helicopters should he hire?
+  \begin{solution}
+    Let $p(n)$ be the probability of finding the artifact if Indiana Jones hires $n$ helicopters.
+    By the complement rule, $p(n) = 1 - 1/10^n$ since the probability of \emph{not} finding the artifact when $n$ helicopters are search for it is $(1 - 0.9)^n = 1/10^2$.
+    Now let $E(n)$ denote Indiana Jones's expected value if he hires $n$ helicopters.
+    If he does \emph{not} find the artifact, Jones \emph{loses} $n \times $\$1,000.
+    If he \emph{does} find the artifact, Jones \emph{gains} \$100,000$- n\times $\$1,000.
+    Therefore,
+    \begin{align*}
+      E(n) &= \left[ 1 - p(n) \right] \times \left( -1000 \times n \right) + p(n) \times \left[ 100000 - 1000 \times n \right]\\
+      &= 100000 \times p(n) - 1000 \times n\\
+      &= 1000 \times \left[ 100 \times p(n) - n \right]
+    \end{align*}
+    The question of whether Jones should hire an \emph{additional} -- i.e. \emph{marginal} -- helicopter comes down to whether the marginal expected benefit, $100000 \times \left[p(n+1) - p(n)\right]$, exceeds the marginal expected cost, $1000$.
+    From the factorization above, we see that this will be the case whenever $100 \times \left[p(n+1) - p(n)\right]$ is larger than one.
+    Notice that, because you cannot hire a fraction of a helicopter, it may not be possible to exactly equate marginal expected cost and benefit as we would do in a continuous optimization problem.
+    Instead we'll make a table of values. 
+    It's easy enough to do this by hand, but we could also use R:
+\begin{verbatim}
+> n <- 1:4
+> p <- 1 - 1/10^n
+> EV <- 100000 * p - 1000 * n
+> cbind(n,p,EV)
+     n       p    EV
+[1,] 1 0.90000 89000
+[2,] 2 0.99000 97000
+[3,] 3 0.99900 96900
+[4,] 4 0.99990 95990
+\end{verbatim}
+From the table is appears that the optimal number of helicopters is $2$.
+But how can we be sure when we have only examined five possible values for $n$?
+Notice that the marginal expected cost is a constant \$1000 regardless of $n$.
+In contrast, the marginal expected benefit is
+\begin{align*}
+  p(n+1) - p(n) &= \left( 1 - \frac{1}{10^n+1} \right) - \left( 1 - \frac{1}{10^{n}} \right) \\
+  &= \frac{1}{10^{n}} - \frac{1}{10^{n+1}}\\
+  &= \frac{1}{10^{n}}\left(1 - \frac{1}{10} \right) \\
+  &= \frac{1}{10^n} \times 0.9
+\end{align*}
+This is \emph{decreasing} with $n$, so we know that it is it unnecessary to examine larger values of $n$.
+An alternative way to solve this problem is to ``pretend'' that $n$ is continuous, derive the first and second order conditions to characterize the unique global optimum, and then look at the whole number values of $n$ on each side of the (infeasible) optimum from the continuous problem.
+
+  \end{solution}
 
 \fullwidth{\section*{No extension problems for Lecture \#9}}
-
-%\question Suppose we carry out a sequence of independent Bernoulli trials, each with probability of success $p$, and stop as soon as we get the first success.
-%	\begin{parts}
-%		\part What is the probability that we get a success on our first trial?
-%			\begin{solution}
-%        $p$ 
-%      \end{solution}
-%		\part What is the probability that we get our first success on the \emph{second} trial? (That is, what is the probability of a Failure followed by a Success?)
-%		\begin{solution}
-%			$p(1-p)$
-%		\end{solution}
-%		\part What is the probability that we get our first success on the $n$th trial?
-%		\begin{solution}
-%			$p(1-p)^{n-1}$
-%		\end{solution}
-%		\part Suppose that we define a random variable $X$ that equals the trial number of the first success in a sequence of independent Bernoulli trials, each with probability $p$ of success. This is the definition of a Geometric$(p)$ random variable. What is the probability mass function $p(x)=P(X=x)$ of $X$? What is the support of this random variable?
-%			\begin{solution}
-%				The support of $X$ is $\mathbf{N}$, i.e. $\{1, 2, 3, \hdots\}$ and the pmf is
-%					$$p(x) = \left\{  \begin{array}{ll} p(1-p)^{x-1} & \mbox{for } x \in \mathbb{N} \\ 0 & \mbox{elsewhere} \end{array} \right.$$
-%			\end{solution}
-%	\end{parts}
 
 \end{questions}
 
