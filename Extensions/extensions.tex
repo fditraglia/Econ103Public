@@ -358,7 +358,65 @@ Define $F_D$ and $F_S$ analogously.
   \question I have an urn that contains two red balls and three blue balls.
   I offer you the chance to play the following game. You draw one ball at a time from the urn. Draws are made at random and \emph{without replacement}. You win \$1 for each red ball that you draw, but lose \$1 for each blue ball that you draw. You are allowed to stop the game at any point. Find a strategy that ensures your expected value from playing this game is \emph{positive}. 
   \begin{solution}
-    WRITE SOLUTION!
+    There are ${5 \choose 2} = 10$ possible sequences of two red and blue balls, each of which has probability $1/10$ of occurring. 
+    The following table enumerates all of them:
+    \begin{center}
+    \begin{tabular}[h]{ll}
+      WBBBW & BWBWB\\
+      WBBWB & BBWWB\\
+      WBWBB & BBBWW\\
+      WWBBB & BBWBW\\
+      BWWBB & BWBBW
+    \end{tabular}
+  \end{center}
+  I have found two strategies that yield a positive expected value.
+  (There may be more.)
+  The first to \emph{keep playing if and only if your cumulative winnings are negative}.
+  For example, if your first draw is W, your cumulative winnings are $+1$ so you should stop.
+  On the other hand, if your first draw is B then you cumulative winnings are $-1$ so you should keep playing. 
+  If your first draw is a B and your second draw is a W, then your cumulative winnings are zero, so you should stop playing.
+  The following table uses parentheses to show how this rule applies to each possible sequence of draws.
+  You should \emph{stop playing} as soon as you hit the first parenthesis.
+  The value to the right of the arrow denotes your winnings for a given sequence when following the strategy.
+  \begin{center}
+    \begin{tabular}[h]{llll}
+      W(BBBW) $\rightarrow +1$& BW(BWB) $\rightarrow 0$\\
+      W(BBWB) $\rightarrow +1$& BBWW(B) $\rightarrow 0$\\
+      W(BWBB) $\rightarrow +1$& BBBWW() $\rightarrow -1$\\
+      W(WBBB) $\rightarrow +1$& BBWBW() $\rightarrow -1$\\
+      BW(WBB) $\rightarrow 0$& BW(BBW) $\rightarrow 0$
+    \end{tabular}
+  \end{center}
+  The expected value of this strategy is $(1 + 1 + 1 + 1 - 1 - 1)/10 = 1/5$ since each sequence has a probability of $1/10$.
+
+  A slightly different strategy that also gives a positive expected value is as follows: 
+  \begin{quote}
+    If your first draw is W, stop; if your first draw is B, keep drawing until both white balls are removed.
+  \end{quote}
+  Following the same notational convention as above, we can summarize the results of this strategy as follows:
+  \begin{center}
+    \begin{tabular}[h]{llll}
+      W(BBBW) $\rightarrow +1$& BWBW(B) $\rightarrow 0$\\
+      W(BBWB) $\rightarrow +1$& BBWW(B) $\rightarrow 0$\\
+      W(BWBB) $\rightarrow +1$& BBBWW() $\rightarrow -1$\\
+      W(WBBB) $\rightarrow +1$& BBWBW() $\rightarrow -1$\\
+      BWW(BB) $\rightarrow +1$& BWBBW() $\rightarrow -1$
+    \end{tabular}
+  \end{center}
+  so the expected value is $(1 + 1 + 1 + 1 + 1 - 1 - 1 - 1)/10 = 1/5$.
+  Although these two strategies have the same expected value, they different. 
+  Let $p$ denote the pmf of your winnings under the first strategy and $q$ denote the pmf of your winnings under the second.
+  Then we see that:
+  \[
+    p(-1) = 2/10, \quad p(0) = 4/10, \quad p(1) = 4/10
+  \]
+  while 
+  \[
+    q(-1) = 3/10, \quad q(0) = 2/10, \quad p(1) = 5/10
+  \]
+  Hence, you have a larger chance of winning a positive amount using the second strategy, but also a larger chance of \emph{losing} a positive amount.
+  A helpful review problem would be to calculate the variance of your winnings under each strategy.
+  
   \end{solution}
 
   \question An ancient artifact worth \$100,000 fell out of Indiana Jones's airplane and landed in the Florida Everglades. Unless he finds it within a day, it will sink to the bottom and be lost forever. Dr.\ Jones can hire one or more helicopters to search the Everglades. Each helicopter charges \$1,000 per day and has a probability of 0.9 of finding the artifact. If Dr.\ Jones wants to maximize his \emph{expected value}, how many helicopters should he hire?
