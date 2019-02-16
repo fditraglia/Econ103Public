@@ -1,4 +1,4 @@
-\section{Joint Probability Mass Function}
+\section{Joint vs.\ Marginal Probability Mass Functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -109,8 +109,6 @@ p_{XY}(2,1) &=& P(X=2 \cap Y =1) = 0
 %\end{frame}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Joint versus Marginal Probability Mass Function}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Joint versus Marginal PMFs}
 
@@ -442,8 +440,6 @@ I'll mention this again in a few slides\dots
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Some simulation basics in R}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Linearity of Expectation Reprise, Properties of Binomial RV}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -461,7 +457,7 @@ where $X,Y$ are random variables and $a,b,c$ are constants.
 
 \vspace{2em}
 
-\alert{You will prove this as an extension problem\ldots}
+\alert{You will prove this as a review problem\ldots}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -557,18 +553,18 @@ E[Y] &=& E[X_1 + X_2 + \hdots + X_n] =  E[X_1] + E[X_2] + \hdots +E[X_n]\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Variance of a Sum $\neq$ Sum of Variances!}
-\footnotesize
 \begin{eqnarray*}
-	Var(aX + bY) &=& E\left[\left\{\left( aX + bY\right) - E[aX + bY]\right\}^2  \right]\\ \pause
-	&=& E\left[  \left\{a (X - \mu_X) + b(Y - \mu_Y)\right\}^2 \right]\\ \pause
-	&=& E\left[a^2(X-\mu_X)^2 + b^2(Y-\mu_Y)^2 + 2ab(X-\mu_X)(Y-\mu_Y)  \right]\\ \pause
-	&=&a^2E[(X-\mu_X)^2] + b^2 E[(Y-\mu_Y)^2] + 2ab E[(X-\mu_X)(Y-\mu_Y)]\\ \pause
+	Var(aX + bY) &=& E\left[\left\{\left( aX + bY\right) - E[aX + bY]\right\}^2  \right]\\ %\pause
+	%&=& E\left[  \left\{a (X - \mu_X) + b(Y - \mu_Y)\right\}^2 \right]\\ \pause
+	%&=& E\left[a^2(X-\mu_X)^2 + b^2(Y-\mu_Y)^2 + 2ab(X-\mu_X)(Y-\mu_Y)  \right]\\ \pause
+	%&=&a^2E[(X-\mu_X)^2] + b^2 E[(Y-\mu_Y)^2] + 2ab E[(X-\mu_X)(Y-\mu_Y)]\\ \pause
+  &\vdots& \\
 	&=& \alert{a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X,Y)}
 \end{eqnarray*}
+You'll fill in the missing steps as an extension problem\dots
 
 
-\vspace{3em}
-\normalsize
+\vspace{2em}
 Since $\sigma_{XY} = \rho\sigma_X \sigma_Y$, this is sometimes written as:
 $$\alert{\boxed{Var(aX + bY) = a^2 \sigma_X^2 + b^2 \sigma_Y^2 + 2ab \rho \sigma_X \sigma_Y}}$$
 \end{frame}

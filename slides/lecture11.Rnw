@@ -125,16 +125,10 @@ In other words, zero area means zero probability!
   Let $f(x) = 6x(1-x)$ for $x \in [0,1]$ and zero otherwise.
 
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{curve}\hlstd{(}\hlnum{6} \hlopt{*} \hlstd{x} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{x),} \hlkwc{from} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{)}
-\hlkwd{abline}\hlstd{(}\hlkwc{h} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/pdf-1} 
-
-\end{knitrout}
+<<pdf, fig.height=4>>=
+curve(6 * x * (1 - x), from = 0, to = 1, ylab = 'f(x)')
+abline(h = 1, lty = 2)
+@
 
 
 \end{frame}
@@ -172,20 +166,13 @@ In other words, zero area means zero probability!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{Integrating a Function in R}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{pdf} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{) \{}
-  \hlnum{6} \hlopt{*} \hlstd{x} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{x)}
-\hlstd{\}}
+<<r_integral>>=
+pdf <- function(x) {
+  6 * x * (1 - x)
+}
 
-\hlkwd{integrate}\hlstd{(pdf,} \hlkwc{lower} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{upper} \hlstd{=} \hlnum{1}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## 1 with absolute error < 1.1e-14
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+integrate(pdf, lower = 0, upper = 1)
+@
 
 \hfill\alert{You can use this to check your work!}
 
@@ -221,20 +208,12 @@ In other words, zero area means zero probability!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \scriptsize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
-\hlkwd{curve}\hlstd{(}\hlnum{6} \hlopt{*} \hlstd{x} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{x),} \hlkwc{from} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'PDF'}\hlstd{)}
-\hlkwd{curve}\hlstd{(}\hlnum{3} \hlopt{*} \hlstd{x}\hlopt{^}\hlnum{2} \hlopt{-} \hlnum{2} \hlopt{*} \hlstd{x}\hlopt{^}\hlnum{3}\hlstd{,} \hlkwc{from} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,}  \hlkwc{ylab} \hlstd{=} \hlstr{'F(x)'}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'CDF'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/pdf_cdf-1} 
-\begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{))}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<pdf_cdf, fig.height=3.5>>=
+par(mfrow = c(1,2))
+curve(6 * x * (1 - x), from = 0, to = 1, ylab = 'f(x)', main = 'PDF') 
+curve(3 * x^2 - 2 * x^3, from = 0, to = 1,  ylab = 'F(x)', main = 'CDF')
+par(mfrow = c(1,1))
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -290,25 +269,14 @@ $$\boxed{P(a\leq X \leq b) = \int_a^b f(x) \; dx = F(b) - F(a)}$$
 
   Two equivalent ways of calculating $P(0.2 \leq X \leq 0.6)$
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{cdf} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x0}\hlstd{) \{}
-  \hlnum{3} \hlopt{*} \hlstd{x0}\hlopt{^}\hlnum{2} \hlopt{-} \hlnum{2} \hlopt{*} \hlstd{x0}\hlopt{^}\hlnum{3}
-\hlstd{\}}
-\hlkwd{cdf}\hlstd{(}\hlnum{0.6}\hlstd{)} \hlopt{-} \hlkwd{cdf}\hlstd{(}\hlnum{0.2}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.544
-\end{verbatim}
-\begin{alltt}
-\hlkwd{integrate}\hlstd{(pdf,} \hlkwc{lower} \hlstd{=} \hlnum{0.2}\hlstd{,} \hlkwc{upper} \hlstd{=} \hlnum{0.6}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## 0.544 with absolute error < 6e-15
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<equiv>>=
+cdf <- function(x0) {
+  3 * x0^2 - 2 * x0^3
+}
+cdf(0.6) - cdf(0.2)
+
+integrate(pdf, lower = 0.2, upper = 0.6)
+@
   %\begin{block}{Calculating $P(0.1\leq X \leq 0.4)$ using $F(x_0) = 3x_0^2 - 2x_0^3$}
   %  \begin{align*}
   %    P(0.1 \leq X \leq 0.4) &= F(0.4) - F(0.1) \\
@@ -321,11 +289,34 @@ $$\boxed{P(a\leq X \leq b) = \int_a^b f(x) \; dx = F(b) - F(a)}$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-1-1} 
+<<fig.height = 4, echo = FALSE>>=
+par(mfrow = c(1, 2))
+a <- 0.2
+b <- 0.6
+cdf <- function(x) {
+  3 * x^2 - 2 * x^3
+}
+area <- cdf(b) - cdf(a)
 
-\end{knitrout}
+curve(6 * x * (1 - x), from = 0, to = 1, xlab = 'x', ylab = 'f(x)', main = 'PDF', lwd = 2)
+x <- seq(a, b, 0.01)
+zeros <- rep(0, length(x))
+fx <- 6 * x * (1 - x)
+polygon(c(x, rev(x)), c(fx, zeros), density = 25, angle = 60, col = 'blue')
+text(0.75, 0.15, bquote(.(area)), col = 'blue')
+
+curve(3 * x^2 - 2 * x^3, from = 0, to = 1, xlab = 'x', ylab = 'F(x)', main = 'CDF', lwd = 2)
+zero <- -1
+lines(c(a, a), c(zero, cdf(a)), col = 'blue')
+lines(c(a, zero), c(cdf(a), cdf(a)), col = 'blue')
+lines(c(b, b), c(zero, cdf(b)), col = 'blue')
+lines(c(b, zero), c(cdf(b), cdf(b)), col = 'blue')
+text(0.1, 0.4, bquote(.(area)), col = 'blue')
+eps <- 0.12
+arrows(a/2, cdf(b)/2 + eps, a/2, cdf(b), length = 0.1, col = 'blue')
+arrows(a/2, cdf(b)/2, a/2, cdf(a), length = 0.1, col = 'blue')
+par(mfrow = c(1, 2))
+@
 
 \begin{center}
   \alert{$P(0.2 \leq X \leq 0.6) = 0.544$}
@@ -392,45 +383,22 @@ $$\mu = E[X]=\int_{-\infty}^\infty x f(x) \; dx $$
   The command \texttt{rbeta(n, 2, 2)} makes \texttt{n} draws for this RV.
   These simulations agree with our calculations from above:
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{set.seed}\hlstd{(}\hlnum{12345}\hlstd{)}
-\hlstd{sims} \hlkwb{<-} \hlkwd{rbeta}\hlstd{(}\hlnum{10000}\hlstd{,} \hlnum{2}\hlstd{,} \hlnum{2}\hlstd{)}
-\hlkwd{mean}\hlstd{(sims)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.5007002
-\end{verbatim}
-\begin{alltt}
-\hlkwd{var}\hlstd{(sims)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.05012776
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<beta_2_2_draws>>=
+set.seed(12345)
+sims <- rbeta(10000, 2, 2)
+mean(sims)
+var(sims)
+@
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{Simulating a Beta$(2, 2)$ Random Variable}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{mean}\hlstd{(sims}\hlopt{^}\hlnum{2}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.3008234
-\end{verbatim}
-\begin{alltt}
-\hlkwd{hist}\hlstd{(sims,} \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/beta_2_2_more-1} 
-
-\end{knitrout}
+<<beta_2_2_more, fig.height = 3.5>>=
+mean(sims^2)
+hist(sims, freq = FALSE)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -455,22 +423,14 @@ Several of your review questions along with one of your extension questions will
   \frametitle{Simulating Uniform Random Variables}
 
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{sims1} \hlkwb{<-} \hlkwd{runif}\hlstd{(}\hlnum{10000}\hlstd{,} \hlnum{0}\hlstd{,} \hlnum{1}\hlstd{)}
-\hlstd{sims2} \hlkwb{<-} \hlkwd{runif}\hlstd{(}\hlnum{10000}\hlstd{,} \hlopt{-}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{)}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlkwd{hist}\hlstd{(sims1,} \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{)}
-\hlkwd{hist}\hlstd{(sims2,} \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/sim_unif-1} 
-\begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{))}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<sim_unif, fig.height = 3.5>>=
+sims1 <- runif(10000, 0, 1)
+sims2 <- runif(10000, -1, 2)
+par(mfrow = c(1, 2))
+hist(sims1, freq = FALSE)
+hist(sims2, freq = FALSE)
+par(mfrow = c(1,1))
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
