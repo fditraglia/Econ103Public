@@ -5,7 +5,7 @@
 \begin{frame}
 \frametitle{Continuous RVs -- What Changes?}
 	\begin{enumerate}
-\item Probability Density Functions replace Probability Mass Functions (aka Probability Distributions)
+\item Probability Density Functions replace Probability Mass Functions 
 \item Integrals Replace Sums
 \end{enumerate}
 \begin{alertblock}{Everything Else is Essentially Unchanged!}\end{alertblock}
@@ -49,26 +49,19 @@
 \frametitle{From Twister to Density -- Probability as \emph{Area}}
 
 \centering
-	\includegraphics[scale = 0.6]{./images/twister_density}
+	\includegraphics[scale = 0.5]{./images/twister_density}
+
+
+\alert{For continuous RVs, probability is defined as \emph{area under a curve}. Zero area means zero probability!}
+
 
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Continuous Random Variables}
-
-For continuous RVs, probability is a matter of finding the area of \emph{intervals}. Individual \emph{points} have \emph{zero} probability.
-
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Probability Density Function (PDF)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
 \frametitle{Probability Density Function (PDF)}
 For a continuous random variable $X$, 
@@ -77,79 +70,128 @@ where $f(x)$ is the \emph{probability density function} for $X$.
 \vspace{2em}
 
 \begin{alertblock}{Extremely Important}
-For any realization $x$, $P(X=x) = 0 \neq f(x)$!
+For any realization $x$, $P(X=x) = 0$ since $\int_a^a f(x) dx = 0$.
+In other words, zero area means zero probability!
 \end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Properties of PDFs}
+  \frametitle{For a Continuous RV, Zero Probability $\neq$ Impossible}
+
+    It is \emph{crucial} to specify the support set of a continuous RV:
+  \begin{itemize}
+    \item Any $x$ outside the support set of $X$ is \emph{impossible}.
+    \item Any $x$ in the support set of $X$ is a \emph{possible outcome} even though $P(X=x) = 0$ for all $x$.
+  \end{itemize}
+
+  \vspace{1em}
+
+  \alert{There is no way around this slightly awkward situation: it is a consequence of defining probability as the \emph{area under a curve}.}
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Properties of PDFs}
+
 \begin{enumerate}
+  \item $f(x)\geq 0$ for all $x$ in the support of $X$ and zero otherwise.
 \item $\int_{-\infty}^\infty f(x) \; dx = 1$ 
-\item $f(x) \geq 0$ for all $x$
-\item $f(x)$ is \emph{not} a probability and can be greater than one!
-\item $P(X\leq x_0) = F(x_0) = \int_{-\infty}^{x_0} f(x) \; dx $
 \end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Simplest Possible Continuous RV: Uniform$(0,1)$}
-\framesubtitle{You'll look at a generalization, Uniform$(a,b)$ for homework.}
 
-\begin{block}{$X \sim \mbox{Uniform}(0,1)$}
-A Uniform(0,1) RV is equally likely to take on \emph{any value} in the range $[0,1]$ and never takes on a value outside this range.
+\pause
+
+\vspace{1em}
+
+\begin{alertblock}{Warning: $f(x)$ is \emph{not a probability}}
+  Can have $f(x)>1$ for some $x$ as long as $\int_{-\infty}^\infty f(x) dx =1$.
+\end{alertblock}
+
+\pause
+
+\vspace{1em}
+
+\begin{block}{Relating the CDF to the PDF}
+  \vspace{-1em}
+  \[
+  F(x_0) \equiv P(X\leq x_0) = \int_{-\infty}^{x_0} f(x) \; dx 
+\]
 \end{block}
 
-\begin{block}{Uniform PDF}
-$f(x) = 1$ for $0\leq x \leq 1$, zero elsewhere.
-\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Example: Suppose $X$ has Support Set $[0,1]$}
+
+  Let $f(x) = 6x(1-x)$ for $x \in [0,1]$ and zero otherwise.
+
+  \fbox{PUT A PICTURE HERE!!!}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Example: Suppose $X$ has Support Set $[0,1]$}
+
+  Let $f(x) = 6x(1-x)$ for $x \in [0,1]$ and zero otherwise.
+
+\vspace{2em}
+
+\begin{alertblock}{Is $f$ a valid PDF?}
+  \begin{enumerate}
+    \item Is $f(x) \geq 0$ for $x \in [0,1]$ and zero otherwise? 
+    \item Does the total area under $f$ equal one?
+  \end{enumerate}
+  \begin{eqnarray*}
+    \int_{-\infty}^{\infty} f(x)dx &= \pause \displaystyle \int_{0}^1 6x(1-x)dx = \pause 6\int_0^1 (x - x^2)dx\\
+    &= \pause\displaystyle 6\left.\left( \frac{x^2}{2} - \frac{x^3}{3} \right)\right|_0^1 \pause = 1
+  \end{eqnarray*}
+\end{alertblock}
+
+\hfill\alert{So yes, $f$ is a valid PDF \checkmark}
+
+
+%\begin{block}{We say that $X \sim \text{Beta}(\alpha, \beta)$ if}
+%  \begin{enumerate}[(i)]
+%    \item $X$ has support support set $[0,1]$, and 
+%    \item $X$ has PDF $f(x) = C x^\alpha (1 - x)^\beta$
+%  \end{enumerate}
+%  where $(\alpha, \beta)$ are parameters that control the shape of the pdf and $C$ is the appropriate constant such that $\int_{0}^1 f(x) dx = 1$.
+%\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
+
+  \begin{block}{What is the CDF of $X$?}
+    \begin{align*}
+      F(x_0) &\equiv P(X \leq x_0) = \int_{-\infty}^{x_0} f(x)\; dx = \pause \int_{0}^{x_0} 6x(1-x) \; dx\\
+      &= \pause \left. 6\left( \frac{x^2}{2} - \frac{x^3}{3} \right)\right|_0^{x_0} = \pause 3x_0^2 - 2x_0^3 
+    \end{align*}
+
+  \pause
+
+  \vspace{2em}
+  
+  \[
+    F(x_0) = \left\{
+    \begin{array}{lr}
+      0, & x_0 < 0\\
+      3x_0^2 - 2x_0^3, & 0 \leq x_0 \leq 1\\
+      1, & x_0 > 1
+    \end{array}
+    \right.
+  \]
+
+  \end{block}
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \begin{frame}
-\frametitle{Uniform$(0,1)$ PDF}
-\centering
-	\includegraphics[scale = 0.6]{./images/uniform_density}
-
+  Put a plot of the pdf next to a plot of the CDF.
+  Make sure to extend both plots beyond the support to make clear how the functions behave there.
+  Have them make some more simple plots as review problems. 
 \end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Check that Uniform pdf Integrates to 1}
-
-\centering
-	\includegraphics[scale = 0.4]{./images/uniform_density_shaded}
-\begin{eqnarray*}
-	\int_{-\infty}^{\infty} f(x) \; dx = \int_{0}^1 1 \; dx = \left. x \right|_0^1 = 1 - 0 = 1
-\end{eqnarray*}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\begin{frame}
-\frametitle{What is the area of the shaded region? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\centering
-	\includegraphics[scale = 0.6]{./images/uniform_density_cdf}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{$F(0.4) = P(X\leq 0.4) = 0.4$}
-\centering
-	\includegraphics[scale = 0.6]{./images/uniform_density_cdf}
-
-\end{frame}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Relating the PDF to the CDF}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,88 +200,39 @@ $f(x) = 1$ for $0\leq x \leq 1$, zero elsewhere.
 \begin{frame}
 \frametitle{Relationship between PDF and CDF}
 
-Integrate pdf $\rightarrow$ CDF
-	$$F(x_0) = P(X\leq x_0) = \int_{-\infty}^{x_0} f(x)\; dx$$
-Differentiate CDF $\rightarrow$ pdf
- 	$$f(x) =\frac{d}{dx}F(x)$$
+\begin{block}{Integrate PDF to get CDF}
+	\[
+    F(x_0) = P(X\leq x_0) = \int_{-\infty}^{x_0} f(x)\; dx
+  \]
+\end{block}
+
+\begin{block}{Differentiate CDF to get PDF}
+ 	\[
+    f(x) =\frac{d}{dx}F(x)
+  \]
+\end{block}
+
 \alert{This is just the First Fundamental Theorem of Calculus.}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Example: Uniform$(0,1)$ RV}
+  \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
 
-Integrate the pdf, $f(x) = 1$, to get the CDF
-\begin{eqnarray*}
-	F(x_0) =\int_{-\infty}^{x_0} f(x)\; dx = \int_{0}^{x_0} 1\; dx =  \left. x \right|_0^{x_0} =  x_0 - 0 = x_0
-\end{eqnarray*}
-
-\vspace{1em}
-$$ F(x_0) = \left\{ \begin{array}{c} 0, x_0 < 0\\ x_0, 0\leq x_0 \leq 1\\ 1, x_0 > 1   \end{array}\right.$$
+  \begin{block}{Differentiate CDF to get PDF}
+    \begin{align*}
+      f(x) &= \frac{d}{dx}F(x) = \frac{d}{dx} \left( 3x^2 - 2x^3 \right)\\
+      &= \pause 6x - 6x^2\\
+      &= \pause 6x(1 - x)
+    \end{align*}
+  \end{block}
 \end{frame}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Calculating the Probability of an Interval}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Uniform$(0,1)$ CDF}
-\centering
-	\includegraphics[scale = 0.6]{./images/uniform_CDF}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: Uniform$(0,1)$ RV}
-Differentiate the CDF, $F(x_0) = x_0$, to get the pdf
- \begin{eqnarray*}
-	\frac{d}{dx}F(x) =  1 = f(x)
- \end{eqnarray*}
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What is $P(0.4 \leq X \leq 0.8)$ if $X\sim \mbox{Uniform}(0,1)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\centering
-	\includegraphics[scale = 0.6]{./images/uniform_density_interval}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$F(0.8) = P(X \leq 0.8)$}
-
-\centering
-	\includegraphics[scale = 0.6]{./images/density_interval_cdf1}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$F(0.8) - F(0.4) = $ ?}
-\centering
-	\includegraphics[scale = 0.6]{./images/density_interval_cdf2}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{$F(0.8) - F(0.4) = P(0.4 \leq X \leq 0.8) = 0.4$}
-\centering
-	\includegraphics[scale = 0.6]{./images/uniform_density_interval}
-
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Key Idea: Probability of Interval for Continuous RV}
+\frametitle{Key Idea: Probability of an Interval for a Continuous RV}
 
 $$\boxed{P(a\leq X \leq b) = \int_a^b f(x) \; dx = F(b) - F(a)}$$
 
@@ -247,42 +240,37 @@ $$\boxed{P(a\leq X \leq b) = \int_a^b f(x) \; dx = F(b) - F(a)}$$
 \alert{This is just the Second Fundamental Theorem of Calculus.}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
+
+  \fbox{Picture/Animation of $P(0.1 \leq X \leq 0.4)$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
+
+  \begin{block}{Calculating $P(0.1\leq X \leq 0.4)$ using $F(x_0) = 3x_0^2 - 2x_0^3$}
+    \begin{align*}
+      P(0.1 \leq X \leq 0.4) &= F(0.4) - F(0.1) \\
+      &= \left[ 3\times (0.4)^2 - 2 \times (0.4)^3 \right] - \left[ 3 \times (0.1)^2 - (0.1)^3 \right]\\
+      &= ???
+    \end{align*}
+  \end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Calculating Expected Value for Continuous RVs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Expected Value for Continuous RVs}
-$$\boxed{\int_{-\infty}^\infty x f(x) \; dx  }$$
+\[\boxed{E[X] = \int_{-\infty}^\infty x f(x) \; dx}\]
+
+\[\boxed{E[g(X)] = \int_{-\infty}^\infty g(x) f(x) \; dx}\]
 
 \vspace{2em}
-\alert{Remember: Integrals Replace Sums!}
+\hfill\alert{Integrals Replace Sums!}
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Example: Uniform(0,1) Random Variable} 
-\begin{eqnarray*}
-	E[X] &=&  \int_{-\infty}^\infty x f(x) \; dx =\pause  \int_{0}^1 x \cdot 1 \; dx \\ \\
-		&=&  \left.\frac{x^2}{2}\right|_0^1 = 1/2  - 0 = 1/2
-\end{eqnarray*}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Expected Value of a Function of a Continuous RV}
-	$$\boxed{E[g(X)] = \int_{-\infty}^\infty g(x) f(x) \; dx}$$
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Example: Uniform(0,1) Random Variable \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-	\begin{eqnarray*}
-	E[X^2] &=& \int_{-\infty}^\infty x^2 f(x) \; dx \pause = \int_0^1 x^2 \cdot 1 \; dx\\ \\
-		&=& \left. \frac{x^3}{3}\right|_0^1 = 1/3
-	\end{eqnarray*}
-\end{frame}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -310,17 +298,186 @@ $$\mu = E[X]=\int_{-\infty}^\infty x f(x) \; dx $$
 	$$Var(X) = E[X^2] - \left(E[X]\right)^2$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-\frametitle{Example: Uniform$(0,1)$ RV}
-\begin{eqnarray*}
- Var(X) &=& E\left[ \left( X - E[X] \right)^2\right] = E[X^2] - \left(E[X]\right)^2\\
- 	&=& 1/3  - (1/2)^2\\ 
- 	&=& 1/12 \\
- 	&\approx& 0.083
-\end{eqnarray*}
-\end{frame}
+  \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
 
+  \small
+    \begin{align*}
+      E[X] &= \int_{-\infty}^{\infty} x f(x)\; dx =\pause \int_0^1 x \cdot 6x(1-x) =\pause \left. 6\left( \frac{x^3}{3} - \frac{x^4}{4} \right)\right|_{0}^1 = \frac{1}{2}\\ \\ 
+      \pause
+      E[X^2] &= \int_{-\infty}^{\infty} x^2 f(x)\; dx =\pause \int_0^1 x^2 \cdot 6x(1-x) = \pause \left. 6\left( \frac{x^4}{4} - \frac{x^5}{5} \right) \right|_0^1 = \frac{3}{10} \\ \\ 
+      \pause
+      Var(X) &= E[X^2] - \left(E[X]\right)^2 = \pause \frac{3}{10} - \left( \frac{1}{2} \right)^2 = 1/20 
+    \end{align*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Simplest Possible Continuous RV: Uniform$(0,1)$}
+%\framesubtitle{You'll look at a generalization, Uniform$(a,b)$ for homework.}
+%
+%\begin{block}{$X \sim \mbox{Uniform}(0,1)$}
+%A Uniform(0,1) RV is equally likely to take on \emph{any value} in the range $[0,1]$ and never takes on a value outside this range.
+%\end{block}
+%
+%\begin{block}{Uniform PDF}
+%$f(x) = 1$ for $0\leq x \leq 1$, zero elsewhere.
+%\end{block}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%\frametitle{Uniform$(0,1)$ PDF}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/uniform_density}
+%
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Check that Uniform pdf Integrates to 1}
+%
+%\centering
+%	\includegraphics[scale = 0.4]{./images/uniform_density_shaded}
+%\begin{eqnarray*}
+%	\int_{-\infty}^{\infty} f(x) \; dx = \int_{0}^1 1 \; dx = \left. x \right|_0^1 = 1 - 0 = 1
+%\end{eqnarray*}
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%\begin{frame}
+%\frametitle{What is the area of the shaded region? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/uniform_density_cdf}
+%
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{$F(0.4) = P(X\leq 0.4) = 0.4$}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/uniform_density_cdf}
+%
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Example: Uniform$(0,1)$ RV}
+%
+%Integrate the pdf, $f(x) = 1$, to get the CDF
+%\begin{eqnarray*}
+%	F(x_0) =\int_{-\infty}^{x_0} f(x)\; dx = \int_{0}^{x_0} 1\; dx =  \left. x \right|_0^{x_0} =  x_0 - 0 = x_0
+%\end{eqnarray*}
+%
+%\vspace{1em}
+%$$ F(x_0) = \left\{ \begin{array}{c} 0, x_0 < 0\\ x_0, 0\leq x_0 \leq 1\\ 1, x_0 > 1   \end{array}\right.$$
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Uniform$(0,1)$ CDF}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/uniform_CDF}
+%
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Example: Uniform$(0,1)$ RV}
+%Differentiate the CDF, $F(x_0) = x_0$, to get the pdf
+% \begin{eqnarray*}
+%	\frac{d}{dx}F(x) =  1 = f(x)
+% \end{eqnarray*}
+%\end{frame}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{What is $P(0.4 \leq X \leq 0.8)$ if $X\sim \mbox{Uniform}(0,1)$? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/uniform_density_interval}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{$F(0.8) = P(X \leq 0.8)$}
+%
+%\centering
+%	\includegraphics[scale = 0.6]{./images/density_interval_cdf1}
+%
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{$F(0.8) - F(0.4) = $ ?}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/density_interval_cdf2}
+%
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{$F(0.8) - F(0.4) = P(0.4 \leq X \leq 0.8) = 0.4$}
+%\centering
+%	\includegraphics[scale = 0.6]{./images/uniform_density_interval}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%  \frametitle{Example: Uniform(0,1) Random Variable} 
+%\begin{eqnarray*}
+%	E[X] &=&  \int_{-\infty}^\infty x f(x) \; dx =\pause  \int_{0}^1 x \cdot 1 \; dx \\ \\
+%		&=&  \left.\frac{x^2}{2}\right|_0^1 = 1/2  - 0 = 1/2
+%\end{eqnarray*}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Expected Value of a Function of a Continuous RV}
+%	$$\boxed{E[g(X)] = \int_{-\infty}^\infty g(x) f(x) \; dx}$$
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Example: Uniform(0,1) Random Variable \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%	\begin{eqnarray*}
+%	E[X^2] &=& \int_{-\infty}^\infty x^2 f(x) \; dx \pause = \int_0^1 x^2 \cdot 1 \; dx\\ \\
+%		&=& \left. \frac{x^3}{3}\right|_0^1 = 1/3
+%	\end{eqnarray*}
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{Example: Uniform$(0,1)$ RV}
+%\begin{eqnarray*}
+% Var(X) &=& E\left[ \left( X - E[X] \right)^2\right] = E[X^2] - \left(E[X]\right)^2\\
+% 	&=& 1/3  - (1/2)^2\\ 
+% 	&=& 1/12 \\
+% 	&\approx& 0.083
+%\end{eqnarray*}
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
 %\frametitle{Much More Complicated Without the Shortcut Formula!}
@@ -333,25 +490,25 @@ $$\mu = E[X]=\int_{-\infty}^\infty x f(x) \; dx $$
 %\end{frame}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%\frametitle{We Won't Say More About These, But Just So You're Aware of Them...}
-%
-%\begin{block}{Joint Density}
-%$ \displaystyle P(a\leq X \leq b \cap c\leq Y \leq d) = \int_c^d \int_a^b f(x,y) \; dxdy$
-%\end{block}
-%\begin{block}{Marginal Densities}
-%$f_X(x) = \int_{-\infty}^\infty f(x,y)\; dy$, $\;\;\;\;\;\;\; f_Y(y) = \int_{-\infty}^\infty f(x,y)\; dx$
-%\end{block}
-%\begin{block}{Independence in Terms of Joint and Marginal Densities}
-%$f_{XY}(x,y) = f_X(x)f_Y(y)$
-%\end{block}
-%\begin{block}{Conditional Density}
-%$f_{Y|X} = f_{XY}(x,y)/f_X(x)$
-%\end{block}
-%
-%\end{frame}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{We don't have time to cover these in Econ 103:}
+
+\begin{block}{Joint Density}
+$ \displaystyle P(a\leq X \leq b \cap c\leq Y \leq d) = \int_c^d \int_a^b f(x,y) \; dxdy$
+\end{block}
+\begin{block}{Marginal Densities}
+$f_X(x) = \int_{-\infty}^\infty f(x,y)\; dy$, $\;\;\;\;\;\;\; f_Y(y) = \int_{-\infty}^\infty f(x,y)\; dx$
+\end{block}
+\begin{block}{Independence in Terms of Joint and Marginal Densities}
+$f_{XY}(x,y) = f_X(x)f_Y(y)$
+\end{block}
+\begin{block}{Conditional Density}
+$f_{Y|X} = f_{XY}(x,y)/f_X(x)$
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{So where does that leave us?}
 
