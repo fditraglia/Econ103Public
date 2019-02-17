@@ -11,7 +11,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Standard Normal Random Variable: $N(0,1)$}
+
+\frametitle{Standard Normal RV: PDF at left, CDF at right}
+
+
 
 \begin{figure}[h]
   \centering
@@ -20,14 +23,16 @@
   &  
   \includegraphics[scale = 0.3]{./images/std_normal_CDF}
 \end{tabular}
-\caption{Standard Normal PDF (left) and CDF (Right)}
 \end{figure}
+
+
 \begin{itemize}
   \item Notation: $X \sim N(0,1)$
-  \item Symmetric, Bell-shaped, $E[X]=0$, $Var[X]=1$
   \item Support Set $= (-\infty,\infty)$
-  \item For Econ 103, don't need to know formula for $N(0,1)$ PDF.
-  \item No closed-form expression for the $N(0,1)$ CDF.
+  \item PDF symmetric about 0, bell-shaped
+  \item $E[X]=0$, $Var[X]=1$
+  \item For Econ 103, don't need formula for PDF.
+  \item No closed-form expression for CDF.
 \end{itemize}
 \end{frame}
 
@@ -45,26 +50,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{R Commands for the Standard Normal RV}
-  \begin{block}{\texttt{dnorm} -- \small Standard Normal PDF}
-    \begin{itemize}
-      \item Mnemonic: \texttt{d} $=$ density, \texttt{norm} $=$ normal
-      \item Example: \texttt{dnorm(0)} gives height of $N(0,1)$ PDF at zero.
-    \end{itemize}
-  \end{block}
-  \pause
-  \begin{block}{\texttt{pnorm} -- \small Standard Normal CDF}
-    \begin{itemize}
-      \item Mnemonic: \texttt{p} $=$ probability, \texttt{norm} $=$ normal
-      \item Example: $\texttt{pnorm(1)} = P(X\leq 1)$ if $X\sim N(0,1)$.
-    \end{itemize}
-  \end{block}
-  \pause
-  \begin{block}{\texttt{rnorm} -- \small Simulate Standard Normal Draws}
-    \begin{itemize}
-      \item Mnemonic: \texttt{r} $=$ random, \texttt{norm} $=$ normal. 
-      \item Example: \texttt{rnorm(10)} makes ten iid $N(0,1)$ draws.
-    \end{itemize}
-  \end{block}
+
+\begin{table}
+\centering
+\fbox{\begin{tabular}{ll}
+  PDF $f(x)$& \texttt{dnorm(x)}\\
+CDF $F(x)$&\texttt{pnorm(x)}\\
+  Make \texttt{n} Random Draws & \texttt{rnorm(n)}
+\end{tabular}}
+\end{table}
+
+\begin{block}{Mnemonic}
+  \begin{itemize}
+    \item \texttt{norm} = ``Normal'' 
+    \item \texttt{d} = ``density''
+    \item \texttt{p} = ``probability'' 
+    \item \texttt{r} = ``random.''
+  \end{itemize}
+\end{block}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -80,17 +84,19 @@ Add a knitr frame giving examples\dots
 \section{Linear Combinations and the $N(\mu, \sigma^2)$ RV}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{$N(\mu, \sigma^2)$ RV = Linear Function of $N(0,1)$ RV}
-  \begin{block}{Definition}
-    Let $X \sim N(0,1)$. 
-    If $Y = \mu + \sigma X$ where $\mu,\sigma$ are constants, we say that $Y$ is a $N(\mu, \sigma^2)$ RV.
+  \frametitle{$Y \sim N(\mu, \sigma^2)$ Random Variable}
+
+  \begin{block}{Linear Function of $N(0,1)$}
+    Let $X \sim N(0,1)$ and define $Y = \mu + \sigma X$ where $\mu,\sigma$ are constants. 
   \end{block}
-  \begin{block}{Properties of $N(\mu, \sigma^2)$ RV}
+
+
+  \begin{block}{Properties of $N(\mu, \sigma^2)$}
     \begin{itemize}
-      \item Parameters: $\mu$, and $\sigma^2$.
-      \item Symmetric and bell-shaped. 
+      \item Parameters: $\mu$, $\sigma^2$.
       \item Support Set $=(-\infty,\infty)$
-      \item $N(0,1)$ is the special case where $\mu=0$ and $\sigma^2 = 1$. 
+      \item PDF symmetric about $\mu$, bell-shaped. 
+      \item Special case: $N(0,1)$ has $\mu=0$ and $\sigma^2 = 1$. 
     \end{itemize}
   \end{block}
 
@@ -129,18 +135,15 @@ Black $\sigma^2=1$,
 
 \begin{frame}
 \frametitle{Linear Function of Normal RV is a Normal RV}
+\framesubtitle{Let $a,b$ be constants with $b \neq 0$}
 
+\[
+  \boxed{X \sim N(\mu, \sigma^2) \implies (a + bX) \sim N(a + b\mu, b^2 \sigma^2)}
+\]
 
-Suppose that $X \sim N(\mu, \sigma^2)$. Then if $a$ and $b$ constants,
-$$\boxed{a + bX \sim N(a + b\mu, b^2 \sigma^2)}$$
-
-\begin{block}{Important}
-	\begin{itemize}
-    \item  For \emph{any} RV $X$, $E[a + bX] = a +bE[X]$ and $Var(a +bX) = b^2 Var(X)$.
-		\item Key point: linear transformation of normal is still normal!
-    \item Linear transformation of Binomial is \emph{not} Binomial!
-	\end{itemize}
-\end{block}
+\begin{alertblock}{Key Point}
+  Linear transformation of a normal RV is \emph{also} a normal RV!
+\end{alertblock}
 
 \end{frame}
 
@@ -161,19 +164,20 @@ Suppose $X \sim N(\mu, \sigma^2)$ and let $Z = (X -\mu)/\sigma$. What is the dis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Linear Combinations of \emph{Multiple Independent} Normals}
-Let $X \sim N(\mu_x, \sigma^2_x)$ independent of $Y \sim N(\mu_y, \sigma^2_y)$. Then if $a,b,c$ are constants:
+  \framesubtitle{Let $a,b,c$ be constants and at least one of $a,b$ nonzero.} 
+
+$X \sim N(\mu_x, \sigma^2_x)$ is independent of $Y \sim N(\mu_y, \sigma^2_y)$ then
 
 $$\boxed{aX + bY +c \sim N(a\mu_x + b\mu_y + c, a^2 \sigma_x^2 + b^2 \sigma_y^2)}$$
 
 
 
-\begin{block}{Important}
+\begin{alertblock}{Key Points}
 	\begin{itemize}
 		\item Result assumes independence
-		\item Particular to Normal RV 
 		\item Extends to more than two Normal RVs
 	\end{itemize}
-\end{block}
+\end{alertblock}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,83 +195,136 @@ Let $\bar{X} = (X_1 + X_2)/2$. What is the distribution of $\bar{X}$?
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Where does the Empirical Rule come from?}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Where does the Empirical Rule come from?}
+\frametitle{The ``Empirical Rule'' Gives Probabilities for a Normal RV!}
 
 \begin{block}{Empirical Rule}
 Approximately 68\% of observations within $\mu\pm \sigma$\\
 Approximately 95\% of observations within $\mu\pm 2 \sigma$\\
 Nearly all observations within $\mu\pm 3 \sigma$
 \end{block}
+
+\vspace{1em}
+
+\begin{alertblock}{If $X \sim N(\mu, \sigma^2)$, then:}
+  \vspace{-3em}
+  \begin{align*}
+    P(\mu - \sigma \leq X \leq \mu + \sigma) &\approx 0.683\\
+  P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) &\approx 0.954\\
+  P(\mu - 3\sigma \leq X \leq \mu + 3\sigma) &\approx 0.997
+  \end{align*}
+\end{alertblock}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
 
-\begin{frame}
-\frametitle{\texttt{pnorm(1)}$\approx 0.84$}
+  \begin{alertblock}{Recall}
+    For a continuous RV, $\displaystyle P(a \leq X \leq b) = \int_{a}^b f(x)\; dx = F(b) - F(a)$
+  \end{alertblock}
 
+  \fbox{Do the calculations in R. Maybe use integrate as well}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+
+  \vspace{-3em}
 \begin{figure}
 \includegraphics[scale = 0.65]{./images/middle68_1}
 \end{figure}
+
+\vspace{-1em}
+\centering 
+\texttt{pnorm(1)}$\approx 0.84$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\texttt{pnorm(1) - pnorm(-1)}$\approx 0.84 - 0.16$}
+\begin{frame}[t,noframenumbering]
+  \vspace{-3em}
 \begin{figure}
 \includegraphics[scale = 0.65]{./images/middle68_2}
 \end{figure}
+\vspace{-1em}
+\centering
+\texttt{pnorm(1) - pnorm(-1)}$\approx 0.84 - 0.16$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\texttt{pnorm(1) - pnorm(-1)}$\approx 0.68$}
+\begin{frame}[t,noframenumbering]
+  \vspace{-3em}
 \begin{figure}
 \includegraphics[scale = 0.65]{./images/middle68_3}
 \end{figure}
+\vspace{-1em}
+\centering
+\texttt{pnorm(1) - pnorm(-1)}$\approx 0.68$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Middle 68\% of $N(0,1) \Rightarrow$ approx.\ $(-1,1)$}
+\begin{frame}[t,noframenumbering]
+  \vspace{-3em}
 \begin{figure}
 \includegraphics[scale = 0.65]{./images/normal_middle68}
 \end{figure}
+\vspace{-1em}
+\centering
+Middle 68\% of $N(0,1) \Rightarrow$ approx.\ $(-1,1)$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Suppose $X \sim N(0,1)$}
-\begin{eqnarray*}
-	P(-1 \leq X \leq 1) &=& \mbox{\texttt{pnorm(1) - pnorm(-1)}}\\
-		&\approx& 0.683
-\end{eqnarray*}
-\begin{eqnarray*}
-	P(-2 \leq X \leq 2) &=& \mbox{\texttt{pnorm(2) - pnorm(-2)}}\\
-		&\approx& 0.954
-\end{eqnarray*}
-\begin{eqnarray*}
-	P(-3 \leq X \leq 3) &=& \mbox{\texttt{pnorm(3) - pnorm(-3)}}\\
-		&\approx& 0.997
-\end{eqnarray*}
+\section{Transforming to a Standard Normal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+  \frametitle{Transforming to a Standard Normal: Example \#1}
+  \fbox{Suppose $X \sim N(\mu = 1, \sigma^2 = 4)$. What is $P(-1 \leq X \leq 3)$?}
+
+  \vspace{1em}
+
+  \begin{alertblock}{Key Point}
+    If $X \sim N(\mu, \sigma^2)$ then $\frac{X - \mu}{\sigma} \sim N(0,1)$.
+  \end{alertblock}
+
+  \begin{align*}
+    P(-1 \leq X \leq 3) &= \pause P(-2 \leq X \leq 2) \\
+    &= \pause P\left( -1 \leq \frac{X - 1}{2} \leq 1 \right)\\
+    &= \pause \texttt{pnorm(1) - pnorm(-1)}\\
+    &\approx 0.68
+  \end{align*}
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{From $N(0,1)$ to $N(\mu, \sigma^2)$ and Back Again}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What if $X \sim N(\mu, \sigma^2)$?}
-\begin{eqnarray*}
-	P(X \leq a) &=& \pause P(X - \mu \leq a - \mu)\\\\
-		&=& \pause P\left( \frac{X-\mu}{\sigma} \leq \frac{a - \mu}{\sigma} \right)\\\\
-		&=&\pause  P\left(Z \leq  \frac{a - \mu}{\sigma}\right)\\
-    &=& \texttt{pnorm}\left( \frac{a - \mu}{\sigma} \right)
-\end{eqnarray*}
-Where $Z$ is a standard normal random variable, i.e.\ $N(0,1)$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+  \frametitle{Transforming to a Standard Normal: Example \#2}
+
+  \fbox{Suppose $X \sim N(3,16)$. What is $P(X \geq 10)$?}
+
+  \vspace{1em}
+
+  \begin{alertblock}{Key Point}
+    If $X \sim N(\mu, \sigma^2)$ then $\frac{X - \mu}{\sigma} \sim N(0,1)$.
+  \end{alertblock}
+
+  \begin{align*}
+    P(X \geq 10) &= \pause 1 - P(X \leq 10)\\
+    &= \pause 1 - P(X - 3 \leq 7) \\
+    &= \pause 1 - P\left( \frac{X - 3}{4} \leq \frac{7}{4} \right)\\
+    &= \texttt{1 - pnorm(7/4)} \approx 0.04
+  \end{align*}
+
 \end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{What if $X \sim N(\mu, \sigma^2)$?}
+%\begin{eqnarray*}
+%	P(X \leq a) &=& \pause P(X - \mu \leq a - \mu)\\\\
+%		&=& \pause P\left( \frac{X-\mu}{\sigma} \leq \frac{a - \mu}{\sigma} \right)\\\\
+%		&=&\pause  P\left(Z \leq  \frac{a - \mu}{\sigma}\right)\\
+%    &=& \texttt{pnorm}\left( \frac{a - \mu}{\sigma} \right)
+%\end{eqnarray*}
+%Where $Z$ is a standard normal random variable, i.e.\ $N(0,1)$.
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
 %\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
 %Which of these equals $P\left(Z \leq (a-\mu)/\sigma\right)$ if $Z\sim N(0,1)$?
@@ -281,171 +338,326 @@ Where $Z$ is a standard normal random variable, i.e.\ $N(0,1)$.
 %\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Probability \emph{Above} a Threshold: $X \sim N(\mu, \sigma^2)$}
-\begin{eqnarray*}
-	P(X \geq b) &=&1 - P(X\leq b) =1 - P\left( \frac{X-\mu}{\sigma} \leq \frac{b-\mu}{\sigma} \right) \\ \\
-	&=& 1 - P\left( Z \leq \frac{b-\mu}{\sigma} \right) \\
-	&=& 1 -\mbox{\texttt{pnorm}}((b-\mu)/\sigma)
-\end{eqnarray*}
-Where $Z$ is a standard normal random variable.
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Suppose $X \sim N(\mu = 1, \sigma^2 = 4)$}
-What is $P(-1 \leq X \leq 3)$?
-
-\pause
-\begin{eqnarray*}
-P(-1 \leq X \leq 4) &=& P\left( -2 \leq X - 1 \leq 2\right)\\\\
-&=& P\left( -1 \leq \frac{X-1}{2} \leq 1\right)\\ \\
-	&=& P\left( -1 \leq Z \leq 1\right)\\
-	&=& \mbox{\texttt{pnorm(1)}} -  \mbox{\texttt{pnorm(-1)}}\\
-	&\approx& 0.68
-\end{eqnarray*}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Probability of an Interval: $X \sim N(\mu, \sigma^2)$}
-
-
-\begin{eqnarray*}
-	P(a \leq X \leq b) &=&  P\left( \frac{a - \mu}{\sigma} \leq \frac{X - \mu}{\sigma} \leq \frac{b-\mu}{\sigma} \right)\\ \\ 
-	&=& P\left( \frac{a - \mu}{\sigma} \leq Z \leq \frac{b-\mu}{\sigma} \right)\\ \\ 
-	&=&\ \mbox{\texttt{pnorm}}((b-\mu)/\sigma) -  \mbox{\texttt{pnorm}}((a-\mu)/\sigma)
-\end{eqnarray*}
-Where $Z$ is a standard normal random variable.
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%  \frametitle{Probability \emph{Above} a Threshold: $X \sim N(\mu, \sigma^2)$}
+%\begin{eqnarray*}
+%	P(X \geq b) &=&1 - P(X\leq b) =1 - P\left( \frac{X-\mu}{\sigma} \leq \frac{b-\mu}{\sigma} \right) \\ \\
+%	&=& 1 - P\left( Z \leq \frac{b-\mu}{\sigma} \right) \\
+%	&=& 1 -\mbox{\texttt{pnorm}}((b-\mu)/\sigma)
+%\end{eqnarray*}
+%Where $Z$ is a standard normal random variable.
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%  \frametitle{Suppose $X \sim N(\mu = 1, \sigma^2 = 4)$}
+%What is $P(-1 \leq X \leq 3)$?
+%
+%\pause
+%\begin{eqnarray*}
+%P(-1 \leq X \leq 4) &=& P\left( -2 \leq X - 1 \leq 2\right)\\\\
+%&=& P\left( -1 \leq \frac{X-1}{2} \leq 1\right)\\ \\
+%	&=& P\left( -1 \leq Z \leq 1\right)\\
+%	&=& \mbox{\texttt{pnorm(1)}} -  \mbox{\texttt{pnorm(-1)}}\\
+%	&\approx& 0.68
+%\end{eqnarray*}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Probability of an Interval: $X \sim N(\mu, \sigma^2)$}
+%
+%
+%\begin{eqnarray*}
+%	P(a \leq X \leq b) &=&  P\left( \frac{a - \mu}{\sigma} \leq \frac{X - \mu}{\sigma} \leq \frac{b-\mu}{\sigma} \right)\\ \\ 
+%	&=& P\left( \frac{a - \mu}{\sigma} \leq Z \leq \frac{b-\mu}{\sigma} \right)\\ \\ 
+%	&=&\ \mbox{\texttt{pnorm}}((b-\mu)/\sigma) -  \mbox{\texttt{pnorm}}((a-\mu)/\sigma)
+%\end{eqnarray*}
+%Where $Z$ is a standard normal random variable.
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Percentiles/Quantiles for Continuous RVs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Percentiles/Quantiles for Continuous RVs}
-\begin{block}{Quantile Function $Q(p)$ is the inverse of CDF $F(x_0)$}
-Plug in a probability $p$, get out the value of $x_0$ such that $F(x_0)=p$
+\frametitle{Quantile Function of a Continuous RV}
+\framesubtitle{Quantiles are also known as Percentiles}
+
+\begin{block}{CDF $F(x_0)$}
+  \begin{itemize}
+    \item $\displaystyle F(x_0) \equiv P(X \leq x_0) = \int_{-\infty}^{x_0} f(x)\, dx$
+    \item Input threshold $x_0$, get probability that $X \leq x_0$.
+  \end{itemize}
 \end{block}
-$$Q(p) = F^{-1}(p)$$
 
-In other words:
-	$$Q(p) = \mbox{the value of } x_0 \mbox{ such that } \int_{-\infty}^{x_0} f(x) \; dx = p$$
+\begin{alertblock}{Quantile Function $Q(p)$}
+  \begin{itemize}
+\item $Q(p) = F^{-1}(p)$
+\item Input probability $p$, get threshold $x_0$ such that $P(X\leq x_0) = p$.
+\item In other words: $\displaystyle p = \int_{-\infty}^{x_0} f(x)\, dx$ 
+  \end{itemize}
+\end{alertblock}
+
 	
-\begin{alertblock}{Inverse exists as long as $F(x_0)$ is \emph{strictly increasing}.} \end{alertblock}	
-	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{The Median of a Continuous RV}
+
+\begin{columns}
+
+
+\column{0.45\textwidth}
+\vspace{-3em}
+\begin{block}{Median $= Q(0.5)$}
+  Median is the threshold $x_0$ such that $P(X \leq x_0) = 0.5$. 
+\end{block}
+
+\begin{block}{Median of $N(\mu, \sigma^2)$ RV}
+  Normal RV is symmetric about $\mu$ so its median is $\mu$.
+\end{block}
+
+\column{0.55\textwidth}
+\vspace{-3em}
+\begin{figure}
+\centering
+\includegraphics[scale = 0.5]{./images/normal_median}
+\caption{Median of $N(0,1)$ is zero.}
+\end{figure}
+
+\end{columns}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Example: Median}
-The median of a continuous random variable is $Q(0.5)$, i.e.\ the value of $x_0$ such that 
-	$$\int_{-\infty}^{x_0} f(x)\; dx = 1/2$$
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{What is the median of a standard normal RV?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\pause
-By symmetry, $Q(0.5) = 0$. R command: \texttt{qnorm()}
-\begin{center}
-\includegraphics[scale = 0.6]{./images/normal_median}
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{90th Percentile of a Standard Normal}
-\texttt{qnorm(0.9)}$\approx 1.28$
-\begin{center}
-\includegraphics[scale = 0.6]{./images/normal90}
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \frametitle{R Commands for the Standard Normal RV}
 
-\begin{frame}
-\frametitle{Using Quantile Function to find Symmetric Intervals}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail1}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\texttt{qnorm(0.75)}$\approx 0.67$}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail2}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\texttt{qnorm(0.75)}$\approx 0.67$}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail3}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{\texttt{pnorm(0.67)-pnorm(-0.67)}$\approx$?}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail4}
-\end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\frametitle{\texttt{pnorm(0.67)-pnorm(-0.67)}$\approx 0.5$}
-Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
-\begin{center}
-\includegraphics[scale = 0.55]{./images/tail5}
-\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{95\% Central Interval for Standard Normal \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Suppose $X$ is a standard normal random variable. What value of $c$ ensures that $P(-c \leq X \leq c) \approx \alert{0.95}$?
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-  \frametitle{R Commands for \emph{Arbitrary} Normal RVs: $X \sim N(\mu, \sigma^2)$}
 \begin{table}
 \centering
 \fbox{\begin{tabular}{ll}
-  PDF $f(x)$& \texttt{dnorm(x, mean = $\mu$, sd = $\sigma$)}\\
-  Random Draws & \texttt{rnorm(n, mean = $\mu$, sd = $\sigma$)}\\
-CDF $F(x)$&\texttt{pnorm(x, mean = $\mu$,  sd = $\sigma$)}\\
-Quantile Function $Q(p)$ & \texttt{qnorm(p, mean = $\mu$,  sd = $\sigma$)}\\
+  PDF $f(x)$& \texttt{dnorm(x)}\\
+CDF $F(x)$&\texttt{pnorm(x)}\\
+\alert{Quantile Function $Q(p)$} & \alert{\texttt{qnorm(p)}}\\
+  Make \texttt{n} Random Draws & \texttt{rnorm(n)}
 \end{tabular}}
 \end{table}
-\vspace{1em}
-\alert{Notice that this means you don't have to transform $X$ to a standard normal in order to find areas under its pdf using R.}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Example: $X \sim N(0,16)$}
 
-One Way:
-			\begin{eqnarray*}
-				P(X \geq 10) &=&  1 - P(X \leq 10) = 1 - P(X /4\leq 10/4)\\
-				&=& 1 - P(Z\leq 2.5) =  1 - \mbox{\texttt{pnorm(2.5)}}\\ 
-				&\approx& 0.006
-			\end{eqnarray*}
-\pause
-An Easier Way:
-	\begin{eqnarray*}
-	P(X \geq 10) &=& 1 - P(X \leq 10)\\ 
-	&=&  1 - \texttt{pnorm(10, mean = 0, sd = 4)} \\ 
-	&\approx& 0.006
-	\end{eqnarray*}
+\begin{block}{Mnemonic}
+  \begin{itemize}
+    \item \texttt{norm} = ``Normal'' 
+    \item \texttt{d} = ``density''
+    \item \texttt{p} = ``probability'' 
+    \item \texttt{r} = ``random.''
+    \item \alert{\texttt{q} = ``quantile''}
+  \end{itemize}
+\end{block}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+  \vspace{-3em}
+\begin{center}
+\includegraphics[scale = 0.6]{./images/normal90}
+\end{center}
+
+\fbox{Do the 90th percentile the standard normal and them plug this into the CDF!}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Symmetric Intervals for the $N(0,1)$ RV}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\frametitle{If $X\sim N(0,1)$, for what $c$ is $P(-c\leq X \leq c) = 0.5$?}
+
+\vspace{-1.5em}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail1}
+\end{center}
+
+\vspace{-2em}
+\centering
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,noframenumbering]
+\frametitle{If $X\sim N(0,1)$, for what $c$ is $P(-c\leq X \leq c) = 0.5$?}
+
+\vspace{-1.5em}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail4}
+\end{center}
+
+\vspace{-2em}
+\centering
+\textcolor{blue}{50\% Probability in Blue}; \textcolor{red}{50\% Probability in Red} \\
+Boundaries of blue region are $(-c,c)$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,noframenumbering]
+\frametitle{If $X\sim N(0,1)$, for what $c$ is $P(-c\leq X \leq c) = 0.5$?}
+
+\vspace{-1.5em}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail4}
+\end{center}
+
+\vspace{-2em}
+\centering
+Symmetric Interval: \textcolor{red}{each red region has 25\% probability}\\
+Boundaries of blue region are $(-c,c)$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,noframenumbering]
+\frametitle{If $X\sim N(0,1)$, for what $c$ is $P(-c\leq X \leq c) = 0.5$?}
+
+\vspace{-1.5em}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail3}
+\end{center}
+
+\vspace{-2em}
+\centering
+Let's find the right-hand boundary: $c$ 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,noframenumbering]
+\frametitle{If $X\sim N(0,1)$, for what $c$ is $P(-c\leq X \leq c) = 0.5$?}
+
+\vspace{-1.5em}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail3}
+\end{center}
+
+\vspace{-2em}
+\centering
+\textcolor{red}{25\% Probability to the right of $c$}\\
+\textcolor{blue}{Hence, 75\% to the left of $c$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,noframenumbering]
+\frametitle{If $X\sim N(0,1)$, for what $c$ is $P(-c\leq X \leq c) = 0.5$?}
+
+\vspace{-1.5em}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail2}
+\end{center}
+
+\vspace{-2em}
+\centering
+\textcolor{blue}{For what $c$ is 75\% of the probability to the left of $c$?}\\
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,noframenumbering]
+\frametitle{If $X\sim N(0,1)$, for what $c$ is $P(-c\leq X \leq c) = 0.5$?}
+
+\vspace{-1.5em}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail2}
+\end{center}
+
+\vspace{-2em}
+\centering
+
+\fbox{\texttt{qnorm(0.75)} $\approx$ \texttt{0.67}}\\
+\pause
+\textcolor{blue}{Therefore $c = 0.67$!}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,noframenumbering]
+\frametitle{If $X\sim N(0,1)$, for what $c$ is $P(-c\leq X \leq c) = 0.5$?}
+
+\vspace{-1.5em}
+\begin{center}
+\includegraphics[scale = 0.55]{./images/tail5}
+\end{center}
+
+\vspace{-2em}
+\centering
+
+Checking our work: \pause \fbox{\texttt{pnorm(0.67) - pnorm(-0.67)} $\approx$ \texttt{0.5}} \alert{\checkmark}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{\texttt{qnorm(0.75)}$\approx 0.67$}
+%Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+%\begin{center}
+%\includegraphics[scale = 0.55]{./images/tail2}
+%\end{center}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{\texttt{qnorm(0.75)}$\approx 0.67$}
+%Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+%\begin{center}
+%\includegraphics[scale = 0.55]{./images/tail3}
+%\end{center}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\frametitle{\texttt{pnorm(0.67)-pnorm(-0.67)}$\approx$?}
+%Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+%\begin{center}
+%\includegraphics[scale = 0.55]{./images/tail4}
+%\end{center}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%\frametitle{\texttt{pnorm(0.67)-pnorm(-0.67)}$\approx 0.5$}
+%Suppose $X$ is a standard normal RV. What is the value of $c$ such that $P(-c \leq X\leq c ) = 0.5$?
+%\begin{center}
+%\includegraphics[scale = 0.55]{./images/tail5}
+%\end{center}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\begin{frame}
+%%\frametitle{95\% Central Interval for Standard Normal \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%%
+%%Suppose $X$ is a standard normal random variable. What value of $c$ ensures that $P(-c \leq X \leq c) \approx \alert{0.95}$?
+%%
+%%\end{frame}
+%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%\begin{frame}
+%%  \frametitle{R Commands for \emph{Arbitrary} Normal RVs: $X \sim N(\mu, \sigma^2)$}
+%%\begin{table}
+%%\centering
+%%\fbox{\begin{tabular}{ll}
+%%  PDF $f(x)$& \texttt{dnorm(x, mean = $\mu$, sd = $\sigma$)}\\
+%%  Random Draws & \texttt{rnorm(n, mean = $\mu$, sd = $\sigma$)}\\
+%%CDF $F(x)$&\texttt{pnorm(x, mean = $\mu$,  sd = $\sigma$)}\\
+%%Quantile Function $Q(p)$ & \texttt{qnorm(p, mean = $\mu$,  sd = $\sigma$)}\\
+%%\end{tabular}}
+%%\end{table}
+%%\vspace{1em}
+%%\alert{Notice that this means you don't have to transform $X$ to a standard normal in order to find areas under its pdf using R.}
+%%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\begin{frame}
+%%\frametitle{Example: $X \sim N(0,16)$}
+%%
+%%One Way:
+%%			\begin{eqnarray*}
+%%				P(X \geq 10) &=&  1 - P(X \leq 10) = 1 - P(X /4\leq 10/4)\\
+%%				&=& 1 - P(Z\leq 2.5) =  1 - \mbox{\texttt{pnorm(2.5)}}\\ 
+%%				&\approx& 0.006
+%%			\end{eqnarray*}
+%%\pause
+%%An Easier Way:
+%%	\begin{eqnarray*}
+%%	P(X \geq 10) &=& 1 - P(X \leq 10)\\ 
+%%	&=&  1 - \texttt{pnorm(10, mean = 0, sd = 4)} \\ 
+%%	&\approx& 0.006
+%%	\end{eqnarray*}
+%%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
