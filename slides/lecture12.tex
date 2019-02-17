@@ -65,7 +65,7 @@ CDF $F(x)$&\texttt{pnorm(x)}\\
     \item \texttt{norm} = ``Normal'' 
     \item \texttt{d} = ``density''
     \item \texttt{p} = ``probability'' 
-    \item \texttt{r} = ``random.''
+    \item \texttt{r} = ``random''
   \end{itemize}
 \end{block}
 
@@ -349,12 +349,12 @@ Middle 68\% of $N(0,1) \Rightarrow$ approx.\ $(-1,1)$
     If $X \sim N(\mu, \sigma^2)$ then $\frac{X - \mu}{\sigma} \sim N(0,1)$.
   \end{alertblock}
 
-  \begin{align*}
-    P(-1 \leq X \leq 3) &= \pause P(-2 \leq X \leq 2) \\
-    &= \pause P\left( -1 \leq \frac{X - 1}{2} \leq 1 \right)\\
-    &= \pause \texttt{pnorm(1) - pnorm(-1)}\\
-    &\approx 0.68
-  \end{align*}
+  \begin{eqnarray*}
+    P(-1 \leq X \leq 3) &=& \pause P(-2 \leq X \leq 2) \\
+    &=& \pause P\left( -1 \leq \frac{X - 1}{2} \leq 1 \right)\\
+    &=& \pause \texttt{pnorm(1) - pnorm(-1)}\\
+    &\approx& 0.68
+  \end{eqnarray*}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -369,12 +369,12 @@ Middle 68\% of $N(0,1) \Rightarrow$ approx.\ $(-1,1)$
     If $X \sim N(\mu, \sigma^2)$ then $\frac{X - \mu}{\sigma} \sim N(0,1)$.
   \end{alertblock}
 
-  \begin{align*}
-    P(X \geq 10) &= \pause 1 - P(X \leq 10)\\
-    &= \pause 1 - P(X - 3 \leq 7) \\
-    &= \pause 1 - P\left( \frac{X - 3}{4} \leq \frac{7}{4} \right)\\
-    &= \texttt{1 - pnorm(7/4)} \approx 0.04
-  \end{align*}
+  \begin{eqnarray*}
+    P(X \geq 10) &=& \pause 1 - P(X \leq 10)\\
+    &=& \pause 1 - P(X - 3 \leq 7) \\
+    &=& \pause 1 - P\left( \frac{X - 3}{4} \leq \frac{7}{4} \right)\\
+    &=& \texttt{1 - pnorm(7/4)} \approx 0.04
+  \end{eqnarray*}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

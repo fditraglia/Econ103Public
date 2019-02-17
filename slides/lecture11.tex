@@ -195,14 +195,13 @@ In other words, zero area means zero probability!
   \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
 
   \begin{block}{What is the CDF of $X$?}
-    \begin{align*}
-      F(x_0) &\equiv P(X \leq x_0) = \int_{-\infty}^{x_0} f(x)\; dx = \pause \int_{0}^{x_0} 6x(1-x) \; dx\\
-      &= \pause \left. 6\left( \frac{x^2}{2} - \frac{x^3}{3} \right)\right|_0^{x_0} = \pause 3x_0^2 - 2x_0^3 
-    \end{align*}
 
-  \pause
+    \begin{eqnarray*}
+      F(x_0) &\equiv& P(X \leq x_0) = \int_{-\infty}^{x_0} f(x)\; dx = \int_{0}^{x_0} 6x(1-x) \; dx\\  \pause
+      &=& \left. 6\left( \frac{x^2}{2} - \frac{x^3}{3} \right)\right|_0^{x_0} = 3x_0^2 - 2x_0^3 
+    \end{eqnarray*}
 
-  \vspace{2em}
+    \pause
   
   \[
     F(x_0) = \left\{
@@ -214,19 +213,19 @@ In other words, zero area means zero probability!
     \right.
   \]
 
-  \end{block}
+\end{block}
+
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-  \scriptsize
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
-\hlkwd{curve}\hlstd{(}\hlnum{6} \hlopt{*} \hlstd{x} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{x),} \hlkwc{from} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'PDF'}\hlstd{)}
-\hlkwd{curve}\hlstd{(}\hlnum{3} \hlopt{*} \hlstd{x}\hlopt{^}\hlnum{2} \hlopt{-} \hlnum{2} \hlopt{*} \hlstd{x}\hlopt{^}\hlnum{3}\hlstd{,} \hlkwc{from} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,}  \hlkwc{ylab} \hlstd{=} \hlstr{'F(x)'}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'CDF'}\hlstd{)}
+\hlkwd{curve}\hlstd{(}\hlnum{6} \hlopt{*} \hlstd{x} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{x),} \hlkwc{from} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{)}
+\hlkwd{curve}\hlstd{(}\hlnum{3} \hlopt{*} \hlstd{x}\hlopt{^}\hlnum{2} \hlopt{-} \hlnum{2} \hlopt{*} \hlstd{x}\hlopt{^}\hlnum{3}\hlstd{,} \hlkwc{from} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'F(x)'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/pdf_cdf-1} 
@@ -266,11 +265,11 @@ In other words, zero area means zero probability!
   \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
 
   \begin{block}{Differentiate CDF to get PDF}
-    \begin{align*}
-      f(x) &= \frac{d}{dx}F(x) = \frac{d}{dx} \left( 3x^2 - 2x^3 \right)\\
-      &= \pause 6x - 6x^2\\
-      &= \pause 6x(1 - x)
-    \end{align*}
+    \begin{eqnarray*}
+      f(x) &=& \frac{d}{dx}F(x) = \frac{d}{dx} \left( 3x^2 - 2x^3 \right)\\
+      &=& \pause 6x - 6x^2\\
+      &=& \pause 6x(1 - x)
+    \end{eqnarray*}
   \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -375,13 +374,13 @@ $$\mu = E[X]=\int_{-\infty}^\infty x f(x) \; dx $$
   \frametitle{Example: $f(x) = 6x(1-x)$ for $x \in [0,1]$, zero otherwise.}
 
   \small
-    \begin{align*}
-      E[X] &= \int_{-\infty}^{\infty} x f(x)\; dx =\pause \int_0^1 x \cdot 6x(1-x) =\pause \left. 6\left( \frac{x^3}{3} - \frac{x^4}{4} \right)\right|_{0}^1 = \frac{1}{2}\\ \\ 
+    \begin{eqnarray*}
+      E[X] &=& \int_{-\infty}^{\infty} x f(x)\; dx =\pause \int_0^1 x \cdot 6x(1-x) =\pause \left. 6\left( \frac{x^3}{3} - \frac{x^4}{4} \right)\right|_{0}^1 = \frac{1}{2}\\ \\ 
       \pause
-      E[X^2] &= \int_{-\infty}^{\infty} x^2 f(x)\; dx =\pause \int_0^1 x^2 \cdot 6x(1-x) = \pause \left. 6\left( \frac{x^4}{4} - \frac{x^5}{5} \right) \right|_0^1 = \frac{3}{10} \\ \\ 
+      E[X^2] &=& \int_{-\infty}^{\infty} x^2 f(x)\; dx =\pause \int_0^1 x^2 \cdot 6x(1-x) = \pause \left. 6\left( \frac{x^4}{4} - \frac{x^5}{5} \right) \right|_0^1 = \frac{3}{10} \\ \\ 
       \pause
-      Var(X) &= E[X^2] - \left(E[X]\right)^2 = \pause \frac{3}{10} - \left( \frac{1}{2} \right)^2 = 1/20 
-    \end{align*}
+      Var(X) &=& E[X^2] - \left(E[X]\right)^2 = \pause \frac{3}{10} - \left( \frac{1}{2} \right)^2 = 1/20 
+    \end{eqnarray*}
 
     \alert{Complete the algebra at home and check using \texttt{integrate} in R.}
 \end{frame}
