@@ -26,6 +26,8 @@
   \item Notation: $X \sim N(0,1)$
   \item Symmetric, Bell-shaped, $E[X]=0$, $Var[X]=1$
   \item Support Set $= (-\infty,\infty)$
+  \item For Econ 103, don't need to know formula for $N(0,1)$ PDF.
+  \item No closed-form expression for the $N(0,1)$ CDF.
 \end{itemize}
 \end{frame}
 
@@ -40,23 +42,6 @@
 
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{Standard Normal Random Variable: $N(0,1)$}
-\begin{figure}[h]
-  \centering
-  \begin{tabular}{cc}
-  \includegraphics[scale = 0.3]{./images/std_normal_PDF}
-  &  
-  \includegraphics[scale = 0.3]{./images/std_normal_CDF}
-\end{tabular}
-\end{figure}
-\begin{itemize}
-  \item There is no closed-form expression for the $N(0,1)$ CDF.
-  \item For Econ 103, don't need to know formula for $N(0,1)$ PDF.
-  \item You \emph{do need} to know the R commands\dots
-\end{itemize}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{R Commands for the Standard Normal RV}
@@ -95,21 +80,21 @@ Add a knitr frame giving examples\dots
 \section{Linear Combinations and the $N(\mu, \sigma^2)$ RV}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{The $N(\mu, \sigma^2)$ Random Variable}
-  \begin{block}{Idea}
-   Take a linear function of the $N(0,1)$ RV.
-  \end{block}
-  \begin{block}{Formal Definition}
-    \alert{$N(\mu, \sigma^2) \equiv \mu + \sigma X$} where $X \sim N(0,1)$ and $\mu, \sigma$ are constants.
+  \frametitle{$N(\mu, \sigma^2)$ RV = Linear Function of $N(0,1)$ RV}
+  \begin{block}{Definition}
+    Let $X \sim N(0,1)$. 
+    If $Y = \mu + \sigma X$ where $\mu,\sigma$ are constants, we say that $Y$ is a $N(\mu, \sigma^2)$ RV.
   \end{block}
   \begin{block}{Properties of $N(\mu, \sigma^2)$ RV}
     \begin{itemize}
-      \item Parameters: Expected Value $= \mu$, Variance $= \sigma^2$
+      \item Parameters: $\mu$, and $\sigma^2$.
       \item Symmetric and bell-shaped. 
       \item Support Set $=(-\infty,\infty)$
       \item $N(0,1)$ is the special case where $\mu=0$ and $\sigma^2 = 1$. 
     \end{itemize}
   \end{block}
+
+  \alert{What are the mean and variance of a $N(\mu, \sigma^2)$? How do we know?}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
