@@ -72,54 +72,28 @@ CDF $F(x)$&\texttt{pnorm(x)}\\
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlkwd{curve}\hlstd{(}\hlkwd{dnorm}\hlstd{(x),} \hlopt{-}\hlnum{4}\hlstd{,} \hlnum{4}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'N(0,1) PDF'}\hlstd{)}
-\hlkwd{curve}\hlstd{(}\hlkwd{pnorm}\hlstd{(x),} \hlopt{-}\hlnum{4}\hlstd{,} \hlnum{4}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'N(0,1) CDF'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/normal_plots-1} 
-\begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<normal_plots, fig.height = 3.5>>=
+par(mfrow = c(1, 2))
+curve(dnorm(x), -4, 4, main = 'N(0,1) PDF')
+curve(pnorm(x), -4, 4, main = 'N(0,1) CDF')
+par(mfrow = c(1, 1))
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{set.seed}\hlstd{(}\hlnum{1234}\hlstd{)}
-\hlstd{normal_sims} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(}\hlnum{10000}\hlstd{)}
+<<normal_draws>>=
+set.seed(1234)
+normal_sims <- rnorm(10000)
 
-\hlkwd{mean}\hlstd{(normal_sims)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.006115893
-\end{verbatim}
-\begin{alltt}
-\hlkwd{var}\hlstd{(normal_sims)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.9752143
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+mean(normal_sims)
+var(normal_sims)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{hist}\hlstd{(normal_sims,} \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/normal_hist-1} 
-
-\end{knitrout}
+<<normal_hist, fig.height = 4>>=
+hist(normal_sims, freq = FALSE)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
@@ -269,28 +243,11 @@ Nearly all observations within $\mu\pm 3 \sigma$
 
   \fbox{For a continuous RV, $\displaystyle P(a \leq X \leq b) = \int_{a}^b f(x)\; dx = F(b) - F(a)$}
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{pnorm}\hlstd{(}\hlnum{1}\hlstd{)} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{)}  \hlcom{# Approx. 68% Prob. in (-1,1)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.6826895
-\end{verbatim}
-\begin{alltt}
-\hlkwd{pnorm}\hlstd{(}\hlnum{2}\hlstd{)} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{2}\hlstd{)}  \hlcom{# Approx. 95% Prob. in (-2,2)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.9544997
-\end{verbatim}
-\begin{alltt}
-\hlkwd{pnorm}\hlstd{(}\hlnum{3}\hlstd{)} \hlopt{-} \hlkwd{pnorm}\hlstd{(}\hlopt{-}\hlnum{3}\hlstd{)}  \hlcom{# > 99% Prob. in (-3,3)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.9973002
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<empirical_rule>>=
+pnorm(1) - pnorm(-1)  # Approx. 68% Prob. in (-1,1)
+pnorm(2) - pnorm(-2)  # Approx. 95% Prob. in (-2,2)
+pnorm(3) - pnorm(-3)  # > 99% Prob. in (-3,3)
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -525,22 +482,10 @@ CDF $F(x)$&\texttt{pnorm(x)}\\
 \includegraphics[scale = 0.45]{./images/normal90}
 \end{center}
 \vspace{-2em}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{qnorm}\hlstd{(}\hlnum{0.9}\hlstd{)}  \hlcom{# 90th Percentile of Standard Normal}
-\end{alltt}
-\begin{verbatim}
-## [1] 1.281552
-\end{verbatim}
-\begin{alltt}
-\hlkwd{pnorm}\hlstd{(}\hlnum{1.281552}\hlstd{)}  \hlcom{# Check our answer using the CDF}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.9000001
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<normal90>>=
+qnorm(0.9)  # 90th Percentile of Standard Normal
+pnorm(1.281552)  # Check our answer using the CDF
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
