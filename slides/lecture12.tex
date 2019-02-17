@@ -83,10 +83,14 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{$\Phi(x_0)$ Denotes the $N(0,1)$ CDF}
-  You will sometimes encounter the notation $\Phi(x_0)$.
-  It means the same thing as $\texttt{pnorm}(x_0)$ but it's not an R command. 
+Add a knitr frame giving examples\dots
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%  \frametitle{$\Phi(x_0)$ Denotes the $N(0,1)$ CDF}
+%  You will sometimes encounter the notation $\Phi(x_0)$.
+%  It means the same thing as $\texttt{pnorm}(x_0)$ but it's not an R command. 
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Linear Combinations and the $N(\mu, \sigma^2)$ RV}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -271,24 +275,25 @@ Nearly all observations within $\mu\pm 3 \sigma$
 \begin{eqnarray*}
 	P(X \leq a) &=& \pause P(X - \mu \leq a - \mu)\\\\
 		&=& \pause P\left( \frac{X-\mu}{\sigma} \leq \frac{a - \mu}{\sigma} \right)\\\\
-		&=&\pause  P\left(Z \leq  \frac{a - \mu}{\sigma}\right)
+		&=&\pause  P\left(Z \leq  \frac{a - \mu}{\sigma}\right)\\
+    &=& \texttt{pnorm}\left( \frac{a - \mu}{\sigma} \right)
 \end{eqnarray*}
 Where $Z$ is a standard normal random variable, i.e.\ $N(0,1)$.
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
-Which of these equals $P\left(Z \leq (a-\mu)/\sigma\right)$ if $Z\sim N(0,1)$?
-	\begin{enumerate}[(a)]
-    \item $\texttt{pnorm(a)}$
-    \item $1 - \texttt{pnorm(a)}$
-    \item $\texttt{pnorm(a)}/\sigma - \mu$
-    \item $\texttt{pnorm}\left(\frac{a - \mu}{\sigma}  \right)$
-		\item None of the above.
-	\end{enumerate}
-\end{frame}
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+%Which of these equals $P\left(Z \leq (a-\mu)/\sigma\right)$ if $Z\sim N(0,1)$?
+%	\begin{enumerate}[(a)]
+%    \item $\texttt{pnorm(a)}$
+%    \item $1 - \texttt{pnorm(a)}$
+%    \item $\texttt{pnorm(a)}/\sigma - \mu$
+%    \item $\texttt{pnorm}\left(\frac{a - \mu}{\sigma}  \right)$
+%		\item None of the above.
+%	\end{enumerate}
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -302,6 +307,21 @@ Where $Z$ is a standard normal random variable.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+  \frametitle{Suppose $X \sim N(\mu = 1, \sigma^2 = 4)$}
+What is $P(-1 \leq X \leq 3)$?
+
+\pause
+\begin{eqnarray*}
+P(-1 \leq X \leq 4) &=& P\left( -2 \leq X - 1 \leq 2\right)\\\\
+&=& P\left( -1 \leq \frac{X-1}{2} \leq 1\right)\\ \\
+	&=& P\left( -1 \leq Z \leq 1\right)\\
+	&=& \mbox{\texttt{pnorm(1)}} -  \mbox{\texttt{pnorm(-1)}}\\
+	&\approx& 0.68
+\end{eqnarray*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Probability of an Interval: $X \sim N(\mu, \sigma^2)$}
 
 
@@ -312,20 +332,6 @@ Where $Z$ is a standard normal random variable.
 \end{eqnarray*}
 Where $Z$ is a standard normal random variable.
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Suppose $X \sim N(\mu, \sigma^2)$\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-What is $P(\mu - \sigma \leq X \leq \mu + \sigma)$?
-
-\pause
-\begin{eqnarray*}
-P(\mu - \sigma \leq X \leq \mu + \sigma) &=& P\left( -1 \leq \frac{X-\mu}{\sigma} \leq 1\right)\\ \\
-	&=& P\left( -1 \leq Z \leq 1\right)\\
-	&=& \mbox{\texttt{pnorm(1)}} -  \mbox{\texttt{pnorm(-1)}}\\
-	&\approx& 0.68
-\end{eqnarray*}
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Percentiles/Quantiles for Continuous RVs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -426,12 +432,12 @@ Suppose $X$ is a standard normal random variable. What value of $c$ ensures that
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \frametitle{R Commands for \emph{Arbitrary} Normal RVs}
-Let $X \sim N(\mu, \sigma^2)$ . Then we can use R to evaluate the CDF and Quantile function of $X$ as follows:
-\vspace{1em}
+  \frametitle{R Commands for \emph{Arbitrary} Normal RVs: $X \sim N(\mu, \sigma^2)$}
 \begin{table}
 \centering
 \fbox{\begin{tabular}{ll}
+  PDF $f(x)$& \texttt{dnorm(x, mean = $\mu$, sd = $\sigma$)}\\
+  Random Draws & \texttt{rnorm(n, mean = $\mu$, sd = $\sigma$)}\\
 CDF $F(x)$&\texttt{pnorm(x, mean = $\mu$,  sd = $\sigma$)}\\
 Quantile Function $Q(p)$ & \texttt{qnorm(p, mean = $\mu$,  sd = $\sigma$)}\\
 \end{tabular}}
@@ -441,12 +447,12 @@ Quantile Function $Q(p)$ & \texttt{qnorm(p, mean = $\mu$,  sd = $\sigma$)}\\
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Example from Homework: $X \sim N(0,16)$}
+\frametitle{Example: $X \sim N(0,16)$}
 
 One Way:
 			\begin{eqnarray*}
 				P(X \geq 10) &=&  1 - P(X \leq 10) = 1 - P(X /4\leq 10/4)\\
-				&=& 1 - P(Z\leq 2.5) =   1 - \Phi(2.5) =  1 - \mbox{\texttt{pnorm(2.5)}}\\ 
+				&=& 1 - P(Z\leq 2.5) =  1 - \mbox{\texttt{pnorm(2.5)}}\\ 
 				&\approx& 0.006
 			\end{eqnarray*}
 \pause
