@@ -6,7 +6,7 @@
 \usepackage{multirow}
 
 %\printanswers
-\noprintanswers
+%\noprintanswers
 
 \title{Review Questions}
 \author{Econ 103}
@@ -836,12 +836,11 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
   \item Calculate the probability that Nina passes the quiz.
 \end{parts}
 
+\fullwidth{\section*{Lecture \#10 -- Discrete RVs IV}}
 		
 \question Define the \emph{joint probability mass function} $p_{XY}$ of two discrete RVs $X$ and $Y$ and list its two key properties.
 
-\question What is the difference between a joint pmf and a marginal pmf?
-
-\question Can you calculate a marginal pmf from a joint? How? Can you calculate a joint pmf from a marginal pmf?
+\question What is the difference between a joint pmf and a marginal pmf? Can you calculate a marginal pmf from a joint? How? Can you calculate a joint pmf from a marginal pmf?
 
 \question Suppose that $X$ is a random variable with support $\{1,2\}$ and $Y$ is a random variable with support $\{0,1\}$ where $X$ and $Y$ have the following joint pmf: 
 			\begin{eqnarray*}
@@ -875,9 +874,157 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 			\end{solution}
 \end{parts}
 
+\question The question relies upon the following joint pmf: 
+			\begin{center}
+\begin{tabular}{|cc|cc|}
+\hline
+&&\multicolumn{2}{c|}{$X$}\\
+&&0 & 1\\
+\hline
+\multirow{2}{*}{$Y$}
+&1& \multicolumn{1}{|c}{0.1} & 0.2\\
+&2& \multicolumn{1}{|c}{0.3} & 0.4\\
+\hline
+\end{tabular}
+\end{center}
+\begin{parts}
+  \part Calculate the conditional pmf of $Y$ given that $X = 0$.
+  \part Calculate the conditional pmf of $X$ given that $Y = 2$.
+\end{parts}
 
+\question The question relies upon the following joint pmf: 
+			\begin{center}
+\begin{tabular}{|cc|cc|}
+\hline
+&&\multicolumn{2}{c|}{$X$}\\
+&&0 & 1\\
+\hline
+\multirow{2}{*}{$Y$}
+&1& \multicolumn{1}{|c}{0.1} & 0.2\\
+&2& \multicolumn{1}{|c}{0.3} & 0.4\\
+\hline
+\end{tabular}
+\end{center}
+\begin{parts}
+  \part Calculate $E[XY]$.
+  \part Calculate $Cov(X,Y)$.
+\end{parts}
+
+\question Prove the shortcut formula for variance: $Var(X) = E[X^2] - \left( E[X] \right)^2$.
+
+\question Prove that $Cov(X,Y) = E[XY] - E[X]E[Y]$. Hint: the steps are similar to our derivation of the shortcut formula for variance from class.
+	\begin{solution}
+	By the Linearity of Expectation,
+	\begin{eqnarray*}
+	Cov(X,Y)&=& E[(X - \mu_X)(Y-\mu_Y)]\\
+			&=& E[XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y]\\
+			&=&E[XY] - \mu_xE[Y] - \mu_Y E[X] + \mu_X \mu_Y\\
+			&=& E[XY] - \mu_X\mu_Y - \mu_Y\mu_X + \mu_X \mu_Y\\
+			&=& E[XY] - \mu_X \mu_Y\\
+			&=& E[XY] - E[X]E[Y]
+\end{eqnarray*}
+\end{solution}
+
+\question Let $X$ and $Y$ be two random variables with $Var(X) = \sigma_X^2$, $Var(Y) = \sigma_Y^2$, and $Cov(X,Y) = \sigma_{XY}$. If $a,b,c$ are constants, what is $Var(cX + bY + a)$?
+
+\question Suppose that $X$ and $Y$ are two random variables with correlation $\rho = 0.3$, and standard deviations $\sigma_X = 4$ and $\sigma_Y = 5$.
+\begin{parts}
+  \part Calculate $Cov(X,Y)$.
+  \part Let $Z = (X + Y)/2$. Calculate $Var(Z)$.
+\end{parts}
+
+\question What does it mean for a sequance of random variables $X_1, X_2, \dots, X_n$ to be ``independent and identically distributed (iid)?''
+
+\question Mark each statment as TRUE or FALSE. If FALSE, explain.
+\begin{parts}
+  \part The expected value of a sum $E[X_1 + X_2 + \dots + X_n]$ is \emph{not} in general equal to the sum of the expected values $E[X_1] + E[X_2] + \dots + E[X_n]$. But when $X_1, X_2, \dots, X_n$ are independent then the two are equal.
+  \part The variance of a sum $Var(X_1 + X_2 + \dots + X_n)$ is always equal to the sum of the variances $Var(X_1) + Var(X_2) + \dots + Var(X_n)$.
+\end{parts}
+
+\question Suppose that $X \sim \text{Binomial}(n,p)$. 
+\begin{parts}
+  \part Explain how $X$ can be defined in terms of Bernoulli$(p)$ RVs.
+  \part Using the preceding part, derive $E[X]$.
+  \part Using the preceding part, derive $Var(X)$.
+\end{parts}
+
+\question Suppose that $X \sim \text{Binomial}(9, 1/3)$ and $Y \sim \text{Binomial}(4, 1/2)$. Calculate $E[(Y - X) / 2]$. 
+
+
+
+%\question Let $X$ and $Y$ be discrete random variables and $a,b,c,d$ be constants. Prove that $Cov(a+bX, c + dY) = bd Cov(X,Y)$.
+%		\begin{solution}
+%		Let $\mu_X = E[X]$ and $\mu_Y = E[Y]$. By the linearity of expectation,
+%			\begin{eqnarray*}
+%				E[a + bX] &=& a + b\mu_X\\
+%				E[c + dY] &=& c + d\mu_Y
+%			\end{eqnarray*}
+%	Thus, we have
+%			\begin{eqnarray*}
+%				(a+bx) - E[a + bX]&=& b(x - \mu_X)\\
+%				(c + dy) - E[c + dY]&=& d(y-\mu_Y)
+%			\end{eqnarray*}
+%	Substituting these into the definition of covariance: 
+%			\begin{eqnarray*}
+%				Cov(a+bX, c+dY) &=& \sum_{x} \sum_{y} \left[b(x - \mu_X)\right]\left[d(y-\mu_Y)\right]p(x,y)\\
+%					&=&bd\sum_{x} \sum_{y} (x - \mu_X)(y-\mu_Y)p(x,y)\\
+%					&=&bd Cov(X,Y)
+%			\end{eqnarray*}
+%		\end{solution}
+%
+\fullwidth{\section*{Lecture \#11 -- Continuous RVs I}}
+
+\question If $X$ is a continuous RV and $a,b$ are constants, how do we calculate $P(a \leq X \leq b)$?
+
+\question What are the two properties of a probability density function? 
+
+\question True or False: since $f(x)$ is a probability, $0\leq f(x) \leq 1$.
+
+\question How is the PDF of a continuous RV related to its CDF?
+
+\question Suppose that $X$ is a continuous RV with support set $[-1,1]$.
+\begin{parts}
+  \part Is $2$ a possible realization of this RV?
+  \part What is $P(X = 0.5)$?
+  \part True or False: $P(X\leq 0.3) = P(X < 0.3)$. Explain.
+\end{parts}
+
+\question Let $X$ be a Uniform$(0,1)$ RV. Calculate the CDF of $X$.
+
+\question Let $X$ be a Uniform$(0,1)$ RV. Calculate $Var(X)$.
+
+\question Let $X$ be a Uniform$(a,b)$ RV. Calculate $E[X]$
+
+\question Let $X$ be a continuous RV with support $[0,1]$ and $f(x) = C x^2(1 - x)$. Find $C$.
+\begin{solution}
+  $12$
+\end{solution}
+
+\question Let $X$ be a continuous RV with support $[0,1]$ and $f(x) = 3x^2$. Find the CDF of $X$.
+
+\question Let $X$ be a continuous RV with support $[0,1]$ and $f(x) = 3x^2$. Calculate $Var(X)$.
+
+\question Let $X$ be a continuous RV with support $[0,1]$ and $f(x) = 3x^2$. Calculate the probability that $X$ takes a value in the interval $[0.2, 0.8]$.
+
+\question Let $X$ be a RV with support set $[-2,2]$ and the following CDF:
+\[
+  F(x_0) = \left\{
+  \begin{array}{rr}
+    0, & x_0 < -2\\
+    x_0/4, & -2 \leq x_0 \leq 2\\
+    1, & x_0 > 2
+  \end{array}
+  \right.
+\]
+\begin{parts}
+  \part Calculate the PDF of $X$.
+  \part Is $X$ a RV with a special name from the lecture slides? If so, which one?
+\end{parts}
+
+
+
+\fullwidth{\section*{Lecture \#12 -- Continuous RVs II}}
 
 \end{questions}
-
 
 \end{document}
