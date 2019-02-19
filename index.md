@@ -43,6 +43,7 @@ I will assign questions from some of the older exams as homework, but we will al
 Note that some of the material on past exams, in particular some of the R code, may differ slightly from what we cover this semester. 
 
 ### Midterm I
+- Spring 2019: [exam](./PracticeExams/midterm1_2019_02_19.pdf), [solutions](./PracticeExams/midterm1_2019_02_19_solutions.pdf)
 - Spring 2018: [exam](./PracticeExams/midterm1_2018_02_13.pdf), [solutions](./PracticeExams/midterm1_2018_02_13_solutions.pdf)
 - Spring 2017: [exam](./PracticeExams/midterm1_2017_02_14.pdf), [solutions](./PracticeExams/midterm1_2017_02_14_solutions.pdf)
 - Spring 2016: [exam](./PracticeExams/midterm1_2016_02_16.pdf), [solutions](./PracticeExams/midterm1_2016_02_16_solutions.pdf)
