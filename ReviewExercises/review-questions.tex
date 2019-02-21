@@ -910,6 +910,41 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
   \part Calculate $Cov(X,Y)$.
 \end{parts}
 
+\question This question relies on the following joint pmf:
+  \begin{center}
+\begin{tabular}{|cc|ccc|}
+\hline
+&&\multicolumn{3}{c|}{$Y$}\\
+&&-1 & 0 & 1\\
+\hline
+\multirow{4}{*}{$X$}
+&0& \multicolumn{1}{|c}{1/9} & 1/9& 0\\
+&1& \multicolumn{1}{|c}{2/9} & 1/9& 1/9\\
+&2& \multicolumn{1}{|c}{0} & 1/9& 2/9\\
+\hline
+\end{tabular}
+\end{center}
+\begin{parts}
+\part Calculate $p_Y(0)$.
+\begin{solution}
+  $p_X(0) = p_{XY}(0,0) + p_{XY}(1,0) + p_{XY}(2,0) = 1/3$
+\end{solution}
+\part Calculate $p_{X|Y}(2|0)$.
+\begin{solution}
+  $p_{X|Y}(0|0) = (1/9) / (1/9 + 1/9 + 1/9) = 1/3$
+\end{solution}
+\part Calculate $E[XY]$.
+\begin{solution}
+  $E[XY] = (1 \times -1 \times 2/9) + (1 \times 1 \times 1/9) + (2 \times 1 \times 2/9) = (-2 + 1 + 4)/9 = 1/3$
+\end{solution}
+\part Are $X$ and $Y$ independent? Why or why not?
+\begin{solution}
+  They are not independent: for example, if we know $Y=-1$ then $X$ cannot take on the value $2$. 
+\end{solution}
+\end{parts}
+
+
+
 \question Prove the shortcut formula for variance: $Var(X) = E[X^2] - \left( E[X] \right)^2$.
 
 \question Prove that $Cov(X,Y) = E[XY] - E[X]E[Y]$. Hint: the steps are similar to our derivation of the shortcut formula for variance from class.
@@ -923,6 +958,21 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 			&=& E[XY] - \mu_X \mu_Y\\
 			&=& E[XY] - E[X]E[Y]
 \end{eqnarray*}
+\end{solution}
+
+\question Let $X$ and $Y$ be two random variables with $E[X] = 2$ and $E[Y] = 1$. Calculate $E[X - Y]$.
+\begin{solution}
+  By the linearity of expectation: $E[X - Y] = E[X] - E[Y] = 1$. 
+\end{solution}
+
+\question Suppose $E[X] = 2$ and $Var(X) = 5$. Calculate $E[X^2]$.
+\begin{solution}
+  By the shortcut formula: $Var(X) = E[X^2] - \left( E[X] \right)^2$, so $E[X^2] = 9$.
+\end{solution}
+
+\question Let $X$ and $Y$ be two random variables with $Var(X) = 2$ , $Var(Y) = 1$, and $Cov(X,Y) = 0$. Calculate $Var(X - Y)$.
+\begin{solution}
+  $Var(X - Y) = Var(X) + Var(Y) - 2 Cov(X,Y) = 3$
 \end{solution}
 
 \question Let $X$ and $Y$ be two random variables with $Var(X) = \sigma_X^2$, $Var(Y) = \sigma_Y^2$, and $Cov(X,Y) = \sigma_{XY}$. If $a,b,c$ are constants, what is $Var(cX + bY + a)$?

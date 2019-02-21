@@ -1,11 +1,12 @@
 \documentclass[addpoints,12pt]{exam}
+\usepackage{todonotes}
 \usepackage{amsmath, amssymb}
 \linespread{1.1}
 \usepackage{hyperref}
 \usepackage{enumerate}
 
-%\printanswers
-\noprintanswers
+\printanswers
+%\noprintanswers
 
 \title{Extension Problems}
 \author{Econ 103}
@@ -547,26 +548,44 @@ Prove that if $X$ and $Y$ are independent, then $Cov(X,Y) = 0$.
 			\end{solution}
 	\end{parts}
 
-%\fullwidth{\section*{Lecture \#11 -- Continuous RVs I}}
-%
-%\question We say that $X \sim \text{Exponential}(\lambda)$ if $X$ has probability density function $f(x) = \lambda e^{-\lambda x}$ for $x \in [0, +\infty)$, zero otherwise, and $\lambda > 0$.
-%  As we see from its PDF, the Exponential RV has a single parameter $\lambda$ that \emph{must be positive}. 
-%  In this question you will explore some of the properties of the Exponential$(\lambda)$ RV.
-%  \begin{parts}
-%    \part Calculate the CDF.
-%    \part Calculate prob of a certain integral, both analytically and using numerical integration in R.
-%    \part Plot the PDF for some particular values of $\lambda$.
-%    \part Simulate and make histograms.
-%    \part Using the simulations, try to guess how the mean is related to $\lambda$.
-%    \part Use numerical integration to calculate the mean for particular values of Lambda.
-%    \part Hard part: calculate the mean of an arbitrary Exponential RV. Hint, you will need integration by parts.
-%  \end{parts}
-%
-%\fullwidth{\section*{Lecture \#12 -- Discrete RVs IV}}
-%
-%\question Some practice with quantile functions: calculate some, plot them, understand the relationship to a CDF.
-%
-%\question A more interesting problem involving the normal distribution\dots
+\fullwidth{\section*{Lecture \#11 -- Continuous RVs I}}
+
+\question In lecture, we examined a continuous RV called the Beta$(2,2)$. 
+More generally, we say that $X \sim \text{Beta}(\alpha, \beta)$ if $f(x) = C x^{\alpha - 1}(1 - x)^{\beta-1}$ for $x \in [0,1]$, zero otherwise. 
+In this expression, $C$ is the constant necessary to ensure that $f(x)$ integrates to one over the interval $x\in [0,1]$ while the parameters $\alpha, \beta$ are \emph{positive} constants that determine the shape of the PDF. 
+
+\todo[inline]{Maybe have them plot some examples in R, use the CDF to calculate some probabilities, work out C in some special cases?}
+  \begin{parts}
+    \part Suppose that $\alpha = 1$ and
+  \end{parts}
+The R commands for a Beta$(\alpha, \beta)$ random variable are as follows:
+\begin{center}
+  \begin{tabular}[h]{ll}
+    PDF $f(x)$ & \texttt{dbeta}$(\texttt{x}, \alpha, \beta)$\\
+    CDF $f(x)$ & \texttt{pbeta}$(\texttt{x}, \alpha, \beta)$\\
+    Make $n$ random draws & \texttt{rbeta}$(\texttt{n}, \alpha, \beta)$
+  \end{tabular}
+\end{center}
+
+
+\question We say that $X \sim \text{Exponential}(\lambda)$ if $X$ has probability density function $f(x) = \lambda e^{-\lambda x}$ for $x \in [0, +\infty)$, zero otherwise, and $\lambda > 0$.
+  As we see from its PDF, the Exponential RV has a single parameter $\lambda$ that \emph{must be positive}. 
+  In this question you will explore some of the properties of the Exponential$(\lambda)$ RV.
+  \begin{parts}
+    \part Calculate the CDF.
+    \part Calculate prob of a certain integral, both analytically and using numerical integration in R.
+    \part Plot the PDF for some particular values of $\lambda$.
+    \part Simulate and make histograms.
+    \part Using the simulations, try to guess how the mean is related to $\lambda$.
+    \part Use numerical integration to calculate the mean for particular values of Lambda.
+    \part Hard part: calculate the mean of an arbitrary Exponential RV. Hint, you will need integration by parts.
+  \end{parts}
+
+\fullwidth{\section*{Lecture \#12 -- Discrete RVs IV}}
+
+\question Some practice with quantile functions: calculate some, plot them, understand the relationship to a CDF.
+
+\question A more interesting problem involving the normal distribution\dots
 
 
 \end{questions}
