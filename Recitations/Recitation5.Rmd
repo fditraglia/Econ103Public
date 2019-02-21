@@ -1,0 +1,191 @@
+---
+title: "Recitation #5"
+date: 'February 2019'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Today's recitation is going to focus on a new R command `sample` and how to build functions. Then, combining these, we will see how to build a Binomial random variable from a Bernoulli random variable.  
+
+## Sample
+The R command `sample` simulates drawing marbles from a bowl. It turns out that there are many random experiments that can be reduced to thinking about a bowl containing different kinds of marbles, so sample is a fairly general command.
+
+The function `sample` takes three arguments: `x` is a vector containing the “marbles” in our hypothetical bowl, `size` tells R how many marbles we want to draw, and `replace` is set to `TRUE` or `FALSE` depending on whether we want to draw marbles from the bowl with replacement, which means putting the marble back after each draw, or without replacement, which means keeping each marble after we draw it and not returning it to the bowl.
+
+Let’s look at an example in which I simulate drawing two marbles from a bowl containing one red, one blue and one green marble, without replacement:
+
+```{r marbles}
+marbles <- c('red', 'blue', 'green')
+sample(x = marbles, size = 2, replace = FALSE)
+```
+
+Notice that we didn’t get any repeats since I set `replace = FALSE`.
+
+**Important**: You may get a different result than I did when you run the previous command. This is because the command `sample` simulates a random draw, meaning the result won’t be the same each time you use the command. (For those of you who know a bit more about computer science, technically they’re only pseudo-random draws, but this will suffice for Monte Carlo Simulations.)
+
+In the preceding example, `marbles` was a character vector, but we can also use `sample` with a numeric vector. This example draws 5 numbers between 1 and 10 without replacement:
+
+```{r numbers}
+numbers <- 1:10
+sample(x = numbers, size = 5, replace = FALSE)
+```
+
+**Important**: If `replace = FALSE` then `size` must be smaller than the number of elements in `x`, since we cannot draw a 'marble' more than once. 
+
+If I instead set `replace = TRUE` I can get repeats of the same number. To make repeats particularly likely, I’ll change size to 20 (note that since `replace = TRUE` we can now let `size` be larger than the number of elements in `x`):
+
+```{r replacement}
+sample(x = 1:10, size = 20, replace = TRUE)
+```
+
+**Important**: If you re-run the preceding command you will, in general, get a different result. This is because  sample carries out a random experiment:
+
+
+### Exercises
+
+(1) I’m running a prize drawing and need to select two different students from Econ 103 at random. Suppose for simplicity that I only have five students and they’re named Alice, Bob, Charlotte, Dan, and Emily. How can I use sample to make my drawing?
+
+```{r ex1, results = "hide", echo = FALSE}
+students <- c("Alice", "Bob", "Charlotte", "Dan", "Emily")
+sample(x = students, size = 2, replace = FALSE) 
+```
+
+(2) Jim is bored and loves to solve math problems for fun. (He’s a strange guy.) To pass the time, he labels ten cards with the numbers 1 through 10 and puts them in a bowl. He then draws five of these cards with replacement and calculates their sum. Use R to replicate one of Jim’s “random sums.”
+
+```{r ex2, results = "hide", echo = FALSE}
+random.numbers <- sample(x = 1:10, size = 5, replace = TRUE)
+sum(random.numbers)
+```
+
+(3) Use R to calculate the result of a die roll (assume it is a fair six sided die).
+
+```{r ex3, results = "hide", echo = FALSE}
+sample(x = 1:6, size = 1, replace = TRUE)
+```
+
+(4) What if we wanted to roll two fair, six-sided dice and compute their sum? \ \ 
+
+```{r ex4, results = "hide", echo = FALSE}
+sample(1:6, size = 1, replace = TRUE) + sample(1:6, size = 1, replace = TRUE)
+# Or a simpler way:
+dice.roll <- sample(1:6, size = 2, replace = TRUE)
+sum(dice.roll) 
+```
+
+
+### A last comment:
+There is one other argument in `sample` that is of interest to us. Up until now, we have assumed that each element is drawn with equal probability. To change this, there is a fourth argument of `sample`: `prob`. For example:
+
+```{r prob}
+p <- 0.3
+sample(0:1, size = 1, replace = TRUE, prob = c(1-p, p))
+```
+This tells `sample` to draw `0` with probability `1-p` and `1` with probability `p`. Notice that this is equivalent to one draw from a Bernoulli(*p*=0.3) random variable. 
+
+
+
+
+## Functions
+
+Functions take one or more inputs, called “arguments”, and combine them in some way to produce an output. You’ve already met a great many of the built-in R functions. Now it’s time to make some of our own. Making functions is a great way to save time by automating repetitive tasks and extend the functionality of R to make it even more useful.
+
+### A simple example: roll your own mean
+Let’s look at an example: making a function to compute the sample mean. R has a perfectly good function for calculating means, as we’ve seen, so this is mainly for illustrative purposes. I’ll call this function `mymean` to distinguish it from the built-in R function:
+
+```{r func_first}
+mymean <- function(x){
+  x <- na.omit(x)
+  x.bar <- sum(x)/length(x)
+  return(x.bar)
+}
+```
+
+Let’s walk through the above code one step at a time:
+
+1. `mymean <- function(x)` tells R to create a function that takes a single argument `x` and store it under the name `mymean`
+
+2. The curly braces `{}` enclose the function body. The function body is a set of instructions that tells R how to turn some arguments (inputs) into a desired output.
+
+3. `x <- na.omit(x)` overwrites `x` with a new vector containing all the elements of `x` that are not `NA`s. In other words, this removes missing observations. (A subtle note: doing this does not overwrite the original vector that’s passed to `mymean` as an argument – it overwrites a local copy called `x`)
+
+4. `sum(x)/length(x)` calculates the sample mean: summing up the observations and dividing by the number of observations. Notice that I did not use `na.rm = TRUE` in the sum command. If I had used it, everything still would have worked but since I already removed all the missing observations in the line above, this wasn’t necessary.
+
+5. The last part of the function is the command `return`. This indicates that our function should output or “return” the vector `x.bar`. In other words, `x.bar` is the “answer”.
+
+Lets try out the function with a made up vector, and see how it compares to the built in function `mean`.
+
+```{r compare}
+test <- c(4,3,1,6,NA,5,7)
+mymean(test)
+mean(test, na.rm = TRUE)
+```
+
+### Exercises
+
+(5) Let's start with a simple function. Write a function that can calculate the area of a square, given the length of one of its sides. The input is therefore `x`, the length of the side of the square, and the output should be the area of the square.
+
+```{r square, results = "hide", echo = FALSE}
+square <- function(x){
+  area <- x*x
+  return(area)
+}
+```
+
+(6) Similarly to the example above, create a function `myvar` which calculates the sample variance. Use the formula for sample variance:
+$$ \text{Variance} = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 $$ 
+Since we already created a function to calculate the sample mean, you may use `mymean` in your function to find the variance. Test the function using the vector `test` above. The answer should be 2.93.
+
+```{r ex5, results = "hide", echo = FALSE}
+myvar <- function(x){
+  x <- na.omit(x)
+  s.squared <- sum((x - mymean(x))^2)/(length(x) - 1)
+  return(s.squared)
+}
+myvar(test)
+var(test, na.rm = TRUE)
+```
+
+
+
+
+
+## Getting Binomial from Bernoulli
+In class we defined the Binomial(*n*,*p*) random variable as the sum of *n* independent Bernoulli(*p*) random variables. In other words, the Binomial(*n*,*p*) equals the total number of successes (ones) in *n* independent Bernoulli trials, each with probability of success (one) equal to *p*. The point of this exercise is to convince you that this definition actually makes sense and really does lead to the formulas from class.
+
+R doesn’t have a built-in function to simulate Bernoulli Random Variables since it treats them as a Binomial(n=1,p) random variable. Let’s make our own:
+```{r bernoulli}
+rbern <- function(n, p){
+  
+  sims <- sample(0:1, size = n, replace = TRUE, prob = c(1-p, p))
+  return(sims)
+  
+}
+```
+
+Test out what happens when the parameter *p* is changed, using 30 draws from the function `rbern`.
+
+```{r bern_test, results = "hide", echo = FALSE}
+rbern(30,0.1)
+rbern(30,0.9)
+```
+
+The function `rbern` returns all the individual Bernoulli draws. Recall from lecture that the Binomial RV involves taking the sum of independent Bernoulli draws. Creating a function to do this is easy: we just call `rbern` and take its sum:
+
+```{r binomial}
+rbern.sum <- function(n, p){
+  
+  sims <- rbern(n, p)
+  return(sum(sims))
+  
+}
+```
+
+It turns out that our function `rbern.sum` makes a single random draw from a Binomial(*n*,*p*) random variable. How do I know this? We constructed it exactly following the definition of the Binomial from class: draw the some Bernoullis and sum them up. 
+
+This function is equivalent to taking one draw from the built in R function `rbinom`. There are three arguments: `rbinom(n,size,prob)` where `n` is how many Binomial draws should be made, `size` is the number of indiependent Bernoulli trials, and `p` is the probability of success for each of those Bernoulli trials. 
+
+In a future recitation, we will show that by simulating many times, it can be seen that these two functions are equivalent. 
+
