@@ -838,7 +838,7 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 
 \fullwidth{\section*{Lecture \#10 -- Discrete RVs IV}}
 		
-\question Define the \emph{joint probability mass function} $p_{XY}$ of two discrete RVs $X$ and $Y$ and list its two key properties.
+%\question Define the \emph{joint probability mass function} $p_{XY}$ of two discrete RVs $X$ and $Y$ and list its two key properties.
 
 \question What is the difference between a joint pmf and a marginal pmf? Can you calculate a marginal pmf from a joint? How? Can you calculate a joint pmf from a marginal pmf?
 
@@ -892,23 +892,23 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
   \part Calculate the conditional pmf of $X$ given that $Y = 2$.
 \end{parts}
 
-\question The question relies upon the following joint pmf: 
-			\begin{center}
-\begin{tabular}{|cc|cc|}
-\hline
-&&\multicolumn{2}{c|}{$X$}\\
-&&0 & 1\\
-\hline
-\multirow{2}{*}{$Y$}
-&1& \multicolumn{1}{|c}{0.1} & 0.2\\
-&2& \multicolumn{1}{|c}{0.3} & 0.4\\
-\hline
-\end{tabular}
-\end{center}
-\begin{parts}
-  \part Calculate $E[XY]$.
-  \part Calculate $Cov(X,Y)$.
-\end{parts}
+%\question The question relies upon the following joint pmf: 
+%			\begin{center}
+%\begin{tabular}{|cc|cc|}
+%\hline
+%&&\multicolumn{2}{c|}{$X$}\\
+%&&0 & 1\\
+%\hline
+%\multirow{2}{*}{$Y$}
+%&1& \multicolumn{1}{|c}{0.1} & 0.2\\
+%&2& \multicolumn{1}{|c}{0.3} & 0.4\\
+%\hline
+%\end{tabular}
+%\end{center}
+%\begin{parts}
+%  \part Calculate $E[XY]$.
+%  \part Calculate $Cov(X,Y)$.
+%\end{parts}
 
 \question This question relies on the following joint pmf:
   \begin{center}
@@ -937,6 +937,7 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 \begin{solution}
   $E[XY] = (1 \times -1 \times 2/9) + (1 \times 1 \times 1/9) + (2 \times 1 \times 2/9) = (-2 + 1 + 4)/9 = 1/3$
 \end{solution}
+\part Calculate $Cov(X,Y)$
 \part Are $X$ and $Y$ independent? Why or why not?
 \begin{solution}
   They are not independent: for example, if we know $Y=-1$ then $X$ cannot take on the value $2$. 
@@ -960,7 +961,7 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 \end{eqnarray*}
 \end{solution}
 
-\question Let $X$ and $Y$ be two random variables with $E[X] = 2$ and $E[Y] = 1$. Calculate $E[X - Y]$.
+\question Let $X$ and $Y$ RVs with $E[X] = 2$ and $E[Y] = 1$. Calculate $E[X - Y]$.
 \begin{solution}
   By the linearity of expectation: $E[X - Y] = E[X] - E[Y] = 1$. 
 \end{solution}
@@ -970,14 +971,14 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
   By the shortcut formula: $Var(X) = E[X^2] - \left( E[X] \right)^2$, so $E[X^2] = 9$.
 \end{solution}
 
-\question Let $X$ and $Y$ be two random variables with $Var(X) = 2$ , $Var(Y) = 1$, and $Cov(X,Y) = 0$. Calculate $Var(X - Y)$.
+\question Let $X$ and $Y$ be RVs with $Var(X) = 2$ , $Var(Y) = 1$, and $Cov(X,Y) = 0$. Calculate $Var(X - Y)$.
 \begin{solution}
   $Var(X - Y) = Var(X) + Var(Y) - 2 Cov(X,Y) = 3$
 \end{solution}
 
-\question Let $X$ and $Y$ be two random variables with $Var(X) = \sigma_X^2$, $Var(Y) = \sigma_Y^2$, and $Cov(X,Y) = \sigma_{XY}$. If $a,b,c$ are constants, what is $Var(cX + bY + a)$?
+\question Let $X$ and $Y$ be two RVs with $Var(X) = \sigma_X^2$, $Var(Y) = \sigma_Y^2$, and $Cov(X,Y) = \sigma_{XY}$. If $a,b,c$ are constants, what is $Var(cX + bY + a)$?
 
-\question Suppose that $X$ and $Y$ are two random variables with correlation $\rho = 0.3$, and standard deviations $\sigma_X = 4$ and $\sigma_Y = 5$.
+\question Suppose that $X$ and $Y$ are two RVs with correlation $\rho = 0.3$, and standard deviations $\sigma_X = 4$ and $\sigma_Y = 5$.
 \begin{parts}
   \part Calculate $Cov(X,Y)$.
   \part Let $Z = (X + Y)/2$. Calculate $Var(Z)$.
