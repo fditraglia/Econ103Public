@@ -529,7 +529,7 @@ Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lectu
 				So we have
 					$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
 		\end{solution}
-    \part I have posted five years of daily closing stock prices for Apple (AAPL) and Google (GOOG) on my website: \texttt{http://ditraglia.com/econ103/closing\_prices.csv}.
+    \part I have posted five years of daily closing stock prices for Apple (AAPL) and Google (GOOG) on my website: \url{http://ditraglia.com/econ103/closing\_prices.csv}.
     Write code to read this data into R and store it in a dataframe called \texttt{prices}.
     \begin{solution}
       \begin{verbatim}
@@ -573,7 +573,7 @@ gives approximately 0.54, so we should invest \$54 in Google and \$46 in Apple.
 %			\end{solution}
 	\end{parts}
 
-%\fullwidth{\section*{Lecture \#11 -- Continuous RVs I}}
+  \fullwidth{\section*{No extension problems for Lecture \#11}}
 
 %\question In lecture, we examined a continuous RV called the Beta$(2,2)$. 
 %More generally, we say that $X \sim \text{Beta}(\alpha, \beta)$ if $f(x) = C x^{\alpha - 1}(1 - x)^{\beta-1}$ for $x \in [0,1]$, zero otherwise. 
@@ -591,27 +591,118 @@ gives approximately 0.54, so we should invest \$54 in Google and \$46 in Apple.
 %    Make $n$ random draws & \texttt{rbeta}$(\texttt{n}, \alpha, \beta)$
 %  \end{tabular}
 %\end{center}
-%
-%
-%\question We say that $X \sim \text{Exponential}(\lambda)$ if $X$ has probability density function $f(x) = \lambda e^{-\lambda x}$ for $x \in [0, +\infty)$, zero otherwise, and $\lambda > 0$.
-%  As we see from its PDF, the Exponential RV has a single parameter $\lambda$ that \emph{must be positive}. 
-%  In this question you will explore some of the properties of the Exponential$(\lambda)$ RV.
+
+
+%\question We say that $X \sim \text{Exponential}(\lambda)$ if $X$ has probability density function $f(x) = \lambda e^{-\lambda x}$ for $x \in [0, +\infty)$, zero otherwise, where the parameter $\lambda$ is positive.
 %  \begin{parts}
-%    \part Calculate the CDF.
-%    \part Calculate prob of a certain integral, both analytically and using numerical integration in R.
-%    \part Plot the PDF for some particular values of $\lambda$.
-%    \part Simulate and make histograms.
-%    \part Using the simulations, try to guess how the mean is related to $\lambda$.
-%    \part Use numerical integration to calculate the mean for particular values of Lambda.
-%    \part Hard part: calculate the mean of an arbitrary Exponential RV. Hint, you will need integration by parts.
+%    \part Show that the CDF of an Exponential$(\lambda)$ RV is $F(x_0) = 1 - e^{-\lambda x_0}$ for $x_0 > 0$, zero otherwise.
+%    \begin{solution}
+%      Taking $u = -\lambda x$ so that $du = -\lambda$, we have
+%      \begin{align*}
+%        \int \lambda e^{-\lambda x}\, dx = -\int e^{u} du = - e^u = -e^{-\lambda x} 
+%      \end{align*}
+%      Therefore,
+%      \[
+%        F(x_0) = \int_{-\infty}^{x_0} f(x)\, dx = \int_{0}^{x_0} \lambda e^{-\lambda x}\, dx = \left.-e^{-\lambda x}\right|_0^{x_0} = 1 - e^{-\lambda x_0}
+%      \]
+%      for $x_0 \geq 0$, zero otherwise.
+%    \end{solution}
+%    \part Use integration by parts to show that the expected value of an Exponential$(\lambda)$ RV equals $1/\lambda$.
+%    (Hint: set $u = x$.)
+%    \begin{solution}
+%      Take $u = x$ and $dv = \lambda e^{-\lambda x}dx$.
+%      Then, $v = -e^{-\lambda x}$, and hence
+%      \begin{align*}
+%        \int x \lambda e^{-\lambda x} \, dx &= -xe^{-\lambda x} - \int \left( -e^{-\lambda x}\right) dx = \int e^{-\lambda x}\,dx - xe^{-\lambda x} \\
+%        &= -e^{-\lambda x}/\lambda - xe^{-\lambda x}
+%  \end{align*}
+%  Therefore,
+%      \begin{align*}
+%        E[X] &= \int_{-\infty}^{\infty} x f(x) \, dx = \int_{0}^{\infty} x \lambda e^{-\lambda x} \, dx = \left. \left(\frac{-e^{-\lambda x}}{\lambda} - xe^{-\lambda x}\right)\right|_{0}^{\infty}\\
+%        &= 
+%      \end{align*}
+%    \end{solution}
 %  \end{parts}
-%
-%\fullwidth{\section*{Lecture \#12 -- Discrete RVs IV}}
-%
-%\question Some practice with quantile functions: calculate some, plot them, understand the relationship to a CDF.
-%
-%\question A more interesting problem involving the normal distribution\dots
-%
+
+\fullwidth{\section*{Lecture \#12 -- Continuous RVs II}}
+
+
+\question Suppose that $X$ is continuous RV with PDF $f(x) = 3x^2$ for $x \in [0,1]$, zero otherwise.
+  Calculate the median of $X$.
+  \begin{solution}
+    To answer this question, we need to derive the quantile function of $X$.
+    Since $Q(p)$ is simply the \emph{inverse} of the CDF, we first need to derive $F(x_0)$.
+    We have:
+    \[
+      F(x_0) \equiv \int_{-\infty}^{x_0} f(x) \,dx = \int_{0}^{x_0} 3x^2\, dx = x_0^3
+    \]
+    for $x_0 \in [0,1]$, $F(x_0) = 0$ for $x_0 < 0$ and $F(x_0) = 1$ for $x_0 > 1$.
+    Hence the quantile function of $X$ is $Q(p) = F^{-1}(p) = \sqrt[3]{p}$.
+    To find the median of $X$, we simply evaluate this at $p = 0.5$, yielding $\text{median} = \sqrt[3]{0.5} \approx 0.79$.
+  \end{solution}
+
+
+  \question Students applying for a job at a consulting firm are required to take two tests. 
+  For a given applicant, scores on the two tests can be viewed as random variables: $X$ and $Y$. 
+  From information on past applicants, we know that both tests have means equal to 50, and standard deviations equal to 10.
+  The correlation between scores on the two tests is 0.62.
+  Let $Z = X + Y$ denote an applicant's combined score.
+  \begin{parts}
+    \part Calculate $E[Z]$
+    \begin{solution}
+      $E[Z] = E[X + Y] = E[X] + E[Y] = 50 + 50 = 100$
+    \end{solution}
+    \part Calculate $Var(Z)$.
+    \begin{solution}
+      \begin{align*}
+        \mbox{Var}(Z) &= Var(X + Y) = Var(X) + Var(Y) + 2 Cov(X,Y)\\
+        &= 10^2 + 10^2 + 2 \sigma_X \sigma_Y \rho_{XY}\\
+        &= 200 + 2 \times 10 \times 10 \times 0.62 = 324
+      \end{align*}
+    \end{solution}
+    \part Only students whose combined score is at least 136 are hired.
+    If $Z$ is normally distributed, approximately what percentage of applicants applicants will be hired?
+    \begin{solution}
+      From the preceding parts $\mu_Z = 100$ and $\sigma_Z = \sqrt{324} = 18$.
+      Hence,
+      \begin{align*}
+        P(Z > 136) &= 1 - P(Z \leq 136) = 1 - P\left( \frac{Z - 100}{18} \leq \frac{136 - 100}{18} \right)\\
+        &= 1 - P\left( \frac{Z - 100}{18} \leq 2 \right) = 1 - \texttt{pnorm(2)} \approx 0.025
+      \end{align*}
+      So about 2.5\% of applicants will be hired.
+    \end{solution}
+    \part Continuing under the assumption that $Z$ is normally distributed, as in the preceding part, suppose the firm wanted to hire the top 16\% of applicants.
+    Approximately what cutoff should they use for each applicant's combined score?
+    \begin{solution}
+      We need to find $c$ such that $P(Z > c) = 0.25$.
+      Using the same reasoning as in the preceding solution,
+      \[
+        P(Z > c) = 1 - P\left( \frac{Z - 100}{18} \leq \frac{c - 100}{18} \right) = 0.16
+      \]
+      and hence
+      \[
+        1 - \texttt{pnorm}\big( (c - 100)/18 \big) = 0.16
+      \]
+      Rearranging,
+      \[
+        \texttt{pnorm}\big( (c - 100)/18 \big) = 0.84
+      \]
+      Since \texttt{pnorm} and \texttt{qnorm} are inverses of each other,
+      if we apply them to both sides, we get
+      \[
+        (c - 100)/18 = \texttt{qnorm}(0.84)
+      \]
+      Here's another way of saying the same thing: we need to choose $c$ so that $\texttt{pnorm}\big( (c - 100)/18 \big) = 0.84$ which means that $(c - 100)/18$ needs to be the $0.84$ quantile of the standard normal distribution. 
+      Since $\texttt{qnorm}(0.84) \approx 1$, we have
+      \begin{align*}
+        (c - 100) / 18 &\approx 1 \\
+        c - 100 &\approx 18\\
+        c &\approx 118
+      \end{align*}
+      So the firm should lower their cutoff from 136 to about 118 if they want to hire the top 16\% of applicants.
+    \end{solution}
+  \end{parts}
+
 
 \end{questions}
 
