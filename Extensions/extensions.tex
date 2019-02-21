@@ -5,7 +5,7 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 
-\printanswers
+%\printanswers
 %\noprintanswers
 
 \title{Extension Problems}
@@ -470,6 +470,7 @@ An alternative way to solve this problem is to ``pretend'' that $n$ is continuou
 
 \question Let $X$ and $Y$ be discrete random variables.
 Prove that if $X$ and $Y$ are independent, then $Cov(X,Y) = 0$. 
+Hint: write out the definition of covariance for two discrete RVs in terms of a double sum, and use independence to substitute $p_{XY}(x,y) = p_X(x)p_Y(y)$.
 \begin{solution}
 \begin{eqnarray*}
 	Cov(X,Y) &=& E[(X-\mu_X)(Y-\mu_Y)]\\
@@ -482,31 +483,20 @@ Prove that if $X$ and $Y$ are independent, then $Cov(X,Y) = 0$.
 \end{eqnarray*}
 \end{solution}
 
-
-%\question Let $X$ and $Y$ be discrete random variables and $a,b,c$ be constants. Prove that $E[aX + bY + c] = aE[X] + bE[Y]+c$. Hint: the steps are similar to slide 27 of Lecture \#8, but you'll have a \emph{double sum} over $x$ and $y$.  
-%\begin{solution}
-%
-%\begin{eqnarray*}
-%	E[aX+bY+c] &=& \sum_x \sum_y (ax+by+c) p(x,y) \\
-%		&=& \sum_x \sum_y\left[ axp(x,y) + byp(x,y) + cp(x,y)\right]\\
-%		&=& a \sum_x \sum_y xp(x,y) + b\sum_y \sum_x y p(x,y) + c \sum_y \sum_x  p(x,y) \\
-%		&=& a \sum_x \sum_y xp(x,y) + b\sum_y \sum_x y p(x,y) + c\\
-%				&=& a \sum_{x} x \left(\sum_{y} p(x,y)\right) + b\sum_{y} y \left(\sum_{x}  p(x,y)\right) + c\\
-%		&=& a\sum_x x p(x) + b\sum_y y  p(y)+c\\
-%		&=& aE[X] + bE[Y] + c
-%\end{eqnarray*}
-%\end{solution}
-
+\question Let $a, b, c$ be constants and $X,Y$ be RVs.
+Show that:
+\[Var(aX + bY + c) = a^2 Var(X) + b^2 Var(Y) + c.\]
+Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lecture.
 
 \question Let $X_1$ be a random variable denoting the returns of stock 1, and $X_2$ be a random variable denoting the returns of stock 2. Accordingly let $\mu_1 = E[X_1]$, $\mu_2 = E[X_2]$, $\sigma_1^2 = Var(X_1)$, $\sigma_2^2 = Var(X_2)$ and $\rho = Corr(X_1, X_2)$. A \emph{portfolio}, $\Pi$,  is a linear combination of $X_1$ and $X_2$ with weights that sum to one, that is $\Pi(\omega) = \omega X_1 + (1-\omega)X_2$, indicating the proportions of stock 1 and stock 2 that an investor holds. In this example, we require $\omega \in [0,1]$, so that \emph{negative} weights are not allowed. (This rules out short-selling.) 
 	\begin{parts}
-		\part Calculate $E[\Pi(\omega)]$ in terms of $\omega$, $\mu_1$ and $\mu_2$.
-			\begin{solution}
-				\begin{eqnarray*}
-					E[\Pi(\omega)] &=& E[\omega X_1 + (1-\omega) X_2] = \omega E[X_1] + (1-\omega) E[X_2]\\
-						&=& \omega \mu_1 + (1-\omega) \mu_2
-				\end{eqnarray*}
-			\end{solution}
+		%\part Calculate $E[\Pi(\omega)]$ in terms of $\omega$, $\mu_1$ and $\mu_2$.
+		%	\begin{solution}
+		%		\begin{eqnarray*}
+		%			E[\Pi(\omega)] &=& E[\omega X_1 + (1-\omega) X_2] = \omega E[X_1] + (1-\omega) E[X_2]\\
+		%				&=& \omega \mu_1 + (1-\omega) \mu_2
+		%		\end{eqnarray*}
+		%	\end{solution}
 		%\part If $\omega \in [0,1]$ is it possible to have $E[\Pi(\omega)]>\mu_1$ \emph{and} $E[\Pi(\omega)]>\mu_2$? What about $E[\Pi(\omega)]<\mu_1$ and $E[\Pi(\omega)]<\mu_2$? Explain.
 		%	\begin{solution}
 		%	No. If short-selling is disallowed, the portfolio expected return must be between $\mu_1$ and $\mu_2$.
@@ -515,7 +505,7 @@ Prove that if $X$ and $Y$ are independent, then $Cov(X,Y) = 0$.
 		%	\begin{solution}
 		%		$Cov(X,Y) = \rho \sigma_1 \sigma_2$
 		%	\end{solution}
-		\part What is $Var[\Pi(\omega)]$? (Your answer should be in terms of $\rho$, $\sigma_1^2$ and $\sigma_2^2$.)
+		\part Express $Var[\Pi(\omega)]$ in terms of $\rho$, $\sigma_1^2$ and $\sigma_2^2$.
 			\begin{solution}
 				\begin{eqnarray*}
 					Var[\Pi(\omega)] &=& Var[\omega X_1 + (1-\omega) X_2]\\
@@ -523,9 +513,10 @@ Prove that if $X$ and $Y$ are independent, then $Cov(X,Y) = 0$.
 					&=&\omega^2 \sigma_1^2 + (1-\omega)^2\sigma_2^2 + 2\omega (1-\omega)\rho \sigma_1 \sigma_2 
 				\end{eqnarray*}
 			\end{solution}
-		\part Using part (d) show that the value of $\omega$ that minimizes $Var[\Pi(\omega)]$ is
-			$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
-			In other words, $\Pi(\omega^*)$ is the \emph{minimum variance portfolio}. 
+		\part Find the value of $\omega^*$ that minimizes $Var[\Pi(\omega)]$.
+    You do not have to check the second order condition.
+			%$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
+			In finance, $\Pi(\omega^*)$ is called the \emph{minimum variance portfolio}. 
 		\begin{solution}
 			The First Order Condition is:
 				$$2\omega \sigma_1^2 - 2(1-\omega)\sigma_2^2 + (2 - 4\omega)\rho \sigma_1\sigma_2=0$$
@@ -538,55 +529,89 @@ Prove that if $X$ and $Y$ are independent, then $Cov(X,Y) = 0$.
 				So we have
 					$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
 		\end{solution}
-    \part \emph{Optional Part}: check the second order condition from part (e).
-			\begin{solution}
-							The second derivative is
-				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2$$
-				and, since $\rho=1$ is the largest possible value for $\rho$,
-				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2 \geq 2\sigma_1^2 - 2\sigma_2^2 - 4\sigma_1\sigma_2 = 2(\sigma_1 - \sigma_2)^2 \geq 0$$
-				so the second derivative is positive, indicating a minimum. This is a global minimum since the problem is quadratic in $\omega$.
-			\end{solution}
+    \part I have posted five years of daily closing stock prices for Apple (AAPL) and Google (GOOG) on my website: \texttt{http://ditraglia.com/econ103/closing\_prices.csv}.
+    Write code to read this data into R and store it in a dataframe called \texttt{prices}.
+    \begin{solution}
+      \begin{verbatim}
+prices <- read.csv('http://ditraglia.com/econ103/closing_prices.csv)
+      \end{verbatim}
+    \end{solution}
+    \part If $P_{t}$ is today's closing price and $P_{t-1}$ is yesterday's closing price, then we define the \emph{log daily return} as $\log(P_{t}) - \log(P_{t-1})$ where $\log$ denotes the natural logarithm.
+    Write R code that uses \texttt{prices} to create two vectors \texttt{apple\_returns} and \texttt{google\_returns} containing \emph{log returns} for Apple and Google respectively. 
+    The R function for natural logarithms is \texttt{log} while \texttt{diff} takes successive \emph{differences} of a vector.
+    \begin{solution}
+\begin{verbatim}
+google_returns <- diff(log(prices$GOOG))
+apple_returns <- diff(log(prices$APPL))
+\end{verbatim}
+    \end{solution}
+    \part Using \texttt{apple\_returns} and \texttt{google\_returns}, write R code to compute the sample standard deviation of Apple and Google daily log returns, along with the sample correlation between them.
+    \begin{solution}
+\begin{verbatim}
+s1 <- sd(google_returns)
+s2 <- sd(apple_returns)
+r <- cor(google_returns, apple_returns)
+\end{verbatim}
+    \end{solution}
+    \part Suppose we make the assumption that \emph{future} Apple and Google returns are random variables with the standard deviations and correlation equal to the values you computed in the preceding part.
+    If we have \$100 and wish to invest in these two companies, how much money should we allocate to Apple and Google stock to minimize the variance of our portfolio? 
+    (If we take variance as a measure of risk, this problem is asking you to calculate the ``safest'' portfolio.)
+    \begin{solution}
+      The formula from part (b)
+\begin{verbatim}
+wstar <- (s2^2 - r * s1 * s2) / (s1^2 + s2^2 - 2 * r * s1 * s2)
+\end{verbatim}
+gives approximately 0.54, so we should invest \$54 in Google and \$46 in Apple.
+\end{solution}
+%    \part \emph{Optional Part}: if you'd like an extra challenge, check the second order condition from part (b) above.
+%			\begin{solution}
+%							The second derivative is
+%				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2$$
+%				and, since $\rho=1$ is the largest possible value for $\rho$,
+%				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2 \geq 2\sigma_1^2 - 2\sigma_2^2 - 4\sigma_1\sigma_2 = 2(\sigma_1 - \sigma_2)^2 \geq 0$$
+%				so the second derivative is positive, indicating a minimum. This is a global minimum since the problem is quadratic in $\omega$.
+%			\end{solution}
 	\end{parts}
 
-\fullwidth{\section*{Lecture \#11 -- Continuous RVs I}}
+%\fullwidth{\section*{Lecture \#11 -- Continuous RVs I}}
 
-\question In lecture, we examined a continuous RV called the Beta$(2,2)$. 
-More generally, we say that $X \sim \text{Beta}(\alpha, \beta)$ if $f(x) = C x^{\alpha - 1}(1 - x)^{\beta-1}$ for $x \in [0,1]$, zero otherwise. 
-In this expression, $C$ is the constant necessary to ensure that $f(x)$ integrates to one over the interval $x\in [0,1]$ while the parameters $\alpha, \beta$ are \emph{positive} constants that determine the shape of the PDF. 
-
-\todo[inline]{Maybe have them plot some examples in R, use the CDF to calculate some probabilities, work out C in some special cases?}
-  \begin{parts}
-    \part Suppose that $\alpha = 1$ and
-  \end{parts}
-The R commands for a Beta$(\alpha, \beta)$ random variable are as follows:
-\begin{center}
-  \begin{tabular}[h]{ll}
-    PDF $f(x)$ & \texttt{dbeta}$(\texttt{x}, \alpha, \beta)$\\
-    CDF $f(x)$ & \texttt{pbeta}$(\texttt{x}, \alpha, \beta)$\\
-    Make $n$ random draws & \texttt{rbeta}$(\texttt{n}, \alpha, \beta)$
-  \end{tabular}
-\end{center}
-
-
-\question We say that $X \sim \text{Exponential}(\lambda)$ if $X$ has probability density function $f(x) = \lambda e^{-\lambda x}$ for $x \in [0, +\infty)$, zero otherwise, and $\lambda > 0$.
-  As we see from its PDF, the Exponential RV has a single parameter $\lambda$ that \emph{must be positive}. 
-  In this question you will explore some of the properties of the Exponential$(\lambda)$ RV.
-  \begin{parts}
-    \part Calculate the CDF.
-    \part Calculate prob of a certain integral, both analytically and using numerical integration in R.
-    \part Plot the PDF for some particular values of $\lambda$.
-    \part Simulate and make histograms.
-    \part Using the simulations, try to guess how the mean is related to $\lambda$.
-    \part Use numerical integration to calculate the mean for particular values of Lambda.
-    \part Hard part: calculate the mean of an arbitrary Exponential RV. Hint, you will need integration by parts.
-  \end{parts}
-
-\fullwidth{\section*{Lecture \#12 -- Discrete RVs IV}}
-
-\question Some practice with quantile functions: calculate some, plot them, understand the relationship to a CDF.
-
-\question A more interesting problem involving the normal distribution\dots
-
+%\question In lecture, we examined a continuous RV called the Beta$(2,2)$. 
+%More generally, we say that $X \sim \text{Beta}(\alpha, \beta)$ if $f(x) = C x^{\alpha - 1}(1 - x)^{\beta-1}$ for $x \in [0,1]$, zero otherwise. 
+%In this expression, $C$ is the constant necessary to ensure that $f(x)$ integrates to one over the interval $x\in [0,1]$ while the parameters $\alpha, \beta$ are \emph{positive} constants that determine the shape of the PDF. 
+%
+%\todo[inline]{Maybe have them plot some examples in R, use the CDF to calculate some probabilities, work out C in some special cases?}
+%  \begin{parts}
+%    \part Suppose that $\alpha = 1$ and
+%  \end{parts}
+%The R commands for a Beta$(\alpha, \beta)$ random variable are as follows:
+%\begin{center}
+%  \begin{tabular}[h]{ll}
+%    PDF $f(x)$ & \texttt{dbeta}$(\texttt{x}, \alpha, \beta)$\\
+%    CDF $f(x)$ & \texttt{pbeta}$(\texttt{x}, \alpha, \beta)$\\
+%    Make $n$ random draws & \texttt{rbeta}$(\texttt{n}, \alpha, \beta)$
+%  \end{tabular}
+%\end{center}
+%
+%
+%\question We say that $X \sim \text{Exponential}(\lambda)$ if $X$ has probability density function $f(x) = \lambda e^{-\lambda x}$ for $x \in [0, +\infty)$, zero otherwise, and $\lambda > 0$.
+%  As we see from its PDF, the Exponential RV has a single parameter $\lambda$ that \emph{must be positive}. 
+%  In this question you will explore some of the properties of the Exponential$(\lambda)$ RV.
+%  \begin{parts}
+%    \part Calculate the CDF.
+%    \part Calculate prob of a certain integral, both analytically and using numerical integration in R.
+%    \part Plot the PDF for some particular values of $\lambda$.
+%    \part Simulate and make histograms.
+%    \part Using the simulations, try to guess how the mean is related to $\lambda$.
+%    \part Use numerical integration to calculate the mean for particular values of Lambda.
+%    \part Hard part: calculate the mean of an arbitrary Exponential RV. Hint, you will need integration by parts.
+%  \end{parts}
+%
+%\fullwidth{\section*{Lecture \#12 -- Discrete RVs IV}}
+%
+%\question Some practice with quantile functions: calculate some, plot them, understand the relationship to a CDF.
+%
+%\question A more interesting problem involving the normal distribution\dots
+%
 
 \end{questions}
 
