@@ -1080,6 +1080,82 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 
 \fullwidth{\section*{Lecture \#12 -- Continuous RVs II}}
 
+
+\question Suppose that $X$ is a $N(\mu, \sigma^2)$ RV. 
+\begin{parts}
+\item What is $E[X]$?
+\item What is $Var(X)$?
+\item What is the support set of $X$?
+\item What is the median of $X$?
+\end{parts}
+
+\question Suppose that $X \sim N(\mu, \sigma^2)$. Approximately what are the values of the following probabilities?
+\begin{parts}
+  \part $P(\mu - \sigma \leq X \leq \mu + \sigma)$
+  \part $P(\mu - 2\sigma \leq X \leq \mu + 2\sigma)$
+  \part $P(\mu - 3\sigma \leq X \leq \mu + 3\sigma)$
+\end{parts}
+
+\question Write R code to accomplish the following tasks:
+\begin{parts}
+ \item Calculate the height of the standard normal PDF at $x = 0$.
+ \item Make 10 random draws from a standard normal distribution.
+ \item Calculate the 20th percentile of a standard normal distribution.
+  \item Calculate $P(X \leq 0.5)$ if $X \sim N(0,1)$.
+\end{parts}
+
+\question Write R code to plot the PDF and CDF of a standard normal RV between -5 and 5.
+
+\question Approximately what result would you get if you entered \texttt{pnorm(1)} at the R console? Hint: use symmetry and the ``empirical rule.''
+\begin{solution}
+  $\approx 0.84$
+\end{solution}
+
+\question Suppose that $X \sim N(0,1)$. What is $E[X^2]$?
+
+\question Define the quantile function $Q(p)$ of a continuous RV $X$. How is it related to the CDF $F(x_0)$ of $X$?
+
+\question Let $X \sim N(\mu = -2, \sigma^2 = 25)$. 
+Without using R, find the approximate value of
+\[P(-12 \leq X \leq 8)\] 
+\begin{solution}
+\[
+  P(-12 \leq X \leq *) = P(-2 \leq Z \leq 2) \approx 0.95
+\]
+where $Z \sim N(0,1)$.
+\end{solution}
+
+\question Write a line of R code that calculates the probability that $P(-0.2 \leq Z \leq 0.4)$ if $Z$ is a standard normal random variable.
+
+\question Suppose that $Y \sim N(\mu = 2, \sigma^2 = 4)$. 
+\begin{parts}
+  \part Write R code to calculate $P(-1\leq Y \leq 6)$.
+  \part Write R code to calculate $P(Y \geq 6)$.
+\end{parts}
+
+\question Suppose that $Z \sim N(0,1)$. Write the line of R code you would use to find $c>0$ such that $P(-c \leq Z \leq c) = 0.8$.
+\begin{solution}
+  \texttt{qnorm(0.9)} for $c$ or \texttt{qnorm(0.1)} for $-c$
+\end{solution}
+
+
+\question Suppose that $X_1 \sim N(0,1)$ independently of $X_2 \sim N(\mu = 2, \sigma^2 = 9)$.
+\begin{parts}
+  \part What kind of RV is $\frac{1}{3}(X_2 - 2)$? Specify the values of any and all of its parameters.
+  \part What kind of random variable is $X_1 + X_2$? Specify any and all of its parameters.
+\end{parts}
+
+\question Suppose that $X_1, \dots, X_n \sim \text{ iid } N(\mu, \sigma^2)$ and define $\bar{X}_n = (X_1 + X_2 + \dots + X_n) / n$.
+What kind of RV is $\bar{X}_n$?
+Specify the values of any and all of its parameters.
+
+
+\question Suppose that $X_1, \dots, X_n \sim N(\mu_X, \sigma_X^2)$ independently of $Y_1, \dots, Y_m \sim N(\mu_Y, \sigma^2_Y)$ and define $\bar{X}_n = (X_1 + \dots + X_n)/n$ and $\bar{Y}_m = (Y_1 + \dots + Y_m)/m$.
+What kind of RV is $\bar{X}_n - \bar{Y}_m$? 
+Specify the values of any and all of its parameters.
+
+
+
 \end{questions}
 
 \end{document}
