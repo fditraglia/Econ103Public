@@ -1,0 +1,619 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{todonotes}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+%\printanswers
+%\noprintanswers
+
+\title{Extension Problems}
+\author{Econ 103}
+\date{Spring 2018}
+
+\begin{document}
+\maketitle
+
+\section*{About This Document}
+Extension problems are designed to give you a deeper understanding of the lecture material and challenge you to apply what you have learned in new settings.
+Extension problems should only be attempted \emph{after} you have completed the corresponding review problems.
+As an extra incentive to keep up with the course material, each exam of the semester will contain at least one problem taken \emph{verbatim} from the extension problems. 
+We will circulate solutions to the relevant extension problems the weekend before each exam.
+You are also welcome to discuss them with the instructor, your RI, and your fellow students at any point.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fullwidth{\section*{Lecture \#1 -- Introduction}}
+\begin{questions}
+
+\question A long time ago, the graduate school at a famous university admitted 4000 of their 8000 male applicants versus 1500 of their 4500 female applicants. 
+	\begin{parts}
+		\part Calculate the difference in admission rates between men and women. What does your calculation suggest?
+		\begin{solution}
+		The rate for men is $4000/8000 =50\%$ while that for women is $1500/4500 \approx 33\%$ so the difference is 17\%. It appears that women are less likely to be accepted to the graduate school.
+		\end{solution}
+		\part To get a better sense of the situation, some researchers broke these data down by area of study. Here is what they found:
+			\begin{center}
+			\begin{tabular}{lcc|cc}
+				&\multicolumn{2}{c|}{Men}&\multicolumn{2}{c}{Women}\\
+				&\# Applicants & \# Admitted & \# Applicants& \# Admitted\\
+				\hline
+				Arts &2000 & 400 & 3600 & 900\\
+				Sciences& 6000 & 3600 & 900 & 600\\
+				\hline
+				Totals&8000 & 4000 & 4500 & 1500\\
+				\end{tabular}
+			\end{center}
+			
+			Calculate the difference in admissions rates for men and women studying Arts. Do the same for Sciences.
+			\begin{solution}
+			For Arts, the admission rate is $400/2000=20\%$ for men versus $900/3600 = 25\%$ for women. For Sciences $3600/6000 = 60\%$ for men versus $600/900  \approx 67\%$ for women. In summary:
+				\begin{center}
+				\begin{tabular}{l|ccc}
+				&Men&Women&Difference\\
+				\hline
+				Arts&20\% & 25\%& -5\% \\
+				Sciences& 60\% & 67\% &  -7\% \\
+				\hline
+				Overall&50\% & 33\% & 17\%
+				\end{tabular}
+				\end{center}
+			\end{solution}
+		\part Compare your results from part (a) to part (b). Explain the discrepancy using what you know about observational studies.
+			\begin{solution}
+				When we compare overall rates, women are less likely to be admitted than men. In each field of study, however, women are \emph{more} likely to be admitted. In this example, field of study is a \emph{confounder}: women are disproportionately applying to study Arts and Arts have much lower admissions rates than Sciences.
+			\end{solution}
+	\end{parts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fullwidth{\section*{Lecture \#2 -- Summary Statistics I}}
+	
+\question The \emph{mean deviation} is a measure of dispersion that we did not cover in class. It is defined as follows:
+	$$MD = \frac{1}{n}\sum_{i=1}^n |x_i - \bar{x}|$$
+	\begin{parts}
+		\part Explain why this formula averages the absolute value of deviations from the mean rather than the deviations themselves.
+		\begin{solution}
+		As we showed in class, the average deviation from the sample mean is zero regardless of the dataset. Taking the absolute value is similar to squaring the deviations: it makes sure that the positive ones don't cancel out the negative ones.
+		\end{solution}
+		\part Which would you expect to be more sensitive to outliers: the mean deviation or the variance? Explain.
+		\begin{solution}
+		The variance is calculated from squared deviations. When $x$ is far from zero, $x^2$ is much larger than $|x|$ so large deviations ``count more'' when calculating the variance. Thus, the variance will be more sensitive to outliers. 
+		\end{solution}
+	\end{parts}
+
+\question Let $m$ be a constant and $x_1, \dots, x_n$ be an observed dataset.
+  \begin{parts} 
+    \part Show that $\displaystyle \sum_{i=1}^n (x_i - m)^2 = \sum_{i=1}^n x_i^2 - 2m \sum_{i=1}^n x_i + nm^2$.
+\begin{solution}
+  \begin{align*}
+    \displaystyle \sum_{i=1}^n (x_i - m)^2 &= \sum_{i=1}^n (x_i^2 - 2mx_i + m^2)\\
+    &= \sum_{i=1}^n x_i^2 - \sum_{i=1}^n 2mx_i + \sum_{i=1}^n m^2\\
+    &= \sum_{i=1}^n x_i^2 - 2m\sum_{i=1}^n x_i + nm^2
+\end{align*}
+\end{solution}
+  \part Using the preceding part, show that $\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2 = \sum_{i=1}^n x_i^2 - n\bar{x}^2$.
+  \begin{solution}
+    Solving this requires two observations.
+    First, note that $\bar{x}$ is a \emph{constant}, i.e.\ that it does not have an index of summation.
+    Second, note that $\sum_{i=1}^n x_i = n\bar{x}$.
+    Hence, taking $m = \bar{x}$ in the formula from the preceding part,
+    \begin{align*} 
+      \displaystyle\sum_{i=1}^n (x_i - \bar{x})^2 &= \sum_{i=1}^n x_i^2 - 2\bar{x} \sum_{i=1}^n x_i + n\bar{x}^2\\
+      &= \sum_{i=1}^n x_i^2 - 2\bar{x} (n\bar{x}) + n\bar{x}^2\\
+      &= \sum_{i=1}^n x_i^2 - 2n\bar{x}^2  + n\bar{x}^2\\
+      &= \sum_{i=1}^n x_i^2 - n\bar{x}^2\\
+\end{align*}
+  \end{solution}
+\end{parts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fullwidth{\section*{Lecture \#3 -- Summary Statistics II}}
+
+\question Consider a dataset $x_1, \hdots, x_n$. Suppose I multiply each observation by a constant $d$ and then add another constant $c$, so that $x_i$ is replaced by $c + dx_i$.
+	\begin{parts}
+		\part How does this change the sample mean? Prove your answer.
+			\begin{solution}
+				\begin{eqnarray*}
+					\frac{1}{n} \sum_{i=1}^n (c + dx_i)&=&\frac{1}{n} \sum_{i=1}^n c + d \left(\frac{1}{n} \sum_{i=1}^n x_i\right) = c + d\bar{x}
+				\end{eqnarray*}
+			\end{solution}
+		\part How does this change the sample variance? Prove your answer.
+		\begin{solution}
+			$$\frac{1}{n-1} \sum_{i=1}^n [(c + dx_i) - (c + d\bar{x})]^2 = \frac{1}{n-1} \sum_{i=1}^n [d(x_i - \bar{x})]^2 = d^2 s_x^2$$
+		\end{solution}
+		\part How does this change the sample standard deviation? Prove your answer.
+			\begin{solution}
+			The new standard deviation is $|d| s_x$, the positive square root of the variance.
+			\end{solution}
+		\part How does this change the sample z-scores? Prove your answer.
+			\begin{solution}
+			They are unchanged as long as $d$ is positive, but the sign will flip if $d$ is negative:
+				$$\frac{(c + d x_i) - (c + d\bar{x})}{d s_x} = \frac{d (x_i - \bar{x})}{d s_x} = \frac{x_i - \bar{x}}{s_x}$$
+			\end{solution}
+	\end{parts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{Lecture \#4 -- Regression I}}
+
+  \question Define the z-scores 
+  \[w_i = \frac{x_i - \bar{x}}{s_x}, \;\;\mbox{and }\;\; z_i = \frac{y_i - \bar{y}}{s_y}.\]
+  Show that if we carry out a regression with $z_i$ in place of $y_i$ and $w_i$ in place of $x_i$, the intercept $a^*$ will be zero while the slope $b^*$ will be $r_{xy}$, the correlation between $x$ and $y$.
+    \begin{solution}
+     All we need to do is replace $x_i$ with $w_i$ and $y_i$ with $z_i$ in the formulas we already derived for the regression slope and intercept:
+     		$$\begin{array}{lr}a = \bar{y} - b\bar{x}, & b = \displaystyle \frac{s_{xy}}{s_x^2}\end{array}$$
+     		And use the properties of z-scores from class. Let $a^*$ be the intercept for the regression with z-scores, and $b^*$ be the corresponding slope. We have:
+        $$a^* = \bar{z} - b^* \bar{w} = 0$$
+     	 	since the mean of the z-scores is zero, as we showed in class. To find the slope, we need to covariance between the z-scores, and the variance of the z-scores for $x$:
+     	 		$$b^* = \frac{s_{wz}}{s_{w}^2}$$
+     	 		But since sample variance of z-scores is always one, $b^* = s_{wz}$. Now, by the definition of the sample covariance, the fact that the mean of z-scores is zero, and the definition of a z-score:
+     	 		\begin{align*}
+     	 		s_{wz} &= \frac{1}{n-1} \sum_{i=1}^n (w - \bar{w})(z - \bar{z}) = \frac{1}{n-1} \sum_{i=1}^n z_{x_i}z_{y_i}\\
+     	 		&= \frac{1}{n-1} \sum_{i=1}^n \left(\frac{x_i - \bar{x}}{s_x}\right)\left(\frac{y_i - \bar{y}}{s_y}\right)\\
+     	 		&= r_{xy}
+     	 		\end{align*}
+    \end{solution}
+
+  \question This question concerns a phenomenon called \emph{regression to the mean}. Before attempting this problem, read Chapter 17 of \emph{Thinking Fast and Slow} by Kahneman.
+  \begin{parts}
+    \part Lothario, an unscrupulous economics major, runs the following scam. After the first midterm of Econ 103 he seeks out the students who did extremely poorly and offers to sell them ``statistics pills.'' He promises that if they take the pills before the second midterm, their scores will improve. The pills are, in fact, M\&Ms and don't actually improve one's performance on statistics exams. The overwhelming majority of Lothario's former customers, however, swear that the pills really work: their scores improved on the second midterm. What's your explanation?
+  \begin{solution}
+This is an example of regression to the mean. The students Lothario seeks out were both unprepared for the midterm \emph{and} got unlucky: the correlation between exam scores is less than one. It is very unlikely that they will be unlucky twice in a row, so their performance on the second exam will almost certainly be higher. Our best guess of their second score is closer to the mean than their first score.
+  \end{solution}
+		\part Let $\hat{y}$ denote our prediction of $y$ from a linear regression model: $\hat{y} = a + b x$ and let $r$ be the correlation coefficient between $x$ and $y$. Show that $$\frac{\hat{y} - \bar{y}}{s_y} = r \left( \frac{x - \bar{x}}{s_x}\right)$$
+			\begin{solution}
+				\begin{eqnarray*}
+					\hat{y} &=& a + bx \\
+					\hat{y}&=& (\bar{y} - b \bar{x}) + bx\\
+					\hat{y} - \bar{y} &=& b(x - \bar{x})\\
+					\hat{y} - \bar{y} &=& \frac{s_{xy}}{s_x^2}(x - \bar{x})\\
+					\hat{y} - \bar{y} &=& \frac{s_{xy}}{s_x}\left(\frac{x - \bar{x}}{s_x}\right)\\
+					\frac{\hat{y} - \bar{y}}{s_y} &=& \frac{s_{xy}}{s_x s_y}\left(\frac{x - \bar{x}}{s_x}\right)\\
+										\frac{\hat{y} - \bar{y}}{s_y} &=& r\left(\frac{x - \bar{x}}{s_x}\right)
+				\end{eqnarray*}
+			\end{solution}
+		\part Using the equation derived in (b), briefly explain``regression to the mean.''
+			\begin{solution}
+			The formula shows that unless $r$ is one or negative one, perfect positive or negative correlation, our best linear prediction of $y$ based on knowledge given $x$ is closer to the mean of the $y$-observations (relative to the standard deviation of the $y$-observations) than $x$ is to mean of the $x$-observations (relative to the standard deviation of the $x$-observations). If $x$ is very large, for example, we would predict that $y$ will be large too, but not as large.
+			\end{solution}
+	\end{parts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{No extension problems for Lecture \#5}}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fullwidth{\section*{Lecture \#6 -- Basic Probability II}}
+
+%\question This question refers to the prediction market example from lecture. Imagine it is October 2012. Let $O$ be a contract paying \$10 if Obama wins the election, zero otherwise, and $R$ be a contract paying \$10 if Romney wins the election, zero otherwise. Let $\mbox{Price}(O)$ and $\mbox{Price}(R)$ be the respective prices of these contracts.
+%	\begin{parts}
+%	\part Suppose you \emph{buy} one of each contract. What is your profit?
+%		\begin{solution}
+%			Regardless of whether Romney or Obama wins, you get \$10. Thus, your profit is $$10 - \mbox{Price}(O) - \mbox{Price}(R)$$
+%		\end{solution}
+%	\part Suppose you \emph{sell} one of each contract. What is your profit?
+%		\begin{solution}
+%			Regardless of whether Romney or Obama wins, you have to pay out \$10. Thus, your profit is $$\mbox{Price}(O) + \mbox{Price}(R) - 10$$
+%		\end{solution}
+%	 \part What must be true about $\mbox{Price}(O)$ and $\mbox{Price}(R)$, to prevent an opportunity for statistical arbitrage? 
+%	 \begin{solution}
+%	  From (a) we see that you can earn a guaranteed, risk-free profit from \emph{buying} one of each contract whenever $10 > \mbox{Price}(O) +\mbox{Price}(R)$. From (b) we see that you can earn a guaranteeed, risk-free profit by \emph{selling} one of each contract whenever $ \mbox{Price}(O) +\mbox{Price}(R) > 10$. Therefore, the only way to prevent statistical arbitrage is to have $\mbox{Price}(O) +\mbox{Price}(R) = 10$.
+%	 \end{solution}
+%	 \part How is your answer to part (c) related to the Complement Rule?
+%	 	\begin{solution}
+%	 	In class we discussed how the market price of a prediction contract can be viewed as a subjective probability assessment. To find the implied probability we divide the price of the contract by the amount that is pays out, in this case \$10. Hence, dividing through by \$10, we see that the condition from part (b) when stated in probability terms is
+%	 	$$P(O) = 1 - P(R)$$
+%	 	This is precisely the Complement Rule because $R = O^c$.
+%	 	\end{solution}
+%	 \part What is the implicit assumption needed for your answers to parts (a)--(c) to be correct? How would your answers change if we were to relax this assumption?
+%	 	\begin{solution}
+%	 	The above discussion assumes that the only possible outcomes are Obama or Romney winning the election, that is $O \cup R = S$. This is equivalent to assuming that the probability of a third-party candidate winning the election is zero. If this assumption is not true, we need to redo the above with an extra contract. Let $I$ be a contract that pays out \$10 if a third-party (i.e.\ independent) candidate wins the election, zero otherwise. Then the answers to the above become:
+%	 		\begin{enumerate}[(a)]
+%	 			\item $10 - \mbox{Price}(O) - \mbox{Price}(R) -\mbox{Price}(I) $
+%	 			\item  $\mbox{Price}(O) + \mbox{Price}(R) +\mbox{Price}(I) - 10$
+%	 			\item $\mbox{Price}(O) + \mbox{Price}(R) +\mbox{Price}(I) = 10$
+%	 			\item The Complement Rule becomes:
+%	 				$$P(I) = 1 - P(O) - P(R)$$
+%	 		\end{enumerate}
+%	 	\end{solution}
+%	 \end{parts}
+	 
+
+\question You have been entered into a very strange tennis tournament. To get the \$10,000 Grand Prize you must win at least two sets \emph{in a row} in a three-set series to be played against your Econ 103 professor and Venus Williams alternately: professor-Venus-professor or Venus-professor-Venus according to your choice. Let $p$ be the probability that you win a set against your professor and $v$ be the probability that you win a set against Venus. Naturally $p>v$ since Venus is much better than your professor! Assume that each set is independent.
+	\begin{parts}
+		\part Let W indicate win and L indicate lose, so that the sequence WWW means you win all three sets, WLW means you win the first and third set but lose the middle one, and so on. Which sequences of wins and losses land you the Grand Prize? 
+			\begin{solution}
+			To get the prize, you have to win the middle set. Thus, the only possibilities are WWW, WWL, and LWW.
+			\end{solution}
+		\part If you elect to play the middle set against Venus, what is the probability that you win the Grand Prize?
+		\begin{solution}
+		The probabilities of mutually exclusive events sum. Thus,
+				\begin{eqnarray*}
+		P(WWW) + P(LWW) + P(WWL) &=& pvp + (1-p)vp +pv(1-p)\\	
+		&=& p^2v + pv - p^2v + pv - p^2v\\
+		&=& 2pv - p^2v \\
+		&=& pv(2-p)
+		\end{eqnarray*}
+		\end{solution}
+		\part If you elect to play the middle set against your professor, what is the probability that you win the Grand prize? 
+				\begin{solution}
+		Again, the probabilities of mutually exclusive events sum. Thus,
+				\begin{eqnarray*}
+		P(WWW) + P(LWW) + P(WWL) &=& vpv + (1-v)pv +vp(1-v)\\	
+		&=&v^2 p + vp - v^2 p + vp - v^2 p\\
+		&=& 2pv -v^2p\\
+		&=& pv(2-v)
+		\end{eqnarray*}
+		\end{solution}
+	\part To maximize your chance of winning the prize, should you choose to play the middle set against Venus or your professor?
+	\begin{solution}
+	Manipulating the inequality,
+		\begin{eqnarray*}
+			p &>& v\\
+			-p &<& -v\\
+			2-p &<& 2-v\\
+			pv(2-p) &<& pv(2-v)\\
+		\end{eqnarray*}
+		You can't get the prize without winning the middle set, so it turns out that it's better to face Venus twice rather than face her in the middle set. You should elect to play the middle set against your professor.
+	\end{solution}
+  	\end{parts}
+
+\question Rossa and Rodrigo are playing their favorite game: matching pennies.
+The game proceeds as follows.
+In each round, both players flip a penny.
+If the flips match (TT or HH) Rossa gets one point; if the flips do not match (TH or HT) Rodrigo gets one point.
+The game is best of three rounds: as soon as one of the players reaches two points, the game ends and that player is declared the winner.
+Since there's a lot of money on the line and graduate students aren't paid particularly well, Rossa secretly alters each of the pennies so that the probability of heads is 2/3 rather than 1/2.
+In spite of Rossa's cheating, the individual coin flips remain independent.
+ 	\begin{parts} 
+    \part[6] Calculate the probability that Rossa will win the first round of this game.
+    \begin{solution}
+      Rossa wins a given round if either of the two mutually exclusive outcomes $HH$ or $TT$ occurs.
+      Thus:
+      $$P(\mbox{Rossa Wins}) = P(HH) + P(TT) = (2/3)^2 + (1/3)^2 = 5/9$$ 
+    \end{solution}
+    \part Calculate the probability that the game will last for a full three rounds.
+    \begin{solution}
+      We need to calculate the probability of a tie after two rounds.
+      There are two ways that a tie could occur: either Rossa wins the first round while Rodrigo wins the second, or Rodrigo wins the first round while Rossa wins the second.
+      These two events are mutually exclusive and the probability of each is $5/9 \times 4/9 = 20/81$ since successive coin flips are independent.
+      Thus, the desired probability is $40/81$.
+    \end{solution}
+    \part Calculate the probability that Rodrigo will win the game.
+    \begin{solution}
+      Rodrigo needs to win two rounds to win the game. 
+      There are three ways this can happen.
+      First, Rodrigo could win both rounds 1 and 2, in which case no third round is played.
+      The probability of this event is $4/9 \times 4/9 = 16/81$.
+      Second Rodrigo could lose round 1 but win rounds 2 and 3.
+      The probability of this event is $5/9 \times 4/9 \times 4/9 = 80/729$.
+      Finally, Rodrigo could lose round 2 but win rounds 1 and 3.
+      The probability of this event is $4/9 \times 5/9 \times 4/9 = 80/729$.
+      Summing these probabilities, since their corresponding events are mutually exclusive, the probability that Rodrigo wins the game is $304/729\approx 0.417$.
+    \end{solution}
+    \part Yiwen is walking down the hallway and sees Rodrigo doing his victory dance: clearly Rossa has lost in spite of rigging the game.
+    Given that Rodrigo won, calculate the probability that the game lasted for three rounds.
+    \begin{solution}
+      By the definition of conditional probability,
+      \begin{equation*}
+        P(\mbox{3 Rounds}|\mbox{Rodrigo Won}) = \frac{P(\mbox{3 Rounds} \cap \mbox{Rodrigo Won})}{P(\mbox{Rodrigo Won})}
+      \end{equation*}
+      We already calculated the denominator in the preceding part: it equals $304/729$.
+      To calculate the numerator we simply add up the probabilities of the two mutually exclusive ways in which Rodrigo could win in three rounds: (Win, Lose, Win) and (Lose, Win, Win).
+      We calculated these probabilities in the preceding part: both were $80/729$ so the numerator is $160/729$.
+      Taking the ratio of these gives $160/304 \approx 0.526$.
+      Given that Rodrigo won, it is slightly more likely than not that the game lasted for a full three rounds.
+    \end{solution}
+ 	\end{parts}
+
+\fullwidth{\section*{Lecture \#7 -- Basic Probability III / Discrete RVs I}}
+
+\question A plane has crashed in one of three possible locations: the mountains ($M$), the desert ($D$), or the sea ($S$).
+Based on its flight path, experts have calculated the following prior probabilities that the plane is in each location: $P(M) = 0.5$, $P(D) = 0.3$ and $P(S) = 0.2$.
+If we search the mountains then, given that the plane is actually there, we have a 30\% chance of \emph{failing} to find it.
+If we search the desert then, given that the plane is actually there, we have a 20\% chance of \emph{failing} to find it.
+Finally, if we search the sea then, given that the plane is actually there, we have a 90\% chance of \emph{failing} to find it. 
+Naturally if the plane is \emph{not} in a particular location but we search for it there, we will not find it.
+You may assume that searches in each location are independent.
+Let $F_M$ be the event that we \emph{fail} to find the plane in the mountains.
+Define $F_D$ and $F_S$ analogously.
+\begin{parts}
+  \part We started by searching the mountains.
+  We did not find the plane.
+  What is the conditional probability that the plane is nevertheless in the mountains?
+  Explain.
+  \begin{solution}
+    By Bayes' Rule: $P(M|F_M) = P(F_M|M)P(M)/P(F_M)$.
+    We first calculate the denominator using the Law of Total Probability:
+    \begin{eqnarray*}
+      P(F_M) &=&  P(F_M|M)P(M) + P(F_M|M^C)P(M^C) \\
+      &=& 0.3 \times 0.5 + 1 \times 0.5 = 0.15 + 0.5 = 0.65
+    \end{eqnarray*}
+    Hence, the desired probability is $15/65 = 3/13 \approx 0.23$.
+  \end{solution}
+\part After failing to find the plane in the mountains, we searched the desert, and the sea.
+  We did not find the plane in either location.
+  After this more exhaustive search what is the conditional probability that the plane is in the mountains?
+  Explain.
+  \begin{solution}
+    We are asked to calculate $P(M|F_M \cap F_D \cap F_S)$.
+    By Bayes' rule, 
+    $$P(M|F_M \cap F_D \cap F_S) = \frac{P(F_M \cap F_D \cap F_S|M)P(M)}{P(F_M \cap F_D \cap F_S)}$$
+    Define the shorthand $A = F_M \cap F_D \cap F_S$. 
+    By the Law of Total Probability
+    \begin{eqnarray*}
+      P(A) &=& P(A|M)P(M) + P(A|D)P(D) + P(A|S)P(S) \\
+      &=& (0.3 \times 1 \times 1) \times 0.5 + (1 \times 0.2 \times 1) \times 0.3 + (1 \times 1 \times 0.9 ) \times 0.2 \\
+      &=&  0.15 + 0.06 + 0.18 = 0.39
+    \end{eqnarray*}
+    using independence.
+    Hence, the desired probability is $15/39 \approx 0.38$.
+  \end{solution}
+\end{parts}
+
+\fullwidth{\section*{Lecture \#8 -- Discrete RVs II}}
+
+  \question I have an urn that contains two red balls and three blue balls.
+  I offer you the chance to play the following game. You draw one ball at a time from the urn. Draws are made at random and \emph{without replacement}. You win \$1 for each red ball that you draw, but lose \$1 for each blue ball that you draw. You are allowed to stop the game at any point. Find a strategy that ensures your expected value from playing this game is \emph{positive}. 
+  \begin{solution}
+    There are ${5 \choose 2} = 10$ possible sequences of two red and blue balls, each of which has probability $1/10$ of occurring. 
+    The following table enumerates all of them:
+    \begin{center}
+    \begin{tabular}[h]{ll}
+      WBBBW & BWBWB\\
+      WBBWB & BBWWB\\
+      WBWBB & BBBWW\\
+      WWBBB & BBWBW\\
+      BWWBB & BWBBW
+    \end{tabular}
+  \end{center}
+  I have found two strategies that yield a positive expected value.
+  (There may be more.)
+  The first to \emph{keep playing if and only if your cumulative winnings are negative}.
+  For example, if your first draw is W, your cumulative winnings are $+1$ so you should stop.
+  On the other hand, if your first draw is B then you cumulative winnings are $-1$ so you should keep playing. 
+  If your first draw is a B and your second draw is a W, then your cumulative winnings are zero, so you should stop playing.
+  The following table uses parentheses to show how this rule applies to each possible sequence of draws.
+  You should \emph{stop playing} as soon as you hit the first parenthesis.
+  The value to the right of the arrow denotes your winnings for a given sequence when following the strategy.
+  \begin{center}
+    \begin{tabular}[h]{llll}
+      W(BBBW) $\rightarrow +1$& BW(BWB) $\rightarrow 0$\\
+      W(BBWB) $\rightarrow +1$& BBWW(B) $\rightarrow 0$\\
+      W(BWBB) $\rightarrow +1$& BBBWW() $\rightarrow -1$\\
+      W(WBBB) $\rightarrow +1$& BBWBW() $\rightarrow -1$\\
+      BW(WBB) $\rightarrow 0$& BW(BBW) $\rightarrow 0$
+    \end{tabular}
+  \end{center}
+  The expected value of this strategy is $(1 + 1 + 1 + 1 - 1 - 1)/10 = 1/5$ since each sequence has a probability of $1/10$.
+
+  A slightly different strategy that also gives a positive expected value is as follows: 
+  \begin{quote}
+    If your first draw is W, stop; if your first draw is B, keep drawing until both white balls are removed.
+  \end{quote}
+  Following the same notational convention as above, we can summarize the results of this strategy as follows:
+  \begin{center}
+    \begin{tabular}[h]{llll}
+      W(BBBW) $\rightarrow +1$& BWBW(B) $\rightarrow 0$\\
+      W(BBWB) $\rightarrow +1$& BBWW(B) $\rightarrow 0$\\
+      W(BWBB) $\rightarrow +1$& BBBWW() $\rightarrow -1$\\
+      W(WBBB) $\rightarrow +1$& BBWBW() $\rightarrow -1$\\
+      BWW(BB) $\rightarrow +1$& BWBBW() $\rightarrow -1$
+    \end{tabular}
+  \end{center}
+  so the expected value is $(1 + 1 + 1 + 1 + 1 - 1 - 1 - 1)/10 = 1/5$.
+  Although these two strategies have the same expected value, they different. 
+  Let $p$ denote the pmf of your winnings under the first strategy and $q$ denote the pmf of your winnings under the second.
+  Then we see that:
+  \[
+    p(-1) = 2/10, \quad p(0) = 4/10, \quad p(1) = 4/10
+  \]
+  while 
+  \[
+    q(-1) = 3/10, \quad q(0) = 2/10, \quad p(1) = 5/10
+  \]
+  Hence, you have a larger chance of winning a positive amount using the second strategy, but also a larger chance of \emph{losing} a positive amount.
+  A helpful review problem would be to calculate the variance of your winnings under each strategy.
+  
+  \end{solution}
+
+  \question An ancient artifact worth \$100,000 fell out of Indiana Jones's airplane and landed in the Florida Everglades. Unless he finds it within a day, it will sink to the bottom and be lost forever. Dr.\ Jones can hire one or more helicopters to search the Everglades. Each helicopter charges \$1,000 per day and has a probability of 0.9 of finding the artifact. If Dr.\ Jones wants to maximize his \emph{expected value}, how many helicopters should he hire?
+  \begin{solution}
+    Let $p(n)$ be the probability of finding the artifact if Indiana Jones hires $n$ helicopters.
+    By the complement rule, $p(n) = 1 - 1/10^n$ since the probability of \emph{not} finding the artifact when $n$ helicopters are search for it is $(1 - 0.9)^n = 1/10^2$.
+    Now let $E(n)$ denote Indiana Jones's expected value if he hires $n$ helicopters.
+    If he does \emph{not} find the artifact, Jones \emph{loses} $n \times $\$1,000.
+    If he \emph{does} find the artifact, Jones \emph{gains} \$100,000$- n\times $\$1,000.
+    Therefore,
+    \begin{align*}
+      E(n) &= \left[ 1 - p(n) \right] \times \left( -1000 \times n \right) + p(n) \times \left[ 100000 - 1000 \times n \right]\\
+      &= 100000 \times p(n) - 1000 \times n\\
+      &= 1000 \times \left[ 100 \times p(n) - n \right]
+    \end{align*}
+    The question of whether Jones should hire an \emph{additional} -- i.e. \emph{marginal} -- helicopter comes down to whether the marginal expected benefit, $100000 \times \left[p(n+1) - p(n)\right]$, exceeds the marginal expected cost, $1000$.
+    From the factorization above, we see that this will be the case whenever $100 \times \left[p(n+1) - p(n)\right]$ is larger than one.
+    Notice that, because you cannot hire a fraction of a helicopter, it may not be possible to exactly equate marginal expected cost and benefit as we would do in a continuous optimization problem.
+    Instead we'll make a table of values. 
+    It's easy enough to do this by hand, but we could also use R:
+\begin{verbatim}
+> n <- 1:4
+> p <- 1 - 1/10^n
+> EV <- 100000 * p - 1000 * n
+> cbind(n,p,EV)
+     n       p    EV
+[1,] 1 0.90000 89000
+[2,] 2 0.99000 97000
+[3,] 3 0.99900 96900
+[4,] 4 0.99990 95990
+\end{verbatim}
+From the table is appears that the optimal number of helicopters is $2$.
+But how can we be sure when we have only examined five possible values for $n$?
+Notice that the marginal expected cost is a constant \$1000 regardless of $n$.
+In contrast, the marginal expected benefit is
+\begin{align*}
+  p(n+1) - p(n) &= \left( 1 - \frac{1}{10^{n+1}} \right) - \left( 1 - \frac{1}{10^{n}} \right) \\
+  &= \frac{1}{10^{n}} - \frac{1}{10^{n+1}}\\
+  &= \frac{1}{10^{n}}\left(1 - \frac{1}{10} \right) \\
+  &= \frac{1}{10^n} \times 0.9
+\end{align*}
+This is \emph{decreasing} with $n$, so we know that it is it unnecessary to examine larger values of $n$.
+An alternative way to solve this problem is to ``pretend'' that $n$ is continuous, derive the first and second order conditions to characterize the unique global optimum, and then look at the whole number values of $n$ on each side of the (infeasible) optimum from the continuous problem.
+
+  \end{solution}
+
+\fullwidth{\section*{No extension problems for Lecture \#9}}
+
+\fullwidth{\section*{Lecture \#10 -- Discrete RVs IV}}
+
+\question Let $X$ and $Y$ be discrete random variables.
+Prove that if $X$ and $Y$ are independent, then $Cov(X,Y) = 0$. 
+Hint: write out the definition of covariance for two discrete RVs in terms of a double sum, and use independence to substitute $p_{XY}(x,y) = p_X(x)p_Y(y)$.
+\begin{solution}
+\begin{eqnarray*}
+	Cov(X,Y) &=& E[(X-\mu_X)(Y-\mu_Y)]\\
+	&=& \sum_x \sum_y (x - \mu_X)(y- \mu_Y)p(x,y)\\
+	&=&\sum_x \sum_y (x - \mu_X)(y- \mu_Y)p(x)p(y) \\
+	&=& \sum_x  (x - \mu_X)p(x)\left[ \sum_y (y- \mu_Y)p(y)\right] \\
+	&=& E[Y- \mu_Y] \sum_x  (x - \mu_X)p(x)\\
+	&=& E[Y- \mu_Y]E[X- \mu_X] \\
+	&=& 0
+\end{eqnarray*}
+\end{solution}
+
+\question Let $a, b, c$ be constants and $X,Y$ be RVs.
+Show that:
+\[Var(aX + bY + c) = a^2 Var(X) + b^2 Var(Y) + c.\]
+Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lecture.
+
+\question Let $X_1$ be a random variable denoting the returns of stock 1, and $X_2$ be a random variable denoting the returns of stock 2. Accordingly let $\mu_1 = E[X_1]$, $\mu_2 = E[X_2]$, $\sigma_1^2 = Var(X_1)$, $\sigma_2^2 = Var(X_2)$ and $\rho = Corr(X_1, X_2)$. A \emph{portfolio}, $\Pi$,  is a linear combination of $X_1$ and $X_2$ with weights that sum to one, that is $\Pi(\omega) = \omega X_1 + (1-\omega)X_2$, indicating the proportions of stock 1 and stock 2 that an investor holds. In this example, we require $\omega \in [0,1]$, so that \emph{negative} weights are not allowed. (This rules out short-selling.) 
+	\begin{parts}
+		%\part Calculate $E[\Pi(\omega)]$ in terms of $\omega$, $\mu_1$ and $\mu_2$.
+		%	\begin{solution}
+		%		\begin{eqnarray*}
+		%			E[\Pi(\omega)] &=& E[\omega X_1 + (1-\omega) X_2] = \omega E[X_1] + (1-\omega) E[X_2]\\
+		%				&=& \omega \mu_1 + (1-\omega) \mu_2
+		%		\end{eqnarray*}
+		%	\end{solution}
+		%\part If $\omega \in [0,1]$ is it possible to have $E[\Pi(\omega)]>\mu_1$ \emph{and} $E[\Pi(\omega)]>\mu_2$? What about $E[\Pi(\omega)]<\mu_1$ and $E[\Pi(\omega)]<\mu_2$? Explain.
+		%	\begin{solution}
+		%	No. If short-selling is disallowed, the portfolio expected return must be between $\mu_1$ and $\mu_2$.
+		%	\end{solution}
+		%\part Express $Cov(X_1, X_2)$ in terms of $\rho$ and $\sigma_1$, $\sigma_2$.
+		%	\begin{solution}
+		%		$Cov(X,Y) = \rho \sigma_1 \sigma_2$
+		%	\end{solution}
+		\part Express $Var[\Pi(\omega)]$ in terms of $\rho$, $\sigma_1^2$ and $\sigma_2^2$.
+			\begin{solution}
+				\begin{eqnarray*}
+					Var[\Pi(\omega)] &=& Var[\omega X_1 + (1-\omega) X_2]\\
+					& =& \omega^2 Var(X_1) + (1-\omega)^2 Var(X_2) + 2\omega (1-\omega) Cov(X_1, X_2)\\
+					&=&\omega^2 \sigma_1^2 + (1-\omega)^2\sigma_2^2 + 2\omega (1-\omega)\rho \sigma_1 \sigma_2 
+				\end{eqnarray*}
+			\end{solution}
+		\part Find the value of $\omega^*$ that minimizes $Var[\Pi(\omega)]$.
+    You do not have to check the second order condition.
+			%$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
+			In finance, $\Pi(\omega^*)$ is called the \emph{minimum variance portfolio}. 
+		\begin{solution}
+			The First Order Condition is:
+				$$2\omega \sigma_1^2 - 2(1-\omega)\sigma_2^2 + (2 - 4\omega)\rho \sigma_1\sigma_2=0$$
+				Dividing both sides by two and rearranging:
+				\begin{eqnarray*}
+				\omega \sigma_1^2 - (1-\omega)\sigma_2^2 + (1-2\omega)\rho\sigma_1 \sigma_2&=&0\\
+				\omega\sigma_1^2 - \sigma_2^2 + \omega \sigma_2^2 + \rho \sigma_1\sigma_2 - 2\omega \rho \sigma_1\sigma_2 &=& 0\\
+				\omega(\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2) &=& \sigma_2^2 - \rho\sigma_1\sigma_2
+				\end{eqnarray*}
+				So we have
+					$$\omega^* = \frac{\sigma_2^2 - \rho\sigma_1\sigma_2}{\sigma_1^2 + \sigma_2^2 -2\rho\sigma_1\sigma_2}$$
+		\end{solution}
+    \part I have posted five years of daily closing stock prices for Apple (AAPL) and Google (GOOG) on my website: \texttt{http://ditraglia.com/econ103/closing\_prices.csv}.
+    Write code to read this data into R and store it in a dataframe called \texttt{prices}.
+    \begin{solution}
+      \begin{verbatim}
+prices <- read.csv('http://ditraglia.com/econ103/closing_prices.csv)
+      \end{verbatim}
+    \end{solution}
+    \part If $P_{t}$ is today's closing price and $P_{t-1}$ is yesterday's closing price, then we define the \emph{log daily return} as $\log(P_{t}) - \log(P_{t-1})$ where $\log$ denotes the natural logarithm.
+    Write R code that uses \texttt{prices} to create two vectors \texttt{apple\_returns} and \texttt{google\_returns} containing \emph{log returns} for Apple and Google respectively. 
+    The R function for natural logarithms is \texttt{log} while \texttt{diff} takes successive \emph{differences} of a vector.
+    \begin{solution}
+\begin{verbatim}
+google_returns <- diff(log(prices$GOOG))
+apple_returns <- diff(log(prices$APPL))
+\end{verbatim}
+    \end{solution}
+    \part Using \texttt{apple\_returns} and \texttt{google\_returns}, write R code to compute the sample standard deviation of Apple and Google daily log returns, along with the sample correlation between them.
+    \begin{solution}
+\begin{verbatim}
+s1 <- sd(google_returns)
+s2 <- sd(apple_returns)
+r <- cor(google_returns, apple_returns)
+\end{verbatim}
+    \end{solution}
+    \part Suppose we make the assumption that \emph{future} Apple and Google returns are random variables with the standard deviations and correlation equal to the values you computed in the preceding part.
+    If we have \$100 and wish to invest in these two companies, how much money should we allocate to Apple and Google stock to minimize the variance of our portfolio? 
+    (If we take variance as a measure of risk, this problem is asking you to calculate the ``safest'' portfolio.)
+    \begin{solution}
+      The formula from part (b)
+\begin{verbatim}
+wstar <- (s2^2 - r * s1 * s2) / (s1^2 + s2^2 - 2 * r * s1 * s2)
+\end{verbatim}
+gives approximately 0.54, so we should invest \$54 in Google and \$46 in Apple.
+\end{solution}
+%    \part \emph{Optional Part}: if you'd like an extra challenge, check the second order condition from part (b) above.
+%			\begin{solution}
+%							The second derivative is
+%				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2$$
+%				and, since $\rho=1$ is the largest possible value for $\rho$,
+%				$$2\sigma_1^2 - 2\sigma_2^2 - 4\rho \sigma_1\sigma_2 \geq 2\sigma_1^2 - 2\sigma_2^2 - 4\sigma_1\sigma_2 = 2(\sigma_1 - \sigma_2)^2 \geq 0$$
+%				so the second derivative is positive, indicating a minimum. This is a global minimum since the problem is quadratic in $\omega$.
+%			\end{solution}
+	\end{parts}
+
+%\fullwidth{\section*{Lecture \#11 -- Continuous RVs I}}
+
+%\question In lecture, we examined a continuous RV called the Beta$(2,2)$. 
+%More generally, we say that $X \sim \text{Beta}(\alpha, \beta)$ if $f(x) = C x^{\alpha - 1}(1 - x)^{\beta-1}$ for $x \in [0,1]$, zero otherwise. 
+%In this expression, $C$ is the constant necessary to ensure that $f(x)$ integrates to one over the interval $x\in [0,1]$ while the parameters $\alpha, \beta$ are \emph{positive} constants that determine the shape of the PDF. 
+%
+%\todo[inline]{Maybe have them plot some examples in R, use the CDF to calculate some probabilities, work out C in some special cases?}
+%  \begin{parts}
+%    \part Suppose that $\alpha = 1$ and
+%  \end{parts}
+%The R commands for a Beta$(\alpha, \beta)$ random variable are as follows:
+%\begin{center}
+%  \begin{tabular}[h]{ll}
+%    PDF $f(x)$ & \texttt{dbeta}$(\texttt{x}, \alpha, \beta)$\\
+%    CDF $f(x)$ & \texttt{pbeta}$(\texttt{x}, \alpha, \beta)$\\
+%    Make $n$ random draws & \texttt{rbeta}$(\texttt{n}, \alpha, \beta)$
+%  \end{tabular}
+%\end{center}
+%
+%
+%\question We say that $X \sim \text{Exponential}(\lambda)$ if $X$ has probability density function $f(x) = \lambda e^{-\lambda x}$ for $x \in [0, +\infty)$, zero otherwise, and $\lambda > 0$.
+%  As we see from its PDF, the Exponential RV has a single parameter $\lambda$ that \emph{must be positive}. 
+%  In this question you will explore some of the properties of the Exponential$(\lambda)$ RV.
+%  \begin{parts}
+%    \part Calculate the CDF.
+%    \part Calculate prob of a certain integral, both analytically and using numerical integration in R.
+%    \part Plot the PDF for some particular values of $\lambda$.
+%    \part Simulate and make histograms.
+%    \part Using the simulations, try to guess how the mean is related to $\lambda$.
+%    \part Use numerical integration to calculate the mean for particular values of Lambda.
+%    \part Hard part: calculate the mean of an arbitrary Exponential RV. Hint, you will need integration by parts.
+%  \end{parts}
+%
+%\fullwidth{\section*{Lecture \#12 -- Discrete RVs IV}}
+%
+%\question Some practice with quantile functions: calculate some, plot them, understand the relationship to a CDF.
+%
+%\question A more interesting problem involving the normal distribution\dots
+%
+
+\end{questions}
+
+
+\end{document}
