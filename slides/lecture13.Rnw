@@ -89,48 +89,26 @@ Each member of population is chosen strictly by chance, so that: (1) selection o
 \begin{frame}[fragile]
   \frametitle{Example: Sampling from the Econ 103 Class List}
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlstr{'http://ditraglia.com/econ103/old_survey.csv'}\hlstd{)}
-\hlstd{height} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(survey}\hlopt{$}\hlstd{height)}
-\hlkwd{hist}\hlstd{(height,} \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{xlab} \hlstd{=} \hlstr{''}\hlstd{,}
-     \hlkwc{main} \hlstd{=} \hlstr{'Population Dist. of Height (inches)'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/pop_hist-1} 
-
-\end{knitrout}
+<<pop_hist,fig.height = 3.8>>=
+survey <- read.csv('http://ditraglia.com/econ103/old_survey.csv')
+height <- na.omit(survey$height)
+hist(height, freq = FALSE, xlab = '', 
+     main = 'Population Dist. of Height (inches)')
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# What is the population mean?}
-\hlkwd{mean}\hlstd{(height)}
-\end{alltt}
-\begin{verbatim}
-## [1] 67.54545
-\end{verbatim}
-\begin{alltt}
-\hlcom{# Draw a random sample of n = 5 and compute the sample mean}
-\hlkwd{set.seed}\hlstd{(}\hlnum{3827}\hlstd{)}
-\hlstd{random_sample} \hlkwb{<-} \hlkwd{sample}\hlstd{(height,} \hlnum{5}\hlstd{,} \hlkwc{replace} \hlstd{=} \hlnum{FALSE}\hlstd{)}
-\hlstd{random_sample}
-\end{alltt}
-\begin{verbatim}
-## [1] 65 75 69 71 60
-\end{verbatim}
-\begin{alltt}
-\hlkwd{mean}\hlstd{(random_sample)}
-\end{alltt}
-\begin{verbatim}
-## [1] 68
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<random_sample>>=
+# What is the population mean?
+mean(height)
+
+# Draw a random sample of n = 5 and compute the sample mean
+set.seed(3827)
+random_sample <- sample(height, 5, replace = FALSE)
+random_sample
+mean(random_sample)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -189,82 +167,45 @@ Each member of population is chosen strictly by chance, so that: (1) selection o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{set.seed}\hlstd{(}\hlnum{2985}\hlstd{)}
-\hlcom{# Function: take a random sample of size n, compute sample mean}
-\hlstd{draw_xbar} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{n}\hlstd{) \{}
-  \hlstd{random_sample} \hlkwb{<-} \hlkwd{sample}\hlstd{(height,} \hlkwc{size} \hlstd{= n,} \hlkwc{replace} \hlstd{=} \hlnum{FALSE}\hlstd{)}
-  \hlkwd{mean}\hlstd{(random_sample)}
-\hlstd{\}}
-\hlcom{# Calculate the mean of 10000 random samples with n = 5}
-\hlstd{M} \hlkwb{<-} \hlnum{10000}
-\hlstd{xbar_5} \hlkwb{<-} \hlkwd{replicate}\hlstd{(M,} \hlkwd{draw_xbar}\hlstd{(}\hlnum{5}\hlstd{))}
-\hlcom{# Compare simulated sample means to population mean: 67.5454 in.}
-\hlkwd{head}\hlstd{(xbar_5)}
-\end{alltt}
-\begin{verbatim}
-## [1] 64.8 66.4 68.2 68.6 65.4 71.2
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<sampling_dist5>>=
+set.seed(2985)
+# Function: take a random sample of size n, compute sample mean
+draw_xbar <- function(n) {
+  random_sample <- sample(height, size = n, replace = FALSE)
+  mean(random_sample)
+}
+# Calculate the mean of 10000 random samples with n = 5
+M <- 10000
+xbar_5 <- replicate(M, draw_xbar(5))
+# Compare simulated sample means to population mean: 67.5454 in.
+head(xbar_5)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Compare popn. dist. of height to histogram of the simulated x-bars}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
-\hlkwd{hist}\hlstd{(height,} \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'Population'}\hlstd{)}
-\hlkwd{hist}\hlstd{(xbar_5,} \hlkwc{freq} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{'Sampling Dist. of Xbar (n = 5)'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/pop_vs_sampling5_hist-1} 
-\begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{))}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<pop_vs_sampling5_hist, fig.height = 3.5>>=
+# Compare popn. dist. of height to histogram of the simulated x-bars
+par(mfrow = c(1,2))
+hist(height, freq = FALSE, main = 'Population')
+hist(xbar_5, freq = FALSE, main = 'Sampling Dist. of Xbar (n = 5)')
+par(mfrow = c(1,1))
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Population mean height}
-\hlkwd{mean}\hlstd{(height)}
-\end{alltt}
-\begin{verbatim}
-## [1] 67.54545
-\end{verbatim}
-\begin{alltt}
-\hlcom{# Mean of sampling dist. of x-bar (n = 5)}
-\hlkwd{mean}\hlstd{(xbar_5)}
-\end{alltt}
-\begin{verbatim}
-## [1] 67.56044
-\end{verbatim}
-\begin{alltt}
-\hlcom{# Population variance}
-\hlkwd{var}\hlstd{(height)}
-\end{alltt}
-\begin{verbatim}
-## [1] 19.74504
-\end{verbatim}
-\begin{alltt}
-\hlcom{# Variance of sampling dist of x-bar (n = 5)}
-\hlkwd{var}\hlstd{(xbar_5)}
-\end{alltt}
-\begin{verbatim}
-## [1] 3.573168
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<pop_vs_sampling5_stats>>=
+# Population mean height
+mean(height)
+# Mean of sampling dist. of x-bar (n = 5)
+mean(xbar_5)
+# Population variance
+var(height)
+# Variance of sampling dist of x-bar (n = 5)
+var(xbar_5)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
