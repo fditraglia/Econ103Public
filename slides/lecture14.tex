@@ -30,27 +30,26 @@ $$E[S^2] =E\left[ \frac{1}{n-1} \sum_{i=1}^n \left(X_i - \bar{X}\right)^2\right]
 
 \begin{frame}
 \frametitle{Why $(n-1)$ for sample variance?}
-\begin{block}{Step \# 1 -- Tedious but straightforward algebra gives:}
+\begin{block}{Step \#1 -- Extension Problem \#3(b) gives:}
 	$$\sum_{i=1}^n \left(X_i - \bar{X}\right)^2 = \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right] - n(\bar{X}-\mu)^2$$
 \end{block}
-\alert{You are not responsible for proving Step \#1 on an exam.}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\scriptsize
-\begin{eqnarray*}
-	\sum_{i=1}^n \left(X_i - \bar{X}\right)^2 &=& \sum_{i=1}^n \left(X_i - \mu + \mu - \bar{X}\right)^2 = \sum_{i=1}^n \left[(X_i -\mu) - (\bar{X} - \mu)\right]^2\\
-		&=&\sum_{i=1}^n \left[(X_i -\mu)^2 - 2(X_i -\mu)(\bar{X} - \mu) + (\bar{X} - \mu)^2\right]\\
-		&=&\sum_{i=1}^n (X_i -\mu)^2 - \sum_{i=1}^n 2(X_i -\mu)(\bar{X} - \mu) + \sum_{i=1}^n (\bar{X} - \mu)^2\\
-		&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu) \sum_{i=1}^n (X_i -\mu)+n(\bar{X} - \mu)^2\\
-				&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu) \left( \sum_{i=1}^n X_i- \sum_{i=1}^n \mu \right)+n(\bar{X} - \mu)^2\\
-				&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu)(n\bar{X}-n\mu)+n(\bar{X} - \mu)^2\\
-				&=&\left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2n(\bar{X} - \mu)^2+n(\bar{X} - \mu)^2\\
-				&=&\left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - n(\bar{X} - \mu)^2
-\end{eqnarray*}
-\end{frame}
-
+%\begin{frame}
+%\scriptsize
+%\begin{eqnarray*}
+%	\sum_{i=1}^n \left(X_i - \bar{X}\right)^2 &=& \sum_{i=1}^n \left(X_i - \mu + \mu - \bar{X}\right)^2 = \sum_{i=1}^n \left[(X_i -\mu) - (\bar{X} - \mu)\right]^2\\
+%		&=&\sum_{i=1}^n \left[(X_i -\mu)^2 - 2(X_i -\mu)(\bar{X} - \mu) + (\bar{X} - \mu)^2\right]\\
+%		&=&\sum_{i=1}^n (X_i -\mu)^2 - \sum_{i=1}^n 2(X_i -\mu)(\bar{X} - \mu) + \sum_{i=1}^n (\bar{X} - \mu)^2\\
+%		&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu) \sum_{i=1}^n (X_i -\mu)+n(\bar{X} - \mu)^2\\
+%				&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu) \left( \sum_{i=1}^n X_i- \sum_{i=1}^n \mu \right)+n(\bar{X} - \mu)^2\\
+%				&=& \left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2(\bar{X} - \mu)(n\bar{X}-n\mu)+n(\bar{X} - \mu)^2\\
+%				&=&\left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - 2n(\bar{X} - \mu)^2+n(\bar{X} - \mu)^2\\
+%				&=&\left[  \sum_{i=1}^n \left(X_i - \mu\right)^2\right]   - n(\bar{X} - \mu)^2
+%\end{eqnarray*}
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -78,7 +77,7 @@ $$E[S^2] =E\left[ \frac{1}{n-1} \sum_{i=1}^n \left(X_i - \bar{X}\right)^2\right]
 		&=& \pause (n-1)\sigma^2
 	\end{eqnarray*}
 \end{block}
-\alert{Since we showed earlier today that  $E[\bar{X}]=\mu$ and $Var(\bar{X})=\sigma^2/n$ under this random sampling assumption.}
+\alert{Since $E[\bar{X}]=\mu$ and $Var(\bar{X})=\sigma^2/n$ under random sampling.}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -119,18 +118,20 @@ $\displaystyle E[\widehat{\sigma}^2 ] - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\Large
-\alert{The average number of children per family was about 2.0 twenty years ago.}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 \frametitle{What's Going On Here?}
+
+Twenty years ago the average number of children per family was about 2.0.
+But our average was much higher! 
+
 \pause
-Biased Sample!
+
+\begin{alertblock}{Biased Sample!}
 \begin{itemize}
  	\item  Zero children $\Rightarrow$ didn't send any to college
  	\item Sampling by \emph{children} so large families \alert{oversampled}
 \end{itemize}
+\end{alertblock}
+
 
 
 \end{frame}
@@ -212,25 +213,25 @@ $$\widehat{\theta} = 20 \times (X_1 + \hdots + X_5)$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Efficiency: Choosing between Unbiased Estimators}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
-Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$ and define $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$. True or False:
-
-\vspace{1em}
-\begin{quotation}
-$\bar{X}_n$ is an unbiased estimator of $\mu$
-\end{quotation}
-
-\begin{enumerate}[(a)]
-\item True
-\item False
-\end{enumerate}
-\pause
-
-\alert{TRUE!}
-
-\end{frame}
-
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+%Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$ and define $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$. True or False:
+%
+%\vspace{1em}
+%\begin{quotation}
+%$\bar{X}_n$ is an unbiased estimator of $\mu$
+%\end{quotation}
+%
+%\begin{enumerate}[(a)]
+%\item True
+%\item False
+%\end{enumerate}
+%\pause
+%
+%\alert{TRUE!}
+%
+%\end{frame}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
@@ -253,14 +254,25 @@ $X_1$ is an unbiased estimator of $\mu$
 \frametitle{How to choose between two unbiased estimators?}
 
 Suppose $X_1, X_2, \hdots X_n \sim iid$ with mean $\mu$ and variance $\sigma^2$
-\begin{eqnarray*}
-E[\bar{X}_n] &=& E\left[\frac{1}{n}\sum_{i=1}^n X_i\right] = \frac{1}{n}\sum_{i=1}^n E[X_i] = \mu\\
-E[X_1] &=& \mu\\
-\pause
-Var(\bar{X}_n) &=& Var\left(\frac{1}{n}\sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n Var(X_i) = \alert{\sigma^2/n}\\
-\pause
-Var(X_1) &=& \alert{\sigma^2}
-\end{eqnarray*}
+
+\begin{block}{From Last Lecture:}
+\vspace{-1em}
+\[
+E[\bar{X}_n] = \mu, \quad
+Var(\bar{X}_n) =\sigma^2/n
+\]
+\end{block}
+
+\begin{block}{Compared To:}
+  \vspace{-1em}
+\[
+  E[X_1] = \mu, \quad
+Var(X_1) = \sigma^2
+\]
+\end{block}
+
+\alert{Both $\bar{X}_n$ and $X_1$ are unbiased estimators of $\mu$, but $\bar{X}_n$ has a lower variance!}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -273,18 +285,37 @@ Let $\widehat{\theta}_1$ and $\widehat{\theta}_2$ be unbiased estimators of $\th
 \section{Mean-Squared Error: Choosing Between Biased Estimators}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Mean-Squared Error}
-Except in very simple situations, unbiased estimators are hard to come by. In fact, in many interesting applications there is a \alert{\emph{tradeoff}} between \alert{bias} and \alert{variance}:
-\begin{itemize}
-\item Low bias estimators often have a high variance 
-\item Low variance estimators often have high bias
-\end{itemize}
-\pause
-\vspace{1em}
-\alert{Mean-Squared Error (MSE):}   Squared Bias plus Variance
-$$ MSE(\widehat{\theta}) = \mbox{Bias}(\widehat{\theta})^2 + Var(\widehat{\theta})$$ 
+  \frametitle{Bias and Variance are Both Bad Things}
+  \begin{figure}
+    \centering
+  \includegraphics[scale = 0.55]{./images/bias-variance-dartboard.pdf}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Mean-Squared Error: Trading Bias Against Variance}
 
+
+
+  \begin{itemize}
+      \item Unbiased estimator with a huge bias is bad.
+      \item Highly biased estimator with a low variance is bad.
+      \item Often there is a ``tradeoff'' between bias and variance:
+        \begin{itemize}
+          \item Low bias estimators often have high variance.
+          \item Low variance estimators often have high bias.
+        \end{itemize}
+  \end{itemize}
+
+\pause
+
+\begin{block}{Mean-Squared Error (MSE):}
+Compare estimators accounting for \alert{both} bias and variance:
+\[MSE(\widehat{\theta}) = \mbox{Bias}(\widehat{\theta})^2 + Var(\widehat{\theta})\]
+\pause
 \alert{Root Mean-Squared Error (RMSE):} $\sqrt{\mbox{MSE}}$  
+\end{block}
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -345,144 +376,130 @@ $$ MSE(\widehat{\theta}) = \mbox{Bias}(\widehat{\theta})^2 + Var(\widehat{\theta
 \frametitle{Finite Sample versus Asymptotic Properties of Estimators}
 
 \begin{block}{Finite Sample Properties}
-For \alert{\emph{fixed sample size $n$}} what are the properties of the sampling distribution of $\widehat{\theta}_n$? (E.g.\ bias and variance.)
+For \emph{fixed sample size $n$} what are the properties of the sampling distribution of $\widehat{\theta}_n$? (E.g.\ bias and variance.)
 \end{block}
+
 \begin{block}{Asymptotic Properties}
-What happens to the sampling distribution of $\widehat{\theta}_n$ \alert{\emph{as the sample size $n$ gets larger and larger?}} (That is, $n\rightarrow \infty$).
+What happens to the sampling distribution of $\widehat{\theta}_n$ \alert{\emph{as the sample size $n$ gets larger and larger?}} 
+  \begin{enumerate}
+    \item Law of Large Numbers (today)
+    \item Central Limit Theorem (Lecture 16)
+  \end{enumerate}
 \end{block}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Why Asymptotics?}
-
-\begin{block}{Law of Large Numbers}
-Make precise what we mean by ``bigger samples are better.'' 
-\end{block}
-\begin{block}{Central Limit Theorem}
-As $n\rightarrow \infty$  \emph{\alert{pretty much any}} sampling distribution is well-approximated by a normal random variable!
-\end{block}
-
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Consistency}
 
-\begin{block}{Consistency}
-If an estimator $\widehat{\theta}_n$ (which is a RV) \emph{converges} to $\theta_0$ (a constant) as $n\rightarrow \infty$, we say that \emph{\alert{$\widehat{\theta}_n$ is consistent for $\theta_0$}}.
+\begin{block}{Definition}
+  We say that an estimator $\widehat{\theta}_n$ is \emph{consistent for} a parameter $\theta_0$ if $\lim_{n\rightarrow \infty} \text{MSE}(\widehat{\theta}_n) = 0$.
+  In other words, if both the bias and variance of $\widehat{\theta}_n$ disappear as the sample size grows.
 \end{block}
-\vspace{2em}
-
-\begin{alertblock}{What does it mean for a \emph{RV} to converge to a \emph{constant?}}
-For this course we'll use \emph{MSE Consistency}:
-	$$\lim_{n \rightarrow \infty}\mbox{MSE}(\widehat{\theta}_n) = 0$$
-This makes sense since MSE$(\widehat{\theta}_n)$ is a \emph{constant}, so this is just an ordinary limit from calculus.
-\end{alertblock}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Law of Large Numbers (aka Law of Averages)}
-Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$. Then the sample mean 
-	$$\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$$
+  \frametitle{Law of Large Numbers}
+
+Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$. Then the sample mean $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$
 is consistent for the population mean $\mu$.
-\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\begin{frame}
-\frametitle{Law of Large Numbers (aka Law of Averages)}
-Let $X_1, X_2, \hdots X_n \sim iid$ mean $\mu$, variance $\sigma^2$. 
-	\begin{eqnarray*}
-			E[\bar{X}_n] &=&  E \left[\frac{1}{n}\sum_{i=1}^n X_i\right] = \mu\\\\ 
-      Var(\bar{X}_n) &=& Var\left(\frac{1}{n}\sum_{i=1}^n X_i  \right) = \sigma^2/n\\\\ \pause
-			\mbox{MSE}(\bar{X}_n) &=& \mbox{Bias}(\bar{X}_n)^2 + Var(\bar{X}_n)\\\pause
-				&=& \left(E[\bar{X_n}] - \mu\right)^2 + Var(\bar{X}_n)\\ \pause
-				&=& 0 + \sigma^2/n\\ 
-				&\rightarrow& 0
-	\end{eqnarray*}
-	\alert{Hence $\bar{X}_n$ is consistent for $\mu$}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Important! }
-
-An estimator \emph{can} be biased but still consistent, as long as the bias disappears as $n \rightarrow \infty$
-$$\widehat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n \left(X_i - \bar{X}\right)^2$$
-
-
-\begin{block}{Bias of $\widehat{\sigma}^2$}
-\vspace{0.75em}
-$\displaystyle E[\widehat{\sigma}^2 ] - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n}  - \sigma^2 =  \pause -\sigma^2/n \pause \rightarrow 0$
-\end{block}
-
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\begin{frame}
-\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
-Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the sampling distribution of $\bar{X}_n$?
-
-\begin{enumerate}[(a)]
-\item $N(0,1)$
-\item $N(\mu, \sigma^2/n)$
-\item $N(\mu, \sigma^2)$
-\item $N(\mu/n, \sigma^2/n)$
-\item $N(n\mu, n\sigma^2)$
-\end{enumerate}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\huge\begin{center} But still, how can something random converge to something constant? \end{center}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Sampling Distribution of $\bar{X}_n$ Collapses to $\mu$}
-Look at an example where we can directly calculate not only the mean and variance of the sampling distribution of $\bar{X}_n$, but the \emph{sampling distribution itself}:
+\pause
 
 \vspace{1em}
-$$\alert{X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2) \Rightarrow \bar{X}_n \sim N(\mu, \sigma^2/n)}$$
 
-
-\end{frame}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}
-\frametitle{Sampling Distribution of $\bar{X}_n$ Collapses to $\mu$}
-\alert{$X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2 \Rightarrow \bar{X}_n \sim N(\mu, \sigma^2/n)$.} \\
-\begin{figure}
-\centering
-\includegraphics[scale = 0.5]{./images/normal_LLN_dist}
-\caption{Sampling Distributions for $\bar{X}_n$ where $X_i \sim \mbox{iid } N(0,1)$}
-\end{figure}
+\begin{block}{How do we know this?}
+From our last lecture:
+\[
+  E[\bar{X}_n] = \mu, \quad Var(\bar{X}_n) = \sigma^2/n
+  \]
+and hence:
+\begin{eqnarray*}
+			\mbox{MSE}(\bar{X}_n) &=& \mbox{Bias}(\bar{X}_n)^2 + Var(\bar{X}_n)\\\pause
+				&=& \left(E[\bar{X_n}] - \mu\right)^2 + Var(\bar{X}_n)\\ \pause
+				&=& 0 + \sigma^2/n \rightarrow 0  
+	\end{eqnarray*}
+\end{block}
 
 \end{frame}
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\begin{frame}
+%%\frametitle{Important! }
+%%
+%%An estimator \emph{can} be biased but still consistent, as long as the bias disappears as $n \rightarrow \infty$
+%%$$\widehat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n \left(X_i - \bar{X}\right)^2$$
+%%
+%%
+%%\begin{block}{Bias of $\widehat{\sigma}^2$}
+%%\vspace{0.75em}
+%%$\displaystyle E[\widehat{\sigma}^2 ] - \sigma^2 = \pause \frac{(n-1)\sigma^2}{n}  - \sigma^2 =  \pause -\sigma^2/n \pause \rightarrow 0$
+%%\end{block}
+%%
+%%
+%%\end{frame}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%\begin{frame}
+%\frametitle{\includegraphics[scale = 0.05]{./images/clicker}}
+%Suppose $X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2)$. What is the sampling distribution of $\bar{X}_n$?
+%
+%\begin{enumerate}[(a)]
+%\item $N(0,1)$
+%\item $N(\mu, \sigma^2/n)$
+%\item $N(\mu, \sigma^2)$
+%\item $N(\mu/n, \sigma^2/n)$
+%\item $N(n\mu, n\sigma^2)$
+%\end{enumerate}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}
+%\huge\begin{center} But still, how can something random converge to something constant? \end{center}
+%\end{frame}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Sampling Distribution of $\bar{X}_n$ Collapses to $\mu$}
+%Look at an example where we can directly calculate not only the mean and variance of the sampling distribution of $\bar{X}_n$, but the \emph{sampling distribution itself}:
+%
+%\vspace{1em}
+%$$\alert{X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2) \Rightarrow \bar{X}_n \sim N(\mu, \sigma^2/n)}$$
+%
+%
+%\end{frame}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}
+%\frametitle{Sampling Distribution of $\bar{X}_n$ Collapses to $\mu$}
+%\alert{$X_1, X_2, \hdots, X_n \sim \mbox{iid } N(\mu,\sigma^2 \Rightarrow \bar{X}_n \sim N(\mu, \sigma^2/n)$.} \\
+%\begin{figure}
+%\centering
+%\includegraphics[scale = 0.5]{./images/normal_LLN_dist}
+%\caption{Sampling Distributions for $\bar{X}_n$ where $X_i \sim \mbox{iid } N(0,1)$}
+%\end{figure}
+%
+%\end{frame}
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{frame}
-\frametitle{Another Visualization: Keep Adding Observations}
+\frametitle{A Visualization of the Law of Large Numbers}
 \begin{columns} 
 \begin{column}[c]{8cm} 
  %FIRST COLUMN HERE 

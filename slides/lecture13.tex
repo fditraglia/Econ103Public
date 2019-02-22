@@ -46,17 +46,11 @@ When the bag and scale reach you, do the following:
 \begin{frame}
 \frametitle{Random Sample}
 
-\begin{block}{In Words}
-Select sample of $n$ objects from  population so that:
-	\begin{enumerate}
-\item Each member of the population has the same probability of being selected 
-\item The fact that one individual is selected does not affect the chance that any other individual is selected
-\item Each sample of size $n$ is equally likely to be selected
-
-\end{enumerate}
+\begin{block}{Verbal Definition from Lecture \#1}
+Each member of population is chosen strictly by chance, so that: (1) selection of one individual doesn't influence selection of any other, (2) each individual is just as likely to be chosen, (3) every possible sample of size $n$ has the same chance of selection.
 \end{block}
 
-\begin{alertblock}{In Math}
+\begin{alertblock}{Mathematical Definition}
 	$X_1, X_2, \hdots, X_n \sim \mbox{iid } f(x)$ if continuous\\
   $X_1, X_2, \hdots, X_n \sim \mbox{iid } p(x)$ if discrete
 \end{alertblock}
@@ -69,9 +63,8 @@ Select sample of $n$ objects from  population so that:
 
 
 \begin{itemize}
-  \item Without replacement $\Rightarrow$ dependence between samples
-  \item Sample small relative to popn.\ $\Rightarrow$ dependence negligible.
-  \item This means our candy experiment (in progress) isn't bogus.
+  \item Sampling \emph{without replacement} creates dependence between samples (Extension Problem \#11).
+  \item But if the population is large relative to the sample, this dependence is negligible: candy experiment isn't bogus!
 \end{itemize}
 \end{frame}
 
@@ -296,7 +289,9 @@ If you poll a random sample of 4 voters, what is the probability that \emph{exac
 \begin{frame}
   \frametitle{(Sample) Statistic}
 
-  Any function of the data \emph{alone}, e.g.\ sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$. Typically used to estimate an unknown population parameter: e.g.\ $\bar{x}$ is an estimate of $\mu$.
+  Any function of the data \emph{alone}, e.g.\ sample mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$. 
+  Used to estimate a population parameter: e.g.\ $\bar{x}$ estimates of
+  $\mu$.
 
 \end{frame}
 
@@ -307,20 +302,20 @@ If you poll a random sample of 4 voters, what is the probability that \emph{exac
   \alert{This is \emph{the crucial point of the course}: if we draw a random sample, the dataset we get is random. Since a statistic is a function of the data, it is a random variable!} 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \frametitle{A Sample Statistic in the Polling Example \hfill\includegraphics[scale = 0.05]{./images/clicker}}
-  Suppose that exactly half of voters in the population support Hillary Clinton and we poll a random sample of 4 voters. If we code Hillary supporters as ``1'' and everyone else as ``0'' then what are the possible values of the sample mean in our dataset?
-
-  \vspace{1em}
-  \begin{enumerate}[(a)]
-    \item $(0,1)$
-    \item $\left\{ 0, 0.25, 0.5, 0.75, 1 \right\}$
-    \item $\left\{ 0,1,2,3,4 \right\}$
-    \item $(-\infty, \infty)$
-    \item Not enough information to determine.
-  \end{enumerate}
-
-\end{frame}
+%\begin{frame}
+%  \frametitle{A Sample Statistic in the Polling Example \hfill\includegraphics[scale = 0.05]{./images/clicker}}
+%  Suppose that exactly half of voters in the population support Hillary Clinton and we poll a random sample of 4 voters. If we code Hillary supporters as ``1'' and everyone else as ``0'' then what are the possible values of the sample mean in our dataset?
+%
+%  \vspace{1em}
+%  \begin{enumerate}[(a)]
+%    \item $(0,1)$
+%    \item $\left\{ 0, 0.25, 0.5, 0.75, 1 \right\}$
+%    \item $\left\{ 0,1,2,3,4 \right\}$
+%    \item $(-\infty, \infty)$
+%    \item Not enough information to determine.
+%  \end{enumerate}
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Sampling Distribution}
