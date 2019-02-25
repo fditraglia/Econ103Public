@@ -346,16 +346,14 @@ Sample Proportion: $\widehat{p} = (\sum_{i=1}^n X_i)/n$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Sample Proportion \emph{is} the Sample Mean!}
-\small
-$X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$
-		$$\widehat{p} = \frac{1}{n} \sum_{i=1}^n X_i = \bar{X}_n$$
+Let $X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$. Since $\displaystyle \widehat{p} = \frac{1}{n} \sum_{i=1}^n X_i = \bar{X}_n$,
 
 \pause
 
 
 	\begin{eqnarray*}
-		E[\widehat{p}] &=&  E\left(\frac{1}{n}\sum_{i=1}^n X_i\right) =  \frac{1}{n} \sum_{i=1}^n E[X_i] =   \frac{np}{n} =  p\\ \\ \pause
-		Var(\widehat{p}) &=&  Var\left(\frac{1}{n}\sum_{i=1}^n X_i\right) = \frac{1}{n^2} \sum_{i=1}^n Var(X_i) = \frac{n p(1-p)}{n^2} =  \frac{p(1-p)}{n} \\ \\  \pause
+    E[\widehat{p}] &=&  E(\bar{X}_n) = E[X_i] = p \\ \\  \pause
+    Var(\widehat{p}) &=&  Var(\bar{X}_n) = Var(X_i)/n \\ \\ \pause
 		SE(\widehat{p}) &=&  \sqrt{Var(\widehat{p})} =  \sqrt{\frac{p(1-p)}{n}} \\ \\ \pause
 		\widehat{SE}(\widehat{p}) &=&  \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}
 	\end{eqnarray*}
