@@ -1029,7 +1029,7 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 
 \question What are the two properties of a probability density function? 
 
-\question True or False: since $f(x)$ is a probability, $0\leq f(x) \leq 1$.
+\question True or False: since $f(x)$ is a probability, $0\leq f(x) \leq 1$. If false, correct the statement.
 
 \question How is the PDF of a continuous RV related to its CDF?
 
@@ -1073,7 +1073,7 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 \]
 \begin{parts}
   \part Calculate the PDF of $X$.
-  \part Is $X$ an example of the RVs from the lecture slides? If so, which one? Be sure to specify the values of any and all parameters of the distribution.
+  \part Is $X$ an example of one of the ``named'' RVs from the lecture slides? If so, which one? Be sure to specify the values of any and all parameters of the distribution.
 \end{parts}
 
 
@@ -1158,7 +1158,7 @@ Specify the values of any and all of its parameters.
 
 \question We gave a verbal definition of the term \emph{random sample} in lecture \#1. What is the mathematical definition?
 
-\question Why \emph{doesn't} drawing without replacement constitute a random sample? Under what circumstances does it become for all practical purposes irrelevant whether one draws with or without replacement?
+\question Why do draws made without replacement \emph{fail} to constitute a random sample? Under what circumstances does it become for all practical purposes irrelevant whether one draws with or without replacement?
 
 \question Suppose that we have a vector \texttt{x} that we will treat as a \emph{population} for the purpose of carrying out a simulation exercise.
 Write R code to generate a histogram of 1000 sample means, each of which is constructed from a random sample of size 10 drawn from \texttt{x}.
@@ -1169,7 +1169,7 @@ Write R code to generate a histogram of 1000 sample means, each of which is cons
 
 \question Define the term \emph{standard error}. What is the standard error of the sample mean under random sampling?
 
-\question True or False: under random sampling, the population size $N$ affects the sampling distribution of $\bar{X}_n$.
+\question True or False: under random sampling, the population size $N$ affects the sampling distribution of $\bar{X}_n$. If false, explain.
 
 \question Define the term \emph{statistic}. 
 
@@ -1191,11 +1191,11 @@ What is the sampling distribution of $\widehat{p}$?
 
 \question Define \emph{mean-squared error}. Why is it a useful concept?
 
-\question Explain the difference between \emph{finite sample properties} and \emph{asymptotic properties} of an estimator.
+\question Explain the difference between the \emph{finite sample} and \emph{asymptotic} properties of an estimator.
 
 \question What does it mean to say that an estimator $\widehat{\theta}_n$ is \emph{consistent} for $\theta_0$?
 
-\question Show that the sample mean is consistent for the population mean under random sampling.
+\question Show that $\bar{X}_n$ is consistent for the population mean under random sampling.
 
   \uplevel{For the following five questions, let $X_1, X_2, X_3, \dots, X_n \sim \mbox{iid}$ with mean $\mu$ and variance $\sigma^2$ and define $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$.}
 
@@ -1228,7 +1228,7 @@ Is $\widehat{\mu}$ consistent for $\mu$?
 
 \question Suppose $X_1, X_2, \dots, X_n \sim \text{ iid } N(\mu, \sigma^2)$ and define $Y = \sqrt{n}(\bar{X}_n - \mu)/\sigma$. What kind of random variable is $Y$? Specify any and all parameters of its distribution.
 
-\question Give the formula from an approximate 95\% confidence interval for the mean $\mu$ of a normal population with known variance $\sigma^2$, based on a random sample of size $n$.
+\question Give the formula for an approximate 95\% confidence interval for the mean $\mu$ of a normal population with known variance $\sigma^2$, based on a random sample of size $n$.
 
 \question Give the formal definition of a confidence interval and the ``rough intuition'' that we can use to interpret it.
 
@@ -1254,7 +1254,7 @@ Is $\widehat{\mu}$ consistent for $\mu$?
  \item Say we observe $\bar{x} = 2.5$. Construct an approximate 95\% CI for $\mu$.
 \end{parts}
 
-\question Give the formula from an $(1 - \alpha)\times$ confidence interval for the mean $\mu$ of a normal population with known variance $\sigma^2$, based on a random sample of size $n$.
+\question Give the formula for a $(1 - \alpha)\times 100\%$ confidence interval for the mean $\mu$ of a normal population with known variance $\sigma^2$, based on a random sample of size $n$.
 
 \question Explain how $\alpha$, $\sigma$, and $n$ affect the width of a confidence interval for the mean of a normal population with known variance $\sigma^2$.
 
@@ -1293,6 +1293,8 @@ Is $\widehat{\mu}$ consistent for $\mu$?
     \part Whose interval would we expect will be \emph{wider}?
   \end{parts}
 
+  \question Suppose that $X_1, \dots, X_n$ are iid draws from some unknown population. If $n$ is large, what is the approximate sampling distribution of $\frac{\bar{X}_n - \mu}{S/\sqrt{n}}$?
+
 \question TRUE or FALSE: the Central Limit Theorem says that large populations are approximately normally distributed. If FALSE, correct the statement.
 
   \question Camilo wants to know the proportion $p$ of US voters who favor legalizing marijuana, so he carries out a poll based on a random sample.
@@ -1317,8 +1319,24 @@ Is $\widehat{\mu}$ consistent for $\mu$?
     $\bar{X} - \bar{Y} \sim \mbox{N}(\mbox{mean} = 50, \mbox{SD} = 5)$ so this is just the probability that a normal is at least one standard deviation above its mean, which is approximately $16\%$.
   \end{solution}
 
-  \question TRUE or FALSE: Regardless of whether our dataset consists of independent samples or matched pairs, the confidence interval turns out to be exactly the same. Explain.
+  \question Let $X_1, \dots, X_n$ be a random sample from a population with mean $\mu_X$ and variance $\sigma_X^2$, and $Y_1, \dots, Y_m$ be a random sample from a \emph{different} population with mean $\mu_Y$ and variance $\sigma_Y^2$. Suppose that the $X$ and $Y$ observations are independent of one another.
+  \begin{parts}
+  \item Derive the standard error of $\bar{X}_n - \bar{Y}_m$. 
+  \item Suppose that we do not know $\sigma_X^2$ or $\sigma_Y^2$. How can we estimate $SE(\bar{X}_n - \bar{Y}_m)$?
+  \item Let $\widehat{SE}$ be your proposed estimator from part (b). If $n$ and $m$ are both large, what is the approximate sampling distribution of $[(\bar{X}_n - \bar{Y}_m) - (\mu_X - \mu_Y)]/\widehat{SE}$?
+  \end{parts}
 
+  \question Suppose that we observe hourly wages for a random sample of 20 college graduates: the sample mean is \$31 with a standard deviation of \$15.
+  In contrast, the sample mean wage is \$17 with a standard deviation of \$10 for a sample of 30 non-college graduates.
+  Construct an approximate 95\% confidence interval for the difference in population mean wages ($\mu_X - \mu_Y$) between college graduates ($X$) and non-college graduates ($Y$).
+
+  \question Xanthippe wants to know which university has a higher proportion of philosophy majors: Penn or Princeton.
+  She polls a random sample of 100 Penn students -- 10 are philosophy majors.
+  In contrast, 7 of the 50 Princeton students she polls are philosophy majors.
+  Construct an approximate 95\% confidence interval for the difference in proportions of philosophy majors: Penn minus Princeton.
+
+
+  \question TRUE or FALSE: Regardless of whether our dataset consists of independent samples or matched pairs, the confidence interval turns out to be exactly the same. If FALSE, correct the statement.
 
   \question Suppose we observe two datasets: $x_1, \dots, x_n$ and $y_1, \dots, y_n$ with sample standard deviations $s_x = 3$ and $s_y = 4$ and sample correlation $r_{xy} = 0.5$.
   Calculate the sample variance $s_d^2$ of $d_1, \dots, d_n$ where $d_i = x_i - y_i$.
@@ -1330,7 +1348,23 @@ Is $\widehat{\mu}$ consistent for $\mu$?
 
 \question Let $D_i = X_i - Y_i$. Show that $S_D^2 = S_X^2 + S_Y^2 - 2 S_X S_Y r_{XY}$ where $S_D, S_X, S_Y$ denote the sample standard deviations of $D, X$, and $Y$, and $r_{XY}$ is the sample correlation between $X$ and $Y$.
 
+\question For each example, indicate whether it involves \emph{matched pairs} or \emph{independent samples}.
+\begin{parts}
+  \part To compare the performance of the two brands, Alice installs Firestone tires on half of the cars in the \emph{Consumer Reports} test garage, and Michelin tires on the rest. 
+  \part To determine the effect of listening to music on his workers' productivity, Bob installs a radio in the office.
+  During the month of March, he keeps the radio turned on all day.
+  During the month of April, he keeps it turned off.
+  \part To test the effectiveness of a new marketing campaign, Charlotte takes out new advertisements in half of the cities where her firm has a retail presence. She leaves the old advertisements in place in the remaining cities.
+\item Dan compares the wages of male and female high school teachers in Philadelphia.
+\item To determine the effect of college attendance on wages, Elise studies a sample identical twins in which one twin attended college and the other didn't.
+\end{parts} 
 
+\question What are the two equivalent ways to construct a matched pairs CI?
+
+\question Let $(X_1, Y_1), \dots, (X_n, Y_n)$ be a random sample of matched pairs. 
+Suppose that you erroneously construct an independent samples confidence interval for $\mu_X - \mu_Y$ using these observations.
+If the observations $(X_i, Y_i)$ within a given pair are \emph{negatively correlated}, will your interval be too wide or too narrow? 
+Explain.
 
 \fullwidth{\section*{Lecture \#18 -- Hypothesis Testing I}}
 
