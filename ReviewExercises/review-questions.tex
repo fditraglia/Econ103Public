@@ -1154,6 +1154,200 @@ Specify the values of any and all of its parameters.
 What kind of RV is $\bar{X}_n - \bar{Y}_m$? 
 Specify the values of any and all of its parameters.
 
+\fullwidth{\section*{Lecture \#13 -- Sampling and Estimation I}}
+
+\question We gave a verbal definition of the term \emph{random sample} in lecture \#1. What is the mathematical definition?
+
+\question Why \emph{doesn't} drawing without replacement constitute a random sample? Under what circumstances does it become for all practical purposes irrelevant whether one draws with or without replacement?
+
+\question Suppose that we have a vector \texttt{x} that we will treat as a \emph{population} for the purpose of carrying out a simulation exercise.
+Write R code to generate a histogram of 1000 sample means, each of which is constructed from a random sample of size 10 drawn from \texttt{x}.
+
+\question Let $X_1, \dots, X_n \sim \text{iid}$ with mean $\mu$ and let $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$. Calculate $E[\bar{X}_n]$.
+
+\question Let $X_1, \dots, X_n \sim \text{iid}$ with mean $\mu$ and variance $\sigma^2$, and let $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$. Calculate $Var(\bar{X}_n)$
+
+\question Define the term \emph{standard error}. What is the standard error of the sample mean under random sampling?
+
+\question True or False: under random sampling, the population size $N$ affects the sampling distribution of $\bar{X}_n$.
+
+\question Define the term \emph{statistic}. 
+
+\question Explain the difference between an \emph{estimator} and an \emph{estimate}, using the sample mean as an example.
+
+\question Suppose that 20\% of registered Democrats plan to vote for Bernie Sanders in the 2020 Democratic Primary. 
+You poll a random sample of 3 Democrats and calculate the proportion $\widehat{p}$ who support Sanders. 
+What is the sampling distribution of $\widehat{p}$? 
+(Write out the support set and pmf.)
+
+
+\fullwidth{\section*{Lecture \#14 -- Sampling and Estimation II}}
+
+\question Define the \emph{bias} of an estimator. What does it mean for an estimator to be \emph{unbiased}?
+
+\question Why do we divide by $n-1$ in our definition of the sample variance?
+
+\question Define the concept of \emph{efficiency}. What does it mean to say that one estimator is \emph{more efficient} than another?
+
+\question Define \emph{mean-squared error}. Why is it a useful concept?
+
+\question Explain the difference between \emph{finite sample properties} and \emph{asymptotic properties} of an estimator.
+
+\question What does it mean to say that an estimator $\widehat{\theta}_n$ is \emph{consistent} for $\theta_0$?
+
+\question Show that the sample mean is consistent for the population mean under random sampling.
+
+  \uplevel{For the following five questions, let $X_1, X_2, X_3, \dots, X_n \sim \mbox{iid}$ with mean $\mu$ and variance $\sigma^2$ and define $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$.}
+
+  \question Is $\bar{X}_n$ is an unbiased estimator of $\mu$? Why or why not?
+
+  \question Is $(0.1 X_1 + 0.9 X_2)$ is an unbiased estimator of $\mu$? Why or why not?
+  \begin{solution}
+    Yes: $E[0.1 X_1 + 0.9 X_2] = 0.1 E[X_1] + 0.9 E[X_2] = 0.1 \mu + 0.9\mu = \mu$
+  \end{solution}
+
+\question Is $(0.1X_1 + 0.9X_2)$ is a more efficient estimator of $\mu$ than $(0.5X_1 + 0.5X_2)$? Explain.
+\begin{solution}
+  No: both estimators are unbiased, so it makes sense to talk about ``efficiency,'' but $\mbox{Var}(0.1 X_1 + 0.9 X_2) = 0.01 \sigma^2 + 0.81 \sigma^2 = 0.82 \sigma^2$ which is much larger than $\mbox{Var}(0.5 X_1 + 0.5 X_2) = 0.5 \sigma^2$.
+\end{solution}
+
+\question Suppose $\mu$ is \emph{known} and we want to estimate $\sigma^2$. Is $\widetilde{\sigma}^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \mu)^2$ an unbiased estimator of $\sigma^2$?
+Justify your answer.
+\begin{solution}
+  It is a \emph{biased estimator}: $E[\widetilde{\sigma}] = \frac{1}{n-1} \sum_{i=1}^n E[(X_i - \mu)^2] = \frac{1}{n-1} \sum_{i=1}^n \mbox{Var}(X_i) = \frac{n}{n-1} \sigma^2 \neq 0$
+\end{solution}
+
+\question Calculate the bias and variance of the estimator  $\widehat{\mu} = \displaystyle\frac{n \bar{X}_n}{1 + n}$.
+Is $\widehat{\mu}$ consistent for $\mu$? 
+\begin{solution}
+  Yes: $\mbox{Bias}(\widehat{\mu}) = \left[ \left( \frac{n}{n+1} \right)E[\bar{X}_n] - \mu\right] = \left[ \left( \frac{n}{n+1} \right)\mu  - \mu\right]$ and $\mbox{Var}(\widehat{\mu}) = \left( \frac{n}{n+1} \right)^2 \mbox{Var}(\bar{X}_n) = \left( \frac{n}{n+1} \right)^2 \frac{\sigma^2}{n}$.
+  Both of these converge to zero as $n \rightarrow \infty$.
+\end{solution}
+
+\fullwidth{\section*{Lecture \#15 -- Confidence Intervals I}}
+
+\question Suppose $X_1, X_2, \dots, X_n \sim \text{ iid } N(\mu, \sigma^2)$ and define $Y = \sqrt{n}(\bar{X}_n - \mu)/\sigma$. What kind of random variable is $Y$? Specify any and all parameters of its distribution.
+
+\question Give the formula from an approximate 95\% confidence interval for the mean $\mu$ of a normal population with known variance $\sigma^2$, based on a random sample of size $n$.
+
+\question Give the formal definition of a confidence interval and the ``rough intuition'' that we can use to interpret it.
+
+\question Define the term \emph{confidence level} in the context of constructing a confidence interval. What symbol do we use to represent the confidence level of an interval?
+
+\question Define the following terms related to confidence intervals:
+\begin{parts}
+  \part Margin of error
+  \part Lower confidence limit (LCL)
+  \part Upper confidence limit (UCL)
+  \part Width
+\end{parts}
+
+\question Suppose that Alice and Bob each draw independent random samples of size $n=100$ from a normal population with unknown mean $\mu$ and known variance $\sigma^2=9$. Both of them construct 95\% confidence intervals for $\mu$. 
+\begin{parts}
+  \item Will the widths of Alice and Bob's confidence intervals be the same? Explain. 
+  \item Will the Alice and Bob's confidence intervals be identical? Explain.
+\end{parts}
+
+\question Suppose that we draw a random sample of $n = 25$ observations from a normal population with known variance $\sigma^2 = 4$ and unknown mean $\mu$. 
+\begin{parts}
+ \item What is the margin of error for an approximate 95\% CI for $\mu$?
+ \item Say we observe $\bar{x} = 2.5$. Construct an approximate 95\% CI for $\mu$.
+\end{parts}
+
+\question Give the formula from an $(1 - \alpha)\times$ confidence interval for the mean $\mu$ of a normal population with known variance $\sigma^2$, based on a random sample of size $n$.
+
+\question Explain how $\alpha$, $\sigma$, and $n$ affect the width of a confidence interval for the mean of a normal population with known variance $\sigma^2$.
+
+\question Suppose that I draw a random sample of size 64 from a normal population with known variance 16 and unknown mean $\mu$. My sample mean equals $-1.8$. Construct an approximate 68\% confidence interval for $\mu$.
+
+\fullwidth{\section*{Lecture \#16 -- Confidence Intervals II}}
+
+\question In what sense can we say that the values near the center of a symmetric confidence interval are ``more plausible'' than those near the LCL and UCL?
+
+  \question Suppose we observe $X_1, \dots, X_2 \sim N(\mu, \sigma^2)$. If we want to construct a confidence interval for $\mu$, does it make a difference if $\sigma^2$ is unknown and has to be estimated? Explain.
+
+  \question Let $X_1, \dots, X_{9} \sim N(\mu, \sigma^2)$ and define $\bar{X} = (\sum_{i=1}^9 X_i)/9$ and $S^2 = \left[ \sum_{i=1}^9 (X_i - \bar{X})^2 \right]/8$. If $S$ is the positive square root of $S^2$, then what kind of random variable is $3(\bar{X} - \mu)/S$? Be sure to specify the values of any and all parameters of its distribution.
+  \begin{solution}
+    $t(8)$.
+  \end{solution}
+
+  \question What is the support set of a Student-t random variable?
+
+  \question Under what circumstances is the Student-t random variable practically identical to the standard normal random variable?
+
+  \question Suppose that $X$ is a Student-t random variable with degrees of freedom equal to $10$. Write a line of R code to find $c$ such that $P(-c \leq X \leq c) = 0.68$. 
+
+  \question What is the median of a Student-t random variable with 17 degrees of freedom?
+  \begin{solution}
+    0
+  \end{solution}
+
+  \question Write out the formula for a $(1 - \alpha) \times 100\%$ CI for the mean $\mu$ of a normal population with unknown variance $\sigma^2$, based on a random sample of size $n$.
+
+  \question Alice and Bob each observe the same random sample $X_1, \dots, X_n$ from a normal population with mean $\mu$ and variance $\sigma^2$.
+  Each of them constructs a 95\% confidence interval for $\mu$.
+  Alice knows the true value of $\sigma^2$ while Bob does not.
+  Each researcher uses the appropriate confidence interval based on the information that she has available. 
+  \begin{parts}
+    \part Will Alice and Bob's intervals be centered in the same place?
+    \part Whose interval would we expect will be \emph{wider}?
+  \end{parts}
+
+\question TRUE or FALSE: the Central Limit Theorem says that large populations are approximately normally distributed. If FALSE, correct the statement.
+
+  \question Camilo wants to know the proportion $p$ of US voters who favor legalizing marijuana, so he carries out a poll based on a random sample.
+  Of the 100 individuals in his sample, 60 favor legalizing marijuana.
+  Based on this information, construct an approximate 95\% confidence interval for $p$.
+  \begin{solution}
+    $\widehat{p} = 60/100 = 0.6$ and $ME = 2\displaystyle\sqrt{\frac{0.6 \times 0.4}{100}}\approx 0.1$ so the CI is $0.6 \pm 0.1$ or equivalently $(0.5, 0.7)$.
+  \end{solution}
+
+  \question Suppose $X_1, \dots, X_n \sim \mbox{iid Bernoulli}(1/2)$, and define $\widehat{p} = (\sum_{i=1}^n X_i)/n$.
+  If $n=100$, approximately what is the probability that $0.45 \leq \widehat{p} \leq 0.55$?
+  \begin{solution}
+    Since $n$ is large, $\widehat{p}$ is approximately normal by the Central Limit Theorem. 
+    Its mean is $p = 1/2$ and its standard error is $\sqrt{p(1-p)/n} = \sqrt{0.5^2/100}= 0.5/10 = 0.05$, and the probability that a normal RV is within $\pm$ standard errors of its mean is about 0.68.
+  \end{solution}
+
+\fullwidth{\section*{Lecture \#17 -- Confidence Intervals III}}
+
+  \question Let $X_1, \dots, X_6 \sim \mbox{iid N}(\mu_x = 200, \sigma_x^2 = 54)$ and $Y_1, \dots, Y_{10} \sim \mbox{iid N}(\mu_y = 150, \sigma_y^2 = 160)$ where the $X$ and $Y$ observations are independent.
+  Approximately what is the probability that $\bar{X} - \bar{Y} > 55$? 
+  \begin{solution}
+    $\bar{X} - \bar{Y} \sim \mbox{N}(\mbox{mean} = 50, \mbox{SD} = 5)$ so this is just the probability that a normal is at least one standard deviation above its mean, which is approximately $16\%$.
+  \end{solution}
+
+  \question TRUE or FALSE: Regardless of whether our dataset consists of independent samples or matched pairs, the confidence interval turns out to be exactly the same. Explain.
+
+
+  \question Suppose we observe two datasets: $x_1, \dots, x_n$ and $y_1, \dots, y_n$ with sample standard deviations $s_x = 3$ and $s_y = 4$ and sample correlation $r_{xy} = 0.5$.
+  Calculate the sample variance $s_d^2$ of $d_1, \dots, d_n$ where $d_i = x_i - y_i$.
+  \begin{solution}
+    $s_d^2 = s_x^2 + s_y^2 - 2 s_x s_y r_{xy} = 9 + 16 - 2 \times 3 \times 4 \times 0.5 = 25 - 12 = 13$
+  \end{solution}
+
+\question Let $D_i = X_i - Y_i$. Show that $\bar{D}_n = \bar{X}_n - \bar{Y}_n$, where $\bar{D}_n, \bar{X}_n, \bar{Y}_n$ denote the sample means of $D, X$, and  $Y$.
+
+\question Let $D_i = X_i - Y_i$. Show that $S_D^2 = S_X^2 + S_Y^2 - 2 S_X S_Y r_{XY}$ where $S_D, S_X, S_Y$ denote the sample standard deviations of $D, X$, and $Y$, and $r_{XY}$ is the sample correlation between $X$ and $Y$.
+
+
+
+\fullwidth{\section*{Lecture \#18 -- Hypothesis Testing I}}
+
+  \question TRUE or FALSE: in hypothesis testing the term ``Type I error'' means rejecting the null hypothesis when it is true.
+  \begin{solution}
+    TRUE
+  \end{solution}
+
+  \question In the ``Pepsi Challenge'' experiment from class there were four cups of Coke and four of Pepsi.
+In this question, consider a modified version of the experiment with \emph{three} cups of each kind of soda.
+Everything else is unchanged.
+Calculate the probability that our test statistic, the number of cokes correctly identified, will equal two \emph{under the null hypothesis}.
+\begin{solution}
+  \[
+    \frac{ \displaystyle {3 \choose 2} \times {3 \choose 1} }{\displaystyle{6 \choose 3}} = \frac{3 \times 3}{20} = 9/20 = 0.45
+  \]
+\end{solution}
 
 
 \end{questions}
