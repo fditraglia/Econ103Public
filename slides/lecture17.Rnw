@@ -143,14 +143,14 @@ boxplot(africa.percent ~ rand.num, data = anchoring)
 \frametitle{Anchoring Experiment}
 \small
 \singlespacing
-\begin{block}{From what population is our sample drawn?} 
-US College Students? Penn Students? Penn Econ Majors? 
-\end{block}
-
-\begin{block}{Do We Have a Random Sample?} 
-Definitely not a random sample of US College Students. Possibly a random sample of Penn Econ Majors since Econ 103 is required. 
-\end{block}
-
+%\begin{block}{From what population is our sample drawn?} 
+%US College Students? Penn Students? Penn Econ Majors? 
+%\end{block}
+%
+%\begin{block}{Do We Have a Random Sample?} 
+%Definitely not a random sample of US College Students. Possibly a random sample of Penn Econ Majors since Econ 103 is required. 
+%\end{block}
+%
 
 \begin{block}{Observational or Experimental Data?} 
 Randomized Experiment drew from a bag of ``random'' numbers 
@@ -177,10 +177,10 @@ Does ``anchoring'' cause of bias in decision-making?
 
 	\column{0.5\textwidth}
 	\begin{block}{``Lo'' Group -- Shown 10 }
-	$m_{Lo} = 43$\\ $\bar{y}_{Lo} = 17.1$ \\ $s^2_{Lo} = 86$
+	$m = 43$\\ $\bar{y} = 17.1$ \\ $s^2_{y} = 86$
 \end{block}
 		\begin{block}{``Hi'' Group -- Shown 65 }
-		$n_{Hi} =46$\\ $\bar{x}_{Hi} = 30.7$\\ $s^2_{Hi} = 253$
+		$n =46$\\ $\bar{x} = 30.7$\\ $s^2_{x} = 253$
 \end{block}
 
 \end{columns}
@@ -195,28 +195,28 @@ Does ``anchoring'' cause of bias in decision-making?
 	\column{0.5\textwidth}
 	\begin{block}{``Lo'' Group}
 		\begin{eqnarray*}
-			\bar{y}_{Lo} &=&17.1 \\
-			m_{Lo} &=& 43\\  
-			s^2_{Lo} &=& 86\\ 
-			\widehat{SE}(\bar{y}_{Lo})^2 &=& \frac{s^2_{Lo}}{m_{Lo}} = 2
+			\bar{y} &=&17.1 \\
+			m &=& 43\\  
+			s^2_{y} &=& 86\\ 
+			%\widehat{SE}(\bar{y}_{Lo})^2 &=& \frac{s^2_{Lo}}{m_{Lo}} = 2
 		\end{eqnarray*}
 	\end{block}
 	
 	\column{0.5\textwidth}
 		\begin{block}{``Hi'' Group}
 		\begin{eqnarray*}
-			\bar{x}_{Hi} &=& 30.7\\
-			n_{Hi} &=& 46\\  
-			s^2_{Hi} &=& 253\\
-			\widehat{SE}(\bar{x}_{Hi})^2 &=& \frac{s^2_{Hi}}{n_{Hi}} = 5.5
+			\bar{x} &=& 30.7\\
+			n &=& 46\\  
+			s^2_{x} &=& 253\\
+			%\widehat{SE}(\bar{x}_{Hi})^2 &=& \frac{s^2_{Hi}}{n_{Hi}} = 5.5
 		\end{eqnarray*}
 	\end{block}
 \end{columns}
 
 \pause
 	\begin{eqnarray*}
-		\bar{X}_{Hi} - \bar{Y}_{Lo} &=& 30.7 - 17.1 =  13.6\\ \pause
-		\widehat{SE}(\bar{X}_{Hi} - \bar{Y}_{Lo}) &=& \pause \sqrt{\widehat{SE}(\bar{X}_{Hi})^2 + \widehat{SE}(\bar{Y}_{Lo})^2} = \sqrt{7.5}  \approx 2.7 \pause \Rightarrow ME \approx 5.4 \pause 
+		\bar{X}_{n} - \bar{Y}_{m} &=& 30.7 - 17.1 =  13.6\\ \pause
+		\widehat{SE}(\bar{X}_{Hi} - \bar{Y}_{Lo}) &=& \pause \sqrt{253/46 + 86/43} \approx 2.7 \pause \Rightarrow ME \approx 5.4 \pause 
 	\end{eqnarray*}
 	$$\alert{\boxed{\mbox{Approximate 95\% CI} \quad (8.2, 19)}} \quad \mbox{What can we conclude?}$$
 
@@ -423,36 +423,48 @@ $$\alert{\boxed{1.8 \pm 2.6 = (-0.8, 4.4)}} \quad \mbox{What is our conclusion?}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\begin{center}
-	\Huge How are the Independent Samples and Matched Pairs Problems Related?
-	\end{center}
-\end{frame}
+  \frametitle{How do Independent Samples \& Matched Pairs Differ?}
+  
+  \begin{block}{Mean of Differences = Difference of Means}
+    $\bar{D}_n \equiv \frac{1}{n} \sum_{i=1} D_i  =  \bar{X}_n - \bar{Y}_n$
+  \end{block}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Difference of Means = Mean of Differences?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
-\fbox{Let $D_i = X_i - Y_i$ be the difference of student $i$'s exam scores.}
+  \begin{block}{But Correlation Affects the Variance}
+    $S_D^2 \equiv \frac{1}{n-1} \sum_{i=1}^n (D_i - \bar{D}_n)^2 =  S_X^2 + S_Y^2 - 2 S_X S_Y r_{XY}$
+    \vspace{1em}
 
-True or False:
-	$$\bar{D}_n = \bar{X}_n - \bar{Y}_n$$
 
-\begin{enumerate}[(a)]
-	\item True
-	\item False
-	\item Not Sure
-\end{enumerate}
+\alert{$\boxed{r_{XY} > 0 \implies S_D^2 < S_X^2 + S_Y^2}$} \\ 
+\alert{$\boxed{r_{XY} = 0 \implies S_D^2 = S_X^2 + S_Y^2}$} \\ 
+\alert{$\boxed{r_{XY} < 0 \implies S_D^2 > S_X^2 + S_Y^2}$}
+  \end{block}
 
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Difference of Means = Mean of Differences?\hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%\fbox{Let $D_i = X_i - Y_i$ be the difference of student $i$'s exam scores.}
+%
+%True or False:
+%	$$\bar{D}_n = \bar{X}_n - \bar{Y}_n$$
+%
+%\begin{enumerate}[(a)]
+%	\item True
+%	\item False
+%	\item Not Sure
+%\end{enumerate}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Difference of Means Equals Mean of Differences}
+  \frametitle{Mean of Differences equals Difference of Means}
 
 \small
 
-\begin{eqnarray*}
-	\bar{D}_n &=& \frac{1}{n}\sum_{i=1}^n D_i = \frac{1}{n}\sum_{i=1}^n (X_i - Y_i) = \bar{X}_n - \bar{Y}_n
-\end{eqnarray*}
-
+%\begin{eqnarray*}
+%	\bar{D}_n &=& \frac{1}{n}\sum_{i=1}^n D_i = \frac{1}{n}\sum_{i=1}^n (X_i - Y_i) = \bar{X}_n - \bar{Y}_n
+%\end{eqnarray*}
+%
 % latex.default(round(grades.out, 1), file = "grades.tex", rowname = NULL) 
 %
 \begin{table}[!tbp]
@@ -481,28 +493,28 @@ Sample Mean: & 79.6 & 81.4  &1.8\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{...But Correlation Affects the Variance}
-\footnotesize
-\begin{eqnarray*}
-	S_D^2&=& \frac{1}{n-1}\sum_{i=1}^n \left( D_i - \bar{D}_n\right)^2 = \pause \frac{1}{n-1}\sum_{i=1}^n \left[ \left( X_i - Y_i\right) - \left( \bar{X}_n - \bar{Y}_n\right)\right]^2\\ \pause
-	&=&\frac{1}{n-1}\sum_{i=1}^n \left[ \left( X_i - \bar{X}_n\right) - \left( Y_i - \bar{Y}_n\right)\right]^2\\ \pause
-	&=&\frac{1}{n-1}\sum_{i=1}^n \left[ \left( X_i - \bar{X}_n\right)^2 + \left( Y_i - \bar{Y}_n\right)^2 - 2\left(X_i - \bar{X}_n\right)\left(Y_i - \bar{Y}_n\right)\right]\\ \pause
-	&=& S_X^2 + S_Y^2 - 2 S_{XY}\\ \pause
-	&=& S_X^2 + S_Y^2 - 2 S_X S_Y r_{XY}
-\end{eqnarray*}
-
-\pause
-
-\vspace{1em}
-\alert{$\boxed{r_{XY} > 0 \implies S_D^2 < S_X^2 + S_Y^2}$} \\ \pause
-\alert{$\boxed{r_{XY} = 0 \implies S_D^2 = S_X^2 + S_Y^2}$} \\ \pause
-\alert{$\boxed{r_{XY} < 0 \implies S_D^2 > S_X^2 + S_Y^2}$}
-
-\end{frame}
+%\begin{frame}
+%\frametitle{...But Correlation Affects the Variance}
+%\footnotesize
+%\begin{eqnarray*}
+%	S_D^2&=& \frac{1}{n-1}\sum_{i=1}^n \left( D_i - \bar{D}_n\right)^2 = \pause \frac{1}{n-1}\sum_{i=1}^n \left[ \left( X_i - Y_i\right) - \left( \bar{X}_n - \bar{Y}_n\right)\right]^2\\ \pause
+%	&=&\frac{1}{n-1}\sum_{i=1}^n \left[ \left( X_i - \bar{X}_n\right) - \left( Y_i - \bar{Y}_n\right)\right]^2\\ \pause
+%	&=&\frac{1}{n-1}\sum_{i=1}^n \left[ \left( X_i - \bar{X}_n\right)^2 + \left( Y_i - \bar{Y}_n\right)^2 - 2\left(X_i - \bar{X}_n\right)\left(Y_i - \bar{Y}_n\right)\right]\\ \pause
+%	&=& S_X^2 + S_Y^2 - 2 S_{XY}\\ \pause
+%	&=& S_X^2 + S_Y^2 - 2 S_X S_Y r_{XY}
+%\end{eqnarray*}
+%
+%\pause
+%
+%\vspace{1em}
+%\alert{$\boxed{r_{XY} > 0 \implies S_D^2 < S_X^2 + S_Y^2}$} \\ \pause
+%\alert{$\boxed{r_{XY} = 0 \implies S_D^2 = S_X^2 + S_Y^2}$} \\ \pause
+%\alert{$\boxed{r_{XY} < 0 \implies S_D^2 > S_X^2 + S_Y^2}$}
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Dependent Samples -- Calculating the ME}
+  \frametitle{Calculating $S_D^2$ from $S_X^2, S_Y^2$ and $r_{XY}$}
 % latex.default(round(grades.out, 1), file = "grades.tex", rowname = NULL) 
 %
 \begin{table}[!tbp]
@@ -515,7 +527,7 @@ $ 1$&$57.1$&$60.7$&$  3.6$\tabularnewline
 \vdots&\vdots&\vdots&\vdots\\
 $71$&$78.6$&$82.9$&$  4.3$\tabularnewline
 \hline
-Sample Var. &117  & 151 & \alert{\fbox{?}}\\
+Sample Var. &117  & 151 & \fbox{\alert{124}}\\
 Sample Corr.& \multicolumn{2}{c}{0.54}&\\
 \hline
 \end{tabular}
