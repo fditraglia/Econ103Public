@@ -125,19 +125,19 @@ At the beginning of the semester you were each shown a ``random number.'' In fac
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{data.url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/survey_2017_spring.csv"}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data.url)}
+\hlstd{data_url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/survey-spring-2019.csv"}
+\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
 \hlstd{anchoring} \hlkwb{<-} \hlstd{survey[,}\hlkwd{c}\hlstd{(}\hlstr{"rand.num"}\hlstd{,} \hlstr{"africa.percent"}\hlstd{)]}
 \hlkwd{head}\hlstd{(anchoring)}
 \end{alltt}
 \begin{verbatim}
 ##   rand.num africa.percent
-## 1       65             22
-## 2       10             22
-## 3       NA             NA
-## 4       65             15
-## 5       65             20
-## 6       10              9
+## 1       10              9
+## 2       65             27
+## 3       65             20
+## 4       10             35
+## 5       10             15
+## 6       10             24
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

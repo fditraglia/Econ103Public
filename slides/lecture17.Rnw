@@ -123,8 +123,8 @@ At the beginning of the semester you were each shown a ``random number.'' In fac
 \begin{frame}[fragile]\frametitle{Load Data for Anchoring Experiment}
 \footnotesize
 <<anchoring_data>>=
-data.url <- "http://www.ditraglia.com/econ103/survey_2017_spring.csv"
-survey <- read.csv(data.url)
+data_url <- "http://www.ditraglia.com/econ103/survey-spring-2019.csv"
+survey <- read.csv(data_url)
 anchoring <- survey[,c("rand.num", "africa.percent")]
 head(anchoring)
 @
