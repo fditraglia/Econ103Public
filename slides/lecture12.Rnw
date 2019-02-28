@@ -307,7 +307,7 @@ Middle 68\% of $N(0,1) \Rightarrow$ approx.\ $(-1,1)$
   \end{alertblock}
 
   \begin{eqnarray*}
-    P(-1 \leq X \leq 3) &=& \pause P(-2 \leq X \leq 2) \\
+    P(-1 \leq X \leq 3) &=& \pause P(-2 \leq X - 1 \leq 2) \\
     &=& \pause P\left( -1 \leq \frac{X - 1}{2} \leq 1 \right)\\
     &=& \pause \texttt{pnorm(1) - pnorm(-1)}\\
     &\approx& 0.68
