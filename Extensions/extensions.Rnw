@@ -1,54 +1,4 @@
-\documentclass[addpoints,12pt]{exam}\usepackage[]{graphicx}\usepackage[]{color}
-%% maxwidth is the original width if it is less than linewidth
-%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
-\makeatletter
-\def\maxwidth{ %
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
-\makeatother
-
-\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
-\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
-\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
-\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
-\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
-\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
-\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
-\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
-\let\hlipl\hlkwb
-
-
-\makeatletter
-\newenvironment{kframe}{%
- \def\at@end@of@kframe{}%
- \ifinner\ifhmode%
-  \def\at@end@of@kframe{\end{minipage}}%
-  \begin{minipage}{\columnwidth}%
- \fi\fi%
- \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
- \colorbox{shadecolor}{##1}\hskip-\fboxsep
-     % There is no \\@totalrightmargin, so:
-     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
- \MakeFramed {\advance\hsize-\width
-   \@totalleftmargin\z@ \linewidth\hsize
-   \@setminipage}}%
- {\par\unskip\endMakeFramed%
- \at@end@of@kframe}
-\makeatother
-
-\definecolor{shadecolor}{rgb}{.97, .97, .97}
-\definecolor{messagecolor}{rgb}{0, 0, 0}
-\definecolor{warningcolor}{rgb}{1, 0, 1}
-\definecolor{errorcolor}{rgb}{1, 0, 0}
-\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
-
-\usepackage{alltt}
+\documentclass[addpoints,12pt]{exam}
 \usepackage{todonotes}
 \usepackage{amsmath, amssymb}
 \linespread{1.1}
@@ -62,13 +12,17 @@
 \title{Extension Problems}
 \author{Econ 103}
 \date{Spring 2018}
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
 \begin{document}
 \maketitle
 
 %------------------- Don't Change!
 % Prevents a conflict with the exam class
-
+<<setup, include=FALSE>>=
+knitr::knit_hooks$set(document=function(x){
+  sub('\\usepackage{framed}', '', x, fixed=TRUE)
+})
+@
 %alternative solution:
 %<<setup, include=FALSE>>=
 %knitr::render_listings()
@@ -498,23 +452,12 @@ Define $F_D$ and $F_S$ analogously.
     Notice that, because you cannot hire a fraction of a helicopter, it may not be possible to exactly equate marginal expected cost and benefit as we would do in a continuous optimization problem.
     Instead we'll make a table of values. 
     It's easy enough to do this by hand, but we could also use R:
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{n} \hlkwb{<-} \hlnum{1}\hlopt{:}\hlnum{4}
-\hlstd{p} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlnum{1}\hlopt{/}\hlnum{10}\hlopt{^}\hlstd{n}
-\hlstd{EV} \hlkwb{<-} \hlnum{100000} \hlopt{*} \hlstd{p} \hlopt{-} \hlnum{1000} \hlopt{*} \hlstd{n}
-\hlkwd{cbind}\hlstd{(n,p,EV)}
-\end{alltt}
-\begin{verbatim}
-##      n      p    EV
-## [1,] 1 0.9000 89000
-## [2,] 2 0.9900 97000
-## [3,] 3 0.9990 96900
-## [4,] 4 0.9999 95990
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<>>=
+n <- 1:4
+p <- 1 - 1/10^n
+EV <- 100000 * p - 1000 * n
+cbind(n,p,EV)
+@
 From the table is appears that the optimal number of helicopters is $2$.
 But how can we be sure when we have only examined five possible values for $n$?
 Notice that the marginal expected cost is a constant \$1000 regardless of $n$.
@@ -598,56 +541,37 @@ Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lectu
     \part I have posted five years of daily closing stock prices for Apple (AAPL) and Google (GOOG) on my website: \url{http://ditraglia.com/econ103/closing\_prices.csv}.
     Write code to read this data into R and store it in a dataframe called \texttt{prices}.
     \begin{solution}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{data_url} \hlkwb{<-} \hlstr{'http://ditraglia.com/econ103/closing_prices.csv'}
-\hlstd{prices} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<>>=
+data_url <- 'http://ditraglia.com/econ103/closing_prices.csv'
+prices <- read.csv(data_url)
+@
     \end{solution}
     \part If $P_{t}$ is today's closing price and $P_{t-1}$ is yesterday's closing price, then we define the \emph{log daily return} as $\log(P_{t}) - \log(P_{t-1})$ where $\log$ denotes the natural logarithm.
     Write R code that uses \texttt{prices} to create two vectors \texttt{apple\_returns} and \texttt{google\_returns} containing \emph{log returns} for Apple and Google respectively. 
     The R function for natural logarithms is \texttt{log} while \texttt{diff} takes successive \emph{differences} of a vector.
     \begin{solution}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{google_returns} \hlkwb{<-} \hlkwd{diff}\hlstd{(}\hlkwd{log}\hlstd{(prices}\hlopt{$}\hlstd{GOOG))}
-\hlstd{apple_returns} \hlkwb{<-} \hlkwd{diff}\hlstd{(}\hlkwd{log}\hlstd{(prices}\hlopt{$}\hlstd{APPL))}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<>>=
+google_returns <- diff(log(prices$GOOG))
+apple_returns <- diff(log(prices$APPL))
+@
     \end{solution}
     \part Using \texttt{apple\_returns} and \texttt{google\_returns}, write R code to compute the sample standard deviation of Apple and Google daily log returns, along with the sample correlation between them.
     \begin{solution}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{s1} \hlkwb{<-} \hlkwd{sd}\hlstd{(google_returns)}
-\hlstd{s2} \hlkwb{<-} \hlkwd{sd}\hlstd{(apple_returns)}
-\hlstd{r} \hlkwb{<-} \hlkwd{cor}\hlstd{(google_returns, apple_returns)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+<<>>=
+s1 <- sd(google_returns)
+s2 <- sd(apple_returns)
+r <- cor(google_returns, apple_returns)
+@
     \end{solution}
     \part Suppose we make the assumption that \emph{future} Apple and Google returns are random variables with the standard deviations and correlation equal to the values you computed in the preceding part.
     If we have \$100 and wish to invest in these two companies, how much money should we allocate to Apple and Google stock to minimize the variance of our portfolio? 
     (If we take variance as a measure of risk, this problem is asking you to calculate the ``safest'' portfolio.)
     \begin{solution}
       The formula from part (b) gives
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{wstar} \hlkwb{<-} \hlstd{(s2}\hlopt{^}\hlnum{2} \hlopt{-} \hlstd{r} \hlopt{*} \hlstd{s1} \hlopt{*} \hlstd{s2)} \hlopt{/} \hlstd{(s1}\hlopt{^}\hlnum{2} \hlopt{+} \hlstd{s2}\hlopt{^}\hlnum{2} \hlopt{-} \hlnum{2} \hlopt{*} \hlstd{r} \hlopt{*} \hlstd{s1} \hlopt{*} \hlstd{s2)}
-\hlstd{wstar}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.5422114
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<>>=
+wstar <- (s2^2 - r * s1 * s2) / (s1^2 + s2^2 - 2 * r * s1 * s2)
+wstar
+@
 so we should invest \$54 in Google and \$46 in Apple.
 \end{solution}
 %    \part \emph{Optional Part}: if you'd like an extra challenge, check the second order condition from part (b) above.
@@ -910,115 +834,69 @@ To answer the question for estimators of \emph{market size}, i.e.\ the populatio
     \begin{parts}
       \part Write a function called \texttt{get\_CI} that calculates a confidence interval for the mean of a normal population when the population standard deviation is known. It should take three arguments: \texttt{data} is a vector containing the observed data from which we will calculate the sample mean, \texttt{pop\_sd} is the population standard deviation, and \texttt{alpha} controls the confidence level (e.g.\ \texttt{alpha = 0.1} for a 90\% confidence interval). Your function should return a vector whose first element is the lower confidence limit and whose second element is the upper confidence limit. Test out your function on a simple example to make sure it's working properly.
 \begin{solution}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{get_CI} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{data}\hlstd{,} \hlkwc{pop_sd}\hlstd{,} \hlkwc{alpha}\hlstd{)\{}
+<<>>=
+get_CI <- function(data, pop_sd, alpha){
 
-  \hlstd{x_bar} \hlkwb{<-} \hlkwd{mean}\hlstd{(data)}
-  \hlstd{n} \hlkwb{<-} \hlkwd{length}\hlstd{(data)}
-
-  \hlstd{SE} \hlkwb{<-} \hlstd{pop_sd} \hlopt{/} \hlkwd{sqrt}\hlstd{(n)}
-  \hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlstd{alpha}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
-
-  \hlstd{lower} \hlkwb{<-} \hlstd{x_bar} \hlopt{-} \hlstd{ME}
-  \hlstd{upper} \hlkwb{<-} \hlstd{x_bar} \hlopt{+} \hlstd{ME}
-
-  \hlstd{out} \hlkwb{<-} \hlkwd{c}\hlstd{(lower, upper)}
-  \hlkwd{return}\hlstd{(out)}
-\hlstd{\}}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+  x_bar <- mean(data)
+  n <- length(data)
+  
+  SE <- pop_sd / sqrt(n)
+  ME <- qnorm(1 - alpha/2) * SE
+  
+  lower <- x_bar - ME
+  upper <- x_bar + ME
+  
+  out <- c(lower, upper)
+  return(out)
+}
+@
 Testing this out on fake data containing twenty-five zeros and assuming a population variance of one, we have
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{fake_data} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{25}\hlstd{)}
-\hlkwd{get_CI}\hlstd{(fake_data,} \hlkwc{pop_sd} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] -0.3919928  0.3919928
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<>>=
+fake_data <- rep(0, 25)
+get_CI(fake_data, pop_sd = 1, alpha = 0.05)
+@
 If we calculated the corresponding interval by hand, assuming a population standard deviation of one, we'd get
   $$0 \pm  2 \times 1 \times 1/5 = (-0.4, 0.4)$$
 Which is almost exactly the same. The reason for the slight discrepancy is that when working by hand we use the approximation \texttt{qnorm(0.975)}$\approx 2$ whereas the exact value, which R provides, is more like 1.96.
 \end{solution}
       \part Write a function called \texttt{CI\_sim} that takes a single argument \texttt{sample.size}. Your function should carry out the following steps. First generate \texttt{sample\_size} draws from a standard normal distribution. Second, pass your sample of standard normals to \texttt{get\_CI} with \texttt{alpha} set to 0.05 and \texttt{pop\_sd} set to 1. Third, return the resulting confidence interval. Test your function on a sample of size 10. (What we're doing here is constructing a 95\% confidence interval for the mean of a normal population using simulated data. The population mean is in fact zero, but we want to see how our confidence interval procedure works. To do this we ``pretend'' that we don't know the population mean and only know the population variance. Think about this carefully and make sure you understand the intuition.)
       \begin{solution}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{CI_sim} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{sample_size}\hlstd{)\{}
-    \hlstd{sims} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(sample_size)}
-    \hlstd{CI} \hlkwb{<-} \hlkwd{get_CI}\hlstd{(sims,} \hlkwc{pop_sd} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
-    \hlkwd{return}\hlstd{(CI)}
-\hlstd{\}}
-\hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{)}
-\end{alltt}
-\begin{verbatim}
-## [1] -0.2695404  0.9700496
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<>>=
+CI_sim <- function(sample_size){
+    sims <- rnorm(sample_size)
+    CI <- get_CI(sims, pop_sd = 1, alpha = 0.05)
+    return(CI)
+}
+CI_sim(10)
+@
       \end{solution}
     \part Use \texttt{replicate} to construct 10000 confidence intervals based on simulated data using the function \texttt{CI.sim} with \texttt{sample.size} equal to 10. (Note that \texttt{replicate} will, in this case, return a matrix with \emph{2} rows and \emph{10000} columns. Each column correponds to one of the simulated confidence intervals. The first row contains the lower confidence limit while the second row contains the upper confidence limit.) Calculate the proportion of the resulting confidence intervals contain the true population mean. Did you get the answer you were expecting?
     \begin{solution}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{simCIs} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{))}
-\hlstd{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
-\end{alltt}
-\begin{verbatim}
-##            [,1]       [,2]       [,3]       [,4]       [,5]
-## [1,] -0.7334476 -0.7982059 -0.1463906 -0.7502866 -0.9201982
-## [2,]  0.5061425  0.4413842  1.0931995  0.4893035  0.3193918
-\end{verbatim}
-\begin{alltt}
-\hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
-\hlstd{upper} \hlkwb{<-} \hlstd{simCIs[}\hlnum{2}\hlstd{,]}
-\hlstd{covers_truth} \hlkwb{<-} \hlstd{(lower} \hlopt{<} \hlnum{0}\hlstd{)} \hlopt{&} \hlstd{(upper} \hlopt{>} \hlnum{0}\hlstd{)}
-\hlkwd{sum}\hlstd{(covers_truth)} \hlopt{/} \hlkwd{length}\hlstd{(covers_truth)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.9487
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<cache=TRUE>>=
+simCIs <- replicate(10000, CI_sim(10))
+simCIs[,1:5]
+lower <- simCIs[1,]
+upper <- simCIs[2,]
+covers_truth <- (lower < 0) & (upper > 0) 
+sum(covers_truth) / length(covers_truth)
+@
 The answer is pretty much dead on: almost exactly 95\% of the intervals contain the true population mean (zero).
     \end{solution}
     \part Repeat the preceding but rather than using \texttt{CI\_sim} write a new function called \texttt{CI\_sim2}. This new function should be identical to \texttt{CI\_sim} except that, when calling \texttt{my\_CI}, it sets \texttt{pop\_sd = 1/2} rather than 1. How do your results change? Try to provide some intuition for any differences you find.
     \begin{solution}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{CI_sim2} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{sample_size}\hlstd{)\{}
-    \hlstd{sims} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(sample_size)}
-    \hlstd{CI} \hlkwb{<-} \hlkwd{get_CI}\hlstd{(sims,} \hlkwc{pop_sd} \hlstd{=} \hlnum{1}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
-    \hlkwd{return}\hlstd{(CI)}
-\hlstd{\}}
-\hlstd{simCIs} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{CI_sim2}\hlstd{(}\hlnum{10}\hlstd{))}
-\hlstd{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
-\end{alltt}
-\begin{verbatim}
-##            [,1]      [,2]       [,3]      [,4]         [,5]
-## [1,] -0.8048030 -0.170120 -0.8333794 0.1589719 -0.001265155
-## [2,] -0.1850079  0.449675 -0.2135844 0.7787669  0.618529877
-\end{verbatim}
-\begin{alltt}
-\hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
-\hlstd{upper} \hlkwb{<-} \hlstd{simCIs[}\hlnum{2}\hlstd{,]}
-\hlstd{covers_truth} \hlkwb{<-} \hlstd{(lower} \hlopt{<} \hlnum{0}\hlstd{)} \hlopt{&} \hlstd{(upper} \hlopt{>} \hlnum{0}\hlstd{)}
-\hlkwd{sum}\hlstd{(covers_truth)} \hlopt{/} \hlkwd{length}\hlstd{(covers_truth)}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.6771
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<cache=TRUE>>=
+CI_sim2 <- function(sample_size){
+    sims <- rnorm(sample_size)
+    CI <- get_CI(sims, pop_sd = 1/2, alpha = 0.05)
+    return(CI)
+}
+simCIs <- replicate(10000, CI_sim2(10))
+simCIs[,1:5]
+lower <- simCIs[1,]
+upper <- simCIs[2,]
+covers_truth <- (lower < 0) & (upper > 0) 
+sum(covers_truth) / length(covers_truth)
+@
 In this case the procedure didn't work: many fewer than 95\% of the intervals contain the true population mean. The problem is that \texttt{CI.sim2} constructs a confidence interval using the \emph{wrong} population standard deviation! Since it uses 1/2 rather than 1, the resulting intervals are too short, so too few of them contain the true population mean. 
 \end{solution}
     \end{parts}
@@ -1037,48 +915,32 @@ You can then use the \texttt{plot} command with the option \texttt{type = `h'} t
 I also suggest setting \texttt{ylim = c(0,1)} so that the y-axis in this plot starts at zero and ends at one.
 You can also try setting \texttt{xlim} to make it easier to see the vertical bars.
 	\begin{solution}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlcom{# Uniform }
-\hlstd{uniform_means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{runif}\hlstd{(}\hlnum{20}\hlstd{)))}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlkwd{curve}\hlstd{(}\hlkwd{dunif}\hlstd{(x),} \hlnum{0}\hlstd{,} \hlnum{1}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{"Uniform(0,1) Density"}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{)}
-\hlkwd{hist}\hlstd{(uniform_means,} \hlkwc{main} \hlstd{=} \hlstr{"Uniform(0,1), n = 20"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-1} 
-\begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+<<fig.height=3>>=
+# Uniform 
+uniform_means <- replicate(10000, mean(runif(20)))
+par(mfrow = c(1, 2))
+curve(dunif(x), 0, 1, main = "Uniform(0,1) Density", ylab = 'f(x)')
+hist(uniform_means, main = "Uniform(0,1), n = 20")
+par(mfrow = c(1, 1))
 
-\hlcom{# Chi-squared(5) }
-\hlstd{chisq_means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{rchisq}\hlstd{(}\hlnum{20}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{5}\hlstd{)))}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
-\hlkwd{curve}\hlstd{(}\hlkwd{dchisq}\hlstd{(x,} \hlnum{5}\hlstd{),} \hlnum{0.01}\hlstd{,} \hlnum{15}\hlstd{,}
-      \hlkwc{main} \hlstd{=} \hlstr{"Chi-squared Density, df = 5"}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{)}
-\hlkwd{hist}\hlstd{(chisq_means,} \hlkwc{main} \hlstd{=} \hlstr{"Chi-squared(5), n = 20"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-2} 
-\begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+# Chi-squared(5) 
+chisq_means <- replicate(10000, mean(rchisq(20, df = 5)))
+par(mfrow = c(1,2))
+curve(dchisq(x, 5), 0.01, 15, 
+      main = "Chi-squared Density, df = 5", ylab = 'f(x)')
+hist(chisq_means, main = "Chi-squared(5), n = 20")
+par(mfrow = c(1, 1))
 
-\hlcom{# Bernoulli(0.3)}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlstd{x} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{)}
-\hlstd{p} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{0.7}\hlstd{,} \hlnum{0.3}\hlstd{)}
-\hlkwd{plot}\hlstd{(x, p,} \hlkwc{type} \hlstd{=} \hlstr{'h'}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{"Bernoulli(0.3) pmf"}\hlstd{,} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{),}
-     \hlkwc{xlim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlstd{bernoulli_means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{rbinom}\hlstd{(}\hlnum{20}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0.3}\hlstd{)))}
-\hlkwd{hist}\hlstd{(bernoulli_means,} \hlkwc{main} \hlstd{=} \hlstr{"Bernoulli(0.3), n = 20"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-3} 
-\begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+# Bernoulli(0.3)
+par(mfrow = c(1, 2))
+x <- c(0,1)
+p <- c(0.7, 0.3)
+plot(x, p, type = 'h', main = "Bernoulli(0.3) pmf", ylim = c(0, 1), 
+     xlim = c(-1, 2))
+bernoulli_means <- replicate(10000, mean(rbinom(20, 1, 0.3)))
+hist(bernoulli_means, main = "Bernoulli(0.3), n = 20")
+par(mfrow = c(1, 1))
+@
 	\end{solution}
 
 \end{questions}
