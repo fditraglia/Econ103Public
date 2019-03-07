@@ -5,7 +5,7 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 
-\printanswers
+%\printanswers
 %\noprintanswers
 
 
@@ -730,7 +730,6 @@ so we should invest \$54 in Google and \$46 in Apple.
 	 	\part When measuring the players and students Garth makes a mistake: although he accurately records each of the 25 heights, he forgets to note which correspond to Penn students and which correspond to NBA players. Fortunately Garth remembers that, among the first 10 heights on his list, there were exactly 5 students and 5 NBA players. In other words, the first 10 heights on his list are $X_1, \hdots, X_5$ and $Y_1, \hdots, Y_5$ \emph{in some unknown order} and the last 15 are $X_6,\hdots, X_{10}$ and $Y_6,\hdots, Y_{15}$ \emph{in some unknown order}. Let $\bar{Z}_1$ be the sample mean of the first 10 heights on Garth's list and $\bar{Z}_2$ be the sample mean of the last 15. Prove that 
 	 			$$E[\bar{Z}_1] = \frac{\mu_X + \mu_Y}{2} \quad \quad\mbox{and} \quad \quad
 	 				E[\bar{Z}_2] = \frac{1}{3}\mu_X + \frac{2}{3} \mu_Y$$
-	 	For full credit, provide a careful explanation and cite any results you have used.
 	 		\begin{solution}
 	 			We have
 	 			$$\bar{Z}_1 = \frac{1}{10}\left(X_1 + X_2 + \cdots + X_5 + Y_1 + Y_2 + \cdots + Y_5 \right)$$
@@ -859,7 +858,7 @@ If we calculated the corresponding interval by hand, assuming a population stand
   $$0 \pm  2 \times 1 \times 1/5 = (-0.4, 0.4)$$
 Which is almost exactly the same. The reason for the slight discrepancy is that when working by hand we use the approximation \texttt{qnorm(0.975)}$\approx 2$ whereas the exact value, which R provides, is more like 1.96.
 \end{solution}
-      \part Write a function called \texttt{CI\_sim} that takes a single argument \texttt{sample.size}. Your function should carry out the following steps. First generate \texttt{sample\_size} draws from a standard normal distribution. Second, pass your sample of standard normals to \texttt{get\_CI} with \texttt{alpha} set to 0.05 and \texttt{pop\_sd} set to 1. Third, return the resulting confidence interval. Test your function on a sample of size 10. (What we're doing here is constructing a 95\% confidence interval for the mean of a normal population using simulated data. The population mean is in fact zero, but we want to see how our confidence interval procedure works. To do this we ``pretend'' that we don't know the population mean and only know the population variance. Think about this carefully and make sure you understand the intuition.)
+      \part Write a function called \texttt{CI\_sim} that takes a single argument \texttt{sample\_size}. Your function should carry out the following steps. First generate \texttt{sample\_size} draws from a standard normal distribution. Second, pass your sample of standard normals to \texttt{get\_CI} with \texttt{alpha} set to 0.05 and \texttt{pop\_sd} set to 1. Third, return the resulting confidence interval. Test your function on a sample of size 10. (What we're doing here is constructing a 95\% confidence interval for the mean of a normal population using simulated data. The population mean is in fact zero, but we want to see how our confidence interval procedure works. To do this we ``pretend'' that we don't know the population mean and only know the population variance. Think about this carefully and make sure you understand the intuition.)
       \begin{solution}
 <<>>=
 CI_sim <- function(sample_size){
@@ -870,7 +869,7 @@ CI_sim <- function(sample_size){
 CI_sim(10)
 @
       \end{solution}
-    \part Use \texttt{replicate} to construct 10000 confidence intervals based on simulated data using the function \texttt{CI.sim} with \texttt{sample.size} equal to 10. (Note that \texttt{replicate} will, in this case, return a matrix with \emph{2} rows and \emph{10000} columns. Each column correponds to one of the simulated confidence intervals. The first row contains the lower confidence limit while the second row contains the upper confidence limit.) Calculate the proportion of the resulting confidence intervals contain the true population mean. Did you get the answer you were expecting?
+    \part Use \texttt{replicate} to construct 10000 confidence intervals based on simulated data using the function \texttt{CI\_sim} with \texttt{sample\_size} equal to 10. (Note that \texttt{replicate} will, in this case, return a matrix with \emph{2} rows and \emph{10000} columns. Each column correponds to one of the simulated confidence intervals. The first row contains the lower confidence limit while the second row contains the upper confidence limit.) Calculate the proportion of the resulting confidence intervals contain the true population mean. Did you get the answer you were expecting?
     \begin{solution}
 <<cache=TRUE>>=
 simCIs <- replicate(10000, CI_sim(10))
@@ -906,11 +905,12 @@ In this case the procedure didn't work: many fewer than 95\% of the intervals co
 \fullwidth{\section*{Lecture \#16 -- Confidence Intervals II}}
 
 \question Write R code to carry out the simulation experiments presented on slides 13--15 of Lecture 16 illustrating the central limit theorem. 
-In each case, plot the density or mass function of the population and compare it to the histograms of the sample mean computed for random samples drawn from that population based on 10,000 simulation replications.
+In each case, plot population density (or mass function) and compare it to the histograms of the sample mean.
+Use a sample size of 20 and 10,000 simulation replications.
 %The R command for drawing from a Uniform$(0,1)$ distribution is \texttt{runif} and the corresponding density is \texttt{dunif}. 
-The R command for making $n$ draws from a $\chi^2(5)$ distribution is \texttt{rchisq(n, df = 5)} and the corresponding density is \texttt{dchisq(x, df = 5)}.
-You can use \texttt{curve} to plot both the uniform and Chi-squared densities, but you'll need another approach to plot the Bernoulli pmf.
-I suggest that you create a vector \texttt{x} to represent the support set, and \texttt{p} to represent the pmf.
+The R command for making $n$ draws from a $\chi^2(5)$ distribution is \texttt{rchisq(n, df = 5)} and the density is \texttt{dchisq(x, df = 5)}.
+You can use \texttt{curve} to plot both the uniform and $\chi^2(5)$ densities, but you'll need another approach to plot the Bernoulli pmf.
+I suggest that you create a vector \texttt{x} to represent the support set, and another called \texttt{p} to represent the pmf.
 You can then use the \texttt{plot} command with the option \texttt{type = `h'} to plot vertical bars as in my slides.
 I also suggest setting \texttt{ylim = c(0,1)} so that the y-axis in this plot starts at zero and ends at one.
 You can also try setting \texttt{xlim} to make it easier to see the vertical bars.
@@ -942,6 +942,154 @@ hist(bernoulli_means, main = "Bernoulli(0.3), n = 20")
 par(mfrow = c(1, 1))
 @
 	\end{solution}
+
+\fullwidth{\section*{Lecture \#17 -- Confidence Intervals III}}
+
+\question In April of 2013, Public Policy Polling carried out a survey of 1247 registered voters to determine whether Republicans and Democrats differ in their beliefs about various conspiracy theories. To answer this question, you'll need to download the full results of their survey which I've posted on my website for convenience:
+\url{http://www.ditraglia.com/econ103/conspiracy.pdf}. Note that this is a \emph{pdf file} so you can't import it into R. You'll need to go read through the document to find the relevant data from the poll.
+	\begin{parts}
+		\part Construct a 99\% confidence interval for the proportion of registered voters who belive that a UFO crashed at Roswell, New Mexico in 1947 and the US Government covered it up. 
+			\begin{solution}
+				Overall percentages appear on page 2 of the report, and this question refers to Q3. The sample size is 1247 and $\widehat{p} = 0.21$. We can carry out the calculations in R as follows:
+<<roswell_onesample>>=
+p <- 0.21
+n <- 1247
+SE <- sqrt(p * (1 - p)/n)
+ME <- qnorm(1 - 0.01/2) * SE
+LCL <- p - ME
+UCL <- p + ME
+c(LCL, UCL)
+@ 
+			\end{solution}
+		\part Is there evidence that male and female voters differ in their beliefs about Roswell and UFOs? 
+			\begin{solution}
+				Percentages broken down by sex appear on page 15, while overall percentages of men and women appear on page 3. Of the 1247 registered voters in the poll, about 50\% were women and 50\% were men. We'll call that $n = 623$ for each. The sample proportions are $\widehat{p}_{W} = 0.19$ for women versus $\widehat{p}_{M} = 0.24$ for men.  Using R, we find:
+<<men_women>>=
+n <- 623
+p_M <- 0.24
+p_W <- 0.19
+SE <- sqrt(p_M * (1 - p_M)/n + p_W * (1 - p_W) / n)
+ME <- qnorm(1 - 0.01/2) * SE
+LCL <- (p_M - p_W) - ME
+UCL <- (p_M - p_W) + ME
+c(LCL, UCL)
+@
+			This 99\% CI just barely includes zero. A 95\% wouldn't (try this out for yourself). We have found evidence suggesting that a higher proportion of men believe in the Roswell conspiracy compared to women.
+			\end{solution}
+		\part Is there evidence that Romney voters differ from Obama voters in their beliefs about Roswell and UFOs? 
+			\begin{solution}
+				Percentages broken down by 2012 vote appear in page 5. Overall percentages of Romney and Obama voters in the sample appear on page 3. Of the 1247 registered voters in the sample, 50\% voted for Obama and 44\% voted for Romney. We'll call this $n_{O} = 623$ and $n_{R} = 547$. The sample proportions are $\widehat{p}_{O} = 0.16$ for Obama voters versus $\widehat{p}_{R} = 0.27$ for Romney voters. Using R, we find:
+<<romney_obama>>=
+n_R <- 547
+p_R <- 0.27
+n_O <- 623
+p_O <- 0.16
+SE <- sqrt(p_R * (1 - p_R) / n_R + p_O * (1 - p_O) / n_O)
+ME <- qnorm(1 - 0.01/2) * SE
+LCL <- (p_R - p_O) - ME
+UCL <- (p_R - p_O) + ME
+c(LCL, UCL)
+@
+			We have found strong evidence that a substantially greater proportion of Romney voters believe in the Roswell conspiracy.
+			\end{solution}
+		\part How should we interpret the results of the preceding two parts?
+			\begin{solution}
+				Since we know the men are more likely to vote for Republican candidates than women, it's difficult to tell whether the effect has to do with sex or political affiliation. To learn more, we'd need to compare \emph{female} Romney voters to \emph{female} Obama voters and then \emph{separately} compare male Obama voters to male Romney voters.
+			\end{solution}
+	\end{parts}
+
+\question In this question you will analyze data from the Spring 2019 anchoring experiment in Econ 103, contained in the columns \texttt{rand.num} and \texttt{africa.percent} of our class survey: \url{http://ditraglia.com/econ103/survey-spring-2019.csv}.
+\begin{parts}
+  \part Make a boxplot of the results from the anchoring experiment and discuss your findings.
+  \begin{solution}
+<<anchoring_experiment1, fig.height = 4>>=
+data.url <- "http://ditraglia.com/econ103/survey-spring-2019.csv"
+survey <- read.csv(data.url)
+anchoring <- survey[,c("rand.num", "africa.percent")]
+boxplot(africa.percent ~ rand.num, anchoring)
+@
+\end{solution}
+ \part Construct an approximate 95\% confidence interval for the magnitude of the anchoring effect, based on the CLT.
+ \begin{solution}
+<<anchoring_experiment2>>=
+lo <- subset(anchoring, rand.num == "10")$africa.percent
+hi <- subset(anchoring, rand.num == "65")$africa.percent
+lo <- na.omit(lo)
+hi <- na.omit(hi)
+SE.hi <- sd(hi)/sqrt(length(hi))
+SE <- sqrt(var(hi) / length(hi) + var(lo) / length(lo)) 
+ME <- qnorm(0.975) * SE 
+LCL <- (mean(hi) - mean(lo)) - ME
+UCL <- (mean(hi) - mean(lo)) + ME
+c(LCL, UCL)
+@
+\end{solution}
+  \part Do your results differ from those of the past semester, discussed in the lecture slides? 
+\end{parts}
+
+\question This question is based on a recent paper examining how ``organic'' labeling changes people's perceptions of different food products. Researchers recruited volunteers at a local mall in Ithaca, New York and gave each two samples of yogurt to taste. Although both yogurts were in fact identical, the volunteers were \emph{told} that one of them was organic while the other was not. After tasting both, each volunteer was asked to estimate how many calories each of the samples of yogurt contained. (Since, unknown to the volunteer, both samples contained exactly the same kind of yogurt, each in fact contained the same number of calories.) To prevent confounding from anchoring or other behavioral effects, the order in which a given volunteer tasted the two yogurts, i.e.\ ``organic'' first or ``organic'' second, was chosen at random. The results of this experiment are stored in an R dataframe called \texttt{yogurt}. Here are the first few rows:
+	\begin{verbatim}
+> head(yogurt)
+	  regular organic
+1      60      40
+2       5       0
+3     200     100
+4      60      40
+5     100     100
+6      90      90
+	\end{verbatim}
+Each row in this dataframe corresponds to a single individual's guess of the number of calories contained in each of the two yogurts. For example, the values 60 and 40 in row 1 mean that volunteer number one guessed that the regular yogurt sample contained 60 calories and the organic sample contained 40. Summary statistics for the two columns are as follows:
+	\begin{center}
+		\begin{tabular}{|lcc|}
+		\hline
+			& \texttt{regular} & \texttt{organic}\\
+			\hline
+		Sample Mean & 113 & 90\\
+		Sample Var & 3600 & 2916\\
+		Sample SD & 60 & 54\\ 
+		Sample Corr.\ &\multicolumn{2}{c|}{0.8} \\
+		Sample Size &\multicolumn{2}{c|}{115} \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\vspace{1em}
+	\begin{parts}
+		\part Give the units of each of the summary statistics from above.
+			\begin{solution}
+			calories, calories$^2$, calories, unitless.
+			\end{solution}
+		\part Sara thinks that this experiment should be analyzed as independent samples data. Assume that she is correct and construct an approximate 95\% CI for the difference of means (\texttt{regular} - \texttt{organic}) based on the CLT.
+			\begin{solution}
+			The difference of means (regular minus organic) is 23 calories. Sara calculates her standard error assuming independent samples:
+			$$\sqrt{\sigma^2_X/n + \sigma^2_Y/m} = \sqrt{3600/115 + 2916/115} = \sqrt{6516/115} \approx 7.5$$
+			so her confidence interval is approximately $23 \pm 15$, in other words $(8,38)$.
+			\end{solution}
+		\part Kevin thinks that this experiment should be analyzed as matched pairs data. Assume that he is correct and construct an approximate 95\% CI for the difference of means (\texttt{regular} - \texttt{organic}) based on the CLT.
+		\begin{solution}
+		Kevin takes into account the sample correlation between columns when calculating his standard error. He does this by using the sample statistics from the table to calculate the sample variance of the \emph{differences}: regular minus organic. In particular, he calculates:
+		$$s^2_D =  3600 + 2916 - 2 \cdot 0.8 \cdot 60 \cdot 54 = 1332$$
+		which gives a standard error of
+		$$\sqrt{s_D^2/n} = \sqrt{1332/115} \approx 3.4$$
+		This is the only difference between his procedure and Sara's. Hence, Kevin's confidence interval is approximately $23 \pm 6.8$, in other words $(16.2, 29.8)$.
+		\end{solution}
+		\part How do the confidence intervals constructed by Sara and Kevin differ? Explain the source of the discrepancy. Which of them has constructed the appropriate confidence interval for this example? 
+		\begin{solution}
+		Kevin is right and Sara is wrong. This is matched pairs data because each row corresponds to a \emph{single individual}. Unsurprisingly, we find a high sample correlation between the two columns: individuals who overestimate caloric content for one yogurt sample tend to do so for the other, as do individuals who underestimate. The only difference between Kevin and Sara's confidence intervals comes from how they calculated their standard errors. Both intervals are correctly centered, but Sara's is \emph{too wide} because she calculated the standard error assuming independence between the two samples. When the sample correlation is positive this results in an \emph{overestimate} of the standard error. 
+		\end{solution}
+		%\part Suppose that Kevin wanted to carry out a two-sided test of the null hypothesis that organic labeling does not affect consumer's estimates of caloric content, on average. What is his test statistic? What R command should he use to calculate the p-value for his test? Will his result be greater or less than 0.05? 
+		%\begin{solution}
+		%Kevin's test statistic is the difference of means divided by the standard error, namely $23/3.4 \approx 6.8$. To calculate the p-value in R, he should use the command:
+		%	$$\texttt{2 * (1 - pnorm(6.8))}$$
+		%	The result will be less than 0.05 since the test statistic is larger than 2. Another way to see this is that his confidence interval does not include zero.
+		%\end{solution}
+		\part Using what you know about experiments, observational studies, and confidence intervals, what conclusions can we draw from this study?
+		\begin{solution}
+		It appears that merely labeling a product ``organic'' causes consumers to assume that this product contains fewer calories. Because this is a randomized experiment (randomly assigning labels to identical samples of yogurt and randomizing the order in which subjects tasted), we don't have to worry about confounding. It is less clear, however, whether this result would generalize to foods other than yogurt. Further, people from Ithaca New York who visit the mall and volunteer for a taste test may not be representative of US consumers as a whole. Ideally we would repeat this experiment using different subject pools and different foods to see how robust the result is.
+		\end{solution}
+	\end{parts}
+
+
+\fullwidth{\section*{No Extension Questions for Lecture \#18}} 
 
 \end{questions}
 
