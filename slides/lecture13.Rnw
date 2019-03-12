@@ -105,7 +105,7 @@ mean(height)
 
 # Draw a random sample of n = 5 and compute the sample mean
 set.seed(3827)
-random_sample <- sample(height, 5, replace = FALSE)
+random_sample <- sample(height, 5, replace = TRUE)
 random_sample
 mean(random_sample)
 @
@@ -171,7 +171,7 @@ mean(random_sample)
 set.seed(2985)
 # Function: take a random sample of size n, compute sample mean
 draw_xbar <- function(n) {
-  random_sample <- sample(height, size = n, replace = FALSE)
+  random_sample <- sample(height, size = n, replace = TRUE)
   mean(random_sample)
 }
 # Calculate the mean of 10000 random samples with n = 5
