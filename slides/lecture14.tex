@@ -141,7 +141,7 @@ But our average was much higher!
 
 
 
-\frametitle{Candy Weighing: 49 Estimates, Each With $n=5$}
+\frametitle{Candy Weighing: 80 Estimates, Each With $n=5$}
 
 \begin{columns} 
 \begin{column}[c]{5cm} 
@@ -155,17 +155,17 @@ $$\widehat{\theta} = 20 \times (X_1 + \hdots + X_5)$$
    \hline \hline
    \multicolumn{2}{l}{Summary of Sampling Dist.} \\
    \hline
-   Overestimates& 45\\
+   Overestimates& 63\\
    Exactly Correct& 0\\
-   Underestimates& 4\\
+   Underestimates& 17\\
    \hline
-   $E[\hat{\theta}]$& 1164 grams\\
-   SD$(\widehat{\theta})$& 189 grams\\
+   $E[\hat{\theta}]$& 1194 grams\\
+   SD$(\widehat{\theta})$& 206 grams\\
    \hline
    \end{tabular}
    
   \vspace{1em}
-  Actual Mass:  $\theta_0 =$932 grams
+  Actual Mass:  $\theta_0 =$1004 grams
 \end{column} 
 \begin{column}[c]{5cm} 
 
@@ -348,20 +348,20 @@ Compare estimators accounting for \alert{both} bias and variance:
    \begin{tabular}{lr}
    \hline
    \hline
-   $E[\hat{\theta}]$& 1164 grams\\
-   $\theta_0$& 932 grams\\
-   $SD(\widehat{\theta})$& 189 grams\\
+   $E[\hat{\theta}]$& 1194 grams\\
+   $\theta_0$& 1004 grams\\
+   $SD(\widehat{\theta})$& 206 grams\\
    \hline
    \end{tabular}
 \vspace{2em}
 
 \begin{eqnarray*}
-	\mbox{Bias} &=& \pause 1164 \mbox{ grams} - 932 \mbox{ grams}\\
-		&=& \alert{232 \mbox{ grams}}\\
+	\mbox{Bias} &=& \pause 1194 \mbox{ grams} - 1004 \mbox{ grams}\\
+		&=& \alert{190 \mbox{ grams}}\\
 		\mbox{MSE} &=&\pause  \mbox{Bias}^2 + \mbox{Variance}\\
-			&=& (232^2 + 189^2)\mbox{ grams}^2\\
-				&=&\pause \ensuremath{8.9545\times 10^{4}} \mbox{ grams}^2\\ \pause
-				\mbox{RMSE} &=& \sqrt{\mbox{MSE}} =  299 \mbox{ grams}
+			&=& (190^2 + 206^2)\mbox{ grams}^2\\
+				&=&\pause \ensuremath{7.8536\times 10^{4}} \mbox{ grams}^2\\ \pause
+				\mbox{RMSE} &=& \sqrt{\mbox{MSE}} =  280 \mbox{ grams}
 \end{eqnarray*}
 \end{column} 
 

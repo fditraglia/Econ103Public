@@ -142,7 +142,7 @@ But our average was much higher!
 <<echo=FALSE,results='hide'>>=
 candy <- read.csv("candy.csv", header = FALSE)
 candy <- candy[,1]
-truth <- 932 #UPDATE EACH SEMESTER
+truth <- 1004 #UPDATE EACH SEMESTER
 @
 
 \frametitle{Candy Weighing: \Sexpr{length(candy)} Estimates, Each With $n=5$}
