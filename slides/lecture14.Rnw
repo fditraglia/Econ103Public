@@ -296,7 +296,7 @@ Let $\widehat{\theta}_1$ and $\widehat{\theta}_2$ be unbiased estimators of $\th
 
 
   \begin{itemize}
-      \item Unbiased estimator with a huge bias is bad.
+      \item Unbiased estimator with a huge variance is bad.
       \item Highly biased estimator with a low variance is bad.
       \item Often there is a ``tradeoff'' between bias and variance:
         \begin{itemize}
