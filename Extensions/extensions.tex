@@ -55,7 +55,7 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 
-%\printanswers
+\printanswers
 %\noprintanswers
 
 
@@ -958,7 +958,7 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] -1.19625669  0.04333338
+## [1] -0.6480525  0.5915375
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -973,8 +973,8 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \end{alltt}
 \begin{verbatim}
 ##            [,1]       [,2]       [,3]       [,4]       [,5]
-## [1,] -0.7334476 -0.7982059 -0.1463906 -0.7502866 -0.9201982
-## [2,]  0.5061425  0.4413842  1.0931995  0.4893035  0.3193918
+## [1,] -0.9995123 -0.4517845 -0.9220031 -0.9165308 -0.5996661
+## [2,]  0.2400777  0.7878056  0.3175870  0.3230593  0.6399239
 \end{verbatim}
 \begin{alltt}
 \hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
@@ -983,7 +983,7 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \hlkwd{sum}\hlstd{(covers_truth)} \hlopt{/} \hlkwd{length}\hlstd{(covers_truth)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9487
+## [1] 0.9526
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1003,9 +1003,9 @@ The answer is pretty much dead on: almost exactly 95\% of the intervals contain 
 \hlstd{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
 \begin{verbatim}
-##            [,1]      [,2]       [,3]      [,4]         [,5]
-## [1,] -0.8048030 -0.170120 -0.8333794 0.1589719 -0.001265155
-## [2,] -0.1850079  0.449675 -0.2135844 0.7787669  0.618529877
+##             [,1]       [,2]       [,3]       [,4]         [,5]
+## [1,] -0.02442314 -0.1846505 -0.0822607 -0.4258605 -0.624551457
+## [2,]  0.59537189  0.4351445  0.5375343  0.1939345 -0.004756424
 \end{verbatim}
 \begin{alltt}
 \hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
@@ -1014,7 +1014,7 @@ The answer is pretty much dead on: almost exactly 95\% of the intervals contain 
 \hlkwd{sum}\hlstd{(covers_truth)} \hlopt{/} \hlkwd{length}\hlstd{(covers_truth)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.6771
+## [1] 0.6803
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
