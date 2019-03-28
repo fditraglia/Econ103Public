@@ -553,6 +553,15 @@ Hint: write out the definition of covariance for two discrete RVs in terms of a 
 Show that:
 \[Var(aX + bY + c) = a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X,Y).\]
 Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lecture.
+\begin{solution}
+\begin{align*}
+	Var(aX + bY) &= E\left[\left\{\left( aX + bY\right) - E[aX + bY]\right\}^2  \right]\\ 
+	&= E\left[  \left\{a (X - \mu_X) + b(Y - \mu_Y)\right\}^2 \right]\\ 
+	&= E\left[a^2(X-\mu_X)^2 + b^2(Y-\mu_Y)^2 + 2ab(X-\mu_X)(Y-\mu_Y)  \right]\\
+	&= a^2E[(X-\mu_X)^2] + b^2 E[(Y-\mu_Y)^2] + 2ab E[(X-\mu_X)(Y-\mu_Y)]\\
+	&= a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X,Y)
+\end{align*}
+\end{solution}
 
 \question Let $X_1$ be a random variable denoting the returns of stock 1, and $X_2$ be a random variable denoting the returns of stock 2. Accordingly let $\mu_1 = E[X_1]$, $\mu_2 = E[X_2]$, $\sigma_1^2 = Var(X_1)$, $\sigma_2^2 = Var(X_2)$ and $\rho = Corr(X_1, X_2)$. A \emph{portfolio}, $\Pi$,  is a linear combination of $X_1$ and $X_2$ with weights that sum to one, that is $\Pi(\omega) = \omega X_1 + (1-\omega)X_2$, indicating the proportions of stock 1 and stock 2 that an investor holds. In this example, we require $\omega \in [0,1]$, so that \emph{negative} weights are not allowed. (This rules out short-selling.) 
 	\begin{parts}
@@ -958,7 +967,7 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] -0.6480525  0.5915375
+## [1] -0.9127024  0.3268877
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
