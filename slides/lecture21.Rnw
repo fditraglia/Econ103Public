@@ -1,0 +1,580 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{One-sample Test for Proportion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Tests for Proportions}
+	\begin{block}
+		{Basic Idea}
+		The population \emph{can't be} normal (it's Bernoulli) so we use the CLT to get approximate sampling distributions (c.f.\ Lecture 18).
+	\end{block}
+	\begin{alertblock}
+		{There's a small twist!}
+    Bernoulli has a \emph{single} unknown parameter ($p$) so $SE(\widehat{p})$ is \emph{known} under $H_0$: don't have to estimate it.
+    (C.f.\ Review Question \#194)
+	\end{alertblock}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Tests for Proportions: One-Sample Example}
+	\begin{block}
+		{From Pew Polling Data}
+		54\% of a random sample of 771 registered voters correctly identified 2012 presidential candidate Mitt Romney as Pro-Life.
+	\end{block}
+	\begin{block}
+		{Sampling Model}
+		$X_1, \hdots, X_{n} \sim \mbox{iid Bernoulli}(p)$
+	\end{block}
+	\begin{block}
+		{Sample Statistic}
+		Sample Proportion: $\displaystyle\widehat{p} = \frac{1}{n}\sum_{i=1}^{n} X_i$
+	\end{block}
+
+	\vspace{1em}
+
+	\hfill \alert{\fbox{Suppose I wanted to test $H_0\colon p = 0.5$}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Tests for Proportions: One Sample Example}
+	Under $H_0\colon p = 0.5$ what is the standard error of $\widehat{p}$?
+
+	\begin{enumerate}[(a)]
+		\item $1$
+		\item $\sqrt{\widehat{p}(1-\widehat{p})/n}$
+		\item $\sigma/\sqrt{n}$
+		\item $1/(2\sqrt{n})$
+		\item $p(1-p)$ 
+	\end{enumerate}
+\pause
+ \alert{$p=0.5 \implies \sqrt{0.5(1-0.5)/n} = 1/(2\sqrt{n})$}
+
+ \vspace{1em}
+ \emph{Under the null we know the SE! Don't have to estimate it!}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{One-Sample Test for a Population Proportion}
+	\begin{block}
+		{Sampling Model}
+		$X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$
+	\end{block}
+	\begin{block}
+		{Null Hypothesis}
+		$H_0 \colon p = \mbox{Known Constant } p_0$
+	\end{block}
+	\begin{block}
+		{Test Statistic} 
+		$\displaystyle T_n = \frac{\widehat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \approx N(0,1)$ under $H_0$ provided $n$ is large
+	\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{One-Sample Example $H_0\colon p = 0.5$}
+	\fbox{\footnotesize 54\% of a random sample of 771 registered voters knew Mitt Romney is Pro-Life.}
+
+
+
+	\begin{eqnarray*}
+		T_n &=& \frac{\widehat{p} - p_0}{\sqrt{\displaystyle \frac{p_0(1 - p_0)}{n}}} = 2 \sqrt{771}(0.54 - 0.5)\\ \\
+		&=& 0.08 \times \sqrt{771} \approx 2.2
+	\end{eqnarray*}
+
+  \vspace{-1em}
+
+	\begin{block}
+		{One-Sided p-value}
+		\texttt{1 - pnorm(2.2)} $\approx 0.014$
+	\end{block}
+	\begin{block}
+		{Two-Sided p-value}
+		\texttt{2 * (1 - pnorm(2.2))} $\approx 0.028$
+	\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test for Difference of Proportions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Tests for Proportions: Two-Sample Example}
+	\begin{block}
+		{From Pew Polling Data}
+		53\% of a random sample of 238 Democrats correctly identified Mitt Romney as Pro-Life versus 61\% of 239 Republicans.
+	\end{block}
+	\begin{block}
+		{Sampling Model}
+		Republicans: $X_1, \hdots, X_{n} \sim \mbox{iid Bernoulli}(p)$ independent of\\
+		Democrats: $Y_1, \hdots,Y_{m} \sim \mbox{iid Bernoulli}(q)$ 
+	\end{block}
+	\begin{block}
+		{Sample Statistics}
+		Sample Proportions: $\displaystyle\widehat{p} = \frac{1}{n}\sum_{i=1}^{n} X_i, \quad\displaystyle\widehat{q} = \frac{1}{m}\sum_{i=1}^{m} Y_i$
+	\end{block}
+
+	\vspace{1em}
+
+	\hfill \alert{\fbox{Suppose I wanted to test $H_0\colon p = q$}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{A More Efficient Estimator of the SE Under $H_0$}
+	\begin{alertblock}
+		{Don't Forget!}
+		Standard Error (SE) means ``std.\ dev.\ of sampling distribution'' so you should know how to prove that that:
+	$$SE(\widehat{p} - \widehat{q}) = \sqrt{\frac{p(1-p)}{n} + \frac{q(1-q)}{m}}$$
+	\end{alertblock}
+
+	\begin{block}
+		{Under $H_0\colon p = q$}
+		\emph{Don't} know values of $p$ and $q$: only that they are equal.
+	\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Pooled SE Estimator is More Efficient Under $H_0$}
+	\begin{block}
+    {Unpooled SE}
+    \vspace{-1em}
+	$$\widehat{SE} = \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n} + \frac{\widehat{q}(1-\widehat{q})}{m}}$$
+	\end{block}
+
+  \vspace{-2em}
+
+	\begin{block}
+		{Pooled SE}
+    \vspace{-1em}
+		$$\widehat{SE}_{Pooled} = \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( \frac{1}{n} + \frac{1}{m} \right) } \quad \mbox{where}\quad \widehat{\pi} = \displaystyle \frac{n \widehat{p} + m \widehat{q}}{n + m}$$
+	\end{block}
+
+  \vspace{-0.5em}
+
+  \begin{alertblock}{Why Pool?}
+    \begin{itemize}
+      \item Under $H_0$, $p = q$. Call their common value ``$\pi$''
+      \item More accurate to estimate \emph{1 parameter} ($\pi$) with a \emph{big} sample ($n+m$) vs.\ \emph{2 parameters} ($p$, $q$) with smaller samples ($n$, $m$).
+    \end{itemize}
+	\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Two-Sample Test for Proportions}
+	\begin{block}
+		{Sampling Model}
+		\small
+		$X_1, \hdots, X_n \sim \mbox{iid Bernoulli}(p)$ indep.\  of $Y_1, \hdots, Y_m \sim \mbox{iid Bernoulli}(q)$
+	\end{block}
+	\begin{block}
+		{Sample Statistics}
+			Sample Proportions: $\displaystyle\widehat{p} = \frac{1}{n}\sum_{i=1}^{n} X_i, \quad\displaystyle\widehat{q} = \frac{1}{m}\sum_{i=1}^{m} Y_i$
+	\end{block}
+	\begin{block}
+		{Null Hypothesis}
+		$H_0\colon p = q \quad \Leftarrow \; $\fbox{ i.e.\ $p - q = 0$}
+	\end{block}
+	\begin{block}
+		{Pooled Estimator of SE under $H_0$}
+		$\widehat{\pi} = \displaystyle \frac{n \widehat{p} + m \widehat{q}}{n + m}, \quad \widehat{SE}_{Pooled} = \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( 1/n + 1/m \right) }$
+	\end{block}
+	\begin{block}
+		{Test Statistic}
+		$\displaystyle T_n = \frac{\widehat{p}- \widehat{q}}{\widehat{SE}_{Pooled}} \approx N(0,1)$ under $H_0$ provided $n$ and $m$ are large
+	\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\frametitle{Two-Sample Example $H_0\colon p = q$}
+	\fbox{\footnotesize 53\% of 238 Democrats knew Romney is Pro-Life vs.\ 61\% of 239 Republicans}
+	\small
+$$\widehat{\pi} = \frac{n\widehat{p}+ m\widehat{q}}{n + m} = \frac{239 \times 0.61 + 238 \times 0.53}{239 + 238}\approx 0.57$$
+	\begin{eqnarray*}
+	\widehat{SE}_{Pooled} &=&  \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( 1/n + 1/m \right) }= \sqrt{0.57 \times 0.43 (1/239 + 1/238)}\\
+		&\approx& 0.045
+	\end{eqnarray*}
+$$T_n = \frac{\widehat{p} - \widehat{q}}{\widehat{SE}_{Pooled}}= \frac{0.61 - 0.53}{0.045} \approx 1.78$$
+
+\vspace{-1em}
+\begin{block}
+	{One-Sided P-Value}
+	\texttt{1 - pnorm(1.78)}$\approx 0.04$
+\end{block}\begin{block}
+	{Two-Sided P-Value}
+	\texttt{2 * (1 - pnorm(1.78))}$\approx 0.08$
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Statistical vs.\ Practical Significance}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Terminology: Statistical Significance}
+
+\begin{alertblock}{Definition}
+  If we reject $H_0$ in a test with significance level $\alpha$, then we say that the results are ``statistically significant at the $\alpha\%$ level. 
+\end{alertblock}
+
+\pause
+
+\begin{block}{Example: Anchoring Experiment} 
+  In a two-sided test, we found a difference betwen the ``Hi'' and ``Lo'' groups that was statistically significant at the $5\%$ level.
+\end{block}
+
+\pause
+
+\begin{block}{Example: Previous Slide}
+  In a two-sided test, we found a difference between the share of Republicans and Democrats who knew that Romney is pro-life that was statistically significant at the $10\%$ level.
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Statistical Significance $\neq$ Practical Importance}
+
+\begin{block}{Problem}
+  People confuse ``significance'' in the statistical sense with the everyday English word meaning ``important.''
+\end{block}
+
+\pause
+
+\begin{block}{Statistically Significant Does Not Mean Important}
+  \vspace{-0.5em}
+			\begin{itemize}
+				\item A difference can be unimportant but statistically significant.
+				\item A difference can be important but statistically insignificant.
+			\end{itemize}
+\end{block}
+
+\pause
+
+\alert{A p-value measures the \emph{strength of evidence against} $H_0$; it does \emph{not} measure the size of an effect!}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Statistically Significant but Not Practically Important}
+\small
+I flipped a coin 10 million times (in R) and got 4990615 heads.
+\begin{block}{Test of $H_0\colon p = 0.5$ against $H_1\colon p \neq 0.5$}
+$$T = \displaystyle \frac{\widehat{p} - 0.5}{\sqrt{0.5(1-0.5)/n}} \approx -5.9   \implies \alert{\mbox{ p-value } \approx 0.000000003}$$
+\end{block}
+
+\begin{block}{Approximate 95\% Confidence Interval}
+ $$\widehat{p} \pm \texttt{qnorm}(1 - 0.05/2) \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}  \implies \alert{(0.4988, 0.4994)}$$
+\end{block}
+
+%\footnotesize (Such a huge sample size that refined vs.\ textbook CI makes no difference)
+\large
+\vspace{1em}
+
+\alert{\fbox{Actual $p$ was 0.499}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Practically Important But Not Statistically Significant}
+\framesubtitle{\href{http://www.amazon.com/p-value-Stories-Actually-Understand-Statistics/dp/0321629302}{\fbox{Vickers: ``What is a P-value Anyway?'' (p. 62)}}}
+\footnotesize
+\begin{quote}
+Just before I started writing this book, a study was published reporting about a 10\% lower rate of breast cancer in women who were advised to eat less fat. If this indeed the true difference, low fat diets could reduce the incidence of breast cancer by tens of thousands of women each year -- astonishing health benefit for something as simple and inexpensive as cutting down on fatty foods. The p-value for the difference in cancer rates was 0.07 and here is the key point: this was widely misinterpreted as indicating that low fat diets don't work. For example, the \emph{New York Times} editorial page trumpeted that ``low fat diets flub a test'' and claimed that the study provided ``strong evidence that the war against all fats was mostly in vain.'' \alert{However failure to prove that a treatment is effective is not the same as proving it ineffective.}
+\end{quote}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data-Dredging}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Data-Dredging and the Replication Crisis}
+
+\begin{block}{Reading Assignment}
+  On Piazza: ``The Economist - Trouble in the Lab.'' 
+\end{block}
+
+\begin{block}{Basic Idea}
+  \begin{itemize}
+    \item Journals usually publish only ``statistically significant'' results.
+    \item You test a large number of null hypotheses with $\alpha= 0.05$.
+    \item Suppose all of these nulls are actually \emph{TRUE}.
+    \item You'll reject 5\% of the time: each rejection is a Type I error.
+    \item Cheating in academia: carry out lots of ridiculous hypothesis tests and only report the ``statistically significant'' results. 
+  \end{itemize}
+\end{block}
+    
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c]\frametitle{Do Students with 4-Letter Surnames Do Better?}
+% \framesubtitle{Based on Data from Midterm 1 Last Semester}
+%    \begin{columns}
+%    	\column{0.35\textwidth} \begin{block}
+%    		{4-Letter Surname}
+%    			$\bar{x} = 88.9$\\
+%    			$s_x = 10.4$\\
+%    			$n_x = 12$
+%    	\end{block} 
+%    	\column{0.35\textwidth} \begin{block}
+%    		{Other Surnames}
+%    			$\bar{y} = 74.4$\\
+%    			$s_y = 20.7$\\
+%    			$n_y = 92$
+%    	\end{block}
+%    \end{columns}
+%
+%\vspace{1em}
+%\begin{block}
+%	{Difference of Means}
+%	$\bar{x} - \bar{y} = \alert{14.5}$
+%\end{block}
+%\begin{block}
+%	{Standard Error}
+%	$\displaystyle SE = \sqrt{s_x^2/n_x + s_y^2/n_y} \approx \alert{3.7}$
+%\end{block}
+%\begin{block}
+%	{Test Statistic}
+%	$T = 14.5 / 3.7 \approx \alert{3.9}$
+%\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c]\frametitle{What is the p-value for the two-sided test?  \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%    
+%$$\boxed{\mbox{Test Statistic} \approx 3.9}$$
+%
+%\begin{enumerate}[(a)]
+%	\item $p < 0.01$
+%	\item $0.01 \leq p < 0.05$
+%	\item $0.05 \leq p < 0.1$
+%	\item $p > 0.1$
+%	\item Not Sure
+%\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c]\frametitle{What do these results mean? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%
+%Evaulate this statement in light of our hypothesis test:
+%\vspace{1em}
+%
+%\begin{quote}
+%	Students with four-letter long surnames do better, on average, on the first midterm of Econ 103 at UPenn.
+%\end{quote}
+%
+%\begin{enumerate}[(a)]
+%	\item Strong evidence in favor
+%	\item Moderate evidence in favor
+%	\item No evidence either way
+%	\item Moderate evidence against
+%	\item Strong evidence against
+%\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c,fragile]\frametitle{I just did 134 Hypothesis Tests...}
+%   
+% \begin{block}
+% 	{... and 11 of them were significant at the 5\% level.}
+% \end{block}
+%
+%\footnotesize
+%
+%\begin{verbatim}
+%         group sign p.value x.bar N.x  s.x y.bar N.y  s.y
+%26  first1 = P    1   0.000  93.8   3  2.9  75.5 101 20.4
+%70     id2 = 7    1   0.000  94.6   5  3.3  75.1  99 20.4
+%134    id8 = 0    1   0.000  92.6   7  4.9  74.8  97 20.5
+%5    Nlast = 4    1   0.001  88.9  12 10.4  74.4  92 20.7
+%90     id4 = 8    1   0.003  87.7   9  9.0  74.9  95 20.7
+%105    id6 = 8    1   0.003  88.1   5  5.8  75.4  99 20.6
+%109    id6 = 2    1   0.007  88.9   8 10.7  75.0  96 20.6
+%9    Nlast = 2    1   0.016  90.4   5  9.3  75.3  99 20.5
+%49   last1 = P   -1   0.036  65.2   6  9.9  76.7  98 20.6
+%65     id2 = 1    1   0.038  84.3   9 10.1  75.3  95 20.9
+%117    id7 = 8    1   0.041  83.4  13 11.6  75.0  91 21.1
+%\end{verbatim}
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Data-Dredging}
+%
+%
+%
+%\begin{itemize}
+%	\item Suppose you have a long list of null hypotheses and assume, for the sake of argument that all of them are true.
+%		\begin{itemize}
+%			\item E.g.\ there's no difference in grades between students with different 4th digits of their student id number. 
+%		\end{itemize}
+%	\item We'll still reject about 5\% of the null hypotheses.
+%	\item Academic journals tend only to publish results in which a null hypothesis is rejected at the 5\% level or lower. 
+%	\item We end up with the bizarre result that ``most published studies are false.''  
+%\end{itemize}
+%
+%
+%\alert{I posted a reading about this on Piazza: ``The Economist - Trouble in the Lab.'' To learn even more, see \href{http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124}{\textcolor{blue}{\fbox{Ioannidis (2005)}}}}
+%
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Green Jelly Beans Cause Acne!}
+\framesubtitle{\href{http://xkcd.com/882/}{\fbox{xkcd \#882}}}
+\begin{figure}
+\centering
+	\includegraphics[scale=0.35]{./images/xkcd1}
+  \caption{Reading this comic strip is part of your homework!}
+\end{figure}
+
+
+\alert{And now a simulation example of Data Dredging using R\dots}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+% \frametitle{Don't Compare P-Values Across Different Tests!}
+% \framesubtitle{\fbox{\href{http://www.people-press.org/files/2012/08/8-10-12-Knowledge-release.pdf}{Pew: ``What Voters Know About Campaign 2012''}}}
+
+
+% \footnotesize
+
+% Of 239 Republicans, 61\% knew Romney is pro-life vs.\ 53\% of 238 Democrats.
+% \pause
+% \begin{block}{$H_0\colon p_{Rep} = 0.5$ vs.\ $H_1\colon p_{Rep} \neq 0.5$}
+%  $$T = \frac{0.61 - 0.5}{\sqrt{0.5(1-0.5)/239}} \approx  3.4 \implies \mbox{ p-value } \approx 0.0007$$
+% \end{block}
+% \pause
+% \begin{block}{$H_0\colon q_{Dem} = 0.5$ vs.\ $H_1\colon q_{Dem} \neq 0.5$}
+%  $$T = \frac{0.53 - 0.5}{\sqrt{0.5(1-0.5)/238}} \approx 0.93  \implies \mbox{ p-value } \approx 0.35$$
+% \end{block}
+% \pause
+% \begin{block}{$H_0\colon p_{Rep} =q_{Dem}$ vs.\ $H_1\colon p_{Rep} \neq q_{Dem}$}
+%  $$T = \frac{0.61 - 0.53}{\sqrt{\left(\frac{1}{239}+ \frac{1}{238}\right)\left(\frac{239 \times 0.61 + 238 \times 0.53}{239 + 238}\right)}} \approx  1.76 \implies \mbox{ p-value } \approx 0.08$$
+% \end{block}
+
+
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}
+% \frametitle{Don't Compare P-Values Across Different Tests!}
+
+% \begin{itemize}
+% 	\item P-Value measures strength of evidence against the null, not the size of an affect! \pause
+% 	\item Use a single test to address a single research question: if you are actually interested in differences between Republicans and Democrats, test for this directly! \pause
+% \end{itemize}
+
+% \vspace{1em}
+
+% \pause
+
+% For more on the problems associated with comparing p-values from different hypothesis tests, along with an even starker example than the one I just showed you, see \href{http://amstat.tandfonline.com/doi/abs/10.1198/000313006X152649}{\textcolor{blue}{\fbox{Gelman \& Stern (2006)}}}
+
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}
+%\frametitle{Some Final Thoughts}
+%	\begin{itemize}
+%		\item Failing to reject $H_0$ does not mean $H_0$ is true. 
+%		\item Rejecting $H_0$ does not mean $H_1$ is true.
+%		\item P-values are always more informative than simply reporting ``Reject'' vs.\ ``Fail To Reject'' at a given significance level. 
+%		\item Confidence intervals are more informative that hypothesis tests, since they give an idea of the size of an effect. 
+%		\item If $H_0$ is actually plausible a priori (this is rarer than you may think), reporting a p-value can be a good complement to a CI. 
+%		\item To avoid data-dredging be honest about the tests you have carried out: report \emph{all of them}, not just the ones where you rejected the null.
+%	\end{itemize}
+%
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+<<get_p_value>>=
+# Function to calculate the p-value for a two-sided 
+#test for difference of means
+get_p_value <- function(x, y) {
+  xbar <- mean(x)
+  ybar <- mean(y)
+  n <- length(x)
+  m <- length(y)
+  s_x <- sd(x)
+  s_y <- sd(y)
+  SE <- sqrt(s_x^2 / n + s_y^2 / m)
+  test_stat <- abs(xbar - ybar) / SE
+  return(2 * (1 - pnorm(test_stat)))
+}
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+<<test_function>>=
+# Test get_p_value using the anchoring  experiment
+# example from our previous lecture
+data_url <- 'http://ditraglia.com/econ103/old_survey.csv'
+survey <- read.csv(data_url)
+anchoring <- survey[, c('rand.num', 'africa.percent')]
+rand_num <- na.omit(anchoring$rand.num)
+africa_percent <- na.omit(anchoring$africa.percent)
+
+x <- subset(africa_percent, rand_num == 65)
+y <- subset(africa_percent, rand_num == 10)
+get_p_value(x, y)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+<<fake_characteristics>>=
+# Use *real* student test scores as the outcome
+data_url <- 'http://ditraglia.com/econ103/midterms.csv'
+midterms <- read.csv(data_url)
+scores <- na.omit(midterms$Midterm1)
+n_students <- length(scores)
+
+# Generate fake "grouping variables" (0/1) indep. of scores
+set.seed(987654321)
+
+n_fake <- 500
+# Empty matrix to store grouping variables:
+fake <- matrix(NA, nrow = n_students, ncol = n_fake)
+
+for(i in 1:n_fake) {
+  fake[, i] <- rbinom(n_students, size = 1, prob = 0.5)
+}
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+<<run_the_tests>>=
+# Use each grouping variable to split students into x and y
+# and calculate p-value for test of difference of means
+
+p_values <- rep(NA, n_fake) # empty vector to store results
+
+for(i in 1:n_fake) {
+  group_indicator <- fake[,i]
+  x <- subset(scores, group_indicator == 1)
+  y <- subset(scores, group_indicator == 0)
+  p_values[i] <- get_p_value(x, y)
+}
+# How many of the tests were statistically significant?
+sum(p_values < 0.05)
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+<<spurious_test>>=
+# Grouping variable with the lowest p-value
+group_indicator <- fake[, which.min(p_values)]
+x <- subset(scores, group_indicator == 1)
+y <- subset(scores, group_indicator == 0)
+
+# These results look convincing, but are spurious!
+mean(x) - mean(y)
+sqrt(var(x) / length(x) + var(y) / length(y))
+@
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
