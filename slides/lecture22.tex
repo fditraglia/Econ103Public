@@ -52,44 +52,86 @@ The estimated slope was about 1.4 inches/cm and the estimated intercept was abou
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{The Population Regression Model}
-	How is $Y$ (height) related to $X$ (handspan) in the population?
-	\begin{block}{Assumption I: Linearity}
-		The random variable $Y$ is linearly related to $X$ according to 
-			$$Y = \beta_0 + \beta_1 X + \epsilon$$
-		$\beta_0,\beta_1$ are two unknown population parameters (constants).
-	\end{block}
 
-	\begin{block}
-		{Assumption II: Error Term $\epsilon$}
-		$E[\epsilon]=0$, $Var(\epsilon) = \sigma^2$ and $\epsilon$ is indpendent of $X$. The error term $\epsilon$ measures the unpredictability of $Y$ \emph{after controlling for $X$}
-	\end{block}
+  \begin{block}{Question}
+    If we want to predict $Y$ using $X$ in the \emph{population} using a line, how should we choose the slope and intercept?
+\end{block}
+
+\begin{block}{Optimization Problem}
+  Choose $\beta_0,\beta_1$ to minimize $E[(Y - \beta_0 - \beta_1 X)^2]$
+\end{block}
+
+\begin{alertblock}{Solution}
+  \vspace{-1em}
+  \[
+    \beta_1 = \frac{Cov(X,Y)}{Var(X)}, \quad \beta_0 = E[Y] - \beta_1 E[X]
+  \]
+\end{alertblock}
+
+\alert{\hfill\dots you will derive this as an extension problem.}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Predictive Interpretation of Regression}
-	\begin{block}
-		{Under Assumptions I and II}
-		$$E[Y|X] = \beta_0 + \beta_1 X$$ 
-			\begin{itemize}
-				\item ``Best guess'' of $Y$ having observed $X=x$ is $\beta_0 + \beta_1 x$
-				\item If $X = 0$, we predict $Y = \beta_0$
-				\item If two people differ by one unit in $X$, we predict that they will differ by $\beta_1$ units in $Y$.
-			\end{itemize}
-	\end{block}
+  \frametitle{The Regression Error Term: $\varepsilon$}
+
+  \begin{block}{Definition}
+    $\varepsilon \equiv Y - \beta_0 - \beta_1 X\quad$ (Hence: $Y = \beta_0 + \beta_1 X + \varepsilon$)
+  \end{block}
+
+  \begin{block}{Interpretation}
+    $\varepsilon$ is the part of $Y$ that isn't predicted by $X$
+  \end{block}
+
+  \begin{block}{Properties}
+    \begin{itemize}
+      \item $E[\varepsilon] = 0$
+      \item $Cov(X,\varepsilon) = 0$
+      \item $Var(\varepsilon) = Var(Y) - Cov(X,Y)^2/Var(X)$
+    \end{itemize}
+  \end{block}
+
+  \alert{\dots using the expressions for $\beta_0$ and $\beta_1$ from the previous slide.}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{The Population Regression Coefficients: $\beta_0, \beta_1$}
+
+\begin{block}{Recall}
+  \vspace{-1em}
+  \[
+    Y = \beta_0 + \beta_1 X + \varepsilon, \quad \beta_1 = \frac{Cov(X,Y)}{Var(X)}, \quad \beta_0 = E[Y] - \beta_1 E[X]
+  \]
+\end{block}
+
+\begin{block}{Interpretation}
+  \begin{itemize}
+    \item $\beta_0, \beta_1$ are population parameters: \emph{unknown constants}
+    \item If $X = 0$, we predict $Y = \beta_0$.
+    \item If two people differ by one unit in $X$, we predict that they will differ by $\beta_1$ units in $Y$.  
+  \end{itemize}
+\end{block}
+
 	\alert{The only problem is, we don't know $\beta_0, \beta_1$...}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{Estimating $\beta_0, \beta_1$}
-Suppose we observe an iid sample $(Y_1, X_1), \hdots, (Y_n, X_n)$ from the population: $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$. Then we can \emph{estimate} $\beta_0, \beta_1$:
 
-	$$\widehat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X}_n) (Y_i - \bar{Y}_n)}{\sum_{i=1}^n (X_i - \bar{X}_n)^2}$$
+\begin{block}{Random Sample}
+  Observe $(Y_1, X_1), \hdots, (Y_n, X_n) \sim \text{iid}$ with $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$. 
+\end{block}
+  
+\begin{block}{Estimators of $\beta_0, \beta_1$}
+\[
+  \widehat{\beta}_1 = \frac{S_{XY}}{S_X^2} = \frac{\sum_{i=1}^n (X_i - \bar{X}_n) (Y_i - \bar{Y}_n)}{\sum_{i=1}^n (X_i - \bar{X}_n)^2}, \quad
+	\widehat{\beta}_0 = \bar{Y}_n - \widehat{\beta}_1 \bar{X}_n
+\]
+\end{block}
 
-	
-	$$\widehat{\beta}_0 = \bar{Y}_n - \widehat{\beta}_1 \bar{X}_n$$
-
-\vspace{2em}
-	\alert{Once we have estimators, we can think about sampling uncertainty...}
+\vspace{1em}
+\alert{Under random sampling, the estimators $(\widehat{\beta}_0, \widehat{\beta}_1)$ have sampling distributions\dots}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,6 +233,7 @@ Suppose we observe an iid sample $(Y_1, X_1), \hdots, (Y_n, X_n)$ from the popul
 \includegraphics[scale = 0.55]{./images/reg_sim_hist}
 
 \end{figure}
+\vspace{-1em}
 \alert{Based on 1000 Replications, $n = 25$}
 
 \end{frame}
