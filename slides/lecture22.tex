@@ -561,9 +561,7 @@ $$Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} +  \hdots + \beta_k X_{ik} + \
 \end{block}
 
 \begin{block}{Inference for Multiple Regression}
-Provided the sample size is large, 
-	$$\frac{\widehat{\beta}_j - \beta_j}{\widehat{SE}(\widehat{\beta})} \approx N(0,1)$$
-for \emph{each} of the $\widehat{\beta}_j$ by the CLT. 
+$\displaystyle\frac{\widehat{\beta}_j - \beta_j}{\widehat{SE}(\widehat{\beta}_j)} \approx N(0,1)$ if $n$ is large. 
 R will calculate the SE for us.
 \end{block}
 
