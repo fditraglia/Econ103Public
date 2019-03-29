@@ -7,10 +7,11 @@
 		{Basic Idea}
 		The population \emph{can't be} normal (it's Bernoulli) so we use the CLT to get approximate sampling distributions (c.f.\ Lecture 18).
 	\end{block}
-	\begin{block}
-		{But there's a small twist!}
-		Bernoulli RV only has a \emph{single} unknown parameter $\implies$  we know \emph{more} about the population under $H_0$ in a proportions problem than in the other testing examples we've examined...	
-	\end{block}
+	\begin{alertblock}
+		{There's a small twist!}
+    Bernoulli has a \emph{single} unknown parameter ($p$) so $SE(\widehat{p})$ is \emph{known} under $H_0$: don't have to estimate it.
+    (C.f.\ Review Question \#194)
+	\end{alertblock}
 
 
 \end{frame}
@@ -133,21 +134,28 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{A More Efficient Estimator of the SE Under $H_0$}
+	\frametitle{Pooled SE Estimator is More Efficient Under $H_0$}
 	\begin{block}
-		{One Possible Estimate}
+    {Unpooled SE}
+    \vspace{-1em}
 	$$\widehat{SE} = \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n} + \frac{\widehat{q}(1-\widehat{q})}{m}}$$
 	\end{block}
 
-  \vspace{-0.5em}
+  \vspace{-2em}
+
 	\begin{block}
-		{A \emph{Better} Estimate Under $H_0$}
+		{Pooled SE}
+    \vspace{-1em}
 		$$\widehat{SE}_{Pooled} = \sqrt{\widehat{\pi}(1-\widehat{\pi})\left( \frac{1}{n} + \frac{1}{m} \right) } \quad \mbox{where}\quad \widehat{\pi} = \displaystyle \frac{n \widehat{p} + m \widehat{q}}{n + m}$$
 	\end{block}
+
   \vspace{-0.5em}
-	\begin{alertblock}
-		{Why Pool?}
-		If $p = q$, the two populations \emph{are the same}. This means we can get a \emph{more precise} estimate of the \emph{common} population proportion by pooling. More data = Lower Variance $\implies$ better estimated SE.
+
+  \begin{alertblock}{Why Pool?}
+    \begin{itemize}
+      \item Under $H_0$, $p = q$. Call their common value ``$\pi$''
+      \item More accurate to estimate \emph{1 parameter} ($\pi$) with a \emph{big} sample ($n+m$) vs.\ \emph{2 parameters} ($p$, $q$) with smaller samples ($n$, $m$).
+    \end{itemize}
 	\end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -201,53 +209,51 @@ $$T_n = \frac{\widehat{p} - \widehat{q}}{\widehat{SE}_{Pooled}}= \frac{0.61 - 0.
 \section{Statistical vs.\ Practical Significance}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Terminology I Have Intentionally Avoided Until Now}
+\frametitle{Terminology: Statistical Significance}
 
-\begin{block}{Statistical Significance}
-Suppose we carry out a hypothesis test at the $\alpha\%$ level and,  based on our data, reject the null. You will often see this situation described as ``statistical significance.''
+\begin{alertblock}{Definition}
+  If we reject $H_0$ in a test with significance level $\alpha$, then we say that the results are ``statistically significant at the $\alpha\%$ level. 
+\end{alertblock}
+
+\pause
+
+\begin{block}{Example: Anchoring Experiment} 
+  In a two-sided test, we found a difference betwen the ``Hi'' and ``Lo'' groups that was statistically significant at the $5\%$ level.
 \end{block}
 
-\begin{block}{In Other Words...}
-When people say ``statistically significant'' what they really mean is that they rejected the null hypothesis.
+\pause
+
+\begin{block}{Example: Previous Slide}
+  In a two-sided test, we found a difference between the share of Republicans and Democrats who knew that Romney is pro-life that was statistically significant at the $10\%$ level.
 \end{block}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Some Examples}
+  \frametitle{Statistical Significance $\neq$ Practical Importance}
 
-	\begin{itemize}
-		\item We found a difference between the ``Hi'' and ``Lo'' groups in the anchoring experiment that was statistically significant at the 5\% level based on data from a past semester.
-		\item Our 95\% CI for the proportion of US voters who know who John Roberts did not include 0.5. Viewed as a two-sided test, we found that the difference between the true population proportion and 0.5 was statistically significant at the 5\% level.
-	\end{itemize}
+\begin{block}{Problem}
+  People confuse ``significance'' in the statistical sense with the everyday English word meaning ``important.''
+\end{block}
 
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Why Did I Avoid this Terminology?}
-\small
-\begin{block}{Statistical Significance $\neq$ Practical Importance}
-	\begin{itemize}
-		\item You need to understand the term ``statistically significant'' since it is widely used. A better term for the idea, however, would be ``statistically discernible''
-		\item Unfortunately, many people are confuse ``significance'' in the narrow, technical sense with the everyday English word meaning ``important'' 
-		\item \alert{Statistically Significant Does Not Mean Important!"}
+\pause
+
+\begin{block}{Statistically Significant Does Not Mean Important}
+  \vspace{-0.5em}
 			\begin{itemize}
-				\item A difference can be practically unimportant but statistically significant.
-				\item A difference can be practically important but statistically insignificant.
+				\item A difference can be unimportant but statistically significant.
+				\item A difference can be important but statistically insignificant.
 			\end{itemize}
-	\end{itemize}
 \end{block}
 
+\pause
+
+\alert{A p-value measures the \emph{strength of evidence against} $H_0$; it does \emph{not} measure the size of an effect!}
 
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{center}
-\Huge P-value Measures Strength of Evidence Against $H_0$\\ \alert{Not The Size of an Effect!}
-\end{center}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Statistically Significant but Not Practically Important}
@@ -261,7 +267,7 @@ $$T = \displaystyle \frac{\widehat{p} - 0.5}{\sqrt{0.5(1-0.5)/n}} \approx -5.9  
  $$\widehat{p} \pm \texttt{qnorm}(1 - 0.05/2) \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}  \implies \alert{(0.4988, 0.4994)}$$
 \end{block}
 
-\footnotesize (Such a huge sample size that refined vs.\ textbook CI makes no difference)
+%\footnotesize (Such a huge sample size that refined vs.\ textbook CI makes no difference)
 \large
 \vspace{1em}
 
@@ -280,113 +286,137 @@ Just before I started writing this book, a study was published reporting about a
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data-Dredging}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[c]\frametitle{Do Students with 4-Letter Surnames Do Better?}
- \framesubtitle{Based on Data from Midterm 1 Last Semester}
-    \begin{columns}
-    	\column{0.35\textwidth} \begin{block}
-    		{4-Letter Surname}
-    			$\bar{x} = 88.9$\\
-    			$s_x = 10.4$\\
-    			$n_x = 12$
-    	\end{block} 
-    	\column{0.35\textwidth} \begin{block}
-    		{Other Surnames}
-    			$\bar{y} = 74.4$\\
-    			$s_y = 20.7$\\
-    			$n_y = 92$
-    	\end{block}
-    \end{columns}
-
-\vspace{1em}
-\begin{block}
-	{Difference of Means}
-	$\bar{x} - \bar{y} = \alert{14.5}$
-\end{block}
-\begin{block}
-	{Standard Error}
-	$\displaystyle SE = \sqrt{s_x^2/n_x + s_y^2/n_y} \approx \alert{3.7}$
-\end{block}
-\begin{block}
-	{Test Statistic}
-	$T = 14.5 / 3.7 \approx \alert{3.9}$
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[c]\frametitle{What is the p-value for the two-sided test?  \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-    
-$$\boxed{\mbox{Test Statistic} \approx 3.9}$$
-
-\begin{enumerate}[(a)]
-	\item $p < 0.01$
-	\item $0.01 \leq p < 0.05$
-	\item $0.05 \leq p < 0.1$
-	\item $p > 0.1$
-	\item Not Sure
-\end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[c]\frametitle{What do these results mean? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
-
-Evaulate this statement in light of our hypothesis test:
-\vspace{1em}
-
-\begin{quote}
-	Students with four-letter long surnames do better, on average, on the first midterm of Econ 103 at UPenn.
-\end{quote}
-
-\begin{enumerate}[(a)]
-	\item Strong evidence in favor
-	\item Moderate evidence in favor
-	\item No evidence either way
-	\item Moderate evidence against
-	\item Strong evidence against
-\end{enumerate}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[c,fragile]\frametitle{I just did 134 Hypothesis Tests...}
-   
- \begin{block}
- 	{... and 11 of them were significant at the 5\% level.}
- \end{block}
-
-\footnotesize
-
-\begin{verbatim}
-         group sign p.value x.bar N.x  s.x y.bar N.y  s.y
-26  first1 = P    1   0.000  93.8   3  2.9  75.5 101 20.4
-70     id2 = 7    1   0.000  94.6   5  3.3  75.1  99 20.4
-134    id8 = 0    1   0.000  92.6   7  4.9  74.8  97 20.5
-5    Nlast = 4    1   0.001  88.9  12 10.4  74.4  92 20.7
-90     id4 = 8    1   0.003  87.7   9  9.0  74.9  95 20.7
-105    id6 = 8    1   0.003  88.1   5  5.8  75.4  99 20.6
-109    id6 = 2    1   0.007  88.9   8 10.7  75.0  96 20.6
-9    Nlast = 2    1   0.016  90.4   5  9.3  75.3  99 20.5
-49   last1 = P   -1   0.036  65.2   6  9.9  76.7  98 20.6
-65     id2 = 1    1   0.038  84.3   9 10.1  75.3  95 20.9
-117    id7 = 8    1   0.041  83.4  13 11.6  75.0  91 21.1
-\end{verbatim}
-\end{frame}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Data-Dredging}
-\begin{itemize}
-	\item Suppose you have a long list of null hypotheses and assume, for the sake of argument that all of them are true.
-		\begin{itemize}
-			\item E.g.\ there's no difference in grades between students with different 4th digits of their student id number. 
-		\end{itemize}
-	\item We'll still reject about 5\% of the null hypotheses.
-	\item Academic journals tend only to publish results in which a null hypothesis is rejected at the 5\% level or lower. 
-	\item We end up with the bizarre result that ``most published studies are false.''  
-\end{itemize}
+  \frametitle{Data-Dredging and the Replication Crisis}
 
+\begin{block}{Reading Assignment}
+  On Piazza: ``The Economist - Trouble in the Lab.'' 
+\end{block}
 
-\alert{I posted a reading about this on Piazza: ``The Economist - Trouble in the Lab.'' To learn even more, see \href{http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124}{\textcolor{blue}{\fbox{Ioannidis (2005)}}}}
+\begin{block}{Basic Idea}
+  \begin{itemize}
+    \item Journals usually publish only ``statistically significant'' results.
+    \item You test a large number of null hypotheses with $\alpha= 0.05$.
+    \item Suppose all of these nulls are actually \emph{TRUE}.
+    \item You'll reject 5\% of the time: each rejection is a Type I error.
+    \item Cheating in academia: carry out lots of ridiculous hypothesis tests and only report the ``statistically significant'' results. 
+  \end{itemize}
+\end{block}
+    
 
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c]\frametitle{Do Students with 4-Letter Surnames Do Better?}
+% \framesubtitle{Based on Data from Midterm 1 Last Semester}
+%    \begin{columns}
+%    	\column{0.35\textwidth} \begin{block}
+%    		{4-Letter Surname}
+%    			$\bar{x} = 88.9$\\
+%    			$s_x = 10.4$\\
+%    			$n_x = 12$
+%    	\end{block} 
+%    	\column{0.35\textwidth} \begin{block}
+%    		{Other Surnames}
+%    			$\bar{y} = 74.4$\\
+%    			$s_y = 20.7$\\
+%    			$n_y = 92$
+%    	\end{block}
+%    \end{columns}
+%
+%\vspace{1em}
+%\begin{block}
+%	{Difference of Means}
+%	$\bar{x} - \bar{y} = \alert{14.5}$
+%\end{block}
+%\begin{block}
+%	{Standard Error}
+%	$\displaystyle SE = \sqrt{s_x^2/n_x + s_y^2/n_y} \approx \alert{3.7}$
+%\end{block}
+%\begin{block}
+%	{Test Statistic}
+%	$T = 14.5 / 3.7 \approx \alert{3.9}$
+%\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c]\frametitle{What is the p-value for the two-sided test?  \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%    
+%$$\boxed{\mbox{Test Statistic} \approx 3.9}$$
+%
+%\begin{enumerate}[(a)]
+%	\item $p < 0.01$
+%	\item $0.01 \leq p < 0.05$
+%	\item $0.05 \leq p < 0.1$
+%	\item $p > 0.1$
+%	\item Not Sure
+%\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c]\frametitle{What do these results mean? \hfill \includegraphics[scale = 0.05]{./images/clicker}}
+%
+%Evaulate this statement in light of our hypothesis test:
+%\vspace{1em}
+%
+%\begin{quote}
+%	Students with four-letter long surnames do better, on average, on the first midterm of Econ 103 at UPenn.
+%\end{quote}
+%
+%\begin{enumerate}[(a)]
+%	\item Strong evidence in favor
+%	\item Moderate evidence in favor
+%	\item No evidence either way
+%	\item Moderate evidence against
+%	\item Strong evidence against
+%\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[c,fragile]\frametitle{I just did 134 Hypothesis Tests...}
+%   
+% \begin{block}
+% 	{... and 11 of them were significant at the 5\% level.}
+% \end{block}
+%
+%\footnotesize
+%
+%\begin{verbatim}
+%         group sign p.value x.bar N.x  s.x y.bar N.y  s.y
+%26  first1 = P    1   0.000  93.8   3  2.9  75.5 101 20.4
+%70     id2 = 7    1   0.000  94.6   5  3.3  75.1  99 20.4
+%134    id8 = 0    1   0.000  92.6   7  4.9  74.8  97 20.5
+%5    Nlast = 4    1   0.001  88.9  12 10.4  74.4  92 20.7
+%90     id4 = 8    1   0.003  87.7   9  9.0  74.9  95 20.7
+%105    id6 = 8    1   0.003  88.1   5  5.8  75.4  99 20.6
+%109    id6 = 2    1   0.007  88.9   8 10.7  75.0  96 20.6
+%9    Nlast = 2    1   0.016  90.4   5  9.3  75.3  99 20.5
+%49   last1 = P   -1   0.036  65.2   6  9.9  76.7  98 20.6
+%65     id2 = 1    1   0.038  84.3   9 10.1  75.3  95 20.9
+%117    id7 = 8    1   0.041  83.4  13 11.6  75.0  91 21.1
+%\end{verbatim}
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{Data-Dredging}
+%
+%
+%
+%\begin{itemize}
+%	\item Suppose you have a long list of null hypotheses and assume, for the sake of argument that all of them are true.
+%		\begin{itemize}
+%			\item E.g.\ there's no difference in grades between students with different 4th digits of their student id number. 
+%		\end{itemize}
+%	\item We'll still reject about 5\% of the null hypotheses.
+%	\item Academic journals tend only to publish results in which a null hypothesis is rejected at the 5\% level or lower. 
+%	\item We end up with the bizarre result that ``most published studies are false.''  
+%\end{itemize}
+%
+%
+%\alert{I posted a reading about this on Piazza: ``The Economist - Trouble in the Lab.'' To learn even more, see \href{http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124}{\textcolor{blue}{\fbox{Ioannidis (2005)}}}}
+%
+%
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Green Jelly Beans Cause Acne!}
@@ -394,8 +424,11 @@ Evaulate this statement in light of our hypothesis test:
 \begin{figure}
 \centering
 	\includegraphics[scale=0.35]{./images/xkcd1}
-	\caption{Go and read this comic strip: before today's lecture you wouldn't have gotten the joke!}
+  \caption{Reading this comic strip is part of your homework!}
 \end{figure}
+
+
+\alert{And now a simulation example of Data Dredging using R\dots}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \begin{frame}
@@ -453,4 +486,129 @@ Evaulate this statement in light of our hypothesis test:
 %
 %\end{frame}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Function to calculate the p-value for a two-sided }
+\hlcom{#test for difference of means}
+\hlstd{get_p_value} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{,} \hlkwc{y}\hlstd{) \{}
+  \hlstd{xbar} \hlkwb{<-} \hlkwd{mean}\hlstd{(x)}
+  \hlstd{ybar} \hlkwb{<-} \hlkwd{mean}\hlstd{(y)}
+  \hlstd{n} \hlkwb{<-} \hlkwd{length}\hlstd{(x)}
+  \hlstd{m} \hlkwb{<-} \hlkwd{length}\hlstd{(y)}
+  \hlstd{s_x} \hlkwb{<-} \hlkwd{sd}\hlstd{(x)}
+  \hlstd{s_y} \hlkwb{<-} \hlkwd{sd}\hlstd{(y)}
+  \hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(s_x}\hlopt{^}\hlnum{2} \hlopt{/} \hlstd{n} \hlopt{+} \hlstd{s_y}\hlopt{^}\hlnum{2} \hlopt{/} \hlstd{m)}
+  \hlstd{test_stat} \hlkwb{<-} \hlkwd{abs}\hlstd{(xbar} \hlopt{-} \hlstd{ybar)} \hlopt{/} \hlstd{SE}
+  \hlkwd{return}\hlstd{(}\hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat)))}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Test get_p_value using the anchoring  experiment}
+\hlcom{# example from our previous lecture}
+\hlstd{data_url} \hlkwb{<-} \hlstr{'http://ditraglia.com/econ103/old_survey.csv'}
+\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
+\hlstd{anchoring} \hlkwb{<-} \hlstd{survey[,} \hlkwd{c}\hlstd{(}\hlstr{'rand.num'}\hlstd{,} \hlstr{'africa.percent'}\hlstd{)]}
+\hlstd{rand_num} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(anchoring}\hlopt{$}\hlstd{rand.num)}
+\hlstd{africa_percent} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(anchoring}\hlopt{$}\hlstd{africa.percent)}
+
+\hlstd{x} \hlkwb{<-} \hlkwd{subset}\hlstd{(africa_percent, rand_num} \hlopt{==} \hlnum{65}\hlstd{)}
+\hlstd{y} \hlkwb{<-} \hlkwd{subset}\hlstd{(africa_percent, rand_num} \hlopt{==} \hlnum{10}\hlstd{)}
+\hlkwd{get_p_value}\hlstd{(x, y)}
+\end{alltt}
+\begin{verbatim}
+## [1] 6.682931e-07
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Use *real* student test scores as the outcome}
+\hlstd{data_url} \hlkwb{<-} \hlstr{'http://ditraglia.com/econ103/midterms.csv'}
+\hlstd{midterms} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
+\hlstd{scores} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(midterms}\hlopt{$}\hlstd{Midterm1)}
+\hlstd{n_students} \hlkwb{<-} \hlkwd{length}\hlstd{(scores)}
+
+\hlcom{# Generate fake "grouping variables" (0/1) indep. of scores}
+\hlkwd{set.seed}\hlstd{(}\hlnum{987654321}\hlstd{)}
+
+\hlstd{n_fake} \hlkwb{<-} \hlnum{500}
+\hlcom{# Empty matrix to store grouping variables:}
+\hlstd{fake} \hlkwb{<-} \hlkwd{matrix}\hlstd{(}\hlnum{NA}\hlstd{,} \hlkwc{nrow} \hlstd{= n_students,} \hlkwc{ncol} \hlstd{= n_fake)}
+
+\hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n_fake) \{}
+  \hlstd{fake[, i]} \hlkwb{<-} \hlkwd{rbinom}\hlstd{(n_students,} \hlkwc{size} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{prob} \hlstd{=} \hlnum{0.5}\hlstd{)}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Use each grouping variable to split students into x and y}
+\hlcom{# and calculate p-value for test of difference of means}
+
+\hlstd{p_values} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{NA}\hlstd{, n_fake)} \hlcom{# empty vector to store results}
+
+\hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n_fake) \{}
+  \hlstd{group_indicator} \hlkwb{<-} \hlstd{fake[,i]}
+  \hlstd{x} \hlkwb{<-} \hlkwd{subset}\hlstd{(scores, group_indicator} \hlopt{==} \hlnum{1}\hlstd{)}
+  \hlstd{y} \hlkwb{<-} \hlkwd{subset}\hlstd{(scores, group_indicator} \hlopt{==} \hlnum{0}\hlstd{)}
+  \hlstd{p_values[i]} \hlkwb{<-} \hlkwd{get_p_value}\hlstd{(x, y)}
+\hlstd{\}}
+\hlcom{# How many of the tests were statistically significant?}
+\hlkwd{sum}\hlstd{(p_values} \hlopt{<} \hlnum{0.05}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Grouping variable with the lowest p-value}
+\hlstd{group_indicator} \hlkwb{<-} \hlstd{fake[,} \hlkwd{which.min}\hlstd{(p_values)]}
+\hlstd{x} \hlkwb{<-} \hlkwd{subset}\hlstd{(scores, group_indicator} \hlopt{==} \hlnum{1}\hlstd{)}
+\hlstd{y} \hlkwb{<-} \hlkwd{subset}\hlstd{(scores, group_indicator} \hlopt{==} \hlnum{0}\hlstd{)}
+
+\hlcom{# These results look convincing, but are spurious!}
+\hlkwd{mean}\hlstd{(x)} \hlopt{-} \hlkwd{mean}\hlstd{(y)}
+\end{alltt}
+\begin{verbatim}
+## [1] -7.974127
+\end{verbatim}
+\begin{alltt}
+\hlkwd{sqrt}\hlstd{(}\hlkwd{var}\hlstd{(x)} \hlopt{/} \hlkwd{length}\hlstd{(x)} \hlopt{+} \hlkwd{var}\hlstd{(y)} \hlopt{/} \hlkwd{length}\hlstd{(y))}
+\end{alltt}
+\begin{verbatim}
+## [1] 2.240852
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
