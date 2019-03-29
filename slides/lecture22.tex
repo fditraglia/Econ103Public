@@ -246,46 +246,48 @@ The estimated slope was about 1.4 inches/cm and the estimated intercept was abou
 \end{block}
 
 \begin{block}{How to calculate $\widehat{SE}$?}
-	\begin{itemize}
-\item Complicated 
-	\begin{itemize}
-\item Depends on variance of errors $\epsilon$ and all predictors in regression. 
-\item We'll look at a few simple examples 
-\item R does this calculation for us 
-\end{itemize}
-\item Requires assumptions about population errors $\epsilon_i$ 
-	\begin{itemize}
-\item Simplest (and R default) is to assume $\epsilon_i \sim iid (0,\sigma^2)$ 
-\item Weaker assumptions in Econ 104 
-\end{itemize}
-
-\end{itemize}
+  R will do this for us, but we won't cover the details in Econ 103. 
+  You'll have to wait for Econ 104!
 \end{block}
+%	\begin{itemize}
+%\item Complicated 
+%	\begin{itemize}
+%\item Depends on variance of errors $\epsilon$ and all predictors in regression. 
+%\item We'll look at a few simple examples 
+%\item R does this calculation for us 
+%\end{itemize}
+%\item Requires assumptions about population errors $\epsilon_i$ 
+%	\begin{itemize}
+%\item Simplest (and R default) is to assume $\epsilon_i \sim iid (0,\sigma^2)$ 
+%\item Weaker assumptions in Econ 104 
+%\end{itemize}
+%
+%\end{itemize}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Intuition for What Effects $SE(\widehat{\beta}_1)$ for Simple Regression}
-
-	$$SE(\widehat{\beta}_1) \approx \frac{\sigma}{\sqrt{n}} \cdot \frac{1}{s_X}$$
-	\begin{itemize}
-	\item $\sigma = SD(\epsilon)$ -- inherent variability of the $Y$, even after controlling for $X$
-	\item $n$ is the sample size
-	\item $s_X$ is the sampling variability of the $X$ observations.
-	\end{itemize}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-I treated the class as our population for the purposes of the simulation experiment but it makes more sense to think of the class as a sample from some population. We'll take this perspective now and think about various inferences we can draw from the height and handspan data using regression.
-\end{frame}
-
-
-
+%\begin{frame}
+%\frametitle{Intuition for What Effects $SE(\widehat{\beta}_1)$ for Simple Regression}
+%
+%	$$SE(\widehat{\beta}_1) \approx \frac{\sigma}{\sqrt{n}} \cdot \frac{1}{s_X}$$
+%	\begin{itemize}
+%	\item $\sigma = SD(\epsilon)$ -- inherent variability of the $Y$, even after controlling for $X$
+%	\item $n$ is the sample size
+%	\item $s_X$ is the sampling variability of the $X$ observations.
+%	\end{itemize}
+%\end{frame}
+%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Example: Height and Handspan}
+%\begin{frame}
+%I treated the class as our population for the purposes of the simulation experiment but it makes more sense to think of the class as a sample from some population. We'll take this perspective now and think about various inferences we can draw from the height and handspan data using regression.
+%\end{frame}
+%
+%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Inference for Regression: Height and Handspan}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{Height = $\beta_0 +  \epsilon$}
@@ -403,54 +405,6 @@ residual sd = 3.56, R-Squared = 0.40
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Multiple Regression}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Simple vs.\ Multiple Regression}
-\begin{block}{Terminology}
-$Y$ is the ``outcome'' and $X$ is the ``predictor.''
-\end{block}
-
-\begin{block}{Simple Regression}
-One predictor variable: $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$
-\end{block}
-\begin{block}{Multiple Regression}
-More than one predictor variable: $Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} +  \hdots + \beta_k X_{ik} + \epsilon_i$
-\end{block}
-
-
-\begin{itemize}
-	\item In both cases $\epsilon_1, \epsilon_2, \hdots, \epsilon_n \sim \mbox{iid} (0,\sigma^2)$
-	\item Multiple regression coefficient estimates $\widehat{\beta}_1, \widehat{\beta}_1, \hdots, \widehat{\beta}_k$ calculated by minimizing  sum of squared vertical deviations, but formula requires linear algebra so we won't cover it.
-\end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Interpreting Multiple Regression}
-
-\begin{block}{Predictive Interpretation}
-$$Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} +  \hdots + \beta_k X_{ik} + \epsilon_i$$
-
-$\beta_j$ is the difference in $Y$ that we would predict between two individuals who differed by one unit in predictor $X_j$ \emph{\alert{but who had the same values for the other $X$ variables.}} 
-
-\end{block}
-
-\begin{block}{What About an Example?}
-	In a few minutes, we'll work through an extended example of multiple regression using real data.
-\end{block}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Inference for Multiple Regression}
-
-In addition to estimating the coefficients $\widehat{\beta}_0, \widehat{\beta}_1, \hdots, \widehat{\beta}_k$ for us, R will calculate the corresponding standard errors. It turns out that
-	$$\frac{\widehat{\beta}_j - \beta_j}{\widehat{SE}(\widehat{\beta})} \approx N(0,1)$$
-for \emph{each} of the $\widehat{\beta}_j$ by the CLT provided that the sample size is large.
-
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
@@ -569,15 +523,58 @@ residual sd = 3.56, R-Squared = 0.40
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multiple Regression}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Simple vs.\ Multiple Regression}
+\begin{block}{Terminology}
+$Y$ is the ``outcome'' and $X$ is the ``predictor.''
+\end{block}
+
+\begin{block}{Simple Regression}
+One predictor variable: $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$
+\end{block}
+\begin{block}{Multiple Regression}
+More than one predictor variable: $Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} +  \hdots + \beta_k X_{ik} + \epsilon_i$
+\end{block}
 
 
+%\begin{itemize}
+%	\item In both cases $\epsilon_1, \epsilon_2, \hdots, \epsilon_n \sim \mbox{iid} (0,\sigma^2)$
+%	\item Multiple regression coefficient estimates $\widehat{\beta}_1, \widehat{\beta}_1, \hdots, \widehat{\beta}_k$ calculated by minimizing  sum of squared vertical deviations, but formula requires linear algebra so we won't cover it.
+%\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Multiple Regression}
+$$Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} +  \hdots + \beta_k X_{ik} + \epsilon_i$$
+
+\begin{block}{Ceteris Paribus Interpretation}
+  If two individuals differ by one unit in $X_j$ but have the \emph{same values for all other predictors}, we predict they will differ by $\beta_j$ units in $Y$.
+\end{block}
+
+\begin{block}{Estimating $\beta_0, \beta_1, \dots, \beta_k$}
+  The formulas require matrix algebra: R will do it for us.
+\end{block}
+
+\begin{block}{Inference for Multiple Regression}
+Provided the sample size is large, 
+	$$\frac{\widehat{\beta}_j - \beta_j}{\widehat{SE}(\widehat{\beta})} \approx N(0,1)$$
+for \emph{each} of the $\widehat{\beta}_j$ by the CLT. 
+R will calculate the SE for us.
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \begin{center}
 \Huge Bring Your Laptop Next Time: We'll be Using R
 \end{center}
 
 \end{frame}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
