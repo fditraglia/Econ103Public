@@ -5,7 +5,7 @@
 \usepackage{enumerate}
 \usepackage{multirow}
 
-%\printanswers
+\printanswers
 %\noprintanswers
 
 \title{Review Questions}
@@ -1391,6 +1391,90 @@ Calculate the probability that our test statistic, the number of cokes correctly
     \frac{ \displaystyle {3 \choose 2} \times {3 \choose 1} }{\displaystyle{6 \choose 3}} = \frac{3 \times 3}{20} = 9/20 = 0.45
   \]
 \end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fullwidth{\section*{Lecture \#19 -- Hypothesis Testing II}}
+\uplevel{Note: if asked ``what is the distribution of \dots'' you must specify the values of any and all parameters for full credit.}
+
+\question Let $X_1, \dots, X_9 \sim \text{iid N}(\mu = 5, \sigma^2 = 81)$ and define $\bar{X} = (X_1 + \dots + X_9)/9$. 
+\begin{parts}
+  \part What is the distribution of $\bar{X}$?
+  \begin{solution}
+    $\bar{X} \sim N(\mu, \sigma^2/n) = N(5, 9)$
+  \end{solution}
+  \part What is the distribution of $(\bar{X} - 5)/3$?
+  \begin{solution}
+    $N(0,1)$
+  \end{solution}
+\end{parts}
+
+\question Let $Z_1, \dots, Z_{16} \sim \text{iid N}(\mu = -2, \sigma^2 = 4)$, $Y = Z_1/16 + \dots + Z_{16}/16$, and $X = 2Z + 4$.
+\begin{parts}
+  \part What is the distribution of $X$?
+  \begin{solution}
+    Since $Z \sim N(\mu, \sigma^2/n) = N(-2, 1/4)$, 
+    \[X = 2Z + 4 = 2(Z + 2) = \frac{Z-(-2)}{\sqrt{1/4}} \sim N(0,1) \]
+  \end{solution}
+  \part What is $P(|X|>1)$?
+  \begin{solution}
+    $P(|X|>1) = P(-1 \leq X \leq 1) = \texttt{pnorm(1) - pnorm(-1)} \approx 0.68$
+  \end{solution}
+\end{parts}
+
+\uplevel{For the following three questions (Alice and Bob), you may assume any tests and confidence intervals are based on a random sample from a normal population with known variance.}
+
+\question Alice constructs a 95\% CI for $\mu$: $[-3, -1.5]$. Bob tests $H_0\colon \mu = -1$ vs.\ $H_1\colon \mu\neq -1$ with $\alpha = 0.05$ using the same dataset as Alice. Will he reject $H_0$? Explain.
+\begin{solution}
+  Since $-1 \notin [-3,-1.5]$ he will reject.
+\end{solution}
+
+\question Alice constructs a 90\% CI for $\mu$: $[5.1, 6.7]$. Bob tests $H_0\colon \mu = 6$ vs.\ $H_1\colon \mu\neq 6$ with $\alpha = 0.1$ using the same dataset as Alice. Will he reject $H_0$? Explain.
+\begin{solution}
+  Since $6 \in [5.1, 6.7]$ he will not reject.
+\end{solution}
+
+\question Alice constructs a 95\% CI for $\mu$: $[-0.5, 0.3]$. Bob tests $H_0\colon \mu = 0$ vs.\ $H_1\colon \mu\neq 0$ with $\alpha = 0.01$ using the same dataset as Alice. Will he reject $H_0$? Explain.
+\begin{solution}
+  To answer this, suppose that Cheryl constructed a 99\% confidence interval using the same data as Alice.
+  To determine the result of Bob's test, we need to check whether zero is contained in Cheryl's confidence interval.
+  From our discussion of confidence intervals, we know that Alice's interval would be a \emph{subset} of Cheryl's interval.
+  Since $0$ is in Alice's interval, this implies that it will also be in Cheryl's interval. 
+  Hence, Bob will fail to reject $H_0$.
+\end{solution}
+
+\question Suppose that $X_1, \dots, X_{25} \sim N(\mu, \sigma^2 = )$
+
+\question Let $X_1, \dots, X_{25} \sim \mbox{iid N}(\mu, \sigma^2 = 100)$. We want to test $H_0\colon \mu = -1$ against $H_1\colon \mu \neq -1$ using the fact that $\sigma^2$ is known.
+\begin{parts}
+  \part Suppose $\bar{x} = -0.6$. Calculate the value of our test statistic. 
+  \begin{solution}
+    $$\left|\frac{\bar{x} - (-1)}{\sqrt{100/25}}\right| = \frac{|\bar{x} + 1|}{2} = 0.5 \times |\bar{x} + 1| = 0.2$$
+  \end{solution}
+  \part Continuing from the preceding part, suppose that we set $\alpha = 0.1$. Without consulting R, determine whether we should reject the null hypothesis. Explain. 
+    \begin{solution}
+    We don't have \texttt{qnorm}(0.95) memorized, but the critical value is definitely larger than 1 since since 68\% of the probability for a standard normal is between -1 and 1. 
+    Since the test statistic is less than 1, we should not reject.
+  \end{solution}
+\end{parts}
+
+
+  \question Suppose $\bar{x} = -0.6$. Write down the line of R code you would use to calulate the p-value for the test.
+  \begin{solution}
+    \texttt{2 * (1 - pnorm(0.2))}
+  \end{solution}
+
+  \question Suppose that $\alpha = 0.1$ Write down the line of R code you would use to calculate the critical value for the test.
+  \begin{solution}
+    \texttt{qnorm}(0.95)
+  \end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fullwidth{\section*{Lecture \#20 -- Hypothesis Testing III}}
+\fullwidth{\section*{Lecture \#21 -- Hypothesis Testing IV}}
+\fullwidth{\section*{Lecture \#22 -- Regression II}}
+\fullwidth{\section*{Lecture \#23 -- Regression III}}
 
 
 \end{questions}
