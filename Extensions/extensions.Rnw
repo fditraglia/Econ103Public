@@ -5,8 +5,8 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 
-\printanswers
-%\noprintanswers
+%\printanswers
+\noprintanswers
 
 
 \title{Extension Problems}
@@ -890,7 +890,7 @@ sum(covers_truth) / length(covers_truth)
 @
 The answer is pretty much dead on: almost exactly 95\% of the intervals contain the true population mean (zero).
     \end{solution}
-    \part Repeat the preceding but rather than using \texttt{CI\_sim} write a new function called \texttt{CI\_sim2}. This new function should be identical to \texttt{CI\_sim} except that, when calling \texttt{my\_CI}, it sets \texttt{pop\_sd = 1/2} rather than 1. How do your results change? Try to provide some intuition for any differences you find.
+    \part Repeat the preceding but rather than using \texttt{CI\_sim} write a new function called \texttt{CI\_sim2}. This new function should be identical to \texttt{CI\_sim} except that, when calling \texttt{get\_CI}, it sets \texttt{pop\_sd = 1/2} rather than 1. How do your results change? Try to provide some intuition for any differences you find.
     \begin{solution}
 <<cache=TRUE>>=
 CI_sim2 <- function(sample_size){
