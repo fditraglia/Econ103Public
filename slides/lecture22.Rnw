@@ -292,102 +292,40 @@ The estimated slope was about 1.4 inches/cm and the estimated intercept was abou
 \begin{frame}[fragile]
   \frametitle{How to get R to display standard errors?}
   \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{data_url} \hlkwb{<-} \hlstr{'http://ditraglia.com/econ103/old_survey.csv'}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
-\hlstd{survey} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(survey)}
-\hlstd{reg1} \hlkwb{<-} \hlkwd{lm}\hlstd{(height} \hlopt{~} \hlstd{handspan,} \hlkwc{data} \hlstd{= survey)}
-\hlstd{reg1} \hlcom{# Gives estimates but not SE}
-\end{alltt}
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = height ~ handspan, data = survey)
-## 
-## Coefficients:
-## (Intercept)     handspan  
-##      39.596        1.356
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<load_data>>=
+data_url <- 'http://ditraglia.com/econ103/old_survey.csv'
+survey <- read.csv(data_url)
+survey <- na.omit(survey)
+reg1 <- lm(height ~ handspan, data = survey)
+reg1 # Gives estimates but not SE
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{\texttt{summary} gives too much information\dots}
   \tiny
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{summary}\hlstd{(reg1)}
-\end{alltt}
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = height ~ handspan, data = survey)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -10.0680  -2.4238   0.2204   2.7073   7.9657 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  39.5962     3.9596  10.000 1.26e-15 ***
-## handspan      1.3558     0.1898   7.143 4.20e-10 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 3.556 on 78 degrees of freedom
-## Multiple R-squared:  0.3955,	Adjusted R-squared:  0.3877 
-## F-statistic: 51.03 on 1 and 78 DF,  p-value: 4.201e-10
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<summary_too_much>>=
+summary(reg1)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{\texttt{display}, from my website, cuts the less important info\dots} 
   \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{source}\hlstd{(}\hlstr{'http://ditraglia.com/econ103/display.R'}\hlstd{)}
-\hlkwd{display}\hlstd{(reg1)}
-\end{alltt}
-\begin{verbatim}
-## lm(formula = height ~ handspan, data = survey)
-##             coef.est coef.se
-## (Intercept) 39.60     3.96  
-## handspan     1.36     0.19  
-## ---
-## n = 80, k = 2
-## residual sd = 3.56, R-Squared = 0.40
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<display_just_right>>=
+source('http://ditraglia.com/econ103/display.R')
+display(reg1)
+@
 \alert{We will learn what everything in this table means\dots}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{Regression with only an intercept: sample mean}
   \framesubtitle{See Review Problem \#46}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{reg2} \hlkwb{<-} \hlkwd{lm}\hlstd{(height} \hlopt{~} \hlnum{1}\hlstd{,} \hlkwc{data} \hlstd{= survey)}
-\hlkwd{display}\hlstd{(reg2)}
-\end{alltt}
-\begin{verbatim}
-## lm(formula = height ~ 1, data = survey)
-##             coef.est coef.se
-## (Intercept) 67.74     0.51  
-## ---
-## n = 80, k = 1
-## residual sd = 4.54, R-Squared = 0.00
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<only_intercept>>=
+reg2 <- lm(height ~ 1, data = survey)
+display(reg2)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -400,43 +338,17 @@ A predictor variable that takes on only two values: 0 or 1. Used to represent tw
 
 \begin{frame}[fragile]
   \frametitle{Regression with intercept \& dummy variable: Male/Female}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{reg3} \hlkwb{<-} \hlkwd{lm}\hlstd{(height} \hlopt{~} \hlstd{sex,} \hlkwc{data} \hlstd{= survey)}
-\hlkwd{display}\hlstd{(reg3)}
-\end{alltt}
-\begin{verbatim}
-## lm(formula = height ~ sex, data = survey)
-##             coef.est coef.se
-## (Intercept) 64.46     0.56  
-## sexMale      6.10     0.76  
-## ---
-## n = 80, k = 2
-## residual sd = 3.38, R-Squared = 0.45
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<dummy>>=
+reg3 <- lm(height ~ sex, data = survey)
+display(reg3)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{Height \& Handspan Regression}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{display}\hlstd{(reg1)}
-\end{alltt}
-\begin{verbatim}
-## lm(formula = height ~ handspan, data = survey)
-##             coef.est coef.se
-## (Intercept) 39.60     3.96  
-## handspan     1.36     0.19  
-## ---
-## n = 80, k = 2
-## residual sd = 3.56, R-Squared = 0.40
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<height_handspan_again>>=
+display(reg1)
+@
 \alert{What are \texttt{n}, \texttt{k}, \texttt{residual sd} and \texttt{R-Squared}?}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -501,67 +413,24 @@ Predicted $y$-value for person $i$ given her $x$-variables using estimated regre
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \footnotesize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{display}\hlstd{(reg1)}
-\end{alltt}
-\begin{verbatim}
-## lm(formula = height ~ handspan, data = survey)
-##             coef.est coef.se
-## (Intercept) 39.60     3.96  
-## handspan     1.36     0.19  
-## ---
-## n = 80, k = 2
-## residual sd = 3.56, R-Squared = 0.40
-\end{verbatim}
-\begin{alltt}
-\hlkwd{cor}\hlstd{(survey}\hlopt{$}\hlstd{height, survey}\hlopt{$}\hlstd{handspan)}\hlopt{^}\hlnum{2}
-\end{alltt}
-\begin{verbatim}
-## [1] 0.3954669
-\end{verbatim}
-\begin{alltt}
-\hlkwd{sqrt}\hlstd{(}\hlkwd{sum}\hlstd{(reg1}\hlopt{$}\hlstd{residuals}\hlopt{^}\hlnum{2}\hlstd{)} \hlopt{/} \hlstd{(}\hlnum{80} \hlopt{-} \hlnum{2}\hlstd{))}
-\end{alltt}
-\begin{verbatim}
-## [1] 3.555941
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<>>=
+display(reg1)
+cor(survey$height, survey$handspan)^2
+sqrt(sum(reg1$residuals^2) / (80 - 2))
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{Which Gives Better Predictions: Sex or Handspan?}
 
 \scriptsize
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-## lm(formula = height ~ handspan, data = survey)
-##             coef.est coef.se
-## (Intercept) 39.60     3.96  
-## handspan     1.36     0.19  
-## ---
-## n = 80, k = 2
-## residual sd = 3.56, R-Squared = 0.40
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<echo = FALSE>>=
+display(reg1)
+@
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-## lm(formula = height ~ sex, data = survey)
-##             coef.est coef.se
-## (Intercept) 64.46     0.56  
-## sexMale      6.10     0.76  
-## ---
-## n = 80, k = 2
-## residual sd = 3.38, R-Squared = 0.45
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<echo = FALSE>>=
+display(reg3)
+@
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -613,24 +482,10 @@ R will calculate the SE for us.
 \begin{frame}[fragile]
   \frametitle{Multiple Regression Example: Sex and Handspan}
 \small
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{reg4} \hlkwb{<-} \hlkwd{lm}\hlstd{(height} \hlopt{~} \hlstd{sex} \hlopt{+} \hlstd{handspan,} \hlkwc{data} \hlstd{= survey)}
-\hlkwd{display}\hlstd{(reg4)}
-\end{alltt}
-\begin{verbatim}
-## lm(formula = height ~ sex + handspan, data = survey)
-##             coef.est coef.se
-## (Intercept) 49.95     4.16  
-## sexMale      4.18     0.89  
-## handspan     0.75     0.21  
-## ---
-## n = 80, k = 3
-## residual sd = 3.16, R-Squared = 0.53
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+<<sex_and_handspan>>=
+reg4 <- lm(height ~ sex + handspan, data = survey)
+display(reg4)
+@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
