@@ -1458,6 +1458,7 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \end{solution}
 \end{parts}
 
+\question
 
   \question Suppose $\bar{x} = -0.6$. Write down the line of R code you would use to calulate the p-value for the test.
   \begin{solution}
@@ -1472,10 +1473,68 @@ Calculate the probability that our test statistic, the number of cokes correctly
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \fullwidth{\section*{Lecture \#20 -- Hypothesis Testing III}}
-\fullwidth{\section*{Lecture \#21 -- Hypothesis Testing IV}}
-\fullwidth{\section*{Lecture \#22 -- Regression II}}
-\fullwidth{\section*{Lecture \#23 -- Regression III}}
 
+\fullwidth{\section*{Lecture \#21 -- Hypothesis Testing IV}}
+
+\fullwidth{\section*{Lecture \#22 -- Regression II}}
+
+\uplevel{The following five questions refer to the population regression model: $Y = \beta_0 + \beta_1 X + \varepsilon$}
+
+\question Write $\beta_1$ in terms of the appropriate features of the distributions of $X$ and $Y$.
+
+\question Write $\beta_0$ in terms of $\beta_1$ and the appropriate features of the distributions of $X$ and $Y$.
+
+\question Prove that $E[\varepsilon] = 0$.
+
+\question Prove that $Cov(X,\varepsilon) = 0$.
+
+\question Prove that $Var(\varepsilon) = ???$.
+
+\uplevel{The following 4 questions rely on a dataset called \texttt{mother\_child\_weight.csv} available from \texttt{http://ditraglia.com/econ103/}. The dataset contains two columns: \texttt{mother} gives a mother's weight during pregnancy (kg) while \texttt{child} give's her child's birthweight (grams).}
+
+\question Write R code to accomplish the following tasks: 
+\begin{enumerate} 
+  \item[(i)] Download the mother-child dataset and store it in a dataframe called \texttt{weight}.
+  \item[(ii)] Run a linear regression using mother's pregnancy weight to predict her child's birthweight and store the results in an object called \texttt{reg}.
+  \item[(iii)] Output the regression results. 
+\end{enumerate}
+\begin{solution}
+  This solution assumes that you have already loaded the \texttt{display} command from my website. If you haven't you'll need to do so first.
+\begin{verbatim}
+data_url <- `http://ditraglia.com/econ103/mother_child_weight.csv'
+weight <- read.csv(data_url)
+reg <- lm(child ~ mother, data = weight)
+display(reg)
+\end{verbatim}
+\end{solution}
+
+\uplevel{The next three questions rely on the regression results from the preceding question:}
+\begin{verbatim}
+           coef.est coef.se
+(Intercept) 1.50     0.63   
+mother      0.03     0.01   
+---
+n = 25, k = 2
+residual sd = 0.40, R-Squared = 0.27
+\end{verbatim}
+
+\question Consider two mothers whose weight during pregnancy differs by one kg.
+How much more would would we predict that the child of the heavier mother will weigh at birth? 
+
+\question How well does a mother's weight during pregnancy predict her child's birthweight? 
+
+\question Some tests and confidence intervals. Some interpretation of R-squared.
+
+
+\fullwidth{\section*{Lecture \#23 -- Regression III}}
+ 
+\question Regression with only an intercept.
+
+\question Regression with only a dummy variable and intercept.
+
+\question Regression with a continuous variable and a dummy variable.
+
+\question Regression with a continuous variable, a dummy variable, and an interaction.
 
 \end{questions}
 
