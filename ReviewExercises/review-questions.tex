@@ -1474,21 +1474,70 @@ Calculate the probability that our test statistic, the number of cokes correctly
 
 \fullwidth{\section*{Lecture \#20 -- Hypothesis Testing III}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \fullwidth{\section*{Lecture \#21 -- Hypothesis Testing IV}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fullwidth{\section*{Lecture \#22 -- Regression II}}
 
-\uplevel{The following five questions refer to the population regression model: $Y = \beta_0 + \beta_1 X + \varepsilon$}
+\uplevel{The following five questions refer to the population regression model: $Y = \beta_0 + \beta_1 X + \varepsilon$.}
 
 \question Write $\beta_1$ in terms of the appropriate features of the distributions of $X$ and $Y$.
+\begin{solution}
+  $\beta_1 = \displaystyle\frac{Cov(X,Y)}{Var(X)}$
+\end{solution}
 
 \question Write $\beta_0$ in terms of $\beta_1$ and the appropriate features of the distributions of $X$ and $Y$.
+\begin{solution}
+  $\beta_0 = E[Y] - \beta_1 E[X]$
+\end{solution}
 
 \question Prove that $E[\varepsilon] = 0$.
+\begin{solution}
+  \begin{align*}
+    E[\varepsilon] &= E[Y - \beta_0 - \beta_1 X] = E[Y] - \beta_0 - \beta_1 E[X]\\
+    &= E[Y] - \left( E[Y] - \beta_1 E[X] \right) - \beta_1 E[X] = 0\\
+    &=0
+  \end{align*}
+\end{solution}
+
+\question Prove that $Var(\varepsilon) = Var(Y) - Cov(X,Y)^2/Var(X)$.
+\begin{solution}
+
+\end{solution}
 
 \question Prove that $Cov(X,\varepsilon) = 0$.
+\begin{solution}
+  By the shortcut formula, and the fact that $E[\varepsilon]$,
+  \[
+    Cov(X, \varepsilon) = E[X\varepsilon] - E[X]E[\varepsilon] = E[X\varepsilon]
+  \]
+  Now, substituting $\varepsilon = Y - \beta_0 - \beta_1 X$ and $\beta_1 = E[Y] - \beta_1 E[X]$, 
+  \begin{align*}
+    E[X\varepsilon] &= E[X(Y - \beta_0 - \beta_1 X)] = E[XY] - \beta_0 E[X] - \beta_1 E[X^2] \\
+    &= E[XY] - \left(E[Y] - \beta_1 E[X]\right)E[X] - \beta_1 E[X^2]\\
+    &= \left( E[XY] - E[X]E[Y] \right) - \beta_1 \left( E[X^2] - E[X]^2 \right)\\
+    &= Cov(X,Y) - \beta_1 Var(X)
+  \end{align*}
+  Therefore, substituting $\beta_1 = Cov(X,Y)/Var(X)$ we have
+  \begin{align*}
+    Cov(X,\varepsilon) &= Cov(X,Y) - \beta_1 Var(X) = Cov(X,Y) - \frac{Cov(X,Y)}{Var(X)} Var(X)\\
+    &= Cov(X,Y) - Cov(X,Y) = 0
+  \end{align*}
+\end{solution}
 
-\question Prove that $Var(\varepsilon) = ???$.
+
+\question Suppose we run a linear regression of the form $Y_i = \beta_0 + \varepsilon_i$ where $Y_i$ is student i's grade on midterm \#2. In terms of the sample data, what will be our estimate of $\beta_0$?
+\begin{solution}
+  It will be the sample mean grade on midterm \#2.
+\end{solution}
+
+\question Suppose we run a linear regression of the form $Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i$ where $Y_i$ is student i's grade on midterm \#2 and $X_i$ is a dummy variable that takes the value 1 if student i is an Economics major. In terms of our sample data, what will be our estimates of the regression parameters $\beta_0$ and $\beta_1$?
+\begin{solution}
+  Our estimate of $\beta_0$ will be the sample mean grade on midterm \#2 for \emph{non-Econ majors}, while our estimate of $\beta_1$ will be the difference of sample means on midterm \#2: Econ majors minus non-Econ majors.
+\end{solution}
+
 
 \uplevel{The following 4 questions rely on a dataset called \texttt{mother\_child\_weight.csv} available from \texttt{http://ditraglia.com/econ103/}. The dataset contains two columns: \texttt{mother} gives a mother's weight during pregnancy (kg) while \texttt{child} give's her child's birthweight (grams).}
 
@@ -1525,12 +1574,12 @@ How much more would would we predict that the child of the heavier mother will w
 
 \question Some tests and confidence intervals. Some interpretation of R-squared.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \fullwidth{\section*{Lecture \#23 -- Regression III}}
- 
-\question Regression with only an intercept.
 
-\question Regression with only a dummy variable and intercept.
+\question Some questions from the textbook perhaps\dots
+ 
 
 \question Regression with a continuous variable and a dummy variable.
 
