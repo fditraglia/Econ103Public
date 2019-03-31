@@ -1422,12 +1422,12 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \end{solution}
 \end{parts}
 
-\uplevel{For the following three questions (Alice and Bob), you may assume any tests and confidence intervals are based on a random sample from a normal population with known variance.}
+\uplevel{For the following two questions (Alice and Bob), you may assume any tests and confidence intervals are based on a random sample from a normal population with known variance.}
 
-\question Alice constructs a 95\% CI for $\mu$: $[-3, -1.5]$. Bob tests $H_0\colon \mu = -1$ vs.\ $H_1\colon \mu\neq -1$ with $\alpha = 0.05$ using the same dataset as Alice. Will he reject $H_0$? Explain.
-\begin{solution}
-  Since $-1 \notin [-3,-1.5]$ he will reject.
-\end{solution}
+%\question Alice constructs a 95\% CI for $\mu$: $[-3, -1.5]$. Bob tests $H_0\colon \mu = -1$ vs.\ $H_1\colon \mu\neq -1$ with $\alpha = 0.05$ using the same dataset as Alice. Will he reject $H_0$? Explain.
+%\begin{solution}
+%  Since $-1 \notin [-3,-1.5]$ he will reject.
+%\end{solution}
 
 \question Alice constructs a 90\% CI for $\mu$: $[5.1, 6.7]$. Bob tests $H_0\colon \mu = 6$ vs.\ $H_1\colon \mu\neq 6$ with $\alpha = 0.1$ using the same dataset as Alice. Will he reject $H_0$? Explain.
 \begin{solution}
@@ -1443,7 +1443,24 @@ Calculate the probability that our test statistic, the number of cokes correctly
   Hence, Bob will fail to reject $H_0$.
 \end{solution}
 
-\question Suppose that $X_1, \dots, X_{25} \sim N(\mu, \sigma^2 = )$
+\question Suppose that $X_1, \dots, X_{25} \sim \text{iid N}(\mu, \sigma^2 = 4)$ and we want to test $H_0\colon \mu = 1$ vs.\ $H_1\colon \mu \neq 1$ with $\alpha = 0.05$.
+  \begin{parts}
+    \part For what range of values for $\bar{X}$ would we \emph{fail to reject} $H_0$?
+    \begin{solution}
+      Our test statistic is $T_n = 5(\bar{X} - 1)/2$ and we will reject if $|T_n|>2$.
+      Hence, we will \emph{fail to reject} when $|T_n|\leq 2$, i.e.\ when
+      \begin{align*}
+        -2 \leq 5(&\bar{X} - 1)/2 \leq 2\\
+        -4/5 \leq &\bar{X} - 1 \leq 4/5\\
+        -4/5 + 1\leq &\bar{X} \leq 4/5 + 1 \\
+        0.2 \leq &\bar{X} \leq 1.8
+      \end{align*}
+    \end{solution}
+    \part For what range of values for $\bar{X}$ would we \emph{reject} $H_0$?
+    \begin{solution}
+      $\bar{X} > 1.8$ or $\bar{X} < 0.2$
+    \end{solution}
+  \end{parts}
 
 \question Let $X_1, \dots, X_{25} \sim \mbox{iid N}(\mu, \sigma^2 = 100)$. We want to test $H_0\colon \mu = -1$ against $H_1\colon \mu \neq -1$ using the fact that $\sigma^2$ is known.
 \begin{parts}
@@ -1458,17 +1475,43 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \end{solution}
 \end{parts}
 
-\question
+\question Let that $X_1, \dots, X_n \sim \text{iid N}(\mu, \sigma^2)$ where $\sigma$ is known and suppose that you want to test $H_0\colon \mu = \mu_0$ vs.\ $H_1\colon \mu \neq \mu_0$ where $\mu_0$ is some hypothesized value of $\mu$.
+  \begin{parts}
+    \part If $\alpha = 0.1$, what line of R code would you use to calculate the critical value? 
+    \begin{solution}
+      \texttt{qnorm(0.95)}
+    \end{solution}
+    \part Suppose that your test statistic is $1.2$. Write out the line of R code that you would use to calculate the p-value for the test.
+    \begin{solution}
+      \texttt{2 * (1 - pnorm(1.2))}
+    \end{solution}
+  \end{parts}
 
-  \question Suppose $\bar{x} = -0.6$. Write down the line of R code you would use to calulate the p-value for the test.
-  \begin{solution}
-    \texttt{2 * (1 - pnorm(0.2))}
-  \end{solution}
+\question Define the term \emph{p-value}, and explain how you can use one to carry out a hypothesis test with a significance level of $\alpha$.
 
-  \question Suppose that $\alpha = 0.1$ Write down the line of R code you would use to calculate the critical value for the test.
+\question For each part, indicate whether we would \emph{reject} or \emph{fail to reject} the null hypothesis.
+\begin{parts}
+  \item Alice chose a significance level of $0.05$ and the p-value for her test  was $0.95$.
+    \begin{solution}
+      Fail to reject.
+    \end{solution}
+  \item Bob chose a significance level of $0.1$ and the p-value for his test was $0.01$.
+    \begin{solution}
+      Reject.
+    \end{solution}
+\end{parts}
+
+\question Mark each statement as True or False, and if False correct it: 
+\begin{parts}
+  \part ``The smaller the p-value, the weaker the evidence against $H_0$.''
   \begin{solution}
-    \texttt{qnorm}(0.95)
+    False: the smaller the p-value, the \emph{stronger} the evidence against $H_0$.
   \end{solution}
+  \part ``The larger the p-value, the larger the size of the effect we have discovered.''
+  \begin{solution}
+    False: a p-value only tells us the strength of evidence against $H_0$, it tells us nothing about the size of an effect.
+  \end{solution}
+\end{parts}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1504,7 +1547,12 @@ Calculate the probability that our test statistic, the number of cokes correctly
 
 \question Prove that $Var(\varepsilon) = Var(Y) - Cov(X,Y)^2/Var(X)$.
 \begin{solution}
-
+  \begin{align*}
+    Var(\varepsilon) &= Var\left( Y - \beta_0 - \beta_1 X \right) = Var(Y - \beta_1 X) \\
+    &= Var(Y) + \beta_1^2 Var(X) -2\beta_1 Cov(X,Y)\\
+    &= Var(Y) + \frac{Cov(X,Y)^2}{Var(X)^2} Var(X) -2\frac{Cov(X,Y)}{Var(X)} Cov(X,Y)\\
+    &= Var(Y) - \frac{Cov(X,Y)^2}{Var(X)}
+  \end{align*}
 \end{solution}
 
 \question Prove that $Cov(X,\varepsilon) = 0$.
@@ -1538,6 +1586,14 @@ Calculate the probability that our test statistic, the number of cokes correctly
   Our estimate of $\beta_0$ will be the sample mean grade on midterm \#2 for \emph{non-Econ majors}, while our estimate of $\beta_1$ will be the difference of sample means on midterm \#2: Econ majors minus non-Econ majors.
 \end{solution}
 
+\question Suppose we run a linear regression of the form $Y_i = \beta_0 + \beta_1 X_i + \varepsilon$ where $Y_i$ is a student's grade on midterm \#2 and $X_i$ is her grade on midterm \#1.
+What is the interpretation of $\beta_0$ and $\beta_1$ in this example?
+\begin{solution}
+  $\beta_0$ is the grade we would predict on midterm \#2 for someone who scored zero on midterm \#1: this is a meaningless quantity.
+  If Alice scored $x$ points on midterm \#1 and Bob scored $x+1$ points, then we would predict that Bob will score $\beta_1$ points better on midterm \#2 then Alice.
+\end{solution}
+
+\question Define the following terms
 
 \uplevel{The following 4 questions rely on a dataset called \texttt{mother\_child\_weight.csv} available from \texttt{http://ditraglia.com/econ103/}. The dataset contains two columns: \texttt{mother} gives a mother's weight during pregnancy (kg) while \texttt{child} give's her child's birthweight (grams).}
 
@@ -1573,6 +1629,19 @@ How much more would would we predict that the child of the heavier mother will w
 \question How well does a mother's weight during pregnancy predict her child's birthweight? 
 
 \question Some tests and confidence intervals. Some interpretation of R-squared.
+
+\question Consider a linear regression model of the form $Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \varepsilon_i$.
+Each $i$ is a professor who teaches introductory statistics: $Y_i$ is Professor i's average student rating, $X_{1i}$ is the average grade in Professor i's course, and $X_{2i}$ is a dummy variable that takes the value $1$ if Professor $i$ is female.
+\begin{parts}
+  \part Suppose you learn that $\beta_1$ is positive. Explain what this means.
+  \begin{solution}
+    If we consider two statistics professors of the same sex (i.e.\ both male or both female), we would predict that the professor who awards higher grades will have higher student ratings.
+  \end{solution}
+  \part Suppose you learn that $\beta_2$ is negative. Explain what this means.
+  \begin{solution}
+    If we consider two statistics professors who give the same average grade to students, we would predict that the female professor will receive lower average student ratings.
+  \end{solution}
+\end{parts}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
