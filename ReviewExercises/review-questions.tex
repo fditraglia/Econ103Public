@@ -4,6 +4,7 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 \usepackage{multirow}
+\usepackage{todonotes}
 
 \printanswers
 %\noprintanswers
@@ -1422,6 +1423,18 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \end{solution}
 \end{parts}
 
+\question Suppose that $X_1, \dots, X_n \sim \text{iid N}(\mu, \sigma^2)$ where $\sigma$ is known, and you test $H_0\colon \mu = \mu_0$ vs.\ $H_1\colon \mu \neq \mu_0$ where $\mu_0$ is some hypothesized value of $\mu$.
+\begin{parts}
+  \part Say choose $\alpha = 0.05$ and reject. Would you still have rejected if you had instead chosen $\alpha = 0.1$? Explain.
+  \begin{solution}
+    Yes: the critical value for a test with $\alpha = 0.1$ is smaller than that for a test with $\alpha = 0.05$.
+  \end{solution}
+  \part Say you choose $\alpha = 0.01$ and fail to reject. Would you have failed to reject if you had instead chosen $\alpha = 0.05$? Explain.
+  \begin{solution}
+    There is not enough information to determine: the critical value for the $\alpha = 0.05$ test would indeed be smaller, but we don't know the value of the test statistic so we do not know if it exceeds this threshold.
+  \end{solution}
+\end{parts}
+
 \uplevel{For the following two questions (Alice and Bob), you may assume any tests and confidence intervals are based on a random sample from a normal population with known variance.}
 
 %\question Alice constructs a 95\% CI for $\mu$: $[-3, -1.5]$. Bob tests $H_0\colon \mu = -1$ vs.\ $H_1\colon \mu\neq -1$ with $\alpha = 0.05$ using the same dataset as Alice. Will he reject $H_0$? Explain.
@@ -1471,7 +1484,7 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \part Continuing from the preceding part, suppose that we set $\alpha = 0.1$. Without consulting R, determine whether we should reject the null hypothesis. Explain. 
     \begin{solution}
     We don't have \texttt{qnorm}(0.95) memorized, but the critical value is definitely larger than 1 since since 68\% of the probability for a standard normal is between -1 and 1. 
-    Since the test statistic is less than 1, we should not reject.
+    Since the test statistic is less than 1, we fail to reject.
   \end{solution}
 \end{parts}
 
@@ -1513,9 +1526,54 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \end{solution}
 \end{parts}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \fullwidth{\section*{Lecture \#20 -- Hypothesis Testing III}}
+
+
+\todo[inline]{Need to be careful about the definition of the test statistic! Don't want to lose the sign information!}
+
+\question Suppose that you wish to test $H_0\colon \mu = 4$ with a significance level $\alpha = 0.05$. Based on your sample data, you calculate a test statistic of $2.1$. 
+\begin{parts}
+  \part If the alternative hypothesis is $H_1\colon < 4$, would you reject $H_0$?
+  \begin{solution}
+    No: for this alternative we should only reject $H_0$ when the test statistic is a sufficiently large \emph{negative} number.
+  \end{solution}
+  \part If the alternative hypothesis is $H_1\colon > 4$, would you reject $H_0$?
+  \begin{solution}
+    Yes: the critical value for this test is less than 2, whereas our test statistic is greater than 2.
+  \end{solution}
+\end{parts}
+
+\question Suppose that you wish to test $H_0\colon \mu = -1$ with a significance level of $\alpha = 0.1$. Based on your sample data, you calculate a test statistic of $-3.5$. 
+\begin{parts}
+  \part If the alternative hypothesis is $H_1\colon \mu \neq -1$ would you reject $H_0$?
+  \begin{solution}
+    Yes: the 
+  \end{solution}
+  \part If the alternative hypothesis is $H_1\colon \mu < -1$ would you reject $H_0$?
+  \begin{solution}
+    Yes.
+  \end{solution}
+\end{parts}
+
+\question R code for one-sided critical values.
+
+\question One-sided versus two-sided p-value. Some calculations in R.
+
+\question When and why would we want to use a one-sided test?
+
+\question Why is it a problem to look at the sign of the test statistic before choosing your alternative hypothesis?
+
+
+\question Some questions about $\bar{X} - \bar{Y}$ in a testing context.
+
+\question Something with matched pairs perhaps?
+
+\question Something with correlated normal RVs.
+
+\question A bona-fide hypothesis testing example, with interpretation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
