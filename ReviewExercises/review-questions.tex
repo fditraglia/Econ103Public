@@ -1639,19 +1639,29 @@ What is the problem with Danae's procedure? Explain.
 \end{solution}
 
 
-\question Suppose that $X_1, \dots, X_9 \sim \text{iid N}(1, 4)$ and $Y_1, \dots, Y_{16} \sim \text{iid N}(-1, 9)$. Write a line of R code to calculate $P(\bar{X} - \bar{Y} > 0)$.
+\question Suppose that $X_1, \dots, X_5 \sim \text{iid N}(1, 4)$ independently of $Y_1, \dots, Y_{20} \sim \text{iid N}(-1, 24)$. Write a line of R code to calculate $P(\bar{X} - \bar{Y} > 0)$.
+\begin{solution}
+  We have $\bar{X} \sim N(1, 4/5)$ independently of $\bar{Y}(-1, 6/5)$.
+  Thus, it follows that $\bar{X} - \bar{Y} \sim N(2, 2)$ and accordingly
+  \[
+    P(\bar{X} - \bar{Y} > 0) = P\left( \frac{\bar{X} - \bar{Y} - 2}{\sqrt{2}} > \frac{-2}{\sqrt{2}} \right) = P(Z > -\sqrt{2})
+  \]
+  where $Z \sim N(0,1)$.
+  Therefore the desired probability is $\texttt{1 - pnorm(-sqrt(2))}$.
+\end{solution}
 
-\question Let $X \sim N(2, 4)$, $Y \sim N(3,9)$, and define $Z = Y - X$. 
-Now, suppose that $Z$ is normally distributed and $Corr(X,Y) = 0.5$. Write a line of R code to calculate $P(|Z|>1)$.
-
-\question A matched-pairs hypothesis test from an old exam.
-
-\question An independent samples hypothesis test from an old exam.
+\question Suppose we observe two independent random samples $X_1, \dots, X_n$ and $Y_1, \dots, Y_m$ from populations with unknown means $\mu_X$ and $\mu_Y$. We wish to test the null hypothesis that $\mu_X = \mu_Y$ against the two-sided alternative at the 5\% significance level. Suppose $\bar{x} = 4.1$ and $\bar{y} = 2.7$ and we reject the null. What is the smallest possible value that the standard error of $\bar{X} - \bar{Y}$ could have been in this example?
+\begin{solution}
+  Since we rejected at the 5\% level, the test statistic must have been at least 2. 
+Since the absolute difference of means is 1.4, this means that the standard error cannot have been larger than 0.7.
+\end{solution}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \fullwidth{\section*{Lecture \#21 -- Hypothesis Testing IV}}
+
+\todo[inline]{Some questions about R, given that there's a big R example in the slides. Also some questions about statistical significance, proportions, data-dredging, etc.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fullwidth{\section*{Lecture \#22 -- Regression II}}
@@ -1725,13 +1735,19 @@ What is the interpretation of $\beta_0$ and $\beta_1$ in this example?
   If Alice scored $x$ points on midterm \#1 and Bob scored $x+1$ points, then we would predict that Bob will score $\beta_1$ points better on midterm \#2 then Alice.
 \end{solution}
 
-\question Define the following terms
+\question Define the following terms:
 \begin{parts}
-  \part 
+  \part Residual standard deviation.
   \part R-squared
 \end{parts}
 
-\uplevel{The following 4 questions rely on a dataset called \texttt{mother\_child\_weight.csv} available from \texttt{http://ditraglia.com/econ103/}. The dataset contains two columns: \texttt{mother} gives a mother's weight during pregnancy (kg) while \texttt{child} give's her child's birthweight (grams).}
+\question Define the following terms:
+\begin{parts}
+  \part Fitted value
+  \part Residual
+\end{parts}
+
+\uplevel{The following 4 questions rely on a dataset called \texttt{mother\_child\_weight.csv} available from \texttt{http://ditraglia.com/econ103/}. The dataset contains two columns: \texttt{mother} gives a mother's weight during pregnancy (kg) while \texttt{child} give's her child's birthweight (kg).}
 
 \question Write R code to accomplish the following tasks: 
 \begin{enumerate} 
@@ -1749,7 +1765,7 @@ display(reg)
 \end{verbatim}
 \end{solution}
 
-\uplevel{The next three questions rely on the regression results from the preceding question:}
+\uplevel{The next ??? questions rely on the regression results from the preceding question:}
 \begin{verbatim}
            coef.est coef.se
 (Intercept) 1.50     0.63   
@@ -1759,12 +1775,35 @@ n = 25, k = 2
 residual sd = 0.40, R-Squared = 0.27
 \end{verbatim}
 
+\question Interpret the estimated intercept from the preceding set of regression results.
+\begin{solution}
+  The estimated intercept 1.5 says that we would predict a birthweight of 1.5kg for a child whose mother weighed 0kg during pregnancy: this is a totally meaningless quantity!
+\end{solution}
+
 \question Consider two mothers whose weight during pregnancy differs by one kg.
 How much more would would we predict that the child of the heavier mother will weigh at birth? 
+\begin{solution}
+ 0.03 kg heavier, i.e. 30 grams heavier
+\end{solution}
 
-\question How well does a mother's weight during pregnancy predict her child's birthweight? 
+\question Answer each part:
+\begin{parts} 
+\part What is the sample correlation between a mother's weight during pregnancy and her child's birthweight?
+  \begin{solution}
+    $\sqrt{0.27} \approx 0.52$
+  \end{solution}
+\part Approximately how accurately does a mother's weight during pregnancy predict her child's birthweight? 
+\begin{solution}
+  To an accuracy of about 0.4 kg, i.e.\ 400 grams.
+\end{solution}
+\end{parts}
 
-\question Some tests and confidence intervals. Some interpretation of R-squared.
+\question Answer each part:
+\begin{parts}
+  \part Construct an approximate 95\% CI for the population regression slope $\beta_1$ based on the preceding set of regression results.
+  \part Suppose you wanted to test $H_0\colon \beta_1$ against the two-sided alternative at the 1\% significance level. Would you reject the null hypothesis?
+\end{parts}
+\todo[inline]{Something with tests and CIs for the regression results.}
 
 \question Consider a linear regression model of the form $Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \varepsilon_i$.
 Each $i$ is a professor who teaches introductory statistics: $Y_i$ is Professor i's average student rating, $X_{1i}$ is the average grade in Professor i's course, and $X_{2i}$ is a dummy variable that takes the value $1$ if Professor $i$ is female.
@@ -1783,12 +1822,9 @@ Each $i$ is a professor who teaches introductory statistics: $Y_i$ is Professor 
 
 \fullwidth{\section*{Lecture \#23 -- Regression III}}
 
-\question Some questions from the textbook perhaps\dots
+
+\todo[inline]{This should test them on the varying slopes varying intercepts example from class, including the R commands, interpretation, inference, etc.}
  
-
-\question Regression with a continuous variable and a dummy variable.
-
-\question Regression with a continuous variable, a dummy variable, and an interaction.
 
 \end{questions}
 
