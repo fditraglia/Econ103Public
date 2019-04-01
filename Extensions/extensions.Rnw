@@ -694,7 +694,7 @@ so we should invest \$54 in Google and \$46 in Apple.
     \part Continuing under the assumption that $Z$ is normally distributed, as in the preceding part, suppose the firm wanted to hire the top 16\% of applicants.
     Approximately what cutoff should they use for each applicant's combined score?
     \begin{solution}
-      We need to find $c$ such that $P(Z > c) = 0.25$.
+      We need to find $c$ such that $P(Z > c) = 0.16$.
       Using the same reasoning as in the preceding solution,
       \[
         P(Z > c) = 1 - P\left( \frac{Z - 100}{18} \leq \frac{c - 100}{18} \right) = 0.16

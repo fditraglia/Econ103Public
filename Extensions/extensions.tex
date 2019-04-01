@@ -770,7 +770,7 @@ so we should invest \$54 in Google and \$46 in Apple.
     \part Continuing under the assumption that $Z$ is normally distributed, as in the preceding part, suppose the firm wanted to hire the top 16\% of applicants.
     Approximately what cutoff should they use for each applicant's combined score?
     \begin{solution}
-      We need to find $c$ such that $P(Z > c) = 0.25$.
+      We need to find $c$ such that $P(Z > c) = 0.16$.
       Using the same reasoning as in the preceding solution,
       \[
         P(Z > c) = 1 - P\left( \frac{Z - 100}{18} \leq \frac{c - 100}{18} \right) = 0.16
@@ -967,7 +967,7 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] -0.8093425  0.4302476
+## [1] -0.4407703  0.7988198
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -982,8 +982,8 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \end{alltt}
 \begin{verbatim}
 ##            [,1]       [,2]       [,3]       [,4]       [,5]
-## [1,] -0.4911267 -0.4958417 -0.8125293 -1.1071899 -0.5880991
-## [2,]  0.7484634  0.7437483  0.4270608  0.1324002  0.6514910
+## [1,] -0.9995123 -0.4517845 -0.9220031 -0.9165308 -0.5996661
+## [2,]  0.2400777  0.7878056  0.3175870  0.3230593  0.6399239
 \end{verbatim}
 \begin{alltt}
 \hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
@@ -992,7 +992,7 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \hlkwd{sum}\hlstd{(covers_truth)} \hlopt{/} \hlkwd{length}\hlstd{(covers_truth)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9514
+## [1] 0.9526
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1012,9 +1012,9 @@ The answer is pretty much dead on: almost exactly 95\% of the intervals contain 
 \hlstd{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
 \end{alltt}
 \begin{verbatim}
-##            [,1]      [,2]       [,3]      [,4]       [,5]
-## [1,] -0.2482093 0.1637578 0.09772456 0.0923226 -0.3514986
-## [2,]  0.3715857 0.7835528 0.71751959 0.7121176  0.2682965
+##             [,1]       [,2]       [,3]       [,4]         [,5]
+## [1,] -0.02442314 -0.1846505 -0.0822607 -0.4258605 -0.624551457
+## [2,]  0.59537189  0.4351445  0.5375343  0.1939345 -0.004756424
 \end{verbatim}
 \begin{alltt}
 \hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
@@ -1023,7 +1023,7 @@ The answer is pretty much dead on: almost exactly 95\% of the intervals contain 
 \hlkwd{sum}\hlstd{(covers_truth)} \hlopt{/} \hlkwd{length}\hlstd{(covers_truth)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.6678
+## [1] 0.6803
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
