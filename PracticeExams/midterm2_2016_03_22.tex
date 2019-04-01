@@ -131,9 +131,9 @@ Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
   \end{solution}
   \part[10] What is the probability that \emph{exactly} four of $X_1, \hdots, X_5$ are greater than zero?
   \begin{solution}[3.5in]
-    Let $Z$ denote the number of random variables among $X_1, X_2, X_3, X_4$ that take on a positive value.
+    Let $Z$ denote the number of RVs among $X_1, X_2, X_3, X_4, X_5$ that take on a positive value.
     E.g.\ if all of them are positive then $Z$ is 4 and if none are positive then $Z$ is zero.
-    Since $X_1, X_2, X_3, X_4$ are iid and $P(X_1 >0) = 3/4$, it follows that $Z \sim \mbox{ Binomial}(4,3/4)$ and we need to calculate $p(4)$ where $p(z) = {n\choose z} p^z(1-p)^{n-z}$.
+    Since $X_1, X_2, X_3, X_4, X_5$ are iid and $P(X_1 >0) = 3/4$, it follows that $Z \sim \mbox{ Binomial}(5,3/4)$ and we need to calculate $p(4)$ where $p(z) = {n\choose z} p^z(1-p)^{n-z}$.
     We have:
     $$p(4)= {5 \choose 4} (3/4)^4 (1/4)^1 = \frac{5!}{4!1!}(3/4)^4 1/4 = 5/4 \times 81/256 \approx  0.40$$
   \end{solution}
