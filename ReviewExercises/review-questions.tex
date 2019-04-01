@@ -1663,6 +1663,16 @@ Since the absolute difference of means is 1.4, this means that the standard erro
 
 \todo[inline]{Some questions about R, given that there's a big R example in the slides. Also some questions about statistical significance, proportions, data-dredging, etc.}
 
+\question Alejandro wants to test whether a penny is equally likely to come up heads or tails when it is \emph{spun} on its side. He spins a penny 100 times, and it comes up tails 80 times. 
+
+\question Write an R function called \texttt{prop\_test} to calculate the p-value for a two-sided test of the null hypothesis $H_0\colon p = p_0$ based on a sample proportion $\widehat{p}$. Your test should take three input arguments: the estimated sample proportion \texttt{phat}, the sample size \texttt{n}, and the hypothesized value \texttt{p0}.
+It should return the two-sided p-value for the test.
+
+\question Compare and contrast \emph{statistical significance} and \emph{practical importance}.
+
+\question Suppose you test 500 null hypotheses with significance level equal to $0.05$. Unbeknownst to you, all of these null hypotheses are in fact \emph{true}. On average, how many will you reject?
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fullwidth{\section*{Lecture \#22 -- Regression II}}
 
@@ -1765,7 +1775,7 @@ display(reg)
 \end{verbatim}
 \end{solution}
 
-\uplevel{The next ??? questions rely on the regression results from the preceding question:}
+\uplevel{The next 3 questions rely on the regression results from the preceding question:}
 \begin{verbatim}
            coef.est coef.se
 (Intercept) 1.50     0.63   
@@ -1775,16 +1785,18 @@ n = 25, k = 2
 residual sd = 0.40, R-Squared = 0.27
 \end{verbatim}
 
-\question Interpret the estimated intercept from the preceding set of regression results.
-\begin{solution}
-  The estimated intercept 1.5 says that we would predict a birthweight of 1.5kg for a child whose mother weighed 0kg during pregnancy: this is a totally meaningless quantity!
-\end{solution}
-
-\question Consider two mothers whose weight during pregnancy differs by one kg.
-How much more would would we predict that the child of the heavier mother will weigh at birth? 
-\begin{solution}
- 0.03 kg heavier, i.e. 30 grams heavier
-\end{solution}
+\question Answer each part:
+\begin{parts}
+  \part Interpret the estimated intercept from the preceding set of regression results.
+  \begin{solution}
+    The estimated intercept 1.5 says that we would predict a birthweight of 1.5kg for a child whose mother weighed 0kg during pregnancy: this is a totally meaningless quantity!
+  \end{solution}
+  \part Consider two mothers whose weight during pregnancy differs by one kg.
+  How much more would would we predict that the child of the heavier mother will weigh at birth? 
+  \begin{solution}
+   0.03 kg heavier, i.e. 30 grams heavier
+  \end{solution}
+\end{parts}
 
 \question Answer each part:
 \begin{parts} 
@@ -1801,9 +1813,14 @@ How much more would would we predict that the child of the heavier mother will w
 \question Answer each part:
 \begin{parts}
   \part Construct an approximate 95\% CI for the population regression slope $\beta_1$ based on the preceding set of regression results.
-  \part Suppose you wanted to test $H_0\colon \beta_1$ against the two-sided alternative at the 1\% significance level. Would you reject the null hypothesis?
+  \begin{solution}
+    $0.03 \pm 0.02$
+  \end{solution}
+  \part Suppose you wanted to test $H_0\colon \beta_1 = 0$ against the two-sided alternative at the 1\% significance level. Would you reject the null hypothesis?
+  \begin{solution}
+    Yes we would reject $H_0$: the observed test statistic is $3$ and the critical value for a two-sided test with $\alpha = 0.01$ is between 2 and 3.
+  \end{solution}
 \end{parts}
-\todo[inline]{Something with tests and CIs for the regression results.}
 
 \question Consider a linear regression model of the form $Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \varepsilon_i$.
 Each $i$ is a professor who teaches introductory statistics: $Y_i$ is Professor i's average student rating, $X_{1i}$ is the average grade in Professor i's course, and $X_{2i}$ is a dummy variable that takes the value $1$ if Professor $i$ is female.
