@@ -1363,7 +1363,7 @@ Is $\widehat{\mu}$ consistent for $\mu$?
   During the month of April, he keeps it turned off.
   \part To test the effectiveness of a new marketing campaign, Charlotte takes out new advertisements in half of the cities where her firm has a retail presence. She leaves the old advertisements in place in the remaining cities.
 \item Dan compares the wages of male and female high school teachers in Philadelphia.
-\item To determine the effect of college attendance on wages, Elise studies a sample identical twins in which one twin attended college and the other didn't.
+\item To determine the effect of college attendance on wages, Elise studies a sample of identical twins in which one twin attended college and the other didn't.
 \end{parts} 
 
 \question What are the two equivalent ways to construct a matched pairs CI?
@@ -1419,9 +1419,24 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \end{solution}
   \part What is $P(|X|>1)$?
   \begin{solution}
-    $P(|X|>1) = P(-1 \leq X \leq 1) = \texttt{pnorm(1) - pnorm(-1)} \approx 0.68$
+    \begin{align*}
+    P(|X|>1) &= 1 - P(|X|<1) = 1 - P(-1 \leq X \leq 1)\\
+    &= 1 - [\texttt{pnorm(1) - pnorm(-1)}] \approx 0.32
+    \end{align*}
   \end{solution}
 \end{parts}
+
+\question Suppose that I observe a random sample of $n$ observations from a normal population with unknown mean and known variance and decide to test $H_0\colon \mu = \mu_0$ vs.\ $H_0\colon \mu \neq \mu_0$ where $\mu_0$ is some hypothesized value of $\mu$. 
+ \begin{parts}
+   \part If I set $\alpha = 0.05$, what is the critical value for my test?
+   \begin{solution}
+     2
+   \end{solution}
+    \part Write a line of R code to calculate the critical value for my test if I set $\alpha = 0.3$.
+    \begin{solution}
+      \texttt{qnorm(1 - 0.3/2) = qnorm(1 - 0.15) = qnorm(0.85)}
+    \end{solution}
+ \end{parts}
 
 \question Suppose that $X_1, \dots, X_n \sim \text{iid N}(\mu, \sigma^2)$ where $\sigma$ is known, and you test $H_0\colon \mu = \mu_0$ vs.\ $H_1\colon \mu \neq \mu_0$ where $\mu_0$ is some hypothesized value of $\mu$.
 \begin{parts}
@@ -1435,12 +1450,13 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \end{solution}
 \end{parts}
 
-\uplevel{For the following two questions (Alice and Bob), you may assume any tests and confidence intervals are based on a random sample from a normal population with known variance.}
 
-%\question Alice constructs a 95\% CI for $\mu$: $[-3, -1.5]$. Bob tests $H_0\colon \mu = -1$ vs.\ $H_1\colon \mu\neq -1$ with $\alpha = 0.05$ using the same dataset as Alice. Will he reject $H_0$? Explain.
-%\begin{solution}
-%  Since $-1 \notin [-3,-1.5]$ he will reject.
-%\end{solution}
+\uplevel{For the following three questions (Alice and Bob), you may assume any tests and confidence intervals are based on a random sample from a normal population with known variance.}
+
+\question Alice constructs a 95\% CI for $\mu$: $[-3, -1.5]$. Bob tests $H_0\colon \mu = -1$ vs.\ $H_1\colon \mu\neq -1$ with $\alpha = 0.05$ using the same dataset as Alice. Will he reject $H_0$? Explain.
+\begin{solution}
+  Since $-1 \notin [-3,-1.5]$ he will reject.
+\end{solution}
 
 \question Alice constructs a 90\% CI for $\mu$: $[5.1, 6.7]$. Bob tests $H_0\colon \mu = 6$ vs.\ $H_1\colon \mu\neq 6$ with $\alpha = 0.1$ using the same dataset as Alice. Will he reject $H_0$? Explain.
 \begin{solution}
@@ -1526,54 +1542,112 @@ Calculate the probability that our test statistic, the number of cokes correctly
   \end{solution}
 \end{parts}
 
+\question Lindsay observes a random sample of size 400 from a normal population with variance 4 and uses this information to test $H_0\colon \mu = 50$ vs.\ $H_1\colon \mu \neq 50$. Her sample mean is 50.3.
+\begin{parts}
+  \part Without using R, what is the p-value for Linday's test? If $\alpha = 0.01$ would she reject the null hypothesis?
+  \begin{solution}
+    Lindsay's standard error is $\sqrt{4/400} = 0.1$ so her test statistic is $|(50.3 - 50) / 0.1| = 3$.
+    The probability that a standard normal RV takes a value within $[-3,3]$ is $0.997$ so her p-value is $0.003$.
+  \end{solution}
+  \part Explain why Lindsay's p-value is so small even though 50.3 is very close to 50.
+  \begin{solution}
+    The test statistic depends on two things: how close $\bar{x}$ is to 50, and the size of the standard error.
+    In Lindsay's example, 50.3 is very close to 50 but the standard error is extremely small: 0.1.
+    This makes the test statistic large, resulting in a small p-value.
+  \end{solution}
+\end{parts}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \fullwidth{\section*{Lecture \#20 -- Hypothesis Testing III}}
 
+\question According to the CDC, 32\% of US births in 2017 were by Caesarian delivery. Prajwal decides to carry out a study to determine whether Philadelphia hospitals have a \emph{higher} rate of Caesarian delivery that the US as a whole. State his null and alternative hypotheses in words. 
+\begin{solution}
+  The null hypothesis is that the rate of Caesarian deliveries in Philadelphia equals 0.32. The alternative hypothesis could either be: (i) the rate \emph{does not} equal 0.32 or (ii) the rate is \emph{greater than } 0.32, depending on whether the students interpret this as a one-sided or two-sided problem. The wording is intended to suggest one-sided, but either is fine as an answer.
+\end{solution}
 
-\todo[inline]{Need to be careful about the definition of the test statistic! Don't want to lose the sign information!}
-
-\question Suppose that you wish to test $H_0\colon \mu = 4$ with a significance level $\alpha = 0.05$. Based on your sample data, you calculate a test statistic of $2.1$. 
+\question Suppose that you wish to test $H_0\colon \mu = 4$ with a significance level $\alpha = 0.05$. Your sample mean equals $4.8$ with a standard error of $0.3$.
 \begin{parts}
-  \part If the alternative hypothesis is $H_1\colon < 4$, would you reject $H_0$?
+  \part If the alternative hypothesis is $H_1\colon \mu< 4$, would you reject $H_0$?
   \begin{solution}
-    No: for this alternative we should only reject $H_0$ when the test statistic is a sufficiently large \emph{negative} number.
+    No: for this alternative we should only reject $H_0$ when the sample mean is sufficiently far \emph{below} 4.
   \end{solution}
-  \part If the alternative hypothesis is $H_1\colon > 4$, would you reject $H_0$?
+  \part If the alternative hypothesis is $H_1\colon \mu> 4$, would you reject $H_0$?
   \begin{solution}
-    Yes: the critical value for this test is less than 2, whereas our test statistic is greater than 2.
+    Yes. The test statistic is $8/3 \approx 2.6$, and the critical value for this test is less than $2$, the critical value for a two-sided test.
   \end{solution}
 \end{parts}
 
-\question Suppose that you wish to test $H_0\colon \mu = -1$ with a significance level of $\alpha = 0.1$. Based on your sample data, you calculate a test statistic of $-3.5$. 
+\question Suppose that you wish to test $H_0\colon \mu = -1$ with a significance level of $\alpha = 0.1$. Your sample mean equals $-2.1$ with a standard error of $0.6$. 
+To help you answer this question, note that $\texttt{qnorm(0.90)} \approx 1.28$ and $\texttt{qnorm(0.95)} \approx 1.64$.
 \begin{parts}
   \part If the alternative hypothesis is $H_1\colon \mu \neq -1$ would you reject $H_0$?
   \begin{solution}
-    Yes: the 
+  The test statistic is $|-2.1 - (-1)|/0.6 \approx 1.83$, but the critical value for the two-sided test is approximately 2. Hence we would fail to reject.
   \end{solution}
-  \part If the alternative hypothesis is $H_1\colon \mu < -1$ would you reject $H_0$?
+  \part If the alternative hypothesis is $H_1\colon \mu < -1$ would you reject $H_0$? 
   \begin{solution}
-    Yes.
+    The test statistic is $[-2.1 - (-1)]/0.6 \approx -1.83$.
+  By the symmetry of the normal distribution $\texttt{qnorm(0.05)} \approx -1.64$ is the critical value for the one-sided test. 
+  Hence we should reject $H_0$.
   \end{solution}
 \end{parts}
 
-\question R code for one-sided critical values.
+\question Suppose I test $H_0\colon \mu = \mu_0$ vs.\ $H_1\colon \mu > \mu_0$ with $\alpha = 0.2$. Write a line of R code to calculate the critical value for my test.
+\begin{solution}
+  \texttt{qnorm(0.8)}
+\end{solution}
 
-\question One-sided versus two-sided p-value. Some calculations in R.
+\question Suppose I test $H_0\colon \mu = \mu_0$ vs.\ $H_1\colon \mu < \mu_0$ with $\alpha = 0.15$. Write a line of R code to calculate the critical value for my test.
+\begin{solution}
+  \texttt{qnorm(0.15)}
+\end{solution}
 
-\question When and why would we want to use a one-sided test?
+\question Suppose I test $H_0\colon: \mu = 4$ vs.\ $H_1\colon \mu > 4$.
+My sample mean equals 4.8 with a standard error of 0.3. Write a line of R code to calculate the p-value of my test.
+\begin{solution}
+  The test statistic is $(4.8 - 4)/0.3 \approx 2.67$
+  Hence the one-sided p-value is $\texttt{1 - pnorm(2.67)}$.
+\end{solution}
 
-\question Why is it a problem to look at the sign of the test statistic before choosing your alternative hypothesis?
+\question Suppose I test $H_0\colon: \mu = -1$ vs.\ $H_1\colon \mu<-1$. My sample mean equals $-2.1$ with a standard error of $0.6$. Write a line or R code to calculate the p-value of my test.
+\begin{solution}
+  The test statistic is $[-2.1 - (-1)]/0.6 \approx -1.83$.
+  Hence the one-sided p-value is $\texttt{pnorm(-1.83)}$.
+\end{solution}
+
+\question When and why would we want to use a one-sided rather than a two-sided test?
+
+\question Danae observes a random sample of $25$ observations from a normal population with unknown mean $\mu$ and known variance $\sigma^2 = 9$. She wants to test $H_0\colon \mu=0$ with $\alpha = 0.05$. Danae knows that $\texttt{qnorm(0.95)} \approx 1.64$, so she decides to use the following procedure.
+First she will look at the sample mean $\bar{X}$.
+If $\bar{X}$ is positive, then she will use the rule ``reject $H_0$ if $5\bar{X}/3 > 1.64$.''
+If instead  $\bar{X}$ is negative, she will use the rule ``reject $H_0$ if $5\bar{X}/3 < -1.64$.''
+What is the problem with Danae's procedure? Explain.
+\begin{solution}
+  Danae's procedure is equivalent to carrying out a \emph{two-sided test} with critical value $1.64$.
+  But since $\texttt{qnorm(0.95)} \approx 1.64$ it follows from the symmetry of the normal distribution that $\texttt{pnorm}(1.64) - \texttt{pnorm}(-1.64) \approx 0.9$.
+  Hence, the significance value of her test is actually $0.1$ rather than $0.05$.
+  This shows that you can't decide your alternative hypothesis after looking at the data; doing so is equivalent to using the wrong critical value.
+\end{solution}
 
 
-\question Some questions about $\bar{X} - \bar{Y}$ in a testing context.
+\question Don wants to know whether Philadelphia cab drivers are less likely to accept fares from African American males compared to white males. State his null and alternative hypotheses in words.
+\begin{solution}
+ His null hypothesis is that there is no difference in the rate at which cab drivers accept fares from African American versus while males.
+ His alternative hypothesis could either be that there \emph{is a difference} (two-sided), or that they are \emph{less likely} to accept fares from African American males (one-sided).
+\end{solution}
 
-\question Something with matched pairs perhaps?
 
-\question Something with correlated normal RVs.
+\question Suppose that $X_1, \dots, X_9 \sim \text{iid N}(1, 4)$ and $Y_1, \dots, Y_{16} \sim \text{iid N}(-1, 9)$. Write a line of R code to calculate $P(\bar{X} - \bar{Y} > 0)$.
 
-\question A bona-fide hypothesis testing example, with interpretation.
+\question Let $X \sim N(2, 4)$, $Y \sim N(3,9)$, and define $Z = Y - X$. 
+Now, suppose that $Z$ is normally distributed and $Corr(X,Y) = 0.5$. Write a line of R code to calculate $P(|Z|>1)$.
+
+\question A matched-pairs hypothesis test from an old exam.
+
+\question An independent samples hypothesis test from an old exam.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1652,6 +1726,10 @@ What is the interpretation of $\beta_0$ and $\beta_1$ in this example?
 \end{solution}
 
 \question Define the following terms
+\begin{parts}
+  \part 
+  \part R-squared
+\end{parts}
 
 \uplevel{The following 4 questions rely on a dataset called \texttt{mother\_child\_weight.csv} available from \texttt{http://ditraglia.com/econ103/}. The dataset contains two columns: \texttt{mother} gives a mother's weight during pregnancy (kg) while \texttt{child} give's her child's birthweight (grams).}
 
