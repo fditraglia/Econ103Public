@@ -1544,7 +1544,7 @@ Calculate the probability that our test statistic, the number of cokes correctly
 
 \question Lindsay observes a random sample of size 400 from a normal population with variance 4 and uses this information to test $H_0\colon \mu = 50$ vs.\ $H_1\colon \mu \neq 50$. Her sample mean is 50.3.
 \begin{parts}
-  \part Without using R, what is the p-value for Linday's test? If $\alpha = 0.01$ would she reject the null hypothesis?
+  \part Without using R, what is the p-value for Lindsay's test? If $\alpha = 0.01$ would she reject the null hypothesis?
   \begin{solution}
     Lindsay's standard error is $\sqrt{4/400} = 0.1$ so her test statistic is $|(50.3 - 50) / 0.1| = 3$.
     The probability that a standard normal RV takes a value within $[-3,3]$ is $0.997$ so her p-value is $0.003$.
@@ -1661,16 +1661,96 @@ Since the absolute difference of means is 1.4, this means that the standard erro
 
 \fullwidth{\section*{Lecture \#21 -- Hypothesis Testing IV}}
 
-\todo[inline]{Some questions about R, given that there's a big R example in the slides. Also some questions about statistical significance, proportions, data-dredging, etc.}
+\question Alejandro wants to test whether a penny is equally likely to come up heads or tails when it is \emph{spun} on its side against the two-sided alternative. He spins a penny 25 times, and it comes up tails 20 times. 
+\begin{parts}
+  \part State Alejandro's null and alternative hypotheses.
+  \begin{solution}
+    Let $p = P(\text{Heads})$. Then the null is $H_0\colon p = 1/2$ and the alternative is $H_1\colon p \neq 1/2$.
+  \end{solution}
+  \part Calculate the test statistic. Would Alejandro reject at the 1\% significance level? 
+  \begin{solution}
+    \[
+      \text{Test Statistic} = \frac{0.8 - 0.5}{\sqrt{0.5 \times (1 - 0.5)/25}} = 3
+    \]
+    Since $P(-3 \leq Z \leq 3) = 0.997$ if $Z \sim N(0,1)$, the critical value for a two-sided test with $\alpha = 0.01$ is \emph{less than} 3.
+    Therefore Alejandro will reject $H_0$.
+  \end{solution}
+\end{parts}
 
-\question Alejandro wants to test whether a penny is equally likely to come up heads or tails when it is \emph{spun} on its side. He spins a penny 100 times, and it comes up tails 80 times. 
-
-\question Write an R function called \texttt{prop\_test} to calculate the p-value for a two-sided test of the null hypothesis $H_0\colon p = p_0$ based on a sample proportion $\widehat{p}$. Your test should take three input arguments: the estimated sample proportion \texttt{phat}, the sample size \texttt{n}, and the hypothesized value \texttt{p0}.
-It should return the two-sided p-value for the test.
+\question Liz and Prof.\ DiTraglia are shooting free throws at the Palestra. Prof.\ DiTraglia takes 10 shots and makes 5 of them; Liz takes 20 shots and makes 15 of them. Test the null hypothesis that Prof.\ DiTraglia is just as good at making free throws as Liz against the two-sided alternative at the 5\% significance level. 
+\begin{solution}
+  Let $p$ be Prof.\ DiTraglia's probability of success and $q$ be Liz's probability of success.
+  We will test $H_0\colon p = q$ against $H_1\colon p \neq q$.
+  Because $\alpha = 0.05$, our critical value is 2.
+  First we calculate the pooled standard error estimate.
+  The pooled proportion estimate is
+  \[
+    \widehat{\pi} = \frac{5 + 15}{10 + 20} = \frac{20}{30} = 2/3 
+  \]
+  and hence
+  \begin{align*}
+    \widehat{SE}_{\text{pooled}} &= 
+    %\sqrt{\widehat{\pi}(1 - \widehat{\pi}) \left( \frac{1}{n} + \frac{1}{m} \right)} = 
+    \sqrt{\frac{2}{3} \times \frac{1}{3}  \times \left( \frac{1}{10} + \frac{1}{15} \right)} 
+    = \sqrt{\frac{2}{9} \times \frac{3}{20}} = 1/\sqrt{30}
+  \end{align*}
+  Finally we calculate the test statistic:
+  \[
+    \text{Test Statistic} = \left|\frac{0.5 - 0.75}{1/\sqrt{30}}\right| = \frac{\sqrt{30}}{4} \approx 1.4
+  \]
+  Hence we would fail to reject $H_0$.
+\end{solution}
 
 \question Compare and contrast \emph{statistical significance} and \emph{practical importance}.
 
 \question Suppose you test 500 null hypotheses with significance level equal to $0.05$. Unbeknownst to you, all of these null hypotheses are in fact \emph{true}. On average, how many will you reject?
+\begin{solution}
+  $500 \times 0.05 = 25$
+\end{solution}
+
+\question Write an R function called \texttt{prop\_test} to calculate the p-value for a two-sided test of the null hypothesis $H_0\colon p = p_0$ based on a sample proportion $\widehat{p}$. Your test should take three input arguments: the estimated sample proportion \texttt{phat}, the sample size \texttt{n}, and the hypothesized value \texttt{p0}.
+It should return the two-sided p-value for the test.
+\begin{solution}
+\begin{verbatim}
+prop_test <- function(phat, n, p0) {
+  SE <- sqrt(p0 * (1 - p0) / n)
+  test_stat <- abs(phat - p0) / SE 
+  p_value <- 2 * (1 - pnorm(test_stat))
+  return(p_value)
+}
+\end{verbatim}
+\end{solution}
+
+\question Suppose I have an R dataframe called \texttt{econ103} with two columns: \texttt{grade} is a numeric vector containing each student's course grade, and \texttt{class} is a character vector indicating a student's class standing (Freshman, Sophomore, Junior, or Senior).
+Write R code that uses \texttt{econ103} to construct two vectors: \texttt{x} should contain the non-missing grades for Sophomores and \texttt{y} should contain the non-missing grades for Juniors in the class.
+\begin{solution}
+\begin{verbatim}
+grades <- na.omit(econ103$grades)
+x <- subset(grades, class == `Sophomore')
+y <- subset(grades, class == `Junior') 
+\end{verbatim}
+\end{solution}
+
+\question The Fibonacci sequence has, so far as I know, nothing to do with statistics but provides a nice example of using for loops in R. The sequence is defined as follows: $F_1 = 1, F_2 = 1$, and $F_i = F_{i-1} + F_{i-2}$ for $i \geq 3$. In other words: $1, 1, 2, 3, 5, 8, 13, 21, 34, 55\dots$ and so on.
+Write R code to calculate the first 20 terms of the Fibonacci sequence ($F_1, F_2, \dots, F_{20}$) and store them in a vector called \texttt{fib}.
+
+\textbf{Hint \#1:} create an ``empty'' vector and fill it with values (see slide 21). 
+
+\textbf{Hint \#2:} fill in the first two values of the sequence \emph{before starting your loop}.
+
+\textbf{Hint \#3:} check your code by running it in R.
+\begin{solution}
+  \begin{verbatim}
+fib <- rep(NA_real, 20)
+fib[1] <- 1
+fib[2] <- 1
+for(i in 3:20) {
+  fib[i] <- fib[i - 1] + fib[i - 2]
+}
+fib
+  \end{verbatim}
+\end{solution}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1823,7 +1903,7 @@ residual sd = 0.40, R-Squared = 0.27
 \end{parts}
 
 \question Consider a linear regression model of the form $Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \varepsilon_i$.
-Each $i$ is a professor who teaches introductory statistics: $Y_i$ is Professor i's average student rating, $X_{1i}$ is the average grade in Professor i's course, and $X_{2i}$ is a dummy variable that takes the value $1$ if Professor $i$ is female.
+Each $i$ is a professor who teaches introductory statistics: $Y_i$ is Professor $i$'s average student rating, $X_{1i}$ is the average grade in Professor $i$'s course, and $X_{2i}$ is a dummy variable that takes the value $1$ if Professor $i$ is female.
 \begin{parts}
   \part Suppose you learn that $\beta_1$ is positive. Explain what this means.
   \begin{solution}
