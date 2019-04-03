@@ -1,0 +1,365 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[T1]{fontenc}
+\boxedpoints
+\pointsinmargin
+
+\noprintanswers
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Midterm II, Page \thepage\ of \numpages}
+              {April 2nd, 2019}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large Second Midterm Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} April 2nd, 2019}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have 70 minutes to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, a point will be deducted for each page on which you do not write your name and student ID. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+  \question Assa made a cross-tab classifying all Penn undergraduates by their class standing in 2017--2018 (freshman, sophomore, junior, or senior) and the number of times that they visited the Penn museum during the academic year (never, once, or more than once).
+  \begin{center}
+  \begin{tabular}[h]{ll|ccc}
+    && \multicolumn{3}{c}{Museum Visits}\\
+    && Never & Once & More than Once \\
+    \hline
+    & Freshman & 0.08 & 0.10 & 0.04\\
+    \multirow{2}{*}{Class} & Sophomore & 0.04 & 0.10 & 0.04\\
+    & Junior & 0.04 & 0.20 & 0.09\\
+    & Senior & 0.02 & 0.15 & 0.10
+  \end{tabular}
+\end{center}
+For example, we see that 8\% of Penn undergraduates in 2017--2018 were Freshmen who never visited the Museum, while 10\% were seniors who visited more than once.
+%$Answer each of the following using the table from above and explain your reasoning.
+\begin{parts}
+  \part[5] What fraction of undergraduates visited the museum more than once?
+  \begin{solution}[0.75in]
+    $P(\text{More than Once}) = 0.04 + 0.04 + 0.09 + 0.10 = 0.27$
+  \end{solution}
+  \part[10] Suppose we chose a random Penn undergraduate in 2017--2018.
+  If she is a junior, what is the probability that she never visited the museum?
+  \begin{solution}[1in]
+    Since $P(\text{Junior}) = 0.04 + 0.20 + 0.09 = 0.33$,
+    \[
+      P(\text{Never}|\text{Junior}) = \frac{P(\text{Never}\cap \text{Junior})}{P(\text{Junior})} = \frac{0.04}{0.33} = \frac{4}{33}
+    \]
+  \end{solution}
+\end{parts}
+
+  \question For each part, write a single line of R code to carry out the required task.
+  \begin{parts}
+    \part[4] Find $c$ such that $P(-c \leq Z \leq c) = 0.70$ if $Z \sim N(0,1)$.
+    \begin{solution}[0.75in]
+      \texttt{qnorm(0.85)}
+    \end{solution}
+    \part[4] Find the 90th percentile of a Student-t RV with 8 degrees of freedom.
+    \begin{solution}[0.75in]
+      \texttt{qt(0.9, 8)}
+    \end{solution}
+    \part[4] Make 15 random draws with replacement from the set of numbers $\{1, 2, 3, 4\}$.
+    \begin{solution}[0.75in]
+      \texttt{sample(c(1, 2, 3, 4), 15, TRUE)}
+    \end{solution}
+    %\part[3] Make 100 random draws from a Uniform$(-1,1)$ density.
+    %\begin{solution}
+    %  \texttt{runif(100, -1, 1)}
+    %\end{solution}
+    \part[4] Calculate $P(Z \geq 1.5)$ if $Z \sim N(0,1)$.
+    \begin{solution}[0.75in]
+      \texttt{1 - pnorm(1.5)}
+    \end{solution}
+    \part[4] Calculate $P(-1 \leq X \leq 3)$ if $X \sim N(\mu = 2, \sigma^2 = 9)$.
+    \begin{solution}[0.75in]
+      \texttt{pnorm(1/3) - pnorm(-1)}
+    \end{solution}
+  \end{parts}
+
+
+  \question Write down the output generated by each chunk of R code. If the output is random, e.g.\ based on simulated random draws, give the approximate value of the output.
+  \begin{parts}
+    \part[3] \texttt{TRUE  == 1} 
+    \begin{solution}[0.75in]
+      \texttt{TRUE}
+    \end{solution}
+    \part[3] 
+    \begin{verbatim}
+x <- c(1, 5, 10)
+y <- c(0, 6, 10)
+x > y
+\end{verbatim}
+\begin{solution}[0.75in]
+      \texttt{TRUE FALSE FALSE}
+    \end{solution}
+    \part[3] 
+\begin{verbatim}
+for(i in 1:3) {
+  x <- 2 * i
+  print(x)
+}
+\end{verbatim}
+\begin{solution}[0.75in]
+  \texttt{2 4 6}
+\end{solution}
+\part[3] 
+    \begin{verbatim}
+x <- 5
+y <- 7
+!((x < 4) & !(y > 12))
+\end{verbatim}
+\begin{solution}[1.25in]
+  \texttt{TRUE}
+\end{solution}
+\part[3] 
+    \begin{verbatim}
+number <- 75
+if (number < 10) {
+  if (number < 5) {
+    result <- "extra small"
+  } else {
+    result <- "small"
+  }
+} else if (number < 100) {
+  result <- "medium"
+} else {
+  result <- "large"
+}
+print(result)
+\end{verbatim}
+\begin{solution}[1.5in]
+  \texttt{medium}
+\end{solution}
+\part[5] 
+\begin{verbatim}
+flips <- rbinom(10000, 10, 0.5)
+var(flips)
+\end{verbatim}
+\begin{solution}[0.75in]
+  $\approx 10 \times 0.5 \times (1 - 0.5) = 2.5$
+\end{solution}
+\part[5]
+\begin{verbatim}
+mean(rbinom(10000, 1, 0.2) == 0)
+\end{verbatim}
+\begin{solution}[0.75in]
+  $\approx 1 - 0.2 = 0.8$
+\end{solution}
+\part[5] 
+  \begin{verbatim}
+f <- function(x) {
+  y <- sample(1:6, 1)
+  return(y > x)
+}
+mean(replicate(10000, f(4)))
+  \end{verbatim}
+  \begin{solution}[0.75in]
+    $\approx 1/3$
+  \end{solution}
+  \end{parts}
+
+\question In each of the following parts $X$ denotes a continuous RV.
+\begin{parts} 
+  \part[5] Let $X$ have support set $[0, +\infty)$ and CDF $F(x) = 1 - e^{-x}$. Find the pdf of $X$.
+    \begin{solution}[1.75in]
+      \[
+        f(x) = F'(x) = e^{-x}
+      \]
+    \end{solution}
+    \part[5] Let $X \sim \text{Uniform}(0, 10)$. Calculate $E[X^2]$.
+    \begin{solution}[1.75in]
+    \[
+      E[X^2] = \int_{-\infty}^{\infty} x^2 f(x)\, dx = \frac{1}{10}\int_{0}^{10} x^2\,dx = \left.\frac{1}{10}\left( \frac{x^3}{3}\right)\right|_{0}^{10} = \frac{100}{3}
+    \]
+  \end{solution}
+  \part[5] Let $X$ have support set $[-1,1]$ and pdf $f(x) = (x+1)/2$. Find the CDF of $X$.
+  \begin{solution}[1.75in]
+    \begin{align*}
+      F(x_0) &= \int_{-\infty}^{x_0} f(x)\, dx = \frac{1}{2}\int_{-1}^{x_0} (x+1)\,dx = \frac{1}{4} \left. \left( x^2 + 2x \right)\right|_{-1}^{x_0}\\
+      &= \frac{1}{4}\left[ \left(x_0^2 + 2x_0\right) - \left( 1 - 2 \right) \right] = \frac{1}{4}\left( x_0^2 + 2x_0 + 1 \right)
+    \end{align*}
+    Hence,
+    \[
+      F(x_0) = \left\{
+      \begin{array}{lr}
+        0,& x_0 < -1 \\
+        \frac{1}{4}(x_0^2 + 2x_0 + 1),& -1\leq x \leq 1\\
+        1,& x_0 > 1
+      \end{array}
+      \right.
+    \]
+  \end{solution}
+  \part[5] Let $X$ have support set $[0, c]$ and pdf $f(x) = \sqrt{x}$. Find $c$.
+  \begin{solution}[2in]
+    \[
+      1 = \int_{-\infty}^{\infty} f(x)\, dx = \int_{0}^{c} x^{1/2} \, dx = \frac{c^{3/2}}{3/2} 
+    \]
+    Hence $3/2 = c^{3/2}$. 
+    Squaring both sides, $9/4 = c^3$ so $c = \sqrt[3]{9/4} \approx 1.31$.
+  \end{solution}
+\end{parts}
+
+
+  \question Suppose that we have a bag containing three different kinds of candies: ``light'' candies weigh 5 grams each, ``medium'' candies weigh 10 grams each, and ``heavy'' candies weigh 20 grams each.
+  There are 100 candies in the bag: 50 light, 30 medium, and 20 heavy.
+  To estimate the weight of the bag, we take a \emph{random sample} of 5 candies from the bag and calculate their total weight.
+  We then multiply the total weight by 20 to estimate the weight of the bag.
+  Let $X_1, \dots, X_5$ be the weights of the five randomly sampled candies, and $W = 20 \times(X_1 + \dots + X_5)$ be our estimator of the weight of the bag.
+
+  \emph{\textbf{Note:} Based on our experience from class, you may worry that it would be difficult to obtain a random sample in practice. 
+  Heavier candies might sink to the bottom of the bag, for example.
+  This question asks you to disregard such concerns. 
+In other words, assume that we have figured out a way to obtain a truly random sample from the bag of candies.}
+\begin{parts}
+  \part[6] Calculate $E[X_1]$.
+  \begin{solution}[1.25in]
+    $E[X_1] = 0.5 \times 5 + 0.3 \times 10 + 0.2 \times 20 = 9.5$ grams.
+  \end{solution}
+  \part[8] Calculate $Var(X_1)$.
+  \begin{solution}[1.25in]
+    We have
+    \begin{align*}
+      E[X_1^2] &= 0.5 \times 5^2 + 0.3 \times 10^2 + 0.2 \times 20^2\\
+      &= 0.5 \times 25 + 0.3 \times 100 + 0.2 \times 400\\
+      &= 122.5
+    \end{align*}
+    Hence, by the shortcut rule $Var(X_1) = 122.5 - (9.5)^2 = 32.25 \text{ grams}^2$.
+  \end{solution}
+  \part[8] Is $W$ an unbiased estimator of the weight of the bag? Explain briefly.
+  \begin{solution}[1.25in]
+      The true weight of the bag is $50 \times 5 + 30 \times 10 + 20 \times 20 = 950$ grams.
+      By the linearity of expectation,
+      \begin{align*}
+        E[W] &= E[20 \times (X_1 + \dots + X_5)] \\
+        &= 20 \times \left( E[X_1] + \dots + E[X_5] \right)\\
+        &= 20 \times 5 \times 9.5\\
+        &= 950 \text{ grams}
+      \end{align*}
+      Hence, $W$ is an unbiased estimator of the weight of the bag.
+    \end{solution}
+    \part[8] Calculate the standard error of $W$.
+    \begin{solution}[1.5in]
+    The RVs $X_1, X_2, \dots, X_5$ are iid.
+    Hence,
+    \begin{align*}
+      Var(W) &= Var\left[ 20 \times (X_1 + \dots + X_5) \right]\\
+      &= 400 \times  \left[ Var(X_1) + \dots + Var(X_5) \right]\\
+      &= 400 \times 5 \times 122.5\\
+      &= 245000 \text{ grams}^2
+    \end{align*}
+    Therefore, $SE(W) = \sqrt{Var(W)} \approx 495 \text{ grams}$.
+  \end{solution}
+\end{parts}
+
+
+\question This question is based on a recent paper examining how ``organic'' labeling changes people's perceptions of different food products. Researchers recruited volunteers at a local mall in Ithaca, New York and gave each two samples of yogurt to taste. Although both yogurts were in fact identical, the volunteers were \emph{told} that one of them was organic while the other was not. After tasting both, each volunteer was asked to estimate how many calories each of the samples of yogurt contained. (Since, unknown to the volunteer, both samples contained exactly the same kind of yogurt, each in fact contained the same number of calories.) To prevent confounding from anchoring or other behavioral effects, the order in which a given volunteer tasted the two yogurts, i.e.\ ``organic'' first or ``organic'' second, was chosen at random. The results are stored in the dataframe \texttt{yogurt}: 
+	\begin{verbatim}
+> head(yogurt, 3)
+	  regular organic
+1      60      40
+2       5       0
+3     200     100
+	\end{verbatim}
+Each row in this dataframe corresponds to a single individual's guess of the number of calories contained in each of the two yogurts. For example, the values 60 and 40 in row 1 mean that volunteer number one guessed that the regular yogurt sample contained 60 calories and the organic sample contained 40. Summary statistics are as follows:
+	\begin{center}
+		\begin{tabular}{|lcc|}
+		\hline
+			& \texttt{regular} & \texttt{organic}\\
+			\hline
+		Sample Mean & 113 & 90\\
+		Sample Var & 3600 & 2916\\
+		Sample SD & 60 & 54\\ 
+		Sample Corr.\ &\multicolumn{2}{c|}{0.8} \\
+		Sample Size &\multicolumn{2}{c|}{115} \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\begin{parts}
+    %\part[5] Give the units of each of the summary statistics from above.
+		%	\begin{solution}
+		%	mean = calories, variance = calories$^2$, SD = calories, corr.\ = unitless.
+		%	\end{solution}
+      \part[10] Sara thinks that this experiment should be analyzed as independent samples data. Assume that she is correct and construct an approximate 95\% CI for the difference of means (\texttt{regular} - \texttt{organic}) based on the CLT.
+      \begin{solution}[2in]
+			The difference of means (regular minus organic) is 23 calories. Sara calculates her standard error assuming independent samples:
+			$$\sqrt{\sigma^2_X/n + \sigma^2_Y/m} = \sqrt{3600/115 + 2916/115} = \sqrt{6516/115} \approx 7.5$$
+			so her confidence interval is approximately $23 \pm 15$, in other words $(8,38)$.
+			\end{solution}
+      \part[10] Kevin thinks that this experiment should be analyzed as matched pairs data. Assume that he is correct and construct an approximate 95\% CI for the difference of means (\texttt{regular} - \texttt{organic}) based on the CLT.
+      \begin{solution}[3in]
+		Kevin takes into account the sample correlation between columns when calculating his standard error. He does this by using the sample statistics from the table to calculate the sample variance of the \emph{differences}: regular minus organic. In particular, he calculates:
+		$$s^2_D =  3600 + 2916 - 2 \cdot 0.8 \cdot 60 \cdot 54 = 1332$$
+		which gives a standard error of
+		$$\sqrt{s_D^2/n} = \sqrt{1332/115} \approx 3.4$$
+		This is the only difference between his procedure and Sara's. Hence, Kevin's confidence interval is approximately $23 \pm 6.8$, in other words $(16.2, 29.8)$.
+		\end{solution}
+    \part[5] How do the confidence intervals constructed by Sara and Kevin differ? Explain the source of the discrepancy. Which of them has constructed the appropriate confidence interval for this example? 
+		\begin{solution}
+		Kevin is right and Sara is wrong. This is matched pairs data because each row corresponds to a \emph{single individual}. Unsurprisingly, we find a high sample correlation between the two columns: individuals who overestimate caloric content for one yogurt sample tend to do so for the other, as do individuals who underestimate. The only difference between Kevin and Sara's confidence intervals comes from how they calculated their standard errors. Both intervals are correctly centered, but Sara's is \emph{too wide} because she calculated the standard error assuming independence between the two samples. When the sample correlation is positive this results in an \emph{overestimate} of the standard error. 
+		\end{solution}
+		%\part Suppose that Kevin wanted to carry out a two-sided test of the null hypothesis that organic labeling does not affect consumer's estimates of caloric content, on average. What is his test statistic? What R command should he use to calculate the p-value for his test? Will his result be greater or less than 0.05? 
+		%\begin{solution}
+		%Kevin's test statistic is the difference of means divided by the standard error, namely $23/3.4 \approx 6.8$. To calculate the p-value in R, he should use the command:
+		%	$$\texttt{2 * (1 - pnorm(6.8))}$$
+		%	The result will be less than 0.05 since the test statistic is larger than 2. Another way to see this is that his confidence interval does not include zero.
+		%\end{solution}
+%    \part[5] Using what you know about experiments, observational studies, and confidence intervals, what conclusions can we draw from this study?
+%		\begin{solution}
+%		It appears that merely labeling a product ``organic'' causes consumers to assume that this product contains fewer calories. Because this is a randomized experiment (randomly assigning labels to identical samples of yogurt and randomizing the order in which subjects tasted), we don't have to worry about confounding. It is less clear, however, whether this result would generalize to foods other than yogurt. Further, people from Ithaca New York who visit the mall and volunteer for a taste test may not be representative of US consumers as a whole. Ideally we would repeat this experiment using different subject pools and different foods to see how robust the result is.
+%		\end{solution}
+	\end{parts}
+
+\end{questions}
+
+\end{document}
