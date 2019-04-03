@@ -13,12 +13,13 @@ For a semester calendar, including the dates of all quizzes and exams, please se
 ## Course Documents
 Please consult these documents before posting a question about course logistics to Piazza: the syllabus in particular is positively brimming with answers to FAQs.
 - [Syllabus](./syllabus.pdf): This document is the final authority on all course policies.
-- [Lecture Slides](./slides/lecture_slides.pdf): Many of the lectures for Econ 103 contain interactive in-class experiments and examples using PollEverywhere that would be spoiled if I were to distribute the slides in advance. 
+- [Lecture Slides](./slides/lecture_slides.pdf): I've posted all the slides through lecture 21. Slides for lecture 22 will be available shortly. There are no slides for our final lecture, number 23. Instead I'll post a detailed transcript of the data analysis exercise that we'll carry out together in class, along with my R source code. 
+<!--: Many of the lectures for Econ 103 contain interactive in-class experiments and examples using PollEverywhere that would be spoiled if I were to distribute the slides in advance. 
 As such, slides will be posted *after* each lecture of the semester. 
 Rather than attempting to copy down everything on the slides during lecture, I suggest that you focus on trying to understand that material as we work through it, making limited notes of things that you find confusing, questions that you have, or calculations for in-class exercises.
 - [Review Exercises](./ReviewExercises/review-questions.pdf): Contains basic review questions that you should complete after each lecture. All questions that appear on in-class quizzes will be drawn from this document. 
 - [Extensions](./Extensions/extensions.pdf), [[solutions]](./Extensions/extensions_solutions.pdf): Contains more advanced questions that build on the lecture material. Each exam will contain at least one question taken verbatim from this document.
-- [Random Variables Handout](./RandomVariablesHandout.pdf): handout summarizing the key properties of random variables that we will learn in the course.
+- [Random Variables Handout](./RandomVariablesHandout.pdf): handout summarizing the key properties of random variables that we will learn in the course.-->
 
 ## R Tutorials
 As part of this course you will learn the basics of statistical programming in R.
