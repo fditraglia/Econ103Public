@@ -56,6 +56,7 @@ Note that some of the material on past exams, in particular some of the R code, 
 - Fall 2012: [exam](./PracticeExams/midterm1_2012_10_03.pdf), [solutions](./PracticeExams/midterm1_2012_10_03_solutions.pdf)
 
 ### Midterm II
+- Spring 2019: [exam](./PracticeExams/midterm2_2019_04_02.pdf), [solutions](./PracticeExams/midterm2_2019_04_02_solutions.pdf)
 - Spring 2018: [exam](./PracticeExams/midterm2_2018_03_27.pdf), [solutions](./PracticeExams/midterm2_2018_03_27_solutions.pdf)
 - Spring 2017: [exam](./PracticeExams/midterm2_2017_03_21.pdf), [solutions](./PracticeExams/midterm2_2017_03_21_solutions.pdf)
 - Spring 2016: [exam](./PracticeExams/midterm2_2016_03_22.pdf), [solutions](./PracticeExams/midterm2_2016_03_22_solutions.pdf)
