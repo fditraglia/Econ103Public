@@ -359,7 +359,7 @@ display(reg1)
 \frametitle{Fitted Values and Residuals}
 
 \begin{block}{Fitted Value $\widehat{y}_i$}
-Predicted $y$-value for person $i$ given her $x$-variables using estimated regression coefficients: \alert{$\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_{i1} + \hdots + \widehat{\beta}_k x_{ik}$}
+Predicted $y$-value for person $i$ given her $x$-variables using estimated regression coefficients: \alert{$\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_{i}$}
 \end{block}
 
 
@@ -392,21 +392,20 @@ Predicted $y$-value for person $i$ given her $x$-variables using estimated regre
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Proportion of Variance Explained: $R^2$}
+  \frametitle{$R^2$: Proportion of $Var(Y)$ ``Explained'' by the Regression}
 \[
-		R^2 \approx 1 - \frac{\widehat{\sigma}^2}{s_y^2}
+  R^2 = 1 - \frac{\sum_{i=1}^n \widehat{\varepsilon}_i^2}{\sum_{i=1}^n (y_i - \bar{y})^2} \approx 1 - \frac{\widehat{\sigma}^2}{s_y^2}
 \]
 
 		\begin{itemize}
-			\item $R^2$ = proportion of $Var(Y)$ 
-        ``explained'' by the regression.
-			\begin{itemize}
-			\item Higher value $\implies$ greater proportion explained 
-			\end{itemize}
-			\item Unitless, between 0 and 1 
-      \item Harder to interpret than $\widehat{\sigma}$, but\dots 
-			\item \alert{Simple Linear Regression: $R^2 = (r_{xy})^2$ and this where its name comes from!}
-		\end{itemize}
+      \item Unitless, between 0 and 1
+      \item Higher value $\implies$ greater proportion of variance ``explained''
+      \item Harder to interpret than $\widehat{\sigma}$
+      \item Special Case:
+        \begin{itemize}
+          \item In a regression with a single $X$-variable (``simple'' regression) can show that $R^2 = r_{xy}^2$ hence the name ``R-squared''
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 
