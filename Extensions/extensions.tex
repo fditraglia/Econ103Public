@@ -56,8 +56,8 @@
 \usepackage{hyperref}
 \usepackage{enumerate}
 
-\printanswers
-%\noprintanswers
+%\printanswers
+\noprintanswers
 
 
 \title{Extension Problems}
@@ -968,7 +968,7 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] -0.8160878  0.4235023
+## [1] -0.22315  1.01644
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1174,8 +1174,8 @@ You can also try setting \texttt{xlim} to make it easier to see the vertical bar
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{data.url} \hlkwb{<-} \hlstr{"http://ditraglia.com/econ103/survey-spring-2019.csv"}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data.url)}
+\hlstd{data_url} \hlkwb{<-} \hlstr{"http://ditraglia.com/econ103/survey-spring-2019.csv"}
+\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
 \hlstd{anchoring} \hlkwb{<-} \hlstd{survey[,}\hlkwd{c}\hlstd{(}\hlstr{"rand.num"}\hlstd{,} \hlstr{"africa.percent"}\hlstd{)]}
 \hlkwd{boxplot}\hlstd{(africa.percent} \hlopt{~} \hlstd{rand.num, anchoring)}
 \end{alltt}
@@ -1193,7 +1193,6 @@ You can also try setting \texttt{xlim} to make it easier to see the vertical bar
 \hlstd{hi} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"65"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
 \hlstd{lo} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(lo)}
 \hlstd{hi} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(hi)}
-\hlstd{SE.hi} \hlkwb{<-} \hlkwd{sd}\hlstd{(hi)}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlkwd{length}\hlstd{(hi))}
 \hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(}\hlkwd{var}\hlstd{(hi)} \hlopt{/} \hlkwd{length}\hlstd{(hi)} \hlopt{+} \hlkwd{var}\hlstd{(lo)} \hlopt{/} \hlkwd{length}\hlstd{(lo))}
 \hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{0.975}\hlstd{)} \hlopt{*} \hlstd{SE}
 \hlstd{LCL} \hlkwb{<-} \hlstd{(}\hlkwd{mean}\hlstd{(hi)} \hlopt{-} \hlkwd{mean}\hlstd{(lo))} \hlopt{-} \hlstd{ME}
@@ -1272,10 +1271,292 @@ Each row in this dataframe corresponds to a single individual's guess of the num
 
 
 \fullwidth{\section*{No Extension Questions for Lecture \#18}} 
+\fullwidth{\section*{No Extension Questions for Lecture \#19}} 
 
-\fullwidth{\section*{Lecture \#19 -- Hypothesis Testing II}} 
+
 \fullwidth{\section*{Lecture \#20 -- Hypothesis Testing III}} 
+
+\question This question revisits the data from this semester's anchoring experiment. In a previous question you used these data to construct confidence intervals. In this question you will carry out hypothesis tests. You may assume throughout that the sample size is large enough to use the Central Limit Theorem. Details of how to load the data from my website appear in Lecture 19. Be sure to properly account for missing values. 
+\begin{parts}
+	\part Suppose we want to test the null hypothesis of equality of population means across the two groups. What is the value of our test statistic?
+	\begin{solution}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{data_url} \hlkwb{<-} \hlstr{"http://ditraglia.com/econ103/survey-spring-2019.csv"}
+\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
+\hlstd{anchoring} \hlkwb{<-} \hlstd{survey[,}\hlkwd{c}\hlstd{(}\hlstr{"rand.num"}\hlstd{,} \hlstr{"africa.percent"}\hlstd{)]}
+\hlstd{lo} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"10"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
+\hlstd{hi} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"65"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
+\hlstd{lo} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(lo)}
+\hlstd{hi} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(hi)}
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(}\hlkwd{var}\hlstd{(lo)} \hlopt{/} \hlkwd{length}\hlstd{(lo)} \hlopt{+} \hlkwd{var}\hlstd{(hi)} \hlopt{/} \hlkwd{length}\hlstd{(hi))}
+\hlstd{test_stat} \hlkwb{<-} \hlkwd{abs}\hlstd{(}\hlkwd{mean}\hlstd{(hi)} \hlopt{-} \hlkwd{mean}\hlstd{(lo))} \hlopt{/} \hlstd{SE}
+\hlstd{test_stat}
+\end{alltt}
+\begin{verbatim}
+## [1] 2.102485
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{solution}
+	\part Suppose we want to test the equality of population means against the one-sided alternative that the the ``Hi'' group has a higher mean at the 10\% level. What is our critical value, and what is our decision rule? Do we reject the null hypothesis?
+	\begin{solution}
+The critical value is
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.281552
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+Our decision rule is to reject if the test statistic exceeds the critical value:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{test_stat} \hlopt{>} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+	\end{solution}
+	\part Calculate the p-value for a test of the equality of population means against the one-sided alternative that the ``Hi'' group has a higher mean.
+	\begin{solution} 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.01775539
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+	\end{solution}
+	\part Suppose we wanted to test the equality of population means against the two-sided alternative at the 10\% level. What is our critical value, and what is our decision rule? Do we reject the null hypothesis?
+	\begin{solution}
+The critical value is
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlopt{/}\hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.644854
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+Our decision rule is to reject if the \emph{absolute value} of the test statistic exceeds the critical value:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{abs}\hlstd{(test_stat)} \hlopt{>} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlopt{/}\hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+	\end{solution}
+	\part Calculate the p-value for a test of the equality of population means against the two-sided alternative.
+	\begin{solution} 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat))}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.03551077
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+	\end{solution}
+\end{parts}
+
+
 \fullwidth{\section*{Lecture \#21 -- Hypothesis Testing IV}} 
+
+\question In April of 2013, Public Policy Polling carried out a survey of 1247 registered voters to determine whether Republicans and Democrats differ in their beliefs about various conspiracy theories. To answer this question, you'll need to download the full results of their survey which I've posted on my website for convenience:\\
+\url{http://www.ditraglia.com/econ103/conspiracy.pdf}\\
+In an earlier extension question you used these data to construct confidence intervals. In this question you'll use them to carry out hypothesis tests. Throughout you may assume that the sample size is large enough for the approximate based on the central limit theorem to be valid.
+	\begin{parts}
+		\part Suppose we wanted to test the null hypothesis that 20\% of registered voters believe that a UFO crashed at Roswell, New Mexico in 1947 and the US Government covered it up. 
+    Calculate our test statistic.
+			\begin{solution}
+				Overall percentages appear on page 2 of the report, and this question refers to Q3. The sample size is 1247 and $\widehat{p} = 0.21$
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{phat} \hlkwb{<-} \hlnum{0.21}
+\hlstd{pnull} \hlkwb{<-} \hlnum{0.2}
+\hlstd{n} \hlkwb{<-} \hlnum{1247}
+\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(pnull} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{pnull)}\hlopt{/}\hlstd{n)}
+\hlstd{test_stat} \hlkwb{<-} \hlstd{(phat} \hlopt{-} \hlstd{pnull)} \hlopt{/} \hlstd{SE}
+\hlstd{test_stat}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.8828222
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+			\end{solution}
+      \part Suppose that we wanted to test the null hypothesis from the preceding part against the one-sided alternative that \emph{more than} 20\% of registered voters believe in the UFO conspiracy. Calculate the p-value for this test.
+		\begin{solution}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.1886662
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+		\end{solution}
+		\part Repeat the preceding part for the \emph{two-sided} alternative.
+		\begin{solution}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat))}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.3773324
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+		\end{solution}
+		\part Calculate the p-value for a test of the null hypothesis that equal proportions of Romney and Obama voters believe in the UFO conspiracy against the two-sided alternative. 
+			\begin{solution}
+				Percentages broken down by 2012 vote appear in page 5 of the survey results. Overall percentages of Romney and Obama voters in the sample appear on page 3. Of the 1247 registered voters in the sample, 50\% voted for Obama and 44\% voted for Romney. We'll call this $n_{O} = 623$ and $n_{R} = 547$. The sample proportions are $\widehat{p}_{O} = 0.16$ for Obama voters versus $\widehat{p}_{R} = 0.27$ for Romney voters:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{nR} \hlkwb{<-} \hlnum{547}
+\hlstd{pR} \hlkwb{<-} \hlnum{0.27}
+\hlstd{nO} \hlkwb{<-} \hlnum{623}
+\hlstd{pO} \hlkwb{<-} \hlnum{0.16}
+\hlstd{p_pooled} \hlkwb{<-} \hlstd{((nO} \hlopt{*} \hlstd{pO)} \hlopt{+} \hlstd{(nR} \hlopt{*} \hlstd{pR))} \hlopt{/} \hlstd{(nR} \hlopt{+} \hlstd{nO)}
+\hlstd{SE_pooled} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p_pooled} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p_pooled)} \hlopt{*} \hlstd{(}\hlnum{1}\hlopt{/}\hlstd{nO} \hlopt{+} \hlnum{1}\hlopt{/}\hlstd{nR))}
+\hlstd{test_stat} \hlkwb{<-} \hlkwd{abs}\hlstd{((pO} \hlopt{-} \hlstd{pR))} \hlopt{/} \hlstd{SE_pooled}
+\hlstd{test_stat}
+\end{alltt}
+\begin{verbatim}
+## [1] 4.597651
+\end{verbatim}
+\begin{alltt}
+\hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat))}
+\end{alltt}
+\begin{verbatim}
+## [1] 4.272809e-06
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+We find very strong evidence against the null hypothesis. 
+			\end{solution}
+	\end{parts}
+
+\question This question is based on a dataset containing the results of the tae kwon do event in the 2004 Athens Olympics. (In case this event is unfamiliar to you, my dictionary defines tae kwon do as ``a modern Korean martial art similar to karate.'') The competition is a tournament consisting of a number of bouts. In each bout, a pair of competitors fight each other, points are awarded, and a winner is declared by the judges. In accordance with Olympic regulations, one of the competitors in each bout is \emph{randomly chosen} to wear blue body protectors. The other wears red body protectors. This question investigates whether wearing one color or the other gives an advantage in the competition. The data are stored in an R data frame called \texttt{taekwondo}. Each row corresponds to a \emph{single bout} in the competition. The columns are as follows:
+
+\vspace{1em}
+\fbox{
+	\begin{tabular}{ll}
+		\texttt{class}& weight class of the bout\\
+		\texttt{red.id} & competitor id number for the fighter who wore red\\
+		\texttt{blue.id} & competitor id number for the fighter who wore blue\\
+		\texttt{round}& round of the tournament (i.e.\ semifinals, finals, etc.)\\
+		\texttt{winner} & color worn by the fighter who won the bout\\
+		\texttt{method} & method of win (i.e.\ points, knockout, etc.)\\
+		\texttt{red.points} & number of points awarded to the fighter who wore red\\
+		\texttt{blue.points} & number of points awarded to the fighter who wore blue 
+	\end{tabular}}
+	\vspace{1em}
+
+%Here are the first few rows of the dataset:
+%\begin{verbatim}
+%> head(taekwondo)
+%       class red.id blue.id   round winner
+%1 under 58kg   5816    5818 last 16   Blue
+%2 under 58kg   5817    5824 last 16   Blue
+%3 under 58kg   5819    5825 last 16    Red
+%4 under 58kg   5820    5822 last 16    Red
+%5 under 58kg   5821    5827 last 16    Red
+%6 under 58kg   5828    5823 last 16    Red
+%                   method red.points blue.points
+%1                  Points          9           5
+%2                  Points          3           5
+%3                  Points         15          16
+%4                  Points         14          15
+%5                  Points         13          12
+%6 Referee Stopped Contest         NA          NA
+%\end{verbatim}
+%\vspace{3em}
+
+	\begin{parts}
+		\part We'll restrict attention to the ``last 16'' round of the competition. This ensures that each row contains a \emph{unique} pair of fighters. Write R code to extract only those rows of \texttt{taekwondo} for which the value in the column \texttt{round} is ``last 16'' and store the result in a data frame called \texttt{last16}.
+			\begin{solution}
+				\begin{verbatim}
+				last16 <- subset(taekwondo, round == 'last 16')
+				\end{verbatim}
+			\end{solution}
+		\part To begin, we'll analyze the \emph{proportion} of bouts won by the blue fighter. Write R code to: (i) count the number of elements in the column \texttt{winner} of \texttt{last16} and store the result in a variable called \texttt{n}, and (ii) count the number of bouts won by the blue fighter and store the result in a variable called \texttt{n\_blue}.
+			\begin{solution}
+				\begin{verbatim}
+				n <- length(last16$winner)
+				n_blue <- sum(last16$winner == 'Blue')
+				\end{verbatim}
+			\end{solution}
+%		\part[10] As it happens there are 32 bouts in \texttt{last16}, 8 bouts for each weight class times 4 weight classes, of which 19 were won by the blue fighter. Using this information, calculate an approximate 95\% confidence interval for the population proportion of bouts won by fighters wearing blue based on the approximation provided by the CLT. Use the ``refined'' interval. Do your results suggest that wearing one color versus the other conveys a competitive advantage? Explain.
+%			\begin{solution}[3.5in]
+%				\begin{eqnarray*}
+%					\tilde{p} &=& (19 + 2)/(32 + 4) = 21/36 \approx 0.583\\
+%					\tilde{SE}(\tilde{p}) &=& \sqrt{\tilde{p}(1 - \tilde{p})/(n+4)}\\
+%						&=& \sqrt{\left(\frac{21}{36} \times \frac{15}{36}\right)/36}\approx 0.082
+%				\end{eqnarray*}
+%				Hence, the CI is approximately $0.583 \pm 2\times 0.082$ or roughly $(0.42, 0.75)$. We do not find convincing evidence that either color conveys an advantage. If we absolutely had to guess, we would say that blue might convey a slight advantage but our results are perfectly consistent with the reverse as well: the difference between the estimated proportion and 0.5 could easily be nothing more than sampling variability.
+%			\end{solution}
+As it happens there are 32 bouts in \texttt{last16}, 8 bouts for each weight class times 4 weight classes, of which 19 were won by the blue fighter. Using this information, test the null hypothesis that the population proportion of bouts won by fighters wearing blue equals 0.5 against the two-sided alternative. Approximately what is the p-value for this test? Interpret your results.
+			\begin{solution}
+				The test statistic is:
+				$$T = \frac{\widehat{p} - 0.5}{\sqrt{0.5^2/n}} = \frac{19/32 - 0.5}{\sqrt{0.25/32}} \approx 1.06$$
+				If the test statistic were \emph{exactly} one, the p-value for a two-sided test would be \texttt{2 * (1 - pnorm(1))}$\approx 2 \times 0.16 = 0.32$. The test statistic here is slightly larger than one, so the p-value should be slighly smaller than 0.32. This is a very large p-value: we would \emph{fail} to reject the null at any of the standard significance levels (i.e.\ 10\%, 5\%, 1\%). We have not found convincing evidence that wearing either color conveys a competitive advantage.
+			\end{solution}
+		\part[6] For the remainder of the question, we will examine the relative difference in the number of \emph{points} scored by the blue and red fighters in each bout. Write R code accomplish the following: (i) select only those rows of \texttt{last16} for which the value in the column \texttt{method} is \texttt{Points} and store the result in a data frame called \texttt{last16.points}, (ii) create a vector called \texttt{D} whose entries contain the \emph{difference} in the number of points scored by blue versus red (Blue - Red) in each bout.
+			\begin{solution}
+				\begin{verbatim}
+					last16_points <- subset(last16, method == 'Points')
+					D <- last16_points$blue.points - last16_points$red.points
+				\end{verbatim}
+			\end{solution}
+		\part I calculated the mean of the column \texttt{red.points} in \texttt{last16.points} and got 10.1. Similarly, I calculated the mean of the column \texttt{blue.points} and got 11.7. If I were to run the command \texttt{mean(D)} at the R console what result would I get?
+		\begin{solution}
+			$11.7 - 10.1 = 1.6$
+		\end{solution}
+		\part I entered the command \texttt{var(D)} at the R console and got 25. Next I entered \texttt{var(last16\_points\$red\_points)} and \texttt{var(last16\_points\$blue\_points)} and got 17 and 31, respectively. Calculate the sample correlation between the columns \texttt{red\_points} and \texttt{blue\_points} of the data frame \texttt{last16\_points}.
+			\begin{solution}
+			Rearranging the formula from class and substituting values from the question statement:
+				\begin{eqnarray*}
+			s_d^2 &=& s_x^2 + s_y^2	- 2s_x s_y r_{xy}\\
+			2s_x s_y r_{xy} &=& s_x^2 + s_y^2 - s_d^2\\ 
+			r_{xy} &=& \frac{s_x^2 + s_y^2 - s_d^2}{2s_x s_y}\\ \\
+				&=& \frac{17 + 31 - 25}{2\sqrt{17 \times 31}} = \frac{23}{2 \times \sqrt{527}} \approx 0.5
+				\end{eqnarray*}				
+			\end{solution}
+		\part[10] To test the null hypothesis that red and blue fighters are awarded, on average, the same number of points against the two-sided alternative, should we use a test for independent samples or matched pairs data? Explain briefly and then carry out the appropriate test at the 5\% level based on the CLT. To answer, you will need the fact that there are 29 rows in the data frame \texttt{last16.points}. Be sure to report: (i) the test statistic, (ii) the decision rule, and (iii) the result of the test.
+			\begin{solution}
+				This is matched pairs data: the score earned by the red fighter in a given bout cannot possibly be independent of the score earned by the blue fighter \emph{in the same bout}. The test statistic is
+					$$T = \frac{\bar{D}}{s_d/\sqrt{n}} = 1.6 / (5/\sqrt{29}) \approx 1.7$$
+				For a 5\% test, the decision rule is: Reject $H_0$ if $|T|>2$. In this case we fail to reject the null hypothesis.
+			\end{solution}
+	\end{parts} 
+ 
+
+
 \fullwidth{\section*{Lecture \#22 -- Regression II}} 
 
 \question Let $Y$ and $X$ be RVs. Find the constants $\beta_0$ and $\beta_1$ that solve  
@@ -1446,7 +1727,7 @@ The columns contained in this dataset are as follows:
 \hlkwd{abline}\hlstd{(}\hlkwd{coef}\hlstd{(reg1))}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-13-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-21-1} 
 
 \end{knitrout}
 Our model suggests that the children of mothers who were older when they gave birth tend to score higher. In particular, comparing two children whose mothers' age at birth differed by one year, we would predict that the child of the older mother will score, on average, 0.7 points higher. The standard error associated with the estimate, however, is fairly large. An approximate 95\% CI would just barely include zero. Nevertheless, this result is suggestive that the children of older mothers do better on the test. A naive reading of these results would be that women should wait to have children until they are as old as possible. The regression results, however, most emphatically do \emph{not} establish this. There are many possible confounders here: for example, teenage pregnancy is correlated with economic disadvantage and lower levels of education.
@@ -1480,7 +1761,7 @@ Our model suggests that the children of mothers who were older when they gave bi
 \hlkwd{abline}\hlstd{(}\hlkwc{a} \hlstd{= a_no_HS,} \hlkwc{b} \hlstd{= b_both,} \hlkwc{col} \hlstd{=} \hlstr{'black'}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-14-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-22-1} 
 
 \end{knitrout}
 By adding a dummy variable that equals one if a child's mother completed high school, we have controlled for one of the possible confounders from above: mother's level of education. We have done this by allowing the regression line to have a different intercept depending on mother's education. Comparing two children whose mothers are of the same age but only one whom attended high school, we predict that the child of the better educated mother will score, on average, 11 points higher. The standard error associated with this estimate is quite small, yielding a 95\% CI that is is nowhere near zero. We have strong evidence of a large effect from mother's education level. In contrast, once we've controlled from mother's education, the estimated effect of \texttt{mom.age} falls substantially while the associated standard error stays the same. This results in an approximate 95\% CI that includes many negative values. After controlling for mother's education, there is much less evidence to suggest that older mothers have higher-scoring children. In terms of predictive accuracy, the second model is slightly better but neither is particularly effective: we are only predicting test scores to an accuracy of about 20 points.
@@ -1515,10 +1796,10 @@ By adding a dummy variable that equals one if a child's mother completed high sc
 \hlkwd{abline}\hlstd{(}\hlkwc{a} \hlstd{= a_no_HS,} \hlkwc{b} \hlstd{= b_no_HS,} \hlkwc{col} \hlstd{=} \hlstr{'black'}\hlstd{)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-15-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-23-1} 
 
 \end{knitrout}
-This is very interesting! When we allow for different slopes as well as intercepts, by adding an \emph{interaction} between \texttt{mom.hs} and \texttt{mom.hs}, namely \texttt{mom.hs:mom.age}, we find very different results depending on mother's education. (There is strong evidence that we should allow for different slopes, since the approximate 95\% CI for the interaction does not include zero.)  For children whose mothers attended high school, there is a \emph{positive} relationship between mother's age at birth and child's test score. For children whose mothers did not attend high school, the relationship is \emph{negative}. For children whose mothers were 18 then they gave birth, there is essentially \emph{no} impact from mother's education level. As age of mother at birth increases, the impact of mother's education widens. 
+When we allow for different slopes as well as intercepts, by adding an \emph{interaction} between \texttt{mom.hs} and \texttt{mom.hs}, namely \texttt{mom.hs:mom.age}, we find very different results depending on mother's education. There is substantial evidence that we should allow for different slopes, since the approximate 95\% CI for the interaction does not include zero. For children whose mothers attended high school, there is a \emph{positive} relationship between mother's age at birth and child's test score. For children whose mothers did not attend high school, the relationship is \emph{negative}. For children whose mothers were 18 when they gave birth, there is essentially \emph{no} difference across mothers with different education levels. As mothers' age at birth increases, however, a difference emerges.
 \end{solution}
 	\end{parts}
 
