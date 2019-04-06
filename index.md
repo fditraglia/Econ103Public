@@ -13,7 +13,8 @@ For a semester calendar, including the dates of all quizzes and exams, please se
 ## Course Documents
 Please consult these documents before posting a question about course logistics to Piazza: the syllabus in particular is positively brimming with answers to FAQs.
 - [Syllabus](./syllabus.pdf): This document is the final authority on all course policies.
-- [Lecture Slides](./slides/lecture_slides.pdf): I've posted all the slides through lecture 21. Slides for lecture 22 will be available shortly. There are no slides for our final lecture, number 23. Instead I'll post a detailed transcript of the data analysis exercise that we'll carry out together in class, along with my R source code. 
+- [Lecture Slides](./slides/lecture_slides.pdf): All lecture slides for the semester have now been posted.
+- [Lecture #23 Transcript](./slides/lecture_23_child_test.pdf): There are no slides for our final lecture since we'll be carrying out an extended exercise in R. Instead I've a detailed pdf transcript. A file containing only the associated R code is available [here](./slides/lecture23_child_test.R).
 - [Review Exercises](./ReviewExercises/review-questions.pdf): Contains basic review questions that you should complete after each lecture. All questions that appear on in-class quizzes will be drawn from this document. 
 - [Extensions](./Extensions/extensions.pdf), [[solutions]](./Extensions/extensions_solutions.pdf): Contains more advanced questions that build on the lecture material. Each exam will contain at least one question taken verbatim from this document.
 - [Random Variables Handout](./RandomVariablesHandout.pdf): handout summarizing the key properties of random variables that we will learn in the course.
