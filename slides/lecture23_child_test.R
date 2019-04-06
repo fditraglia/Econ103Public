@@ -1,81 +1,65 @@
-source("http://www.ditraglia.com/econ103/display.R")
+## ------------------------------------------------------------------------
+source("http://ditraglia.com/econ103/display.R")
 
+## ------------------------------------------------------------------------
+data_url <- "http://ditraglia.com/econ103/child_test_data.csv"
+child <- read.csv(data_url)
 
+## ------------------------------------------------------------------------
+head(child)
 
-data.url <- "http://www.ditraglia.com/econ103/child_test_data.csv"
-data <- read.csv(data.url)
-attach(data)
-
-
-
-head(data)
-
-
-
-reg1 <- lm(kid.score ~ mom.hs)
+## ------------------------------------------------------------------------
+reg1 <- lm(kid.score ~ mom.hs, data = child)
 display(reg1)
 
-
-
-reg2 <- lm(kid.score ~ mom.iq)
+## ------------------------------------------------------------------------
+reg2 <- lm(kid.score ~ mom.iq, data = child)
 display(reg2)
 
-
-
-plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+## ------------------------------------------------------------------------
+plot(child$mom.iq, child$kid.score, pch = 20, xlab = 'Mother IQ Score',
      ylab = 'Child Test Score')
 
-
-
-coef(reg1)
-intercept <- coef(reg2)[1]
-slope <- coef(reg2)[2]
-plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+## ------------------------------------------------------------------------
+plot(child$mom.iq, child$kid.score, pch = 20, xlab = 'Mother IQ Score',
      ylab = 'Child Test Score')
-abline(a = intercept, b = slope)
+abline(coef(reg2))
 
-
-
-reg3 <- lm(kid.score ~ mom.hs + mom.iq)
+## ------------------------------------------------------------------------
+reg3 <- lm(kid.score ~ mom.hs + mom.iq, data = child)
 display(reg3)
 
-
-
-colors <- ifelse (mom.hs == 0, "black", "gray")
-plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+## ------------------------------------------------------------------------
+colors <- ifelse(child$mom.hs == 0, "black", "gray")
+plot(child$mom.iq, child$kid.score, pch = 20, xlab = 'Mother IQ Score',
      ylab = 'Child Test Score', col = colors)
 
-
-
+## ------------------------------------------------------------------------
 coef(reg3)
-slope <- coef(reg3)[3]
-intercept.hs <- coef(reg3)[1] + coef(reg3)[2]
-intercept.no.hs <- coef(reg3)[1] 
+b_both <- coef(reg3)[3]
+a_HS <- coef(reg3)[1] + coef(reg3)[2]
+a_no_HS <- coef(reg3)[1] 
 
-
-
-colors <- ifelse (mom.hs == 0, "black", "gray")
-plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+## ------------------------------------------------------------------------
+colors <- ifelse(child$mom.hs == 0, "black", "gray")
+plot(child$mom.iq, child$kid.score, pch = 20, xlab = 'Mother IQ Score',
      ylab = 'Child Test Score', col = colors)
-abline(a = intercept.hs, b = slope, col = 'gray')
-abline(a = intercept.no.hs, b = slope, col = 'black')
+abline(a = a_HS, b = b_both, col = 'gray')
+abline(a = a_no_HS, b = b_both, col = 'black')
 
-
-
-reg4 <- lm(kid.score ~ mom.hs + mom.iq + mom.hs:mom.iq)
+## ------------------------------------------------------------------------
+reg4 <- lm(kid.score ~ mom.hs + mom.iq + mom.hs:mom.iq, data = child)
 display(reg4)
 
-
-
+## ------------------------------------------------------------------------
 coef(reg4)
-slope.hs <- coef(reg4)[3] + coef(reg4)[4]
-slope.no.hs <- coef(reg4)[3]
-intercept.hs <- coef(reg4)[1] + coef(reg4)[2]
-intercept.no.hs <- coef(reg4)[1] 
-colors <- ifelse (mom.hs == 0, "black", "gray")
-plot(mom.iq, kid.score, pch = 20, xlab = 'Mother IQ Score',
+b_HS <- coef(reg4)[3] + coef(reg4)[4]
+b_no_HS <- coef(reg4)[3]
+a_HS <- coef(reg4)[1] + coef(reg4)[2]
+a_no_HS <- coef(reg4)[1] 
+colors <- ifelse(child$mom.hs == 0, "black", "gray")
+plot(child$mom.iq, child$kid.score, pch = 20, xlab = 'Mother IQ Score',
      ylab = 'Child Test Score at Age 3', col = colors)
-abline(a = intercept.hs, b = slope.hs, col = 'gray')
-abline(a = intercept.no.hs, b = slope.no.hs, col = 'black')
-
+abline(a = a_HS, b = b_HS, col = 'gray')
+abline(a = a_no_HS, b = b_no_HS, col = 'black')
 
