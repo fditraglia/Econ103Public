@@ -6,7 +6,7 @@
 \usepackage{multirow}
 \usepackage{todonotes}
 
-\printanswers
+%\printanswers
 %\noprintanswers
 
 \title{Review Questions}
@@ -1967,8 +1967,17 @@ My estimates and standard errors were:
  \end{array}
  \end{align*}
 \begin{parts}
-  \part
-  \part
+  \part Construct an approximate 95\% CI for the price premium for a brick house. 
+  \begin{solution}
+    There is a substantial price premium for brick houses: the confidence interval is $24000 \pm 8000$.
+  \end{solution}
+  \part Is there convincing evidence that larger houses command higher prices? Explain. 
+  \begin{solution}
+Yes. The test statistic for $H_0\colon \beta_2 = 0$ is $80/10 = 8$.
+Regardless of whether we are carrying out a one-sided or two-sided test, the p-value would be far below $0.003$.
+Another way of saying the same thing is that a $99.7\%$ confidence interval for the per-square-foot premium is $80 \pm 30$.
+This interval is very far from zero.
+  \end{solution}
 \end{parts}
 
 \question I ran the regression $\texttt{price}_i = \beta_0 + \beta_1 \times \texttt{brick}_i + \beta_2 \times \texttt{sqft}_i + \beta_3 \times \texttt{brick}_i \times \texttt{sqft}_i + \varepsilon_i$.
@@ -1986,7 +1995,7 @@ My estimates were:
   \end{solution}
   \part Suppose we compare two houses: both are 2000 square feet, but one is brick while the other is not. What difference in sale prices would we predict between these two houses? 
   \begin{solution}
-    Our prediction for the brick houses is 
+    Our prediction for the brick house is 
     \[
       (\widehat{\beta}_0 + \widehat{\beta}_1) + (\widehat{\beta}_2 + \widehat{\beta}_3) \times \texttt{sqft} = -25000 + 90 \times 2000 = 155000  
     \]
@@ -2003,13 +2012,17 @@ My estimates and standard errors were:
 \begin{align*}
   \begin{array}{cccc}
     \widehat{\beta}_0 = 5000 & \widehat{\beta}_1 = -30000 & \widehat{\beta}_2 = 60 & \widehat{\beta}_3 = 30\\
-    SE(\widehat{\beta}_0) = 20000 & SE(\widehat{\beta}_1) = 40000 & SE(\widehat{\beta}_2) = 10 & SE(\widehat{\beta}_3) = 20 
+    SE(\widehat{\beta}_0) = 20000 & SE(\widehat{\beta}_1) = 40000 & SE(\widehat{\beta}_2) = 10 & SE(\widehat{\beta}_3) = 40 
  \end{array}
  \end{align*}
-\begin{parts}
-  \part
-  \part
-\end{parts}
+Is there compelling evidence that brick houses command a higher per-square-foot price premium?
+Discuss briefly.
+\begin{solution}
+  Our estimate for the difference of slopes (brick minus non-brick) is $30$, but the approximate 95\$ confidence interval is $30 \pm 80$ which comfortably includes zero and indeed some fairly large negative values.
+  Even a 68\% interval ($30 \pm 40$) would comfortably include zero.
+  So while our estimates are suggestive of a difference, the evidence is not particularly compelling.
+\end{solution}
+
 
 
 \end{questions}
