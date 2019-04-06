@@ -6,7 +6,7 @@
 \usepackage{multirow}
 \usepackage{todonotes}
 
-%\printanswers
+\printanswers
 %\noprintanswers
 
 \title{Review Questions}
@@ -1920,9 +1920,97 @@ Each $i$ is a professor who teaches introductory statistics: $Y_i$ is Professor 
 
 \fullwidth{\section*{Lecture \#23 -- Regression III}}
 
+\uplevel{All of these questions refer to a dataframe called \texttt{houses}. The columns are as follows: \texttt{price} is the sale price of a house in US dollars, \texttt{brick} is a dummy variable that equals one if the house is made of brick, and \texttt{sqft} is the size of the house in square feet.}
 
-%\todo[inline]{This should test them on the varying slopes varying intercepts example from class, including the R commands, interpretation, inference, etc.}
- 
+\question For each part, provide the R code needed to run the appropriate regression.
+\begin{parts}
+  \part Run a regression predicting sale price from house size allowing a different intercept for brick and non-brick houses, but constraining the slope for both kinds of house to be the same.
+\begin{solution}
+  \begin{verbatim}
+lm(price ~ brick + sqft, houses)
+  \end{verbatim}
+\end{solution}
+  \part Run a regression predicting sale price from house size allowing a different slope \emph{and} intercept for brick and non-brick houses.
+\begin{solution}
+  \begin{verbatim}
+lm(price ~ brick + sqft + brick:sqft, houses)
+  \end{verbatim}
+\end{solution}
+\end{parts}
+
+
+
+\question I ran the regression $\texttt{price}_i = \beta_0 + \beta_1 \times \texttt{brick}_i + \beta_2 \times \texttt{sqft}_i + \varepsilon_i$.
+My estimates were: 
+\begin{align*}
+  \begin{array}{lll}
+  \widehat{\beta}_0 = -9000 & \widehat{\beta}_1 = 24000 & \widehat{\beta}_2 = 80 
+ \end{array}
+ \end{align*}
+\begin{parts}
+  \part Consider two brick houses that differ in size by 500 square feet. What difference sale price would we predict between these two houses? 
+  \begin{solution}
+We would predict that the larger house will sell for $80 \times 500 = \$4000$ more than the smaller one. 
+  \end{solution}
+  \part Consider two houses: both are 2000 square feet, but one is brick while the other is not. What difference in sale prices would we predict between these two houses? 
+  \begin{solution}
+    We would predict that the brick house will sell for \$24,000 more than the non-brick house.
+  \end{solution}
+\end{parts}
+
+\question I ran the regression $\texttt{price}_i = \beta_0 + \beta_1 \times \texttt{brick}_i + \beta_2 \times \texttt{sqft}_i + \varepsilon_i$.
+My estimates and standard errors were: 
+\begin{align*}
+  \begin{array}{lll}
+  \widehat{\beta}_0 = -9000 & \widehat{\beta}_1 = 24000 & \widehat{\beta}_2 = 80 \\
+ SE(\widehat{\beta}_0) = 17000 & SE(\widehat{\beta}_1) = 4000 & SE(\widehat{\beta}_2) = 10
+ \end{array}
+ \end{align*}
+\begin{parts}
+  \part
+  \part
+\end{parts}
+
+\question I ran the regression $\texttt{price}_i = \beta_0 + \beta_1 \times \texttt{brick}_i + \beta_2 \times \texttt{sqft}_i + \beta_3 \times \texttt{brick}_i \times \texttt{sqft}_i + \varepsilon_i$.
+My estimates were:
+\begin{align*}
+  \begin{array}{cccc}
+    \widehat{\beta}_0 = 5000 & \widehat{\beta}_1 = -30000 & \widehat{\beta}_2 = 60 & \widehat{\beta}_3 = 30
+ \end{array}
+ \end{align*}
+\begin{parts}
+  \part Suppose we compare two brick houses that differed in size by 500 square feet. Based on these results, what difference in prices would we predict between these two houses? 
+  \begin{solution}
+    The estimated slope for brick houses is $\widehat{\beta}_2 + \widehat{\beta}_3 = 90$.
+    Hence, we would predict that the larger house will sell for $90 \times 500 = \$4500$ more than the smaller one.
+  \end{solution}
+  \part Suppose we compare two houses: both are 2000 square feet, but one is brick while the other is not. What difference in sale prices would we predict between these two houses? 
+  \begin{solution}
+    Our prediction for the brick houses is 
+    \[
+      (\widehat{\beta}_0 + \widehat{\beta}_1) + (\widehat{\beta}_2 + \widehat{\beta}_3) \times \texttt{sqft} = -25000 + 90 \times 2000 = 155000  
+    \]
+    while our prediction for the non-brick house is 
+    \[
+      \widehat{\beta}_0  + \widehat{\beta}_2  \times \texttt{sqft} = 5000 + 60 \times 2000 = 125000 
+    \]
+    Hence, we predict that the brick house will sell for \$30,000 more.
+  \end{solution}
+\end{parts}
+
+\question I ran the regression $\texttt{price}_i = \beta_0 + \beta_1 \times \texttt{brick}_i + \beta_2 \times \texttt{sqft}_i + \beta_3 \times \texttt{brick}_i \times \texttt{sqft}_i + \varepsilon_i$.
+My estimates and standard errors were:
+\begin{align*}
+  \begin{array}{cccc}
+    \widehat{\beta}_0 = 5000 & \widehat{\beta}_1 = -30000 & \widehat{\beta}_2 = 60 & \widehat{\beta}_3 = 30\\
+    SE(\widehat{\beta}_0) = 20000 & SE(\widehat{\beta}_1) = 40000 & SE(\widehat{\beta}_2) = 10 & SE(\widehat{\beta}_3) = 20 
+ \end{array}
+ \end{align*}
+\begin{parts}
+  \part
+  \part
+\end{parts}
+
 
 \end{questions}
 
