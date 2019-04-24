@@ -968,7 +968,7 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-## [1] -0.22315  1.01644
+## [1] -1.1490023  0.0905878
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1563,7 +1563,7 @@ As it happens there are 32 bouts in \texttt{last16}, 8 bouts for each weight cla
 \[
   \min_{\beta_0, \beta_1} E[(Y - \beta_0 - \beta_1 X)^2]
 \]
-\textbf{Hint:} For the purposes of this question you may assume that expectation and differentiation can be interchanged, i.e.\ that $\frac{\partial}{\partial Z} E[f(Z)] = E[\frac{\partial}{\partial Z} f(Z)]$.
+\textbf{Hint:} For the purposes of this question you may assume that expectation and differentiation can be interchanged, i.e.\ that $\frac{\partial}{\partial \theta} E[f(Z,\theta)] = E[\frac{\partial}{\partial \theta} f(Z,\theta)]$.
 \begin{solution}
   Differentiating with respect to $\beta_0$ gives the first order condition
   \[
