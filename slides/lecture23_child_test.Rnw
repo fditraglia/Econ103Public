@@ -112,7 +112,7 @@ Rounding, we can summarize the fitted model as follows:
     (\texttt{mom.hs = 0})\Rightarrow \texttt{kid.score} &=& \Sexpr{round(coef(reg3)[1],0)} + \Sexpr{round(coef(reg3)[2],0)} \cdot 0 + \Sexpr{round(coef(reg3)[3],1)}\cdot \texttt{mom.iq} + \mbox{error}\\
       &=&\Sexpr{round(coef(reg3)[1],0)} + \Sexpr{round(coef(reg3)[3],1)}\cdot \texttt{mom.iq} + \mbox{error}
   \end{eqnarray*}
-In this case the intercept is not interpretable: it corresponds to the average test score for children whose mother did not complete high school and have a zero IQ! The other two coefficients, however, are meaningful. The coefficient on \texttt{mom.hs} compares test scores for children whose mothers have the same IQ but differ in whether or not they completed high school. The coefficient on \texttt{mom.iq} compares children whose mothers have the same value of \texttt{mom.iq} but differ in IQ by one point. 
+In this case the intercept is not interpretable: it corresponds to the average test score for children whose mother did not complete high school and have a zero IQ! The other two coefficients, however, are meaningful. The coefficient on \texttt{mom.hs} compares test scores for children whose mothers have the same IQ but differ in whether or not they completed high school. The coefficient on \texttt{mom.iq} compares children whose mothers have the same value of \texttt{mom.hs} but differ in IQ by one point. 
 
 We can plot the data and fitted models as follows. We'll plot the children whose mothers went to high school in \emph{gray} and those whose mothers didn't in \emph{black}.
 <<>>=
