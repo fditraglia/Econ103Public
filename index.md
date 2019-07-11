@@ -23,6 +23,39 @@ Please consult these documents before posting a question about course logistics 
 As part of this course you will learn the basics of statistical programming in R.
 Every student in this course will receive a free premium subscription to [DataCamp](https://datacamp.com), courtesy of DataCamp for the Classroom. 
 I will assign interactive online tutorials from Datacamp as part of your homework, which will be complemented by in-person R instruction in recitations.
+The three DataCamp assignments for the semester are as follows:
+
+### DataCamp Assignment \#1
+- First three chapters of "Introduction to R for Finance"
+
+### DataCamp Assignment \#2
+- Final two chapters of "Introduction to R for Finance"
+
+### DataCamp Assignment \#3
+- Foundations of Probability in R, chapter 1: The Binomial Distribution
+- Intermediate R, chapter 1: Conditionals and Control Flow
+- Intermediate R, chapter 2: Loops
+- Intermediate R, chapter 3: Functions
+
+
+## Reading Assignments
+The abbreviation "WW" refers to Wonnacott and Wonnacott, the course textbook. All other readings will be posted on Piazza. The abbreviation "Vickers" refers to *What is a p-value Anyway*? 
+
+- Lecture 1: WW chapter 1
+- Lectures 2 and 3: WW chapter 2
+- Lecture 4: WW chapter 11, Kahneman chapter 17 "Regression to the Mean"
+- Lectures 5, 6, and 7: WW chapter 3
+- Lectures 8 and 9: WW chapter 4: everything except 4.5, Appendix to Section 4-3 (pages 739-741)
+- Lecture 10: WW chapter 5 and Appendix to Sections 5-3 and 5-4 (pages 742-743)
+- Lecture 11: WW Appendix to Section 4-4 (pages 741-742)
+- Lecture 12: WW Section 4-5
+- Lecture 13: WW 6-1 and 6-2, Vickers chapter 10.
+- Lecture 14: WW chapter 7
+- Lecture 15: WW 8-1, Vickers chapters 11 and 12
+- Lecture 16: WW 8-2 and 8-5 part A, Vickers chapter 7
+- Lecture 17: WW 8-3, 8-4, 8-5 C
+- Lectures 18, 19, 20, and 21: WW 9-1, 9-2, 9-3, "Trouble in the Lab" from the Economist, Vickers chapters 13-15 and 28.
+- Lectures 22 and 23:  WW chapter 12, chapter 13 Sections 1-4
 
 
 ## Apps
