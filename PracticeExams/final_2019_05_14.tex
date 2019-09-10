@@ -1,0 +1,536 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage{amsmath, amssymb}
+\linespread{1.1}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{moreverb}
+\usepackage[T1]{fontenc}
+\boxedpoints
+\pointsinmargin
+
+\noprintanswers
+%\printanswers
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Econ 103}
+              {Final Examination, Page \thepage\ of \numpages}
+              {May 14th, 2019}
+
+\runningfooter{Name: \rule{5cm}{0.4pt}}{}{Student ID \#: \rule{5cm}{0.4pt}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\textsc{\large Final Examination\\ \normalsize Econ 103, Statistics for Economists \\ \vspace{0.5em} May 14th, 2019}
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{0.5\textwidth}
+\normalsize\textbf{You will have two hours to complete this exam.
+Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
+
+
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{2em}
+\begin{center}
+  \fbox{\fbox{\parbox{5.5in}{\centering
+        I pledge that, in taking and preparing for this exam, I have abided by the University of Pennsylvania's Code of Academic Integrity. I am aware that any violations of the code will result in a failing grade for this course.}}}
+\end{center}
+\vspace{0.2in}
+\makebox[\textwidth]{Name:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[\textwidth]{Signature:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\noindent\makebox[0.47\textwidth]{Student ID \#:\enspace\hrulefill}
+\hfill
+\makebox[0.47\textwidth]{Recitation \#:\enspace\hrulefill}
+
+\vspace{2em}
+
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+\vspace{2em}
+
+\paragraph{Instructions:} Answer all questions in the space provided, continuing on the back of the page if you run out of space. Show your work for full credit but be aware that writing down irrelevant information will not gain you points. Be sure to sign the academic integrity statement above and to write your name and student ID number on \emph{each page} in the space provided. Make sure that you have all pages of the exam before starting.
+
+\paragraph{Warning:} If you continue writing after we call time, even if this is only to fill in your name, twenty-five points will be deducted from your final score. In addition, a point will be deducted for each page on which you do not write your name and student ID.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{questions}
+
+\question Answer each of the following. For full credit, explain your answers clearly and succinctly.
+\begin{parts}
+%  \part[7] Consider a dataset $x_1, \dots, x_n$. Re-write the formula for the skewness of $x$ in terms of the z-scores $z_i = (x_i - \bar{x})/s$. Use this to explain the original formula: why does it involve a cubic and why does it divide by $s^3$?
+%  \begin{solution}
+%    \[
+%      \frac{1}{n}\frac{\sum_{i=1}^n (x_i - \bar{x})^3}{s^3} = \frac{1}{n} \sum_{i=1}^n \left( \frac{x_i - \bar{x}}{s} \right)^3 = \frac{1}{n} \sum_{i=1}^n z_i^3
+%    \]
+%  This shows us three things.
+%  First, since the z-scores are unitless, skewness is unitless: this is why we divide by $s^3$.
+%  Second, since $z^3$ has an odd power, skewness has a sign: if most of the z-scores are positive, skewness will be positive; if most of them are negative, skewness will be negative.
+%  Third, skewness gives more weight to z-scores that are far from zero, since the function $z^3$ is very small for $|z|<1/2$ and grows very quickly in magnitude outside this region.
+%  \end{solution}
+%
+%  \part[7] Explain why $\displaystyle{n \choose r} = {n \choose n-r}$.
+%\begin{solution}
+%Both sides give the number of ways to form a committee with $r$ members from a group of $n$ people: on the LHS we choose the $r$ people who are \emph{on} the committee, while on the RHS we choose the $n-r$ people who are \emph{not} on the committee.
+%\end{solution}
+
+  \part[10] Three percent of \emph{Tropicana} brand oranges are already rotten when they arrive at the supermarket. In contrast, six percent of \emph{Sunkist} brand oranges arrive rotten. A local supermarket buys forty percent of its oranges from \emph{Tropicana} and the rest from \emph{Sunkist}.
+  Suppose we randomly choose an orange from the supermarket and see that it is rotten. What is the probability that it is a \emph{Tropicana}? In your answer, let $R$ be the event that an orange is rotten and $T$ be the event that it is a \emph{Tropicana}.
+  \begin{solution}[2.5in]
+			By the law of total probability:
+				\begin{align*}
+				P(R) &= P(R|T)P(T) + P(R|T^c)P(T^c)\\
+					&= 0.03 \times 0.4 + 0.06 \times 0.6\\
+					&= 0.012 + 0.036 \\
+					&= 0.048
+				\end{align*}
+		 and by Bayes' Rule:
+			\begin{align*}
+			P(T|R) &= \frac{P(R|T)P(T)}{P(R)}\\
+					&= \frac{0.012}{0.048} = 1/4 = 0.25
+			\end{align*}
+		\end{solution}
+
+
+\part[7] Let $X_1, X_2\sim \mbox{iid}$ with mean $\mu$ and variance $\sigma^2$.
+Is $(0.1X_1 + 0.9X_2)$ is a more efficient estimator of $\mu$ than $(0.5X_1 + 0.5X_2)$?
+\begin{solution}[1.8in]
+  No: both estimators are unbiased, so it makes sense to talk about ``efficiency,'' but $\mbox{Var}(0.1 X_1 + 0.9 X_2) = 0.01 \sigma^2 + 0.81 \sigma^2 = 0.82 \sigma^2$ which is much larger than $\mbox{Var}(0.5 X_1 + 0.5 X_2) = 0.5 \sigma^2$.
+\end{solution}
+
+\part[7] Let $X$ and $Y$ be RVs with $Var(X) = 2$ , $Var(Y) = 1$, and $Cov(X,Y) = 0$. Calculate $Var(X - Y)$.
+\begin{solution}[1.8in]
+  $Var(X - Y) = Var(X) + Var(Y) - 2 Cov(X,Y) = 3$
+\end{solution}
+
+\part[7] Suppose that Alice and Bob each draw independent random samples of size $n=100$ from a normal population with unknown mean $\mu$ and known variance $\sigma^2=9$. They both construct 95\% confidence intervals for $\mu$.
+Will the widths of Alice and Bob's intervals be the same?
+Will Alice and Bob's intervals be identical?
+\begin{solution}[2in]
+  Both intervals will take the form $\bar{X} \pm 0.6$ since $\sigma/\sqrt{n} = 3/10 = 0.3$ in this example.
+  But since Alice and Bob use different samples, they will not obtain the same realization for $\bar{X}$.
+  Thus, their intervals will have the same width, $1.2$, but will not coincide: they will be centered in different locations.
+\end{solution}
+
+\part[7] In the ``Pepsi Challenge'' experiment from class there were four cups of Coke and four of Pepsi.
+In this question, consider a modified version of the experiment with \emph{three} cups of each kind of soda.
+Everything else is unchanged.
+Calculate the probability that our test statistic, the number of cokes correctly identified, will equal two \emph{under the null hypothesis}.
+\begin{solution}[2.25in]
+  \[
+    \frac{ \displaystyle {3 \choose 2} \times {3 \choose 1} }{\displaystyle{6 \choose 3}} = \frac{3 \times 3}{20} = 9/20 = 0.45
+  \]
+\end{solution}
+
+\part[7] Alice constructs a 95\% CI for $\mu$: $[-0.5, 0.3]$. Bob tests $H_0\colon \mu = 0$ vs.\ $H_1\colon \mu\neq 0$ with $\alpha = 0.01$ using the same dataset as Alice. Will he reject $H_0$?
+\begin{solution}[2in]
+  To answer this, introduce a third character: Cheryl.
+  Suppose Cheryl constructed a 99\% confidence interval using the same data as Alice.
+  To determine the result of Bob's test, we could simply check whether zero is contained in Cheryl's confidence interval.
+  Unfortunately the problem statement doesn't give us Cheryl's interval, but from our study of confidence intervals, we know that Alice's interval would be a \emph{subset} of Cheryl's interval.
+  Since $0$ is in Alice's interval, this implies that it will also be in Cheryl's interval.
+  Hence, Bob will fail to reject $H_0$.
+\end{solution}
+
+  \part[7] Suppose that $X_1, \dots, X_5 \sim \text{iid N}(1, 4)$ independently of $Y_1, \dots, Y_{20} \sim \text{iid N}(-1, 24)$. Write a line of R code to calculate $P(\bar{X} - \bar{Y} > 0)$.
+  \begin{solution}[3in]
+  We have $\bar{X} \sim N(1, 4/5)$ independently of $\bar{Y}(-1, 6/5)$.
+  Thus, it follows that $\bar{X} - \bar{Y} \sim N(2, 2)$ and accordingly
+  \[
+    P(\bar{X} - \bar{Y} > 0) = P\left( \frac{\bar{X} - \bar{Y} - 2}{\sqrt{2}} > \frac{-2}{\sqrt{2}} \right) = P(Z > -\sqrt{2})
+  \]
+  where $Z \sim N(0,1)$.
+  Therefore the desired probability is $\texttt{1 - pnorm(-sqrt(2))}$.
+\end{solution}
+
+\part[8] The Fibonacci sequence is defined as follows: $F_1 = 1, F_2 = 1$, and $F_i = F_{i-1} + F_{i-2}$ for $i \geq 3$. In other words: $1, 1, 2, 3, 5, 8, 13, 21, 34, 55\dots$ and so on.
+Write R code to calculate the first 20 terms of the Fibonacci sequence ($F_1, F_2, \dots, F_{20}$) and store them in a vector called \texttt{fib}.
+\begin{solution}[4.2in]
+  \begin{verbatim}
+fib <- rep(NA, 20)
+fib[1] <- 1
+fib[2] <- 1
+for(i in 3:20) {
+  fib[i] <- fib[i - 1] + fib[i - 2]
+}
+  \end{verbatim}
+\end{solution}
+
+\end{parts}
+
+\question Let $X, Y, Z$ be iid discrete RVs with support set $\left\{-1,1 \right\}$ and probability mass function $p(-1) = 1-p$, $p(1) = p$.
+  Define $S = X + Y + Z$.
+  \begin{parts}
+    \part[5] Calculate $E[X]$.
+    \begin{solution}[1in]
+      $E[X] = -1 \times (1 - p) + 1 \times p = 2p-1$
+    \end{solution}
+    \part[5] Calculate the variance of $Z$. How does it compare to that of a Bernoulli$(p)$ RV?
+    \begin{solution}[1.5in]
+      We have $E[Z^2] = (-1)^2 \times (1 - p) + 1^2 \times p = 1$, and from the preceding part it follows that $E[Z] = 2p-1$ since $X$ and $Z$ are identically distributed.
+      Hence, by the shortcut rule for variance:
+      \[
+        Var(Z) = E[Z^2] - (E[Z])^2 = 1 - (2p - 1)^2 = 4p(1-p).
+      \]
+      We know that the variance of a Bernoulli$(p)$ RV is $p(1-p)$.
+      Hence, the variance of $Z$ is always \emph{larger} than that of the corresponding Bernoulli.
+    \end{solution}
+    \part[5] Calculate $Var(S)$.
+    \begin{solution}[1.25in]
+      Since $(X,Y,Z)$ are iid,
+      \[
+        Var(S) = Var(X) + Var(Y) + Var(Z) = 3 \times 4p(1 - p) = 12p(1-p)
+      \]
+    \end{solution}
+%    \part[10] Calculate $E[YZ]$.
+%    \begin{solution}
+%      Since $Y$ and $Z$ are independent, their covariance is zero.
+%      Hence, by re-arranging the shortcut rule for covariance,
+%      \[
+%        E[YZ] = E[Y]E[Z] = (2p-1)(2p-1) = 1 - 4p + 4p^2.
+%      \]
+%      Alternatively, you could write out the joint pmf of $Y$ and $Z$ as follows
+%  \begin{center}
+%  \begin{tabular}[h]{lr|cc|}
+%    && \multicolumn{2}{|c|}{$Z$}\\
+%    && $-1$ & $1$ \\
+%    \hline
+%    \multirow{2}{*}{$Y$} & $-1$ & $(1-p)^2$ & $p(1-p)$ \\
+%    & $1$ & $p(1-p)$ & $p^2$ \\
+%    \hline
+%  \end{tabular}
+%\end{center}
+%using the fact that $Y$ and $Z$ are independent.
+%Hence,
+%\begin{align*}
+%  E[YZ] &= (1-p)^2 - p(1-p) - p(1-p) + p^2\\
+%  &= (1-p)^2 - 2p(1-p) + p^2\\
+%  &= (1 - 2p + p^2) - 2(p - p^2) + p^2 \\
+%  &= 1 - 4p + 4p^2
+%\end{align*}
+%    \end{solution}
+    \part[10] Calculate $P(S = 1)$.
+    \begin{solution}[3.5in]
+      This calculation effectively identical is to the reasoning we used to work out the pmf of a Binomial RV.
+      The only way to obtain $S=1$ is if \emph{exactly one} of the RVs $(X,Y,Z)$ takes on the value $-1$ while the rest take on the value $1$.
+      There are three mutually exclusive ways that this can occur:
+      \begin{enumerate}
+        \item[(i)] $X=-1$, $Y = Z = 1$
+        \item[(ii)] $Y = -1$, $X = Z = 1$
+        \item[(iii)] $Z = -1$, $X = Y = 1$
+      \end{enumerate}
+      Since $(X,Y,Z)$ are independent, $P(X =-1 \cap Y =1 \cap Z = 1) = (1-p)p^2$.
+      But by the same reasoning, $P(X =1 \cap Y =-1 \cap Z = 1) = (1-p)p^2$ and $P(X =1 \cap Y =1 \cap Z = -1) = (1-p)p^2$.
+      Hence, $P(S=1) = 3(1-p)p^2$.
+    \end{solution}
+%    \part[5] Suppose that $E[S] = 2$. What is the value of $p$?
+%    \begin{solution}
+%      By linearity and the fact that $(X,Y,Z)$ are identically distributed,
+%      \[
+%        E[S] = E[X] + E[Y] + E[Z] = 3(2p - 1) = 6p - 3.
+%      \]
+%      Hence, solving $6p - 3 = 2$, we obtain $p = 5/6$.
+%    \end{solution}
+  \end{parts}
+
+
+\question Dr.\ Evil gives twenty quizzes in his Henchman Studies 103 course.
+Each quiz has a single question, drawn from a list of ten review questions.
+Each list of review questions contains seven \emph{Easy} questions and three \emph{Hard} questions.
+Dr.\ Evil claims to select quiz questions completely at random with no regard to their difficulty.
+He claims, for example, that the first quiz will contain one question drawn at random from the ten review questions for Lecture \#1.
+Yvonne suspects that Dr.\ Evil is \emph{lying} about choosing questions completely at random.
+Because 9 out of the 20 quiz questions during the semester were \emph{Hard}, she thinks Dr.\ Evil took question difficulty into account when creating his quizzes.
+Let $H$ be the total number of \emph{Hard} questions that appear on quizzes during the semester.
+\begin{parts}
+  \part[5] If Dr.\ Evil is telling the truth, what is $E[H]$?
+  \begin{solution}[1.5in]
+    If Dr.\ Evil is telling the truth, then $H \sim \text{Binomial}(20, 0.3)$.
+    Hence, $E[H] = 20 \times 0.3 = 6$.
+  \end{solution}
+  \part[5] If Dr.\ Evil is telling the truth, what is $Var(H)$?
+  \begin{solution}[1.5in]
+    Continuing from the solution to the previous part, $Var(H) = 20 \times 0.3 \times 0.7 = 4.2$.
+  \end{solution}
+% \part[5] Write a line of R code to calculate $P(H \geq 9)$ if Dr.\ Evil is telling the truth.
+%  \begin{solution}
+%    \texttt{sum(dbinom(9:20, 20, 0.3))} or \texttt{1 - pbinom(8, 20, 0.3)}, which is approximately 0.11.
+%  \end{solution}
+%  \part Boris studies all of the Easy and Medium questions carefully, but he never studies any of the Hard questions.
+%  If an Easy or Medium question appears on a quiz, Boris always gets it right; if a Hard question appears on a quiz he leaves it blank.
+%  Calculate Boris's expected quiz average if Dr.\ Evil is telling the truth.
+%  \begin{solution}
+%Based on the way he studies, Boris has probability 0.7 of getting a given quiz question correct.
+%If $C$ is the total number of questions that he gets correct during the semester, than $C \sim \text{Binomial}(20, 0.7)$.
+%Hence, Boris's expected quiz average is $E[C/20] = E[C]/20 = 0.7$, in other words $70\%$.
+%  \end{solution}
+  \part[10] Yvonne decides to test the null hypothesis that Dr.\ Evil is telling the truth against the alternative that Hard questions are disproportionately \emph{likely} to appear on quizzes, using the approximation based on the CLT. Calculate her test statistic.
+  \begin{solution}[2.5in]
+    If Dr.\ Evil is telling the truth then each Hard question has probability $p_0 = 0.3$ of appearing on a quiz.
+    Yvonne's estimate, on the other hand, is $\hat{p} = 9/20 = 0.45$.
+    Hence, the test statistic is
+    \[
+      \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0)/n}} =  \frac{0.45 - 0.3}{\sqrt{(0.3 \times 0.7)/20}} \approx 1.46
+    \]
+  \end{solution}
+  \part[5] Yvonne enters the R commands
+\begin{verbatim}
+      x <- 0.9 + 0:10 / 200
+      y <- qnorm(x)
+      cbind(x,y)
+\end{verbatim}
+and obtains the following output from the console:
+\begin{verbatim}
+                x        y
+       [1,] 0.900 1.281552
+       [2,] 0.905 1.310579
+       [3,] 0.910 1.340755
+       [4,] 0.915 1.372204
+       [5,] 0.920 1.405072
+       [6,] 0.925 1.439531
+       [7,] 0.930 1.475791
+       [8,] 0.935 1.514102
+       [9,] 0.940 1.554774
+      [10,] 0.945 1.598193
+      [11,] 0.950 1.644854
+\end{verbatim}
+Continuing from the preceding part, approximately what is the p-value for her test?
+Interpret her results.
+\begin{solution}[1.25in]
+  Her p-value is around $0.07$.
+  With $\alpha = 0.1$ we would reject the null, but with $\alpha = 0.05$ we would not.
+  To put this into context, $0.07$ is approximately $1/14$.
+  So if Dr.\ Evil teaches Henchman Studies 103 fourteen times, we would expect to see one semester in which the fraction of hard questions on quizzes exceeded 0.45 even if he's choosing the questions completely at random.
+  We have found some evidence that Dr.\ Evil may be lying, but it's not overwhelming.
+\end{solution}
+\end{parts}
+
+\question[20] Write an R function called \texttt{myreg} to estimate $\beta_0$ and $\beta_1$ in the simple linear regression $Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i$. Your function should take two input arguments: a vector \texttt{y} of observed outcomes and a corresponding vector \texttt{x} of observed values for the predictor variable. You may assume that there are no missing values and that the lengths of \texttt{x} and \texttt{y} are the same. Your function should return a vector with two elements: the estimate of $\beta_0$ and the estimate of $\beta_1$ (in that order). In your answer you may use any R functions that you like \emph{except} for \texttt{lm}.
+\begin{solution}[1.5in]
+  There are many possible correct answers. Here is one:
+  \begin{verbatim}
+myreg <- function(x, y) {
+  b1 <- cov(x, y) / var(x)
+  b0 <- mean(y) - b1 * mean(x)
+  return(c(b0, b1))
+}
+  \end{verbatim}
+
+\end{solution}
+
+\question[20] This problem is taken from the extensions.
+It has been re-worded slightly for clarity, but the solution is unchanged.
+Let $Y$ and $X$ be RVs. In this problem you will find the the constants $\beta_0$ and $\beta_1$ that solve
+\[
+  \min_{\beta_0, \beta_1} E[(Y - \beta_0 - \beta_1 X)^2].
+\]
+For the purposes of this question you may assume that expectation and differentiation can be interchanged, i.e.\ that $\frac{\partial}{\partial \theta} E[f(Z,\theta)] = E[\frac{\partial}{\partial \theta} f(Z,\theta)]$.
+You do not have to check the second order condition.
+\begin{parts}
+  \part Show that $\beta_0 = E[Y] - \beta_1 E[X]$.
+  \begin{solution}[3in]
+  Differentiating with respect to $\beta_0$ gives the first order condition
+  \[
+    -2 E[Y - \beta_0 - \beta_1 X] = 0
+    \]
+  Re-arranging using the linearity of expectation, $\beta_0 = E[Y] - \beta_1 E[X]$
+\end{solution}
+  \part Using the preceding part, find $\beta_1$.
+  \begin{solution}[3.5in]
+  Substituting the expression for $\beta_0$ back into the objective function,
+  \[
+    E[(Y - \mu_Y - \beta_1 \mu_X - \beta_1 X)^2] = E\left[ \left\{ (Y-\mu_Y) - \beta_1 (X - \mu_X)\right\}^2\right]
+  \]
+  using the shorthand $E[Y] = \mu_Y$ and $E[X] = \mu_X$.
+  Now, differentiating with respect to $\beta_1$ gives the first order condition
+  \[
+    -2 E\left[ \left\{(Y - \mu_Y) - \beta_1(X - \mu_X)\right\} (X - \mu_X)\right] = 0
+    \]
+ Finally, rearranging and solving for $\beta_1$ using the linearity of expectation,
+ \begin{align*}
+    E[(Y - \mu_Y)(X - \mu_X)] &=  E[\beta_1(X - \mu_X)^2]\\
+    Cov(X,Y) &=  \beta_1 Var(X)\\
+    \beta_1 &= \frac{Cov(X,Y)}{Var(X)}
+ \end{align*}
+\end{solution}
+\end{parts}
+
+
+\question This question relies on an R dataframe called \texttt{kaiser} with data for 1174 babies born at the Kaiser Foundation hospital in Oakland California.
+Here are the first few rows:
+\begin{verbatim}
+  bwt gestation smoke
+1 120       284     0
+2 113       282     0
+3 128       279     1
+4 108       282     1
+5 136       286     0
+6 138       244     0
+\end{verbatim}
+Each row in \texttt{kaiser} is a newborn baby: \texttt{bwt} gives the baby's birthweight in ounces, \texttt{gestation} gives the length of the pregnancy in days, and \texttt{smoke} is a dummy variable taking the value one if the baby's mother smoked during pregnancy.
+The last page of this exam contains results for five regression models estimated using \texttt{kaiser}.
+You may find it helpful to tear out the page of regression results for ease of reference.
+\begin{parts}
+  \part[5] What is the sample mean of \texttt{bwt}?
+  \begin{solution}[1.5in]
+    Regression \#1 contains only an intercept: $Y = \beta_0 + \varepsilon$.
+    Hence, the estimated intercept equals the sample mean: $119.46$ ounces.
+  \end{solution}
+  \part[5] Approximately what is the sample variance of \texttt{bwt}?
+  \begin{solution}[1.5in]
+    The standard error of the intercept in Regression \#1 is 0.53.
+    But we know that the intercept in this case is simply the sample mean.
+    Hence, $0.53$ is the standard error of the sample mean: $S/\sqrt{n} = 0.53$.
+    From the regression results, we see that $n = 1174$.
+    Hence, re-arranging and solving for $S$, we obtain $S \approx 18$ ounces, in other words approximately one pound.
+  \end{solution}
+  \part[5] Explain why the R-squared of Regression \#1 is exactly zero.
+  \begin{solution}[1.5in]
+    By definition, $R^2 = 1 - \sum_{i=1}^n \widehat{\varepsilon}_i^2 / \sum_{i=1}^n (y_i - \bar{y})^2$.
+    Since Regression \#1 has only an intercept, $\widehat{y}_i = \widehat{\beta}_0 = \bar{y}$ and hence $\widehat{\varepsilon}_i = y_i - \widehat{y}_i = y_i - \bar{y}$.
+    Substituting this into the definition of R-squared, the numerator and denominator in the fraction are identical so the fraction itself equals one. Hence,
+    \[
+     R^2 =  1 - \frac{\sum_{i=1}^n (y_i - \bar{y})^2}{\sum_{i=1}^n (y_i - \bar{y})^2} = 1 - 1 = 0.
+    \]
+  \end{solution}
+  \part[5] Which mothers have heavier babies: those who smoke or those who do not?
+  How large is the difference?
+  \begin{solution}[1.7in]
+    From Regression \#2, we see babies born to mothers who \emph{do not smoke} are, on average, approximately 9 ounces heavier that those born to mothers who smoke.
+  \end{solution}
+  \part[5] Continuing from the preceding part, is there convincing evidence of a difference in the population, or could our estimate by explained by sampling variation?
+  %Is the magnitude of the difference practically relevant? Discuss.
+  \begin{solution}[1.7in]
+    From the output of regression \#2, the standard error of the difference of means is approximately 1.
+    Hence, an approximate 95\% confidence interval for the difference of means (smokers $-$ non-smokers) is $-9 \pm 2 = (-11, -7)$ while a 99.7\% confidence interval is $-9 \pm 3 = (-12, -6)$.
+    We have found extremely strong evidence of a difference in the population.
+    Moreover, this difference is large.
+    The smallest difference from the 99.7\% CI is -6 ounces.
+    From part (b), this corresponds to 1/3 of a standard deviation in birthweight.
+    This is substantial, and the point estimate is even larger: 9 ounces 1/2 of a standard deviation of birthweight.
+  \end{solution}
+  \part[5] Continuing from the preceding part, does the \texttt{kaiser} dataset provide evidence that smoking during pregnancy has a \emph{causal effect} on birthweight?
+  Why or why not?
+  \begin{solution}[1.7in]
+    Putting to one side any outside information about the health effects of smoking, the \texttt{kaiser} dataset \emph{alone} does not provide evidence of a causal effect.
+    Mothers who smoke during pregnancy are likely different from those who do not in myriad ways: smokers tend to be poorer, for example.
+    The comparison from Regression \#2 does not hold these other factors constant, so the estimated effect is not necessarily causal.
+  \end{solution}
+  \part[5] About how accurately does a regression that uses \emph{only} \texttt{gestation} predict birthweight?
+  \begin{solution}[1.7in]
+    The residual standard deviation of regression \#3 is 16.74 ounces, so \texttt{gestation} predicts birthweight to an accuracy of about 1 pound.
+  \end{solution}
+  \part[5] What is the approximate value of the correlation between \texttt{bwt} and \texttt{gestation}?
+  \begin{solution}[1.5in]
+    The R-squared of Regression \#3 is 0.17, so the correlation $\sqrt{0.17} \approx 0.4$.
+  \end{solution}
+  \part[5] Consider two mothers, both of whose pregnancies lasted exactly $d$ days: Xanthippe smoked during pregnancy while Yvonne did not.
+  Based on this information, whose baby would we predict will be heavier at birth?
+  Does your answer depend on whether we use Regression \#4 or \#5 to make our prediction?
+  Explain briefly.
+  \begin{solution}[3in]
+    Based on Regression \#4 we would predict that Yvonne's baby will be heavier: this regression only allows a difference of \emph{intercepts}, so the predicted difference in birthweight for smokers versus non-smokers is the same for all values of \texttt{gestation}.
+    In contrast, Regression \#5 allows both a different slope and intercept.
+    The intercept in Regression \#5 is about 73 ounces lower for smokers, while the slope is about 0.23 ounces per day higher.
+    This means that the regression line for smokers starts off \emph{below} that for non-smokers, but eventually the two lines cross.
+    The question is, \emph{where} do they cross?
+    For each additional day of gestation, the regression line for smokers ``gains'' on that for non-smokers by 0.23 ounces.
+    Hence, making up for its initial deficit of 73 ounces will take $73/0.23 \approx 317$ days.
+    This would correspond to a pregnancy of 45 weeks, which is so long as to be practically unheard of.
+    For any ``reasonable'' value of $d$, Regression \#5 will also predict that Yvonne's baby will be heavier.
+  \end{solution}
+  \part[5] Is there convincing evidence of a different slope in relationship between \texttt{gestation} and \texttt{bwt} for smokers versus non-smokers? If so, what is the nature of the difference?
+  \begin{solution}[2.5in]
+    Regression \#5 allows for a different slope and intercept in the relationship between \texttt{gestation} and \texttt{bwt} depending on whether or not a mother smoked during pregnancy.
+    The interaction term \texttt{smoke:gestation} gives the difference of slopes for smokers versus non-smokers.
+    The estimate is 0.23 with a standard error of 0.06.
+    If we were to test the null hypothesis of no difference of slopes, our test statistic would be approximately 4.
+    This gives a p-value below 0.003, so there is very strong evidence against the null.
+    An approximate 95\% confidence interval for the difference of slopes is $0.23 \pm 0.12 = (0.11,0.35)$, so we have strong evidence that the slope is \emph{higher} for mothers who smoke.
+    In other words, we would predict a \emph{larger} difference in birthweight between babies with different lengths of gestation if their mothers smoked than if they did not smoke.
+  \end{solution}
+\end{parts}
+
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Regression results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\footnotesize
+
+\paragraph{\footnotesize Regression \#1}
+\begin{boxedverbatim}
+lm(formula = bwt ~ 1, data = kaiser)
+            coef.est coef.se
+(Intercept) 119.46     0.53
+---
+n = 1174, k = 1
+residual sd = 18.33, R-Squared = 0.00
+\end{boxedverbatim}
+
+\paragraph{\footnotesize Regression \#2}
+\begin{boxedverbatim}
+lm(formula = bwt ~ smoke, data = kaiser)
+            coef.est coef.se
+(Intercept) 123.09     0.66
+smoke        -9.27     1.06
+---
+n = 1174, k = 2
+residual sd = 17.77, R-Squared = 0.06
+\end{boxedverbatim}
+
+\paragraph{\footnotesize Regression \#3}
+\begin{boxedverbatim}
+lm(formula = bwt ~ gestation, data = kaiser)
+            coef.est coef.se
+(Intercept) -10.75     8.54
+gestation     0.47     0.03
+---
+n = 1174, k = 2
+residual sd = 16.74, R-Squared = 0.17
+\end{boxedverbatim}
+
+\paragraph{\footnotesize Regression \#4}
+\begin{boxedverbatim}
+lm(formula = bwt ~ smoke + gestation, data = kaiser)
+            coef.est coef.se
+(Intercept) -3.18     8.33
+smoke       -8.37     0.97
+gestation    0.45     0.03
+---
+n = 1174, k = 3
+residual sd = 16.25, R-Squared = 0.22
+\end{boxedverbatim}
+
+\paragraph{\footnotesize Regression \#5}
+\begin{boxedverbatim}
+lm(formula = bwt ~ smoke + gestation + smoke:gestation, data = kaiser)
+                coef.est coef.se
+(Intercept)      19.64    10.29
+smoke           -72.69    17.23
+gestation         0.37     0.04
+smoke:gestation   0.23     0.06
+---
+n = 1174, k = 4
+residual sd = 16.16, R-Squared = 0.22
+\end{boxedverbatim}
+
+
+\end{document}
