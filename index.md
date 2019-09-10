@@ -101,6 +101,7 @@ Note that some of the material on past exams, in particular some of the R code, 
 - Fall 2012: [exam](./PracticeExams/midterm2_2012_11_07.pdf), [solutions](./PracticeExams/midterm2_2012_11_07_solutions.pdf)
 
 ### Final
+- Spring 2019: [exam](./PracticeExams/final_2019_05_14.pdf), [solutions](./PracticeExams/final_2019_05_14_solutions.pdf)
 - Spring 2018: [exam](./PracticeExams/final_2018_05_01.pdf), [solutions](./PracticeExams/final_2018_05_01_solutions.pdf)
 - Spring 2017: [exam](./PracticeExams/final_2017_05_04.pdf), [solutions](./PracticeExams/final_2017_05_04_solutions.pdf)
 - Spring 2016: [exam](./PracticeExams/final_2016_05_09.pdf), [solutions](./PracticeExams/final_2016_05_09_solutions.pdf)
