@@ -229,13 +229,35 @@ What are the units of the following quantities?
 \question Mark each of the following statements as True or False. You do not need to show your work if this question appears on a quiz, although you should make sure you understand the reasoning behind each of your answers.
 	\begin{parts}
 		\part $\displaystyle\sum_{i=1}^n (x_i/n) = \left(\sum_{i=1}^n x_i\right)/n$ 
+    \begin{solution}
+      TRUE
+    \end{solution}
 		\part $\displaystyle\sum_{k = 1}^n x_k z_k = z_k \sum_{k = 1}^n x_k$ 
+    \begin{solution}
+      FALSE
+    \end{solution}
 		\part $\displaystyle\sum_{k=1}^m x_k y_k = \left(\sum_{k=1}^m x_k\right) \left(\sum_{k=1}^m y_k\right)$ 
+    \begin{solution}
+      FALSE
+    \end{solution}
 		\part $\displaystyle\left(\sum_{i=1}^n x_i \right)\left(\sum_{j=1}^m y_j\right) = \sum_{i=1}^n \sum_{j=1}^m x_iy_j$ 
+    \begin{solution}
+      TRUE
+    \end{solution}
 		\part $\displaystyle\left(\sum_{i=1}^n x_i\right)/\left(\sum_{i=1}^n z_i\right)= \sum_{i=1}^n \left(x_i/z_i\right) $
+    \begin{solution}
+      FALSE
+    \end{solution}
 	\end{parts}
 
   \question Show that $\sum_{i=1}^n (x_i - \bar{x}) = 0$. Justify all of the steps you use.
+  \begin{solution}
+    \begin{align*}
+      \sum_{i=1}^{n} (x_i - \bar{x}) 
+      &= \left(\sum_{i=1}^n x_i\right) - \left(\sum_{i=1}^n \bar{x}\right) = n \left(\frac{1}{n}\sum_{i=1}^n x_i\right) - n \bar{x}\\
+      &= n \bar{x} - n \bar{x} = 0
+    \end{align*}
+  \end{solution}
 
   \question Re-write the formula for skewness in terms of the z-scores $z_i = (x_i - \bar{x})/s$. Use this to explain the original formula: why does it involve a cubic and why does it divide by $s^3$?
   \begin{solution}
@@ -981,8 +1003,20 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 
 \question Suppose that $X$ and $Y$ are two RVs with correlation $\rho = 0.3$, and standard deviations $\sigma_X = 4$ and $\sigma_Y = 5$.
 \begin{parts}
-  \part Calculate $Cov(X,Y)$.
-  \part Let $Z = (X + Y)/2$. Calculate $Var(Z)$.
+  \part Calculate $\text{Cov}(X,Y)$.
+  \begin{solution}
+    \[
+      \text{Cov}(X,Y) = \text{Corr}(X,Y) \times \text{SD}(X) \text{SD}(Y) = 0.3 \times 4 \times 5 = 6 
+    \]
+  \end{solution}
+  \part Let $Z = (X + Y)/2$. Calculate $\text{Var}(Z)$.
+  \begin{solution}
+    \begin{align*}
+     \text{Var}(Z)& = \text{Var}\left( \frac{X+Y}{2} \right) = \frac{1}{4} \text{Var}(X + Y)\\
+     &= \frac{1}{4}\left[ \text{Var}(X) + \text{Var}(Y) + 2 \text{Cov}(X,Y) \right]\\
+     &= \frac{1}{4}\left(4^2 + 5^2 + 2 \times 6\right) = \frac{1}{4} \times 53 = 13.25  
+   \end{align*}
+  \end{solution}
 \end{parts}
 
 \question What does it mean for a sequence of random variables $X_1, X_2, \dots, X_n$ to be ``independent and identically distributed (iid)?''
@@ -1074,7 +1108,13 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 \]
 \begin{parts}
   \part Calculate the PDF of $X$.
+  \begin{solution}
+    $f(x) = F'(x) = 1/4$ for $x \in [-2, 2]$, zero otherwise
+  \end{solution}
   \part Is $X$ an example of one of the ``named'' RVs from the lecture slides? If so, which one? Be sure to specify the values of any and all parameters of the distribution.
+  \begin{solution}
+    $X \sim \text{Uniform}(-2, 2)$
+  \end{solution}
 \end{parts}
 
 
@@ -1336,6 +1376,17 @@ Is $\widehat{\mu}$ consistent for $\mu$?
   \question Suppose that we observe hourly wages for a random sample of 20 college graduates: the sample mean is \$31 with a standard deviation of \$15.
   In contrast, the sample mean wage is \$17 with a standard deviation of \$10 for a sample of 30 non-college graduates.
   Construct an approximate 95\% confidence interval for the difference in population mean wages ($\mu_X - \mu_Y$) between college graduates ($X$) and non-college graduates ($Y$).
+  \begin{solution}
+    This is an independent samples problem, so an approximate 95\% confidence interval for $\mu_x - \mu_y$ is given by \[
+      \bar{X} - \bar{Y} \pm 2 \times \text{SE}
+    \]
+    We calculate the estimated standard error as follows:
+    \[
+      \widehat{\text{SE}} = \sqrt{\frac{S_x^2}{n_x} + \frac{S_y^2}{n_y}} = \sqrt{\frac{15^2}{20} + \frac{10^2}{30}} = \sqrt{\frac{225}{20} + \frac{100}{30}} \approx 3.8 
+    \] 
+    so the confidence interval is approximately $(31 - 17) \pm 2 \times 3.8$ in other words $14 \pm 7.6$ or $(6.4, 21.6)$ 
+  \end{solution}
+
 
   \question Xanthippe wants to know which university has a higher proportion of philosophy majors: Penn or Princeton.
   She polls a random sample of 100 Penn students -- 10 are philosophy majors.
