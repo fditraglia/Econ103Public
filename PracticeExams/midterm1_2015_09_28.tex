@@ -93,7 +93,7 @@ Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
   \begin{solution}[1.5in]
     True
   \end{solution}
-  \part[3] For any events $A$ and $B$, $P(B) = P(A\cap B)/P(B|A)$
+  \part[3] For any events $A$ and $B$ with $P(A\cap B)>0$, $P(B) = P(A\cap B)/P(B|A)$
   \begin{solution}[1.5in]
     False: this gives $P(A)$ rather than $P(B)$. To correct the equality, replace $P(B|A)$ by $P(A|B)$.
   \end{solution}
@@ -269,9 +269,9 @@ Let $A$, $B$ and $C$ be three arbitrary events.
     If (and only if) he gets 5 heads or 5 tails he will cheat by deflating the balls used in the game. If Tom cheats, the Patriots win with probability $\frac{3}{4}$. But if Tom does not cheat, they win with probability $\frac{2}{5}$. Given that the Patriots won the game, what is the probability that Tom cheated?
     \begin{solution}[4in]
       First write down all the probabilities given in the question statement.
-      Let $C$ be the event that Tom Brady cheats $C$ and $W$ be the event that the Patriots win. 
+      Let $C$ be the event that Tom Brady cheats and $W$ be the event that the Patriots win. 
       (Using this notation $C^c$ is the event that Tom \emph{doesn't} cheat.)
-     From Part (c), we know that $P(C) = 1/16$  and therefore $P(C^c) = 1 - P(C) = 15/16$. We are told in the problem statment that $P(W|C) = 3/4$ while $P(W|C^c) = 2/5$ and are asked to find $P(C|W)$. By Bayes' Rule:
+     From part (a), we know that $P(C) = 1/16$  and therefore $P(C^c) = 1 - P(C) = 15/16$. We are told in the problem statement that $P(W|C) = 3/4$ while $P(W|C^c) = 2/5$ and are asked to find $P(C|W)$. By Bayes' Rule:
     \begin{equation*}
       P(\mbox{C}|\mbox{W}) = \frac{P(\mbox{C})P(\mbox{W}|\mbox{C})}{P(\mbox{W})}
     \end{equation*}
