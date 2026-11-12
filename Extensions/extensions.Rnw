@@ -1,4 +1,5 @@
 \documentclass[addpoints,12pt]{exam}
+\usepackage{framed}
 \usepackage{todonotes}
 \usepackage{amsmath, amssymb}
 \linespread{1.1}

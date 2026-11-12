@@ -1,6 +1,6 @@
-\documentclass[addpoints,12pt]{exam}\usepackage[]{graphicx}\usepackage[]{color}
-%% maxwidth is the original width if it is less than linewidth
-%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\documentclass[addpoints,12pt]{exam}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
 \def\maxwidth{ %
   \ifdim\Gin@nat@width>\linewidth
@@ -13,10 +13,10 @@
 
 \definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
 \newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
 \newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
 \newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
 \newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
 \newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
 \newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
@@ -49,6 +49,7 @@
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
 \usepackage{alltt}
+\usepackage{framed}
 \usepackage{todonotes}
 \usepackage{amsmath, amssymb}
 \linespread{1.1}
@@ -502,10 +503,10 @@ Define $F_D$ and $F_S$ analogously.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{n} \hlkwb{<-} \hlnum{1}\hlopt{:}\hlnum{4}
-\hlstd{p} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlnum{1}\hlopt{/}\hlnum{10}\hlopt{^}\hlstd{n}
-\hlstd{EV} \hlkwb{<-} \hlnum{100000} \hlopt{*} \hlstd{p} \hlopt{-} \hlnum{1000} \hlopt{*} \hlstd{n}
-\hlkwd{cbind}\hlstd{(n,p,EV)}
+\hldef{n} \hlkwb{<-} \hlnum{1}\hlopt{:}\hlnum{4}
+\hldef{p} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlnum{1}\hlopt{/}\hlnum{10}\hlopt{^}\hldef{n}
+\hldef{EV} \hlkwb{<-} \hlnum{100000} \hlopt{*} \hldef{p} \hlopt{-} \hlnum{1000} \hlopt{*} \hldef{n}
+\hlkwd{cbind}\hldef{(n,p,EV)}
 \end{alltt}
 \begin{verbatim}
 ##      n      p    EV
@@ -611,8 +612,8 @@ Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lectu
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{data_url} \hlkwb{<-} \hlstr{'http://ditraglia.com/econ103/closing_prices.csv'}
-\hlstd{prices} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
+\hldef{data_url} \hlkwb{<-} \hlsng{'http://ditraglia.com/econ103/closing_prices.csv'}
+\hldef{prices} \hlkwb{<-} \hlkwd{read.csv}\hldef{(data_url)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -624,8 +625,8 @@ Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lectu
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{google_returns} \hlkwb{<-} \hlkwd{diff}\hlstd{(}\hlkwd{log}\hlstd{(prices}\hlopt{$}\hlstd{GOOG))}
-\hlstd{apple_returns} \hlkwb{<-} \hlkwd{diff}\hlstd{(}\hlkwd{log}\hlstd{(prices}\hlopt{$}\hlstd{APPL))}
+\hldef{google_returns} \hlkwb{<-} \hlkwd{diff}\hldef{(}\hlkwd{log}\hldef{(prices}\hlopt{$}\hldef{GOOG))}
+\hldef{apple_returns} \hlkwb{<-} \hlkwd{diff}\hldef{(}\hlkwd{log}\hldef{(prices}\hlopt{$}\hldef{APPL))}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -635,9 +636,9 @@ Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lectu
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{s1} \hlkwb{<-} \hlkwd{sd}\hlstd{(google_returns)}
-\hlstd{s2} \hlkwb{<-} \hlkwd{sd}\hlstd{(apple_returns)}
-\hlstd{r} \hlkwb{<-} \hlkwd{cor}\hlstd{(google_returns, apple_returns)}
+\hldef{s1} \hlkwb{<-} \hlkwd{sd}\hldef{(google_returns)}
+\hldef{s2} \hlkwb{<-} \hlkwd{sd}\hldef{(apple_returns)}
+\hldef{r} \hlkwb{<-} \hlkwd{cor}\hldef{(google_returns, apple_returns)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -650,8 +651,8 @@ Hint: the steps are similar our proof that $Var(aX + b) = a^2 Var(X)$ from lectu
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{wstar} \hlkwb{<-} \hlstd{(s2}\hlopt{^}\hlnum{2} \hlopt{-} \hlstd{r} \hlopt{*} \hlstd{s1} \hlopt{*} \hlstd{s2)} \hlopt{/} \hlstd{(s1}\hlopt{^}\hlnum{2} \hlopt{+} \hlstd{s2}\hlopt{^}\hlnum{2} \hlopt{-} \hlnum{2} \hlopt{*} \hlstd{r} \hlopt{*} \hlstd{s1} \hlopt{*} \hlstd{s2)}
-\hlstd{wstar}
+\hldef{wstar} \hlkwb{<-} \hldef{(s2}\hlopt{^}\hlnum{2} \hlopt{-} \hldef{r} \hlopt{*} \hldef{s1} \hlopt{*} \hldef{s2)} \hlopt{/} \hldef{(s1}\hlopt{^}\hlnum{2} \hlopt{+} \hldef{s2}\hlopt{^}\hlnum{2} \hlopt{-} \hlnum{2} \hlopt{*} \hldef{r} \hlopt{*} \hldef{s1} \hlopt{*} \hldef{s2)}
+\hldef{wstar}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.5422114
@@ -922,20 +923,20 @@ To answer the question for estimators of \emph{market size}, i.e.\ the populatio
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{get_CI} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{data}\hlstd{,} \hlkwc{pop_sd}\hlstd{,} \hlkwc{alpha}\hlstd{)\{}
+\hldef{get_CI} \hlkwb{<-} \hlkwa{function}\hldef{(}\hlkwc{data}\hldef{,} \hlkwc{pop_sd}\hldef{,} \hlkwc{alpha}\hldef{)\{}
 
-  \hlstd{x_bar} \hlkwb{<-} \hlkwd{mean}\hlstd{(data)}
-  \hlstd{n} \hlkwb{<-} \hlkwd{length}\hlstd{(data)}
+  \hldef{x_bar} \hlkwb{<-} \hlkwd{mean}\hldef{(data)}
+  \hldef{n} \hlkwb{<-} \hlkwd{length}\hldef{(data)}
 
-  \hlstd{SE} \hlkwb{<-} \hlstd{pop_sd} \hlopt{/} \hlkwd{sqrt}\hlstd{(n)}
-  \hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlstd{alpha}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
+  \hldef{SE} \hlkwb{<-} \hldef{pop_sd} \hlopt{/} \hlkwd{sqrt}\hldef{(n)}
+  \hldef{ME} \hlkwb{<-} \hlkwd{qnorm}\hldef{(}\hlnum{1} \hlopt{-} \hldef{alpha}\hlopt{/}\hlnum{2}\hldef{)} \hlopt{*} \hldef{SE}
 
-  \hlstd{lower} \hlkwb{<-} \hlstd{x_bar} \hlopt{-} \hlstd{ME}
-  \hlstd{upper} \hlkwb{<-} \hlstd{x_bar} \hlopt{+} \hlstd{ME}
+  \hldef{lower} \hlkwb{<-} \hldef{x_bar} \hlopt{-} \hldef{ME}
+  \hldef{upper} \hlkwb{<-} \hldef{x_bar} \hlopt{+} \hldef{ME}
 
-  \hlstd{out} \hlkwb{<-} \hlkwd{c}\hlstd{(lower, upper)}
-  \hlkwd{return}\hlstd{(out)}
-\hlstd{\}}
+  \hldef{out} \hlkwb{<-} \hlkwd{c}\hldef{(lower, upper)}
+  \hlkwd{return}\hldef{(out)}
+\hldef{\}}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -943,8 +944,8 @@ Testing this out on fake data containing twenty-five zeros and assuming a popula
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{fake_data} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{25}\hlstd{)}
-\hlkwd{get_CI}\hlstd{(fake_data,} \hlkwc{pop_sd} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
+\hldef{fake_data} \hlkwb{<-} \hlkwd{rep}\hldef{(}\hlnum{0}\hldef{,} \hlnum{25}\hldef{)}
+\hlkwd{get_CI}\hldef{(fake_data,} \hlkwc{pop_sd} \hldef{=} \hlnum{1}\hldef{,} \hlkwc{alpha} \hldef{=} \hlnum{0.05}\hldef{)}
 \end{alltt}
 \begin{verbatim}
 ## [1] -0.3919928  0.3919928
@@ -960,15 +961,15 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{CI_sim} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{sample_size}\hlstd{)\{}
-    \hlstd{sims} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(sample_size)}
-    \hlstd{CI} \hlkwb{<-} \hlkwd{get_CI}\hlstd{(sims,} \hlkwc{pop_sd} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
-    \hlkwd{return}\hlstd{(CI)}
-\hlstd{\}}
-\hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{)}
+\hldef{CI_sim} \hlkwb{<-} \hlkwa{function}\hldef{(}\hlkwc{sample_size}\hldef{)\{}
+    \hldef{sims} \hlkwb{<-} \hlkwd{rnorm}\hldef{(sample_size)}
+    \hldef{CI} \hlkwb{<-} \hlkwd{get_CI}\hldef{(sims,} \hlkwc{pop_sd} \hldef{=} \hlnum{1}\hldef{,} \hlkwc{alpha} \hldef{=} \hlnum{0.05}\hldef{)}
+    \hlkwd{return}\hldef{(CI)}
+\hldef{\}}
+\hlkwd{CI_sim}\hldef{(}\hlnum{10}\hldef{)}
 \end{alltt}
 \begin{verbatim}
-## [1] -1.1490023  0.0905878
+## [1] -0.4886708  0.7509193
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -978,22 +979,22 @@ Which is almost exactly the same. The reason for the slight discrepancy is that 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{simCIs} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{CI_sim}\hlstd{(}\hlnum{10}\hlstd{))}
-\hlstd{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
+\hldef{simCIs} \hlkwb{<-} \hlkwd{replicate}\hldef{(}\hlnum{10000}\hldef{,} \hlkwd{CI_sim}\hldef{(}\hlnum{10}\hldef{))}
+\hldef{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hldef{]}
 \end{alltt}
 \begin{verbatim}
 ##            [,1]       [,2]       [,3]       [,4]       [,5]
-## [1,] -0.6429955 -0.6474871 -0.3554235 -0.1951084 -0.3309972
-## [2,]  0.5965946  0.5921029  0.8841666  1.0444817  0.9085928
+## [1,] -0.4596247 -0.7159636 -1.0050925 -0.8362230 -0.8355450
+## [2,]  0.7799654  0.5236264  0.2344976  0.4033671  0.4040451
 \end{verbatim}
 \begin{alltt}
-\hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
-\hlstd{upper} \hlkwb{<-} \hlstd{simCIs[}\hlnum{2}\hlstd{,]}
-\hlstd{covers_truth} \hlkwb{<-} \hlstd{(lower} \hlopt{<} \hlnum{0}\hlstd{)} \hlopt{&} \hlstd{(upper} \hlopt{>} \hlnum{0}\hlstd{)}
-\hlkwd{sum}\hlstd{(covers_truth)} \hlopt{/} \hlkwd{length}\hlstd{(covers_truth)}
+\hldef{lower} \hlkwb{<-} \hldef{simCIs[}\hlnum{1}\hldef{,]}
+\hldef{upper} \hlkwb{<-} \hldef{simCIs[}\hlnum{2}\hldef{,]}
+\hldef{covers_truth} \hlkwb{<-} \hldef{(lower} \hlopt{<} \hlnum{0}\hldef{)} \hlopt{&} \hldef{(upper} \hlopt{>} \hlnum{0}\hldef{)}
+\hlkwd{sum}\hldef{(covers_truth)} \hlopt{/} \hlkwd{length}\hldef{(covers_truth)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.9478
+## [1] 0.9457
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1004,27 +1005,27 @@ The answer is pretty much dead on: almost exactly 95\% of the intervals contain 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{CI_sim2} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{sample_size}\hlstd{)\{}
-    \hlstd{sims} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(sample_size)}
-    \hlstd{CI} \hlkwb{<-} \hlkwd{get_CI}\hlstd{(sims,} \hlkwc{pop_sd} \hlstd{=} \hlnum{1}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.05}\hlstd{)}
-    \hlkwd{return}\hlstd{(CI)}
-\hlstd{\}}
-\hlstd{simCIs} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{CI_sim2}\hlstd{(}\hlnum{10}\hlstd{))}
-\hlstd{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{]}
+\hldef{CI_sim2} \hlkwb{<-} \hlkwa{function}\hldef{(}\hlkwc{sample_size}\hldef{)\{}
+    \hldef{sims} \hlkwb{<-} \hlkwd{rnorm}\hldef{(sample_size)}
+    \hldef{CI} \hlkwb{<-} \hlkwd{get_CI}\hldef{(sims,} \hlkwc{pop_sd} \hldef{=} \hlnum{1}\hlopt{/}\hlnum{2}\hldef{,} \hlkwc{alpha} \hldef{=} \hlnum{0.05}\hldef{)}
+    \hlkwd{return}\hldef{(CI)}
+\hldef{\}}
+\hldef{simCIs} \hlkwb{<-} \hlkwd{replicate}\hldef{(}\hlnum{10000}\hldef{,} \hlkwd{CI_sim2}\hldef{(}\hlnum{10}\hldef{))}
+\hldef{simCIs[,}\hlnum{1}\hlopt{:}\hlnum{5}\hldef{]}
 \end{alltt}
 \begin{verbatim}
-##           [,1]      [,2]       [,3]        [,4]      [,5]
-## [1,] 0.4284204 -0.232400 -0.4313465 -0.64034061 -1.102286
-## [2,] 1.0482155  0.387395  0.1884485 -0.02054558 -0.482491
+##             [,1]       [,2]       [,3]       [,4]        [,5]
+## [1,] -0.01486648 -0.2729981 -0.2765614 -0.3094019 0.001925578
+## [2,]  0.60492855  0.3467970  0.3432336  0.3103932 0.621720610
 \end{verbatim}
 \begin{alltt}
-\hlstd{lower} \hlkwb{<-} \hlstd{simCIs[}\hlnum{1}\hlstd{,]}
-\hlstd{upper} \hlkwb{<-} \hlstd{simCIs[}\hlnum{2}\hlstd{,]}
-\hlstd{covers_truth} \hlkwb{<-} \hlstd{(lower} \hlopt{<} \hlnum{0}\hlstd{)} \hlopt{&} \hlstd{(upper} \hlopt{>} \hlnum{0}\hlstd{)}
-\hlkwd{sum}\hlstd{(covers_truth)} \hlopt{/} \hlkwd{length}\hlstd{(covers_truth)}
+\hldef{lower} \hlkwb{<-} \hldef{simCIs[}\hlnum{1}\hldef{,]}
+\hldef{upper} \hlkwb{<-} \hldef{simCIs[}\hlnum{2}\hldef{,]}
+\hldef{covers_truth} \hlkwb{<-} \hldef{(lower} \hlopt{<} \hlnum{0}\hldef{)} \hlopt{&} \hldef{(upper} \hlopt{>} \hlnum{0}\hldef{)}
+\hlkwd{sum}\hldef{(covers_truth)} \hlopt{/} \hlkwd{length}\hldef{(covers_truth)}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.6701
+## [1] 0.6715
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1051,41 +1052,41 @@ You can also try setting \texttt{xlim} to make it easier to see the vertical bar
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# Uniform }
-\hlstd{uniform_means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{runif}\hlstd{(}\hlnum{20}\hlstd{)))}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlkwd{curve}\hlstd{(}\hlkwd{dunif}\hlstd{(x),} \hlnum{0}\hlstd{,} \hlnum{1}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{"Uniform(0,1) Density"}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{)}
-\hlkwd{hist}\hlstd{(uniform_means,} \hlkwc{main} \hlstd{=} \hlstr{"Uniform(0,1), n = 20"}\hlstd{)}
+\hldef{uniform_means} \hlkwb{<-} \hlkwd{replicate}\hldef{(}\hlnum{10000}\hldef{,} \hlkwd{mean}\hldef{(}\hlkwd{runif}\hldef{(}\hlnum{20}\hldef{)))}
+\hlkwd{par}\hldef{(}\hlkwc{mfrow} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{1}\hldef{,} \hlnum{2}\hldef{))}
+\hlkwd{curve}\hldef{(}\hlkwd{dunif}\hldef{(x),} \hlnum{0}\hldef{,} \hlnum{1}\hldef{,} \hlkwc{main} \hldef{=} \hlsng{"Uniform(0,1) Density"}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{'f(x)'}\hldef{)}
+\hlkwd{hist}\hldef{(uniform_means,} \hlkwc{main} \hldef{=} \hlsng{"Uniform(0,1), n = 20"}\hldef{)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-1} 
 \begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{par}\hldef{(}\hlkwc{mfrow} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{1}\hldef{,} \hlnum{1}\hldef{))}
 
 \hlcom{# Chi-squared(5) }
-\hlstd{chisq_means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{rchisq}\hlstd{(}\hlnum{20}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{5}\hlstd{)))}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{))}
-\hlkwd{curve}\hlstd{(}\hlkwd{dchisq}\hlstd{(x,} \hlnum{5}\hlstd{),} \hlnum{0.01}\hlstd{,} \hlnum{15}\hlstd{,}
-      \hlkwc{main} \hlstd{=} \hlstr{"Chi-squared Density, df = 5"}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'f(x)'}\hlstd{)}
-\hlkwd{hist}\hlstd{(chisq_means,} \hlkwc{main} \hlstd{=} \hlstr{"Chi-squared(5), n = 20"}\hlstd{)}
+\hldef{chisq_means} \hlkwb{<-} \hlkwd{replicate}\hldef{(}\hlnum{10000}\hldef{,} \hlkwd{mean}\hldef{(}\hlkwd{rchisq}\hldef{(}\hlnum{20}\hldef{,} \hlkwc{df} \hldef{=} \hlnum{5}\hldef{)))}
+\hlkwd{par}\hldef{(}\hlkwc{mfrow} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{1}\hldef{,}\hlnum{2}\hldef{))}
+\hlkwd{curve}\hldef{(}\hlkwd{dchisq}\hldef{(x,} \hlnum{5}\hldef{),} \hlnum{0.01}\hldef{,} \hlnum{15}\hldef{,}
+      \hlkwc{main} \hldef{=} \hlsng{"Chi-squared Density, df = 5"}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{'f(x)'}\hldef{)}
+\hlkwd{hist}\hldef{(chisq_means,} \hlkwc{main} \hldef{=} \hlsng{"Chi-squared(5), n = 20"}\hldef{)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-2} 
 \begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{par}\hldef{(}\hlkwc{mfrow} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{1}\hldef{,} \hlnum{1}\hldef{))}
 
 \hlcom{# Bernoulli(0.3)}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlstd{x} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{)}
-\hlstd{p} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlnum{0.7}\hlstd{,} \hlnum{0.3}\hlstd{)}
-\hlkwd{plot}\hlstd{(x, p,} \hlkwc{type} \hlstd{=} \hlstr{'h'}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{"Bernoulli(0.3) pmf"}\hlstd{,} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{1}\hlstd{),}
-     \hlkwc{xlim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlstd{bernoulli_means} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{10000}\hlstd{,} \hlkwd{mean}\hlstd{(}\hlkwd{rbinom}\hlstd{(}\hlnum{20}\hlstd{,} \hlnum{1}\hlstd{,} \hlnum{0.3}\hlstd{)))}
-\hlkwd{hist}\hlstd{(bernoulli_means,} \hlkwc{main} \hlstd{=} \hlstr{"Bernoulli(0.3), n = 20"}\hlstd{)}
+\hlkwd{par}\hldef{(}\hlkwc{mfrow} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{1}\hldef{,} \hlnum{2}\hldef{))}
+\hldef{x} \hlkwb{<-} \hlkwd{c}\hldef{(}\hlnum{0}\hldef{,}\hlnum{1}\hldef{)}
+\hldef{p} \hlkwb{<-} \hlkwd{c}\hldef{(}\hlnum{0.7}\hldef{,} \hlnum{0.3}\hldef{)}
+\hlkwd{plot}\hldef{(x, p,} \hlkwc{type} \hldef{=} \hlsng{'h'}\hldef{,} \hlkwc{main} \hldef{=} \hlsng{"Bernoulli(0.3) pmf"}\hldef{,} \hlkwc{ylim} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{0}\hldef{,} \hlnum{1}\hldef{),}
+     \hlkwc{xlim} \hldef{=} \hlkwd{c}\hldef{(}\hlopt{-}\hlnum{1}\hldef{,} \hlnum{2}\hldef{))}
+\hldef{bernoulli_means} \hlkwb{<-} \hlkwd{replicate}\hldef{(}\hlnum{10000}\hldef{,} \hlkwd{mean}\hldef{(}\hlkwd{rbinom}\hldef{(}\hlnum{20}\hldef{,} \hlnum{1}\hldef{,} \hlnum{0.3}\hldef{)))}
+\hlkwd{hist}\hldef{(bernoulli_means,} \hlkwc{main} \hldef{=} \hlsng{"Bernoulli(0.3), n = 20"}\hldef{)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-11-3} 
 \begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlkwd{par}\hldef{(}\hlkwc{mfrow} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{1}\hldef{,} \hlnum{1}\hldef{))}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1102,13 +1103,13 @@ You can also try setting \texttt{xlim} to make it easier to see the vertical bar
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{p} \hlkwb{<-} \hlnum{0.21}
-\hlstd{n} \hlkwb{<-} \hlnum{1247}
-\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p)}\hlopt{/}\hlstd{n)}
-\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
-\hlstd{LCL} \hlkwb{<-} \hlstd{p} \hlopt{-} \hlstd{ME}
-\hlstd{UCL} \hlkwb{<-} \hlstd{p} \hlopt{+} \hlstd{ME}
-\hlkwd{c}\hlstd{(LCL, UCL)}
+\hldef{p} \hlkwb{<-} \hlnum{0.21}
+\hldef{n} \hlkwb{<-} \hlnum{1247}
+\hldef{SE} \hlkwb{<-} \hlkwd{sqrt}\hldef{(p} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hldef{p)}\hlopt{/}\hldef{n)}
+\hldef{ME} \hlkwb{<-} \hlkwd{qnorm}\hldef{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hldef{)} \hlopt{*} \hldef{SE}
+\hldef{LCL} \hlkwb{<-} \hldef{p} \hlopt{-} \hldef{ME}
+\hldef{UCL} \hlkwb{<-} \hldef{p} \hlopt{+} \hldef{ME}
+\hlkwd{c}\hldef{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.1802897 0.2397103
@@ -1122,14 +1123,14 @@ You can also try setting \texttt{xlim} to make it easier to see the vertical bar
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{n} \hlkwb{<-} \hlnum{623}
-\hlstd{p_M} \hlkwb{<-} \hlnum{0.24}
-\hlstd{p_W} \hlkwb{<-} \hlnum{0.19}
-\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p_M} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p_M)}\hlopt{/}\hlstd{n} \hlopt{+} \hlstd{p_W} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p_W)} \hlopt{/} \hlstd{n)}
-\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
-\hlstd{LCL} \hlkwb{<-} \hlstd{(p_M} \hlopt{-} \hlstd{p_W)} \hlopt{-} \hlstd{ME}
-\hlstd{UCL} \hlkwb{<-} \hlstd{(p_M} \hlopt{-} \hlstd{p_W)} \hlopt{+} \hlstd{ME}
-\hlkwd{c}\hlstd{(LCL, UCL)}
+\hldef{n} \hlkwb{<-} \hlnum{623}
+\hldef{p_M} \hlkwb{<-} \hlnum{0.24}
+\hldef{p_W} \hlkwb{<-} \hlnum{0.19}
+\hldef{SE} \hlkwb{<-} \hlkwd{sqrt}\hldef{(p_M} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hldef{p_M)}\hlopt{/}\hldef{n} \hlopt{+} \hldef{p_W} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hldef{p_W)} \hlopt{/} \hldef{n)}
+\hldef{ME} \hlkwb{<-} \hlkwd{qnorm}\hldef{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hldef{)} \hlopt{*} \hldef{SE}
+\hldef{LCL} \hlkwb{<-} \hldef{(p_M} \hlopt{-} \hldef{p_W)} \hlopt{-} \hldef{ME}
+\hldef{UCL} \hlkwb{<-} \hldef{(p_M} \hlopt{-} \hldef{p_W)} \hlopt{+} \hldef{ME}
+\hlkwd{c}\hldef{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
 ## [1] -0.009846188  0.109846188
@@ -1144,15 +1145,15 @@ You can also try setting \texttt{xlim} to make it easier to see the vertical bar
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{n_R} \hlkwb{<-} \hlnum{547}
-\hlstd{p_R} \hlkwb{<-} \hlnum{0.27}
-\hlstd{n_O} \hlkwb{<-} \hlnum{623}
-\hlstd{p_O} \hlkwb{<-} \hlnum{0.16}
-\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p_R} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p_R)} \hlopt{/} \hlstd{n_R} \hlopt{+} \hlstd{p_O} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p_O)} \hlopt{/} \hlstd{n_O)}
-\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hlstd{)} \hlopt{*} \hlstd{SE}
-\hlstd{LCL} \hlkwb{<-} \hlstd{(p_R} \hlopt{-} \hlstd{p_O)} \hlopt{-} \hlstd{ME}
-\hlstd{UCL} \hlkwb{<-} \hlstd{(p_R} \hlopt{-} \hlstd{p_O)} \hlopt{+} \hlstd{ME}
-\hlkwd{c}\hlstd{(LCL, UCL)}
+\hldef{n_R} \hlkwb{<-} \hlnum{547}
+\hldef{p_R} \hlkwb{<-} \hlnum{0.27}
+\hldef{n_O} \hlkwb{<-} \hlnum{623}
+\hldef{p_O} \hlkwb{<-} \hlnum{0.16}
+\hldef{SE} \hlkwb{<-} \hlkwd{sqrt}\hldef{(p_R} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hldef{p_R)} \hlopt{/} \hldef{n_R} \hlopt{+} \hldef{p_O} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hldef{p_O)} \hlopt{/} \hldef{n_O)}
+\hldef{ME} \hlkwb{<-} \hlkwd{qnorm}\hldef{(}\hlnum{1} \hlopt{-} \hlnum{0.01}\hlopt{/}\hlnum{2}\hldef{)} \hlopt{*} \hldef{SE}
+\hldef{LCL} \hlkwb{<-} \hldef{(p_R} \hlopt{-} \hldef{p_O)} \hlopt{-} \hldef{ME}
+\hldef{UCL} \hlkwb{<-} \hldef{(p_R} \hlopt{-} \hldef{p_O)} \hlopt{+} \hldef{ME}
+\hlkwd{c}\hldef{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.04817691 0.17182309
@@ -1174,14 +1175,13 @@ You can also try setting \texttt{xlim} to make it easier to see the vertical bar
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{data_url} \hlkwb{<-} \hlstr{"http://ditraglia.com/econ103/survey-spring-2019.csv"}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
-\hlstd{anchoring} \hlkwb{<-} \hlstd{survey[,}\hlkwd{c}\hlstd{(}\hlstr{"rand.num"}\hlstd{,} \hlstr{"africa.percent"}\hlstd{)]}
-\hlkwd{boxplot}\hlstd{(africa.percent} \hlopt{~} \hlstd{rand.num, anchoring)}
+\hldef{data_url} \hlkwb{<-} \hlsng{"http://ditraglia.com/econ103/survey-spring-2019.csv"}
+\hldef{survey} \hlkwb{<-} \hlkwd{read.csv}\hldef{(data_url)}
+\hldef{anchoring} \hlkwb{<-} \hldef{survey[,}\hlkwd{c}\hldef{(}\hlsng{"rand.num"}\hldef{,} \hlsng{"africa.percent"}\hldef{)]}
+\hlkwd{boxplot}\hldef{(africa.percent} \hlopt{~} \hldef{rand.num, anchoring)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/anchoring_experiment1-1} 
-
 \end{knitrout}
 \end{solution}
  \part Construct an approximate 95\% confidence interval for the magnitude of the anchoring effect, based on the CLT.
@@ -1189,15 +1189,15 @@ You can also try setting \texttt{xlim} to make it easier to see the vertical bar
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{lo} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"10"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
-\hlstd{hi} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"65"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
-\hlstd{lo} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(lo)}
-\hlstd{hi} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(hi)}
-\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(}\hlkwd{var}\hlstd{(hi)} \hlopt{/} \hlkwd{length}\hlstd{(hi)} \hlopt{+} \hlkwd{var}\hlstd{(lo)} \hlopt{/} \hlkwd{length}\hlstd{(lo))}
-\hlstd{ME} \hlkwb{<-} \hlkwd{qnorm}\hlstd{(}\hlnum{0.975}\hlstd{)} \hlopt{*} \hlstd{SE}
-\hlstd{LCL} \hlkwb{<-} \hlstd{(}\hlkwd{mean}\hlstd{(hi)} \hlopt{-} \hlkwd{mean}\hlstd{(lo))} \hlopt{-} \hlstd{ME}
-\hlstd{UCL} \hlkwb{<-} \hlstd{(}\hlkwd{mean}\hlstd{(hi)} \hlopt{-} \hlkwd{mean}\hlstd{(lo))} \hlopt{+} \hlstd{ME}
-\hlkwd{c}\hlstd{(LCL, UCL)}
+\hldef{lo} \hlkwb{<-} \hlkwd{subset}\hldef{(anchoring, rand.num} \hlopt{==} \hlsng{"10"}\hldef{)}\hlopt{$}\hldef{africa.percent}
+\hldef{hi} \hlkwb{<-} \hlkwd{subset}\hldef{(anchoring, rand.num} \hlopt{==} \hlsng{"65"}\hldef{)}\hlopt{$}\hldef{africa.percent}
+\hldef{lo} \hlkwb{<-} \hlkwd{na.omit}\hldef{(lo)}
+\hldef{hi} \hlkwb{<-} \hlkwd{na.omit}\hldef{(hi)}
+\hldef{SE} \hlkwb{<-} \hlkwd{sqrt}\hldef{(}\hlkwd{var}\hldef{(hi)} \hlopt{/} \hlkwd{length}\hldef{(hi)} \hlopt{+} \hlkwd{var}\hldef{(lo)} \hlopt{/} \hlkwd{length}\hldef{(lo))}
+\hldef{ME} \hlkwb{<-} \hlkwd{qnorm}\hldef{(}\hlnum{0.975}\hldef{)} \hlopt{*} \hldef{SE}
+\hldef{LCL} \hlkwb{<-} \hldef{(}\hlkwd{mean}\hldef{(hi)} \hlopt{-} \hlkwd{mean}\hldef{(lo))} \hlopt{-} \hldef{ME}
+\hldef{UCL} \hlkwb{<-} \hldef{(}\hlkwd{mean}\hldef{(hi)} \hlopt{-} \hlkwd{mean}\hldef{(lo))} \hlopt{+} \hldef{ME}
+\hlkwd{c}\hldef{(LCL, UCL)}
 \end{alltt}
 \begin{verbatim}
 ## [1]  0.4461888 12.7182195
@@ -1283,16 +1283,16 @@ Each row in this dataframe corresponds to a single individual's guess of the num
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{data_url} \hlkwb{<-} \hlstr{"http://ditraglia.com/econ103/survey-spring-2019.csv"}
-\hlstd{survey} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
-\hlstd{anchoring} \hlkwb{<-} \hlstd{survey[,}\hlkwd{c}\hlstd{(}\hlstr{"rand.num"}\hlstd{,} \hlstr{"africa.percent"}\hlstd{)]}
-\hlstd{lo} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"10"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
-\hlstd{hi} \hlkwb{<-} \hlkwd{subset}\hlstd{(anchoring, rand.num} \hlopt{==} \hlstr{"65"}\hlstd{)}\hlopt{$}\hlstd{africa.percent}
-\hlstd{lo} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(lo)}
-\hlstd{hi} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(hi)}
-\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(}\hlkwd{var}\hlstd{(lo)} \hlopt{/} \hlkwd{length}\hlstd{(lo)} \hlopt{+} \hlkwd{var}\hlstd{(hi)} \hlopt{/} \hlkwd{length}\hlstd{(hi))}
-\hlstd{test_stat} \hlkwb{<-} \hlkwd{abs}\hlstd{(}\hlkwd{mean}\hlstd{(hi)} \hlopt{-} \hlkwd{mean}\hlstd{(lo))} \hlopt{/} \hlstd{SE}
-\hlstd{test_stat}
+\hldef{data_url} \hlkwb{<-} \hlsng{"http://ditraglia.com/econ103/survey-spring-2019.csv"}
+\hldef{survey} \hlkwb{<-} \hlkwd{read.csv}\hldef{(data_url)}
+\hldef{anchoring} \hlkwb{<-} \hldef{survey[,}\hlkwd{c}\hldef{(}\hlsng{"rand.num"}\hldef{,} \hlsng{"africa.percent"}\hldef{)]}
+\hldef{lo} \hlkwb{<-} \hlkwd{subset}\hldef{(anchoring, rand.num} \hlopt{==} \hlsng{"10"}\hldef{)}\hlopt{$}\hldef{africa.percent}
+\hldef{hi} \hlkwb{<-} \hlkwd{subset}\hldef{(anchoring, rand.num} \hlopt{==} \hlsng{"65"}\hldef{)}\hlopt{$}\hldef{africa.percent}
+\hldef{lo} \hlkwb{<-} \hlkwd{na.omit}\hldef{(lo)}
+\hldef{hi} \hlkwb{<-} \hlkwd{na.omit}\hldef{(hi)}
+\hldef{SE} \hlkwb{<-} \hlkwd{sqrt}\hldef{(}\hlkwd{var}\hldef{(lo)} \hlopt{/} \hlkwd{length}\hldef{(lo)} \hlopt{+} \hlkwd{var}\hldef{(hi)} \hlopt{/} \hlkwd{length}\hldef{(hi))}
+\hldef{test_stat} \hlkwb{<-} \hlkwd{abs}\hldef{(}\hlkwd{mean}\hldef{(hi)} \hlopt{-} \hlkwd{mean}\hldef{(lo))} \hlopt{/} \hldef{SE}
+\hldef{test_stat}
 \end{alltt}
 \begin{verbatim}
 ## [1] 2.102485
@@ -1306,7 +1306,7 @@ The critical value is
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlstd{)}
+\hlkwd{qnorm}\hldef{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hldef{)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 1.281552
@@ -1317,7 +1317,7 @@ Our decision rule is to reject if the test statistic exceeds the critical value:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{test_stat} \hlopt{>} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlstd{)}
+\hldef{test_stat} \hlopt{>} \hlkwd{qnorm}\hldef{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hldef{)}
 \end{alltt}
 \begin{verbatim}
 ## [1] TRUE
@@ -1330,7 +1330,7 @@ Our decision rule is to reject if the test statistic exceeds the critical value:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat)}
+\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hldef{(test_stat)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.01775539
@@ -1344,7 +1344,7 @@ The critical value is
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlopt{/}\hlnum{2}\hlstd{)}
+\hlkwd{qnorm}\hldef{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlopt{/}\hlnum{2}\hldef{)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 1.644854
@@ -1355,7 +1355,7 @@ Our decision rule is to reject if the \emph{absolute value} of the test statisti
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{abs}\hlstd{(test_stat)} \hlopt{>} \hlkwd{qnorm}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlopt{/}\hlnum{2}\hlstd{)}
+\hlkwd{abs}\hldef{(test_stat)} \hlopt{>} \hlkwd{qnorm}\hldef{(}\hlnum{1} \hlopt{-} \hlnum{0.1}\hlopt{/}\hlnum{2}\hldef{)}
 \end{alltt}
 \begin{verbatim}
 ## [1] TRUE
@@ -1368,7 +1368,7 @@ Our decision rule is to reject if the \emph{absolute value} of the test statisti
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat))}
+\hlnum{2} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hldef{(test_stat))}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.03551077
@@ -1392,12 +1392,12 @@ In an earlier extension question you used these data to construct confidence int
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{phat} \hlkwb{<-} \hlnum{0.21}
-\hlstd{pnull} \hlkwb{<-} \hlnum{0.2}
-\hlstd{n} \hlkwb{<-} \hlnum{1247}
-\hlstd{SE} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(pnull} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{pnull)}\hlopt{/}\hlstd{n)}
-\hlstd{test_stat} \hlkwb{<-} \hlstd{(phat} \hlopt{-} \hlstd{pnull)} \hlopt{/} \hlstd{SE}
-\hlstd{test_stat}
+\hldef{phat} \hlkwb{<-} \hlnum{0.21}
+\hldef{pnull} \hlkwb{<-} \hlnum{0.2}
+\hldef{n} \hlkwb{<-} \hlnum{1247}
+\hldef{SE} \hlkwb{<-} \hlkwd{sqrt}\hldef{(pnull} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hldef{pnull)}\hlopt{/}\hldef{n)}
+\hldef{test_stat} \hlkwb{<-} \hldef{(phat} \hlopt{-} \hldef{pnull)} \hlopt{/} \hldef{SE}
+\hldef{test_stat}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.8828222
@@ -1410,7 +1410,7 @@ In an earlier extension question you used these data to construct confidence int
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat)}
+\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hldef{(test_stat)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.1886662
@@ -1423,7 +1423,7 @@ In an earlier extension question you used these data to construct confidence int
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat))}
+\hlnum{2} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hldef{(test_stat))}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.3773324
@@ -1437,20 +1437,20 @@ In an earlier extension question you used these data to construct confidence int
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{nR} \hlkwb{<-} \hlnum{547}
-\hlstd{pR} \hlkwb{<-} \hlnum{0.27}
-\hlstd{nO} \hlkwb{<-} \hlnum{623}
-\hlstd{pO} \hlkwb{<-} \hlnum{0.16}
-\hlstd{p_pooled} \hlkwb{<-} \hlstd{((nO} \hlopt{*} \hlstd{pO)} \hlopt{+} \hlstd{(nR} \hlopt{*} \hlstd{pR))} \hlopt{/} \hlstd{(nR} \hlopt{+} \hlstd{nO)}
-\hlstd{SE_pooled} \hlkwb{<-} \hlkwd{sqrt}\hlstd{(p_pooled} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlstd{p_pooled)} \hlopt{*} \hlstd{(}\hlnum{1}\hlopt{/}\hlstd{nO} \hlopt{+} \hlnum{1}\hlopt{/}\hlstd{nR))}
-\hlstd{test_stat} \hlkwb{<-} \hlkwd{abs}\hlstd{((pO} \hlopt{-} \hlstd{pR))} \hlopt{/} \hlstd{SE_pooled}
-\hlstd{test_stat}
+\hldef{nR} \hlkwb{<-} \hlnum{547}
+\hldef{pR} \hlkwb{<-} \hlnum{0.27}
+\hldef{nO} \hlkwb{<-} \hlnum{623}
+\hldef{pO} \hlkwb{<-} \hlnum{0.16}
+\hldef{p_pooled} \hlkwb{<-} \hldef{((nO} \hlopt{*} \hldef{pO)} \hlopt{+} \hldef{(nR} \hlopt{*} \hldef{pR))} \hlopt{/} \hldef{(nR} \hlopt{+} \hldef{nO)}
+\hldef{SE_pooled} \hlkwb{<-} \hlkwd{sqrt}\hldef{(p_pooled} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hldef{p_pooled)} \hlopt{*} \hldef{(}\hlnum{1}\hlopt{/}\hldef{nO} \hlopt{+} \hlnum{1}\hlopt{/}\hldef{nR))}
+\hldef{test_stat} \hlkwb{<-} \hlkwd{abs}\hldef{((pO} \hlopt{-} \hldef{pR))} \hlopt{/} \hldef{SE_pooled}
+\hldef{test_stat}
 \end{alltt}
 \begin{verbatim}
 ## [1] 4.597651
 \end{verbatim}
 \begin{alltt}
-\hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hlstd{(test_stat))}
+\hlnum{2} \hlopt{*} \hldef{(}\hlnum{1} \hlopt{-} \hlkwd{pnorm}\hldef{(test_stat))}
 \end{alltt}
 \begin{verbatim}
 ## [1] 4.272809e-06
@@ -1594,12 +1594,12 @@ As it happens there are 32 bouts in \texttt{last16}, 8 bouts for each weight cla
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{simulate_y} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{x}\hlstd{)\{}
-  \hlstd{n} \hlkwb{<-} \hlkwd{length}\hlstd{(x)}
-  \hlstd{epsilon} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(n)}
-  \hlstd{y} \hlkwb{<-} \hlnum{2.4} \hlopt{+} \hlnum{0.3} \hlopt{*} \hlstd{x} \hlopt{+} \hlstd{epsilon}
-  \hlkwd{return}\hlstd{(y)}
-\hlstd{\}}
+\hldef{simulate_y} \hlkwb{<-} \hlkwa{function}\hldef{(}\hlkwc{x}\hldef{)\{}
+  \hldef{n} \hlkwb{<-} \hlkwd{length}\hldef{(x)}
+  \hldef{epsilon} \hlkwb{<-} \hlkwd{rnorm}\hldef{(n)}
+  \hldef{y} \hlkwb{<-} \hlnum{2.4} \hlopt{+} \hlnum{0.3} \hlopt{*} \hldef{x} \hlopt{+} \hldef{epsilon}
+  \hlkwd{return}\hldef{(y)}
+\hldef{\}}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1613,23 +1613,23 @@ I also change some other graphics parameters just to make things fit more easily
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{set.seed}\hlstd{(}\hlnum{8372}\hlstd{)}
-\hlstd{x_test} \hlkwb{<-} \hlnum{0}\hlopt{:}\hlnum{12}
-\hlstd{sim_plot} \hlkwb{<-} \hlkwa{function}\hlstd{() \{}
-  \hlstd{y_sim} \hlkwb{<-} \hlkwd{simulate_y}\hlstd{(x_test)}
-  \hlkwd{curve}\hlstd{(}\hlnum{2.4} \hlopt{+} \hlnum{0.3} \hlopt{*} \hlstd{x,} \hlnum{0}\hlstd{,} \hlnum{12}\hlstd{,} \hlkwc{xlab} \hlstd{=} \hlstr{'X'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'Y'}\hlstd{)}
-  \hlkwd{points}\hlstd{(x_test, y_sim)}
-  \hlstd{reg} \hlkwb{<-} \hlkwd{lm}\hlstd{(y_sim} \hlopt{~} \hlstd{x_test)}
-  \hlkwd{abline}\hlstd{(}\hlkwd{coef}\hlstd{(reg),} \hlkwc{col} \hlstd{=} \hlstr{'red'}\hlstd{,} \hlkwc{lty} \hlstd{=} \hlnum{2}\hlstd{)} \hlcom{# red, dashed line }
-\hlstd{\}}
+\hlkwd{set.seed}\hldef{(}\hlnum{8372}\hldef{)}
+\hldef{x_test} \hlkwb{<-} \hlnum{0}\hlopt{:}\hlnum{12}
+\hldef{sim_plot} \hlkwb{<-} \hlkwa{function}\hldef{() \{}
+  \hldef{y_sim} \hlkwb{<-} \hlkwd{simulate_y}\hldef{(x_test)}
+  \hlkwd{curve}\hldef{(}\hlnum{2.4} \hlopt{+} \hlnum{0.3} \hlopt{*} \hldef{x,} \hlnum{0}\hldef{,} \hlnum{12}\hldef{,} \hlkwc{xlab} \hldef{=} \hlsng{'X'}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{'Y'}\hldef{)}
+  \hlkwd{points}\hldef{(x_test, y_sim)}
+  \hldef{reg} \hlkwb{<-} \hlkwd{lm}\hldef{(y_sim} \hlopt{~} \hldef{x_test)}
+  \hlkwd{abline}\hldef{(}\hlkwd{coef}\hldef{(reg),} \hlkwc{col} \hldef{=} \hlsng{'red'}\hldef{,} \hlkwc{lty} \hldef{=} \hlnum{2}\hldef{)} \hlcom{# red, dashed line }
+\hldef{\}}
 \hlcom{# Make the plot four times with different random draws}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{2}\hlstd{),} \hlkwc{mar}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{3}\hlstd{,}\hlnum{3}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{1}\hlstd{),} \hlkwc{mgp}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,}\hlnum{.7}\hlstd{,}\hlnum{0}\hlstd{),} \hlkwc{tck}\hlstd{=}\hlopt{-}\hlnum{.01}\hlstd{)}
-  \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlnum{4}\hlstd{)} \hlkwd{sim_plot}\hlstd{()}
+\hlkwd{par}\hldef{(}\hlkwc{mfrow} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{2}\hldef{,}\hlnum{2}\hldef{),} \hlkwc{mar}\hldef{=}\hlkwd{c}\hldef{(}\hlnum{3}\hldef{,}\hlnum{3}\hldef{,}\hlnum{2}\hldef{,}\hlnum{1}\hldef{),} \hlkwc{mgp}\hldef{=}\hlkwd{c}\hldef{(}\hlnum{2}\hldef{,}\hlnum{.7}\hldef{,}\hlnum{0}\hldef{),} \hlkwc{tck}\hldef{=}\hlopt{-}\hlnum{.01}\hldef{)}
+  \hlkwa{for}\hldef{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlnum{4}\hldef{)} \hlkwd{sim_plot}\hldef{()}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/sim_reg_plots-1} 
 \begin{kframe}\begin{alltt}
-\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{))}
+\hlkwd{par}\hldef{(}\hlkwc{mfrow} \hldef{=} \hlkwd{c}\hldef{(}\hlnum{1}\hldef{,}\hlnum{1}\hldef{))}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1644,12 +1644,12 @@ I also change some other graphics parameters just to make things fit more easily
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{get_slope} \hlkwb{<-} \hlkwa{function}\hlstd{() \{}
-  \hlstd{y_sim} \hlkwb{<-} \hlkwd{simulate_y}\hlstd{(x_test)}
-  \hlstd{reg} \hlkwb{<-} \hlkwd{lm}\hlstd{(y_sim} \hlopt{~} \hlstd{x_test)}
-  \hlstd{slope} \hlkwb{<-} \hlkwd{coef}\hlstd{(reg)[}\hlnum{2}\hlstd{]}
-  \hlkwd{return}\hlstd{(slope)}
-\hlstd{\}}
+\hldef{get_slope} \hlkwb{<-} \hlkwa{function}\hldef{() \{}
+  \hldef{y_sim} \hlkwb{<-} \hlkwd{simulate_y}\hldef{(x_test)}
+  \hldef{reg} \hlkwb{<-} \hlkwd{lm}\hldef{(y_sim} \hlopt{~} \hldef{x_test)}
+  \hldef{slope} \hlkwb{<-} \hlkwd{coef}\hldef{(reg)[}\hlnum{2}\hldef{]}
+  \hlkwd{return}\hldef{(slope)}
+\hldef{\}}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1661,24 +1661,23 @@ Discuss your findings.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{sim_slopes} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{5000}\hlstd{,} \hlkwd{get_slope}\hlstd{())}
-\hlkwd{mean}\hlstd{(sim_slopes)}
+\hldef{sim_slopes} \hlkwb{<-} \hlkwd{replicate}\hldef{(}\hlnum{5000}\hldef{,} \hlkwd{get_slope}\hldef{())}
+\hlkwd{mean}\hldef{(sim_slopes)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.2993407
 \end{verbatim}
 \begin{alltt}
-\hlkwd{sd}\hlstd{(sim_slopes)}
+\hlkwd{sd}\hldef{(sim_slopes)}
 \end{alltt}
 \begin{verbatim}
 ## [1] 0.07582773
 \end{verbatim}
 \begin{alltt}
-\hlkwd{hist}\hlstd{(sim_slopes)}
+\hlkwd{hist}\hldef{(sim_slopes)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/sim_hist-1} 
-
 \end{knitrout}
 We see that the sampling distribution of the estimated regression slope coefficient is centered at the population slope coefficient $\beta = 0.3$ and the sampling distribution is approximately normal. The standard error is around 0.075.
 \end{solution}
@@ -1706,11 +1705,11 @@ The columns contained in this dataset are as follows:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{source}\hlstd{(}\hlstr{'http://ditraglia.com/econ103/display.R'}\hlstd{)}
-\hlstd{data_url} \hlkwb{<-} \hlstr{"http://www.ditraglia.com/econ103/child_test_data.csv"}
-\hlstd{child} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(data_url)}
-\hlstd{reg1} \hlkwb{<-} \hlkwd{lm}\hlstd{(kid.score} \hlopt{~} \hlstd{mom.age, child)}
-\hlkwd{display}\hlstd{(reg1)}
+\hlkwd{source}\hldef{(}\hlsng{'http://ditraglia.com/econ103/display.R'}\hldef{)}
+\hldef{data_url} \hlkwb{<-} \hlsng{"http://www.ditraglia.com/econ103/child_test_data.csv"}
+\hldef{child} \hlkwb{<-} \hlkwd{read.csv}\hldef{(data_url)}
+\hldef{reg1} \hlkwb{<-} \hlkwd{lm}\hldef{(kid.score} \hlopt{~} \hldef{mom.age, child)}
+\hlkwd{display}\hldef{(reg1)}
 \end{alltt}
 \begin{verbatim}
 ## lm(formula = kid.score ~ mom.age, data = child)
@@ -1722,13 +1721,12 @@ The columns contained in this dataset are as follows:
 ## residual sd = 20.35, R-Squared = 0.01
 \end{verbatim}
 \begin{alltt}
-\hlkwd{plot}\hlstd{(child}\hlopt{$}\hlstd{mom.age, child}\hlopt{$}\hlstd{kid.score,} \hlkwc{pch} \hlstd{=} \hlnum{20}\hlstd{,}
-     \hlkwc{xlab} \hlstd{=} \hlstr{'Mother Age (at birth)'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'Child Test Score (Age 3)'}\hlstd{)}
-\hlkwd{abline}\hlstd{(}\hlkwd{coef}\hlstd{(reg1))}
+\hlkwd{plot}\hldef{(child}\hlopt{$}\hldef{mom.age, child}\hlopt{$}\hldef{kid.score,} \hlkwc{pch} \hldef{=} \hlnum{20}\hldef{,}
+     \hlkwc{xlab} \hldef{=} \hlsng{'Mother Age (at birth)'}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{'Child Test Score (Age 3)'}\hldef{)}
+\hlkwd{abline}\hldef{(}\hlkwd{coef}\hldef{(reg1))}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-21-1} 
-
 \end{knitrout}
 Our model suggests that the children of mothers who were older when they gave birth tend to score higher. In particular, comparing two children whose mothers' age at birth differed by one year, we would predict that the child of the older mother will score, on average, 0.7 points higher. The standard error associated with the estimate, however, is fairly large. An approximate 95\% CI would just barely include zero. Nevertheless, this result is suggestive that the children of older mothers do better on the test. A naive reading of these results would be that women should wait to have children until they are as old as possible. The regression results, however, most emphatically do \emph{not} establish this. There are many possible confounders here: for example, teenage pregnancy is correlated with economic disadvantage and lower levels of education.
    \end{solution}
@@ -1737,8 +1735,8 @@ Our model suggests that the children of mothers who were older when they gave bi
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{reg2} \hlkwb{<-} \hlkwd{lm}\hlstd{(kid.score} \hlopt{~} \hlstd{mom.hs} \hlopt{+} \hlstd{mom.age, child)}
-\hlkwd{display}\hlstd{(reg2)}
+\hldef{reg2} \hlkwb{<-} \hlkwd{lm}\hldef{(kid.score} \hlopt{~} \hldef{mom.hs} \hlopt{+} \hldef{mom.age, child)}
+\hlkwd{display}\hldef{(reg2)}
 \end{alltt}
 \begin{verbatim}
 ## lm(formula = kid.score ~ mom.hs + mom.age, data = child)
@@ -1751,18 +1749,17 @@ Our model suggests that the children of mothers who were older when they gave bi
 ## residual sd = 19.86, R-Squared = 0.06
 \end{verbatim}
 \begin{alltt}
-\hlstd{b_both} \hlkwb{<-} \hlkwd{coef}\hlstd{(reg2)[}\hlnum{3}\hlstd{]}
-\hlstd{a_HS} \hlkwb{<-} \hlkwd{coef}\hlstd{(reg2)[}\hlnum{1}\hlstd{]} \hlopt{+} \hlkwd{coef}\hlstd{(reg2)[}\hlnum{2}\hlstd{]}
-\hlstd{a_no_HS} \hlkwb{<-} \hlkwd{coef}\hlstd{(reg2)[}\hlnum{1}\hlstd{]}
-\hlstd{colors} \hlkwb{<-} \hlkwd{ifelse}\hlstd{(child}\hlopt{$}\hlstd{mom.hs} \hlopt{==} \hlnum{1}\hlstd{,} \hlstr{'gray'}\hlstd{,} \hlstr{'black'}\hlstd{)}
-\hlkwd{plot}\hlstd{(child}\hlopt{$}\hlstd{mom.age, child}\hlopt{$}\hlstd{kid.score,} \hlkwc{pch} \hlstd{=} \hlnum{20}\hlstd{,} \hlkwc{col} \hlstd{= colors,}
-     \hlkwc{xlab} \hlstd{=} \hlstr{'Mother Age (at Birth)'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'Child Test Score (Age 3)'}\hlstd{)}
-\hlkwd{abline}\hlstd{(}\hlkwc{a} \hlstd{= a_HS,} \hlkwc{b} \hlstd{= b_both,} \hlkwc{col} \hlstd{=} \hlstr{'gray'}\hlstd{)}
-\hlkwd{abline}\hlstd{(}\hlkwc{a} \hlstd{= a_no_HS,} \hlkwc{b} \hlstd{= b_both,} \hlkwc{col} \hlstd{=} \hlstr{'black'}\hlstd{)}
+\hldef{b_both} \hlkwb{<-} \hlkwd{coef}\hldef{(reg2)[}\hlnum{3}\hldef{]}
+\hldef{a_HS} \hlkwb{<-} \hlkwd{coef}\hldef{(reg2)[}\hlnum{1}\hldef{]} \hlopt{+} \hlkwd{coef}\hldef{(reg2)[}\hlnum{2}\hldef{]}
+\hldef{a_no_HS} \hlkwb{<-} \hlkwd{coef}\hldef{(reg2)[}\hlnum{1}\hldef{]}
+\hldef{colors} \hlkwb{<-} \hlkwd{ifelse}\hldef{(child}\hlopt{$}\hldef{mom.hs} \hlopt{==} \hlnum{1}\hldef{,} \hlsng{'gray'}\hldef{,} \hlsng{'black'}\hldef{)}
+\hlkwd{plot}\hldef{(child}\hlopt{$}\hldef{mom.age, child}\hlopt{$}\hldef{kid.score,} \hlkwc{pch} \hldef{=} \hlnum{20}\hldef{,} \hlkwc{col} \hldef{= colors,}
+     \hlkwc{xlab} \hldef{=} \hlsng{'Mother Age (at Birth)'}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{'Child Test Score (Age 3)'}\hldef{)}
+\hlkwd{abline}\hldef{(}\hlkwc{a} \hldef{= a_HS,} \hlkwc{b} \hldef{= b_both,} \hlkwc{col} \hldef{=} \hlsng{'gray'}\hldef{)}
+\hlkwd{abline}\hldef{(}\hlkwc{a} \hldef{= a_no_HS,} \hlkwc{b} \hldef{= b_both,} \hlkwc{col} \hldef{=} \hlsng{'black'}\hldef{)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-22-1} 
-
 \end{knitrout}
 By adding a dummy variable that equals one if a child's mother completed high school, we have controlled for one of the possible confounders from above: mother's level of education. We have done this by allowing the regression line to have a different intercept depending on mother's education. Comparing two children whose mothers are of the same age but only one whom attended high school, we predict that the child of the better educated mother will score, on average, 11 points higher. The standard error associated with this estimate is quite small, yielding a 95\% CI that is is nowhere near zero. We have strong evidence of a large effect from mother's education level. In contrast, once we've controlled from mother's education, the estimated effect of \texttt{mom.age} falls substantially while the associated standard error stays the same. This results in an approximate 95\% CI that includes many negative values. After controlling for mother's education, there is much less evidence to suggest that older mothers have higher-scoring children. In terms of predictive accuracy, the second model is slightly better but neither is particularly effective: we are only predicting test scores to an accuracy of about 20 points.
     \end{solution}
@@ -1771,8 +1768,8 @@ By adding a dummy variable that equals one if a child's mother completed high sc
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{reg3} \hlkwb{<-} \hlkwd{lm}\hlstd{(kid.score} \hlopt{~} \hlstd{mom.hs} \hlopt{+} \hlstd{mom.age} \hlopt{+} \hlstd{mom.hs}\hlopt{:}\hlstd{mom.age, child)}
-\hlkwd{display}\hlstd{(reg3)}
+\hldef{reg3} \hlkwb{<-} \hlkwd{lm}\hldef{(kid.score} \hlopt{~} \hldef{mom.hs} \hlopt{+} \hldef{mom.age} \hlopt{+} \hldef{mom.hs}\hlopt{:}\hldef{mom.age, child)}
+\hlkwd{display}\hldef{(reg3)}
 \end{alltt}
 \begin{verbatim}
 ## lm(formula = kid.score ~ mom.hs + mom.age + mom.hs:mom.age, data = child)
@@ -1786,18 +1783,17 @@ By adding a dummy variable that equals one if a child's mother completed high sc
 ## residual sd = 19.70, R-Squared = 0.07
 \end{verbatim}
 \begin{alltt}
-\hlstd{a_no_HS} \hlkwb{<-} \hlkwd{coef}\hlstd{(reg3)[}\hlnum{1}\hlstd{]}
-\hlstd{a_HS} \hlkwb{<-} \hlkwd{coef}\hlstd{(reg3)[}\hlnum{1}\hlstd{]} \hlopt{+} \hlkwd{coef}\hlstd{(reg3)[}\hlnum{2}\hlstd{]}
-\hlstd{b_no_HS} \hlkwb{<-} \hlkwd{coef}\hlstd{(reg3)[}\hlnum{3}\hlstd{]}
-\hlstd{b_HS} \hlkwb{<-} \hlkwd{coef}\hlstd{(reg3)[}\hlnum{3}\hlstd{]} \hlopt{+} \hlkwd{coef}\hlstd{(reg3)[}\hlnum{4}\hlstd{]}
-\hlkwd{plot}\hlstd{(child}\hlopt{$}\hlstd{mom.age, child}\hlopt{$}\hlstd{kid.score,} \hlkwc{pch} \hlstd{=} \hlnum{20}\hlstd{,} \hlkwc{col} \hlstd{= colors,}
-     \hlkwc{xlab} \hlstd{=} \hlstr{'Mother Age (at birth)'}\hlstd{,} \hlkwc{ylab} \hlstd{=} \hlstr{'Child Test (Age 3)'}\hlstd{)}
-\hlkwd{abline}\hlstd{(}\hlkwc{a} \hlstd{= a_HS,} \hlkwc{b} \hlstd{= b_HS,} \hlkwc{col} \hlstd{=} \hlstr{'gray'}\hlstd{)}
-\hlkwd{abline}\hlstd{(}\hlkwc{a} \hlstd{= a_no_HS,} \hlkwc{b} \hlstd{= b_no_HS,} \hlkwc{col} \hlstd{=} \hlstr{'black'}\hlstd{)}
+\hldef{a_no_HS} \hlkwb{<-} \hlkwd{coef}\hldef{(reg3)[}\hlnum{1}\hldef{]}
+\hldef{a_HS} \hlkwb{<-} \hlkwd{coef}\hldef{(reg3)[}\hlnum{1}\hldef{]} \hlopt{+} \hlkwd{coef}\hldef{(reg3)[}\hlnum{2}\hldef{]}
+\hldef{b_no_HS} \hlkwb{<-} \hlkwd{coef}\hldef{(reg3)[}\hlnum{3}\hldef{]}
+\hldef{b_HS} \hlkwb{<-} \hlkwd{coef}\hldef{(reg3)[}\hlnum{3}\hldef{]} \hlopt{+} \hlkwd{coef}\hldef{(reg3)[}\hlnum{4}\hldef{]}
+\hlkwd{plot}\hldef{(child}\hlopt{$}\hldef{mom.age, child}\hlopt{$}\hldef{kid.score,} \hlkwc{pch} \hldef{=} \hlnum{20}\hldef{,} \hlkwc{col} \hldef{= colors,}
+     \hlkwc{xlab} \hldef{=} \hlsng{'Mother Age (at birth)'}\hldef{,} \hlkwc{ylab} \hldef{=} \hlsng{'Child Test (Age 3)'}\hldef{)}
+\hlkwd{abline}\hldef{(}\hlkwc{a} \hldef{= a_HS,} \hlkwc{b} \hldef{= b_HS,} \hlkwc{col} \hldef{=} \hlsng{'gray'}\hldef{)}
+\hlkwd{abline}\hldef{(}\hlkwc{a} \hldef{= a_no_HS,} \hlkwc{b} \hldef{= b_no_HS,} \hlkwc{col} \hldef{=} \hlsng{'black'}\hldef{)}
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/unnamed-chunk-23-1} 
-
 \end{knitrout}
 When we allow for different slopes as well as intercepts, by adding an \emph{interaction} between \texttt{mom.hs} and \texttt{mom.hs}, namely \texttt{mom.hs:mom.age}, we find very different results depending on mother's education. There is substantial evidence that we should allow for different slopes, since the approximate 95\% CI for the interaction does not include zero. For children whose mothers attended high school, there is a \emph{positive} relationship between mother's age at birth and child's test score. For children whose mothers did not attend high school, the relationship is \emph{negative}. For children whose mothers were 18 when they gave birth, there is essentially \emph{no} difference across mothers with different education levels. As mothers' age at birth increases, however, a difference emerges.
 \end{solution}
