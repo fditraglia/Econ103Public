@@ -207,7 +207,7 @@ Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
 	 	\part[5] Calculate the expected value of $Y$.
 	 		\begin{solution}[4.5cm]
 	 			\begin{eqnarray*}
-	 				E[Y] &=& 20\int_0^1 y(y^3 - y^4)\;dx = 20\int_0^1 (y^4 - y^5)\;dx =20 \left. \left(\frac{y^5}{5}-\frac{y^6}{6} \right)\right|_0^1\\
+	 				E[Y] &=& 20\int_0^1 y(y^3 - y^4)\;dy = 20\int_0^1 (y^4 - y^5)\;dy =20 \left. \left(\frac{y^5}{5}-\frac{y^6}{6} \right)\right|_0^1\\
 	 				&=& 20 \left( \frac{1}{5}-\frac{1}{6}\right) = 20 \left( \frac{6-5}{30}\right) = \frac{2}{3}
 	 			\end{eqnarray*}
 	 		\end{solution}
@@ -215,7 +215,7 @@ Graphing calculators, notes, and textbooks are not permitted. }\end{minipage}}
 	 		\begin{solution}[4.5cm]
 	 			By the shortcut formula, we only need to calculate $E[Y^2]$ since we know $E[Y]^2 = 4/9$ from the preceding part. We have,
 	 				\begin{eqnarray*}
-	 					E[X^2] &=& 20\int_0^1 (y^5 - y^6)\; dy = 20 \left. \left(\frac{y^6}{6}-\frac{y^7}{7} \right)\right|_0^1 = 20  \left(\frac{1}{6}-\frac{1}{7} \right) = 10/21
+	 					E[Y^2] &=& 20\int_0^1 (y^5 - y^6)\; dy = 20 \left. \left(\frac{y^6}{6}-\frac{y^7}{7} \right)\right|_0^1 = 20  \left(\frac{1}{6}-\frac{1}{7} \right) = 10/21
 	 				\end{eqnarray*}
 	 				Hence $Var(Y) = 10/21 - 4/9 = (30 - 28)/63 = 2/63$.
 	 		\end{solution}

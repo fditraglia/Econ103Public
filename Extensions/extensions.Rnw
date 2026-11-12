@@ -378,49 +378,49 @@ Define $F_D$ and $F_S$ analogously.
     The following table enumerates all of them:
     \begin{center}
     \begin{tabular}[h]{ll}
-      WBBBW & BWBWB\\
-      WBBWB & BBWWB\\
-      WBWBB & BBBWW\\
-      WWBBB & BBWBW\\
-      BWWBB & BWBBW
+      RBBBR & BRBRB\\
+      RBBRB & BBRRB\\
+      RBRBB & BBBRR\\
+      RRBBB & BBRBR\\
+      BRRBB & BRBBR
     \end{tabular}
   \end{center}
   I have found two strategies that yield a positive expected value.
   (There may be more.)
-  The first to \emph{keep playing if and only if your cumulative winnings are negative}.
-  For example, if your first draw is W, your cumulative winnings are $+1$ so you should stop.
-  On the other hand, if your first draw is B then you cumulative winnings are $-1$ so you should keep playing. 
-  If your first draw is a B and your second draw is a W, then your cumulative winnings are zero, so you should stop playing.
+  The first is to \emph{keep playing if and only if your cumulative winnings are negative}.
+  For example, if your first draw is R, your cumulative winnings are $+1$ so you should stop.
+  On the other hand, if your first draw is B then your cumulative winnings are $-1$ so you should keep playing. 
+  If your first draw is a B and your second draw is an R, then your cumulative winnings are zero, so you should stop playing.
   The following table uses parentheses to show how this rule applies to each possible sequence of draws.
   You should \emph{stop playing} as soon as you hit the first parenthesis.
   The value to the right of the arrow denotes your winnings for a given sequence when following the strategy.
   \begin{center}
     \begin{tabular}[h]{llll}
-      W(BBBW) $\rightarrow +1$& BW(BWB) $\rightarrow 0$\\
-      W(BBWB) $\rightarrow +1$& BBWW(B) $\rightarrow 0$\\
-      W(BWBB) $\rightarrow +1$& BBBWW() $\rightarrow -1$\\
-      W(WBBB) $\rightarrow +1$& BBWBW() $\rightarrow -1$\\
-      BW(WBB) $\rightarrow 0$& BW(BBW) $\rightarrow 0$
+      R(BBBR) $\rightarrow +1$& BR(BRB) $\rightarrow 0$\\
+      R(BBRB) $\rightarrow +1$& BBRR(B) $\rightarrow 0$\\
+      R(BRBB) $\rightarrow +1$& BBBRR() $\rightarrow -1$\\
+      R(RBBB) $\rightarrow +1$& BBRBR() $\rightarrow -1$\\
+      BR(RBB) $\rightarrow 0$& BR(BBR) $\rightarrow 0$
     \end{tabular}
   \end{center}
   The expected value of this strategy is $(1 + 1 + 1 + 1 - 1 - 1)/10 = 1/5$ since each sequence has a probability of $1/10$.
 
   A slightly different strategy that also gives a positive expected value is as follows: 
   \begin{quote}
-    If your first draw is W, stop; if your first draw is B, keep drawing until both white balls are removed.
+    If your first draw is R, stop; if your first draw is B, keep drawing until both red balls are removed.
   \end{quote}
   Following the same notational convention as above, we can summarize the results of this strategy as follows:
   \begin{center}
     \begin{tabular}[h]{llll}
-      W(BBBW) $\rightarrow +1$& BWBW(B) $\rightarrow 0$\\
-      W(BBWB) $\rightarrow +1$& BBWW(B) $\rightarrow 0$\\
-      W(BWBB) $\rightarrow +1$& BBBWW() $\rightarrow -1$\\
-      W(WBBB) $\rightarrow +1$& BBWBW() $\rightarrow -1$\\
-      BWW(BB) $\rightarrow +1$& BWBBW() $\rightarrow -1$
+      R(BBBR) $\rightarrow +1$& BRBR(B) $\rightarrow 0$\\
+      R(BBRB) $\rightarrow +1$& BBRR(B) $\rightarrow 0$\\
+      R(BRBB) $\rightarrow +1$& BBBRR() $\rightarrow -1$\\
+      R(RBBB) $\rightarrow +1$& BBRBR() $\rightarrow -1$\\
+      BRR(BB) $\rightarrow +1$& BRBBR() $\rightarrow -1$
     \end{tabular}
   \end{center}
   so the expected value is $(1 + 1 + 1 + 1 + 1 - 1 - 1 - 1)/10 = 1/5$.
-  Although these two strategies have the same expected value, they different. 
+  Although these two strategies have the same expected value, they are different. 
   Let $p$ denote the pmf of your winnings under the first strategy and $q$ denote the pmf of your winnings under the second.
   Then we see that:
   \[
@@ -428,7 +428,7 @@ Define $F_D$ and $F_S$ analogously.
   \]
   while 
   \[
-    q(-1) = 3/10, \quad q(0) = 2/10, \quad p(1) = 5/10
+    q(-1) = 3/10, \quad q(0) = 2/10, \quad q(1) = 5/10
   \]
   Hence, you have a larger chance of winning a positive amount using the second strategy, but also a larger chance of \emph{losing} a positive amount.
   A helpful review problem would be to calculate the variance of your winnings under each strategy.
@@ -438,7 +438,7 @@ Define $F_D$ and $F_S$ analogously.
   \question An ancient artifact worth \$100,000 fell out of Indiana Jones's airplane and landed in the Florida Everglades. Unless he finds it within a day, it will sink to the bottom and be lost forever. Dr.\ Jones can hire one or more helicopters to search the Everglades. Each helicopter charges \$1,000 per day and has a probability of 0.9 of finding the artifact. If Dr.\ Jones wants to maximize his \emph{expected value}, how many helicopters should he hire?
   \begin{solution}
     Let $p(n)$ be the probability of finding the artifact if Indiana Jones hires $n$ helicopters.
-    By the complement rule, $p(n) = 1 - 1/10^n$ since the probability of \emph{not} finding the artifact when $n$ helicopters are search for it is $(1 - 0.9)^n = 1/10^2$.
+    By the complement rule, $p(n) = 1 - 1/10^n$ since the probability of \emph{not} finding the artifact when $n$ helicopters search for it is $(1 - 0.9)^n = 1/10^n$.
     Now let $E(n)$ denote Indiana Jones's expected value if he hires $n$ helicopters.
     If he does \emph{not} find the artifact, Jones \emph{loses} $n \times $\$1,000.
     If he \emph{does} find the artifact, Jones \emph{gains} \$100,000$- n\times $\$1,000.
@@ -459,8 +459,8 @@ p <- 1 - 1/10^n
 EV <- 100000 * p - 1000 * n
 cbind(n,p,EV)
 @
-From the table is appears that the optimal number of helicopters is $2$.
-But how can we be sure when we have only examined five possible values for $n$?
+From the table it appears that the optimal number of helicopters is $2$.
+But how can we be sure when we have only examined four possible values for $n$?
 Notice that the marginal expected cost is a constant \$1000 regardless of $n$.
 In contrast, the marginal expected benefit is
 \begin{align*}
@@ -469,7 +469,7 @@ In contrast, the marginal expected benefit is
   &= \frac{1}{10^{n}}\left(1 - \frac{1}{10} \right) \\
   &= \frac{1}{10^n} \times 0.9
 \end{align*}
-This is \emph{decreasing} with $n$, so we know that it is it unnecessary to examine larger values of $n$.
+This is \emph{decreasing} with $n$, so we know that it is unnecessary to examine larger values of $n$.
 An alternative way to solve this problem is to ``pretend'' that $n$ is continuous, derive the first and second order conditions to characterize the unique global optimum, and then look at the whole number values of $n$ on each side of the (infeasible) optimum from the continuous problem.
 
   \end{solution}
@@ -682,15 +682,15 @@ so we should invest \$54 in Google and \$46 in Apple.
       \end{align*}
     \end{solution}
     \part Only students whose combined score is at least 136 are hired.
-    If $Z$ is normally distributed, approximately what percentage of applicants applicants will be hired?
+    If $Z$ is normally distributed, approximately what percentage of applicants will be hired?
     \begin{solution}
       From the preceding parts $\mu_Z = 100$ and $\sigma_Z = \sqrt{324} = 18$.
       Hence,
       \begin{align*}
         P(Z > 136) &= 1 - P(Z \leq 136) = 1 - P\left( \frac{Z - 100}{18} \leq \frac{136 - 100}{18} \right)\\
-        &= 1 - P\left( \frac{Z - 100}{18} \leq 2 \right) = 1 - \texttt{pnorm(2)} \approx 0.025
+        &= 1 - P\left( \frac{Z - 100}{18} \leq 2 \right) = 1 - \texttt{pnorm(2)} \approx 0.023
       \end{align*}
-      So about 2.5\% of applicants will be hired.
+      So about 2.3\% of applicants will be hired.
     \end{solution}
     \part Continuing under the assumption that $Z$ is normally distributed, as in the preceding part, suppose the firm wanted to hire the top 16\% of applicants.
     Approximately what cutoff should they use for each applicant's combined score?
@@ -1318,7 +1318,7 @@ As it happens there are 32 bouts in \texttt{last16}, 8 bouts for each weight cla
   Re-arranging using the linearity of expectation, $\beta_0 = E[Y] - \beta_1 E[X]$
   Substituting this expression for $\beta_0$ back into the objective function, 
   \[
-    E[(Y - \mu_Y - \beta_1 \mu_X - \beta_1 X)^2] = E\left[ \left\{ (Y-\mu_Y) - \beta_1 (X - \mu_X)\right\}^2\right]
+    E[(Y - \mu_Y + \beta_1 \mu_X - \beta_1 X)^2] = E\left[ \left\{ (Y-\mu_Y) - \beta_1 (X - \mu_X)\right\}^2\right]
   \]
   using the shorthand $E[Y] = \mu_Y$ and $E[X] = \mu_X$.
   Now, differentiating with respect to $\beta_1$ gives the first order condition

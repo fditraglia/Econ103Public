@@ -188,7 +188,7 @@ for(i in 3:20) {
         Var(Z) = E[Z^2] - (E[Z])^2 = 1 - (2p - 1)^2 = 4p(1-p).
       \]
       We know that the variance of a Bernoulli$(p)$ RV is $p(1-p)$.
-      Hence, the variance of $Z$ is always \emph{larger} than that of the corresponding Bernoulli.
+      Hence, whenever $0 < p < 1$, the variance of $Z$ is \emph{larger} than that of the corresponding Bernoulli.
     \end{solution}
     \part[5] Calculate $Var(S)$.
     \begin{solution}[1.25in]
@@ -226,7 +226,7 @@ for(i in 3:20) {
 %    \end{solution}
     \part[10] Calculate $P(S = 1)$.
     \begin{solution}[3.5in]
-      This calculation effectively identical is to the reasoning we used to work out the pmf of a Binomial RV.
+      This calculation is effectively identical to the reasoning we used to work out the pmf of a Binomial RV.
       The only way to obtain $S=1$ is if \emph{exactly one} of the RVs $(X,Y,Z)$ takes on the value $-1$ while the rest take on the value $1$.
       There are three mutually exclusive ways that this can occur:
       \begin{enumerate}
@@ -335,7 +335,7 @@ myreg <- function(x, y) {
 
 \question[20] This problem is taken from the extensions.
 It has been re-worded slightly for clarity, but the solution is unchanged.
-Let $Y$ and $X$ be RVs. In this problem you will find the the constants $\beta_0$ and $\beta_1$ that solve
+Let $Y$ and $X$ be RVs. In this problem you will find the constants $\beta_0$ and $\beta_1$ that solve
 \[
   \min_{\beta_0, \beta_1} E[(Y - \beta_0 - \beta_1 X)^2].
 \]
@@ -354,7 +354,7 @@ You do not have to check the second order condition.
   \begin{solution}[3.5in]
   Substituting the expression for $\beta_0$ back into the objective function,
   \[
-    E[(Y - \mu_Y - \beta_1 \mu_X - \beta_1 X)^2] = E\left[ \left\{ (Y-\mu_Y) - \beta_1 (X - \mu_X)\right\}^2\right]
+    E[(Y - \mu_Y + \beta_1 \mu_X - \beta_1 X)^2] = E\left[ \left\{ (Y-\mu_Y) - \beta_1 (X - \mu_X)\right\}^2\right]
   \]
   using the shorthand $E[Y] = \mu_Y$ and $E[X] = \mu_X$.
   Now, differentiating with respect to $\beta_1$ gives the first order condition

@@ -154,7 +154,7 @@ sum(sims > 0)/length(sims)
 	 	\begin{solution}[2.5in]
 	 		By the Law of Total Probability:
 	 		\begin{eqnarray*}
-	 			P(Z > 0) &=& P(Z > 0 |Q = 1)P(Q = 1) +	P(Z > 0| Q = 0)\\
+	 			P(Z > 0) &=& P(Z > 0 |Q = 1)P(Q = 1) +	P(Z > 0| Q = 0)P(Q = 0)\\
 	 			&=& P(Z > 0 |Q = 1)\times 1/2 +	P(Z > 0| Q = 0)\times 1/2 \\
 	 			&=& P(X > 0) \times 1/2 + P(Y > 0)\times 1/2\\
 	 			&\approx& 1/2 \times \left[0.16 + 0.84\right] = 0.5

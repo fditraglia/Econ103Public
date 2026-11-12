@@ -843,13 +843,13 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 \question Substitute $n=1$ into the pmf of a Binomial$(n,p)$ RV and show that you obtain the pmf of a Bernoulli$(p)$ RV.
 	\begin{solution}
 		The pmf for a Binomial$(n,p)$ RV is
-		$$p(x) = {n \choose x} p^x (1-p)^{n-x}$$
-		with support $\{0, 1, 2\hdots, n\}$. Setting $n=1$ gives,
-		$$p(x) = p(x) = {1 \choose x} p^x (1-p)^{1-x}$$
+		$$f(x) = {n \choose x} p^x (1-p)^{n-x}$$
+		with support $\{0, 1, 2, \dots, n\}$. Setting $n=1$ gives,
+		$$f(x) = {1 \choose x} p^x (1-p)^{1-x}$$
 		with support $\{0,1\}$. Plugging in each realization in the support, and recalling that $0! = 1$, we have
-			$$p(0) = \frac{1!}{0!(1-0)!} p^0 (1-p)^{1-0} = 1 - p$$
+			$$f(0) = \frac{1!}{0!(1-0)!} p^0 (1-p)^{1-0} = 1 - p$$
 		and
-		$$p(1) = \frac{1!}{1!(1-1)!} p^1 (1-p)^0 = p$$
+		$$f(1) = \frac{1!}{1!(1-1)!} p^1 (1-p)^0 = p$$
 		which is exactly how we defined the Bernoulli Random Variable.
 	\end{solution}
 
@@ -876,12 +876,12 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 			\begin{center}
 \begin{tabular}{|cc|cc|}
 \hline
-&&\multicolumn{2}{c|}{$X$}\\
-&&1 & 2\\
+&&\multicolumn{2}{c|}{$Y$}\\
+&&0 & 1\\
 \hline
-\multirow{2}{*}{$Y$}
-&0& \multicolumn{1}{|c}{0.20} & 0.25\\
-&1& \multicolumn{1}{|c}{0.30} & 0.25\\
+\multirow{2}{*}{$X$}
+&1& \multicolumn{1}{|c}{0.20} & 0.30\\
+&2& \multicolumn{1}{|c}{0.25} & 0.25\\
 \hline
 \end{tabular}
 \end{center}
@@ -950,11 +950,11 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
 \begin{parts}
 \part Calculate $p_Y(0)$.
 \begin{solution}
-  $p_X(0) = p_{XY}(0,0) + p_{XY}(1,0) + p_{XY}(2,0) = 1/3$
+  $p_Y(0) = p_{XY}(0,0) + p_{XY}(1,0) + p_{XY}(2,0) = 1/3$
 \end{solution}
 \part Calculate $p_{X|Y}(2|0)$.
 \begin{solution}
-  $p_{X|Y}(0|0) = (1/9) / (1/9 + 1/9 + 1/9) = 1/3$
+  $p_{X|Y}(2|0) = (1/9) / (1/9 + 1/9 + 1/9) = 1/3$
 \end{solution}
 \part Calculate $E[XY]$.
 \begin{solution}
@@ -1101,7 +1101,7 @@ Prove that $Var(a + bX) = b^2 Var(X)$.
   F(x_0) = \left\{
   \begin{array}{rr}
     0, & x_0 < -2\\
-    x_0/4, & -2 \leq x_0 \leq 2\\
+    (x_0 + 2)/4, & -2 \leq x_0 \leq 2\\
     1, & x_0 > 2
   \end{array}
   \right.
