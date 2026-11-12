@@ -192,7 +192,7 @@ Finally given that $X=2$, $Y$ can only take on the values $1,2$ or $3$, each wit
   \begin{parts}
     \part[5] Calculate the CDF $F(x_0)$ of $X$.
     \begin{solution}[1.6in]
-      $\int_{-\infty}^{x_0} f(x)\; dx = \int_{0}^{x_0} e^{-x}\; dx = \left. -e^{-x}\right|_0^{x_0} = -e^{-x^0} -\left( -e^{0} \right) = 1 - e^{-x_0}$
+      $\int_{-\infty}^{x_0} f(x)\; dx = \int_{0}^{x_0} e^{-x}\; dx = \left. -e^{-x}\right|_0^{x_0} = -e^{-x_0} -\left( -e^{0} \right) = 1 - e^{-x_0}$
     \end{solution}
     \part[5] Calculate $P(0 \leq X \leq 1)$.
     \begin{solution}[1.6in]
@@ -200,7 +200,7 @@ Finally given that $X=2$, $Y$ can only take on the values $1,2$ or $3$, each wit
     \end{solution}
     \part[5] Derive the quantile function $Q(p)$ of $X$.
     \begin{solution}[1.6in]
-      Since $Q(p) = F^{-1}(x)$, we simply solve $p = F(x) = 1-e^{-x}$ for $x$, yielding: $Q(p) = -\log(1-p)$ where $\log$ denotes the natural logarithm.
+      Since $Q(p) = F^{-1}(p)$, we simply solve $p = F(x) = 1-e^{-x}$ for $x$, yielding: $Q(p) = -\log(1-p)$ where $\log$ denotes the natural logarithm.
     \end{solution}
     \part[5] The ``Survival Function'' of a continuous RV $Y$ is defined as $S(t) = P(Y>t)$ where $t$ is some threshold. Calculate the survival function of $X$. 
     \begin{solution}[1.6in]
